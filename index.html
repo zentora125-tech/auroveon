@@ -413,6 +413,7 @@
         letter-spacing: -0.045em;
         line-height: 1;
         overflow: visible;
+        width: fit-content;
       }
 
       .shine-heading,
@@ -464,16 +465,30 @@
       }
 
       @keyframes text-shine {
-        0% {
-          background-position: -200% center;
-        }
-
-        100% {
-          background-position: 200% center;
-        }
+        0%   { background-position: -200% center; }
+        100% { background-position:  200% center; }
       }
 
       .shine-text {
+        display: inline;
+        overflow: visible;
+      }
+
+      .shine-text .split-word {
+        display: inline;
+        overflow: visible;
+        padding-right: 0.18em;
+      }
+
+      .shine-text .split-inner {
+        display: inline-block;
+        overflow: visible;
+        padding-left: 0.08em;
+        margin-left: -0.08em;
+        padding-right: 0.12em;
+        margin-right: -0.12em;
+        padding-bottom: 0.15em;
+        margin-bottom: -0.15em;
         background: linear-gradient(
           90deg,
           #ffffff 0%,
@@ -485,8 +500,7 @@
           #ffffff 100%
         );
         background-size: 200% auto;
-        display: inline;
-        overflow: visible;
+        background-position: -200% center;
         -webkit-background-clip: text;
         background-clip: text;
         -webkit-text-fill-color: transparent;
@@ -495,19 +509,37 @@
       }
 
       .shine-text-accent {
+        display: inline;
+        overflow: visible;
+      }
+
+      .shine-text-accent .split-word {
+        display: inline;
+        overflow: visible;
+        padding-right: 0.18em;
+      }
+
+      .shine-text-accent .split-inner {
+        display: inline-block;
+        overflow: visible;
+        padding-left: 0.08em;
+        margin-left: -0.08em;
+        padding-right: 0.12em;
+        margin-right: -0.12em;
+        padding-bottom: 0.15em;
+        margin-bottom: -0.15em;
         background: linear-gradient(
           90deg,
-          var(--accent) 0%,
-          var(--accent) 35%,
+          #39ff14 0%,
+          #39ff14 35%,
           #ccffcc 44%,
           #efffef 50%,
           #ccffcc 56%,
-          var(--accent) 65%,
-          var(--accent) 100%
+          #39ff14 65%,
+          #39ff14 100%
         );
         background-size: 200% auto;
-        display: inline;
-        overflow: visible;
+        background-position: -200% center;
         -webkit-background-clip: text;
         background-clip: text;
         -webkit-text-fill-color: transparent;
@@ -536,7 +568,7 @@
       }
 
       .split-word {
-        display: inline-block;
+        display: inline;
         overflow: visible;
         line-height: inherit;
         padding-right: 0.18em;
@@ -1559,7 +1591,7 @@
                     <span className="eyebrow">AI-native software agency</span>
                   </div>
 
-                  <h1 className="headline-italics mt-6 max-w-[11ch] text-[clamp(2.8rem,7vw,6.8rem)]">
+                  <h1 className="headline-italics mt-6 pr-[0.1em] text-[clamp(2.8rem,7vw,6.8rem)]" style={{ WebkitFontSmoothing: 'antialiased' }}>
                     <span className="shine-text">
                       <SplitWords text="Building Digital" />
                     </span>
@@ -1741,7 +1773,7 @@
       function ProofStrip() {
         const items = [...logos, ...logos];
         return (
-          <section className="section-frame relative overflow-hidden py-6">
+          <section className="section-frame relative overflow-hidden pb-6 pt-14">
             <div className="site-shell">
               <div className="glass-panel marquee rounded-full border border-[var(--border)] px-2 py-2">
                 <div className="marquee-track">
