@@ -1,0 +1,3062 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Auroveon | Building Digital Experiences That Feel Alive</title>
+    <meta
+      name="description"
+      content="Auroveon crafts immersive products, AI systems, and next-gen web experiences for ambitious brands."
+    />
+    <meta name="theme-color" content="#080A08" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      :root {
+        --bg-base: #080a08;
+        --bg-2: #0c0f0c;
+        --bg-3: #111411;
+        --bg-4: #161a16;
+        --accent: #39ff14;
+        --accent-dim: #2bc410;
+        --accent-glow: rgba(57, 255, 20, 0.16);
+        --accent-glow-strong: rgba(57, 255, 20, 0.36);
+        --text-primary: #f0f5f0;
+        --text-secondary: #7a8a7a;
+        --text-muted: #4a574a;
+        --border: rgba(57, 255, 20, 0.1);
+        --border-strong: rgba(57, 255, 20, 0.24);
+        --glass: rgba(12, 15, 12, 0.58);
+        --glass-2: rgba(17, 20, 17, 0.82);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: auto;
+      }
+
+      body {
+        background:
+          radial-gradient(
+            circle at top,
+            rgba(57, 255, 20, 0.09),
+            transparent 28%
+          ),
+          linear-gradient(180deg, #080a08 0%, #090c09 48%, #070907 100%);
+        color: var(--text-primary);
+        font-family: "Inter", sans-serif;
+        overflow-x: hidden;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      @media (min-width: 1024px) {
+        body {
+          cursor: none;
+        }
+      }
+
+      canvas {
+        display: block;
+      }
+
+      .display-font {
+        font-family: "Poppins", sans-serif;
+      }
+
+      .mono-font {
+        font-family: "JetBrains Mono", monospace;
+      }
+
+      .site-shell {
+        width: min(1380px, calc(100% - 1.5rem));
+        margin: 0 auto;
+      }
+
+      @media (min-width: 1024px) {
+        .site-shell {
+          width: min(1380px, calc(100% - 4rem));
+        }
+      }
+
+      .noise-overlay {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: 5;
+        opacity: 0.034;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+        background-size: 240px 240px;
+      }
+
+      .cursor-dot,
+      .cursor-ring {
+        position: fixed;
+        top: 0;
+        left: 0;
+        transform: translate(-50%, -50%);
+        pointer-events: none;
+        z-index: 90;
+        opacity: 0;
+      }
+
+      .cursor-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 9999px;
+        background: var(--accent);
+        box-shadow: 0 0 22px rgba(57, 255, 20, 0.65);
+        mix-blend-mode: screen;
+      }
+
+      .cursor-ring {
+        width: 54px;
+        height: 54px;
+        border-radius: 9999px;
+        border: 1px solid rgba(57, 255, 20, 0.22);
+        background: radial-gradient(
+          circle,
+          rgba(57, 255, 20, 0.12),
+          transparent 72%
+        );
+        transition:
+          width 0.25s ease,
+          height 0.25s ease,
+          border-color 0.25s ease,
+          background 0.25s ease;
+      }
+
+      .cursor-ring.is-hovering {
+        width: 76px;
+        height: 76px;
+        border-color: rgba(57, 255, 20, 0.48);
+        background: radial-gradient(
+          circle,
+          rgba(57, 255, 20, 0.2),
+          transparent 76%
+        );
+      }
+
+      @media (max-width: 1023px) {
+        .cursor-dot,
+        .cursor-ring {
+          display: none;
+        }
+      }
+
+      .glass-panel {
+        background: linear-gradient(
+          180deg,
+          rgba(18, 23, 18, 0.8),
+          rgba(10, 12, 10, 0.58)
+        );
+        border: 1px solid var(--border);
+        backdrop-filter: blur(22px);
+        -webkit-backdrop-filter: blur(22px);
+        box-shadow:
+          0 18px 60px rgba(0, 0, 0, 0.35),
+          inset 0 1px 0 rgba(255, 255, 255, 0.04);
+      }
+
+      .soft-divider {
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(57, 255, 20, 0.28),
+          transparent
+        );
+      }
+
+      .eyebrow {
+        font-family: "JetBrains Mono", monospace;
+        color: var(--accent);
+        font-size: 0.72rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+      }
+
+      .section-kicker {
+        font-family: "Poppins", sans-serif;
+        font-size: 0.74rem;
+        font-weight: 700;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--text-secondary);
+      }
+
+      .hero-image {
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(
+            100deg,
+            rgba(8, 10, 8, 0.94) 16%,
+            rgba(8, 10, 8, 0.74) 52%,
+            rgba(8, 10, 8, 0.9) 100%
+          ),
+          radial-gradient(
+            circle at 78% 30%,
+            rgba(57, 255, 20, 0.14),
+            transparent 24%
+          ),
+          url("https://images.unsplash.com/photo-1518005020951-eccb494ad742?auto=format&fit=crop&w=1800&h=1200&q=80")
+            center/cover no-repeat;
+        transform: scale(1.04);
+        filter: saturate(0.5) contrast(1.08) brightness(0.42);
+      }
+
+      .hero-grid {
+        position: absolute;
+        inset: 0;
+        background-image:
+          linear-gradient(rgba(57, 255, 20, 0.035) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(57, 255, 20, 0.035) 1px, transparent 1px);
+        background-size: 74px 74px;
+        mask-image: radial-gradient(
+          circle at 58% 38%,
+          black 0%,
+          black 42%,
+          transparent 88%
+        );
+        -webkit-mask-image: radial-gradient(
+          circle at 58% 38%,
+          black 0%,
+          black 42%,
+          transparent 88%
+        );
+      }
+
+      .hero-spotlight {
+        position: absolute;
+        border-radius: 9999px;
+        filter: blur(130px);
+        pointer-events: none;
+      }
+
+      .hero-stage {
+        position: relative;
+        min-height: 620px;
+        border-radius: 34px;
+        overflow: hidden;
+        isolation: isolate;
+      }
+
+      .hero-stage-raised {
+        transform: translateY(-1rem);
+      }
+
+      @media (min-width: 1024px) {
+        .hero-stage-raised {
+          transform: translateY(-1.4rem);
+        }
+      }
+
+      @media (max-width: 1023px) {
+        .hero-stage {
+          min-height: 430px;
+        }
+
+        .hero-stage-raised {
+          transform: translateY(0);
+        }
+      }
+
+      @media (max-width: 640px) {
+        .hero-stage {
+          min-height: 380px;
+          border-radius: 28px;
+        }
+      }
+
+      .hero-stage::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(
+            circle at 50% 40%,
+            rgba(57, 255, 20, 0.1),
+            transparent 28%
+          ),
+          linear-gradient(180deg, rgba(255, 255, 255, 0.04), transparent 18%),
+          linear-gradient(
+            140deg,
+            rgba(57, 255, 20, 0.05),
+            rgba(9, 12, 9, 0.16) 30%,
+            rgba(9, 12, 9, 0.92) 88%
+          );
+        z-index: 0;
+      }
+
+      .hero-stage::after {
+        content: "";
+        position: absolute;
+        inset: 1px;
+        border-radius: 33px;
+        border: 1px solid rgba(255, 255, 255, 0.04);
+        pointer-events: none;
+      }
+
+      .mesh-glow {
+        position: absolute;
+        inset: auto;
+        width: 220px;
+        height: 220px;
+        border-radius: 9999px;
+        background: radial-gradient(
+          circle,
+          rgba(57, 255, 20, 0.2),
+          transparent 68%
+        );
+        filter: blur(36px);
+      }
+
+      .marquee {
+        overflow: hidden;
+        position: relative;
+      }
+
+      .marquee-track {
+        display: flex;
+        width: max-content;
+        animation: marquee-left 28s linear infinite;
+      }
+
+      @keyframes marquee-left {
+        0% {
+          transform: translateX(0%);
+        }
+
+        100% {
+          transform: translateX(-50%);
+        }
+      }
+
+      .service-card,
+      .case-card,
+      .proof-card,
+      .workflow-card,
+      .metric-card,
+      .contact-card {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .service-card::before,
+      .case-card::before,
+      .proof-card::before,
+      .workflow-card::before,
+      .metric-card::before,
+      .contact-card::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, 0.03), transparent 24%),
+          radial-gradient(
+            circle at top right,
+            rgba(57, 255, 20, 0.08),
+            transparent 24%
+          );
+        pointer-events: none;
+      }
+
+      .service-card:hover,
+      .case-card:hover,
+      .proof-card:hover,
+      .workflow-card:hover,
+      .metric-card:hover,
+      .contact-card:hover {
+        border-color: var(--border-strong);
+        box-shadow:
+          0 24px 70px rgba(0, 0, 0, 0.38),
+          0 0 45px rgba(57, 255, 20, 0.1);
+      }
+
+      .headline-italics {
+        font-family: "Poppins", sans-serif;
+        font-style: italic;
+        font-weight: 800;
+        letter-spacing: -0.045em;
+        line-height: 1;
+        padding-bottom: 0.12em;
+      }
+
+      @keyframes text-shine {
+        0% {
+          background-position: -200% center;
+        }
+
+        100% {
+          background-position: 200% center;
+        }
+      }
+
+      .shine-text {
+        background: linear-gradient(
+          90deg,
+          #ffffff 0%,
+          #ffffff 35%,
+          #b9ffb0 44%,
+          #eaffea 50%,
+          #b9ffb0 56%,
+          #ffffff 65%,
+          #ffffff 100%
+        );
+        background-size: 200% auto;
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        color: transparent;
+        animation: text-shine 4s linear infinite;
+      }
+
+      .shine-text-accent {
+        background: linear-gradient(
+          90deg,
+          var(--accent) 0%,
+          var(--accent) 35%,
+          #ccffcc 44%,
+          #efffef 50%,
+          #ccffcc 56%,
+          var(--accent) 65%,
+          var(--accent) 100%
+        );
+        background-size: 200% auto;
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        color: transparent;
+        animation: text-shine 4s linear infinite;
+      }
+
+      .split-word {
+        display: inline-block;
+        overflow: visible;
+        padding-right: 0.18em;
+      }
+
+      .section-frame {
+        position: relative;
+      }
+
+      .section-frame::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: -1px;
+        height: 1px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(57, 255, 20, 0.08),
+          transparent
+        );
+      }
+
+      .sticky-progress {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 2px;
+        height: 100%;
+        background: rgba(57, 255, 20, 0.08);
+        overflow: hidden;
+        border-radius: 9999px;
+      }
+
+      .sticky-progress > span {
+        display: block;
+        width: 100%;
+        height: 0%;
+        background: linear-gradient(
+          180deg,
+          rgba(57, 255, 20, 0.18),
+          var(--accent)
+        );
+        border-radius: inherit;
+      }
+
+      .footer-link,
+      .nav-link {
+        color: var(--text-secondary);
+        transition: color 0.24s ease;
+      }
+
+      .footer-socials {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 16px;
+      }
+
+      .footer-social {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 42px;
+        height: 42px;
+        border-radius: 9999px;
+        background: #111;
+        border: 1px solid #1a3a1a;
+        color: #aaa;
+        transition:
+          color 0.2s ease,
+          border-color 0.2s ease,
+          transform 0.2s ease;
+      }
+
+      .footer-social:hover {
+        color: #00ff88;
+        border-color: rgba(0, 255, 136, 0.42);
+        transform: translateY(-1px);
+      }
+
+      .footer-social svg {
+        width: 18px;
+        height: 18px;
+        fill: currentColor;
+        transition: fill 0.2s ease;
+      }
+
+      .footer-contact-list {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        margin-top: 1.25rem;
+      }
+
+      .footer-contact-label {
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: var(--text-secondary);
+      }
+
+      .footer-contact-value {
+        margin-top: 4px;
+        color: #fff;
+        font-size: 0.95rem;
+        line-height: 1.5;
+      }
+
+      .footer-contact-link {
+        color: #fff;
+        text-decoration: none;
+        transition: color 0.2s ease;
+      }
+
+      .footer-contact-link:hover {
+        color: var(--accent);
+        text-decoration: underline;
+      }
+
+      .footer-legal-links {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 16px;
+      }
+
+      .whatsapp-float {
+        position: fixed;
+        bottom: 28px;
+        right: 28px;
+        z-index: 9999;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 56px;
+        height: 56px;
+        border: 0;
+        border-radius: 50%;
+        background: #25d366;
+        box-shadow: 0 4px 20px rgba(37, 211, 102, 0.45);
+        transition: all 0.25s ease;
+      }
+
+      .whatsapp-float:hover {
+        transform: scale(1.1);
+      }
+
+      .nav-scrolled {
+        background: rgba(8, 10, 8, 0.86);
+        border-bottom: 1px solid var(--border);
+        backdrop-filter: blur(22px);
+        -webkit-backdrop-filter: blur(22px);
+      }
+
+      .nav-link:hover {
+        color: var(--text-primary);
+      }
+
+      .footer-link:hover {
+        color: var(--accent);
+      }
+
+      .section-reveal {
+        opacity: 0;
+        transform: translateY(60px);
+      }
+
+      .mini-label {
+        color: var(--text-muted);
+        font-size: 0.76rem;
+        text-transform: uppercase;
+        letter-spacing: 0.16em;
+      }
+
+      .orbital-line {
+        position: absolute;
+        border: 1px solid rgba(57, 255, 20, 0.12);
+        border-radius: 9999px;
+      }
+
+      .testimonial-shell {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .testimonial-shell::after {
+        content: "";
+        position: absolute;
+        inset: 8% 16%;
+        border-radius: 9999px;
+        border: 1px solid rgba(57, 255, 20, 0.08);
+        pointer-events: none;
+      }
+
+      .testimonial-quote-mark {
+        font-family: "Poppins", sans-serif;
+        line-height: 1;
+        color: rgba(57, 255, 20, 0.12);
+      }
+
+      .testimonial-rail {
+        position: relative;
+      }
+
+      .testimonial-mini {
+        transition:
+          transform 0.35s ease,
+          border-color 0.35s ease,
+          opacity 0.35s ease;
+      }
+
+      .testimonial-mini.is-active {
+        transform: translateY(-6px);
+        border-color: var(--border-strong);
+        opacity: 1;
+      }
+
+      .blog-feature-grid {
+        background:
+          linear-gradient(180deg, rgba(57, 255, 20, 0.05), transparent 34%),
+          linear-gradient(135deg, rgba(255, 255, 255, 0.03), transparent 42%);
+      }
+
+      .blog-line {
+        background: linear-gradient(
+          180deg,
+          rgba(57, 255, 20, 0.24),
+          rgba(57, 255, 20, 0)
+        );
+      }
+
+      .case-media {
+        position: relative;
+        overflow: hidden;
+        border-radius: 24px;
+        border: 1px solid rgba(57, 255, 20, 0.08);
+        background: rgba(7, 10, 7, 0.68);
+      }
+
+      .case-media::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(
+            0deg,
+            var(--case-overlay, rgba(0, 20, 10, 0.42)),
+            var(--case-overlay, rgba(0, 20, 10, 0.42))
+          ),
+          linear-gradient(180deg, rgba(8, 10, 8, 0.02), rgba(8, 10, 8, 0.26)),
+          radial-gradient(
+            circle at top right,
+            rgba(57, 255, 20, 0.12),
+            transparent 28%
+          );
+        pointer-events: none;
+      }
+
+      .case-media img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transform: scale(1.02);
+        transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+
+      .case-card:hover .case-media img {
+        transform: scale(1.1);
+      }
+
+      .case-media-mini {
+        overflow: hidden;
+        border-radius: 18px;
+        border: 1px solid rgba(57, 255, 20, 0.08);
+        background: rgba(255, 255, 255, 0.04);
+      }
+
+      .case-media-mini img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transform: scale(1.03);
+        transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+
+      .case-card:hover .case-media-mini img {
+        transform: scale(1.08);
+      }
+
+      .process-outer {
+        min-height: 340vh;
+        position: relative;
+      }
+
+      .process-inner {
+        position: sticky;
+        top: 0;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        overflow: hidden;
+      }
+
+      .process-pill {
+        border: 1px solid var(--border);
+        border-radius: 9999px;
+        padding: 0.7rem 1rem;
+        font-size: 0.76rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--text-secondary);
+        background: rgba(255, 255, 255, 0.02);
+      }
+
+      .process-preview-card {
+        transition:
+          transform 0.28s ease,
+          border-color 0.28s ease,
+          opacity 0.28s ease;
+      }
+
+      .process-preview-card.is-active {
+        border-color: var(--border-strong);
+        transform: translateY(-8px);
+        opacity: 1;
+      }
+
+      .cta-image-panel {
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(
+            100deg,
+            rgba(8, 10, 8, 0.86) 12%,
+            rgba(8, 10, 8, 0.68) 54%,
+            rgba(8, 10, 8, 0.86) 100%
+          ),
+          radial-gradient(
+            circle at 78% 38%,
+            rgba(57, 255, 20, 0.12),
+            transparent 24%
+          ),
+          url("https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=1800&h=1200&q=80")
+            center/cover no-repeat;
+        filter: saturate(0.58) brightness(0.62);
+      }
+
+      @media (max-width: 1023px) {
+        .process-outer {
+          min-height: auto;
+        }
+
+        .process-inner {
+          position: relative;
+          min-height: auto;
+          display: block;
+          padding: 5rem 0;
+        }
+      }
+
+      .mask-fade {
+        mask-image: linear-gradient(
+          180deg,
+          transparent,
+          black 10%,
+          black 88%,
+          transparent
+        );
+        -webkit-mask-image: linear-gradient(
+          180deg,
+          transparent,
+          black 10%,
+          black 88%,
+          transparent
+        );
+      }
+
+      #page-loader {
+        position: fixed;
+        inset: 0;
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        pointer-events: all;
+        overflow: hidden;
+        isolation: isolate;
+        background:
+          radial-gradient(
+            circle at 50% 50%,
+            rgba(57, 255, 20, 0.08),
+            transparent 24%
+          ),
+          linear-gradient(180deg, #020302 0%, #000000 52%, #020302 100%);
+        clip-path: inset(0% 0% 0% 0% round 0px);
+        transition:
+          clip-path 0.95s cubic-bezier(0.85, 0, 0.15, 1),
+          opacity 0.45s ease;
+      }
+
+      #page-loader::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.6'/%3E%3C/svg%3E");
+        background-size: 220px 220px;
+        opacity: 0.08;
+        mix-blend-mode: screen;
+        pointer-events: none;
+      }
+
+      #loader-text {
+        position: relative;
+        z-index: 2;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.01em;
+        font-family: "Poppins", sans-serif;
+        font-weight: 800;
+        font-style: italic;
+        font-size: clamp(3.5rem, 12vw, 10rem);
+        letter-spacing: -0.04em;
+        text-transform: uppercase;
+        filter:
+          drop-shadow(0 0 0 rgba(57, 255, 20, 0))
+          drop-shadow(0 0 0 rgba(57, 255, 20, 0));
+        animation: loader-glow 0.95s ease-in-out 1.05s 2 alternate;
+      }
+
+      .loader-letter-mask {
+        display: inline-block;
+        overflow: hidden;
+        padding-bottom: 0.08em;
+      }
+
+      .loader-letter {
+        display: block;
+        background: linear-gradient(
+          90deg,
+          #39ff14 0%,
+          #b9ffb0 40%,
+          #eaffea 50%,
+          #b9ffb0 60%,
+          #39ff14 100%
+        );
+        background-size: 200% auto;
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        color: transparent;
+        transform: translateY(118%);
+        opacity: 0;
+        animation:
+          loader-shine 1.6s linear infinite,
+          loader-letter-in 0.9s cubic-bezier(0.85, 0, 0.15, 1) forwards;
+        animation-delay: 0s, calc(0.08s * var(--i));
+      }
+
+      @keyframes loader-shine {
+        0% {
+          background-position: -200% center;
+        }
+
+        100% {
+          background-position: 200% center;
+        }
+      }
+
+      @keyframes loader-letter-in {
+        0% {
+          opacity: 0;
+          transform: translateY(118%);
+        }
+
+        100% {
+          opacity: 1;
+          transform: translateY(0%);
+        }
+      }
+
+      @keyframes loader-letter-out {
+        0% {
+          opacity: 1;
+          transform: translateY(0%);
+        }
+
+        100% {
+          opacity: 0;
+          transform: translateY(-108%);
+        }
+      }
+
+      @keyframes loader-glow {
+        0% {
+          filter:
+            drop-shadow(0 0 0 rgba(57, 255, 20, 0))
+            drop-shadow(0 0 0 rgba(57, 255, 20, 0));
+        }
+
+        100% {
+          filter:
+            drop-shadow(0 0 18px rgba(57, 255, 20, 0.28))
+            drop-shadow(0 0 34px rgba(57, 255, 20, 0.12));
+        }
+      }
+
+      #page-loader.is-text-out .loader-letter {
+        animation:
+          loader-shine 1.6s linear infinite,
+          loader-letter-out 0.55s cubic-bezier(0.85, 0, 0.15, 1) forwards;
+        animation-delay: 0s, calc(0.03s * var(--i));
+      }
+
+      #page-loader.is-leaving {
+        clip-path: inset(42% 39% 42% 39% round 30px);
+        opacity: 0;
+      }
+
+      #page-loader.is-gone {
+        display: none;
+        pointer-events: none;
+      }
+
+      #root {
+        transform-origin: 50% 0%;
+        will-change: transform, filter;
+        transition:
+          transform 1s cubic-bezier(0.85, 0, 0.15, 1),
+          filter 1s cubic-bezier(0.85, 0, 0.15, 1);
+      }
+
+      body:not(.loader-revealed) #root {
+        transform: scale(0.9);
+        filter: brightness(0.86) saturate(0.9);
+      }
+
+      body.loader-revealed #root {
+        transform: scale(1);
+        filter: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="page-loader">
+      <div id="loader-text" aria-label="AUROVEON">
+        <span class="loader-letter-mask"><span class="loader-letter" style="--i: 0">A</span></span>
+        <span class="loader-letter-mask"><span class="loader-letter" style="--i: 1">U</span></span>
+        <span class="loader-letter-mask"><span class="loader-letter" style="--i: 2">R</span></span>
+        <span class="loader-letter-mask"><span class="loader-letter" style="--i: 3">O</span></span>
+        <span class="loader-letter-mask"><span class="loader-letter" style="--i: 4">V</span></span>
+        <span class="loader-letter-mask"><span class="loader-letter" style="--i: 5">E</span></span>
+        <span class="loader-letter-mask"><span class="loader-letter" style="--i: 6">O</span></span>
+        <span class="loader-letter-mask"><span class="loader-letter" style="--i: 7">N</span></span>
+      </div>
+    </div>
+    <div id="root"></div>
+
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://unpkg.com/framer-motion/dist/framer-motion.js"></script>
+
+    <script type="text/babel">
+      const { useEffect, useMemo, useRef, useState } = React;
+
+      const motionSource = window.Motion || window.framerMotion || {};
+
+      function filterMotionProps(props) {
+        const next = { ...props };
+        [
+          "initial",
+          "animate",
+          "exit",
+          "transition",
+          "variants",
+          "whileHover",
+          "whileTap",
+          "whileInView",
+          "viewport",
+          "layout",
+        ].forEach((key) => delete next[key]);
+        return next;
+      }
+
+      const MotionDiv =
+        motionSource.motion?.div ||
+        ((props) => <div {...filterMotionProps(props)}>{props.children}</div>);
+      const MotionA =
+        motionSource.motion?.a ||
+        ((props) => <a {...filterMotionProps(props)}>{props.children}</a>);
+      const MotionButton =
+        motionSource.motion?.button ||
+        ((props) => (
+          <button {...filterMotionProps(props)}>{props.children}</button>
+        ));
+
+      const serviceData = [
+        {
+          title: "AI Systems",
+          tag: "Inference + copilots",
+          text: "Operational AI products with usable interfaces, retrieval layers, guardrails, and measurable workflow impact.",
+          span: "lg:col-span-2",
+        },
+        {
+          title: "Web Platforms",
+          tag: "React + Next generation",
+          text: "Premium product sites and high-performance applications designed to feel editorial, interactive, and conversion-focused.",
+        },
+        {
+          title: "SaaS Architecture",
+          tag: "Scalable product foundations",
+          text: "Billing, permissions, dashboards, data models, and growth-ready system design without the typical product debt.",
+        },
+        {
+          title: "Automation",
+          tag: "Ops that move faster",
+          text: "Internal tooling and AI-assisted processes that remove manual bottlenecks across sales, support, and operations.",
+        },
+        {
+          title: "Modern UI/UX",
+          tag: "Trust through interaction",
+          text: "Interfaces that reduce complexity with narrative flow, richer states, and polished motion systems across devices.",
+        },
+      ];
+
+      const workflowData = [
+        {
+          step: "01",
+          label: "Discovery",
+          title: "Decode the market tension",
+          text: "We start with positioning, audience pressure points, and experience gaps so the product story has precision before visuals do.",
+          pills: ["Research", "Scoping", "Roadmap"],
+        },
+        {
+          step: "02",
+          label: "Design",
+          title: "Design the product theatre",
+          text: "Narrative layouts, premium interaction systems, and service architecture are shaped together so design and engineering move as one.",
+          pills: ["Direction", "Wireframes", "Motion system"],
+        },
+        {
+          step: "03",
+          label: "Build",
+          title: "Engineer the experience layer",
+          text: "From 3D scenes to real product flows, we build components with performance, maintainability, and business outcomes in mind.",
+          pills: ["Frontend", "3D", "QA"],
+        },
+        {
+          step: "04",
+          label: "Launch",
+          title: "Launch with a measured glow",
+          text: "Analytics, QA, iteration loops, and controlled release strategies turn ambitious visuals into dependable production work.",
+          pills: ["Analytics", "Release", "Iteration"],
+        },
+      ];
+
+      const caseData = [
+        {
+          title: "Cortex Ops",
+          label: "AI Workflow Platform",
+          outcome:
+            "42% faster internal resolution time after replacing fragmented manual ops with an AI-enabled command layer.",
+          image:
+            "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80",
+          imageAlt: "Dark dashboard analytics interface for Cortex Ops",
+          overlay: "rgba(0,20,10,0.45)",
+        },
+        {
+          title: "Helio Commerce",
+          label: "Scalable SaaS Rebuild",
+          outcome:
+            "Repositioned the product and rebuilt the frontend into a faster, cleaner customer journey with stronger enterprise trust.",
+          image:
+            "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=800&q=80",
+          imageAlt: "Dark ecommerce interface for Helio Commerce",
+          overlay: "rgba(0,15,8,0.4)",
+        },
+        {
+          title: "Nova Pulse",
+          label: "Modern Product Launch",
+          outcome:
+            "Created a launch system combining immersive storytelling, modular CMS control, and a memorable premium visual identity.",
+          image:
+            "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80",
+          imageAlt:
+            "Dark analytics and data visualization interface for Nova Pulse",
+          overlay: "rgba(0,20,10,0.45)",
+        },
+      ];
+
+      const testimonialData = [
+        {
+          name: "Aisha Malik",
+          role: "Product Lead, Cortex Ops",
+          stat: "3.7x faster release confidence",
+          quote:
+            "They did not just make the site look expensive. They made the product story finally feel coherent, credible, and alive on screen.",
+        },
+        {
+          name: "Rayan Hussain",
+          role: "Founder, Helio Commerce",
+          stat: "42% more qualified demo requests",
+          quote:
+            "The motion feels cinematic, but the real win was how clearly the experience explained our product value. That balance is rare.",
+        },
+        {
+          name: "Sara Khan",
+          role: "Operations Director, Nova Pulse",
+          stat: "91% stakeholder approval at launch",
+          quote:
+            "The team turned complexity into a premium narrative. Every interaction felt intentional, and the scroll flow gave the whole brand more gravity.",
+        },
+      ];
+
+      const blogData = [
+        {
+          title:
+            "Why premium agency websites now behave more like product demos",
+          meta: "Strategy / 06 min read",
+          blurb:
+            "Modern software brands win faster when the homepage explains capability through rhythm, depth, and interaction instead of static blocks.",
+        },
+        {
+          title:
+            "Designing AI landing pages without falling into generic SaaS patterns",
+          meta: "AI UX / 04 min read",
+          blurb:
+            "The strongest AI visuals do not rely on random blobs. They use structure, confidence, and a system-level point of view.",
+        },
+        {
+          title:
+            "Scroll direction as storytelling: making motion feel premium, not noisy",
+          meta: "Motion / 05 min read",
+          blurb:
+            "Advanced animation feels expensive when it has restraint, spatial logic, and enough pause for content to land.",
+        },
+      ];
+
+      const logos = [
+        "OpenAI-ready",
+        "Enterprise-grade",
+        "Realtime systems",
+        "Launch partners",
+        "Automation led",
+        "UX obsessed",
+        "Scalable by default",
+        "AI-native products",
+      ];
+
+      const metrics = [
+        { value: "120+", label: "products shipped across web, AI, and SaaS" },
+        {
+          value: "98%",
+          label: "client retention from long-term build partnerships",
+        },
+        {
+          value: "3x",
+          label: "average speed-up in product clarity after redesign",
+        },
+      ];
+
+      const socialLinks = [
+        {
+          name: "LinkedIn",
+          href: "https://linkedin.com/company/auroveon",
+          icon: (
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M6.94 8.5H3.56V20h3.38V8.5ZM5.25 3A2.01 2.01 0 0 0 3.2 5.03c0 1.1.9 2 2.02 2 1.11 0 2.02-.9 2.02-2A2.01 2.01 0 0 0 5.25 3Zm7.02 5.5H8.98V20h3.29v-5.7c0-1.5.28-2.95 2.14-2.95 1.83 0 1.85 1.7 1.85 3.04V20h3.29v-6.27c0-3.08-.66-5.45-4.26-5.45-1.73 0-2.88.95-3.35 1.85h-.05V8.5Z" />
+            </svg>
+          ),
+        },
+        {
+          name: "Instagram",
+          href: "https://instagram.com/auroveon",
+          icon: (
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M7.5 3h9A4.5 4.5 0 0 1 21 7.5v9A4.5 4.5 0 0 1 16.5 21h-9A4.5 4.5 0 0 1 3 16.5v-9A4.5 4.5 0 0 1 7.5 3Zm0 1.8A2.7 2.7 0 0 0 4.8 7.5v9a2.7 2.7 0 0 0 2.7 2.7h9a2.7 2.7 0 0 0 2.7-2.7v-9a2.7 2.7 0 0 0-2.7-2.7h-9Zm9.45 1.35a1.05 1.05 0 1 1 0 2.1 1.05 1.05 0 0 1 0-2.1ZM12 7.8A4.2 4.2 0 1 1 7.8 12 4.2 4.2 0 0 1 12 7.8Zm0 1.8A2.4 2.4 0 1 0 14.4 12 2.4 2.4 0 0 0 12 9.6Z" />
+            </svg>
+          ),
+        },
+        {
+          name: "Twitter/X",
+          href: "https://twitter.com/auroveon",
+          icon: (
+            <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor">
+              <path d="M13.808 10.927 20.812 3h-1.663l-6.07 6.854L8.117 3H3l7.342 10.427L3 21.274h1.664l6.42-7.25 5.127 7.25H21l-7.192-10.347Zm-2.272 2.567-.744-1.036L5.26 4.21h2.548l4.776 6.638.744 1.036 6.21 8.635h-2.548l-5.454-7.025Z" />
+            </svg>
+          ),
+        },
+        {
+          name: "TikTok",
+          href: "https://tiktok.com/@auroveon",
+          icon: (
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M14.72 3c.18 1.5.98 2.86 2.2 3.74 1.05.75 2.31 1.15 3.6 1.15v3.1a8.64 8.64 0 0 1-3.02-.54v5.33a6.78 6.78 0 1 1-6.77-6.77c.37 0 .73.03 1.08.09v3.22a3.87 3.87 0 0 0-1.08-.16 3.62 3.62 0 1 0 3.62 3.62V3h3.37Z" />
+            </svg>
+          ),
+        },
+      ];
+
+      function SplitWords({ text, className = "" }) {
+        return (
+          <span className={className}>
+            {text.split(" ").map((word, index) => (
+              <span key={index} className="split-word">
+                <span className="inline-block split-inner">{word}</span>
+              </span>
+            ))}
+          </span>
+        );
+      }
+
+      function CursorSystem() {
+        const dotRef = useRef(null);
+        const ringRef = useRef(null);
+
+        useEffect(() => {
+          if (window.innerWidth < 1024) return undefined;
+
+          const dot = dotRef.current;
+          const ring = ringRef.current;
+          if (!dot || !ring || !window.gsap) return undefined;
+
+          const dotX = gsap.quickTo(dot, "left", {
+            duration: 0.14,
+            ease: "power3",
+          });
+          const dotY = gsap.quickTo(dot, "top", {
+            duration: 0.14,
+            ease: "power3",
+          });
+          const ringX = gsap.quickTo(ring, "left", {
+            duration: 0.3,
+            ease: "power3",
+          });
+          const ringY = gsap.quickTo(ring, "top", {
+            duration: 0.3,
+            ease: "power3",
+          });
+
+          gsap.set([dot, ring], { opacity: 1 });
+
+          const move = (event) => {
+            dotX(event.clientX);
+            dotY(event.clientY);
+            ringX(event.clientX);
+            ringY(event.clientY);
+          };
+
+          const hoverables = document.querySelectorAll(
+            "a, button, [data-hover]",
+          );
+          const onEnter = () => ring.classList.add("is-hovering");
+          const onLeave = () => ring.classList.remove("is-hovering");
+
+          hoverables.forEach((node) => {
+            node.addEventListener("mouseenter", onEnter);
+            node.addEventListener("mouseleave", onLeave);
+          });
+
+          window.addEventListener("mousemove", move);
+
+          return () => {
+            window.removeEventListener("mousemove", move);
+            hoverables.forEach((node) => {
+              node.removeEventListener("mouseenter", onEnter);
+              node.removeEventListener("mouseleave", onLeave);
+            });
+          };
+        }, []);
+
+        return (
+          <>
+            <div ref={dotRef} className="cursor-dot" />
+            <div ref={ringRef} className="cursor-ring" />
+          </>
+        );
+      }
+
+      function useAgencyCore(stageRef) {
+        useEffect(() => {
+          const stage = stageRef.current;
+          if (!stage || !window.THREE || !window.gsap || !window.ScrollTrigger)
+            return undefined;
+
+          const scene = new THREE.Scene();
+          const renderer = new THREE.WebGLRenderer({
+            antialias: true,
+            alpha: true,
+            powerPreference: "high-performance",
+          });
+
+          renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.6));
+          renderer.outputEncoding = THREE.sRGBEncoding;
+          renderer.domElement.style.position = "absolute";
+          renderer.domElement.style.inset = "0";
+          renderer.domElement.style.zIndex = "1";
+          stage.appendChild(renderer.domElement);
+
+          const camera = new THREE.PerspectiveCamera(42, 1, 0.1, 100);
+          camera.position.set(0, 0.2, 8.8);
+
+          const ambient = new THREE.AmbientLight(0xffffff, 0.45);
+          const key = new THREE.PointLight(0x39ff14, 2.1, 30, 2);
+          key.position.set(3.5, 2.4, 4.6);
+          const rim = new THREE.PointLight(0x9ce88d, 1.4, 40, 2);
+          rim.position.set(-4.4, -2.5, -2.5);
+          scene.add(ambient, key, rim);
+
+          const root = new THREE.Group();
+          scene.add(root);
+
+          const orb = new THREE.Mesh(
+            new THREE.IcosahedronGeometry(1.62, 8),
+            new THREE.MeshPhysicalMaterial({
+              color: 0x8aff73,
+              emissive: 0x163e0e,
+              emissiveIntensity: 1.25,
+              transparent: true,
+              opacity: 0.78,
+              roughness: 0.12,
+              metalness: 0.08,
+              transmission: 0.74,
+              thickness: 1,
+              clearcoat: 1,
+              clearcoatRoughness: 0.1,
+            }),
+          );
+
+          const shell = new THREE.LineSegments(
+            new THREE.WireframeGeometry(new THREE.IcosahedronGeometry(1.96, 2)),
+            new THREE.LineBasicMaterial({
+              color: 0xc4ffb7,
+              transparent: true,
+              opacity: 0.18,
+            }),
+          );
+
+          const ringA = new THREE.Mesh(
+            new THREE.TorusGeometry(2.45, 0.05, 20, 140),
+            new THREE.MeshStandardMaterial({
+              color: 0x91ff7a,
+              emissive: 0x39ff14,
+              emissiveIntensity: 0.65,
+              transparent: true,
+              opacity: 0.22,
+              roughness: 0.18,
+              metalness: 0.2,
+            }),
+          );
+          ringA.rotation.x = 1.18;
+
+          const ringB = ringA.clone();
+          ringB.rotation.set(0.32, 1.26, 0.1);
+          ringB.scale.set(0.78, 0.78, 0.78);
+
+          const knot = new THREE.Mesh(
+            new THREE.TorusKnotGeometry(1.08, 0.16, 160, 28, 2, 5),
+            new THREE.MeshPhysicalMaterial({
+              color: 0x39ff14,
+              emissive: 0x225d12,
+              emissiveIntensity: 0.95,
+              transparent: true,
+              opacity: 0.35,
+              roughness: 0.25,
+              metalness: 0.42,
+            }),
+          );
+          knot.scale.set(0.9, 0.9, 0.9);
+
+          const particleCount = 1200;
+          const positions = new Float32Array(particleCount * 3);
+          for (let i = 0; i < particleCount; i += 1) {
+            const radius = 2.1 + Math.random() * 1.5;
+            const theta = Math.random() * Math.PI * 2;
+            const phi = Math.acos(2 * Math.random() - 1);
+            positions[i * 3] = radius * Math.sin(phi) * Math.cos(theta);
+            positions[i * 3 + 1] = radius * Math.cos(phi);
+            positions[i * 3 + 2] = radius * Math.sin(phi) * Math.sin(theta);
+          }
+
+          const particles = new THREE.Points(
+            new THREE.BufferGeometry(),
+            new THREE.PointsMaterial({
+              color: 0xb7ffab,
+              transparent: true,
+              opacity: 0.78,
+              size: 0.032,
+              sizeAttenuation: true,
+            }),
+          );
+          particles.geometry.setAttribute(
+            "position",
+            new THREE.BufferAttribute(positions, 3),
+          );
+
+          const uiPlanes = new THREE.Group();
+          [
+            { x: -2.3, y: 1.4, z: -0.5, w: 1.8, h: 0.8 },
+            { x: 2.25, y: -1.15, z: 0.5, w: 1.45, h: 0.65 },
+            { x: -1.7, y: -2.1, z: -0.2, w: 1.15, h: 0.5 },
+          ].forEach((plane) => {
+            const mesh = new THREE.Mesh(
+              new THREE.PlaneGeometry(plane.w, plane.h),
+              new THREE.MeshBasicMaterial({
+                color: 0x8eff7b,
+                transparent: true,
+                opacity: 0.08,
+                side: THREE.DoubleSide,
+              }),
+            );
+            mesh.position.set(plane.x, plane.y, plane.z);
+            uiPlanes.add(mesh);
+          });
+
+          root.add(orb, shell, ringA, ringB, knot, particles, uiPlanes);
+
+          let frameId = null;
+          const mouse = { x: 0, y: 0 };
+          const target = { x: 0, y: 0 };
+
+          const resize = () => {
+            const bounds = stage.getBoundingClientRect();
+            renderer.setSize(bounds.width, bounds.height, false);
+            camera.aspect = bounds.width / bounds.height;
+            camera.updateProjectionMatrix();
+          };
+
+          resize();
+
+          const onMove = (event) => {
+            const bounds = stage.getBoundingClientRect();
+            target.x =
+              ((event.clientX - bounds.left) / bounds.width - 0.5) * 0.9;
+            target.y =
+              ((event.clientY - bounds.top) / bounds.height - 0.5) * 0.9;
+          };
+
+          const tick = () => {
+            mouse.x += (target.x - mouse.x) * 0.06;
+            mouse.y += (target.y - mouse.y) * 0.06;
+
+            root.rotation.y += 0.0036;
+            root.rotation.x += 0.0014;
+            root.rotation.y += mouse.x * 0.012;
+            root.rotation.x += mouse.y * 0.009;
+
+            orb.rotation.y -= 0.004;
+            shell.rotation.x += 0.003;
+            knot.rotation.x -= 0.008;
+            knot.rotation.y += 0.012;
+            ringA.rotation.z += 0.004;
+            ringB.rotation.z -= 0.003;
+            particles.rotation.y -= 0.0009;
+            particles.rotation.x += 0.0007;
+            uiPlanes.rotation.y += 0.0025;
+
+            renderer.render(scene, camera);
+            frameId = requestAnimationFrame(tick);
+          };
+
+          frameId = requestAnimationFrame(tick);
+          stage.addEventListener("mousemove", onMove);
+          window.addEventListener("resize", resize);
+
+          const timeline = gsap.timeline({
+            scrollTrigger: {
+              trigger: "#home",
+              start: "top top",
+              end: "bottom top",
+              scrub: 1.2,
+            },
+          });
+
+          timeline
+            .to(root.rotation, { x: 0.9, y: 2.3, ease: "none" }, 0)
+            .to(root.position, { y: -0.65, z: -0.8, ease: "none" }, 0)
+            .to(knot.scale, { x: 1.22, y: 1.22, z: 1.22, ease: "none" }, 0)
+            .to(camera.position, { z: 7.5, ease: "none" }, 0);
+
+          const visibility = () => {
+            if (document.hidden && frameId) {
+              cancelAnimationFrame(frameId);
+              frameId = null;
+            } else if (!document.hidden && !frameId) {
+              frameId = requestAnimationFrame(tick);
+            }
+          };
+
+          document.addEventListener("visibilitychange", visibility);
+
+          return () => {
+            document.removeEventListener("visibilitychange", visibility);
+            stage.removeEventListener("mousemove", onMove);
+            window.removeEventListener("resize", resize);
+            if (frameId) cancelAnimationFrame(frameId);
+            timeline.scrollTrigger?.kill();
+            timeline.kill();
+            renderer.dispose();
+            scene.traverse((child) => {
+              if (child.geometry) child.geometry.dispose();
+              if (child.material) {
+                if (Array.isArray(child.material)) {
+                  child.material.forEach((material) => material.dispose());
+                } else {
+                  child.material.dispose();
+                }
+              }
+            });
+            stage.removeChild(renderer.domElement);
+          };
+        }, [stageRef]);
+      }
+
+      function Navbar() {
+        const [open, setOpen] = useState(false);
+
+        useEffect(() => {
+          const sync = () => {
+            const nav = document.getElementById("navbar");
+            if (!nav) return;
+            if (window.scrollY > 10) nav.classList.add("nav-scrolled");
+            else nav.classList.remove("nav-scrolled");
+          };
+
+          sync();
+          window.addEventListener("scroll", sync);
+          return () => window.removeEventListener("scroll", sync);
+        }, []);
+
+        const links = [
+          { href: "#services", label: "Services" },
+          { href: "#story", label: "Process" },
+          { href: "#work", label: "Work" },
+          { href: "#testimonials", label: "Voices" },
+          { href: "#blog", label: "Journal" },
+          { href: "#contact", label: "Contact" },
+        ];
+
+        return (
+          <header
+            id="navbar"
+            className="fixed left-0 top-0 z-50 w-full border-transparent transition-all duration-300"
+            style={{ borderColor: "var(--border)" }}
+          >
+            <div className="site-shell flex h-20 items-center justify-between">
+              <a
+                href="#home"
+                className="display-font text-2xl font-extrabold tracking-[-0.05em] text-[var(--text-primary)]"
+              >
+                Auroveon<span className="ml-1 text-[var(--accent)]">.</span>
+              </a>
+
+              <nav className="hidden items-center gap-8 lg:flex">
+                {links.map((link) => (
+                  <a
+                    key={link.href}
+                    className="nav-link text-sm font-medium"
+                    href={link.href}
+                  >
+                    {link.label}
+                  </a>
+                ))}
+              </nav>
+
+              <div className="hidden lg:block">
+                <MotionA
+                  href="#contact"
+                  whileHover={{ y: -2, scale: 1.02 }}
+                  className="display-font inline-flex items-center gap-2 rounded-full border px-5 py-3 text-sm font-semibold"
+                  style={{
+                    borderColor: "var(--accent)",
+                    color: "var(--accent)",
+                    background: "rgba(57,255,20,0.02)",
+                  }}
+                >
+                  Start a Project
+                </MotionA>
+              </div>
+
+              <button
+                type="button"
+                className="glass-panel flex h-11 w-11 items-center justify-center rounded-full lg:hidden"
+                style={{ borderColor: "var(--border)" }}
+                onClick={() => setOpen((current) => !current)}
+              >
+                <span className="text-xl text-[var(--text-primary)]">
+                  {open ? "x" : "+"}
+                </span>
+              </button>
+            </div>
+
+            {open && (
+              <div className="site-shell pb-4 lg:hidden">
+                <div className="glass-panel rounded-[28px] px-6 py-6">
+                  <div className="flex flex-col gap-5 text-center">
+                    {links.map((link) => (
+                      <a
+                        key={link.href}
+                        href={link.href}
+                        className="display-font text-2xl font-bold italic text-[var(--text-primary)]"
+                        onClick={() => setOpen(false)}
+                      >
+                        {link.label}
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            )}
+          </header>
+        );
+      }
+
+      function HeroSection() {
+        const stageRef = useRef(null);
+        useAgencyCore(stageRef);
+
+        return (
+          <section
+            id="home"
+            className="section-frame relative min-h-screen overflow-visible pt-24"
+          >
+            <div className="hero-image" />
+            <div className="hero-grid" />
+            <div
+              className="hero-spotlight parallax-orb"
+              style={{
+                width: "36rem",
+                height: "36rem",
+                top: "-8rem",
+                right: "-6rem",
+                background:
+                  "radial-gradient(circle, rgba(57,255,20,0.18), transparent 66%)",
+              }}
+            />
+            <div
+              className="hero-spotlight"
+              style={{
+                width: "28rem",
+                height: "28rem",
+                bottom: "2rem",
+                left: "-8rem",
+                background:
+                  "radial-gradient(circle, rgba(57,255,20,0.1), transparent 68%)",
+              }}
+            />
+
+            <div className="site-shell relative z-10 flex min-h-[calc(100vh-6rem)] items-center py-12 lg:py-10">
+              <div className="grid w-full gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start lg:gap-12">
+                <div className="hero-copy">
+                  <div
+                    data-reveal
+                    className="glass-panel inline-flex items-center gap-3 rounded-full px-4 py-2"
+                  >
+                    <span className="h-2 w-2 rounded-full bg-[var(--accent)] shadow-[0_0_14px_rgba(57,255,20,0.7)]" />
+                    <span className="eyebrow">AI-native software agency</span>
+                  </div>
+
+                  <h1 className="headline-italics mt-7 max-w-[12ch] text-[clamp(2.9rem,8vw,7.6rem)]">
+                    <span className="shine-text">
+                      <SplitWords text="Building Digital" />
+                    </span>
+                    <br />
+                    <span className="shine-text">
+                      <SplitWords text="Experiences That" />
+                    </span>
+                    <br />
+                    <span className="shine-text-accent">
+                      <SplitWords text="Feel Alive" />
+                    </span>
+                  </h1>
+
+                  <p
+                    data-reveal
+                    data-delay="0.12"
+                    className="section-reveal mt-7 max-w-xl text-lg leading-8 text-[var(--text-secondary)] lg:text-xl"
+                  >
+                    We craft immersive products, AI systems, and next-gen web
+                    experiences for ambitious brands.
+                  </p>
+
+                  <div
+                    data-reveal
+                    data-delay="0.18"
+                    className="section-reveal mt-9 flex flex-col gap-4 sm:flex-row"
+                  >
+                    <MotionA
+                      href="#contact"
+                      whileHover={{ y: -3, scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                      className="display-font inline-flex items-center justify-center rounded-full px-7 py-4 text-base font-bold text-[#081008]"
+                      style={{
+                        background: "var(--accent)",
+                        boxShadow:
+                          "0 0 42px rgba(57,255,20,0.18), 0 22px 60px rgba(57,255,20,0.12)",
+                      }}
+                    >
+                      Start a Project
+                    </MotionA>
+                    <MotionA
+                      href="#work"
+                      whileHover={{ y: -3 }}
+                      whileTap={{ scale: 0.98 }}
+                      className="display-font inline-flex items-center justify-center rounded-full border px-7 py-4 text-base font-bold"
+                      style={{
+                        borderColor: "var(--border-strong)",
+                        color: "var(--text-primary)",
+                        background: "rgba(255,255,255,0.02)",
+                      }}
+                    >
+                      View Our Work
+                    </MotionA>
+                  </div>
+
+                  <div className="mt-8 hidden gap-4 sm:grid sm:grid-cols-3">
+                    {metrics.map((item, index) => (
+                      <div
+                        key={item.value}
+                        data-reveal
+                        data-delay={0.25 + index * 0.08}
+                        className="hero-stat section-reveal glass-panel rounded-[22px] px-5 py-5"
+                      >
+                        <div className="display-font text-3xl font-extrabold italic text-[var(--text-primary)]">
+                          {item.value}
+                        </div>
+                        <p className="mt-2 text-sm leading-6 text-[var(--text-secondary)]">
+                          {item.label}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="relative mt-6 lg:mt-16 lg:-translate-y-4">
+                  <div className="orbital-line left-[7%] top-[8%] h-[82%] w-[82%]" />
+                  <div className="orbital-line left-[18%] top-[18%] h-[58%] w-[58%]" />
+
+                  <div
+                    ref={stageRef}
+                    className="hero-stage hero-stage-raised glass-panel border border-[var(--border)]"
+                  >
+                    <div className="mesh-glow right-10 top-10" />
+                    <div className="mesh-glow bottom-16 left-12" />
+
+                    <div className="relative z-10 flex h-full flex-col justify-between p-4 sm:p-5 lg:p-7">
+                      <div className="grid gap-4 lg:grid-cols-[1.2fr_0.8fr]">
+                        <div className="glass-panel rounded-[20px] px-4 py-4">
+                          <div className="mini-label mono-font">
+                            Agency OS / live deployment mesh
+                          </div>
+                          <div className="mt-3 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+                            <div>
+                              <div className="display-font text-lg font-bold italic">
+                                Realtime build intelligence
+                              </div>
+                              <p className="mt-1 text-sm text-[var(--text-secondary)]">
+                                AI, SaaS, interface systems, and automation
+                                layers moving inside one product surface.
+                              </p>
+                            </div>
+                            <div className="rounded-full border border-[var(--border)] px-3 py-2 mono-font text-xs text-[var(--accent)]">
+                              06 SERVICES
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="glass-panel rounded-[20px] px-4 py-4">
+                          <div className="mini-label mono-font">
+                            Signal quality
+                          </div>
+                          <div className="mt-4 grid gap-3">
+                            <div className="flex items-center justify-between text-sm text-[var(--text-secondary)]">
+                              <span>Design system cohesion</span>
+                              <span className="text-[var(--text-primary)]">
+                                94%
+                              </span>
+                            </div>
+                            <div className="h-2 rounded-full bg-[rgba(255,255,255,0.05)]">
+                              <div className="h-full w-[94%] rounded-full bg-[var(--accent)]" />
+                            </div>
+                            <div className="flex items-center justify-between text-sm text-[var(--text-secondary)]">
+                              <span>Automation adoption</span>
+                              <span className="text-[var(--text-primary)]">
+                                88%
+                              </span>
+                            </div>
+                            <div className="h-2 rounded-full bg-[rgba(255,255,255,0.05)]">
+                              <div className="h-full w-[88%] rounded-full bg-[var(--accent)]" />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="mt-4 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+                        <div className="glass-panel max-w-[16rem] rounded-[22px] px-5 py-5">
+                          <div className="mono-font text-xs uppercase tracking-[0.18em] text-[var(--accent)]">
+                            AI powered
+                          </div>
+                          <div className="mt-3 display-font text-xl font-extrabold italic leading-tight sm:text-2xl">
+                            Software systems that look premium and operate like
+                            products.
+                          </div>
+                        </div>
+
+                        <div className="glass-panel w-full rounded-[22px] px-5 py-5 lg:max-w-[18rem]">
+                          <div className="mini-label mono-font">
+                            Launch stack
+                          </div>
+                          <div className="mt-4 space-y-3">
+                            {[
+                              "AI Solutions",
+                              "Web Development",
+                              "SaaS Platforms",
+                              "Automation",
+                            ].map((item) => (
+                              <div
+                                key={item}
+                                className="flex items-center justify-between text-sm text-[var(--text-secondary)]"
+                              >
+                                <span>{item}</span>
+                                <span className="text-[var(--accent)]">
+                                  online
+                                </span>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        );
+      }
+
+      function ProofStrip() {
+        const items = [...logos, ...logos];
+        return (
+          <section className="section-frame relative overflow-hidden py-6">
+            <div className="site-shell">
+              <div className="glass-panel marquee rounded-full border border-[var(--border)] px-2 py-2">
+                <div className="marquee-track">
+                  {items.map((item, index) => (
+                    <div
+                      key={`${item}-${index}`}
+                      className="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em] text-[var(--text-secondary)]"
+                    >
+                      <span>{item}</span>
+                      <span className="mx-6 text-[var(--accent)]">.</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </section>
+        );
+      }
+
+      function ServicesSection() {
+        return (
+          <section
+            id="services"
+            className="section-frame relative py-24 lg:py-32"
+          >
+            <div className="site-shell">
+              <div className="grid gap-10 lg:grid-cols-[0.6fr_1.4fr] lg:items-center lg:gap-8">
+                <div className="section-reveal lg:pr-6" data-reveal>
+                  <div className="section-kicker">What we build</div>
+                  <h2 className="display-font mt-4 max-w-[8ch] text-4xl font-extrabold italic leading-[0.96] tracking-[-0.04em] text-[var(--text-primary)] lg:text-6xl">
+                    Premium systems with cinematic presence.
+                  </h2>
+                  <p className="mt-6 max-w-[28rem] text-base leading-8 text-[var(--text-secondary)] lg:text-lg">
+                    Every section is intentionally different, but the brand
+                    language stays sharp, dark, and intelligent. That keeps the
+                    homepage feeling authored rather than templated.
+                  </p>
+                </div>
+
+                <div className="grid gap-5 md:grid-cols-2">
+                  {serviceData.map((service, index) => (
+                    <MotionDiv
+                      key={service.title}
+                      data-reveal
+                      data-delay={index * 0.08}
+                      whileHover={{ y: -8 }}
+                      className={`service-card section-reveal glass-panel rounded-[28px] border border-[var(--border)] p-6 lg:p-7 ${service.span || ""}`}
+                    >
+                      <div className="mini-label mono-font">{service.tag}</div>
+                      <h3 className="display-font mt-6 text-2xl font-bold italic text-[var(--text-primary)]">
+                        {service.title}
+                      </h3>
+                      <p className="mt-4 max-w-xl text-sm leading-7 text-[var(--text-secondary)] lg:text-base">
+                        {service.text}
+                      </p>
+                      <div className="mt-8 h-px w-full soft-divider" />
+                      <div className="mt-5 flex items-center justify-between text-sm text-[var(--text-muted)]">
+                        <span>Concept to production</span>
+                        <span className="text-[var(--accent)]">
+                          0{index + 1}
+                        </span>
+                      </div>
+                    </MotionDiv>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </section>
+        );
+      }
+
+      function StorySection() {
+        return (
+          <section id="story" className="section-frame relative process-outer">
+            <div className="process-inner">
+              <div className="site-shell relative py-20 lg:py-0">
+                <div className="absolute left-0 top-1/2 hidden -translate-y-1/2 lg:block">
+                  <div
+                    id="story-number"
+                    className="display-font text-[15rem] font-extrabold italic leading-none text-[rgba(240,245,240,0.05)]"
+                  >
+                    01
+                  </div>
+                </div>
+
+                <div className="absolute left-3 top-1/2 hidden -translate-y-1/2 lg:block">
+                  <div className="sticky-progress h-52">
+                    <span id="story-progress-bar" />
+                  </div>
+                </div>
+
+                <div className="grid gap-10 lg:grid-cols-[0.72fr_1.28fr] lg:items-center">
+                  <div data-reveal className="section-reveal lg:pl-16">
+                    <div className="section-kicker">How it unfolds</div>
+                    <h2 className="display-font mt-4 max-w-[9ch] text-4xl font-extrabold italic leading-[0.96] tracking-[-0.04em] text-[var(--text-primary)] lg:text-6xl">
+                      Structured process. Premium execution.
+                    </h2>
+                    <p className="mt-6 max-w-md text-base leading-8 text-[var(--text-secondary)] lg:text-lg">
+                      The section now uses a clearer step-by-step layout again,
+                      with one focused active phase and supporting boxes around
+                      it.
+                    </p>
+                  </div>
+
+                  <div className="space-y-6 lg:pl-12">
+                    <div className="glass-panel rounded-[34px] border border-[var(--border)] p-7 lg:p-10">
+                      <div
+                        id="story-overline"
+                        className="mono-font text-[0.72rem] uppercase tracking-[0.18em] text-[var(--accent)]"
+                      >
+                        {workflowData[0].label}
+                      </div>
+                      <h3
+                        id="story-headline"
+                        className="display-font mt-4 max-w-[12ch] text-3xl font-extrabold italic leading-tight text-[var(--text-primary)] lg:text-5xl"
+                      >
+                        {workflowData[0].title}
+                      </h3>
+                      <p
+                        id="story-desc"
+                        className="mt-5 max-w-2xl text-base leading-8 text-[var(--text-secondary)] lg:text-lg"
+                      >
+                        {workflowData[0].text}
+                      </p>
+                      <div
+                        id="story-pills"
+                        className="mt-8 flex flex-wrap gap-3"
+                      >
+                        {workflowData[0].pills.map((pill) => (
+                          <span key={pill} className="process-pill">
+                            {pill}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div className="grid gap-4 sm:grid-cols-2" id="story-stack">
+                      {workflowData.map((item, index) => (
+                        <div
+                          key={item.step}
+                          data-story-index={index}
+                          className={`process-preview-card glass-panel rounded-[26px] border border-[var(--border)] p-5 ${index === 0 ? "is-active" : ""}`}
+                        >
+                          <div className="mono-font text-[0.68rem] uppercase tracking-[0.18em] text-[var(--accent)]">
+                            {item.label} / {item.step}
+                          </div>
+                          <div className="mt-4 display-font text-xl font-bold italic text-[var(--text-primary)]">
+                            {item.title}
+                          </div>
+                          <p className="mt-3 text-sm leading-7 text-[var(--text-secondary)]">
+                            {item.text}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        );
+      }
+
+      function WorkSection() {
+        return (
+          <section id="work" className="section-frame relative py-24 lg:py-32">
+            <div className="site-shell">
+              <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+                <div data-reveal className="section-reveal">
+                  <div className="section-kicker">Selected work</div>
+                  <h2 className="display-font mt-4 max-w-[10ch] text-4xl font-extrabold italic leading-[0.96] tracking-[-0.04em] text-[var(--text-primary)] lg:text-6xl">
+                    Distinct launches for ambitious teams.
+                  </h2>
+                </div>
+                <p
+                  data-reveal
+                  data-delay="0.08"
+                  className="section-reveal max-w-lg text-base leading-8 text-[var(--text-secondary)] lg:text-right lg:text-lg"
+                >
+                  The visual language stays consistent, but each case feels like
+                  its own universe with different hierarchy, rhythm, and product
+                  emphasis.
+                </p>
+              </div>
+
+              <div className="mt-12 grid gap-6 lg:grid-cols-3">
+                {caseData.map((item, index) => (
+                  <MotionDiv
+                    key={item.title}
+                    data-reveal
+                    data-delay={index * 0.08}
+                    whileHover={{ y: -10 }}
+                    className="case-card section-reveal glass-panel rounded-[30px] border border-[var(--border)] p-6 lg:p-7"
+                  >
+                    <div className="rounded-[24px] border border-[rgba(57,255,20,0.08)] bg-[linear-gradient(180deg,rgba(57,255,20,0.08),rgba(255,255,255,0.02))] p-5">
+                      <div className="flex items-center justify-between">
+                        <div className="mini-label mono-font">{item.label}</div>
+                        <div className="rounded-full border border-[var(--border)] px-3 py-1 mono-font text-xs text-[var(--accent)]">
+                          0{index + 1}
+                        </div>
+                      </div>
+                      <div className="mt-6">
+                        <div
+                          className="case-media aspect-[1.18/0.98] rounded-[24px]"
+                          style={{ "--case-overlay": item.overlay }}
+                        >
+                          <img
+                            src={item.image}
+                            alt={item.imageAlt}
+                            loading="lazy"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <h3 className="display-font mt-7 text-3xl font-bold italic text-[var(--text-primary)]">
+                      {item.title}
+                    </h3>
+                    <p className="mt-4 text-base leading-8 text-[var(--text-secondary)]">
+                      {item.outcome}
+                    </p>
+                    <a
+                      href="#contact"
+                      className="mt-7 inline-flex text-sm font-semibold text-[var(--accent)]"
+                    >
+                      View case approach
+                    </a>
+                  </MotionDiv>
+                ))}
+              </div>
+            </div>
+          </section>
+        );
+      }
+
+      function MetricsSection() {
+        return (
+          <section className="section-frame relative py-24 lg:py-32">
+            <div className="site-shell">
+              <div className="grid gap-6 lg:grid-cols-[0.95fr_1.05fr]">
+                <div
+                  data-reveal
+                  className="metric-card section-reveal glass-panel rounded-[34px] border border-[var(--border)] p-7 lg:p-10"
+                >
+                  <div className="section-kicker">Why it feels premium</div>
+                  <h2 className="display-font mt-4 max-w-[10ch] text-4xl font-extrabold italic leading-[0.95] tracking-[-0.04em] text-[var(--text-primary)] lg:text-6xl">
+                    Depth, restraint, and motion with weight.
+                  </h2>
+                  <p className="mt-6 max-w-xl text-base leading-8 text-[var(--text-secondary)] lg:text-lg">
+                    The goal is not more animation. It is better animation:
+                    smoother pacing, stronger composition, and a visible product
+                    mindset behind every visual choice.
+                  </p>
+                </div>
+
+                <div className="grid gap-6 sm:grid-cols-2">
+                  {[
+                    "Scroll-driven 3D transformation tied to the hero stage",
+                    "Glassmorphism surfaces with ambient lighting and subtle noise",
+                    "Editorial typography with bold italic emphasis on the left column",
+                    "Section-by-section visual variation while preserving the same brand theme",
+                  ].map((item, index) => (
+                    <MotionDiv
+                      key={item}
+                      data-reveal
+                      data-delay={index * 0.06}
+                      whileHover={{ y: -6 }}
+                      className="proof-card section-reveal glass-panel rounded-[28px] border border-[var(--border)] p-6"
+                    >
+                      <div className="mono-font text-xs uppercase tracking-[0.18em] text-[var(--accent)]">
+                        0{index + 1}
+                      </div>
+                      <p className="mt-5 text-base leading-8 text-[var(--text-secondary)]">
+                        {item}
+                      </p>
+                    </MotionDiv>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </section>
+        );
+      }
+
+      function TestimonialSection() {
+        const [activeIndex, setActiveIndex] = useState(0);
+
+        useEffect(() => {
+          const interval = window.setInterval(() => {
+            setActiveIndex((current) => (current + 1) % testimonialData.length);
+          }, 4200);
+
+          return () => window.clearInterval(interval);
+        }, []);
+
+        const active = testimonialData[activeIndex];
+
+        return (
+          <section
+            id="testimonials"
+            className="section-frame relative py-24 lg:py-32"
+          >
+            <div className="site-shell">
+              <div className="grid gap-10 lg:grid-cols-[0.7fr_1.3fr] lg:items-start">
+                <div data-reveal className="section-reveal">
+                  <div className="section-kicker">Client signal</div>
+                  <h2 className="display-font mt-4 max-w-[9ch] text-4xl font-extrabold italic leading-[0.95] tracking-[-0.04em] text-[var(--text-primary)] lg:text-6xl">
+                    A testimonial carousel, but treated like a stage.
+                  </h2>
+                  <p className="mt-6 max-w-md text-base leading-8 text-[var(--text-secondary)] lg:text-lg">
+                    Instead of identical boxes, the active client story becomes
+                    the center of the composition while supporting voices orbit
+                    around it.
+                  </p>
+                  <div className="mt-8 flex gap-3">
+                    {testimonialData.map((item, index) => (
+                      <button
+                        key={item.name}
+                        type="button"
+                        data-hover
+                        onClick={() => setActiveIndex(index)}
+                        className="rounded-full border px-4 py-2 mono-font text-xs uppercase tracking-[0.16em] transition-colors"
+                        style={{
+                          borderColor:
+                            index === activeIndex
+                              ? "var(--accent)"
+                              : "var(--border)",
+                          color:
+                            index === activeIndex
+                              ? "var(--accent)"
+                              : "var(--text-secondary)",
+                          background:
+                            index === activeIndex
+                              ? "rgba(57,255,20,0.06)"
+                              : "rgba(255,255,255,0.01)",
+                        }}
+                      >
+                        {String(index + 1).padStart(2, "0")}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="testimonial-shell relative">
+                  <div
+                    className="hero-spotlight h-[24rem] w-[24rem] right-[-4rem] top-[-4rem]"
+                    style={{
+                      background:
+                        "radial-gradient(circle, rgba(57,255,20,0.13), transparent 66%)",
+                    }}
+                  />
+                  <div className="testimonial-rail grid gap-5 lg:grid-cols-[0.28fr_0.72fr]">
+                    <div className="grid gap-4 self-center">
+                      {testimonialData.map((item, index) => (
+                        <button
+                          key={item.name}
+                          type="button"
+                          data-hover
+                          onClick={() => setActiveIndex(index)}
+                          className={`testimonial-mini glass-panel rounded-[24px] border p-4 text-left ${index === activeIndex ? "is-active" : ""}`}
+                          style={{
+                            borderColor:
+                              index === activeIndex
+                                ? "var(--border-strong)"
+                                : "var(--border)",
+                            opacity: index === activeIndex ? 1 : 0.62,
+                          }}
+                        >
+                          <div className="mono-font text-[0.68rem] uppercase tracking-[0.18em] text-[var(--accent)]">
+                            {item.stat}
+                          </div>
+                          <div className="mt-3 display-font text-lg font-bold italic text-[var(--text-primary)]">
+                            {item.name}
+                          </div>
+                          <div className="mt-1 text-sm text-[var(--text-secondary)]">
+                            {item.role}
+                          </div>
+                        </button>
+                      ))}
+                    </div>
+
+                    <MotionDiv
+                      key={active.name}
+                      data-reveal
+                      whileHover={{ y: -6 }}
+                      initial={{ opacity: 0, y: 30, scale: 0.98 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+                      className="section-reveal glass-panel rounded-[36px] border border-[var(--border)] p-7 lg:p-10"
+                    >
+                      <div className="flex flex-col gap-8 lg:min-h-[31rem] lg:justify-between">
+                        <div className="flex items-start justify-between gap-5">
+                          <div className="testimonial-quote-mark display-font text-8xl font-extrabold italic">
+                            "
+                          </div>
+                          <div className="rounded-full border border-[var(--border)] px-4 py-2 mono-font text-xs uppercase tracking-[0.16em] text-[var(--accent)]">
+                            active voice
+                          </div>
+                        </div>
+
+                        <p className="display-font max-w-3xl text-3xl font-bold italic leading-[1.3] text-[var(--text-primary)] lg:text-[2.35rem]">
+                          {active.quote}
+                        </p>
+
+                        <div className="flex flex-col gap-4 border-t border-[var(--border)] pt-6 sm:flex-row sm:items-end sm:justify-between">
+                          <div>
+                            <div className="display-font text-2xl font-extrabold italic text-[var(--text-primary)]">
+                              {active.name}
+                            </div>
+                            <div className="mt-2 text-sm text-[var(--text-secondary)]">
+                              {active.role}
+                            </div>
+                          </div>
+                          <div className="glass-panel rounded-[18px] px-5 py-4">
+                            <div className="mono-font text-[0.68rem] uppercase tracking-[0.18em] text-[var(--accent)]">
+                              Outcome
+                            </div>
+                            <div className="mt-2 display-font text-lg font-bold italic text-[var(--text-primary)]">
+                              {active.stat}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </MotionDiv>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        );
+      }
+
+      function BlogSection() {
+        return (
+          <section id="blog" className="section-frame relative py-24 lg:py-32">
+            <div className="site-shell">
+              <div className="grid gap-10 lg:grid-cols-[0.92fr_1.08fr] lg:items-start">
+                <div className="blog-sticky lg:sticky lg:top-28">
+                  <div data-reveal className="section-reveal">
+                    <div className="section-kicker">Journal / thinking</div>
+                    <h2 className="display-font mt-4 max-w-[9ch] text-4xl font-extrabold italic leading-[0.95] tracking-[-0.04em] text-[var(--text-primary)] lg:text-6xl">
+                      A blog section that reads like a signal board.
+                    </h2>
+                    <p className="mt-6 max-w-md text-base leading-8 text-[var(--text-secondary)] lg:text-lg">
+                      Instead of plain cards, the articles are staged as an
+                      editorial stack with a sticky feature panel and scroll-led
+                      depth shifts.
+                    </p>
+                  </div>
+
+                  <div
+                    data-reveal
+                    data-delay="0.08"
+                    className="blog-feature-grid section-reveal glass-panel mt-8 rounded-[34px] border border-[var(--border)] p-6 lg:p-8"
+                  >
+                    <div className="mono-font text-[0.72rem] uppercase tracking-[0.18em] text-[var(--accent)]">
+                      Featured note
+                    </div>
+                    <h3 className="display-font mt-5 text-3xl font-extrabold italic leading-tight text-[var(--text-primary)]">
+                      Designing software agency homepages that feel more like
+                      product cinema.
+                    </h3>
+                    <p className="mt-5 text-base leading-8 text-[var(--text-secondary)]">
+                      Great agency sites do not just decorate expertise. They
+                      sequence it, stage it, and let motion explain why the team
+                      is trusted with complex digital work.
+                    </p>
+                    <div className="mt-8 flex items-center justify-between border-t border-[var(--border)] pt-5">
+                      <span className="mono-font text-xs uppercase tracking-[0.16em] text-[var(--text-muted)]">
+                        07 min read
+                      </span>
+                      <a
+                        href="#contact"
+                        className="text-sm font-semibold text-[var(--accent)]"
+                      >
+                        Read insight
+                      </a>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="relative pl-0 lg:pl-10">
+                  <div className="blog-line absolute left-0 top-0 hidden h-full w-px lg:block" />
+                  <div className="space-y-5" id="blog-stack">
+                    {blogData.map((post, index) => (
+                      <MotionDiv
+                        key={post.title}
+                        data-reveal
+                        data-delay={index * 0.08}
+                        whileHover={{ y: -6, x: 4 }}
+                        className="blog-card-advanced section-reveal glass-panel rounded-[28px] border border-[var(--border)] p-6 lg:p-7"
+                        style={{
+                          marginLeft: index === 1 ? "7%" : "0%",
+                          marginRight: index === 2 ? "7%" : "0%",
+                        }}
+                      >
+                        <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+                          <div>
+                            <div className="mono-font text-[0.68rem] uppercase tracking-[0.18em] text-[var(--accent)]">
+                              {post.meta}
+                            </div>
+                            <h3 className="display-font mt-4 max-w-2xl text-2xl font-bold italic leading-tight text-[var(--text-primary)] lg:text-[2rem]">
+                              {post.title}
+                            </h3>
+                          </div>
+                          <div className="display-font text-5xl font-extrabold italic text-[rgba(57,255,20,0.12)]">
+                            0{index + 1}
+                          </div>
+                        </div>
+                        <p className="mt-5 max-w-2xl text-base leading-8 text-[var(--text-secondary)]">
+                          {post.blurb}
+                        </p>
+                        <div className="mt-7 flex items-center justify-between border-t border-[var(--border)] pt-5 text-sm">
+                          <span className="text-[var(--text-muted)]">
+                            Editorial insight for premium digital products.
+                          </span>
+                          <a
+                            href="#contact"
+                            className="font-semibold text-[var(--accent)]"
+                          >
+                            Open article
+                          </a>
+                        </div>
+                      </MotionDiv>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        );
+      }
+
+      function ContactSection() {
+        return (
+          <section id="contact" className="relative py-24 lg:py-32">
+            <div className="site-shell">
+              <div className="contact-card glass-panel relative overflow-hidden rounded-[38px] border border-[var(--border)] px-6 py-12 lg:px-12 lg:py-14">
+                <div className="cta-image-panel" />
+                <div
+                  className="hero-spotlight"
+                  style={{
+                    width: "30rem",
+                    height: "30rem",
+                    top: "-12rem",
+                    right: "-8rem",
+                    background:
+                      "radial-gradient(circle, rgba(57,255,20,0.14), transparent 64%)",
+                  }}
+                />
+                <div className="relative z-10 grid gap-8 lg:grid-cols-[1fr_auto] lg:items-end">
+                  <div data-reveal className="section-reveal">
+                    <div className="section-kicker">
+                      Let's build the standout version
+                    </div>
+                    <h2 className="display-font mt-4 max-w-[11ch] text-4xl font-extrabold italic leading-[0.94] tracking-[-0.04em] text-[var(--text-primary)] lg:text-6xl">
+                      Luxury tech presence. Real product thinking.
+                    </h2>
+                    <p className="mt-6 max-w-2xl text-base leading-8 text-[var(--text-secondary)] lg:text-lg">
+                      If you want the homepage to feel like an experience
+                      instead of a template, we can shape the brand, the product
+                      story, and the engineering system together.
+                    </p>
+                  </div>
+
+                  <div
+                    data-reveal
+                    data-delay="0.1"
+                    className="section-reveal flex flex-col gap-4 sm:flex-row lg:flex-col"
+                  >
+                    <MotionA
+                      href="mailto:hello@auroveon.com"
+                      whileHover={{ y: -3, scale: 1.02 }}
+                      className="display-font inline-flex items-center justify-center rounded-full px-7 py-4 text-base font-bold text-[#081008]"
+                      style={{
+                        background: "var(--accent)",
+                        boxShadow:
+                          "0 0 42px rgba(57,255,20,0.18), 0 22px 60px rgba(57,255,20,0.12)",
+                      }}
+                    >
+                      Start a Project
+                    </MotionA>
+                    <MotionA
+                      href="#home"
+                      whileHover={{ y: -3 }}
+                      className="display-font inline-flex items-center justify-center rounded-full border px-7 py-4 text-base font-bold text-[var(--text-primary)]"
+                      style={{ borderColor: "var(--border-strong)" }}
+                    >
+                      View Hero Again
+                    </MotionA>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        );
+      }
+
+      function Footer() {
+        return (
+          <footer className="relative pb-10">
+            <div className="site-shell border-t border-[var(--border)] pt-10">
+              <div className="grid gap-10 lg:grid-cols-[1.2fr_0.8fr_0.8fr_0.8fr]">
+                <div>
+                  <div className="display-font text-2xl font-extrabold tracking-[-0.05em] text-[var(--text-primary)]">
+                    Auroveon<span className="ml-1 text-[var(--accent)]">.</span>
+                  </div>
+                  <p className="mt-4 max-w-sm text-sm leading-7 text-[var(--text-secondary)]">
+                    Software agency for AI solutions, modern web platforms, SaaS
+                    systems, and cinematic digital experiences built for
+                    ambitious brands.
+                  </p>
+                  <div className="mt-6 footer-socials">
+                    {socialLinks.map((item) => (
+                      <a
+                        key={item.name}
+                        href={item.href}
+                        className="footer-social"
+                        aria-label={item.name}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        {item.icon}
+                      </a>
+                    ))}
+                  </div>
+                </div>
+
+                <div>
+                  <div className="mono-font text-xs uppercase tracking-[0.18em] text-[var(--accent)]">
+                    Navigation
+                  </div>
+                  <div className="mt-5 flex flex-col gap-3 text-sm">
+                    <a className="footer-link" href="#services">
+                      Services
+                    </a>
+                    <a className="footer-link" href="#story">
+                      Process
+                    </a>
+                    <a className="footer-link" href="#work">
+                      Work
+                    </a>
+                    <a className="footer-link" href="#contact">
+                      Contact
+                    </a>
+                  </div>
+                </div>
+
+                <div>
+                  <div className="mono-font text-xs uppercase tracking-[0.18em] text-[var(--accent)]">
+                    Services
+                  </div>
+                  <div className="mt-5 flex flex-col gap-3 text-sm text-[var(--text-secondary)]">
+                    <span>AI Solutions</span>
+                    <span>Web Development</span>
+                    <span>SaaS Platforms</span>
+                    <span>Automation</span>
+                  </div>
+                </div>
+
+                <div>
+                  <div className="mono-font text-xs uppercase tracking-[0.18em] text-[var(--accent)]">
+                    Contact Us
+                  </div>
+                  <div className="footer-contact-list">
+                    <div>
+                      <div className="footer-contact-label">Email</div>
+                      <div className="footer-contact-value">
+                        <a
+                          className="footer-contact-link"
+                          href="mailto:info@auroveon.com"
+                        >
+                          info@auroveon.com
+                        </a>
+                      </div>
+                    </div>
+                    <div>
+                      <div className="footer-contact-label">Phone</div>
+                      <div className="footer-contact-value">
+                        <a
+                          className="footer-contact-link"
+                          href="tel:+923353213863"
+                        >
+                          +92 335 321 3863
+                        </a>
+                      </div>
+                    </div>
+                    <div>
+                      <div className="footer-contact-label">Address</div>
+                      <div className="footer-contact-value">
+                        Street 4, Karachi, Pakistan
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-10 flex flex-col gap-4 border-t border-[var(--border)] pt-6 text-sm text-[var(--text-secondary)] lg:flex-row lg:items-center lg:justify-between">
+                <div>
+                  &copy; 2026 Auroveon. Crafted for premium digital products.
+                </div>
+                <div className="footer-legal-links">
+                  <a className="footer-link" href="/privacy-policy">
+                    Privacy Policy
+                  </a>
+                  <a className="footer-link" href="/terms-of-service">
+                    Terms of Service
+                  </a>
+                </div>
+              </div>
+            </div>
+          </footer>
+        );
+      }
+
+      function WhatsAppFloat() {
+        return (
+          <a
+            href="https://wa.me/923353213863"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Chat with us on WhatsApp"
+            className="whatsapp-float"
+          >
+            <svg viewBox="0 0 24 24" fill="white" width="28" height="28">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
+            </svg>
+          </a>
+        );
+      }
+
+      function App() {
+        const appRef = useRef(null);
+
+        useEffect(() => {
+          if (!window.gsap || !window.ScrollTrigger || !window.Lenis)
+            return undefined;
+
+          gsap.registerPlugin(ScrollTrigger);
+
+          const lenis = new Lenis({
+            duration: 1.2,
+            smoothWheel: true,
+            lerp: 0.08,
+          });
+
+          let rafId = null;
+          const raf = (time) => {
+            lenis.raf(time);
+            rafId = requestAnimationFrame(raf);
+          };
+          rafId = requestAnimationFrame(raf);
+
+          const anchors = document.querySelectorAll('a[href^="#"]');
+          const onAnchorClick = (event) => {
+            const href = event.currentTarget.getAttribute("href");
+            if (!href || href === "#") return;
+            const target = document.querySelector(href);
+            if (!target) return;
+            event.preventDefault();
+            lenis.scrollTo(target, { offset: -72, duration: 1.2 });
+          };
+
+          anchors.forEach((anchor) =>
+            anchor.addEventListener("click", onAnchorClick),
+          );
+
+          const ctx = gsap.context(() => {
+            gsap.from(".split-inner", {
+              yPercent: 110,
+              opacity: 0,
+              duration: 1.2,
+              stagger: 0.05,
+              ease: "power4.out",
+              delay: 0.15,
+            });
+
+            gsap.utils.toArray("[data-reveal]").forEach((element) => {
+              if (
+                element.matches(
+                  ".service-card, .case-card, .testimonial-mini, .blog-card-advanced",
+                )
+              ) {
+                return;
+              }
+              gsap.fromTo(
+                element,
+                { y: 54, opacity: 0 },
+                {
+                  y: 0,
+                  opacity: 1,
+                  duration: 1.05,
+                  ease: "power3.out",
+                  delay: Number(element.dataset.delay || 0),
+                  scrollTrigger: {
+                    trigger: element,
+                    start: "top 88%",
+                  },
+                },
+              );
+            });
+
+            gsap.to(".parallax-orb", {
+              yPercent: -14,
+              ease: "none",
+              scrollTrigger: {
+                trigger: "#home",
+                start: "top top",
+                end: "bottom top",
+                scrub: 1.2,
+              },
+            });
+
+            gsap.to(".hero-copy", {
+              yPercent: 10,
+              ease: "none",
+              scrollTrigger: {
+                trigger: "#home",
+                start: "top top",
+                end: "bottom top",
+                scrub: 1.1,
+              },
+            });
+
+            gsap.to(".hero-stage-raised", {
+              yPercent: -4,
+              rotateX: 1.4,
+              ease: "none",
+              transformOrigin: "50% 50%",
+              scrollTrigger: {
+                trigger: "#home",
+                start: "top top",
+                end: "bottom top",
+                scrub: 1.15,
+              },
+            });
+
+            gsap.utils.toArray(".service-card").forEach((card, index) => {
+              gsap.fromTo(
+                card,
+                {
+                  x: index % 2 === 0 ? -26 : 26,
+                  y: 44,
+                  opacity: 0,
+                },
+                {
+                  x: 0,
+                  y: 0,
+                  opacity: 1,
+                  duration: 1,
+                  ease: "power3.out",
+                  scrollTrigger: {
+                    trigger: card,
+                    start: "top 88%",
+                  },
+                },
+              );
+            });
+
+            gsap.utils.toArray(".case-card").forEach((card, index) => {
+              gsap.fromTo(
+                card,
+                { y: 60, opacity: 0, rotateY: index % 2 === 0 ? -6 : 6 },
+                {
+                  y: 0,
+                  opacity: 1,
+                  rotateY: 0,
+                  duration: 1.1,
+                  ease: "power3.out",
+                  scrollTrigger: {
+                    trigger: card,
+                    start: "top 85%",
+                  },
+                },
+              );
+            });
+
+            gsap.to(".testimonial-shell", {
+              yPercent: -6,
+              ease: "none",
+              scrollTrigger: {
+                trigger: "#testimonials",
+                start: "top bottom",
+                end: "bottom top",
+                scrub: 1.1,
+              },
+            });
+
+            gsap.utils.toArray(".testimonial-mini").forEach((card, index) => {
+              gsap.fromTo(
+                card,
+                { x: -24, opacity: 0 },
+                {
+                  x: 0,
+                  opacity: 1,
+                  duration: 0.8,
+                  ease: "power3.out",
+                  scrollTrigger: {
+                    trigger: card,
+                    start: "top 88%",
+                  },
+                  delay: index * 0.04,
+                },
+              );
+            });
+
+            gsap.utils.toArray(".blog-card-advanced").forEach((card, index) => {
+              gsap.fromTo(
+                card,
+                { y: 70, opacity: 0, rotateX: 8 },
+                {
+                  y: 0,
+                  opacity: 1,
+                  rotateX: 0,
+                  duration: 1,
+                  ease: "power3.out",
+                  scrollTrigger: {
+                    trigger: card,
+                    start: "top 88%",
+                  },
+                  delay: index * 0.06,
+                },
+              );
+
+              gsap.to(card, {
+                xPercent: index === 1 ? 3 : index === 2 ? -3 : 0,
+                ease: "none",
+                scrollTrigger: {
+                  trigger: card,
+                  start: "top bottom",
+                  end: "bottom top",
+                  scrub: 1.1,
+                },
+              });
+            });
+
+            gsap.to(".blog-sticky", {
+              yPercent: -8,
+              ease: "none",
+              scrollTrigger: {
+                trigger: "#blog",
+                start: "top bottom",
+                end: "bottom top",
+                scrub: 1.15,
+              },
+            });
+
+            const progress = document.getElementById("story-progress-bar");
+            const storyNumber = document.getElementById("story-number");
+            const storyOverline = document.getElementById("story-overline");
+            const storyHeadline = document.getElementById("story-headline");
+            const storyDesc = document.getElementById("story-desc");
+            const storyPills = document.getElementById("story-pills");
+            const storyCards = gsap.utils.toArray(".process-preview-card");
+
+            if (
+              progress &&
+              storyNumber &&
+              storyOverline &&
+              storyHeadline &&
+              storyDesc &&
+              storyPills &&
+              storyCards.length
+            ) {
+              const storyStateNodes = [
+                storyNumber,
+                storyOverline,
+                storyHeadline,
+                storyDesc,
+                storyPills,
+              ];
+              const clampStoryProgress = gsap.utils.clamp(0, 1);
+              const clampStoryIndex = gsap.utils.clamp(
+                0,
+                workflowData.length - 1,
+              );
+              const fastStoryVelocity = 2200;
+              const minStoryDisplayThreshold = 0.1;
+              let activeStoryIndex = 0;
+
+              const paintStoryStep = (index) => {
+                const item = workflowData[index];
+                storyNumber.textContent = item.step;
+                storyOverline.textContent = item.label;
+                storyHeadline.textContent = item.title;
+                storyDesc.textContent = item.text;
+                storyPills.innerHTML = item.pills
+                  .map((pill) => `<span class="process-pill">${pill}</span>`)
+                  .join("");
+              };
+
+              const syncStoryCards = (index) => {
+                storyCards.forEach((card, cardIndex) => {
+                  card.classList.toggle("is-active", cardIndex === index);
+                  card.style.opacity = cardIndex === index ? "1" : "0.72";
+                });
+              };
+
+              const setStoryStep = (
+                index,
+                { force = false, immediate = false } = {},
+              ) => {
+                const nextIndex = clampStoryIndex(index);
+                syncStoryCards(nextIndex);
+
+                if (!force && nextIndex === activeStoryIndex) {
+                  gsap.set(storyStateNodes, {
+                    opacity: 1,
+                    y: 0,
+                    clearProps: "transform",
+                  });
+                  return;
+                }
+
+                activeStoryIndex = nextIndex;
+                gsap.killTweensOf(storyStateNodes);
+                paintStoryStep(nextIndex);
+
+                if (immediate) {
+                  gsap.set(storyStateNodes, {
+                    opacity: 1,
+                    y: 0,
+                    clearProps: "transform",
+                  });
+                  return;
+                }
+
+                gsap.fromTo(
+                  storyStateNodes,
+                  { opacity: 0.35, y: 12 },
+                  {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.28,
+                    stagger: 0.03,
+                    ease: "power2.out",
+                    overwrite: true,
+                  },
+                );
+              };
+
+              const resolveStoryState = (progressValue, velocity = 0) => {
+                const clampedProgress = clampStoryProgress(progressValue);
+
+                if (clampedProgress <= 0) {
+                  return { index: 0, immediate: true };
+                }
+
+                if (clampedProgress >= 1) {
+                  return { index: workflowData.length - 1, immediate: true };
+                }
+
+                if (Math.abs(velocity) > fastStoryVelocity) {
+                  return {
+                    index: clampStoryIndex(
+                      Math.round(clampedProgress * (workflowData.length - 1)),
+                    ),
+                    immediate: true,
+                  };
+                }
+
+                const scaledProgress = clampedProgress * workflowData.length;
+                const segmentIndex = Math.min(
+                  workflowData.length - 1,
+                  Math.floor(scaledProgress),
+                );
+                const segmentProgress =
+                  scaledProgress - Math.floor(scaledProgress);
+
+                return {
+                  index: segmentIndex,
+                  immediate: segmentProgress > minStoryDisplayThreshold,
+                };
+              };
+
+              storyCards.forEach((card, index) => {
+                card.style.opacity = index === 0 ? "1" : "0.72";
+                card.addEventListener("mouseenter", () => setStoryStep(index));
+              });
+
+              setStoryStep(0, { force: true, immediate: true });
+
+              gsap.to(progress, {
+                height: "100%",
+                ease: "none",
+                scrollTrigger: {
+                  trigger: "#story",
+                  start: "top top",
+                  end: "bottom bottom",
+                  scrub: 1,
+                  onUpdate: (self) => {
+                    const nextState = resolveStoryState(
+                      self.progress,
+                      self.getVelocity(),
+                    );
+                    setStoryStep(nextState.index, {
+                      immediate: nextState.immediate,
+                    });
+                  },
+                  onLeaveBack: () =>
+                    setStoryStep(0, { force: true, immediate: true }),
+                  onLeave: () =>
+                    setStoryStep(workflowData.length - 1, {
+                      force: true,
+                      immediate: true,
+                    }),
+                },
+              });
+            }
+          }, appRef.current);
+
+          const onLenisScroll = () => ScrollTrigger.update();
+          lenis.on("scroll", onLenisScroll);
+
+          return () => {
+            lenis.off("scroll", onLenisScroll);
+            anchors.forEach((anchor) =>
+              anchor.removeEventListener("click", onAnchorClick),
+            );
+            ctx.revert();
+            if (rafId) cancelAnimationFrame(rafId);
+            lenis.destroy();
+          };
+        }, []);
+
+        return (
+          <div ref={appRef}>
+            <div className="noise-overlay" />
+            <CursorSystem />
+            <Navbar />
+            <main>
+              <HeroSection />
+              <ProofStrip />
+              <ServicesSection />
+              <StorySection />
+              <WorkSection />
+              <MetricsSection />
+              <TestimonialSection />
+              <BlogSection />
+              <ContactSection />
+            </main>
+            <Footer />
+            <WhatsAppFloat />
+          </div>
+        );
+      }
+
+      const root = ReactDOM.createRoot(document.getElementById("root"));
+      root.render(<App />);
+    </script>
+    <script>
+      (function () {
+        const loader = document.getElementById("page-loader");
+        document.body.style.overflow = "hidden";
+
+        setTimeout(function () {
+          loader.classList.add("is-text-out");
+        }, 1800);
+
+        setTimeout(function () {
+          document.body.classList.add("loader-revealed");
+          loader.classList.add("is-leaving");
+        }, 2400);
+
+        setTimeout(function () {
+          loader.classList.add("is-gone");
+          document.body.style.overflow = "";
+        }, 3400);
+      })();
+    </script>
+  </body>
+</html>
