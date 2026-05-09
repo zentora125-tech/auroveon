@@ -45,7 +45,11 @@
 
       body {
         background:
-          radial-gradient(circle at top, rgba(57, 255, 20, 0.09), transparent 28%),
+          radial-gradient(
+            circle at top,
+            rgba(57, 255, 20, 0.09),
+            transparent 28%
+          ),
           linear-gradient(180deg, #080a08 0%, #090c09 48%, #070907 100%);
         color: var(--text-primary);
         font-family: "Inter", sans-serif;
@@ -69,6 +73,32 @@
 
       .mono-font {
         font-family: "JetBrains Mono", monospace;
+      }
+
+      .brand-logo {
+        display: block;
+        width: auto;
+        height: 100%;
+        object-fit: contain;
+      }
+
+      .brand-logo-link {
+        display: inline-flex;
+        align-items: center;
+        flex-shrink: 0;
+      }
+
+      .brand-logo-nav {
+        height: 68px;
+      }
+
+      .brand-logo-footer {
+        height: 72px;
+        max-width: min(100%, 240px);
+      }
+
+      .brand-logo-inline {
+        height: 26px;
       }
 
       .site-shell {
@@ -117,7 +147,11 @@
         height: 54px;
         border-radius: 9999px;
         border: 1px solid rgba(57, 255, 20, 0.22);
-        background: radial-gradient(circle, rgba(57, 255, 20, 0.12), transparent 72%);
+        background: radial-gradient(
+          circle,
+          rgba(57, 255, 20, 0.12),
+          transparent 72%
+        );
         transition:
           width 0.25s ease,
           height 0.25s ease,
@@ -129,7 +163,11 @@
         width: 76px;
         height: 76px;
         border-color: rgba(57, 255, 20, 0.48);
-        background: radial-gradient(circle, rgba(57, 255, 20, 0.2), transparent 76%);
+        background: radial-gradient(
+          circle,
+          rgba(57, 255, 20, 0.2),
+          transparent 76%
+        );
       }
 
       @media (max-width: 1023px) {
@@ -140,7 +178,11 @@
       }
 
       .glass-panel {
-        background: linear-gradient(180deg, rgba(18, 23, 18, 0.8), rgba(10, 12, 10, 0.58));
+        background: linear-gradient(
+          180deg,
+          rgba(18, 23, 18, 0.8),
+          rgba(10, 12, 10, 0.58)
+        );
         border: 1px solid var(--border);
         backdrop-filter: blur(22px);
         -webkit-backdrop-filter: blur(22px);
@@ -150,7 +192,12 @@
       }
 
       .soft-divider {
-        background: linear-gradient(90deg, transparent, rgba(57, 255, 20, 0.28), transparent);
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(57, 255, 20, 0.28),
+          transparent
+        );
       }
 
       .eyebrow {
@@ -174,8 +221,17 @@
         position: absolute;
         inset: 0;
         background:
-          linear-gradient(100deg, rgba(8, 10, 8, 0.94) 16%, rgba(8, 10, 8, 0.74) 52%, rgba(8, 10, 8, 0.9) 100%),
-          radial-gradient(circle at 78% 30%, rgba(57, 255, 20, 0.14), transparent 24%),
+          linear-gradient(
+            100deg,
+            rgba(8, 10, 8, 0.94) 16%,
+            rgba(8, 10, 8, 0.74) 52%,
+            rgba(8, 10, 8, 0.9) 100%
+          ),
+          radial-gradient(
+            circle at 78% 30%,
+            rgba(57, 255, 20, 0.14),
+            transparent 24%
+          ),
           url("https://images.unsplash.com/photo-1518005020951-eccb494ad742?auto=format&fit=crop&w=1800&q=80")
             center/cover no-repeat;
         transform: scale(1.04);
@@ -189,8 +245,18 @@
           linear-gradient(rgba(57, 255, 20, 0.035) 1px, transparent 1px),
           linear-gradient(90deg, rgba(57, 255, 20, 0.035) 1px, transparent 1px);
         background-size: 74px 74px;
-        mask-image: radial-gradient(circle at 58% 38%, black 0%, black 42%, transparent 88%);
-        -webkit-mask-image: radial-gradient(circle at 58% 38%, black 0%, black 42%, transparent 88%);
+        mask-image: radial-gradient(
+          circle at 58% 38%,
+          black 0%,
+          black 42%,
+          transparent 88%
+        );
+        -webkit-mask-image: radial-gradient(
+          circle at 58% 38%,
+          black 0%,
+          black 42%,
+          transparent 88%
+        );
       }
 
       .hero-spotlight {
@@ -240,9 +306,18 @@
         position: absolute;
         inset: 0;
         background:
-          radial-gradient(circle at 50% 40%, rgba(57, 255, 20, 0.1), transparent 28%),
+          radial-gradient(
+            circle at 50% 40%,
+            rgba(57, 255, 20, 0.1),
+            transparent 28%
+          ),
           linear-gradient(180deg, rgba(255, 255, 255, 0.04), transparent 18%),
-          linear-gradient(140deg, rgba(57, 255, 20, 0.05), rgba(9, 12, 9, 0.16) 30%, rgba(9, 12, 9, 0.92) 88%);
+          linear-gradient(
+            140deg,
+            rgba(57, 255, 20, 0.05),
+            rgba(9, 12, 9, 0.16) 30%,
+            rgba(9, 12, 9, 0.92) 88%
+          );
         z-index: 0;
       }
 
@@ -261,7 +336,11 @@
         width: 220px;
         height: 220px;
         border-radius: 9999px;
-        background: radial-gradient(circle, rgba(57, 255, 20, 0.2), transparent 68%);
+        background: radial-gradient(
+          circle,
+          rgba(57, 255, 20, 0.2),
+          transparent 68%
+        );
         filter: blur(36px);
       }
 
@@ -307,7 +386,11 @@
         inset: 0;
         background:
           linear-gradient(180deg, rgba(255, 255, 255, 0.03), transparent 24%),
-          radial-gradient(circle at top right, rgba(57, 255, 20, 0.08), transparent 24%);
+          radial-gradient(
+            circle at top right,
+            rgba(57, 255, 20, 0.08),
+            transparent 24%
+          );
         pointer-events: none;
       }
 
@@ -328,13 +411,16 @@
         font-style: italic;
         font-weight: 800;
         letter-spacing: -0.045em;
-        line-height: 0.9;
+        line-height: 1;
+        overflow: visible;
       }
 
       .shine-heading,
       .shine-heading .split-inner {
         color: transparent;
         -webkit-text-fill-color: transparent;
+        display: inline;
+        overflow: visible;
         background-image: linear-gradient(
           100deg,
           rgba(240, 245, 240, 0.98) 0%,
@@ -354,6 +440,8 @@
       .shine-heading-accent .split-inner {
         color: transparent;
         -webkit-text-fill-color: transparent;
+        display: inline;
+        overflow: visible;
         background-image: linear-gradient(
           100deg,
           rgba(57, 255, 20, 1) 0%,
@@ -373,6 +461,58 @@
       .shine-heading-accent .split-word {
         padding-bottom: 0.08em;
         margin-bottom: -0.08em;
+      }
+
+      @keyframes text-shine {
+        0% {
+          background-position: -200% center;
+        }
+
+        100% {
+          background-position: 200% center;
+        }
+      }
+
+      .shine-text {
+        background: linear-gradient(
+          90deg,
+          #ffffff 0%,
+          #ffffff 35%,
+          #b9ffb0 44%,
+          #eaffea 50%,
+          #b9ffb0 56%,
+          #ffffff 65%,
+          #ffffff 100%
+        );
+        background-size: 200% auto;
+        display: inline;
+        overflow: visible;
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        color: transparent;
+        animation: text-shine 4s linear infinite;
+      }
+
+      .shine-text-accent {
+        background: linear-gradient(
+          90deg,
+          var(--accent) 0%,
+          var(--accent) 35%,
+          #ccffcc 44%,
+          #efffef 50%,
+          #ccffcc 56%,
+          var(--accent) 65%,
+          var(--accent) 100%
+        );
+        background-size: 200% auto;
+        display: inline;
+        overflow: visible;
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        color: transparent;
+        animation: text-shine 4s linear infinite;
       }
 
       @keyframes heading-shine-green {
@@ -397,7 +537,8 @@
 
       .split-word {
         display: inline-block;
-        overflow: hidden;
+        overflow: visible;
+        line-height: inherit;
         padding-right: 0.18em;
       }
 
@@ -412,7 +553,12 @@
         right: 0;
         bottom: -1px;
         height: 1px;
-        background: linear-gradient(90deg, transparent, rgba(57, 255, 20, 0.08), transparent);
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(57, 255, 20, 0.08),
+          transparent
+        );
       }
 
       .sticky-progress {
@@ -430,7 +576,11 @@
         display: block;
         width: 100%;
         height: 0%;
-        background: linear-gradient(180deg, rgba(57, 255, 20, 0.18), var(--accent));
+        background: linear-gradient(
+          180deg,
+          rgba(57, 255, 20, 0.18),
+          var(--accent)
+        );
         border-radius: inherit;
       }
 
@@ -452,6 +602,97 @@
         color: var(--text-primary);
       }
 
+      .footer-contact-label {
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: var(--text-secondary);
+      }
+
+      .footer-contact-value {
+        margin-top: 4px;
+        color: #ffffff;
+        font-size: 0.95rem;
+      }
+
+      .footer-contact-link {
+        color: #ffffff;
+        text-decoration: none;
+        transition: color 0.2s ease;
+      }
+
+      .footer-contact-link:hover {
+        color: var(--accent);
+        text-decoration: underline;
+      }
+
+      .footer-legal-link {
+        color: var(--text-secondary);
+        transition: color 0.24s ease;
+      }
+
+      .footer-legal-link:hover {
+        color: var(--accent);
+      }
+
+      .footer-social-row {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 16px;
+      }
+
+      .footer-social-link {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 42px;
+        height: 42px;
+        border: 1px solid #1a3a1a;
+        border-radius: 9999px;
+        background: #111;
+        transition:
+          border-color 0.2s ease,
+          transform 0.2s ease;
+      }
+
+      .footer-social-link svg {
+        width: 18px;
+        height: 18px;
+        fill: #aaaaaa;
+        transition: fill 0.2s ease;
+      }
+
+      .footer-social-link:hover {
+        border-color: #00ff88;
+        transform: translateY(-1px);
+      }
+
+      .footer-social-link:hover svg {
+        fill: #00ff88;
+      }
+
+      .whatsapp-fab {
+        position: fixed;
+        bottom: 28px;
+        right: 28px;
+        z-index: 9999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 56px;
+        height: 56px;
+        border: none;
+        border-radius: 50%;
+        background: #25d366;
+        box-shadow: 0 4px 20px rgba(37, 211, 102, 0.45);
+        transition: all 0.25s ease;
+      }
+
+      .whatsapp-fab:hover {
+        transform: scale(1.1);
+      }
+
       .section-reveal {
         opacity: 0;
         transform: translateY(60px);
@@ -468,20 +709,6 @@
         position: absolute;
         border: 1px solid rgba(57, 255, 20, 0.12);
         border-radius: 9999px;
-      }
-
-      .testimonial-shell {
-        position: relative;
-        overflow: hidden;
-      }
-
-      .testimonial-shell::after {
-        content: "";
-        position: absolute;
-        inset: 8% 16%;
-        border-radius: 9999px;
-        border: 1px solid rgba(57, 255, 20, 0.08);
-        pointer-events: none;
       }
 
       .testimonial-quote-mark {
@@ -514,7 +741,11 @@
       }
 
       .blog-line {
-        background: linear-gradient(180deg, rgba(57, 255, 20, 0.24), rgba(57, 255, 20, 0));
+        background: linear-gradient(
+          180deg,
+          rgba(57, 255, 20, 0.24),
+          rgba(57, 255, 20, 0)
+        );
       }
 
       .case-media {
@@ -531,7 +762,11 @@
         inset: 0;
         background:
           linear-gradient(180deg, rgba(8, 10, 8, 0.02), rgba(8, 10, 8, 0.26)),
-          radial-gradient(circle at top right, rgba(57, 255, 20, 0.12), transparent 28%);
+          radial-gradient(
+            circle at top right,
+            rgba(57, 255, 20, 0.12),
+            transparent 28%
+          );
         pointer-events: none;
       }
 
@@ -610,8 +845,17 @@
         position: absolute;
         inset: 0;
         background:
-          linear-gradient(100deg, rgba(8, 10, 8, 0.86) 12%, rgba(8, 10, 8, 0.68) 54%, rgba(8, 10, 8, 0.86) 100%),
-          radial-gradient(circle at 78% 38%, rgba(57, 255, 20, 0.12), transparent 24%),
+          linear-gradient(
+            100deg,
+            rgba(8, 10, 8, 0.86) 12%,
+            rgba(8, 10, 8, 0.68) 54%,
+            rgba(8, 10, 8, 0.86) 100%
+          ),
+          radial-gradient(
+            circle at 78% 38%,
+            rgba(57, 255, 20, 0.12),
+            transparent 24%
+          ),
           url("https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1800&q=80")
             center/cover no-repeat;
         filter: saturate(0.58) brightness(0.62);
@@ -631,8 +875,20 @@
       }
 
       .mask-fade {
-        mask-image: linear-gradient(180deg, transparent, black 10%, black 88%, transparent);
-        -webkit-mask-image: linear-gradient(180deg, transparent, black 10%, black 88%, transparent);
+        mask-image: linear-gradient(
+          180deg,
+          transparent,
+          black 10%,
+          black 88%,
+          transparent
+        );
+        -webkit-mask-image: linear-gradient(
+          180deg,
+          transparent,
+          black 10%,
+          black 88%,
+          transparent
+        );
       }
     </style>
   </head>
@@ -678,7 +934,9 @@
         ((props) => <a {...filterMotionProps(props)}>{props.children}</a>);
       const MotionButton =
         motionSource.motion?.button ||
-        ((props) => <button {...filterMotionProps(props)}>{props.children}</button>);
+        ((props) => (
+          <button {...filterMotionProps(props)}>{props.children}</button>
+        ));
 
       const serviceData = [
         {
@@ -744,22 +1002,28 @@
         {
           title: "Cortex Ops",
           label: "AI Workflow Platform",
-          outcome: "42% faster internal resolution time after replacing fragmented manual ops with an AI-enabled command layer.",
-          image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80",
+          outcome:
+            "42% faster internal resolution time after replacing fragmented manual ops with an AI-enabled command layer.",
+          image:
+            "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80",
           imageAlt: "Analytics dashboard visualizing AI operations",
         },
         {
           title: "Helio Commerce",
           label: "Scalable SaaS Rebuild",
-          outcome: "Repositioned the product and rebuilt the frontend into a faster, cleaner customer journey with stronger enterprise trust.",
-          image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80",
+          outcome:
+            "Repositioned the product and rebuilt the frontend into a faster, cleaner customer journey with stronger enterprise trust.",
+          image:
+            "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80",
           imageAlt: "Commerce analytics and business growth dashboard",
         },
         {
           title: "Nova Pulse",
           label: "Modern Product Launch",
-          outcome: "Created a launch system combining immersive storytelling, modular CMS control, and a memorable premium visual identity.",
-          image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=80",
+          outcome:
+            "Created a launch system combining immersive storytelling, modular CMS control, and a memorable premium visual identity.",
+          image:
+            "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=80",
           imageAlt: "Product launch website and development workspace",
         },
       ];
@@ -790,19 +1054,22 @@
 
       const blogData = [
         {
-          title: "Why premium agency websites now behave more like product demos",
+          title:
+            "Why premium agency websites now behave more like product demos",
           meta: "Strategy / 06 min read",
           blurb:
             "Modern software brands win faster when the homepage explains capability through rhythm, depth, and interaction instead of static blocks.",
         },
         {
-          title: "Designing AI landing pages without falling into generic SaaS patterns",
+          title:
+            "Designing AI landing pages without falling into generic SaaS patterns",
           meta: "AI UX / 04 min read",
           blurb:
             "The strongest AI visuals do not rely on random blobs. They use structure, confidence, and a system-level point of view.",
         },
         {
-          title: "Scroll direction as storytelling: making motion feel premium, not noisy",
+          title:
+            "Scroll direction as storytelling: making motion feel premium, not noisy",
           meta: "Motion / 05 min read",
           blurb:
             "Advanced animation feels expensive when it has restraint, spatial logic, and enough pause for content to land.",
@@ -822,8 +1089,14 @@
 
       const metrics = [
         { value: "120+", label: "products shipped across web, AI, and SaaS" },
-        { value: "98%", label: "client retention from long-term build partnerships" },
-        { value: "3x", label: "average speed-up in product clarity after redesign" },
+        {
+          value: "98%",
+          label: "client retention from long-term build partnerships",
+        },
+        {
+          value: "3x",
+          label: "average speed-up in product clarity after redesign",
+        },
       ];
 
       function SplitWords({ text, className = "" }) {
@@ -849,10 +1122,22 @@
           const ring = ringRef.current;
           if (!dot || !ring || !window.gsap) return undefined;
 
-          const dotX = gsap.quickTo(dot, "left", { duration: 0.14, ease: "power3" });
-          const dotY = gsap.quickTo(dot, "top", { duration: 0.14, ease: "power3" });
-          const ringX = gsap.quickTo(ring, "left", { duration: 0.3, ease: "power3" });
-          const ringY = gsap.quickTo(ring, "top", { duration: 0.3, ease: "power3" });
+          const dotX = gsap.quickTo(dot, "left", {
+            duration: 0.14,
+            ease: "power3",
+          });
+          const dotY = gsap.quickTo(dot, "top", {
+            duration: 0.14,
+            ease: "power3",
+          });
+          const ringX = gsap.quickTo(ring, "left", {
+            duration: 0.3,
+            ease: "power3",
+          });
+          const ringY = gsap.quickTo(ring, "top", {
+            duration: 0.3,
+            ease: "power3",
+          });
 
           gsap.set([dot, ring], { opacity: 1 });
 
@@ -863,7 +1148,9 @@
             ringY(event.clientY);
           };
 
-          const hoverables = document.querySelectorAll("a, button, [data-hover]");
+          const hoverables = document.querySelectorAll(
+            "a, button, [data-hover]",
+          );
           const onEnter = () => ring.classList.add("is-hovering");
           const onLeave = () => ring.classList.remove("is-hovering");
 
@@ -894,7 +1181,8 @@
       function useAgencyCore(stageRef) {
         useEffect(() => {
           const stage = stageRef.current;
-          if (!stage || !window.THREE || !window.gsap || !window.ScrollTrigger) return undefined;
+          if (!stage || !window.THREE || !window.gsap || !window.ScrollTrigger)
+            return undefined;
 
           const scene = new THREE.Scene();
           const renderer = new THREE.WebGLRenderer({
@@ -937,7 +1225,7 @@
               thickness: 1,
               clearcoat: 1,
               clearcoatRoughness: 0.1,
-            })
+            }),
           );
 
           const shell = new THREE.LineSegments(
@@ -946,7 +1234,7 @@
               color: 0xc4ffb7,
               transparent: true,
               opacity: 0.18,
-            })
+            }),
           );
 
           const ringA = new THREE.Mesh(
@@ -959,7 +1247,7 @@
               opacity: 0.22,
               roughness: 0.18,
               metalness: 0.2,
-            })
+            }),
           );
           ringA.rotation.x = 1.18;
 
@@ -977,7 +1265,7 @@
               opacity: 0.35,
               roughness: 0.25,
               metalness: 0.42,
-            })
+            }),
           );
           knot.scale.set(0.9, 0.9, 0.9);
 
@@ -1000,9 +1288,12 @@
               opacity: 0.78,
               size: 0.032,
               sizeAttenuation: true,
-            })
+            }),
           );
-          particles.geometry.setAttribute("position", new THREE.BufferAttribute(positions, 3));
+          particles.geometry.setAttribute(
+            "position",
+            new THREE.BufferAttribute(positions, 3),
+          );
 
           const uiPlanes = new THREE.Group();
           [
@@ -1017,7 +1308,7 @@
                 transparent: true,
                 opacity: 0.08,
                 side: THREE.DoubleSide,
-              })
+              }),
             );
             mesh.position.set(plane.x, plane.y, plane.z);
             uiPlanes.add(mesh);
@@ -1040,8 +1331,10 @@
 
           const onMove = (event) => {
             const bounds = stage.getBoundingClientRect();
-            target.x = ((event.clientX - bounds.left) / bounds.width - 0.5) * 0.9;
-            target.y = ((event.clientY - bounds.top) / bounds.height - 0.5) * 0.9;
+            target.x =
+              ((event.clientX - bounds.left) / bounds.width - 0.5) * 0.9;
+            target.y =
+              ((event.clientY - bounds.top) / bounds.height - 0.5) * 0.9;
           };
 
           const tick = () => {
@@ -1124,12 +1417,12 @@
         const [open, setOpen] = useState(false);
 
         useEffect(() => {
-            const sync = () => {
-              const nav = document.getElementById("navbar");
-              if (!nav) return;
-              if (window.scrollY > 10) nav.classList.add("nav-scrolled");
-              else nav.classList.remove("nav-scrolled");
-            };
+          const sync = () => {
+            const nav = document.getElementById("navbar");
+            if (!nav) return;
+            if (window.scrollY > 10) nav.classList.add("nav-scrolled");
+            else nav.classList.remove("nav-scrolled");
+          };
 
           sync();
           window.addEventListener("scroll", sync);
@@ -1151,14 +1444,22 @@
             className="fixed left-0 top-0 z-50 w-full border-transparent transition-all duration-300"
             style={{ borderColor: "var(--border)" }}
           >
-            <div className="site-shell flex h-20 items-center justify-between">
-              <a href="#home" className="display-font text-2xl font-extrabold tracking-[-0.05em] text-[var(--text-primary)]">
-                Auroveon<span className="ml-1 text-[var(--accent)]">.</span>
+            <div className="site-shell flex h-24 items-center justify-between">
+              <a href="#home" className="brand-logo-link" aria-label="Auroveon home">
+                <img
+                  src="assets/WhatsApp Image 2026-05-09 at 09,19,43-Picsart-BackgroundRemover.png"
+                  alt="Auroveon"
+                  className="brand-logo brand-logo-nav"
+                />
               </a>
 
-              <nav className="hidden items-center gap-8 lg:flex">
+              <nav className="hidden items-center gap-9 lg:flex">
                 {links.map((link) => (
-                  <a key={link.href} className="nav-link text-sm font-medium" href={link.href}>
+                  <a
+                    key={link.href}
+                    className="nav-link text-base font-medium"
+                    href={link.href}
+                  >
                     {link.label}
                   </a>
                 ))}
@@ -1168,7 +1469,7 @@
                 <MotionA
                   href="#contact"
                   whileHover={{ y: -2, scale: 1.02 }}
-                  className="display-font inline-flex items-center gap-2 rounded-full border px-5 py-3 text-sm font-semibold"
+                  className="display-font inline-flex items-center gap-2 rounded-full border px-6 py-3.5 text-base font-semibold"
                   style={{
                     borderColor: "var(--accent)",
                     color: "var(--accent)",
@@ -1181,11 +1482,13 @@
 
               <button
                 type="button"
-                className="glass-panel flex h-11 w-11 items-center justify-center rounded-full lg:hidden"
+                className="glass-panel flex h-12 w-12 items-center justify-center rounded-full lg:hidden"
                 style={{ borderColor: "var(--border)" }}
                 onClick={() => setOpen((current) => !current)}
               >
-                <span className="text-xl text-[var(--text-primary)]">{open ? "x" : "+"}</span>
+                <span className="text-xl text-[var(--text-primary)]">
+                  {open ? "x" : "+"}
+                </span>
               </button>
             </div>
 
@@ -1216,7 +1519,10 @@
         useAgencyCore(stageRef);
 
         return (
-          <section id="home" className="section-frame relative min-h-screen overflow-hidden pt-20">
+          <section
+            id="home"
+            className="section-frame relative min-h-screen overflow-hidden pt-20"
+          >
             <div className="hero-image" />
             <div className="hero-grid" />
             <div
@@ -1226,7 +1532,8 @@
                 height: "36rem",
                 top: "-8rem",
                 right: "-6rem",
-                background: "radial-gradient(circle, rgba(57,255,20,0.18), transparent 66%)",
+                background:
+                  "radial-gradient(circle, rgba(57,255,20,0.18), transparent 66%)",
               }}
             />
             <div
@@ -1236,7 +1543,8 @@
                 height: "28rem",
                 bottom: "2rem",
                 left: "-8rem",
-                background: "radial-gradient(circle, rgba(57,255,20,0.1), transparent 68%)",
+                background:
+                  "radial-gradient(circle, rgba(57,255,20,0.1), transparent 68%)",
               }}
             />
 
@@ -1251,12 +1559,16 @@
                     <span className="eyebrow">AI-native software agency</span>
                   </div>
 
-                  <h1 className="headline-italics mt-6 max-w-[11ch] text-[clamp(2.8rem,7vw,6.8rem)] leading-[0.88] text-[var(--text-primary)]">
-                    <SplitWords text="Building Digital" />
+                  <h1 className="headline-italics mt-6 max-w-[11ch] text-[clamp(2.8rem,7vw,6.8rem)]">
+                    <span className="shine-text">
+                      <SplitWords text="Building Digital" />
+                    </span>
                     <br />
-                    <SplitWords text="Experiences That" />
+                    <span className="shine-text">
+                      <SplitWords text="Experiences That" />
+                    </span>
                     <br />
-                    <span className="text-[var(--accent)]">
+                    <span className="shine-text-accent">
                       <SplitWords text="Feel Alive" />
                     </span>
                   </h1>
@@ -1266,7 +1578,8 @@
                     data-delay="0.12"
                     className="section-reveal mt-6 max-w-xl text-lg leading-8 text-[var(--text-secondary)] lg:hidden"
                   >
-                    We craft immersive products, AI systems, and next-gen web experiences for ambitious brands.
+                    We craft immersive products, AI systems, and next-gen web
+                    experiences for ambitious brands.
                   </p>
 
                   <div
@@ -1281,7 +1594,8 @@
                       className="display-font inline-flex items-center justify-center rounded-full px-7 py-4 text-base font-bold text-[#081008]"
                       style={{
                         background: "var(--accent)",
-                        boxShadow: "0 0 42px rgba(57,255,20,0.18), 0 22px 60px rgba(57,255,20,0.12)",
+                        boxShadow:
+                          "0 0 42px rgba(57,255,20,0.18), 0 22px 60px rgba(57,255,20,0.12)",
                       }}
                     >
                       Start a Project
@@ -1312,7 +1626,9 @@
                         <div className="display-font text-3xl font-extrabold italic text-[var(--text-primary)]">
                           {item.value}
                         </div>
-                        <p className="mt-2 text-sm leading-6 text-[var(--text-secondary)]">{item.label}</p>
+                        <p className="mt-2 text-sm leading-6 text-[var(--text-secondary)]">
+                          {item.label}
+                        </p>
                       </div>
                     ))}
                   </div>
@@ -1322,19 +1638,27 @@
                   <div className="orbital-line left-[7%] top-[8%] h-[82%] w-[82%]" />
                   <div className="orbital-line left-[18%] top-[18%] h-[58%] w-[58%]" />
 
-                  <div ref={stageRef} className="hero-stage hero-stage-raised glass-panel border border-[var(--border)]">
+                  <div
+                    ref={stageRef}
+                    className="hero-stage hero-stage-raised glass-panel border border-[var(--border)]"
+                  >
                     <div className="mesh-glow right-10 top-10" />
                     <div className="mesh-glow bottom-16 left-12" />
 
                     <div className="relative z-10 flex h-full flex-col justify-between p-4 sm:p-5 lg:p-7">
                       <div className="grid gap-4 lg:grid-cols-[1.2fr_0.8fr]">
                         <div className="glass-panel rounded-[20px] px-4 py-4">
-                          <div className="mini-label mono-font">Agency OS / live deployment mesh</div>
+                          <div className="mini-label mono-font">
+                            Agency OS / live deployment mesh
+                          </div>
                           <div className="mt-3 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                             <div>
-                              <div className="display-font text-lg font-bold italic">Realtime build intelligence</div>
+                              <div className="display-font text-lg font-bold italic">
+                                Realtime build intelligence
+                              </div>
                               <p className="mt-1 text-sm text-[var(--text-secondary)]">
-                                AI, SaaS, interface systems, and automation layers moving inside one product surface.
+                                AI, SaaS, interface systems, and automation
+                                layers moving inside one product surface.
                               </p>
                             </div>
                             <div className="rounded-full border border-[var(--border)] px-3 py-2 mono-font text-xs text-[var(--accent)]">
@@ -1344,18 +1668,24 @@
                         </div>
 
                         <div className="glass-panel rounded-[20px] px-4 py-4">
-                          <div className="mini-label mono-font">Signal quality</div>
+                          <div className="mini-label mono-font">
+                            Signal quality
+                          </div>
                           <div className="mt-4 grid gap-3">
                             <div className="flex items-center justify-between text-sm text-[var(--text-secondary)]">
                               <span>Design system cohesion</span>
-                              <span className="text-[var(--text-primary)]">94%</span>
+                              <span className="text-[var(--text-primary)]">
+                                94%
+                              </span>
                             </div>
                             <div className="h-2 rounded-full bg-[rgba(255,255,255,0.05)]">
                               <div className="h-full w-[94%] rounded-full bg-[var(--accent)]" />
                             </div>
                             <div className="flex items-center justify-between text-sm text-[var(--text-secondary)]">
                               <span>Automation adoption</span>
-                              <span className="text-[var(--text-primary)]">88%</span>
+                              <span className="text-[var(--text-primary)]">
+                                88%
+                              </span>
                             </div>
                             <div className="h-2 rounded-full bg-[rgba(255,255,255,0.05)]">
                               <div className="h-full w-[88%] rounded-full bg-[var(--accent)]" />
@@ -1370,17 +1700,30 @@
                             AI powered
                           </div>
                           <div className="mt-3 display-font text-xl font-extrabold italic leading-tight sm:text-2xl">
-                            Software systems that look premium and operate like products.
+                            Software systems that look premium and operate like
+                            products.
                           </div>
                         </div>
 
                         <div className="glass-panel w-full rounded-[22px] px-5 py-5 lg:max-w-[18rem]">
-                          <div className="mini-label mono-font">Launch stack</div>
+                          <div className="mini-label mono-font">
+                            Launch stack
+                          </div>
                           <div className="mt-4 space-y-3">
-                            {["AI Solutions", "Web Development", "SaaS Platforms", "Automation"].map((item) => (
-                              <div key={item} className="flex items-center justify-between text-sm text-[var(--text-secondary)]">
+                            {[
+                              "AI Solutions",
+                              "Web Development",
+                              "SaaS Platforms",
+                              "Automation",
+                            ].map((item) => (
+                              <div
+                                key={item}
+                                className="flex items-center justify-between text-sm text-[var(--text-secondary)]"
+                              >
                                 <span>{item}</span>
-                                <span className="text-[var(--accent)]">online</span>
+                                <span className="text-[var(--accent)]">
+                                  online
+                                </span>
                               </div>
                             ))}
                           </div>
@@ -1420,7 +1763,10 @@
 
       function ServicesSection() {
         return (
-          <section id="services" className="section-frame relative py-24 lg:py-32">
+          <section
+            id="services"
+            className="section-frame relative py-24 lg:py-32"
+          >
             <div className="site-shell">
               <div className="grid gap-10 lg:grid-cols-[0.6fr_1.4fr] lg:items-center lg:gap-8">
                 <div className="section-reveal lg:pr-6" data-reveal>
@@ -1429,7 +1775,9 @@
                     Premium systems with cinematic presence.
                   </h2>
                   <p className="mt-6 max-w-[28rem] text-base leading-8 text-[var(--text-secondary)] lg:text-lg">
-                    Every section is intentionally different, but the brand language stays sharp, dark, and intelligent. That keeps the homepage feeling authored rather than templated.
+                    Every section is intentionally different, but the brand
+                    language stays sharp, dark, and intelligent. That keeps the
+                    homepage feeling authored rather than templated.
                   </p>
                 </div>
 
@@ -1452,7 +1800,9 @@
                       <div className="mt-8 h-px w-full soft-divider" />
                       <div className="mt-5 flex items-center justify-between text-sm text-[var(--text-muted)]">
                         <span>Concept to production</span>
-                        <span className="text-[var(--accent)]">0{index + 1}</span>
+                        <span className="text-[var(--accent)]">
+                          0{index + 1}
+                        </span>
                       </div>
                     </MotionDiv>
                   ))}
@@ -1490,13 +1840,18 @@
                       Structured process. Premium execution.
                     </h2>
                     <p className="mt-6 max-w-md text-base leading-8 text-[var(--text-secondary)] lg:text-lg">
-                      The section now uses a clearer step-by-step layout again, with one focused active phase and supporting boxes around it.
+                      The section now uses a clearer step-by-step layout again,
+                      with one focused active phase and supporting boxes around
+                      it.
                     </p>
                   </div>
 
                   <div className="space-y-6 lg:pl-12">
                     <div className="glass-panel rounded-[34px] border border-[var(--border)] p-7 lg:p-10">
-                      <div id="story-overline" className="mono-font text-[0.72rem] uppercase tracking-[0.18em] text-[var(--accent)]">
+                      <div
+                        id="story-overline"
+                        className="mono-font text-[0.72rem] uppercase tracking-[0.18em] text-[var(--accent)]"
+                      >
                         {workflowData[0].label}
                       </div>
                       <h3
@@ -1511,7 +1866,10 @@
                       >
                         {workflowData[0].text}
                       </p>
-                      <div id="story-pills" className="mt-8 flex flex-wrap gap-3">
+                      <div
+                        id="story-pills"
+                        className="mt-8 flex flex-wrap gap-3"
+                      >
                         {workflowData[0].pills.map((pill) => (
                           <span key={pill} className="process-pill">
                             {pill}
@@ -1563,7 +1921,9 @@
                   data-delay="0.08"
                   className="section-reveal max-w-lg text-base leading-8 text-[var(--text-secondary)] lg:text-right lg:text-lg"
                 >
-                  The visual language stays consistent, but each case feels like its own universe with different hierarchy, rhythm, and product emphasis.
+                  The visual language stays consistent, but each case feels like
+                  its own universe with different hierarchy, rhythm, and product
+                  emphasis.
                 </p>
               </div>
 
@@ -1585,11 +1945,20 @@
                       </div>
                       <div className="mt-6 grid grid-cols-[1.35fr_0.65fr] gap-3">
                         <div className="case-media aspect-[1.12/1]">
-                          <img src={item.image} alt={item.imageAlt} loading="lazy" />
+                          <img
+                            src={item.image}
+                            alt={item.imageAlt}
+                            loading="lazy"
+                          />
                         </div>
                         <div className="space-y-3">
                           <div className="case-media-mini aspect-[1/0.92]">
-                            <img src={item.image} alt="" loading="lazy" className="h-full w-full object-cover" />
+                            <img
+                              src={item.image}
+                              alt=""
+                              loading="lazy"
+                              className="h-full w-full object-cover"
+                            />
                           </div>
                           <div className="case-media-mini flex aspect-[1/1.25] items-end bg-[linear-gradient(180deg,rgba(57,255,20,0.16),rgba(255,255,255,0.02))] p-4">
                             <div>
@@ -1607,8 +1976,13 @@
                     <h3 className="display-font mt-7 text-3xl font-bold italic text-[var(--text-primary)]">
                       {item.title}
                     </h3>
-                    <p className="mt-4 text-base leading-8 text-[var(--text-secondary)]">{item.outcome}</p>
-                    <a href="#contact" className="mt-7 inline-flex text-sm font-semibold text-[var(--accent)]">
+                    <p className="mt-4 text-base leading-8 text-[var(--text-secondary)]">
+                      {item.outcome}
+                    </p>
+                    <a
+                      href="#contact"
+                      className="mt-7 inline-flex text-sm font-semibold text-[var(--accent)]"
+                    >
                       View case approach
                     </a>
                   </MotionDiv>
@@ -1633,7 +2007,9 @@
                     Depth, restraint, and motion with weight.
                   </h2>
                   <p className="mt-6 max-w-xl text-base leading-8 text-[var(--text-secondary)] lg:text-lg">
-                    The goal is not more animation. It is better animation: smoother pacing, stronger composition, and a visible product mindset behind every visual choice.
+                    The goal is not more animation. It is better animation:
+                    smoother pacing, stronger composition, and a visible product
+                    mindset behind every visual choice.
                   </p>
                 </div>
 
@@ -1654,7 +2030,9 @@
                       <div className="mono-font text-xs uppercase tracking-[0.18em] text-[var(--accent)]">
                         0{index + 1}
                       </div>
-                      <p className="mt-5 text-base leading-8 text-[var(--text-secondary)]">{item}</p>
+                      <p className="mt-5 text-base leading-8 text-[var(--text-secondary)]">
+                        {item}
+                      </p>
                     </MotionDiv>
                   ))}
                 </div>
@@ -1678,7 +2056,10 @@
         const active = testimonialData[activeIndex];
 
         return (
-          <section id="testimonials" className="section-frame relative py-24 lg:py-32">
+          <section
+            id="testimonials"
+            className="section-frame relative py-24 lg:py-32"
+          >
             <div className="site-shell">
               <div className="grid gap-10 lg:grid-cols-[0.7fr_1.3fr] lg:items-start">
                 <div data-reveal className="section-reveal">
@@ -1687,7 +2068,9 @@
                     A testimonial carousel, but treated like a stage.
                   </h2>
                   <p className="mt-6 max-w-md text-base leading-8 text-[var(--text-secondary)] lg:text-lg">
-                    Instead of identical boxes, the active client story becomes the center of the composition while supporting voices orbit around it.
+                    Instead of identical boxes, the active client story becomes
+                    the center of the composition while supporting voices orbit
+                    around it.
                   </p>
                   <div className="mt-8 flex gap-3">
                     {testimonialData.map((item, index) => (
@@ -1698,9 +2081,18 @@
                         onClick={() => setActiveIndex(index)}
                         className="rounded-full border px-4 py-2 mono-font text-xs uppercase tracking-[0.16em] transition-colors"
                         style={{
-                          borderColor: index === activeIndex ? "var(--accent)" : "var(--border)",
-                          color: index === activeIndex ? "var(--accent)" : "var(--text-secondary)",
-                          background: index === activeIndex ? "rgba(57,255,20,0.06)" : "rgba(255,255,255,0.01)",
+                          borderColor:
+                            index === activeIndex
+                              ? "var(--accent)"
+                              : "var(--border)",
+                          color:
+                            index === activeIndex
+                              ? "var(--accent)"
+                              : "var(--text-secondary)",
+                          background:
+                            index === activeIndex
+                              ? "rgba(57,255,20,0.06)"
+                              : "rgba(255,255,255,0.01)",
                         }}
                       >
                         {String(index + 1).padStart(2, "0")}
@@ -1710,7 +2102,13 @@
                 </div>
 
                 <div className="testimonial-shell relative">
-                  <div className="hero-spotlight h-[24rem] w-[24rem] right-[-4rem] top-[-4rem]" style={{ background: "radial-gradient(circle, rgba(57,255,20,0.13), transparent 66%)" }} />
+                  <div
+                    className="hero-spotlight h-[24rem] w-[24rem] right-[-4rem] top-[-4rem]"
+                    style={{
+                      background:
+                        "radial-gradient(circle, rgba(57,255,20,0.13), transparent 66%)",
+                    }}
+                  />
                   <div className="testimonial-rail grid gap-5 lg:grid-cols-[0.28fr_0.72fr]">
                     <div className="grid gap-4 self-center">
                       {testimonialData.map((item, index) => (
@@ -1721,7 +2119,10 @@
                           onClick={() => setActiveIndex(index)}
                           className={`testimonial-mini glass-panel rounded-[24px] border p-4 text-left ${index === activeIndex ? "is-active" : ""}`}
                           style={{
-                            borderColor: index === activeIndex ? "var(--border-strong)" : "var(--border)",
+                            borderColor:
+                              index === activeIndex
+                                ? "var(--border-strong)"
+                                : "var(--border)",
                             opacity: index === activeIndex ? 1 : 0.62,
                           }}
                         >
@@ -1731,7 +2132,9 @@
                           <div className="mt-3 display-font text-lg font-bold italic text-[var(--text-primary)]">
                             {item.name}
                           </div>
-                          <div className="mt-1 text-sm text-[var(--text-secondary)]">{item.role}</div>
+                          <div className="mt-1 text-sm text-[var(--text-secondary)]">
+                            {item.role}
+                          </div>
                         </button>
                       ))}
                     </div>
@@ -1747,7 +2150,9 @@
                     >
                       <div className="flex flex-col gap-8 lg:min-h-[31rem] lg:justify-between">
                         <div className="flex items-start justify-between gap-5">
-                          <div className="testimonial-quote-mark display-font text-8xl font-extrabold italic">"</div>
+                          <div className="testimonial-quote-mark display-font text-8xl font-extrabold italic">
+                            "
+                          </div>
                           <div className="rounded-full border border-[var(--border)] px-4 py-2 mono-font text-xs uppercase tracking-[0.16em] text-[var(--accent)]">
                             active voice
                           </div>
@@ -1762,7 +2167,9 @@
                             <div className="display-font text-2xl font-extrabold italic text-[var(--text-primary)]">
                               {active.name}
                             </div>
-                            <div className="mt-2 text-sm text-[var(--text-secondary)]">{active.role}</div>
+                            <div className="mt-2 text-sm text-[var(--text-secondary)]">
+                              {active.role}
+                            </div>
                           </div>
                           <div className="glass-panel rounded-[18px] px-5 py-4">
                             <div className="mono-font text-[0.68rem] uppercase tracking-[0.18em] text-[var(--accent)]">
@@ -1795,7 +2202,9 @@
                       A blog section that reads like a signal board.
                     </h2>
                     <p className="mt-6 max-w-md text-base leading-8 text-[var(--text-secondary)] lg:text-lg">
-                      Instead of plain cards, the articles are staged as an editorial stack with a sticky feature panel and scroll-led depth shifts.
+                      Instead of plain cards, the articles are staged as an
+                      editorial stack with a sticky feature panel and scroll-led
+                      depth shifts.
                     </p>
                   </div>
 
@@ -1808,16 +2217,22 @@
                       Featured note
                     </div>
                     <h3 className="display-font mt-5 text-3xl font-extrabold italic leading-tight text-[var(--text-primary)]">
-                      Designing software agency homepages that feel more like product cinema.
+                      Designing software agency homepages that feel more like
+                      product cinema.
                     </h3>
                     <p className="mt-5 text-base leading-8 text-[var(--text-secondary)]">
-                      Great agency sites do not just decorate expertise. They sequence it, stage it, and let motion explain why the team is trusted with complex digital work.
+                      Great agency sites do not just decorate expertise. They
+                      sequence it, stage it, and let motion explain why the team
+                      is trusted with complex digital work.
                     </p>
                     <div className="mt-8 flex items-center justify-between border-t border-[var(--border)] pt-5">
                       <span className="mono-font text-xs uppercase tracking-[0.16em] text-[var(--text-muted)]">
                         07 min read
                       </span>
-                      <a href="#contact" className="text-sm font-semibold text-[var(--accent)]">
+                      <a
+                        href="#contact"
+                        className="text-sm font-semibold text-[var(--accent)]"
+                      >
                         Read insight
                       </a>
                     </div>
@@ -1856,8 +2271,13 @@
                           {post.blurb}
                         </p>
                         <div className="mt-7 flex items-center justify-between border-t border-[var(--border)] pt-5 text-sm">
-                          <span className="text-[var(--text-muted)]">Editorial insight for premium digital products.</span>
-                          <a href="#contact" className="font-semibold text-[var(--accent)]">
+                          <span className="text-[var(--text-muted)]">
+                            Editorial insight for premium digital products.
+                          </span>
+                          <a
+                            href="#contact"
+                            className="font-semibold text-[var(--accent)]"
+                          >
                             Open article
                           </a>
                         </div>
@@ -1884,17 +2304,22 @@
                     height: "30rem",
                     top: "-12rem",
                     right: "-8rem",
-                    background: "radial-gradient(circle, rgba(57,255,20,0.14), transparent 64%)",
+                    background:
+                      "radial-gradient(circle, rgba(57,255,20,0.14), transparent 64%)",
                   }}
                 />
                 <div className="relative z-10 grid gap-8 lg:grid-cols-[1fr_auto] lg:items-end">
                   <div data-reveal className="section-reveal">
-                    <div className="section-kicker">Let's build the standout version</div>
+                    <div className="section-kicker">
+                      Let's build the standout version
+                    </div>
                     <h2 className="display-font mt-4 max-w-[11ch] text-4xl font-extrabold italic leading-[0.94] tracking-[-0.04em] text-[var(--text-primary)] lg:text-6xl">
                       Luxury tech presence. Real product thinking.
                     </h2>
                     <p className="mt-6 max-w-2xl text-base leading-8 text-[var(--text-secondary)] lg:text-lg">
-                      If you want the homepage to feel like an experience instead of a template, we can shape the brand, the product story, and the engineering system together.
+                      If you want the homepage to feel like an experience
+                      instead of a template, we can shape the brand, the product
+                      story, and the engineering system together.
                     </p>
                   </div>
 
@@ -1909,7 +2334,8 @@
                       className="display-font inline-flex items-center justify-center rounded-full px-7 py-4 text-base font-bold text-[#081008]"
                       style={{
                         background: "var(--accent)",
-                        boxShadow: "0 0 42px rgba(57,255,20,0.18), 0 22px 60px rgba(57,255,20,0.12)",
+                        boxShadow:
+                          "0 0 42px rgba(57,255,20,0.18), 0 22px 60px rgba(57,255,20,0.12)",
                       }}
                     >
                       Start a Project
@@ -1936,43 +2362,90 @@
             <div className="site-shell border-t border-[var(--border)] pt-10">
               <div className="grid gap-10 lg:grid-cols-[1.2fr_0.8fr_0.8fr_0.8fr]">
                 <div>
-                  <div className="display-font text-2xl font-extrabold tracking-[-0.05em] text-[var(--text-primary)]">
-                    Auroveon<span className="ml-1 text-[var(--accent)]">.</span>
+                  <div>
+                    <img
+                      src="assets/WhatsApp Image 2026-05-09 at 09,19,43-Picsart-BackgroundRemover.png"
+                      alt="Auroveon"
+                      className="brand-logo brand-logo-footer"
+                    />
                   </div>
                   <p className="mt-4 max-w-sm text-sm leading-7 text-[var(--text-secondary)]">
-                    Software agency for AI solutions, modern web platforms, SaaS systems, and cinematic digital experiences built for ambitious brands.
+                    Software agency for AI solutions, modern web platforms, SaaS
+                    systems, and cinematic digital experiences built for
+                    ambitious brands.
                   </p>
-                  <div className="mt-6 flex flex-wrap gap-3">
-                    {["hello@auroveon.com", "Karachi", "Available worldwide"].map((item) => (
-                      <span key={item} className="rounded-full border border-[var(--border)] px-4 py-2 text-xs uppercase tracking-[0.14em] text-[var(--text-muted)]">
-                        {item}
-                      </span>
-                    ))}
+                  <div className="mt-6 footer-social-row">
+                    <a
+                      className="footer-social-link"
+                      href="https://linkedin.com/company/auroveon"
+                      target="_blank"
+                      rel="noreferrer"
+                      aria-label="Auroveon on LinkedIn"
+                    >
+                      <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.05-1.86-3.05-1.86 0-2.15 1.45-2.15 2.95v5.67H9.32V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.61 0 4.28 2.37 4.28 5.46v6.28ZM5.31 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14ZM7.09 20.45H3.52V9h3.57v11.45ZM22.23 0H1.77A1.77 1.77 0 0 0 0 1.77v20.46C0 23.21.79 24 1.77 24h20.46A1.77 1.77 0 0 0 24 22.23V1.77A1.77 1.77 0 0 0 22.23 0Z" />
+                      </svg>
+                    </a>
+                    <a
+                      className="footer-social-link"
+                      href="https://instagram.com/auroveon"
+                      target="_blank"
+                      rel="noreferrer"
+                      aria-label="Auroveon on Instagram"
+                    >
+                      <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2Zm0 1.8A3.95 3.95 0 0 0 3.8 7.75v8.5a3.95 3.95 0 0 0 3.95 3.95h8.5a3.95 3.95 0 0 0 3.95-3.95v-8.5a3.95 3.95 0 0 0-3.95-3.95Zm8.95 1.35a1.15 1.15 0 1 1 0 2.3 1.15 1.15 0 0 1 0-2.3ZM12 6.86A5.14 5.14 0 1 1 6.86 12 5.14 5.14 0 0 1 12 6.86Zm0 1.8A3.34 3.34 0 1 0 15.34 12 3.34 3.34 0 0 0 12 8.66Z" />
+                      </svg>
+                    </a>
+                    <a
+                      className="footer-social-link"
+                      href="https://twitter.com/auroveon"
+                      target="_blank"
+                      rel="noreferrer"
+                      aria-label="Auroveon on X"
+                    >
+                      <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M18.9 2H22l-6.77 7.73L23.2 22h-6.25l-4.9-6.4L6.45 22H3.34l7.24-8.27L1 2h6.4l4.43 5.85L18.9 2Zm-1.1 18h1.73L6.46 3.9H4.6Z" />
+                      </svg>
+                    </a>
+                    <a
+                      className="footer-social-link"
+                      href="https://tiktok.com/@auroveon"
+                      target="_blank"
+                      rel="noreferrer"
+                      aria-label="Auroveon on TikTok"
+                    >
+                      <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M14.03 2c.2 1.69 1.15 3.16 2.64 4.05.96.58 2.08.88 3.23.87v3.17a8.1 8.1 0 0 1-3.8-.97v6.05c0 3.94-3.19 7.13-7.13 7.13s-7.13-3.19-7.13-7.13 3.19-7.13 7.13-7.13c.33 0 .66.03.98.08v3.23a4 4 0 1 0 2.82 3.82V2h3.26Z" />
+                      </svg>
+                    </a>
                   </div>
                 </div>
 
                 <div>
-                  <div className="mono-font text-xs uppercase tracking-[0.18em] text-[var(--accent)]">Navigation</div>
+                  <div className="mono-font text-xs uppercase tracking-[0.18em] text-[var(--accent)]">
+                    Navigation
+                  </div>
                   <div className="mt-5 flex flex-col gap-3 text-sm">
-                    <a className="footer-link" href="#services">Services</a>
-                    <a className="footer-link" href="#story">Process</a>
-                    <a className="footer-link" href="#work">Work</a>
-                    <a className="footer-link" href="#contact">Contact</a>
+                    <a className="footer-link" href="#services">
+                      Services
+                    </a>
+                    <a className="footer-link" href="#story">
+                      Process
+                    </a>
+                    <a className="footer-link" href="#work">
+                      Work
+                    </a>
+                    <a className="footer-link" href="#contact">
+                      Contact
+                    </a>
                   </div>
                 </div>
 
                 <div>
-                  <div className="mono-font text-xs uppercase tracking-[0.18em] text-[var(--accent)]">Explore</div>
-                  <div className="mt-5 flex flex-col gap-3 text-sm">
-                    <a className="footer-link" href="#testimonials">Voices</a>
-                    <a className="footer-link" href="#blog">Journal</a>
-                    <a className="footer-link" href="#home">Hero</a>
-                    <a className="footer-link" href="#services">Capabilities</a>
+                  <div className="mono-font text-xs uppercase tracking-[0.18em] text-[var(--accent)]">
+                    Services
                   </div>
-                </div>
-
-                <div>
-                  <div className="mono-font text-xs uppercase tracking-[0.18em] text-[var(--accent)]">Services</div>
                   <div className="mt-5 flex flex-col gap-3 text-sm text-[var(--text-secondary)]">
                     <span>AI Solutions</span>
                     <span>Web Development</span>
@@ -1980,14 +2453,67 @@
                     <span>Automation</span>
                   </div>
                 </div>
+
+                <div>
+                  <div className="mono-font text-xs uppercase tracking-[0.18em] text-[var(--accent)]">
+                    Contact Us
+                  </div>
+                  <div className="mt-5 flex flex-col gap-4">
+                    <div>
+                      <div className="footer-contact-label">Email</div>
+                      <div className="footer-contact-value">
+                        <a
+                          className="footer-contact-link"
+                          href="mailto:info@auroveon.com"
+                        >
+                          info@auroveon.com
+                        </a>
+                      </div>
+                    </div>
+                    <div>
+                      <div className="footer-contact-label">Phone</div>
+                      <div className="footer-contact-value">
+                        <a
+                          className="footer-contact-link"
+                          href="tel:+923353213863"
+                        >
+                          +92 335 321 3863
+                        </a>
+                      </div>
+                    </div>
+                    <div>
+                      <div className="footer-contact-label">Address</div>
+                      <div className="footer-contact-value">
+                        Street 4, Karachi, Pakistan
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
 
               <div className="mt-10 flex flex-col gap-4 border-t border-[var(--border)] pt-6 text-sm text-[var(--text-secondary)] lg:flex-row lg:items-center lg:justify-between">
-                <div>&copy; 2026 Auroveon. Crafted for premium digital products.</div>
-                <div className="flex flex-wrap gap-5">
-                  <a className="footer-link" href="mailto:hello@auroveon.com">Email</a>
-                  <a className="footer-link" href="#contact">Start a project</a>
-                  <a className="footer-link" href="#home">Back to top</a>
+                <div className="flex flex-wrap items-center gap-3">
+                  <span>&copy; 2026</span>
+                  <img
+                    src="assets/WhatsApp Image 2026-05-09 at 09,19,43-Picsart-BackgroundRemover.png"
+                    alt="Auroveon"
+                    className="brand-logo brand-logo-inline"
+                  />
+                  <span>Crafted for premium digital products.</span>
+                </div>
+                <div className="flex flex-wrap items-center gap-4">
+                  <a className="footer-legal-link" href="/privacy-policy">
+                    Privacy Policy
+                  </a>
+                  <span
+                    aria-hidden="true"
+                    className="text-[var(--text-secondary)]"
+                  >
+                    ·
+                  </span>
+                  <a className="footer-legal-link" href="/terms-of-service">
+                    Terms of Service
+                  </a>
                 </div>
               </div>
             </div>
@@ -1999,7 +2525,8 @@
         const appRef = useRef(null);
 
         useEffect(() => {
-          if (!window.gsap || !window.ScrollTrigger || !window.Lenis) return undefined;
+          if (!window.gsap || !window.ScrollTrigger || !window.Lenis)
+            return undefined;
 
           gsap.registerPlugin(ScrollTrigger);
 
@@ -2026,7 +2553,9 @@
             lenis.scrollTo(target, { offset: -72, duration: 1.2 });
           };
 
-          anchors.forEach((anchor) => anchor.addEventListener("click", onAnchorClick));
+          anchors.forEach((anchor) =>
+            anchor.addEventListener("click", onAnchorClick),
+          );
 
           const ctx = gsap.context(() => {
             gsap.from(".split-inner", {
@@ -2041,7 +2570,7 @@
             gsap.utils.toArray("[data-reveal]").forEach((element) => {
               if (
                 element.matches(
-                  ".service-card, .case-card, .testimonial-mini, .blog-card-advanced"
+                  ".service-card, .case-card, .testimonial-mini, .blog-card-advanced",
                 )
               ) {
                 return;
@@ -2059,7 +2588,7 @@
                     trigger: element,
                     start: "top 88%",
                   },
-                }
+                },
               );
             });
 
@@ -2116,7 +2645,7 @@
                     trigger: card,
                     start: "top 88%",
                   },
-                }
+                },
               );
             });
 
@@ -2134,7 +2663,7 @@
                     trigger: card,
                     start: "top 85%",
                   },
-                }
+                },
               );
             });
 
@@ -2163,7 +2692,7 @@
                     start: "top 88%",
                   },
                   delay: index * 0.04,
-                }
+                },
               );
             });
 
@@ -2182,7 +2711,7 @@
                     start: "top 88%",
                   },
                   delay: index * 0.06,
-                }
+                },
               );
 
               gsap.to(card, {
@@ -2216,7 +2745,15 @@
             const storyPills = document.getElementById("story-pills");
             const storyCards = gsap.utils.toArray(".process-preview-card");
 
-            if (progress && storyNumber && storyOverline && storyHeadline && storyDesc && storyPills && storyCards.length) {
+            if (
+              progress &&
+              storyNumber &&
+              storyOverline &&
+              storyHeadline &&
+              storyDesc &&
+              storyPills &&
+              storyCards.length
+            ) {
               let activeStoryIndex = 0;
 
               const setStoryStep = (index) => {
@@ -2229,26 +2766,49 @@
                   card.style.opacity = cardIndex === index ? "1" : "0.72";
                 });
 
-                gsap.to([storyNumber, storyOverline, storyHeadline, storyDesc, storyPills], {
-                  opacity: 0,
-                  y: 18,
-                  duration: 0.16,
-                  stagger: 0.025,
-                  onComplete: () => {
-                    storyNumber.textContent = item.step;
-                    storyOverline.textContent = item.label;
-                    storyHeadline.textContent = item.title;
-                    storyDesc.textContent = item.text;
-                    storyPills.innerHTML = item.pills
-                      .map((pill) => `<span class="process-pill">${pill}</span>`)
-                      .join("");
-                    gsap.fromTo(
-                      [storyNumber, storyOverline, storyHeadline, storyDesc, storyPills],
-                      { opacity: 0, y: 18 },
-                      { opacity: 1, y: 0, duration: 0.34, stagger: 0.04, ease: "power3.out" }
-                    );
+                gsap.to(
+                  [
+                    storyNumber,
+                    storyOverline,
+                    storyHeadline,
+                    storyDesc,
+                    storyPills,
+                  ],
+                  {
+                    opacity: 0,
+                    y: 18,
+                    duration: 0.16,
+                    stagger: 0.025,
+                    onComplete: () => {
+                      storyNumber.textContent = item.step;
+                      storyOverline.textContent = item.label;
+                      storyHeadline.textContent = item.title;
+                      storyDesc.textContent = item.text;
+                      storyPills.innerHTML = item.pills
+                        .map(
+                          (pill) => `<span class="process-pill">${pill}</span>`,
+                        )
+                        .join("");
+                      gsap.fromTo(
+                        [
+                          storyNumber,
+                          storyOverline,
+                          storyHeadline,
+                          storyDesc,
+                          storyPills,
+                        ],
+                        { opacity: 0, y: 18 },
+                        {
+                          opacity: 1,
+                          y: 0,
+                          duration: 0.34,
+                          stagger: 0.04,
+                          ease: "power3.out",
+                        },
+                      );
+                    },
                   },
-                });
+                );
               };
 
               storyCards.forEach((card, index) => {
@@ -2267,7 +2827,7 @@
                   onUpdate: (self) => {
                     const nextIndex = Math.min(
                       workflowData.length - 1,
-                      Math.floor(self.progress * workflowData.length)
+                      Math.floor(self.progress * workflowData.length),
                     );
                     setStoryStep(nextIndex);
                   },
@@ -2281,7 +2841,9 @@
 
           return () => {
             lenis.off("scroll", onLenisScroll);
-            anchors.forEach((anchor) => anchor.removeEventListener("click", onAnchorClick));
+            anchors.forEach((anchor) =>
+              anchor.removeEventListener("click", onAnchorClick),
+            );
             ctx.revert();
             if (rafId) cancelAnimationFrame(rafId);
             lenis.destroy();
@@ -2305,6 +2867,23 @@
               <ContactSection />
             </main>
             <Footer />
+            <a
+              href="https://wa.me/923353213863"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Chat with us on WhatsApp"
+              className="whatsapp-fab"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                fill="white"
+                width="28"
+                height="28"
+                aria-hidden="true"
+              >
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
+              </svg>
+            </a>
           </div>
         );
       }
