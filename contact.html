@@ -1,0 +1,912 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Us | Auroveon — Let's Build Something Great</title>
+    <meta name="description" content="Get in touch with Auroveon. Start a project, ask a question, or just say hello. We'd love to hear from you." />
+    <meta name="theme-color" content="#080A08" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      :root {
+        --bg-base: #080a08;
+        --bg-2: #0c0f0c;
+        --bg-3: #111411;
+        --bg-4: #161a16;
+        --accent: #39ff14;
+        --accent-dim: #2bc410;
+        --accent-glow: rgba(57, 255, 20, 0.16);
+        --accent-glow-strong: rgba(57, 255, 20, 0.36);
+        --text-primary: #f0f5f0;
+        --text-secondary: #7a8a7a;
+        --text-muted: #4a574a;
+        --border: rgba(57, 255, 20, 0.1);
+        --border-strong: rgba(57, 255, 20, 0.24);
+        --glass: rgba(12, 15, 12, 0.58);
+        --glass-2: rgba(17, 20, 17, 0.82);
+      }
+
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+
+      body {
+        background:
+          radial-gradient(circle at top, rgba(57, 255, 20, 0.09), transparent 28%),
+          linear-gradient(180deg, #080a08 0%, #090c09 48%, #070907 100%);
+        color: var(--text-primary);
+        font-family: "Inter", sans-serif;
+        overflow-x: hidden;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      @media (min-width: 1024px) { body { cursor: none; } }
+
+      .display-font { font-family: "Poppins", sans-serif; }
+      .mono-font { font-family: "JetBrains Mono", monospace; }
+
+      .brand-logo { display: block; width: auto; height: 100%; object-fit: contain; }
+      .brand-logo-link { display: inline-flex; align-items: center; flex-shrink: 0; }
+      .brand-logo-nav { height: 68px; }
+      .brand-logo-footer { height: 72px; max-width: min(100%, 240px); }
+      .brand-logo-inline { height: 26px; }
+
+      .site-shell { width: min(1380px, calc(100% - 1.5rem)); margin: 0 auto; }
+      @media (min-width: 1024px) { .site-shell { width: min(1380px, calc(100% - 4rem)); } }
+
+      .noise-overlay {
+        position: fixed; inset: 0; pointer-events: none; z-index: 5; opacity: 0.034;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+        background-size: 240px 240px;
+      }
+
+      .cursor-dot, .cursor-ring {
+        position: fixed; top: 0; left: 0; transform: translate(-50%, -50%);
+        pointer-events: none; z-index: 90; opacity: 0;
+      }
+      .cursor-dot {
+        width: 10px; height: 10px; border-radius: 9999px;
+        background: var(--accent); box-shadow: 0 0 22px rgba(57,255,20,0.65); mix-blend-mode: screen;
+      }
+      .cursor-ring {
+        width: 54px; height: 54px; border-radius: 9999px;
+        border: 1px solid rgba(57,255,20,0.22);
+        background: radial-gradient(circle, rgba(57,255,20,0.12), transparent 72%);
+        transition: width 0.25s ease, height 0.25s ease, border-color 0.25s ease;
+      }
+      .cursor-ring.is-hovering { width: 76px; height: 76px; border-color: rgba(57,255,20,0.48); }
+      @media (max-width: 1023px) { .cursor-dot, .cursor-ring { display: none; } }
+
+      .glass-panel {
+        background: linear-gradient(180deg, rgba(18,23,18,0.8), rgba(10,12,10,0.58));
+        border: 1px solid var(--border);
+        backdrop-filter: blur(22px); -webkit-backdrop-filter: blur(22px);
+        box-shadow: 0 18px 60px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.04);
+      }
+
+      .soft-divider { background: linear-gradient(90deg, transparent, rgba(57,255,20,0.28), transparent); }
+      .eyebrow { font-family: "JetBrains Mono", monospace; color: var(--accent); font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; }
+      .section-kicker { font-family: "Poppins", sans-serif; font-size: 0.74rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-secondary); }
+      .mini-label { color: var(--text-muted); font-size: 0.76rem; text-transform: uppercase; letter-spacing: 0.16em; }
+
+      .nav-scrolled { background: rgba(8,10,8,0.86); border-bottom: 1px solid var(--border); backdrop-filter: blur(22px); }
+      .nav-link, .footer-link { color: var(--text-secondary); transition: color 0.24s ease; }
+      .nav-link:hover, .footer-link:hover { color: var(--text-primary); }
+
+      .section-frame { position: relative; }
+      .section-frame::after {
+        content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 1px;
+        background: linear-gradient(90deg, transparent, rgba(57,255,20,0.08), transparent);
+      }
+
+      .hero-spotlight { position: absolute; border-radius: 9999px; filter: blur(130px); pointer-events: none; }
+
+      /* Hero bg */
+      .contact-hero-bg {
+        position: absolute; inset: 0;
+        background:
+          linear-gradient(100deg, rgba(8,10,8,0.97) 16%, rgba(8,10,8,0.78) 52%, rgba(8,10,8,0.94) 100%),
+          radial-gradient(circle at 68% 32%, rgba(57,255,20,0.14), transparent 26%),
+          url("https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1800&q=80") center/cover no-repeat;
+        filter: saturate(0.4) contrast(1.1) brightness(0.35);
+      }
+      .hero-grid {
+        position: absolute; inset: 0;
+        background-image: linear-gradient(rgba(57,255,20,0.035) 1px, transparent 1px), linear-gradient(90deg, rgba(57,255,20,0.035) 1px, transparent 1px);
+        background-size: 74px 74px;
+        mask-image: radial-gradient(circle at 60% 40%, black 0%, black 42%, transparent 88%);
+        -webkit-mask-image: radial-gradient(circle at 60% 40%, black 0%, black 42%, transparent 88%);
+      }
+
+      /* Form styles */
+      .form-group { position: relative; }
+
+      .form-label {
+        display: block; font-family: "JetBrains Mono", monospace;
+        font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.18em;
+        color: var(--text-secondary); margin-bottom: 10px;
+      }
+
+      .form-input, .form-select, .form-textarea {
+        width: 100%; background: rgba(255,255,255,0.03);
+        border: 1px solid var(--border); border-radius: 16px;
+        padding: 14px 18px; color: var(--text-primary);
+        font-family: "Inter", sans-serif; font-size: 0.95rem;
+        outline: none; transition: border-color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+        -webkit-appearance: none; appearance: none;
+      }
+      .form-input::placeholder, .form-textarea::placeholder { color: var(--text-muted); }
+      .form-input:focus, .form-select:focus, .form-textarea:focus {
+        border-color: var(--border-strong);
+        background: rgba(57,255,20,0.04);
+        box-shadow: 0 0 0 3px rgba(57,255,20,0.08);
+      }
+      .form-textarea { resize: vertical; min-height: 140px; line-height: 1.7; }
+
+      /* Select arrow */
+      .form-select-wrap { position: relative; }
+      .form-select-wrap::after {
+        content: ""; position: absolute; right: 18px; top: 50%; transform: translateY(-50%);
+        width: 0; height: 0;
+        border-left: 5px solid transparent; border-right: 5px solid transparent;
+        border-top: 6px solid var(--text-secondary); pointer-events: none;
+      }
+      .form-select { cursor: pointer; padding-right: 44px; }
+      .form-select option { background: #0c0f0c; color: var(--text-primary); }
+
+      /* Submit button */
+      .btn-submit {
+        width: 100%; display: flex; align-items: center; justify-content: center; gap: 10px;
+        border: none; border-radius: 9999px; padding: 16px 28px;
+        font-family: "Poppins", sans-serif; font-size: 1rem; font-weight: 700; font-style: italic;
+        color: #081008; background: var(--accent); cursor: pointer;
+        box-shadow: 0 0 42px rgba(57,255,20,0.18), 0 22px 60px rgba(57,255,20,0.12);
+        transition: transform 0.25s ease, box-shadow 0.25s ease;
+      }
+      .btn-submit:hover { transform: translateY(-3px); box-shadow: 0 0 60px rgba(57,255,20,0.28), 0 28px 70px rgba(57,255,20,0.18); }
+      .btn-submit:active { transform: translateY(0); }
+
+      /* Success message */
+      .success-msg {
+        display: none; text-align: center; padding: 24px;
+        border-radius: 20px; border: 1px solid var(--border-strong);
+        background: rgba(57,255,20,0.06);
+      }
+
+      /* Contact info card hover */
+      .info-card {
+        position: relative; overflow: hidden;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+      }
+      .info-card::before {
+        content: ""; position: absolute; inset: 0;
+        background: linear-gradient(180deg, rgba(255,255,255,0.03), transparent 24%), radial-gradient(circle at top right, rgba(57,255,20,0.08), transparent 24%);
+        pointer-events: none;
+      }
+      .info-card:hover { border-color: var(--border-strong) !important; box-shadow: 0 24px 70px rgba(0,0,0,0.38), 0 0 45px rgba(57,255,20,0.1); transform: translateY(-6px); }
+
+      /* FAQ accordion */
+      .faq-item { border-bottom: 1px solid var(--border); }
+      .faq-btn {
+        width: 100%; display: flex; align-items: center; justify-content: space-between;
+        padding: 20px 0; background: none; border: none; cursor: pointer; text-align: left;
+        font-family: "Poppins", sans-serif; font-size: 1rem; font-weight: 600; font-style: italic;
+        color: var(--text-primary); transition: color 0.2s ease;
+      }
+      .faq-btn:hover { color: var(--accent); }
+      .faq-icon {
+        flex-shrink: 0; width: 28px; height: 28px; border-radius: 9999px;
+        border: 1px solid var(--border); display: flex; align-items: center; justify-content: center;
+        transition: transform 0.3s ease, border-color 0.3s ease, background 0.3s ease;
+        color: var(--accent); font-size: 1.1rem; line-height: 1;
+      }
+      .faq-btn[aria-expanded="true"] .faq-icon { transform: rotate(45deg); border-color: var(--accent); background: rgba(57,255,20,0.08); }
+      .faq-answer {
+        max-height: 0; overflow: hidden;
+        transition: max-height 0.4s cubic-bezier(0.22,1,0.36,1), padding 0.3s ease;
+        color: var(--text-secondary); font-size: 0.95rem; line-height: 1.8;
+      }
+      .faq-answer.open { max-height: 200px; padding-bottom: 20px; }
+
+      /* Marquee */
+      .marquee { overflow: hidden; position: relative; }
+      .marquee-track { display: flex; width: max-content; animation: marquee-left 28s linear infinite; }
+      @keyframes marquee-left { 0% { transform: translateX(0%); } 100% { transform: translateX(-50%); } }
+
+      /* Shine */
+      @keyframes text-shine { 0% { background-position: -200% center; } 100% { background-position: 200% center; } }
+      .shine-text {
+        background: linear-gradient(90deg, #fff 0%, #fff 35%, #b9ffb0 44%, #eaffea 50%, #b9ffb0 56%, #fff 65%, #fff 100%);
+        background-size: 200% auto; display: inline; -webkit-background-clip: text; background-clip: text;
+        -webkit-text-fill-color: transparent; color: transparent; animation: text-shine 4s linear infinite;
+      }
+      .shine-text-accent {
+        background: linear-gradient(90deg, var(--accent) 0%, var(--accent) 35%, #ccffcc 44%, #efffef 50%, #ccffcc 56%, var(--accent) 65%, var(--accent) 100%);
+        background-size: 200% auto; display: inline; -webkit-background-clip: text; background-clip: text;
+        -webkit-text-fill-color: transparent; color: transparent; animation: text-shine 4s linear infinite;
+      }
+      .headline-italics { font-family: "Poppins", sans-serif; font-style: italic; font-weight: 800; letter-spacing: -0.045em; line-height: 1; }
+
+      @keyframes pulse-glow { 0%,100%{box-shadow:0 0 14px rgba(57,255,20,0.7);}50%{box-shadow:0 0 28px rgba(57,255,20,1);} }
+      .pulse-dot { animation: pulse-glow 2s ease-in-out infinite; }
+
+      /* Reveal */
+      @keyframes revealUp { from{opacity:0;transform:translateY(40px);}to{opacity:1;transform:translateY(0);} }
+      .reveal { opacity: 0; animation: revealUp 0.9s cubic-bezier(0.22,1,0.36,1) forwards; }
+      .reveal-d1 { animation-delay: 0.1s; }
+      .reveal-d2 { animation-delay: 0.2s; }
+      .reveal-d3 { animation-delay: 0.3s; }
+
+      /* CTA */
+      .cta-image-panel {
+        position: absolute; inset: 0;
+        background: linear-gradient(100deg, rgba(8,10,8,0.86) 12%, rgba(8,10,8,0.68) 54%, rgba(8,10,8,0.86) 100%),
+                    radial-gradient(circle at 78% 38%, rgba(57,255,20,0.12), transparent 24%),
+                    url("https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1800&q=80") center/cover no-repeat;
+        filter: saturate(0.58) brightness(0.62);
+      }
+      .contact-cta-card { position: relative; overflow: hidden; }
+
+      /* Footer */
+      .footer-contact-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--text-secondary); }
+      .footer-contact-value { margin-top: 4px; color: #fff; font-size: 0.95rem; }
+      .footer-contact-link { color: #fff; text-decoration: none; transition: color 0.2s ease; }
+      .footer-contact-link:hover { color: var(--accent); text-decoration: underline; }
+      .footer-legal-link { color: var(--text-secondary); transition: color 0.24s ease; }
+      .footer-legal-link:hover { color: var(--accent); }
+      .footer-social-link {
+        display: inline-flex; align-items: center; justify-content: center;
+        width: 42px; height: 42px; border: 1px solid #1a3a1a; border-radius: 9999px; background: #111;
+        transition: border-color 0.2s ease, transform 0.2s ease;
+      }
+      .footer-social-link svg { width: 18px; height: 18px; fill: #aaa; transition: fill 0.2s ease; }
+      .footer-social-link:hover { border-color: #00ff88; transform: translateY(-1px); }
+      .footer-social-link:hover svg { fill: #00ff88; }
+
+      .whatsapp-fab {
+        position: fixed; bottom: 28px; right: 28px; z-index: 9999;
+        display: flex; align-items: center; justify-content: center;
+        width: 56px; height: 56px; border: none; border-radius: 50%;
+        background: #25d366; box-shadow: 0 4px 20px rgba(37,211,102,0.45); transition: all 0.25s ease;
+      }
+      .whatsapp-fab:hover { transform: scale(1.1); }
+
+      /* Map placeholder */
+      .map-frame {
+        width: 100%; height: 320px; border-radius: 24px;
+        border: 1px solid var(--border); overflow: hidden;
+        position: relative;
+        background: linear-gradient(135deg, rgba(57,255,20,0.04), rgba(8,10,8,0.9));
+      }
+      .map-frame iframe { width: 100%; height: 100%; border: none; filter: invert(0.85) hue-rotate(145deg) saturate(0.4) brightness(0.7); }
+    </style>
+  </head>
+  <body>
+
+    <div class="noise-overlay"></div>
+    <div class="cursor-dot" id="cursorDot"></div>
+    <div class="cursor-ring" id="cursorRing"></div>
+
+    <!-- ====== NAVBAR ====== -->
+    <header id="navbar" class="fixed left-0 top-0 z-50 w-full border-transparent transition-all duration-300">
+      <div class="site-shell flex h-24 items-center justify-between">
+        <a href="index.html" class="brand-logo-link" aria-label="Auroveon home">
+          <img src="assets/WhatsApp Image 2026-05-09 at 09,19,43-Picsart-BackgroundRemover.png" alt="Auroveon" class="brand-logo brand-logo-nav" />
+        </a>
+        <nav class="hidden items-center gap-9 lg:flex">
+          <a class="nav-link text-base font-medium" href="index.html#services">Services</a>
+          <a class="nav-link text-base font-medium" href="index.html#story">Process</a>
+          <a class="nav-link text-base font-medium" href="index.html#work">Work</a>
+          <a class="nav-link text-base font-medium" href="about.html">About</a>
+          <a class="nav-link text-base font-medium" href="index.html#blog">Journal</a>
+          <a class="nav-link text-base font-medium" style="color:var(--accent);" href="contact.html">Contact</a>
+        </nav>
+        <div class="hidden lg:block">
+          <a href="#contact-form"
+            class="display-font inline-flex items-center gap-2 rounded-full border px-6 py-3.5 text-base font-semibold transition-all hover:-translate-y-0.5"
+            style="border-color:var(--accent);color:var(--accent);background:rgba(57,255,20,0.02);">
+            Start a Project
+          </a>
+        </div>
+        <button type="button" id="mobileMenuBtn"
+          class="glass-panel flex h-12 w-12 items-center justify-center rounded-full lg:hidden"
+          style="border-color:var(--border);">
+          <span id="mobileMenuIcon" class="text-xl text-[var(--text-primary)]">+</span>
+        </button>
+      </div>
+      <div id="mobileMenu" class="site-shell pb-4 lg:hidden hidden">
+        <div class="glass-panel rounded-[28px] px-6 py-6">
+          <div class="flex flex-col gap-5 text-center">
+            <a href="index.html#services" class="display-font text-2xl font-bold italic text-[var(--text-primary)]">Services</a>
+            <a href="index.html#story" class="display-font text-2xl font-bold italic text-[var(--text-primary)]">Process</a>
+            <a href="index.html#work" class="display-font text-2xl font-bold italic text-[var(--text-primary)]">Work</a>
+            <a href="about.html" class="display-font text-2xl font-bold italic text-[var(--text-primary)]">About</a>
+            <a href="index.html#blog" class="display-font text-2xl font-bold italic text-[var(--text-primary)]">Journal</a>
+            <a href="contact.html" class="display-font text-2xl font-bold italic" style="color:var(--accent)">Contact</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+
+      <!-- ====== HERO ====== -->
+      <section class="section-frame relative min-h-[60vh] overflow-hidden pt-24 flex items-center">
+        <div class="contact-hero-bg"></div>
+        <div class="hero-grid"></div>
+        <div class="hero-spotlight" style="width:36rem;height:36rem;top:-8rem;right:-4rem;background:radial-gradient(circle,rgba(57,255,20,0.18),transparent 66%);"></div>
+        <div class="hero-spotlight" style="width:22rem;height:22rem;bottom:0;left:-5rem;background:radial-gradient(circle,rgba(57,255,20,0.1),transparent 68%);"></div>
+
+        <div class="site-shell relative z-10 py-16 lg:py-24">
+          <div class="max-w-4xl">
+            <div class="glass-panel inline-flex items-center gap-3 rounded-full px-4 py-2 reveal">
+              <span class="h-2 w-2 rounded-full bg-[var(--accent)] pulse-dot"></span>
+              <span class="eyebrow">Get in Touch</span>
+            </div>
+            <h1 class="headline-italics mt-6 text-[clamp(2.8rem,7vw,6.2rem)] reveal reveal-d1">
+              <span class="shine-text">Let's Build</span><br/>
+              <span class="shine-text">Something</span><br/>
+              <span class="shine-text-accent">Extraordinary.</span>
+            </h1>
+            <p class="mt-7 max-w-2xl text-lg leading-8 text-[var(--text-secondary)] reveal reveal-d2">
+              Whether you have a project in mind, a question about our services, or just want to explore possibilities — we would love to hear from you. We typically respond within 24 hours.
+            </p>
+            <!-- Quick stats -->
+            <div class="mt-10 flex flex-wrap gap-4 reveal reveal-d3">
+              <div class="glass-panel rounded-2xl px-5 py-4 flex items-center gap-3">
+                <span class="h-2 w-2 rounded-full bg-[var(--accent)] pulse-dot"></span>
+                <span class="mono-font text-xs uppercase tracking-[0.16em] text-[var(--text-secondary)]">Response within <span style="color:var(--accent)">24hrs</span></span>
+              </div>
+              <div class="glass-panel rounded-2xl px-5 py-4 flex items-center gap-3">
+                <span class="mono-font text-xs uppercase tracking-[0.16em] text-[var(--text-secondary)]">Free consultation <span style="color:var(--accent)">always</span></span>
+              </div>
+              <div class="glass-panel rounded-2xl px-5 py-4 flex items-center gap-3">
+                <span class="mono-font text-xs uppercase tracking-[0.16em] text-[var(--text-secondary)]">Based in <span style="color:var(--accent)">Karachi, PK</span></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====== MAIN CONTACT SECTION ====== -->
+      <section class="section-frame relative py-24 lg:py-32" id="contact-form">
+        <div class="site-shell">
+          <div class="grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-start">
+
+            <!-- ---- CONTACT FORM ---- -->
+            <div class="glass-panel rounded-[34px] border border-[var(--border)] p-7 lg:p-10">
+              <div class="mono-font text-[0.72rem] uppercase tracking-[0.18em] text-[var(--accent)] mb-2">Send a message</div>
+              <h2 class="display-font text-3xl lg:text-4xl font-extrabold italic text-[var(--text-primary)] mb-2">Start the conversation.</h2>
+              <p class="text-sm leading-7 text-[var(--text-secondary)] mb-8">Fill in the form below and we will get back to you within one business day.</p>
+
+              <form id="contactForm" novalidate>
+                <!-- Name row -->
+                <div class="grid gap-5 sm:grid-cols-2 mb-5">
+                  <div class="form-group">
+                    <label class="form-label" for="firstName">First Name *</label>
+                    <input class="form-input" type="text" id="firstName" name="firstName" placeholder="Muhammad" required />
+                    <span class="field-error hidden text-xs mt-2 block" style="color:#ff6b6b;"></span>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="lastName">Last Name *</label>
+                    <input class="form-input" type="text" id="lastName" name="lastName" placeholder="Qasim" required />
+                    <span class="field-error hidden text-xs mt-2 block" style="color:#ff6b6b;"></span>
+                  </div>
+                </div>
+
+                <!-- Email & Phone -->
+                <div class="grid gap-5 sm:grid-cols-2 mb-5">
+                  <div class="form-group">
+                    <label class="form-label" for="email">Email Address *</label>
+                    <input class="form-input" type="email" id="email" name="email" placeholder="you@company.com" required />
+                    <span class="field-error hidden text-xs mt-2 block" style="color:#ff6b6b;"></span>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="phone">Phone Number</label>
+                    <input class="form-input" type="tel" id="phone" name="phone" placeholder="+92 300 0000000" />
+                  </div>
+                </div>
+
+                <!-- Company -->
+                <div class="form-group mb-5">
+                  <label class="form-label" for="company">Company / Brand Name</label>
+                  <input class="form-input" type="text" id="company" name="company" placeholder="Your company name (optional)" />
+                </div>
+
+                <!-- Service -->
+                <div class="form-group mb-5">
+                  <label class="form-label" for="service">Service Interested In *</label>
+                  <div class="form-select-wrap">
+                    <select class="form-select" id="service" name="service" required>
+                      <option value="" disabled selected>Select a service...</option>
+                      <option value="ai">AI Solutions & Systems</option>
+                      <option value="web">Web Development</option>
+                      <option value="saas">SaaS Platform</option>
+                      <option value="automation">Automation & Ops</option>
+                      <option value="uiux">UI/UX Design</option>
+                      <option value="other">Other / Not Sure Yet</option>
+                    </select>
+                  </div>
+                  <span class="field-error hidden text-xs mt-2 block" style="color:#ff6b6b;"></span>
+                </div>
+
+                <!-- Budget -->
+                <div class="form-group mb-5">
+                  <label class="form-label" for="budget">Estimated Budget</label>
+                  <div class="form-select-wrap">
+                    <select class="form-select" id="budget" name="budget">
+                      <option value="" disabled selected>Select a budget range...</option>
+                      <option value="<500">Under $500</option>
+                      <option value="500-1500">$500 – $1,500</option>
+                      <option value="1500-5000">$1,500 – $5,000</option>
+                      <option value="5000-15000">$5,000 – $15,000</option>
+                      <option value="15000+">$15,000+</option>
+                      <option value="discuss">Prefer to discuss</option>
+                    </select>
+                  </div>
+                </div>
+
+                <!-- Message -->
+                <div class="form-group mb-7">
+                  <label class="form-label" for="message">Your Message *</label>
+                  <textarea class="form-textarea" id="message" name="message" placeholder="Tell us about your project, goals, timeline, or anything else that helps us understand what you're looking for..." required></textarea>
+                  <span class="field-error hidden text-xs mt-2 block" style="color:#ff6b6b;"></span>
+                </div>
+
+                <!-- Checkbox -->
+                <div class="flex items-start gap-3 mb-7">
+                  <input type="checkbox" id="agree" name="agree"
+                    style="width:18px;height:18px;margin-top:3px;accent-color:var(--accent);flex-shrink:0;cursor:pointer;" required />
+                  <label for="agree" class="text-sm leading-6 text-[var(--text-secondary)] cursor-pointer">
+                    I agree to Auroveon's <a href="/privacy-policy" style="color:var(--accent);">Privacy Policy</a> and consent to being contacted regarding my inquiry.
+                  </label>
+                </div>
+
+                <!-- Submit -->
+                <button type="submit" class="btn-submit" id="submitBtn">
+                  <span id="submitLabel">Send Message</span>
+                  <svg id="submitArrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+                  </svg>
+                  <svg id="submitSpinner" class="hidden animate-spin" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <circle cx="12" cy="12" r="10" stroke-opacity="0.25"/><path d="M12 2a10 10 0 0 1 10 10" />
+                  </svg>
+                </button>
+
+                <!-- Success message -->
+                <div class="success-msg mt-6" id="successMsg">
+                  <div style="color:var(--accent);font-size:2rem;">✓</div>
+                  <div class="display-font text-xl font-bold italic text-[var(--text-primary)] mt-3">Message Sent!</div>
+                  <p class="text-sm leading-7 text-[var(--text-secondary)] mt-2">Thank you for reaching out. We will get back to you within 24 hours.</p>
+                </div>
+              </form>
+            </div>
+
+            <!-- ---- CONTACT INFO ---- -->
+            <div class="flex flex-col gap-6">
+
+              <!-- Direct contact -->
+              <div class="info-card glass-panel rounded-[28px] border border-[var(--border)] p-6 lg:p-7">
+                <div class="mono-font text-[0.72rem] uppercase tracking-[0.18em] text-[var(--accent)] mb-5">Direct Contact</div>
+                <div class="space-y-5">
+
+                  <a href="mailto:info@auroveon.com" class="flex items-start gap-4 group" style="text-decoration:none;">
+                    <div class="w-11 h-11 rounded-xl border border-[var(--border)] flex items-center justify-center flex-shrink-0 group-hover:border-[var(--accent)] transition-colors" style="background:rgba(57,255,20,0.05);">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                    </div>
+                    <div>
+                      <div class="text-xs text-[var(--text-muted)] uppercase tracking-[0.14em] mb-1">Email</div>
+                      <div class="text-[var(--text-primary)] font-medium group-hover:text-[var(--accent)] transition-colors">info@auroveon.com</div>
+                    </div>
+                  </a>
+
+                  <a href="tel:+923353213863" class="flex items-start gap-4 group" style="text-decoration:none;">
+                    <div class="w-11 h-11 rounded-xl border border-[var(--border)] flex items-center justify-center flex-shrink-0 group-hover:border-[var(--accent)] transition-colors" style="background:rgba(57,255,20,0.05);">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.41 2 2 0 0 1 3.58 1.25h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.8a16 16 0 0 0 6 6l.92-.92a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 16z"/></svg>
+                    </div>
+                    <div>
+                      <div class="text-xs text-[var(--text-muted)] uppercase tracking-[0.14em] mb-1">Phone / WhatsApp</div>
+                      <div class="text-[var(--text-primary)] font-medium group-hover:text-[var(--accent)] transition-colors">+92 335 321 3863</div>
+                    </div>
+                  </a>
+
+                  <div class="flex items-start gap-4">
+                    <div class="w-11 h-11 rounded-xl border border-[var(--border)] flex items-center justify-center flex-shrink-0" style="background:rgba(57,255,20,0.05);">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                    </div>
+                    <div>
+                      <div class="text-xs text-[var(--text-muted)] uppercase tracking-[0.14em] mb-1">Office</div>
+                      <div class="text-[var(--text-primary)] font-medium">Street 4, Karachi, Pakistan</div>
+                    </div>
+                  </div>
+
+                  <div class="flex items-start gap-4">
+                    <div class="w-11 h-11 rounded-xl border border-[var(--border)] flex items-center justify-center flex-shrink-0" style="background:rgba(57,255,20,0.05);">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    </div>
+                    <div>
+                      <div class="text-xs text-[var(--text-muted)] uppercase tracking-[0.14em] mb-1">Business Hours</div>
+                      <div class="text-[var(--text-primary)] font-medium">Mon – Sat, 10am – 8pm PKT</div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
+              <!-- Social links -->
+              <div class="info-card glass-panel rounded-[28px] border border-[var(--border)] p-6 lg:p-7">
+                <div class="mono-font text-[0.72rem] uppercase tracking-[0.18em] text-[var(--accent)] mb-5">Find Us Online</div>
+                <div class="grid grid-cols-2 gap-3">
+                  <a href="https://linkedin.com/company/auroveon" target="_blank" rel="noreferrer"
+                    class="flex items-center gap-3 rounded-2xl border border-[var(--border)] px-4 py-3 hover:border-[var(--accent)] transition-colors group" style="text-decoration:none;">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="var(--text-secondary)" class="group-hover:fill-[var(--accent)] transition-colors"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.05-1.86-3.05-1.86 0-2.15 1.45-2.15 2.95v5.67H9.32V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.61 0 4.28 2.37 4.28 5.46v6.28ZM5.31 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14ZM7.09 20.45H3.52V9h3.57v11.45Z"/></svg>
+                    <span class="text-sm text-[var(--text-secondary)] group-hover:text-[var(--text-primary)] transition-colors">LinkedIn</span>
+                  </a>
+                  <a href="https://instagram.com/auroveon" target="_blank" rel="noreferrer"
+                    class="flex items-center gap-3 rounded-2xl border border-[var(--border)] px-4 py-3 hover:border-[var(--accent)] transition-colors group" style="text-decoration:none;">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="var(--text-secondary)" class="group-hover:fill-[var(--accent)] transition-colors"><path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2Zm0 1.8A3.95 3.95 0 0 0 3.8 7.75v8.5a3.95 3.95 0 0 0 3.95 3.95h8.5a3.95 3.95 0 0 0 3.95-3.95v-8.5a3.95 3.95 0 0 0-3.95-3.95Zm8.95 1.35a1.15 1.15 0 1 1 0 2.3 1.15 1.15 0 0 1 0-2.3ZM12 6.86A5.14 5.14 0 1 1 6.86 12 5.14 5.14 0 0 1 12 6.86Zm0 1.8A3.34 3.34 0 1 0 15.34 12 3.34 3.34 0 0 0 12 8.66Z"/></svg>
+                    <span class="text-sm text-[var(--text-secondary)] group-hover:text-[var(--text-primary)] transition-colors">Instagram</span>
+                  </a>
+                  <a href="https://twitter.com/auroveon" target="_blank" rel="noreferrer"
+                    class="flex items-center gap-3 rounded-2xl border border-[var(--border)] px-4 py-3 hover:border-[var(--accent)] transition-colors group" style="text-decoration:none;">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="var(--text-secondary)" class="group-hover:fill-[var(--accent)] transition-colors"><path d="M18.9 2H22l-6.77 7.73L23.2 22h-6.25l-4.9-6.4L6.45 22H3.34l7.24-8.27L1 2h6.4l4.43 5.85L18.9 2Zm-1.1 18h1.73L6.46 3.9H4.6Z"/></svg>
+                    <span class="text-sm text-[var(--text-secondary)] group-hover:text-[var(--text-primary)] transition-colors">X / Twitter</span>
+                  </a>
+                  <a href="https://wa.me/923353213863" target="_blank" rel="noreferrer"
+                    class="flex items-center gap-3 rounded-2xl border border-[var(--border)] px-4 py-3 hover:border-[var(--accent)] transition-colors group" style="text-decoration:none;">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="var(--text-secondary)" class="group-hover:fill-[var(--accent)] transition-colors"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+                    <span class="text-sm text-[var(--text-secondary)] group-hover:text-[var(--text-primary)] transition-colors">WhatsApp</span>
+                  </a>
+                </div>
+              </div>
+
+              <!-- Response time card -->
+              <div class="info-card glass-panel rounded-[28px] border border-[var(--border)] p-6 lg:p-7">
+                <div class="mono-font text-[0.72rem] uppercase tracking-[0.18em] text-[var(--accent)] mb-4">What happens next?</div>
+                <div class="space-y-4">
+                  <div class="flex items-start gap-4">
+                    <div class="w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0 mono-font text-xs font-bold" style="background:rgba(57,255,20,0.12);color:var(--accent);border:1px solid var(--border-strong);">1</div>
+                    <p class="text-sm leading-6 text-[var(--text-secondary)]">We review your message and understand your needs within <span class="text-[var(--text-primary)]">a few hours</span>.</p>
+                  </div>
+                  <div class="flex items-start gap-4">
+                    <div class="w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0 mono-font text-xs font-bold" style="background:rgba(57,255,20,0.12);color:var(--accent);border:1px solid var(--border-strong);">2</div>
+                    <p class="text-sm leading-6 text-[var(--text-secondary)]">We schedule a <span class="text-[var(--text-primary)]">free 30-minute discovery call</span> to discuss your project in detail.</p>
+                  </div>
+                  <div class="flex items-start gap-4">
+                    <div class="w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0 mono-font text-xs font-bold" style="background:rgba(57,255,20,0.12);color:var(--accent);border:1px solid var(--border-strong);">3</div>
+                    <p class="text-sm leading-6 text-[var(--text-secondary)]">We send you a <span class="text-[var(--text-primary)]">clear proposal</span> with scope, timeline, and pricing — no surprises.</p>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====== MAP SECTION ====== -->
+      <section class="section-frame relative py-10 pb-24">
+        <div class="site-shell">
+          <div class="mb-6">
+            <div class="section-kicker">Where we are</div>
+            <h2 class="display-font mt-3 text-3xl lg:text-4xl font-extrabold italic text-[var(--text-primary)]">Karachi, Pakistan.</h2>
+          </div>
+          <div class="map-frame">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d231962.28044015226!2d66.8666!3d24.8607!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3eb33e06651d4bbf%3A0x9cf92f44555a0c23!2sKarachi%2C%20Pakistan!5e0!3m2!1sen!2s!4v1715000000000!5m2!1sen!2s"
+              allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Auroveon Location — Karachi, Pakistan">
+            </iframe>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====== FAQ SECTION ====== -->
+      <section class="section-frame relative py-24 lg:py-28">
+        <div class="site-shell">
+          <div class="grid gap-12 lg:grid-cols-[0.55fr_1.45fr] lg:items-start">
+            <div class="lg:sticky lg:top-28">
+              <div class="section-kicker">Common questions</div>
+              <h2 class="display-font mt-4 text-4xl lg:text-5xl font-extrabold italic leading-[0.96] tracking-[-0.04em] text-[var(--text-primary)]">
+                Things people ask before they start.
+              </h2>
+              <p class="mt-5 text-base leading-8 text-[var(--text-secondary)] max-w-sm">
+                Still have questions? Just send us a message — we love talking to curious people.
+              </p>
+              <a href="mailto:info@auroveon.com"
+                class="display-font mt-7 inline-flex items-center gap-2 rounded-full border px-6 py-3.5 text-sm font-semibold hover:-translate-y-0.5 transition-transform"
+                style="border-color:var(--accent);color:var(--accent);background:rgba(57,255,20,0.02);">
+                Ask a Question
+              </a>
+            </div>
+
+            <div class="glass-panel rounded-[28px] border border-[var(--border)] px-6 lg:px-8 py-4">
+              <div class="faq-item">
+                <button class="faq-btn" aria-expanded="false" onclick="toggleFaq(this)">
+                  <span>How long does a typical project take?</span>
+                  <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                  Project timelines depend on scope and complexity. A landing page or simple web project can be delivered in 1–2 weeks. A full SaaS platform or AI system typically takes 4–12 weeks. We will give you a clear timeline in the proposal after our discovery call.
+                </div>
+              </div>
+              <div class="faq-item">
+                <button class="faq-btn" aria-expanded="false" onclick="toggleFaq(this)">
+                  <span>What is the minimum budget to work with Auroveon?</span>
+                  <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                  Our minimum project engagement starts at $500 for smaller tasks. For full web platforms, AI integrations, or SaaS builds, budgets typically start from $1,500 and scale based on scope. We always offer transparent pricing — no hidden fees.
+                </div>
+              </div>
+              <div class="faq-item">
+                <button class="faq-btn" aria-expanded="false" onclick="toggleFaq(this)">
+                  <span>Do you work with international clients?</span>
+                  <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                  Absolutely. While we are based in Karachi, we work with clients across Pakistan, UAE, UK, and beyond. All communication happens over email, video calls, and WhatsApp — time zones are never a barrier for us.
+                </div>
+              </div>
+              <div class="faq-item">
+                <button class="faq-btn" aria-expanded="false" onclick="toggleFaq(this)">
+                  <span>What technologies do you use?</span>
+                  <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                  We use modern, industry-standard technologies — React, Next.js, Node.js, Python, and leading AI APIs including OpenAI, Anthropic, and others. For SaaS platforms, we use scalable cloud infrastructure on AWS and Vercel. Every tech choice is made for performance and longevity.
+                </div>
+              </div>
+              <div class="faq-item">
+                <button class="faq-btn" aria-expanded="false" onclick="toggleFaq(this)">
+                  <span>Do you offer ongoing support after launch?</span>
+                  <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                  Yes. We offer post-launch maintenance packages for all projects. This includes bug fixes, performance monitoring, content updates, and feature additions. We are long-term partners, not one-time vendors.
+                </div>
+              </div>
+              <div class="faq-item" style="border-bottom:none;">
+                <button class="faq-btn" aria-expanded="false" onclick="toggleFaq(this)">
+                  <span>How do I get started?</span>
+                  <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                  Simply fill out the contact form above or send us an email at info@auroveon.com. We will schedule a free 30-minute discovery call, learn about your goals, and send you a detailed proposal within 48 hours.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====== CTA (SAME AS HOME & ABOUT) ====== -->
+      <section class="relative py-24 lg:py-32">
+        <div class="site-shell">
+          <div class="contact-cta-card glass-panel relative overflow-hidden rounded-[38px] border border-[var(--border)] px-6 py-12 lg:px-12 lg:py-14">
+            <div class="cta-image-panel"></div>
+            <div class="hero-spotlight" style="width:30rem;height:30rem;top:-12rem;right:-8rem;background:radial-gradient(circle,rgba(57,255,20,0.14),transparent 64%);"></div>
+            <div class="relative z-10 grid gap-8 lg:grid-cols-[1fr_auto] lg:items-end">
+              <div>
+                <div class="section-kicker">Let's build the standout version</div>
+                <h2 class="display-font mt-4 max-w-[11ch] text-4xl font-extrabold italic leading-[0.94] tracking-[-0.04em] text-[var(--text-primary)] lg:text-6xl">
+                  Luxury tech presence. Real product thinking.
+                </h2>
+                <p class="mt-6 max-w-2xl text-base leading-8 text-[var(--text-secondary)] lg:text-lg">
+                  If you want the homepage to feel like an experience instead of a template, we can shape the brand, the product story, and the engineering system together.
+                </p>
+              </div>
+              <div class="flex flex-col gap-4 sm:flex-row lg:flex-col">
+                <a href="mailto:info@auroveon.com"
+                  class="display-font inline-flex items-center justify-center rounded-full px-7 py-4 text-base font-bold text-[#081008] hover:-translate-y-1 transition-transform"
+                  style="background:var(--accent);box-shadow:0 0 42px rgba(57,255,20,0.18),0 22px 60px rgba(57,255,20,0.12);">
+                  Start a Project
+                </a>
+                <a href="index.html"
+                  class="display-font inline-flex items-center justify-center rounded-full border px-7 py-4 text-base font-bold text-[var(--text-primary)] hover:-translate-y-1 transition-transform"
+                  style="border-color:var(--border-strong);">
+                  Back to Home
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- ====== FOOTER ====== -->
+    <footer class="relative pb-10">
+      <div class="site-shell border-t border-[var(--border)] pt-10">
+        <div class="grid gap-10 lg:grid-cols-[1.2fr_0.8fr_0.8fr_0.8fr]">
+          <div>
+            <img src="assets/WhatsApp Image 2026-05-09 at 09,19,43-Picsart-BackgroundRemover.png" alt="Auroveon" class="brand-logo brand-logo-footer" />
+            <p class="mt-4 max-w-sm text-sm leading-7 text-[var(--text-secondary)]">Software agency for AI solutions, modern web platforms, SaaS systems, and cinematic digital experiences built for ambitious brands.</p>
+            <div class="mt-6 flex flex-wrap items-center gap-4">
+              <a class="footer-social-link" href="https://linkedin.com/company/auroveon" target="_blank" rel="noreferrer" aria-label="LinkedIn">
+                <svg viewBox="0 0 24 24"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.05-1.86-3.05-1.86 0-2.15 1.45-2.15 2.95v5.67H9.32V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.61 0 4.28 2.37 4.28 5.46v6.28ZM5.31 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14ZM7.09 20.45H3.52V9h3.57v11.45ZM22.23 0H1.77A1.77 1.77 0 0 0 0 1.77v20.46C0 23.21.79 24 1.77 24h20.46A1.77 1.77 0 0 0 24 22.23V1.77A1.77 1.77 0 0 0 22.23 0Z"/></svg>
+              </a>
+              <a class="footer-social-link" href="https://instagram.com/auroveon" target="_blank" rel="noreferrer" aria-label="Instagram">
+                <svg viewBox="0 0 24 24"><path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2Zm0 1.8A3.95 3.95 0 0 0 3.8 7.75v8.5a3.95 3.95 0 0 0 3.95 3.95h8.5a3.95 3.95 0 0 0 3.95-3.95v-8.5a3.95 3.95 0 0 0-3.95-3.95Zm8.95 1.35a1.15 1.15 0 1 1 0 2.3 1.15 1.15 0 0 1 0-2.3ZM12 6.86A5.14 5.14 0 1 1 6.86 12 5.14 5.14 0 0 1 12 6.86Zm0 1.8A3.34 3.34 0 1 0 15.34 12 3.34 3.34 0 0 0 12 8.66Z"/></svg>
+              </a>
+              <a class="footer-social-link" href="https://twitter.com/auroveon" target="_blank" rel="noreferrer" aria-label="X">
+                <svg viewBox="0 0 24 24"><path d="M18.9 2H22l-6.77 7.73L23.2 22h-6.25l-4.9-6.4L6.45 22H3.34l7.24-8.27L1 2h6.4l4.43 5.85L18.9 2Zm-1.1 18h1.73L6.46 3.9H4.6Z"/></svg>
+              </a>
+              <a class="footer-social-link" href="https://tiktok.com/@auroveon" target="_blank" rel="noreferrer" aria-label="TikTok">
+                <svg viewBox="0 0 24 24"><path d="M14.03 2c.2 1.69 1.15 3.16 2.64 4.05.96.58 2.08.88 3.23.87v3.17a8.1 8.1 0 0 1-3.8-.97v6.05c0 3.94-3.19 7.13-7.13 7.13s-7.13-3.19-7.13-7.13 3.19-7.13 7.13-7.13c.33 0 .66.03.98.08v3.23a4 4 0 1 0 2.82 3.82V2h3.26Z"/></svg>
+              </a>
+            </div>
+          </div>
+          <div>
+            <div class="mono-font text-xs uppercase tracking-[0.18em] text-[var(--accent)]">Navigation</div>
+            <div class="mt-5 flex flex-col gap-3 text-sm">
+              <a class="footer-link" href="index.html#services">Services</a>
+              <a class="footer-link" href="index.html#story">Process</a>
+              <a class="footer-link" href="index.html#work">Work</a>
+              <a class="footer-link" href="about.html">About</a>
+              <a class="footer-link" href="contact.html">Contact</a>
+            </div>
+          </div>
+          <div>
+            <div class="mono-font text-xs uppercase tracking-[0.18em] text-[var(--accent)]">Services</div>
+            <div class="mt-5 flex flex-col gap-3 text-sm text-[var(--text-secondary)]">
+              <span>AI Solutions</span><span>Web Development</span>
+              <span>SaaS Platforms</span><span>Automation</span>
+            </div>
+          </div>
+          <div>
+            <div class="mono-font text-xs uppercase tracking-[0.18em] text-[var(--accent)]">Contact Us</div>
+            <div class="mt-5 flex flex-col gap-4">
+              <div>
+                <div class="footer-contact-label">Email</div>
+                <div class="footer-contact-value"><a class="footer-contact-link" href="mailto:info@auroveon.com">info@auroveon.com</a></div>
+              </div>
+              <div>
+                <div class="footer-contact-label">Phone</div>
+                <div class="footer-contact-value"><a class="footer-contact-link" href="tel:+923353213863">+92 335 321 3863</a></div>
+              </div>
+              <div>
+                <div class="footer-contact-label">Address</div>
+                <div class="footer-contact-value">Street 4, Karachi, Pakistan</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="mt-10 flex flex-col gap-4 border-t border-[var(--border)] pt-6 text-sm text-[var(--text-secondary)] lg:flex-row lg:items-center lg:justify-between">
+          <div class="flex flex-wrap items-center gap-3">
+            <span>&copy; 2026</span>
+            <img src="assets/WhatsApp Image 2026-05-09 at 09,19,43-Picsart-BackgroundRemover.png" alt="Auroveon" class="brand-logo brand-logo-inline" />
+            <span>Crafted for premium digital products.</span>
+          </div>
+          <div class="flex flex-wrap items-center gap-4">
+            <a class="footer-legal-link" href="/privacy-policy">Privacy Policy</a>
+            <span class="text-[var(--text-secondary)]">·</span>
+            <a class="footer-legal-link" href="/terms-of-service">Terms of Service</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- WhatsApp FAB -->
+    <a href="https://wa.me/923353213863" target="_blank" rel="noreferrer" aria-label="Chat on WhatsApp" class="whatsapp-fab">
+      <svg viewBox="0 0 24 24" fill="white" width="28" height="28"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+    </a>
+
+    <script>
+      // ---- Navbar scroll ----
+      const navbar = document.getElementById('navbar');
+      window.addEventListener('scroll', () => {
+        navbar.classList.toggle('nav-scrolled', window.scrollY > 10);
+      });
+
+      // ---- Mobile menu ----
+      const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+      const mobileMenu = document.getElementById('mobileMenu');
+      const mobileMenuIcon = document.getElementById('mobileMenuIcon');
+      mobileMenuBtn.addEventListener('click', () => {
+        const hidden = mobileMenu.classList.toggle('hidden');
+        mobileMenuIcon.textContent = hidden ? '+' : 'x';
+      });
+
+      // ---- Custom cursor ----
+      if (window.innerWidth >= 1024) {
+        const dot = document.getElementById('cursorDot');
+        const ring = document.getElementById('cursorRing');
+        dot.style.opacity = 1; ring.style.opacity = 1;
+        let rx = 0, ry = 0, mx = 0, my = 0;
+        window.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; dot.style.left = mx + 'px'; dot.style.top = my + 'px'; });
+        (function loop() { rx += (mx - rx) * 0.1; ry += (my - ry) * 0.1; ring.style.left = rx + 'px'; ring.style.top = ry + 'px'; requestAnimationFrame(loop); })();
+        document.querySelectorAll('a, button, [data-hover]').forEach(el => {
+          el.addEventListener('mouseenter', () => ring.classList.add('is-hovering'));
+          el.addEventListener('mouseleave', () => ring.classList.remove('is-hovering'));
+        });
+      }
+
+      // ---- FAQ accordion ----
+      function toggleFaq(btn) {
+        const expanded = btn.getAttribute('aria-expanded') === 'true';
+        // close all
+        document.querySelectorAll('.faq-btn').forEach(b => {
+          b.setAttribute('aria-expanded', 'false');
+          b.nextElementSibling.classList.remove('open');
+        });
+        if (!expanded) {
+          btn.setAttribute('aria-expanded', 'true');
+          btn.nextElementSibling.classList.add('open');
+        }
+      }
+
+      // ---- Form validation & submit ----
+      const form = document.getElementById('contactForm');
+      const submitBtn = document.getElementById('submitBtn');
+      const submitLabel = document.getElementById('submitLabel');
+      const submitArrow = document.getElementById('submitArrow');
+      const submitSpinner = document.getElementById('submitSpinner');
+      const successMsg = document.getElementById('successMsg');
+
+      function showError(input, msg) {
+        const err = input.parentElement.querySelector('.field-error');
+        if (err) { err.textContent = msg; err.classList.remove('hidden'); }
+        input.style.borderColor = '#ff6b6b';
+      }
+      function clearError(input) {
+        const err = input.parentElement.querySelector('.field-error');
+        if (err) { err.textContent = ''; err.classList.add('hidden'); }
+        input.style.borderColor = '';
+      }
+
+      form.querySelectorAll('.form-input, .form-textarea, .form-select').forEach(el => {
+        el.addEventListener('input', () => clearError(el));
+      });
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        let valid = true;
+
+        const firstName = document.getElementById('firstName');
+        const lastName = document.getElementById('lastName');
+        const email = document.getElementById('email');
+        const service = document.getElementById('service');
+        const message = document.getElementById('message');
+        const agree = document.getElementById('agree');
+
+        if (!firstName.value.trim()) { showError(firstName, 'First name is required.'); valid = false; } else clearError(firstName);
+        if (!lastName.value.trim()) { showError(lastName, 'Last name is required.'); valid = false; } else clearError(lastName);
+        if (!email.value.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)) { showError(email, 'Please enter a valid email address.'); valid = false; } else clearError(email);
+        if (!service.value) { showError(service, 'Please select a service.'); valid = false; } else clearError(service);
+        if (!message.value.trim() || message.value.trim().length < 20) { showError(message, 'Please describe your project (at least 20 characters).'); valid = false; } else clearError(message);
+        if (!agree.checked) { alert('Please agree to the privacy policy to proceed.'); valid = false; }
+
+        if (!valid) return;
+
+        // Simulate sending
+        submitBtn.disabled = true;
+        submitLabel.textContent = 'Sending...';
+        submitArrow.classList.add('hidden');
+        submitSpinner.classList.remove('hidden');
+
+        await new Promise(r => setTimeout(r, 1800));
+
+        form.style.display = 'none';
+        successMsg.style.display = 'block';
+      });
+
+      // ---- Scroll reveal ----
+      const revealEls = document.querySelectorAll('.info-card');
+      const obs = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+            obs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+      revealEls.forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(36px)';
+        el.style.transition = 'opacity 0.8s cubic-bezier(0.22,1,0.36,1), transform 0.8s cubic-bezier(0.22,1,0.36,1)';
+        obs.observe(el);
+      });
+    </script>
+  </body>
+</html>
