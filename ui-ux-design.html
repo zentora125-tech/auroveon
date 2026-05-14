@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>UI/UX Design Services | Auroveon</title>
+    <meta name="description" content="User research, wireframing, high-fidelity UI, and design systems built around how real users behave. Auroveon's UI/UX design service." />
+    <meta name="theme-color" content="#080A08" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      :root {
+        --bg-base: #080a08;
+        --accent: #39ff14;
+        --accent-dim: #2bc410;
+        --text-primary: #f0f5f0;
+        --text-secondary: #7a8a7a;
+        --text-muted: #4a574a;
+        --border: rgba(57, 255, 20, 0.1);
+        --border-strong: rgba(57, 255, 20, 0.24);
+      }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        background: radial-gradient(circle at top, rgba(57,255,20,0.07), transparent 26%), linear-gradient(180deg,#080a08 0%,#090c09 50%,#070907 100%);
+        color: var(--text-primary);
+        font-family: "Inter", sans-serif;
+        overflow-x: hidden;
+        -webkit-font-smoothing: antialiased;
+      }
+      @media(min-width:1024px){body{cursor:none;}}
+      .display-font { font-family: "Poppins", sans-serif; }
+      .mono-font { font-family: "JetBrains Mono", monospace; }
+      .site-shell { width: min(1380px, calc(100% - 1.5rem)); margin: 0 auto; }
+      @media(min-width:1024px){.site-shell{width:min(1380px,calc(100% - 4rem));}}
+
+      .cursor-dot,.cursor-ring{position:fixed;top:0;left:0;transform:translate(-50%,-50%);pointer-events:none;z-index:90;opacity:0;}
+      .cursor-dot{width:10px;height:10px;border-radius:9999px;background:var(--accent);box-shadow:0 0 22px rgba(57,255,20,0.65);mix-blend-mode:screen;}
+      .cursor-ring{width:54px;height:54px;border-radius:9999px;border:1px solid rgba(57,255,20,0.22);transition:width .25s,height .25s,border-color .25s;}
+      .cursor-ring.is-hovering{width:76px;height:76px;border-color:rgba(57,255,20,0.48);}
+      @media(max-width:1023px){.cursor-dot,.cursor-ring{display:none;}}
+
+      .noise-overlay{position:fixed;inset:0;pointer-events:none;z-index:5;opacity:0.034;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:240px 240px;}
+      .glass-panel{background:linear-gradient(180deg,rgba(18,23,18,0.8),rgba(10,12,10,0.58));border:1px solid var(--border);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);box-shadow:0 18px 60px rgba(0,0,0,0.35),inset 0 1px 0 rgba(255,255,255,0.04);}
+      .nav-scrolled{background:rgba(8,10,8,0.86);border-bottom:1px solid var(--border);backdrop-filter:blur(22px);}
+      .nav-link{color:var(--text-secondary);transition:color .24s;}
+      .nav-link:hover,.nav-link.active-link{color:var(--text-primary);}
+      .eyebrow{font-family:"JetBrains Mono",monospace;color:var(--accent);font-size:0.72rem;letter-spacing:0.18em;text-transform:uppercase;}
+      .section-kicker{font-family:"Poppins",sans-serif;font-size:0.74rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--text-secondary);}
+      .mini-label{color:var(--text-muted);font-size:0.76rem;text-transform:uppercase;letter-spacing:0.16em;}
+      .soft-divider{background:linear-gradient(90deg,transparent,rgba(57,255,20,0.28),transparent);}
+
+      @keyframes text-shine{0%{background-position:-200% center;}100%{background-position:200% center;}}
+      .shine-word{display:inline-block;background:linear-gradient(90deg,#fff 0%,#fff 35%,#b9ffb0 44%,#eaffea 50%,#b9ffb0 56%,#fff 65%,#fff 100%);background-size:200% auto;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:text-shine 4s linear infinite;}
+      .shine-word-accent{display:inline-block;background:linear-gradient(90deg,#39ff14 0%,#39ff14 35%,#ccffcc 44%,#efffef 50%,#ccffcc 56%,#39ff14 65%,#39ff14 100%);background-size:200% auto;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:text-shine 4s linear infinite;}
+
+      .section-frame{position:relative;}
+      .section-frame::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:1px;background:linear-gradient(90deg,transparent,rgba(57,255,20,0.08),transparent);}
+      .hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(57,255,20,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(57,255,20,0.04) 1px,transparent 1px);background-size:74px 74px;mask-image:radial-gradient(circle at 60% 40%,black 0%,black 40%,transparent 85%);-webkit-mask-image:radial-gradient(circle at 60% 40%,black 0%,black 40%,transparent 85%);}
+      .spotlight{position:absolute;border-radius:9999px;filter:blur(120px);pointer-events:none;}
+
+      .hov-card{transition:border-color .28s,box-shadow .28s,transform .28s;}
+      .hov-card:hover{border-color:var(--border-strong);box-shadow:0 24px 70px rgba(0,0,0,0.38),0 0 45px rgba(57,255,20,0.1);transform:translateY(-8px);}
+
+      .marquee{overflow:hidden;}
+      .marquee-track{display:flex;width:max-content;animation:marquee-left 28s linear infinite;}
+      @keyframes marquee-left{0%{transform:translateX(0%);}100%{transform:translateX(-50%);}}
+
+      .reveal{opacity:0;transform:translateY(50px);transition:opacity .9s cubic-bezier(.22,1,.36,1),transform .9s cubic-bezier(.22,1,.36,1);}
+      .reveal.visible{opacity:1;transform:none;}
+      .cta-bg{position:absolute;inset:0;background:linear-gradient(100deg,rgba(8,10,8,0.88) 14%,rgba(8,10,8,0.7) 54%,rgba(8,10,8,0.88) 100%),url('https://images.unsplash.com/photo-1555421689-d68471e189f2?auto=format&fit=crop&w=1800&q=80') center/cover no-repeat;filter:saturate(.5) brightness(.58);}
+      .whatsapp-fab{position:fixed;bottom:28px;right:8px;z-index:9999;display:flex;align-items:center;justify-content:center;width:56px;height:56px;border:none;border-radius:50%;background:#25d366;box-shadow:0 4px 20px rgba(37,211,102,0.45);transition:transform .25s;text-decoration:none;}
+      .whatsapp-fab:hover{transform:scale(1.1);}
+      .footer-link{color:var(--text-secondary);transition:color .24s;}
+      .footer-link:hover{color:var(--text-primary);}
+      .footer-contact-label{font-size:0.7rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--text-secondary);}
+      .footer-contact-value{margin-top:4px;color:#fff;font-size:0.95rem;}
+      .footer-contact-link{color:#fff;text-decoration:none;transition:color .2s;}
+      .footer-contact-link:hover{color:var(--accent);}
+      .footer-legal-link{color:var(--text-secondary);transition:color .24s;}
+      .footer-legal-link:hover{color:var(--accent);}
+      .footer-social-link{display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border:1px solid #1a3a1a;border-radius:9999px;background:#111;transition:border-color .2s,transform .2s;}
+      .footer-social-link svg{width:18px;height:18px;fill:#aaa;transition:fill .2s;}
+      .footer-social-link:hover{border-color:#00ff88;transform:translateY(-1px);}
+      .footer-social-link:hover svg{fill:#00ff88;}
+      .feature-glow::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at top right,rgba(57,255,20,0.1),transparent 30%);pointer-events:none;}
+
+      /* SERP RESULT MOCKUP */
+      .serp-card{background:rgba(255,255,255,0.96);border-radius:16px;padding:18px 22px;margin-bottom:12px;}
+      .serp-card .serp-url{color:#1a73e8;font-size:0.78rem;margin-bottom:3px;font-family:Arial,sans-serif;}
+      .serp-card .serp-title{color:#1a0dab;font-size:1.05rem;font-weight:600;line-height:1.3;font-family:Arial,sans-serif;margin-bottom:5px;}
+      .serp-card .serp-desc{color:#4d5156;font-size:0.82rem;line-height:1.5;font-family:Arial,sans-serif;}
+      .serp-featured{border-left:4px solid var(--accent);background:rgba(57,255,20,0.06) !important;}
+      .serp-badge{display:inline-block;padding:2px 8px;border-radius:4px;font-size:0.65rem;font-family:"JetBrains Mono",monospace;letter-spacing:.1em;text-transform:uppercase;background:rgba(57,255,20,0.15);color:var(--accent);margin-bottom:8px;}
+
+      @keyframes float-up{0%,100%{transform:translateY(0);}50%{transform:translateY(-12px);}}
+      @keyframes float-side{0%,100%{transform:translateY(0) rotate(-2deg);}50%{transform:translateY(-8px) rotate(0deg);}}
+      .float-up{animation:float-up 5s ease-in-out infinite;}
+      .float-side{animation:float-side 6s ease-in-out infinite;}
+
+      /* RANK COUNTER ANIM */
+      @keyframes slide-up{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);}}
+      .slide-up{animation:slide-up .7s ease-out both;}
+
+      /* ACCORDION */
+      .accordion-body{max-height:0;overflow:hidden;transition:max-height .4s ease;}
+      .accordion-body.open{max-height:500px;}
+      .accordion-toggle{cursor:pointer;padding:20px 24px;}
+      .accordion-body.open{padding-left:24px;border-left:2px solid rgba(0,255,136,0.25);margin-left:24px;margin-right:24px;margin-bottom:8px;padding-bottom:12px;}
+      .accordion-body p{margin-top:8px;}
+      .faq-icon{display:inline-block;transition:transform 0.2s ease;}
+      .faq-item.open .faq-icon{transform:rotate(45deg);}
+      .faq-item.open .accordion-toggle .faq-question{color:#00ff88;}
+      .faq-item{border-bottom:1px solid #1a2e1e;}
+      .faq-item:last-child{border-bottom:none;}
+
+      /* TABS FOR SERVICES */
+      .seo-tab-content{display:none;}
+      .seo-tab-content.active{display:block;}
+      .seo-tab-btn{padding:10px 20px;border-radius:9999px;font-family:"JetBrains Mono",monospace;font-size:0.72rem;letter-spacing:.12em;text-transform:uppercase;border:1px solid var(--border);color:var(--text-secondary);background:transparent;cursor:pointer;transition:all .25s;}
+      .seo-tab-btn.active{border-color:var(--accent);color:var(--accent);background:rgba(57,255,20,0.04);}
+
+      /* BAR ANIM */
+      @keyframes bar-fill{from{width:0%;}to{width:var(--w);}}
+
+      /* DASHBOARD CARD ANIMATIONS */
+      @keyframes draw-line{from{stroke-dashoffset:600;}to{stroke-dashoffset:0;}}
+      @keyframes fade-in-dot{from{opacity:0;}to{opacity:1;}}
+      @keyframes dashboard-glow{from{box-shadow:0 0 30px rgba(0,255,136,0.08);}to{box-shadow:0 0 50px rgba(0,255,136,0.15);}}
+
+      /* TIMELINE CARD HOVER */
+      .timeline-card:hover{border-color:rgba(0,255,136,0.25)!important;transform:translateY(-4px);}
+
+      /* PREFERS REDUCED MOTION */
+      @media(prefers-reduced-motion:reduce){
+        .bar-animated,.float-up,.float-side,.marquee-track,.reveal{animation:none!important;transition:none!important;}
+        #site-line{stroke-dashoffset:0!important;animation:none!important;}
+        #seo-dashboard{animation:none!important;}
+        .faq-icon{transition:none!important;}
+      }
+      .bar-animated{animation:bar-fill 1.4s cubic-bezier(.22,1,.36,1) both;}
+
+      /* Process screen transitions */
+      .process-screen {
+        position: absolute; inset: 0; padding: 16px;
+        opacity: 0; transform: translateY(10px);
+        transition: opacity 0.5s ease, transform 0.5s ease;
+        pointer-events: none;
+      }
+      .process-screen.active {
+        opacity: 1; transform: translateY(0);
+        pointer-events: auto;
+      }
+
+      /* Cursor wander animation */
+      @keyframes cursor-wander {
+        0%   { top: 40%; left: 30%; }
+        25%  { top: 22%; left: 58%; }
+        50%  { top: 62%; left: 72%; }
+        75%  { top: 48%; left: 18%; }
+        100% { top: 40%; left: 30%; }
+      }
+      .hero-cursor {
+        position: absolute; pointer-events: none; z-index: 10;
+        animation: cursor-wander 9s ease-in-out infinite;
+      }
+      .hero-cursor-selection {
+        animation: cursor-wander 9s ease-in-out infinite;
+        animation-delay: 0.25s;
+      }
+
+      /* Blinking cursor in toolbar */
+      @keyframes blink { 0%,100%{opacity:1;} 50%{opacity:0;} }
+      .toolbar-cursor { animation: blink 1s step-end infinite; }
+
+      /* Mobile/desktop process toggle */
+      @media(max-width:639px) { .desktop-only-process { display:none !important; } }
+      @media(min-width:640px) { .mobile-only-process { display:none !important; } }
+    </style>
+  </head>
+  <body>
+    <div class="noise-overlay"></div>
+    <div class="cursor-dot" id="cursorDot"></div>
+    <div class="cursor-ring" id="cursorRing"></div>
+
+    <!-- NAVBAR -->
+    <header id="navbar" class="fixed left-0 top-0 z-50 w-full transition-all duration-300">
+      <div class="site-shell flex h-24 items-center justify-between">
+        <a href="index.html" class="inline-flex items-center flex-shrink-0" aria-label="Auroveon home">
+          <img src="assets/WhatsApp Image 2026-05-09 at 09,19,43-Picsart-BackgroundRemover.png" alt="Auroveon" style="height:68px;width:auto;object-fit:contain;" />
+        </a>
+        <nav class="hidden items-center gap-9 lg:flex">
+          <a class="nav-link text-base font-medium active-link" href="index.html#services">Services</a>
+          <a class="nav-link text-base font-medium" href="index.html#story">Process</a>
+          <a class="nav-link text-base font-medium" href="index.html#work">Work</a>
+          <a class="nav-link text-base font-medium" href="web-development.html">Web Dev</a>
+          <a class="nav-link text-base font-medium" href="seo.html">SEO</a>
+          <a class="nav-link text-base font-medium" href="index.html#contact">Contact</a>
+        </nav>
+        <a href="index.html#contact" class="display-font hidden lg:inline-flex items-center gap-2 rounded-full border px-6 py-3.5 text-base font-semibold transition-all hover:-translate-y-1" style="border-color:var(--accent);color:var(--accent);background:rgba(57,255,20,0.02);">Start a Project</a>
+        <button id="mobileMenuBtn" class="glass-panel flex h-12 w-12 items-center justify-center rounded-full lg:hidden text-xl">+</button>
+      </div>
+      <div id="mobileMenu" class="site-shell pb-4 lg:hidden hidden">
+        <div class="glass-panel rounded-[28px] px-6 py-6">
+          <div class="flex flex-col gap-5 text-center">
+            <a href="index.html#services" class="display-font text-2xl font-bold italic" style="color:var(--accent);">Services</a>
+            <a href="index.html#work" class="display-font text-2xl font-bold italic" style="color:var(--text-primary);">Work</a>
+            <a href="web-development.html" class="display-font text-2xl font-bold italic" style="color:var(--text-primary);">Web Dev</a>
+            <a href="seo.html" class="display-font text-2xl font-bold italic" style="color:var(--text-primary);">SEO</a>
+            <a href="index.html#contact" class="display-font text-2xl font-bold italic" style="color:var(--text-primary);">Contact</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+
+      <!-- ═══════════════ HERO ═══════════════ -->
+      <section id="hero" class="section-frame relative min-h-screen overflow-hidden pt-24 flex items-center">
+        <div class="hero-grid"></div>
+        <div class="spotlight" style="width:44rem;height:44rem;top:-12rem;right:-10rem;background:radial-gradient(circle,rgba(57,255,20,0.14),transparent 60%);"></div>
+        <div class="spotlight" style="width:22rem;height:22rem;bottom:6rem;left:-4rem;background:radial-gradient(circle,rgba(57,255,20,0.08),transparent 68%);"></div>
+
+        <div class="site-shell relative z-10 w-full py-10 lg:py-16">
+          <div class="grid gap-12 lg:grid-cols-[1fr_1fr] lg:items-center">
+
+            <!-- LEFT COPY -->
+            <div class="reveal" style="padding-left:clamp(0px,9%,80px);">
+              <div class="glass-panel inline-flex items-center gap-3 rounded-full px-4 py-2 mb-6">
+                <span class="h-2 w-2 rounded-full" style="background:var(--accent);box-shadow:0 0 14px rgba(57,255,20,0.7);"></span>
+                <span class="eyebrow">UI/UX Design — Interfaces That Convert</span>
+              </div>
+
+              <h1 class="display-font font-extrabold italic leading-[0.94] tracking-[-0.045em]" style="font-size:clamp(2.8rem,7vw,6.2rem);">
+                <span class="shine-word">Design That</span><br/>
+                <span class="shine-word">Feels Obvious.</span><br/>
+                <span class="shine-word-accent">Works Every Time.</span>
+              </h1>
+
+              <p class="mt-6 max-w-xl text-lg leading-8" style="color:var(--text-secondary);">
+                We don't design what looks good in Dribbble screenshots. We design what works — interfaces built on how real users think, click, and abandon.
+              </p>
+
+              <div class="mt-8 flex flex-col gap-4 sm:flex-row">
+                <a href="index.html#contact" class="display-font inline-flex items-center justify-center rounded-full px-7 py-4 text-base font-bold transition-all hover:-translate-y-1" style="background:var(--accent);color:#081008;box-shadow:0 0 42px rgba(57,255,20,0.18);">Start a Project →</a>
+                <a href="index.html#work" class="display-font inline-flex items-center justify-center rounded-full border px-7 py-4 text-base font-bold transition-all hover:-translate-y-1" style="border-color:var(--border-strong);color:var(--text-primary);background:rgba(255,255,255,0.02);">See Our Work</a>
+              </div>
+
+              <!-- KEY STATS -->
+              <div class="mt-10 grid grid-cols-3 gap-4">
+                <div class="glass-panel rounded-[20px] px-4 py-5">
+                  <div class="display-font text-3xl font-extrabold italic" style="color:var(--text-primary);">4.8★</div>
+                  <p class="mt-1 text-xs leading-5" style="color:var(--text-secondary);">avg. usability test rating across shipped products</p>
+                </div>
+                <div class="glass-panel rounded-[20px] px-4 py-5">
+                  <div class="display-font text-3xl font-extrabold italic" style="color:var(--text-primary);">38%</div>
+                  <p class="mt-1 text-xs leading-5" style="color:var(--text-secondary);">avg. reduction in user drop-off after redesign</p>
+                </div>
+                <div class="glass-panel rounded-[20px] px-4 py-5">
+                  <div class="display-font text-3xl font-extrabold italic" style="color:var(--text-primary);">12+</div>
+                  <p class="mt-1 text-xs leading-5" style="color:var(--text-secondary);">design systems built from zero</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- RIGHT: Animated UI Canvas -->
+            <div class="relative reveal" style="transition-delay:.15s;">
+              <div class="spotlight" style="width:20rem;height:20rem;top:10%;right:-5%;background:radial-gradient(circle,rgba(57,255,20,0.1),transparent 64%);"></div>
+              <div id="seo-dashboard" style="background:#0a1a0e;border:1px solid #1a3a20;border-radius:12px;padding:24px;width:100%;max-width:520px;margin:0 auto;animation:dashboard-glow 3s ease-in-out infinite alternate;">
+                <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:16px;">
+                  <div style="display:flex;align-items:center;gap:8px;">
+                    <span style="width:14px;height:14px;border-radius:9999px;background:#ff5f57;display:inline-block;"></span>
+                    <span style="width:14px;height:14px;border-radius:9999px;background:#febc2e;display:inline-block;"></span>
+                    <span style="width:14px;height:14px;border-radius:9999px;background:#28c840;display:inline-block;"></span>
+                  </div>
+                  <div style="flex:1;max-width:160px;height:22px;background:#0d2010;border:1px solid #1a3a20;border-radius:99px;display:flex;align-items:center;padding:0 10px;">
+                    <span class="toolbar-cursor" style="display:inline-block;width:2px;height:14px;background:var(--accent);"></span>
+                  </div>
+                  <div style="display:flex;align-items:center;gap:6px;">
+                    <span style="width:8px;height:8px;background:#1a3a20;border-radius:3px;display:inline-block;"></span>
+                    <span style="width:8px;height:8px;background:#1a3a20;border-radius:3px;display:inline-block;"></span>
+                    <span style="width:8px;height:8px;background:#1a3a20;border-radius:3px;display:inline-block;"></span>
+                  </div>
+                </div>
+                <div style="position:relative;background:#080f09;border-radius:8px;padding:20px;min-height:220px;border:1px solid #111;overflow:hidden;">
+                  <div class="float-up" style="position:relative;z-index:2;width:180px;background:#0C0F0C;border:1px solid rgba(57,255,20,0.15);border-radius:8px;padding:12px;">
+                    <div style="width:100%;height:3px;background:var(--accent);border-radius:2px;"></div>
+                    <div style="margin-top:12px;width:100%;height:6px;background:#1a2e1e;border-radius:3px;"></div>
+                    <div style="margin-top:6px;width:70%;height:6px;background:#1a2e1e;border-radius:3px;"></div>
+                    <div style="margin-top:14px;width:60px;height:18px;border-radius:99px;background:rgba(57,255,20,0.15);border:1px solid rgba(57,255,20,0.3);"></div>
+                  </div>
+                  <div class="float-side" style="position:absolute;right:16px;bottom:16px;z-index:2;width:140px;background:#0C0F0C;border:1px solid rgba(57,255,20,0.12);border-radius:8px;padding:10px;">
+                    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px;">
+                      <span style="height:18px;background:#1a3a20;border-radius:3px;display:block;"></span>
+                      <span style="height:18px;background:#1a3a20;border-radius:3px;display:block;"></span>
+                      <span style="height:18px;background:#1a3a20;border-radius:3px;display:block;"></span>
+                      <span style="height:18px;background:#1a3a20;border-radius:3px;display:block;"></span>
+                    </div>
+                    <div class="mono-font" style="margin-top:8px;font-size:8px;color:#3d5c45;letter-spacing:0.12em;">COMPONENTS</div>
+                  </div>
+                  <div class="float-up" style="position:absolute;right:24px;top:16px;z-index:2;width:110px;background:#111411;border:1px solid rgba(57,255,20,0.1);border-radius:6px;padding:10px;animation-duration:7s;animation-delay:1s;">
+                    <div style="display:flex;align-items:center;gap:8px;">
+                      <span style="width:24px;height:24px;background:#1a3a20;border-radius:50%;display:inline-block;flex-shrink:0;"></span>
+                      <span style="display:flex;flex-direction:column;gap:4px;">
+                        <span style="width:50px;height:4px;background:#1a2e1e;border-radius:3px;display:block;"></span>
+                        <span style="width:50px;height:4px;background:#1a2e1e;border-radius:3px;display:block;"></span>
+                      </span>
+                    </div>
+                  </div>
+                  <svg class="hero-cursor-selection" width="80" height="50" viewBox="0 0 80 50" fill="none" style="position:absolute;z-index:1;">
+                    <rect x="0.5" y="0.5" width="79" height="49" rx="3" stroke="var(--accent)" stroke-width="1" stroke-dasharray="4 3" fill="rgba(57,255,20,0.04)"></rect>
+                  </svg>
+                  <svg class="hero-cursor" width="12" height="18" viewBox="0 0 12 18" fill="none" style="position:absolute;">
+                    <path d="M1 1L1.9 15.8L4.9 11.4L8.2 16.6L10.4 15.2L7.1 10L12 9L1 1Z" fill="var(--accent)" opacity="0.9"></path>
+                  </svg>
+                </div>
+                <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;">
+                  <span style="background:#0d2a15;color:#00ff88;font-family:'JetBrains Mono',monospace;font-size:10px;padding:5px 12px;border-radius:99px;letter-spacing:0.06em;">+38% Task Completion</span>
+                  <span style="background:#0d2a15;color:#00ff88;font-family:'JetBrains Mono',monospace;font-size:10px;padding:5px 12px;border-radius:99px;letter-spacing:0.06em;">Figma Handoff Ready</span>
+                  <span style="background:#0d2a15;color:#00ff88;font-family:'JetBrains Mono',monospace;font-size:10px;padding:5px 12px;border-radius:99px;letter-spacing:0.06em;">Maze Tested</span>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+        </div>
+      </section>
+
+      <!-- KEYWORDS MARQUEE -->
+      <section class="section-frame py-10 overflow-hidden">
+        <div class="site-shell">
+          <div class="glass-panel marquee rounded-full px-2 py-2">
+            <div class="marquee-track">
+              <span class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">User Research<span class="mx-6" style="color:var(--accent);">.</span></span>
+              <span class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">Wireframing<span class="mx-6" style="color:var(--accent);">.</span></span>
+              <span class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">High-Fidelity UI<span class="mx-6" style="color:var(--accent);">.</span></span>
+              <span class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">Design Systems<span class="mx-6" style="color:var(--accent);">.</span></span>
+              <span class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">Usability Testing<span class="mx-6" style="color:var(--accent);">.</span></span>
+              <span class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">Prototyping<span class="mx-6" style="color:var(--accent);">.</span></span>
+              <span class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">Component Libraries<span class="mx-6" style="color:var(--accent);">.</span></span>
+              <span class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">Accessibility Audit<span class="mx-6" style="color:var(--accent);">.</span></span>
+              <span class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">Figma Handoff<span class="mx-6" style="color:var(--accent);">.</span></span>
+              <span class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">Information Architecture<span class="mx-6" style="color:var(--accent);">.</span></span>
+              <span class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">User Research<span class="mx-6" style="color:var(--accent);">.</span></span>
+              <span class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">Wireframing<span class="mx-6" style="color:var(--accent);">.</span></span>
+              <span class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">High-Fidelity UI<span class="mx-6" style="color:var(--accent);">.</span></span>
+              <span class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">Design Systems<span class="mx-6" style="color:var(--accent);">.</span></span>
+              <span class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">Usability Testing<span class="mx-6" style="color:var(--accent);">.</span></span>
+              <span class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">Prototyping<span class="mx-6" style="color:var(--accent);">.</span></span>
+              <span class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">Component Libraries<span class="mx-6" style="color:var(--accent);">.</span></span>
+              <span class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">Accessibility Audit<span class="mx-6" style="color:var(--accent);">.</span></span>
+              <span class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">Figma Handoff<span class="mx-6" style="color:var(--accent);">.</span></span>
+              <span class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">Information Architecture<span class="mx-6" style="color:var(--accent);">.</span></span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══════════════ DELIVERABLES ═══════════════ -->
+      <section id="strategy" class="section-frame py-24 lg:py-32">
+        <div class="site-shell">
+          <div class="grid gap-10 lg:grid-cols-[0.55fr_1.45fr] lg:items-start">
+            <div class="reveal lg:sticky lg:top-28">
+              <div class="section-kicker">What's included</div>
+              <h2 class="display-font mt-4 text-4xl font-extrabold italic leading-[0.96] tracking-[-0.04em] lg:text-6xl" style="color:var(--text-primary);max-width:9ch;">Every layer of the design process.</h2>
+              <p class="mt-6 text-base leading-8 lg:text-lg" style="color:var(--text-secondary);max-width:28rem;">From the first user interview to the final Figma handoff — we cover every phase of UI/UX design in-house, with no freelancers, no shortcuts.</p>
+              <a href="index.html#contact" class="mt-8 inline-flex items-center gap-2 text-sm font-semibold" style="color:var(--accent);">Request a free design audit →</a>
+            </div>
+
+            <div class="grid gap-5 md:grid-cols-2">
+              <div class="hov-card feature-glow relative glass-panel rounded-[28px] p-6 lg:p-7 md:col-span-2 reveal">
+                <div class="absolute right-6 top-5 display-font text-5xl font-extrabold italic" style="color:rgba(240,245,240,0.04);">01</div>
+                <div class="mini-label mono-font">01 / Research</div>
+                <h3 class="display-font mt-5 text-2xl font-bold italic lg:text-3xl" style="color:var(--text-primary);">User Research & Behaviour Mapping</h3>
+                <p class="mt-4 leading-7 text-base" style="color:var(--text-secondary);">Interviews, session recordings, heatmap analysis, and competitor teardowns. We map the full problem space before we open Figma — so no design work is wasted on the wrong problem.</p>
+                <div class="mt-6 h-px w-full soft-divider"></div>
+                <div class="mt-4 flex items-center justify-between text-sm" style="color:var(--text-muted);">
+                  <span>The strategy behind every screen</span><span style="color:var(--accent);">Maze · Hotjar · FigJam · User interviews</span>
+                </div>
+              </div>
+              <div class="hov-card feature-glow relative glass-panel rounded-[28px] p-6 lg:p-7 reveal" style="transition-delay:.06s;">
+                <div class="absolute right-5 top-4 display-font text-5xl font-extrabold italic" style="color:rgba(240,245,240,0.04);">02</div>
+                <div class="mini-label mono-font">02 / Structure</div>
+                <h3 class="display-font mt-5 text-xl font-bold italic lg:text-2xl" style="color:var(--text-primary);">Wireframing & User Flows</h3>
+                <p class="mt-4 text-sm leading-7" style="color:var(--text-secondary);">Low-fidelity layouts that validate information architecture and navigation logic with stakeholders before visual design begins.</p>
+                <div class="mt-6 h-px w-full soft-divider"></div>
+                <div class="mt-4 text-sm" style="color:var(--text-muted);">Figma · FigJam · Whimsical</div>
+              </div>
+              <div class="hov-card feature-glow relative glass-panel rounded-[28px] p-6 lg:p-7 reveal" style="transition-delay:.1s;">
+                <div class="absolute right-5 top-4 display-font text-5xl font-extrabold italic" style="color:rgba(240,245,240,0.04);">03</div>
+                <div class="mini-label mono-font">03 / Visual</div>
+                <h3 class="display-font mt-5 text-xl font-bold italic lg:text-2xl" style="color:var(--text-primary);">High-Fidelity UI Design</h3>
+                <p class="mt-4 text-sm leading-7" style="color:var(--text-secondary);">Pixel-precise screens with every state, every breakpoint, every interaction defined — nothing left to developer interpretation.</p>
+                <div class="mt-6 h-px w-full soft-divider"></div>
+                <div class="mt-4 text-sm" style="color:var(--text-muted);">Figma · Penpot · Zeplin</div>
+              </div>
+              <div class="hov-card feature-glow relative glass-panel rounded-[28px] p-6 lg:p-7 reveal" style="transition-delay:.14s;">
+                <div class="absolute right-5 top-4 display-font text-5xl font-extrabold italic" style="color:rgba(240,245,240,0.04);">04</div>
+                <div class="mini-label mono-font">04 / System</div>
+                <h3 class="display-font mt-5 text-xl font-bold italic lg:text-2xl" style="color:var(--text-primary);">Design Systems</h3>
+                <p class="mt-4 text-sm leading-7" style="color:var(--text-secondary);">A reusable component library — colours, typography, spacing, states — so your product scales without accumulating design debt.</p>
+                <div class="mt-6 h-px w-full soft-divider"></div>
+                <div class="mt-4 text-sm" style="color:var(--text-muted);">Figma · Storybook · Token Studio</div>
+              </div>
+              <div class="hov-card feature-glow relative glass-panel rounded-[28px] p-6 lg:p-7 reveal" style="transition-delay:.18s;">
+                <div class="absolute right-5 top-4 display-font text-5xl font-extrabold italic" style="color:rgba(240,245,240,0.04);">05</div>
+                <div class="mini-label mono-font">05 / Prototype</div>
+                <h3 class="display-font mt-5 text-xl font-bold italic lg:text-2xl" style="color:var(--text-primary);">Interactive Prototypes</h3>
+                <p class="mt-4 text-sm leading-7" style="color:var(--text-secondary);">Clickable Figma prototypes that stakeholders can navigate and usability testers can validate before a line of code is written.</p>
+                <div class="mt-6 h-px w-full soft-divider"></div>
+                <div class="mt-4 text-sm" style="color:var(--text-muted);">Figma · Principle · Framer</div>
+              </div>
+              <div class="hov-card feature-glow relative glass-panel rounded-[28px] p-6 lg:p-7 reveal" style="transition-delay:.22s;">
+                <div class="absolute right-5 top-4 display-font text-5xl font-extrabold italic" style="color:rgba(240,245,240,0.04);">06</div>
+                <div class="mini-label mono-font">06 / Testing</div>
+                <h3 class="display-font mt-5 text-xl font-bold italic lg:text-2xl" style="color:var(--text-primary);">Usability Testing</h3>
+                <p class="mt-4 text-sm leading-7" style="color:var(--text-secondary);">Maze-powered testing sessions that expose friction in the design before it becomes expensive engineering rework.</p>
+                <div class="mt-6 h-px w-full soft-divider"></div>
+                <div class="mt-4 text-sm" style="color:var(--text-muted);">Maze · Lookback · Lyssna</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══════════════ HOW WE DESIGN ═══════════════ -->
+      <section class="section-frame py-24 lg:py-32">
+        <div class="site-shell">
+          <div class="text-center mb-14 reveal">
+            <div class="section-kicker">How we design</div>
+            <h2 class="display-font mt-4 text-4xl font-extrabold italic leading-[0.95] tracking-[-0.04em] lg:text-6xl mx-auto" style="color:var(--text-primary);max-width:14ch;">A process built around better decisions.</h2>
+          </div>
+        </div>
+
+        <div id="design-process-wrapper" class="desktop-only-process" style="position:relative;height:400vh;">
+          <div style="position:sticky;top:0;height:100vh;overflow:hidden;display:flex;background:var(--bg-base);">
+            <div style="width:50%;position:relative;">
+              <div style="height:100%;">
+                <div style="height:100vh;display:flex;align-items:center;padding-left:10%;padding-right:5%;">
+                  <div class="reveal" style="opacity:1;transform:none;">
+                    <div class="eyebrow">STEP 01</div>
+                    <h3 class="display-font font-extrabold italic mt-4" style="font-size:clamp(1.8rem,3vw,2.6rem);color:var(--text-primary);line-height:1.08;max-width:14ch;">Understand First.</h3>
+                    <p style="font-size:1rem;color:var(--text-secondary);max-width:400px;line-height:1.8;margin-top:16px;">We start with research, not assumptions. User interviews, competitor teardowns, heatmap data — we map the full problem space before we open Figma.</p>
+                    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:20px;">
+                      <span class="eyebrow" style="background:rgba(57,255,20,0.04);border:1px solid var(--border);padding:0.35rem 0.75rem;border-radius:9999px;font-size:0.72rem;">User Interviews</span>
+                      <span class="eyebrow" style="background:rgba(57,255,20,0.04);border:1px solid var(--border);padding:0.35rem 0.75rem;border-radius:9999px;font-size:0.72rem;">Competitor Analysis</span>
+                      <span class="eyebrow" style="background:rgba(57,255,20,0.04);border:1px solid var(--border);padding:0.35rem 0.75rem;border-radius:9999px;font-size:0.72rem;">Empathy Mapping</span>
+                    </div>
+                  </div>
+                </div>
+                <div style="height:100vh;display:flex;align-items:center;padding-left:10%;padding-right:5%;">
+                  <div class="reveal" style="opacity:1;transform:none;">
+                    <div class="eyebrow">STEP 02</div>
+                    <h3 class="display-font font-extrabold italic mt-4" style="font-size:clamp(1.8rem,3vw,2.6rem);color:var(--text-primary);line-height:1.08;max-width:14ch;">Structure Before Style.</h3>
+                    <p style="font-size:1rem;color:var(--text-secondary);max-width:400px;line-height:1.8;margin-top:16px;">Wireframes come before visuals. We test information architecture and navigation logic before any design polish is applied — so revisions cost hours, not weeks.</p>
+                    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:20px;">
+                      <span class="eyebrow" style="background:rgba(57,255,20,0.04);border:1px solid var(--border);padding:0.35rem 0.75rem;border-radius:9999px;font-size:0.72rem;">User Flows</span>
+                      <span class="eyebrow" style="background:rgba(57,255,20,0.04);border:1px solid var(--border);padding:0.35rem 0.75rem;border-radius:9999px;font-size:0.72rem;">Wireframes</span>
+                      <span class="eyebrow" style="background:rgba(57,255,20,0.04);border:1px solid var(--border);padding:0.35rem 0.75rem;border-radius:9999px;font-size:0.72rem;">Stakeholder Sign-off</span>
+                    </div>
+                  </div>
+                </div>
+                <div style="height:100vh;display:flex;align-items:center;padding-left:10%;padding-right:5%;">
+                  <div class="reveal" style="opacity:1;transform:none;">
+                    <div class="eyebrow">STEP 03</div>
+                    <h3 class="display-font font-extrabold italic mt-4" style="font-size:clamp(1.8rem,3vw,2.6rem);color:var(--text-primary);line-height:1.08;max-width:14ch;">Precision at Every Pixel.</h3>
+                    <p style="font-size:1rem;color:var(--text-secondary);max-width:400px;line-height:1.8;margin-top:16px;">High-fidelity screens with every component, every state, every breakpoint fully defined. Nothing is left open to interpretation in the developer handoff.</p>
+                    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:20px;">
+                      <span class="eyebrow" style="background:rgba(57,255,20,0.04);border:1px solid var(--border);padding:0.35rem 0.75rem;border-radius:9999px;font-size:0.72rem;">Figma Designs</span>
+                      <span class="eyebrow" style="background:rgba(57,255,20,0.04);border:1px solid var(--border);padding:0.35rem 0.75rem;border-radius:9999px;font-size:0.72rem;">Design System</span>
+                      <span class="eyebrow" style="background:rgba(57,255,20,0.04);border:1px solid var(--border);padding:0.35rem 0.75rem;border-radius:9999px;font-size:0.72rem;">All Breakpoints</span>
+                    </div>
+                  </div>
+                </div>
+                <div style="height:100vh;display:flex;align-items:center;padding-left:10%;padding-right:5%;">
+                  <div class="reveal" style="opacity:1;transform:none;">
+                    <div class="eyebrow">STEP 04</div>
+                    <h3 class="display-font font-extrabold italic mt-4" style="font-size:clamp(1.8rem,3vw,2.6rem);color:var(--text-primary);line-height:1.08;max-width:14ch;">Test Before You Ship.</h3>
+                    <p style="font-size:1rem;color:var(--text-secondary);max-width:400px;line-height:1.8;margin-top:16px;">Clickable prototypes go through Maze usability testing with real users before handoff. Real friction, caught early, fixed before engineering touches a line of code.</p>
+                    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:20px;">
+                      <span class="eyebrow" style="background:rgba(57,255,20,0.04);border:1px solid var(--border);padding:0.35rem 0.75rem;border-radius:9999px;font-size:0.72rem;">Prototype Testing</span>
+                      <span class="eyebrow" style="background:rgba(57,255,20,0.04);border:1px solid var(--border);padding:0.35rem 0.75rem;border-radius:9999px;font-size:0.72rem;">Maze Sessions</span>
+                      <span class="eyebrow" style="background:rgba(57,255,20,0.04);border:1px solid var(--border);padding:0.35rem 0.75rem;border-radius:9999px;font-size:0.72rem;">Annotated Handoff</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div style="width:50%;position:relative;display:flex;align-items:center;justify-content:center;">
+              <div style="width:260px;height:520px;margin:auto;background:#0C0F0C;border-radius:36px;border:2px solid rgba(57,255,20,0.2);box-shadow:0 0 60px rgba(57,255,20,0.05), 0 24px 80px rgba(0,0,0,0.5);position:relative;">
+                <span style="width:60px;height:10px;background:#080A08;border-radius:99px;margin:12px auto 0;display:block;"></span>
+                <div style="width:236px;height:440px;margin:8px auto;background:#080A08;border-radius:24px;overflow:hidden;position:relative;">
+                  <div class="process-screen active" style="background:#080f09;">
+                    <div class="mono-font" style="font-size:8px;color:#4ade80;letter-spacing:0.14em;margin-bottom:10px;">USER RESEARCH</div>
+                    <div style="display:flex;flex-direction:column;gap:10px;">
+                      <div style="display:flex;align-items:center;gap:10px;">
+                        <span style="width:20px;height:20px;background:#1a3a20;border-radius:50%;display:inline-block;"></span>
+                        <span style="display:flex;flex-direction:column;gap:2px;">
+                          <span style="width:40px;height:4px;background:#1a2e1e;border-radius:3px;display:block;"></span>
+                          <span style="width:28px;height:4px;background:#1a2e1e;border-radius:3px;display:block;"></span>
+                        </span>
+                      </div>
+                      <div style="display:flex;align-items:center;gap:10px;">
+                        <span style="width:20px;height:20px;background:#1a3a20;border-radius:50%;display:inline-block;"></span>
+                        <span style="display:flex;flex-direction:column;gap:2px;">
+                          <span style="width:40px;height:4px;background:#1a2e1e;border-radius:3px;display:block;"></span>
+                          <span style="width:28px;height:4px;background:#1a2e1e;border-radius:3px;display:block;"></span>
+                        </span>
+                      </div>
+                      <div style="display:flex;align-items:center;gap:10px;">
+                        <span style="width:20px;height:20px;background:#1a3a20;border-radius:50%;display:inline-block;"></span>
+                        <span style="display:flex;flex-direction:column;gap:2px;">
+                          <span style="width:40px;height:4px;background:#1a2e1e;border-radius:3px;display:block;"></span>
+                          <span style="width:28px;height:4px;background:#1a2e1e;border-radius:3px;display:block;"></span>
+                        </span>
+                      </div>
+                    </div>
+                    <div style="position:absolute;left:16px;right:16px;bottom:24px;">
+                      <div style="width:100%;height:4px;background:#1a3a20;border-radius:2px;overflow:hidden;">
+                        <div style="width:60%;height:100%;background:var(--accent);border-radius:2px;"></div>
+                      </div>
+                      <div class="mono-font" style="font-size:7px;color:#3d5c45;margin-top:6px;">4 of 6 interviews done</div>
+                    </div>
+                  </div>
+                  <div class="process-screen" style="background:#080f09;">
+                    <div class="mono-font" style="font-size:8px;color:#4ade80;letter-spacing:0.14em;margin-bottom:10px;">WIREFRAME v1.2</div>
+                    <div style="display:flex;flex-direction:column;gap:6px;">
+                      <div style="width:100%;height:28px;background:#111411;border-radius:4px;"></div>
+                      <div style="display:flex;gap:6px;">
+                        <div style="width:48%;height:60px;background:#0d1a0f;border-radius:4px;"></div>
+                        <div style="width:48%;height:60px;background:#0d1a0f;border-radius:4px;"></div>
+                      </div>
+                      <div style="width:100%;height:18px;background:#111411;border-radius:4px;"></div>
+                    </div>
+                  </div>
+                  <div class="process-screen" style="background:#0C0F0C;">
+                    <div class="mono-font" style="font-size:8px;color:#4ade80;letter-spacing:0.14em;margin-bottom:10px;">UI DESIGN · FINAL</div>
+                    <div style="background:#080f09;border-radius:8px;padding:10px;border:1px solid rgba(57,255,20,0.15);">
+                      <div style="width:100%;height:3px;background:var(--accent);border-radius:2px;"></div>
+                      <div style="margin-top:12px;width:100%;height:6px;background:#1a2e1e;border-radius:3px;"></div>
+                      <div style="margin-top:8px;width:70%;height:4px;background:#1a2e1e;border-radius:3px;"></div>
+                      <div style="margin-top:14px;width:40px;height:14px;background:rgba(57,255,20,0.15);border-radius:99px;border:1px solid rgba(57,255,20,0.3);"></div>
+                    </div>
+                    <div class="mono-font" style="font-size:7px;color:#4ade80;margin-top:8px;">Component ready</div>
+                  </div>
+                  <div class="process-screen" style="background:#080f09;">
+                    <div class="mono-font" style="font-size:8px;color:#4ade80;letter-spacing:0.14em;margin-bottom:10px;">FIGMA HANDOFF</div>
+                    <div style="display:flex;flex-direction:column;gap:10px;">
+                      <div style="display:flex;align-items:center;gap:8px;">
+                        <span style="width:12px;height:12px;background:rgba(57,255,20,0.15);border:1px solid rgba(57,255,20,0.4);border-radius:50%;display:inline-flex;align-items:center;justify-content:center;color:var(--accent);font-size:8px;">✓</span>
+                        <span style="width:80px;height:4px;background:#1a2e1e;border-radius:3px;display:block;"></span>
+                      </div>
+                      <div style="display:flex;align-items:center;gap:8px;">
+                        <span style="width:12px;height:12px;background:rgba(57,255,20,0.15);border:1px solid rgba(57,255,20,0.4);border-radius:50%;display:inline-flex;align-items:center;justify-content:center;color:var(--accent);font-size:8px;">✓</span>
+                        <span style="width:80px;height:4px;background:#1a2e1e;border-radius:3px;display:block;"></span>
+                      </div>
+                      <div style="display:flex;align-items:center;gap:8px;">
+                        <span style="width:12px;height:12px;background:rgba(57,255,20,0.15);border:1px solid rgba(57,255,20,0.4);border-radius:50%;display:inline-flex;align-items:center;justify-content:center;color:var(--accent);font-size:8px;">✓</span>
+                        <span style="width:80px;height:4px;background:#1a2e1e;border-radius:3px;display:block;"></span>
+                      </div>
+                    </div>
+                    <div class="mono-font" style="font-size:7px;color:#4ade80;margin-top:10px;">Handed off to dev</div>
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="position:absolute;right:16px;bottom:16px;">
+                      <path d="M12 3v12"></path>
+                      <path d="m17 8-5-5-5 5"></path>
+                      <path d="M21 21H3v-6"></path>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+              <div style="position:absolute;right:0;top:0;width:2px;height:100%;background:#0C0F0C;">
+                <div id="process-progress-fill" style="width:100%;height:0%;background:var(--accent);border-radius:2px;transition:height 0.1s linear;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mobile-only-process site-shell">
+          <div class="reveal" style="padding:0 0 1.5rem;border-bottom:1px solid var(--border);">
+            <div class="eyebrow">STEP 01</div>
+            <h3 class="display-font font-extrabold italic mt-4" style="font-size:clamp(1.8rem,3vw,2.6rem);color:var(--text-primary);line-height:1.08;max-width:14ch;">Understand First.</h3>
+            <p style="font-size:1rem;color:var(--text-secondary);max-width:400px;line-height:1.8;margin-top:16px;">We start with research, not assumptions. User interviews, competitor teardowns, heatmap data — we map the full problem space before we open Figma.</p>
+            <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:20px;">
+              <span class="eyebrow" style="background:rgba(57,255,20,0.04);border:1px solid var(--border);padding:0.35rem 0.75rem;border-radius:9999px;font-size:0.72rem;">User Interviews</span>
+              <span class="eyebrow" style="background:rgba(57,255,20,0.04);border:1px solid var(--border);padding:0.35rem 0.75rem;border-radius:9999px;font-size:0.72rem;">Competitor Analysis</span>
+              <span class="eyebrow" style="background:rgba(57,255,20,0.04);border:1px solid var(--border);padding:0.35rem 0.75rem;border-radius:9999px;font-size:0.72rem;">Empathy Mapping</span>
+            </div>
+          </div>
+          <div class="reveal" style="padding:1.5rem 0;border-bottom:1px solid var(--border);">
+            <div class="eyebrow">STEP 02</div>
+            <h3 class="display-font font-extrabold italic mt-4" style="font-size:clamp(1.8rem,3vw,2.6rem);color:var(--text-primary);line-height:1.08;max-width:14ch;">Structure Before Style.</h3>
+            <p style="font-size:1rem;color:var(--text-secondary);max-width:400px;line-height:1.8;margin-top:16px;">Wireframes come before visuals. We test information architecture and navigation logic before any design polish is applied — so revisions cost hours, not weeks.</p>
+            <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:20px;">
+              <span class="eyebrow" style="background:rgba(57,255,20,0.04);border:1px solid var(--border);padding:0.35rem 0.75rem;border-radius:9999px;font-size:0.72rem;">User Flows</span>
+              <span class="eyebrow" style="background:rgba(57,255,20,0.04);border:1px solid var(--border);padding:0.35rem 0.75rem;border-radius:9999px;font-size:0.72rem;">Wireframes</span>
+              <span class="eyebrow" style="background:rgba(57,255,20,0.04);border:1px solid var(--border);padding:0.35rem 0.75rem;border-radius:9999px;font-size:0.72rem;">Stakeholder Sign-off</span>
+            </div>
+          </div>
+          <div class="reveal" style="padding:1.5rem 0;border-bottom:1px solid var(--border);">
+            <div class="eyebrow">STEP 03</div>
+            <h3 class="display-font font-extrabold italic mt-4" style="font-size:clamp(1.8rem,3vw,2.6rem);color:var(--text-primary);line-height:1.08;max-width:14ch;">Precision at Every Pixel.</h3>
+            <p style="font-size:1rem;color:var(--text-secondary);max-width:400px;line-height:1.8;margin-top:16px;">High-fidelity screens with every component, every state, every breakpoint fully defined. Nothing is left open to interpretation in the developer handoff.</p>
+            <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:20px;">
+              <span class="eyebrow" style="background:rgba(57,255,20,0.04);border:1px solid var(--border);padding:0.35rem 0.75rem;border-radius:9999px;font-size:0.72rem;">Figma Designs</span>
+              <span class="eyebrow" style="background:rgba(57,255,20,0.04);border:1px solid var(--border);padding:0.35rem 0.75rem;border-radius:9999px;font-size:0.72rem;">Design System</span>
+              <span class="eyebrow" style="background:rgba(57,255,20,0.04);border:1px solid var(--border);padding:0.35rem 0.75rem;border-radius:9999px;font-size:0.72rem;">All Breakpoints</span>
+            </div>
+          </div>
+          <div class="reveal" style="padding:1.5rem 0 0;">
+            <div class="eyebrow">STEP 04</div>
+            <h3 class="display-font font-extrabold italic mt-4" style="font-size:clamp(1.8rem,3vw,2.6rem);color:var(--text-primary);line-height:1.08;max-width:14ch;">Test Before You Ship.</h3>
+            <p style="font-size:1rem;color:var(--text-secondary);max-width:400px;line-height:1.8;margin-top:16px;">Clickable prototypes go through Maze usability testing with real users before handoff. Real friction, caught early, fixed before engineering touches a line of code.</p>
+            <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:20px;">
+              <span class="eyebrow" style="background:rgba(57,255,20,0.04);border:1px solid var(--border);padding:0.35rem 0.75rem;border-radius:9999px;font-size:0.72rem;">Prototype Testing</span>
+              <span class="eyebrow" style="background:rgba(57,255,20,0.04);border:1px solid var(--border);padding:0.35rem 0.75rem;border-radius:9999px;font-size:0.72rem;">Maze Sessions</span>
+              <span class="eyebrow" style="background:rgba(57,255,20,0.04);border:1px solid var(--border);padding:0.35rem 0.75rem;border-radius:9999px;font-size:0.72rem;">Annotated Handoff</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══════════════ RESULTS / PROOF ═══════════════ -->
+      <section class="section-frame py-24 lg:py-32">
+        <div class="site-shell">
+          <div class="text-center mb-14 reveal">
+            <div class="section-kicker">Proof of craft</div>
+            <h2 class="display-font mt-4 text-4xl font-extrabold italic leading-[0.95] tracking-[-0.04em] lg:text-6xl mx-auto" style="color:var(--text-primary);max-width:13ch;">The work behind the numbers.</h2>
+          </div>
+
+          <div class="grid gap-6 lg:grid-cols-3 mb-10">
+            <div class="hov-card glass-panel rounded-[30px] p-7 reveal" style="transition-delay:.04s;">
+              <div class="mini-label mono-font mb-4">SaaS Dashboard · B2B</div>
+              <div class="display-font text-5xl font-extrabold italic" style="color:var(--accent);">+38%</div>
+              <div class="text-base font-semibold mt-2" style="color:var(--text-primary);">Task completion rate after redesign</div>
+              <p class="mt-3 text-sm leading-7" style="color:var(--text-secondary);">Redesigned the core workflow of a B2B analytics dashboard. User testing revealed 6 critical friction points — resolving them cut average task time from 4.2 minutes to 1.8 minutes.</p>
+              <div class="mt-6 h-px soft-divider"></div>
+              <div class="mt-4 mono-font text-xs uppercase tracking-widest" style="color:var(--accent);">User Research + Figma + Maze</div>
+            </div>
+            <div class="hov-card glass-panel rounded-[30px] p-7 reveal" style="transition-delay:.1s;">
+              <div class="mini-label mono-font mb-4">Mobile App · Consumer</div>
+              <div class="display-font text-5xl font-extrabold italic" style="color:var(--accent);">4.8★</div>
+              <div class="text-base font-semibold mt-2" style="color:var(--text-primary);">App Store rating in first 90 days</div>
+              <p class="mt-3 text-sm leading-7" style="color:var(--text-secondary);">Designed a consumer health tracking app from zero research to full handoff in 8 weeks. 14,000 downloads in the first month with a 4.8 average rating across 340 reviews.</p>
+              <div class="mt-6 h-px soft-divider"></div>
+              <div class="mt-4 mono-font text-xs uppercase tracking-widest" style="color:var(--accent);">FigJam + Figma + React Native</div>
+            </div>
+            <div class="hov-card glass-panel rounded-[30px] p-7 reveal" style="transition-delay:.16s;">
+              <div class="mini-label mono-font mb-4">E-commerce · Fashion</div>
+              <div class="display-font text-5xl font-extrabold italic" style="color:var(--accent);">−61%</div>
+              <div class="text-base font-semibold mt-2" style="color:var(--text-primary);">Cart abandonment rate after UX overhaul</div>
+              <p class="mt-3 text-sm leading-7" style="color:var(--text-secondary);">Checkout flow redesign based on 200 session recordings and 3 rounds of usability testing. Abandonment dropped from 78% to 30% within 45 days of launch.</p>
+              <div class="mt-6 h-px soft-divider"></div>
+              <div class="mt-4 mono-font text-xs uppercase tracking-widest" style="color:var(--accent);">Hotjar + Figma + Maze</div>
+            </div>
+          </div>
+
+          <div class="glass-panel rounded-[34px] p-8 lg:p-12 reveal">
+            <div class="grid gap-10 lg:grid-cols-2 lg:items-center">
+              <div>
+                <div class="section-kicker">Before vs after audit</div>
+                <h3 class="display-font mt-4 text-3xl font-extrabold italic leading-tight" style="color:var(--text-primary);">What we found. What we fixed.</h3>
+                <p class="mt-4 text-sm leading-7" style="color:var(--text-secondary);">Scores from a real usability audit before and after our redesign engagement.</p>
+              </div>
+              <div class="space-y-5">
+                <div>
+                  <div class="flex justify-between text-sm mb-2"><span style="color:var(--text-secondary);">Navigation clarity</span><span style="color:var(--accent);font-weight:700;">Pos. 94</span></div>
+                  <div class="relative h-4 rounded-full" style="background:rgba(255,255,255,0.05);">
+                    <div class="h-full rounded-full bar-animated" style="--w:94%;width:94%;background:linear-gradient(90deg,var(--accent),#2bc410);"></div>
+                    <div class="absolute right-2 top-1/2 -translate-y-1/2 mono-font text-[0.6rem]" style="color:#081008;">was 41%</div>
+                  </div>
+                </div>
+                <div>
+                  <div class="flex justify-between text-sm mb-2"><span style="color:var(--text-secondary);">Onboarding completion</span><span style="color:var(--accent);font-weight:700;">Pos. 88</span></div>
+                  <div class="relative h-4 rounded-full" style="background:rgba(255,255,255,0.05);">
+                    <div class="h-full rounded-full bar-animated" style="--w:88%;width:88%;background:linear-gradient(90deg,var(--accent),#2bc410);animation-delay:.1s;"></div>
+                    <div class="absolute right-2 top-1/2 -translate-y-1/2 mono-font text-[0.6rem]" style="color:#081008;">was 32%</div>
+                  </div>
+                </div>
+                <div>
+                  <div class="flex justify-between text-sm mb-2"><span style="color:var(--text-secondary);">Mobile task success</span><span style="color:var(--accent);font-weight:700;">Pos. 91</span></div>
+                  <div class="relative h-4 rounded-full" style="background:rgba(255,255,255,0.05);">
+                    <div class="h-full rounded-full bar-animated" style="--w:91%;width:91%;background:linear-gradient(90deg,var(--accent),#2bc410);animation-delay:.2s;"></div>
+                    <div class="absolute right-2 top-1/2 -translate-y-1/2 mono-font text-[0.6rem]" style="color:#081008;">was 28%</div>
+                  </div>
+                </div>
+                <div>
+                  <div class="flex justify-between text-sm mb-2"><span style="color:var(--text-secondary);">Form completion rate</span><span style="color:var(--accent);font-weight:700;">Pos. 85</span></div>
+                  <div class="relative h-4 rounded-full" style="background:rgba(255,255,255,0.05);">
+                    <div class="h-full rounded-full bar-animated" style="--w:85%;width:85%;background:linear-gradient(90deg,var(--accent),#2bc410);animation-delay:.3s;"></div>
+                    <div class="absolute right-2 top-1/2 -translate-y-1/2 mono-font text-[0.6rem]" style="color:#081008;">was 39%</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══════════════ PROCESS ═══════════════ -->
+      <section id="process" class="section-frame py-24 lg:py-32">
+        <div class="site-shell">
+          <div class="text-center mb-14 reveal">
+            <div class="section-kicker">Our design process</div>
+            <h2 class="display-font mt-4 text-4xl font-extrabold italic leading-[0.95] tracking-[-0.04em] lg:text-6xl mx-auto" style="color:var(--text-primary);max-width:13ch;">Research. Wire. Design. Ship.</h2>
+          </div>
+
+          <div class="grid gap-5 lg:grid-cols-4">
+            <div class="hov-card glass-panel rounded-[28px] p-6 reveal" style="transition-delay:.04s;">
+              <div class="w-10 h-10 rounded-full flex items-center justify-center mb-5" style="background:rgba(57,255,20,0.1);border:1px solid rgba(57,255,20,0.3);">
+                <span class="mono-font text-xs" style="color:var(--accent);">01</span>
+              </div>
+              <div class="mono-font text-xs uppercase tracking-widest mb-3" style="color:var(--accent);">Week 1–2</div>
+              <h3 class="display-font text-xl font-bold italic mb-3" style="color:var(--text-primary);">Discovery & Research</h3>
+              <p class="text-sm leading-7" style="color:var(--text-secondary);">User interviews, competitor analysis, heuristic evaluation of existing product, and a problem definition document with clear success metrics.</p>
+            </div>
+            <div class="hov-card glass-panel rounded-[28px] p-6 reveal" style="transition-delay:.1s;">
+              <div class="w-10 h-10 rounded-full flex items-center justify-center mb-5" style="background:rgba(57,255,20,0.1);border:1px solid rgba(57,255,20,0.3);">
+                <span class="mono-font text-xs" style="color:var(--accent);">02</span>
+              </div>
+              <div class="mono-font text-xs uppercase tracking-widest mb-3" style="color:var(--accent);">Week 2–3</div>
+              <h3 class="display-font text-xl font-bold italic mb-3" style="color:var(--text-primary);">Wireframes & Flows</h3>
+              <p class="text-sm leading-7" style="color:var(--text-secondary);">Low-fidelity wireframes for all key user journeys, reviewed and signed off by stakeholders before any visual design begins.</p>
+            </div>
+            <div class="hov-card glass-panel rounded-[28px] p-6 reveal" style="transition-delay:.15s;">
+              <div class="w-10 h-10 rounded-full flex items-center justify-center mb-5" style="background:rgba(57,255,20,0.1);border:1px solid rgba(57,255,20,0.3);">
+                <span class="mono-font text-xs" style="color:var(--accent);">03</span>
+              </div>
+              <div class="mono-font text-xs uppercase tracking-widest mb-3" style="color:var(--accent);">Week 3–5</div>
+              <h3 class="display-font text-xl font-bold italic mb-3" style="color:var(--text-primary);">High-Fidelity Design</h3>
+              <p class="text-sm leading-7" style="color:var(--text-secondary);">Figma designs for every screen, every state, every breakpoint. Design system built in parallel. Weekly review checkpoints.</p>
+            </div>
+            <div class="hov-card glass-panel rounded-[28px] p-6 reveal" style="transition-delay:.2s;">
+              <div class="w-10 h-10 rounded-full flex items-center justify-center mb-5" style="background:rgba(57,255,20,0.1);border:1px solid rgba(57,255,20,0.3);">
+                <span class="mono-font text-xs" style="color:var(--accent);">04</span>
+              </div>
+              <div class="mono-font text-xs uppercase tracking-widest mb-3" style="color:var(--accent);">Week 5–6</div>
+              <h3 class="display-font text-xl font-bold italic mb-3" style="color:var(--text-primary);">Test & Hand Off</h3>
+              <p class="text-sm leading-7" style="color:var(--text-secondary);">Maze usability testing with 5–8 real users. Issues fixed. Annotated Figma files and dev specifications delivered. 30 days of post-handoff support included.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══════════════ FAQ ═══════════════ -->
+      <section class="section-frame py-24 lg:py-32">
+        <div class="site-shell">
+          <div class="grid gap-12 lg:grid-cols-[0.7fr_1.3fr] lg:items-start">
+            <div class="reveal">
+              <div class="section-kicker">Common questions</div>
+              <h2 class="display-font mt-4 text-4xl font-extrabold italic leading-[0.96] tracking-[-0.04em] lg:text-5xl" style="color:var(--text-primary);max-width:9ch;">Everything you've wanted to ask.</h2>
+              <p class="mt-6 text-base leading-8" style="color:var(--text-secondary);">Straight answers about how our design process works, what's included, and what to expect.</p>
+            </div>
+            <div class="space-y-0 reveal" style="transition-delay:.08s;">
+              <div class="faq-item hov-card glass-panel rounded-[22px] overflow-hidden mb-4">
+                <div class="accordion-toggle flex items-center justify-between" onclick="toggleFAQ(this)">
+                  <span class="faq-question display-font text-lg font-bold italic" style="color:var(--text-primary);">How long does a UI/UX project take?</span>
+                  <span class="faq-icon mono-font text-xl" style="color:var(--accent);">+</span>
+                </div>
+                <div class="accordion-body">
+                  <p class="text-sm leading-7" style="color:var(--text-secondary);">Scope-dependent, but most projects run 4–6 weeks. A focused app redesign is typically 4 weeks. A full product with design system is 6–8 weeks. We give a fixed timeline in the proposal — no open-ended retainers unless you want ongoing design support.</p>
+                </div>
+              </div>
+              <div class="faq-item hov-card glass-panel rounded-[22px] overflow-hidden mb-4">
+                <div class="accordion-toggle flex items-center justify-between" onclick="toggleFAQ(this)">
+                  <span class="faq-question display-font text-lg font-bold italic" style="color:var(--text-primary);">Do we get the Figma source files?</span>
+                  <span class="faq-icon mono-font text-xl" style="color:var(--accent);">+</span>
+                </div>
+                <div class="accordion-body">
+                  <p class="text-sm leading-7" style="color:var(--text-secondary);">Yes, always. All Figma files are transferred to your account at project close. You own everything outright — no licence fees, no lock-in.</p>
+                </div>
+              </div>
+              <div class="faq-item hov-card glass-panel rounded-[22px] overflow-hidden mb-4">
+                <div class="accordion-toggle flex items-center justify-between" onclick="toggleFAQ(this)">
+                  <span class="faq-question display-font text-lg font-bold italic" style="color:var(--text-primary);">How many revisions are included?</span>
+                  <span class="faq-icon mono-font text-xl" style="color:var(--accent);">+</span>
+                </div>
+                <div class="accordion-body">
+                  <p class="text-sm leading-7" style="color:var(--text-secondary);">Two structured revision rounds per phase. In practice, most projects don't need them because we run stakeholder checkpoints at each milestone before moving forward.</p>
+                </div>
+              </div>
+              <div class="faq-item hov-card glass-panel rounded-[22px] overflow-hidden mb-4">
+                <div class="accordion-toggle flex items-center justify-between" onclick="toggleFAQ(this)">
+                  <span class="faq-question display-font text-lg font-bold italic" style="color:var(--text-primary);">Can you redesign an existing product without rebuilding it?</span>
+                  <span class="faq-icon mono-font text-xl" style="color:var(--accent);">+</span>
+                </div>
+                <div class="accordion-body">
+                  <p class="text-sm leading-7" style="color:var(--text-secondary);">Yes — this is most of what we do. We audit the existing UI, identify the highest-friction areas, and improve them without disrupting what works.</p>
+                </div>
+              </div>
+              <div class="faq-item hov-card glass-panel rounded-[22px] overflow-hidden mb-4">
+                <div class="accordion-toggle flex items-center justify-between" onclick="toggleFAQ(this)">
+                  <span class="faq-question display-font text-lg font-bold italic" style="color:var(--text-primary);">Do you handle development as well?</span>
+                  <span class="faq-icon mono-font text-xl" style="color:var(--accent);">+</span>
+                </div>
+                <div class="accordion-body">
+                  <p class="text-sm leading-7" style="color:var(--text-secondary);">Yes. We're a full-service agency. The same team that designed the Figma files can build them — no translation loss between design and dev.</p>
+                </div>
+              </div>
+              <div class="faq-item hov-card glass-panel rounded-[22px] overflow-hidden mb-4">
+                <div class="accordion-toggle flex items-center justify-between" onclick="toggleFAQ(this)">
+                  <span class="faq-question display-font text-lg font-bold italic" style="color:var(--text-primary);">What if we already have a brand and design system?</span>
+                  <span class="faq-icon mono-font text-xl" style="color:var(--accent);">+</span>
+                </div>
+                <div class="accordion-body">
+                  <p class="text-sm leading-7" style="color:var(--text-secondary);">We work within it. Send us your brand document and we design inside your existing system — or extend it cleanly where gaps exist.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <section class="relative py-24 lg:py-32">
+        <div class="site-shell">
+          <div class="glass-panel relative overflow-hidden rounded-[38px] px-6 py-14 lg:px-14 lg:py-16 reveal">
+            <div class="cta-bg rounded-[38px]"></div>
+            <div class="spotlight" style="width:28rem;height:28rem;top:-10rem;right:-6rem;background:radial-gradient(circle,rgba(57,255,20,0.14),transparent 64%);"></div>
+            <div class="relative z-10 grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
+              <div>
+                <div class="section-kicker">Start your project</div>
+                <h2 class="display-font mt-4 text-4xl font-extrabold italic leading-[0.94] tracking-[-0.04em] lg:text-6xl" style="color:var(--text-primary);max-width:12ch;">Have a product that needs better design?</h2>
+                <p class="mt-6 text-base leading-8 lg:text-lg" style="color:var(--text-secondary);max-width:38rem;">We'll review your current interface, identify the biggest friction points, and show you exactly what a redesign would change. No charge.</p>
+              </div>
+              <div class="flex flex-col gap-4">
+                <a href="index.html#contact" class="display-font inline-flex items-center justify-center rounded-full px-8 py-4 text-base font-bold transition-all hover:-translate-y-1" style="background:var(--accent);color:#081008;box-shadow:0 0 42px rgba(57,255,20,0.18);">Get Free Design Audit</a>
+                <a href="web-development.html" class="display-font inline-flex items-center justify-center rounded-full border px-8 py-4 text-base font-bold transition-all hover:-translate-y-1" style="border-color:var(--border-strong);color:var(--text-primary);">Explore Web Dev →</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="relative pb-10">
+      <div class="site-shell" style="border-top:1px solid var(--border);padding-top:2.5rem;">
+        <div class="grid gap-10 lg:grid-cols-[1.2fr_0.8fr_0.8fr_0.8fr]">
+          <div>
+            <img src="assets/WhatsApp Image 2026-05-09 at 09,19,43-Picsart-BackgroundRemover.png" alt="Auroveon" style="height:72px;width:auto;max-width:240px;object-fit:contain;" />
+            <p class="mt-4 text-sm leading-7 max-w-sm" style="color:var(--text-secondary);">Software agency for AI solutions, modern web platforms, SaaS systems, and cinematic digital experiences built for ambitious brands.</p>
+            <div class="mt-6 flex flex-wrap items-center gap-4">
+              <a class="footer-social-link" href="https://linkedin.com/company/auroveon" target="_blank" rel="noreferrer" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.05-1.86-3.05-1.86 0-2.15 1.45-2.15 2.95v5.67H9.32V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.61 0 4.28 2.37 4.28 5.46v6.28ZM5.31 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14ZM7.09 20.45H3.52V9h3.57v11.45ZM22.23 0H1.77A1.77 1.77 0 0 0 0 1.77v20.46C0 23.21.79 24 1.77 24h20.46A1.77 1.77 0 0 0 24 22.23V1.77A1.77 1.77 0 0 0 22.23 0Z"/></svg></a>
+              <a class="footer-social-link" href="https://instagram.com/auroveon" target="_blank" rel="noreferrer" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2Zm0 1.8A3.95 3.95 0 0 0 3.8 7.75v8.5a3.95 3.95 0 0 0 3.95 3.95h8.5a3.95 3.95 0 0 0 3.95-3.95v-8.5a3.95 3.95 0 0 0-3.95-3.95Zm8.95 1.35a1.15 1.15 0 1 1 0 2.3 1.15 1.15 0 0 1 0-2.3ZM12 6.86A5.14 5.14 0 1 1 6.86 12 5.14 5.14 0 0 1 12 6.86Zm0 1.8A3.34 3.34 0 1 0 15.34 12 3.34 3.34 0 0 0 12 8.66Z"/></svg></a>
+              <a class="footer-social-link" href="https://twitter.com/auroveon" target="_blank" rel="noreferrer" aria-label="X"><svg viewBox="0 0 24 24"><path d="M18.9 2H22l-6.77 7.73L23.2 22h-6.25l-4.9-6.4L6.45 22H3.34l7.24-8.27L1 2h6.4l4.43 5.85L18.9 2Zm-1.1 18h1.73L6.46 3.9H4.6Z"/></svg></a>
+            </div>
+          </div>
+          <div>
+            <div class="mono-font text-xs uppercase tracking-[0.18em] mb-5" style="color:var(--accent);">Navigation</div>
+            <div class="flex flex-col gap-3 text-sm">
+              <a class="footer-link" href="index.html#services">Services</a>
+              <a class="footer-link" href="index.html#story">Process</a>
+              <a class="footer-link" href="index.html#work">Work</a>
+              <a class="footer-link" href="web-development.html">Web Development</a>
+              <a class="footer-link" href="seo.html" style="color:var(--accent);">SEO</a>
+              <a class="footer-link" href="index.html#contact">Contact</a>
+            </div>
+          </div>
+          <div>
+            <div class="mono-font text-xs uppercase tracking-[0.18em] mb-5" style="color:var(--accent);">Services</div>
+            <div class="flex flex-col gap-3 text-sm" style="color:var(--text-secondary);">
+              <span>AI Solutions</span><span>Web Development</span><span>SaaS Platforms</span><span>Automation</span><span>SEO</span>
+            </div>
+          </div>
+          <div>
+            <div class="mono-font text-xs uppercase tracking-[0.18em] mb-5" style="color:var(--accent);">Contact Us</div>
+            <div class="flex flex-col gap-4">
+              <div><div class="footer-contact-label">Email</div><div class="footer-contact-value"><a class="footer-contact-link" href="mailto:info@auroveon.com">info@auroveon.com</a></div></div>
+              <div><div class="footer-contact-label">Phone</div><div class="footer-contact-value"><a class="footer-contact-link" href="tel:+923353213863">+92 335 321 3863</a></div></div>
+              <div><div class="footer-contact-label">Address</div><div class="footer-contact-value">Street 4, Karachi, Pakistan</div></div>
+            </div>
+          </div>
+        </div>
+        <div class="mt-10 flex flex-col gap-4 pt-6 text-sm" style="color:var(--text-secondary);border-top:1px solid var(--border);">
+          <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+            <div class="flex flex-wrap items-center gap-3">
+              <span>© 2026</span>
+              <img src="assets/WhatsApp Image 2026-05-09 at 09,19,43-Picsart-BackgroundRemover.png" alt="Auroveon" style="height:26px;width:auto;" />
+              <span>Crafted for premium digital products.</span>
+            </div>
+            <div class="flex flex-wrap items-center gap-4">
+              <a class="footer-legal-link" href="/privacy-policy">Privacy Policy</a>
+              <span>·</span>
+              <a class="footer-legal-link" href="/terms-of-service">Terms of Service</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- WhatsApp FAB -->
+    <a href="https://wa.me/923353213863" target="_blank" rel="noreferrer" aria-label="Chat on WhatsApp" class="whatsapp-fab">
+      <svg viewBox="0 0 24 24" fill="white" width="28" height="28"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+    </a>
+
+    <script>
+      // NAVBAR
+      const navbar = document.getElementById('navbar');
+      window.addEventListener('scroll', () => { navbar.classList.toggle('nav-scrolled', window.scrollY > 10); });
+
+      // MOBILE MENU
+      const btn = document.getElementById('mobileMenuBtn');
+      const menu = document.getElementById('mobileMenu');
+      btn.addEventListener('click', () => { menu.classList.toggle('hidden'); btn.textContent = menu.classList.contains('hidden') ? '+' : '×'; });
+
+      // CURSOR
+      const dot = document.getElementById('cursorDot');
+      const ring = document.getElementById('cursorRing');
+      if (window.innerWidth >= 1024) {
+        dot.style.opacity = '1'; ring.style.opacity = '1';
+        let dotX=0,dotY=0,ringX=0,ringY=0,mx=0,my=0;
+        window.addEventListener('mousemove', e => { mx=e.clientX; my=e.clientY; });
+        const tick = () => {
+          dotX += (mx-dotX)*.18; dotY += (my-dotY)*.18;
+          ringX += (mx-ringX)*.1; ringY += (my-ringY)*.1;
+          dot.style.left=dotX+'px'; dot.style.top=dotY+'px';
+          ring.style.left=ringX+'px'; ring.style.top=ringY+'px';
+          requestAnimationFrame(tick);
+        };
+        tick();
+        document.querySelectorAll('a,button').forEach(el => {
+          el.addEventListener('mouseenter', () => ring.classList.add('is-hovering'));
+          el.addEventListener('mouseleave', () => ring.classList.remove('is-hovering'));
+        });
+      }
+
+      // REVEAL
+      const obs = new IntersectionObserver(entries => {
+        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+      }, { threshold: 0.1 });
+      document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+      // FAQ ACCORDION
+      function toggleFAQ(el) {
+        const body = el.nextElementSibling;
+        const faqItem = el.closest('.faq-item');
+        const isOpen = body.classList.contains('open');
+        // close all
+        document.querySelectorAll('.accordion-body').forEach(b => b.classList.remove('open'));
+        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+        document.querySelectorAll('.faq-question').forEach(q => q.style.color = '');
+        if (!isOpen) {
+          body.classList.add('open');
+          faqItem.classList.add('open');
+          el.querySelector('.faq-question').style.color = '#00ff88';
+        }
+      }
+
+      // SMOOTH ANCHORS
+      document.querySelectorAll('a[href^="#"]').forEach(a => {
+        a.addEventListener('click', e => {
+          const t = document.querySelector(a.getAttribute('href'));
+          if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth' }); }
+        });
+      });
+
+      (function() {
+        const wrapper = document.getElementById('design-process-wrapper');
+        if (!wrapper) return;
+        const screens = document.querySelectorAll('.process-screen');
+        const fill = document.getElementById('process-progress-fill');
+        
+        function updateStep() {
+          const rect = wrapper.getBoundingClientRect();
+          const wh = window.innerHeight;
+          const total = wrapper.offsetHeight - wh;
+          const scrolled = Math.max(0, -rect.top);
+          const progress = Math.min(1, scrolled / total);
+          
+          if (fill) fill.style.height = (progress * 100) + '%';
+          
+          const step = Math.min(3, Math.floor(progress * 4));
+          screens.forEach((s, i) => s.classList.toggle('active', i === step));
+        }
+        
+        window.addEventListener('scroll', updateStep, { passive: true });
+        updateStep();
+      })();
+    </script>
+  </body>
+</html>
