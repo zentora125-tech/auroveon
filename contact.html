@@ -92,6 +92,21 @@
       .nav-scrolled { background: rgba(8,10,8,0.86); border-bottom: 1px solid var(--border); backdrop-filter: blur(22px); }
       .nav-link, .footer-link { color: var(--text-secondary); transition: color 0.24s ease; }
       .nav-link:hover, .footer-link:hover { color: var(--text-primary); }
+      .nav-link.active { color: var(--accent); }
+      /* Services Dropdown */
+      .nav-dropdown-wrap { position: relative; }
+      .nav-dropdown-wrap:hover .nav-dropdown { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); pointer-events: auto; }
+      .nav-dropdown { position: absolute; top: calc(100% + 14px); left: 50%; transform: translateX(-50%) translateY(-8px); min-width: 200px; background: rgba(10,13,10,0.98); border: 1px solid var(--border); border-radius: 20px; padding: 10px; opacity: 0; visibility: hidden; transition: opacity 0.22s ease, transform 0.22s ease, visibility 0.22s; backdrop-filter: blur(22px); -webkit-backdrop-filter: blur(22px); box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 30px rgba(57,255,20,0.06); z-index: 100; }
+      .nav-dropdown a { display: block; padding: 9px 14px; border-radius: 12px; color: var(--text-secondary); font-size: 0.9rem; font-weight: 500; transition: color 0.2s ease, background 0.2s ease; text-decoration: none; }
+      .nav-dropdown a:hover { color: var(--accent); background: rgba(57,255,20,0.06); }
+      .nav-dropdown-btn { display: flex; align-items: center; gap: 5px; color: var(--text-secondary); transition: color 0.24s ease; font-size: 1rem; font-weight: 500; background: none; border: none; cursor: pointer; font-family: inherit; padding: 0; }
+      .nav-dropdown-wrap:hover .nav-dropdown-btn { color: var(--text-primary); }
+      .nav-dropdown-btn svg { transition: transform 0.22s ease; flex-shrink: 0; }
+      .nav-dropdown-wrap:hover .nav-dropdown-btn svg { transform: rotate(180deg); }
+      .mob-dropdown { display: none; flex-direction: column; gap: 4px; padding: 8px 0; }
+      .mob-dropdown.open { display: flex; }
+      .mob-dropdown a { display: block; padding: 10px 18px; border-radius: 12px; color: var(--text-secondary); font-size: 1rem; font-weight: 500; transition: color 0.2s ease, background 0.2s ease; text-decoration: none; }
+      .mob-dropdown a:hover { color: var(--accent); background: rgba(57,255,20,0.06); }
 
       .section-frame { position: relative; }
       .section-frame::after {
@@ -341,15 +356,28 @@
           <img src="assets/WhatsApp Image 2026-05-09 at 09,19,43-Picsart-BackgroundRemover.png" alt="Auroveon" class="brand-logo brand-logo-nav" />
         </a>
         <nav class="hidden items-center gap-9 lg:flex">
-          <a class="nav-link text-base font-medium" href="index.html#services">Services</a>
-          <a class="nav-link text-base font-medium" href="index.html#story">Process</a>
-          <a class="nav-link text-base font-medium" href="index.html#work">Work</a>
+          <a class="nav-link text-base font-medium" href="index.html">Home</a>
           <a class="nav-link text-base font-medium" href="about.html">About</a>
-          <a class="nav-link text-base font-medium" href="index.html#blog">Journal</a>
-          <a class="nav-link text-base font-medium" style="color:var(--accent);" href="contact.html">Contact</a>
+          <div class="nav-dropdown-wrap">
+            <a class="nav-dropdown-btn text-base" href="services.html" aria-haspopup="true">
+              Services
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <div class="nav-dropdown">
+              <a href="services.html#web-development">Web Development</a>
+              <a href="services.html#app-development">App Development</a>
+              <a href="services.html#ai-automation">AI Automation</a>
+              <a href="services.html#digital-marketing">Digital Marketing</a>
+              <a href="services.html#seo">SEO</a>
+              <a href="services.html#ui-ux">UI/UX</a>
+            </div>
+          </div>
+          <a class="nav-link text-base font-medium" href="blogs.html">Blogs</a>
+          <a class="nav-link text-base font-medium" href="portfolio.html">Portfolio</a>
+          <a class="nav-link text-base font-medium active" href="contact.html">Contact</a>
         </nav>
         <div class="hidden lg:block">
-          <a href="#contact-form"
+          <a href="contact.html"
             class="display-font inline-flex items-center gap-2 rounded-full border px-6 py-3.5 text-base font-semibold transition-all hover:-translate-y-0.5"
             style="border-color:var(--accent);color:var(--accent);background:rgba(57,255,20,0.02);">
             Start a Project
@@ -364,11 +392,24 @@
       <div id="mobileMenu" class="site-shell pb-4 lg:hidden hidden">
         <div class="glass-panel rounded-[28px] px-6 py-6">
           <div class="flex flex-col gap-5 text-center">
-            <a href="index.html#services" class="display-font text-2xl font-bold italic text-[var(--text-primary)]">Services</a>
-            <a href="index.html#story" class="display-font text-2xl font-bold italic text-[var(--text-primary)]">Process</a>
-            <a href="index.html#work" class="display-font text-2xl font-bold italic text-[var(--text-primary)]">Work</a>
+            <a href="index.html" class="display-font text-2xl font-bold italic text-[var(--text-primary)]">Home</a>
             <a href="about.html" class="display-font text-2xl font-bold italic text-[var(--text-primary)]">About</a>
-            <a href="index.html#blog" class="display-font text-2xl font-bold italic text-[var(--text-primary)]">Journal</a>
+            <div>
+              <div class="flex items-center justify-center gap-2">
+                <a href="services.html" class="display-font text-2xl font-bold italic text-[var(--text-primary)]">Services</a>
+                <button id="mobServicesBtn" style="background:none;border:none;cursor:pointer;color:var(--text-primary);font-size:1rem;padding:0 4px;" type="button" aria-label="Toggle services menu">&#9662;</button>
+              </div>
+              <div id="mobServicesMenu" class="mob-dropdown">
+                <a href="services.html#web-development">Web Development</a>
+                <a href="services.html#app-development">App Development</a>
+                <a href="services.html#ai-automation">AI Automation</a>
+                <a href="services.html#digital-marketing">Digital Marketing</a>
+                <a href="services.html#seo">SEO</a>
+                <a href="services.html#ui-ux">UI/UX</a>
+              </div>
+            </div>
+            <a href="blogs.html" class="display-font text-2xl font-bold italic text-[var(--text-primary)]">Blogs</a>
+            <a href="portfolio.html" class="display-font text-2xl font-bold italic text-[var(--text-primary)]">Portfolio</a>
             <a href="contact.html" class="display-font text-2xl font-bold italic" style="color:var(--accent)">Contact</a>
           </div>
         </div>
@@ -855,8 +896,15 @@
       const mobileMenuIcon = document.getElementById('mobileMenuIcon');
       mobileMenuBtn.addEventListener('click', () => {
         const hidden = mobileMenu.classList.toggle('hidden');
-        mobileMenuIcon.textContent = hidden ? '+' : 'x';
+        mobileMenuIcon.textContent = hidden ? '+' : '×';
       });
+
+      // ---- Mobile Services dropdown ----
+      const mobServicesBtn = document.getElementById('mobServicesBtn');
+      const mobServicesMenu = document.getElementById('mobServicesMenu');
+      if (mobServicesBtn && mobServicesMenu) {
+        mobServicesBtn.addEventListener('click', () => mobServicesMenu.classList.toggle('open'));
+      }
 
       // ---- Custom cursor ----
       if (window.innerWidth >= 1024) {

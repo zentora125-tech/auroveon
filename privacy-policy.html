@@ -50,6 +50,21 @@
       .nav-scrolled{background:rgba(8,10,8,.88);border-bottom:0px solid var(--border);backdrop-filter:blur(22px);}
       .nav-link{color:var(--text-secondary);transition:color .24s ease;}
       .nav-link:hover{color:var(--text-primary);}
+      .nav-link.active{color:var(--accent);}
+      /* Services Dropdown */
+      .nav-dropdown-wrap{position:relative;}
+      .nav-dropdown-wrap:hover .nav-dropdown{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0);pointer-events:auto;}
+      .nav-dropdown{position:absolute;top:calc(100% + 14px);left:50%;transform:translateX(-50%) translateY(-8px);min-width:200px;background:rgba(10,13,10,0.98);border:1px solid var(--border);border-radius:20px;padding:10px;opacity:0;visibility:hidden;transition:opacity .22s ease,transform .22s ease,visibility .22s;backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);box-shadow:0 20px 60px rgba(0,0,0,.5),0 0 30px rgba(57,255,20,.06);z-index:100;}
+      .nav-dropdown a{display:block;padding:9px 14px;border-radius:12px;color:var(--text-secondary);font-size:.9rem;font-weight:500;transition:color .2s ease,background .2s ease;text-decoration:none;}
+      .nav-dropdown a:hover{color:var(--accent);background:rgba(57,255,20,.06);}
+      .nav-dropdown-btn{display:flex;align-items:center;gap:5px;color:var(--text-secondary);transition:color .24s ease;font-size:1rem;font-weight:500;background:none;border:none;cursor:pointer;font-family:inherit;padding:0;}
+      .nav-dropdown-wrap:hover .nav-dropdown-btn{color:var(--text-primary);}
+      .nav-dropdown-btn svg{transition:transform .22s ease;flex-shrink:0;}
+      .nav-dropdown-wrap:hover .nav-dropdown-btn svg{transform:rotate(180deg);}
+      .mob-dropdown{display:none;flex-direction:column;gap:4px;padding:8px 0;}
+      .mob-dropdown.open{display:flex;}
+      .mob-dropdown a{display:block;padding:10px 18px;border-radius:12px;color:var(--text-secondary);font-size:1rem;font-weight:500;transition:color .2s ease,background .2s ease;text-decoration:none;}
+      .mob-dropdown a:hover{color:var(--accent);background:rgba(57,255,20,.06);}
       .footer-link{color:var(--text-secondary);transition:color .24s ease;}
       .footer-link:hover{color:var(--text-primary);}
       .footer-legal-link{color:var(--text-secondary);transition:color .24s ease;}
@@ -154,11 +169,26 @@
         </a>
         <nav class="hidden items-center gap-9 lg:flex">
           <a class="nav-link text-sm font-medium" href="index.html">Home</a>
-          <a class="nav-link text-sm font-medium" href="services.html">Services</a>
-          <a class="nav-link text-sm font-medium" href="index.html#work">Work</a>
-          <a class="nav-link text-sm font-medium" href="index.html#contact">Contact</a>
+          <a class="nav-link text-sm font-medium" href="about.html">About</a>
+          <div class="nav-dropdown-wrap">
+            <a class="nav-dropdown-btn text-sm" href="services.html" aria-haspopup="true">
+              Services
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <div class="nav-dropdown">
+              <a href="services.html#web-development">Web Development</a>
+              <a href="services.html#app-development">App Development</a>
+              <a href="services.html#ai-automation">AI Automation</a>
+              <a href="services.html#digital-marketing">Digital Marketing</a>
+              <a href="services.html#seo">SEO</a>
+              <a href="services.html#ui-ux">UI/UX</a>
+            </div>
+          </div>
+          <a class="nav-link text-sm font-medium" href="blogs.html">Blogs</a>
+          <a class="nav-link text-sm font-medium" href="portfolio.html">Portfolio</a>
+          <a class="nav-link text-sm font-medium" href="contact.html">Contact</a>
         </nav>
-        <a href="index.html#contact" class="display-font hidden lg:inline-flex items-center gap-2 rounded-full border px-6 py-3.5 text-sm font-semibold" style="border-color:var(--accent);color:var(--accent);background:rgba(57,255,20,.02);">
+        <a href="contact.html" class="display-font hidden lg:inline-flex items-center gap-2 rounded-full border px-6 py-3.5 text-sm font-semibold" style="border-color:var(--accent);color:var(--accent);background:rgba(57,255,20,.02);">
           Start a Project
         </a>
         <button id="mob-toggle" class="glass-panel flex h-12 w-12 items-center justify-center rounded-full lg:hidden" type="button">
@@ -169,8 +199,24 @@
         <div class="glass-panel rounded-[28px] px-6 py-6">
           <div class="flex flex-col gap-5 text-center">
             <a href="index.html" class="display-font text-2xl font-bold italic" style="color:var(--text-primary);">Home</a>
-            <a href="services.html" class="display-font text-2xl font-bold italic" style="color:var(--text-primary);">Services</a>
-            <a href="index.html#contact" class="display-font text-2xl font-bold italic" style="color:var(--text-primary);">Contact</a>
+            <a href="about.html" class="display-font text-2xl font-bold italic" style="color:var(--text-primary);">About</a>
+            <div>
+              <div class="flex items-center justify-center gap-2">
+                <a href="services.html" class="display-font text-2xl font-bold italic" style="color:var(--text-primary);">Services</a>
+                <button id="mobServicesBtn" style="background:none;border:none;cursor:pointer;color:var(--text-primary);font-size:1rem;padding:0 4px;" type="button" aria-label="Toggle services menu">&#9662;</button>
+              </div>
+              <div id="mobServicesMenu" class="mob-dropdown">
+                <a href="services.html#web-development">Web Development</a>
+                <a href="services.html#app-development">App Development</a>
+                <a href="services.html#ai-automation">AI Automation</a>
+                <a href="services.html#digital-marketing">Digital Marketing</a>
+                <a href="services.html#seo">SEO</a>
+                <a href="services.html#ui-ux">UI/UX</a>
+              </div>
+            </div>
+            <a href="blogs.html" class="display-font text-2xl font-bold italic" style="color:var(--text-primary);">Blogs</a>
+            <a href="portfolio.html" class="display-font text-2xl font-bold italic" style="color:var(--text-primary);">Portfolio</a>
+            <a href="contact.html" class="display-font text-2xl font-bold italic" style="color:var(--text-primary);">Contact</a>
           </div>
         </div>
       </div>
@@ -531,6 +577,13 @@
         menu.classList.toggle('hidden');
         icon.textContent = menu.classList.contains('hidden') ? '+' : '×';
       });
+
+      // Mobile Services dropdown
+      const mobServicesBtn = document.getElementById('mobServicesBtn');
+      const mobServicesMenu = document.getElementById('mobServicesMenu');
+      if (mobServicesBtn && mobServicesMenu) {
+        mobServicesBtn.addEventListener('click', () => mobServicesMenu.classList.toggle('open'));
+      }
 
       // Scroll reveal
       const obs = new IntersectionObserver(entries => {
