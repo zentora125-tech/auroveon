@@ -1,799 +1,656 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Web Development | Auroveon</title>
-    <meta name="description" content="Premium web platforms, product sites, and high-performance applications built by Auroveon — designed to feel editorial, interactive, and conversion-focused." />
-    <meta name="theme-color" content="#080A08" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-      :root {
-        --bg-base: #080a08;
-        --accent: #39ff14;
-        --accent-dim: #2bc410;
-        --accent-glow: rgba(57, 255, 20, 0.16);
-        --text-primary: #f0f5f0;
-        --text-secondary: #7a8a7a;
-        --text-muted: #4a574a;
-        --border: rgba(57, 255, 20, 0.1);
-        --border-strong: rgba(57, 255, 20, 0.24);
-      }
-      * { margin: 0; padding: 0; box-sizing: border-box; }
-      html { scroll-behavior: smooth; }
-      body {
-        background: radial-gradient(circle at top, rgba(57,255,20,0.08), transparent 26%), linear-gradient(180deg,#080a08 0%,#090c09 50%,#070907 100%);
-        color: var(--text-primary);
-        font-family: "Inter", sans-serif;
-        overflow-x: hidden;
-        -webkit-font-smoothing: antialiased;
-      }
-      @media(min-width:1024px){body{cursor:none;}}
-      .display-font { font-family: "Poppins", sans-serif; }
-      .mono-font { font-family: "JetBrains Mono", monospace; }
-      .site-shell { width: min(1380px, calc(100% - 1.5rem)); margin: 0 auto; }
-      @media(min-width:1024px){.site-shell{width:min(1380px,calc(100% - 4rem));}}
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Web Development | Auroveon</title>
+  <meta name="description" content="Premium web platforms, product sites, and high-performance applications built by Auroveon."/>
+  <meta name="theme-color" content="#080A08"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root{--bg-base:#080a08;--accent:#39ff14;--accent-dim:#2bc410;--accent-glow:rgba(57,255,20,0.16);--text-primary:#f0f5f0;--text-secondary:#7a8a7a;--text-muted:#4a574a;--border:rgba(57,255,20,0.1);--border-strong:rgba(57,255,20,0.24);}
+    *{margin:0;padding:0;box-sizing:border-box;}
+    html{scroll-behavior:smooth;}
+    body{background:radial-gradient(circle at top,rgba(57,255,20,0.08),transparent 26%),linear-gradient(180deg,#080a08 0%,#090c09 50%,#070907 100%);color:var(--text-primary);font-family:"Inter",sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased;}
+    @media(min-width:1024px){body{cursor:none;}}
+    .display-font{font-family:"Poppins",sans-serif;}
+    .mono-font{font-family:"JetBrains Mono",monospace;}
+    .site-shell{width:min(1380px,calc(100% - 3rem));margin:0 auto;}
+    @media(min-width:1024px){.site-shell{width:min(1380px,calc(100% - 6rem));}}
 
-      /* CURSOR */
-      .cursor-dot,.cursor-ring{position:fixed;top:0;left:0;transform:translate(-50%,-50%);pointer-events:none;z-index:90;opacity:0;}
-      .cursor-dot{width:10px;height:10px;border-radius:9999px;background:var(--accent);box-shadow:0 0 22px rgba(57,255,20,0.65);mix-blend-mode:screen;}
-      .cursor-ring{width:54px;height:54px;border-radius:9999px;border:1px solid rgba(57,255,20,0.22);transition:width .25s,height .25s,border-color .25s;}
-      .cursor-ring.is-hovering{width:76px;height:76px;border-color:rgba(57,255,20,0.48);}
-      @media(max-width:1023px){.cursor-dot,.cursor-ring{display:none;}}
+    /* CURSOR */
+    .cursor-dot,.cursor-ring{position:fixed;top:0;left:0;transform:translate(-50%,-50%);pointer-events:none;z-index:90;opacity:0;}
+    .cursor-dot{width:10px;height:10px;border-radius:9999px;background:var(--accent);box-shadow:0 0 22px rgba(57,255,20,0.65);mix-blend-mode:screen;}
+    .cursor-ring{width:54px;height:54px;border-radius:9999px;border:1px solid rgba(57,255,20,0.22);transition:width .25s,height .25s,border-color .25s;}
+    .cursor-ring.is-hovering{width:76px;height:76px;border-color:rgba(57,255,20,0.48);}
+    @media(max-width:1023px){.cursor-dot,.cursor-ring{display:none;}}
 
-      /* NOISE */
-      .noise-overlay{position:fixed;inset:0;pointer-events:none;z-index:5;opacity:0.034;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:240px 240px;}
+    /* NOISE */
+    .noise-overlay{position:fixed;inset:0;pointer-events:none;z-index:5;opacity:0.034;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:240px 240px;}
 
-      /* GLASS */
-      .glass-panel{background:linear-gradient(180deg,rgba(18,23,18,0.8),rgba(10,12,10,0.58));border:1px solid var(--border);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);box-shadow:0 18px 60px rgba(0,0,0,0.35),inset 0 1px 0 rgba(255,255,255,0.04);}
+    /* GLASS */
+    .glass-panel{background:linear-gradient(180deg,rgba(18,23,18,0.82),rgba(10,12,10,0.62));border:1px solid var(--border);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);box-shadow:0 18px 60px rgba(0,0,0,0.35),inset 0 1px 0 rgba(255,255,255,0.04);}
 
-      /* NAV */
-      .nav-scrolled{background:rgba(8,10,8,0.86);border-bottom:1px solid var(--border);backdrop-filter:blur(22px);}
-      .nav-link{color:var(--text-secondary);transition:color .24s;}
-      .nav-link:hover,.nav-link.active-link{color:var(--text-primary);}
+    /* NAV */
+    .nav-scrolled{background:rgba(8,10,8,0.88);border-bottom:1px solid var(--border);backdrop-filter:blur(22px);}
+    .nav-link{color:var(--text-secondary);transition:color .24s;}
+    .nav-link:hover,.nav-link.active-link{color:var(--text-primary);}
 
-      /* EYEBROW */
-      .eyebrow{font-family:"JetBrains Mono",monospace;color:var(--accent);font-size:0.72rem;letter-spacing:0.18em;text-transform:uppercase;}
-      .section-kicker{font-family:"Poppins",sans-serif;font-size:0.74rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--text-secondary);}
-      .mini-label{color:var(--text-muted);font-size:0.76rem;text-transform:uppercase;letter-spacing:0.16em;}
-      .soft-divider{background:linear-gradient(90deg,transparent,rgba(57,255,20,0.28),transparent);}
+    /* TYPE */
+    .eyebrow{font-family:"JetBrains Mono",monospace;color:var(--accent);font-size:0.72rem;letter-spacing:0.18em;text-transform:uppercase;}
+    .section-kicker{font-family:"Poppins",sans-serif;font-size:0.74rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--text-secondary);}
+    .mini-label{color:var(--text-muted);font-size:0.76rem;text-transform:uppercase;letter-spacing:0.16em;}
 
-      /* HEADLINE SHINE */
-      @keyframes text-shine{0%{background-position:-200% center;}100%{background-position:200% center;}}
-      .shine-word{display:inline-block;background:linear-gradient(90deg,#fff 0%,#fff 35%,#b9ffb0 44%,#eaffea 50%,#b9ffb0 56%,#fff 65%,#fff 100%);background-size:200% auto;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:text-shine 4s linear infinite;}
-      .shine-word-accent{display:inline-block;background:linear-gradient(90deg,#39ff14 0%,#39ff14 35%,#ccffcc 44%,#efffef 50%,#ccffcc 56%,#39ff14 65%,#39ff14 100%);background-size:200% auto;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:text-shine 4s linear infinite;}
+    /* SHINE */
+    @keyframes text-shine{0%{background-position:-200% center;}100%{background-position:200% center;}}
+    .shine-word{display:inline-block;background:linear-gradient(90deg,#fff 0%,#fff 35%,#b9ffb0 44%,#eaffea 50%,#b9ffb0 56%,#fff 65%,#fff 100%);background-size:200% auto;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:text-shine 4s linear infinite;}
+    .shine-word-accent{display:inline-block;background:linear-gradient(90deg,#39ff14 0%,#39ff14 35%,#ccffcc 44%,#efffef 50%,#ccffcc 56%,#39ff14 65%,#39ff14 100%);background-size:200% auto;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:text-shine 4s linear infinite;}
 
-      /* SECTION */
-      .section-frame{position:relative;}
-      .section-frame::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:1px;background:linear-gradient(90deg,transparent,rgba(57,255,20,0.08),transparent);}
+    /* SECTION DIVIDER */
+    .section-frame{position:relative;}
+    .section-frame::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:1px;background:linear-gradient(90deg,transparent,rgba(57,255,20,0.08),transparent);}
 
-      /* HERO GRID BG */
-      .hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(57,255,20,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(57,255,20,0.04) 1px,transparent 1px);background-size:74px 74px;mask-image:radial-gradient(circle at 60% 40%,black 0%,black 40%,transparent 85%);-webkit-mask-image:radial-gradient(circle at 60% 40%,black 0%,black 40%,transparent 85%);}
-      .spotlight{position:absolute;border-radius:9999px;filter:blur(120px);pointer-events:none;}
+    /* HERO BG */
+    .hero-grid{position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg width='360' height='312' viewBox='0 0 360 312' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cg opacity='0.24' stroke='%2339ff14' stroke-width='1'%3E%3Cpath d='M90 26H180L225 104L180 182H90L45 104L90 26Z'/%3E%3Cpath d='M225 104H315L360 182L315 260H225L180 182L225 104Z'/%3E%3Cpath d='M0 104H90L135 182L90 260H0'/%3E%3Cpath d='M180 26V0'/%3E%3Cpath d='M180 182V234H225'/%3E%3Cpath d='M90 260V312'/%3E%3Cpath d='M315 260V312'/%3E%3Cpath d='M45 104H0'/%3E%3Cpath d='M360 182H320'/%3E%3Ccircle cx='180' cy='26' r='3' fill='%2339ff14'/%3E%3Ccircle cx='225' cy='104' r='3' fill='%2339ff14'/%3E%3Ccircle cx='90' cy='260' r='3' fill='%2339ff14'/%3E%3Ccircle cx='315' cy='260' r='3' fill='%2339ff14'/%3E%3C/g%3E%3C/svg%3E");background-size:360px 312px;opacity:0.14;mask-image:radial-gradient(circle at 65% 42%,black 0%,black 34%,transparent 84%);-webkit-mask-image:radial-gradient(circle at 65% 42%,black 0%,black 34%,transparent 84%);}
+    .spotlight{position:absolute;border-radius:9999px;filter:blur(120px);pointer-events:none;}
 
-      /* CARD HOVER */
-      .hov-card{transition:border-color .28s,box-shadow .28s,transform .28s;}
-      .hov-card:hover{border-color:var(--border-strong);box-shadow:0 24px 70px rgba(0,0,0,0.38),0 0 45px rgba(57,255,20,0.1);transform:translateY(-8px);}
+    /* CARDS */
+    .hov-card{transition:border-color .28s,box-shadow .28s,transform .28s;}
+    .hov-card:hover{border-color:var(--border-strong);box-shadow:0 24px 70px rgba(0,0,0,0.38),0 0 45px rgba(57,255,20,0.1);transform:translateY(-6px);}
 
-      /* MOCKUP BROWSER */
-      .browser-chrome{background:rgba(14,18,14,0.95);border:1px solid rgba(57,255,20,0.18);border-radius:18px;overflow:hidden;box-shadow:0 40px 100px rgba(0,0,0,0.6),0 0 80px rgba(57,255,20,0.08);}
-      .browser-bar{background:rgba(10,13,10,0.98);padding:12px 16px;display:flex;align-items:center;gap:10px;border-bottom:1px solid rgba(57,255,20,0.1);}
-      .browser-dot{width:12px;height:12px;border-radius:50%;}
-      .browser-url{flex:1;background:rgba(255,255,255,0.05);border:1px solid rgba(57,255,20,0.1);border-radius:8px;padding:6px 12px;font-family:"JetBrains Mono",monospace;font-size:0.7rem;color:var(--text-secondary);}
-      .browser-screen{position:relative;background:#0a0e0a;min-height:360px;overflow:hidden;}
+    /* FLOAT ANIMATIONS */
+    @keyframes float-a{0%,100%{transform:translateY(0) rotate(-1.5deg);}50%{transform:translateY(-10px) rotate(-0.5deg);}}
+    @keyframes float-b{0%,100%{transform:translateY(0) rotate(1.5deg);}50%{transform:translateY(-8px) rotate(2deg);}}
+    @keyframes float-c{0%,100%{transform:translateY(0);}50%{transform:translateY(-6px);}}
+    @keyframes pulse-dot{0%,100%{transform:scale(1);opacity:1;}50%{transform:scale(1.4);opacity:.72;}}
+    .float-a{animation:float-a 5s ease-in-out infinite;}
+    .float-b{animation:float-b 6.5s ease-in-out infinite;}
+    .float-c{animation:float-c 4.5s ease-in-out infinite;}
+    .pulse-dot{animation:pulse-dot 1.5s ease-in-out infinite;}
 
-      /* FLOATING CARDS */
-      @keyframes float-a{0%,100%{transform:translateY(0) rotate(-2deg);}50%{transform:translateY(-14px) rotate(-1deg);}}
-      @keyframes float-b{0%,100%{transform:translateY(0) rotate(2deg);}50%{transform:translateY(-10px) rotate(3deg);}}
-      @keyframes float-c{0%,100%{transform:translateY(0);}50%{transform:translateY(-8px);}}
-      .float-a{animation:float-a 5s ease-in-out infinite;}
-      .float-b{animation:float-b 6.5s ease-in-out infinite;}
-      .float-c{animation:float-c 4.5s ease-in-out infinite;}
+    /* MARQUEE */
+    .marquee{overflow:hidden;}
+    .marquee-track{display:flex;width:max-content;animation:marquee-left 26s linear infinite;}
+    @keyframes marquee-left{0%{transform:translateX(0%);}100%{transform:translateX(-50%);}}
 
-      /* TECH STACK MARQUEE */
-      .marquee{overflow:hidden;}
-      .marquee-track{display:flex;width:max-content;animation:marquee-left 24s linear infinite;}
-      @keyframes marquee-left{0%{transform:translateX(0%);}100%{transform:translateX(-50%);}}
+    /* REVEAL */
+    .reveal{opacity:0;transform:translateY(40px);transition:opacity .9s cubic-bezier(.22,1,.36,1),transform .9s cubic-bezier(.22,1,.36,1);}
+    .reveal.visible{opacity:1;transform:none;}
 
-      /* COUNTER */
-      @keyframes count-up{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
-      .count-anim{animation:count-up .8s ease-out both;}
+    /* STATS ROW */
+    .editorial-stat-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid rgba(57,255,20,0.12);border-bottom:1px solid rgba(57,255,20,0.12);}
+    .editorial-stat{padding:1rem 1rem 1rem 0;}
+    .editorial-stat+.editorial-stat{padding-left:1.25rem;border-left:1px solid rgba(57,255,20,0.12);}
+    @media(max-width:767px){.editorial-stat-row{grid-template-columns:1fr;}.editorial-stat{padding:1rem 0;}.editorial-stat+.editorial-stat{padding-left:0;border-left:none;border-top:1px solid rgba(57,255,20,0.12);}}
 
-      /* PROCESS LINE */
-      .process-line{background:linear-gradient(180deg,var(--accent),rgba(57,255,20,0));}
+    /* SERVICES */
+    .service-editorial{position:relative;overflow:hidden;}
+    .service-editorial::after{content:"";position:absolute;left:1.6rem;right:1.6rem;bottom:1.2rem;height:1px;background:linear-gradient(90deg,rgba(57,255,20,0),rgba(57,255,20,0.85),rgba(57,255,20,0));transform:scaleX(0);transform-origin:left;transition:transform .32s ease;}
+    .service-editorial:hover::after{transform:scaleX(1);}
 
-      /* REVEAL */
-      .reveal{opacity:0;transform:translateY(50px);transition:opacity .9s cubic-bezier(.22,1,.36,1),transform .9s cubic-bezier(.22,1,.36,1);}
-      .reveal.visible{opacity:1;transform:none;}
+    /* CASE ROWS */
+    .case-row{position:relative;border-top:1px solid rgba(57,255,20,0.12);transition:background .28s,padding-left .28s;}
+    .case-row::before{content:"";position:absolute;left:0;top:20%;bottom:20%;width:2px;background:var(--accent);box-shadow:0 0 24px rgba(57,255,20,0.35);opacity:0;transition:opacity .28s;}
+    .case-row:hover{background:rgba(57,255,20,0.035);padding-left:.75rem;}
+    .case-row:hover::before{opacity:1;}
 
-      /* CTA */
-      .cta-bg{background:linear-gradient(135deg,rgba(8,10,8,0.92) 0%,rgba(8,10,8,0.78) 50%,rgba(8,10,8,0.92) 100%),url('https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1800&q=80') center/cover no-repeat;filter:saturate(.55) brightness(.58);}
+    /* TIMELINE */
+    .timeline-track{position:absolute;left:0;right:0;top:5.75rem;height:1px;background:linear-gradient(90deg,rgba(57,255,20,0.12),rgba(57,255,20,0.26),rgba(57,255,20,0.12));}
+    .timeline-step{position:relative;}
+    .timeline-connector{position:absolute;top:2.5rem;left:calc(100% - 1.5rem);width:calc(100% - 2rem);height:1px;border-top:1px dashed rgba(57,255,20,0.26);}
+    .timeline-connector::after{content:"";position:absolute;right:-1px;top:-4px;border-top:4px solid transparent;border-bottom:4px solid transparent;border-left:7px solid rgba(57,255,20,0.45);}
+    .timeline-step:hover .timeline-connector{border-top-color:rgba(57,255,20,0.7);}
+    .timeline-step:hover .timeline-card{transform:translateY(-6px);border-color:var(--border-strong);box-shadow:0 24px 70px rgba(0,0,0,0.38),0 0 45px rgba(57,255,20,0.1);}
+    .timeline-card{transition:border-color .28s,box-shadow .28s,transform .28s;}
+    @media(max-width:1023px){.timeline-track,.timeline-connector{display:none;}}
 
-      /* WHATSAPP FAB */
-      .whatsapp-fab{position:fixed;bottom:28px;right:8px;z-index:9999;display:flex;align-items:center;justify-content:center;width:56px;height:56px;border:none;border-radius:50%;background:#25d366;box-shadow:0 4px 20px rgba(37,211,102,0.45);transition:transform .25s;text-decoration:none;}
-      .whatsapp-fab:hover{transform:scale(1.1);}
+    /* DIFFERENCE CARDS */
+    .difference-card{position:relative;overflow:hidden;border-left:2px solid var(--accent);}
+    .difference-card::after{content:"";position:absolute;left:1.75rem;right:1.75rem;bottom:1.25rem;height:1px;background:linear-gradient(90deg,rgba(57,255,20,0),rgba(57,255,20,0.75),rgba(57,255,20,0));transform:scaleX(0);transform-origin:left;transition:transform .32s ease;}
+    .difference-card:hover::after{transform:scaleX(1);}
 
-      /* FOOTER */
-      .footer-link{color:var(--text-secondary);transition:color .24s;}
-      .footer-link:hover{color:var(--text-primary);}
-      .footer-contact-label{font-size:0.7rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--text-secondary);}
-      .footer-contact-value{margin-top:4px;color:#fff;font-size:0.95rem;}
-      .footer-contact-link{color:#fff;text-decoration:none;transition:color .2s;}
-      .footer-contact-link:hover{color:var(--accent);}
-      .footer-legal-link{color:var(--text-secondary);transition:color .24s;}
-      .footer-legal-link:hover{color:var(--accent);}
-      .footer-social-link{display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border:1px solid #1a3a1a;border-radius:9999px;background:#111;transition:border-color .2s,transform .2s;}
-      .footer-social-link svg{width:18px;height:18px;fill:#aaa;transition:fill .2s;}
-      .footer-social-link:hover{border-color:#00ff88;transform:translateY(-1px);}
-      .footer-social-link:hover svg{fill:#00ff88;}
+    /* COUNTER */
+    .counter-value{font-variant-numeric:tabular-nums;}
 
-      /* FEATURE CARD GLOW */
-      .feature-glow::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at top right,rgba(57,255,20,0.1),transparent 30%);pointer-events:none;}
+    /* PROGRESS BARS */
+    @keyframes bar-fill{from{width:0%;}to{width:var(--w);}}
+    .bar-fill{animation:bar-fill 1.4s cubic-bezier(.22,1,.36,1) both;}
 
-      /* TABS */
-      .tab-btn{padding:10px 22px;border-radius:9999px;font-family:"JetBrains Mono",monospace;font-size:0.72rem;letter-spacing:0.14em;text-transform:uppercase;border:1px solid var(--border);color:var(--text-secondary);background:transparent;cursor:pointer;transition:all .25s;}
-      .tab-btn.active,.tab-btn:hover{border-color:var(--accent);color:var(--accent);background:rgba(57,255,20,0.04);}
+    /* CTA BG */
+    .cta-bg{background:linear-gradient(135deg,rgba(8,10,8,0.92) 0%,rgba(8,10,8,0.78) 50%,rgba(8,10,8,0.92) 100%),url('https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1800&q=80') center/cover no-repeat;filter:saturate(.5) brightness(.55);}
 
-      /* PROGRESS BARS */
-      @keyframes bar-fill{from{width:0%;}to{width:var(--w);}}
-      .bar-fill{animation:bar-fill 1.4s cubic-bezier(.22,1,.36,1) both;}
-    </style>
-  </head>
-  <body>
-    <div class="noise-overlay"></div>
-    <div class="cursor-dot" id="cursorDot"></div>
-    <div class="cursor-ring" id="cursorRing"></div>
+    /* WHATSAPP */
+    .whatsapp-fab{position:fixed;bottom:28px;right:16px;z-index:9999;display:flex;align-items:center;justify-content:center;width:56px;height:56px;border:none;border-radius:50%;background:#25d366;box-shadow:0 4px 20px rgba(37,211,102,0.45);transition:transform .25s;text-decoration:none;}
+    .whatsapp-fab:hover{transform:scale(1.1);}
 
-    <!-- ═══════════════ NAVBAR ═══════════════ -->
-    <header id="navbar" class="fixed left-0 top-0 z-50 w-full transition-all duration-300">
-      <div class="site-shell flex h-24 items-center justify-between">
-        <a href="index.html" class="inline-flex items-center flex-shrink-0" aria-label="Auroveon home">
-          <img src="assets/WhatsApp Image 2026-05-09 at 09,19,43-Picsart-BackgroundRemover.png" alt="Auroveon" style="height:68px;width:auto;object-fit:contain;" />
-        </a>
-        <nav class="hidden items-center gap-9 lg:flex">
-          <a class="nav-link text-base font-medium" href="index.html#services">Services</a>
-          <a class="nav-link text-base font-medium" href="index.html#story">Process</a>
-          <a class="nav-link text-base font-medium" href="index.html#work">Work</a>
-          <a class="nav-link text-base font-medium active-link" href="web-development.html">Web Dev</a>
-          <a class="nav-link text-base font-medium" href="seo.html">SEO</a>
-          <a class="nav-link text-base font-medium" href="index.html#contact">Contact</a>
-        </nav>
-        <a href="index.html#contact" class="display-font hidden lg:inline-flex items-center gap-2 rounded-full border px-6 py-3.5 text-base font-semibold transition-all hover:-translate-y-1" style="border-color:var(--accent);color:var(--accent);background:rgba(57,255,20,0.02);">Start a Project</a>
-        <button id="mobileMenuBtn" class="glass-panel flex h-12 w-12 items-center justify-center rounded-full lg:hidden text-xl" style="border-color:var(--border);">+</button>
-      </div>
-      <div id="mobileMenu" class="site-shell pb-4 lg:hidden hidden">
-        <div class="glass-panel rounded-[28px] px-6 py-6">
-          <div class="flex flex-col gap-5 text-center">
-            <a href="index.html#services" class="display-font text-2xl font-bold italic" style="color:var(--text-primary);">Services</a>
-            <a href="index.html#work" class="display-font text-2xl font-bold italic" style="color:var(--text-primary);">Work</a>
-            <a href="web-development.html" class="display-font text-2xl font-bold italic" style="color:var(--accent);">Web Dev</a>
-            <a href="seo.html" class="display-font text-2xl font-bold italic" style="color:var(--text-primary);">SEO</a>
-            <a href="index.html#contact" class="display-font text-2xl font-bold italic" style="color:var(--text-primary);">Contact</a>
-          </div>
+    /* FOOTER */
+    .footer-link{color:var(--text-secondary);transition:color .24s;text-decoration:none;}
+    .footer-link:hover{color:var(--text-primary);}
+    .footer-contact-label{font-size:0.7rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--text-secondary);}
+    .footer-contact-value{margin-top:4px;color:#fff;font-size:0.95rem;}
+    .footer-contact-link{color:#fff;text-decoration:none;transition:color .2s;}
+    .footer-contact-link:hover{color:var(--accent);}
+    .footer-legal-link{color:var(--text-secondary);transition:color .24s;text-decoration:none;}
+    .footer-legal-link:hover{color:var(--accent);}
+    .footer-social-link{display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border:1px solid #1a3a1a;border-radius:9999px;background:#111;transition:border-color .2s,transform .2s;}
+    .footer-social-link svg{width:18px;height:18px;fill:#aaa;transition:fill .2s;}
+    .footer-social-link:hover{border-color:#00ff88;transform:translateY(-1px);}
+    .footer-social-link:hover svg{fill:#00ff88;}
+
+    /* SOFT DIVIDER */
+    .soft-divider{background:linear-gradient(90deg,transparent,rgba(57,255,20,0.28),transparent);}
+  </style>
+</head>
+<body>
+  <div class="noise-overlay"></div>
+  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <!-- NAV -->
+  <header id="navbar" class="fixed left-0 top-0 z-50 w-full transition-all duration-300">
+    <div class="site-shell flex h-20 items-center justify-between">
+      <a href="index.html" class="inline-flex items-center flex-shrink-0" aria-label="Auroveon home">
+        <img src="assets/WhatsApp Image 2026-05-09 at 09,19,43-Picsart-BackgroundRemover.png" alt="Auroveon" style="height:60px;width:auto;object-fit:contain;"/>
+      </a>
+      <nav class="hidden items-center gap-8 lg:flex">
+        <a class="nav-link text-sm font-medium" href="index.html#services">Services</a>
+        <a class="nav-link text-sm font-medium" href="index.html#story">Process</a>
+        <a class="nav-link text-sm font-medium" href="index.html#work">Work</a>
+        <a class="nav-link text-sm font-medium active-link" href="web-development.html">Web Dev</a>
+        <a class="nav-link text-sm font-medium" href="seo.html">SEO</a>
+        <a class="nav-link text-sm font-medium" href="index.html#contact">Contact</a>
+      </nav>
+      <a href="index.html#contact" class="display-font hidden lg:inline-flex items-center rounded-full border px-5 py-3 text-sm font-semibold transition-all hover:-translate-y-1" style="border-color:var(--accent);color:var(--accent);background:rgba(57,255,20,0.02);">Start a Project</a>
+      <button id="mobileMenuBtn" class="glass-panel flex h-11 w-11 items-center justify-center rounded-full lg:hidden text-xl">+</button>
+    </div>
+    <div id="mobileMenu" class="site-shell pb-4 lg:hidden hidden">
+      <div class="glass-panel rounded-[24px] px-6 py-6">
+        <div class="flex flex-col gap-5 text-center">
+          <a href="index.html#services" class="display-font text-xl font-bold italic" style="color:var(--text-primary);">Services</a>
+          <a href="index.html#work" class="display-font text-xl font-bold italic" style="color:var(--text-primary);">Work</a>
+          <a href="web-development.html" class="display-font text-xl font-bold italic" style="color:var(--accent);">Web Dev</a>
+          <a href="seo.html" class="display-font text-xl font-bold italic" style="color:var(--text-primary);">SEO</a>
+          <a href="index.html#contact" class="display-font text-xl font-bold italic" style="color:var(--text-primary);">Contact</a>
         </div>
       </div>
-    </header>
+    </div>
+  </header>
 
-    <main>
+  <main>
 
-      <!-- ═══════════════ HERO ═══════════════ -->
-      <section id="hero" class="section-frame relative min-h-screen overflow-hidden pt-24 flex items-center">
-        <div class="hero-grid"></div>
-        <div class="spotlight" style="width:42rem;height:42rem;top:-10rem;right:-8rem;background:radial-gradient(circle,rgba(57,255,20,0.16),transparent 64%);"></div>
-        <div class="spotlight" style="width:26rem;height:26rem;bottom:4rem;left:-6rem;background:radial-gradient(circle,rgba(57,255,20,0.09),transparent 66%);"></div>
+    <!-- ═══ HERO — fits in one viewport ═══ -->
+    <section id="hero" class="section-frame relative flex min-h-screen items-center overflow-hidden pt-20">
+      <div class="hero-grid"></div>
+      <div class="spotlight" style="width:36rem;height:36rem;top:-8rem;right:-6rem;background:radial-gradient(circle,rgba(57,255,20,0.15),transparent 64%);"></div>
+      <div class="spotlight" style="width:22rem;height:22rem;bottom:2rem;left:-4rem;background:radial-gradient(circle,rgba(57,255,20,0.08),transparent 66%);"></div>
 
-        <div class="site-shell relative z-10 w-full py-10 lg:py-16">
-          <div class="grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-center lg:gap-14">
+      <div class="site-shell relative z-10 w-full py-6 lg:py-8">
+        <div class="grid gap-8 lg:grid-cols-[1fr_1fr] lg:items-center lg:gap-10">
 
-            <!-- LEFT COPY -->
-            <div class="reveal">
-              <div class="glass-panel inline-flex items-center gap-3 rounded-full px-4 py-2 mb-6">
-                <span class="h-2 w-2 rounded-full" style="background:var(--accent);box-shadow:0 0 14px rgba(57,255,20,0.7);"></span>
-                <span class="eyebrow">Web Development Services</span>
-              </div>
-
-              <h1 class="display-font font-extrabold italic leading-[0.94] tracking-[-0.045em]" style="font-size:clamp(2.8rem,7vw,6.2rem);">
-                <span class="shine-word">Websites That</span><br/>
-                <span class="shine-word">Convert, Perform</span><br/>
-                <span class="shine-word-accent">& Dominate.</span>
-              </h1>
-
-              <p class="mt-6 max-w-xl text-lg leading-8" style="color:var(--text-secondary);">
-                We build premium web platforms — React, Next.js, and beyond — designed from first pixel to last API call. Not templates. Not themes. Bespoke digital architecture that commands attention and drives real outcomes.
-              </p>
-
-              <div class="mt-8 flex flex-col gap-4 sm:flex-row">
-                <a href="index.html#contact" class="display-font inline-flex items-center justify-center rounded-full px-7 py-4 text-base font-bold transition-all hover:-translate-y-1" style="background:var(--accent);color:#081008;box-shadow:0 0 42px rgba(57,255,20,0.18),0 22px 60px rgba(57,255,20,0.12);">Launch Your Site</a>
-                <a href="#showcase" class="display-font inline-flex items-center justify-center rounded-full border px-7 py-4 text-base font-bold transition-all hover:-translate-y-1" style="border-color:var(--border-strong);color:var(--text-primary);background:rgba(255,255,255,0.02);">See Our Work</a>
-              </div>
-
-              <!-- STATS ROW -->
-              <div class="mt-10 grid grid-cols-3 gap-4">
-                <div class="glass-panel rounded-[20px] px-4 py-5">
-                  <div class="display-font text-3xl font-extrabold italic" style="color:var(--text-primary);">120+</div>
-                  <p class="mt-1 text-xs leading-5" style="color:var(--text-secondary);">Sites launched across industries</p>
-                </div>
-                <div class="glass-panel rounded-[20px] px-4 py-5">
-                  <div class="display-font text-3xl font-extrabold italic" style="color:var(--text-primary);">98ms</div>
-                  <p class="mt-1 text-xs leading-5" style="color:var(--text-secondary);">Avg. first contentful paint</p>
-                </div>
-                <div class="glass-panel rounded-[20px] px-4 py-5">
-                  <div class="display-font text-3xl font-extrabold italic" style="color:var(--text-primary);">100</div>
-                  <p class="mt-1 text-xs leading-5" style="color:var(--text-secondary);">Lighthouse performance score</p>
-                </div>
-              </div>
+          <!-- LEFT -->
+          <div class="reveal lg:pl-6 xl:pl-10">
+            <div class="glass-panel mb-6 inline-flex items-center gap-3 rounded-full px-4 py-2" style="border-color:var(--border-strong);">
+              <span class="h-2 w-2 rounded-full" style="background:var(--accent);box-shadow:0 0 12px rgba(57,255,20,0.7);"></span>
+              <span class="eyebrow">Web Development Services</span>
             </div>
 
-            <!-- RIGHT: BROWSER MOCKUP -->
-            <div class="relative reveal" style="transition-delay:.15s;">
-              <!-- Orbital rings -->
-              <div class="absolute" style="inset:-5%;border:1px solid rgba(57,255,20,0.06);border-radius:50%;pointer-events:none;"></div>
-              <div class="absolute" style="inset:4%;border:1px solid rgba(57,255,20,0.04);border-radius:50%;pointer-events:none;"></div>
+            <h1 class="display-font font-extrabold italic leading-[1.0] tracking-[-0.04em]" style="font-size:clamp(2.6rem,5.5vw,5rem);">
+              <span class="shine-word">Websites That</span><br/>
+              <span class="shine-word">Convert, Perform</span><br/>
+              <span class="shine-word-accent">&amp; Dominate.</span>
+            </h1>
 
-              <!-- BROWSER CHROME -->
-              <div class="browser-chrome relative z-10">
-                <div class="browser-bar">
-                  <div class="browser-dot" style="background:#ff5f57;"></div>
-                  <div class="browser-dot" style="background:#febc2e;"></div>
-                  <div class="browser-dot" style="background:#28c840;"></div>
-                  <div class="browser-url">auroveon.com/client-project</div>
-                  <div class="mono-font text-xs" style="color:var(--accent);">● LIVE</div>
-                </div>
-                <div class="browser-screen">
-                  <!-- Mockup content inside browser -->
-                  <div style="padding:28px;background:linear-gradient(135deg,#0a0f0a,#0d130d);">
-                    <!-- Fake nav -->
-                    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:32px;">
-                      <div style="width:80px;height:12px;background:rgba(57,255,20,0.35);border-radius:4px;"></div>
-                      <div style="display:flex;gap:16px;">
-                        <div style="width:40px;height:8px;background:rgba(255,255,255,0.15);border-radius:3px;"></div>
-                        <div style="width:40px;height:8px;background:rgba(255,255,255,0.15);border-radius:3px;"></div>
-                        <div style="width:40px;height:8px;background:rgba(255,255,255,0.15);border-radius:3px;"></div>
-                        <div style="width:60px;height:20px;background:var(--accent);border-radius:9999px;"></div>
-                      </div>
-                    </div>
-                    <!-- Hero text block -->
-                    <div style="margin-bottom:20px;">
-                      <div style="width:55%;height:28px;background:rgba(255,255,255,0.9);border-radius:5px;margin-bottom:10px;"></div>
-                      <div style="width:70%;height:28px;background:rgba(255,255,255,0.85);border-radius:5px;margin-bottom:10px;"></div>
-                      <div style="width:40%;height:28px;background:rgba(57,255,20,0.8);border-radius:5px;margin-bottom:20px;"></div>
-                      <div style="width:80%;height:10px;background:rgba(255,255,255,0.18);border-radius:3px;margin-bottom:6px;"></div>
-                      <div style="width:65%;height:10px;background:rgba(255,255,255,0.12);border-radius:3px;margin-bottom:20px;"></div>
-                      <div style="display:flex;gap:10px;">
-                        <div style="width:120px;height:36px;background:var(--accent);border-radius:9999px;"></div>
-                        <div style="width:120px;height:36px;border:1px solid rgba(57,255,20,0.4);border-radius:9999px;"></div>
-                      </div>
-                    </div>
-                    <!-- Cards row -->
-                    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:20px;">
-                      <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(57,255,20,0.1);border-radius:14px;padding:14px;">
-                        <div style="width:30px;height:30px;background:rgba(57,255,20,0.2);border-radius:8px;margin-bottom:10px;"></div>
-                        <div style="width:70%;height:8px;background:rgba(255,255,255,0.3);border-radius:3px;margin-bottom:6px;"></div>
-                        <div style="width:90%;height:6px;background:rgba(255,255,255,0.12);border-radius:3px;"></div>
-                      </div>
-                      <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(57,255,20,0.1);border-radius:14px;padding:14px;">
-                        <div style="width:30px;height:30px;background:rgba(57,255,20,0.15);border-radius:8px;margin-bottom:10px;"></div>
-                        <div style="width:80%;height:8px;background:rgba(255,255,255,0.3);border-radius:3px;margin-bottom:6px;"></div>
-                        <div style="width:60%;height:6px;background:rgba(255,255,255,0.12);border-radius:3px;"></div>
-                      </div>
-                      <div style="background:rgba(57,255,20,0.07);border:1px solid rgba(57,255,20,0.2);border-radius:14px;padding:14px;">
-                        <div style="width:30px;height:30px;background:rgba(57,255,20,0.3);border-radius:8px;margin-bottom:10px;"></div>
-                        <div style="width:75%;height:8px;background:var(--accent);border-radius:3px;margin-bottom:6px;opacity:.5;"></div>
-                        <div style="width:85%;height:6px;background:rgba(57,255,20,0.2);border-radius:3px;"></div>
-                      </div>
-                    </div>
+            <p class="mt-5 max-w-[40ch] text-base leading-[1.85]" style="color:var(--text-secondary);">
+              We build premium web platforms — React, Next.js, and beyond — designed from first pixel to last API call. Not templates. Not themes. Bespoke digital architecture.
+            </p>
+
+            <div class="mt-7 flex flex-wrap gap-3">
+              <a href="index.html#contact" class="display-font inline-flex items-center justify-center rounded-full px-7 py-3.5 text-sm font-bold transition-all hover:-translate-y-1" style="background:var(--accent);color:#081008;box-shadow:0 0 36px rgba(57,255,20,0.18);">Launch Your Site</a>
+              <a href="#showcase" class="display-font inline-flex items-center justify-center rounded-full border px-7 py-3.5 text-sm font-bold transition-all hover:-translate-y-1" style="border-color:var(--border-strong);color:var(--text-primary);">See Our Work</a>
+            </div>
+          </div>
+
+          <!-- RIGHT — fixed height, no overlap -->
+          <div class="hidden lg:flex flex-col gap-4 reveal" style="transition-delay:.15s;">
+            <!-- Card A: Live Build -->
+            <div class="float-a glass-panel rounded-[24px] p-6" style="border-color:var(--border-strong);">
+              <div class="flex items-center justify-between mb-5">
+                <div>
+                  <div class="mono-font text-[0.68rem] uppercase tracking-[0.18em]" style="color:var(--accent);">Live Build</div>
+                  <div class="mt-2 flex items-center gap-2">
+                    <span class="h-2.5 w-2.5 rounded-full pulse-dot" style="background:var(--accent);box-shadow:0 0 14px rgba(57,255,20,0.85);"></span>
+                    <span class="mono-font text-sm" style="color:var(--text-primary);">index.tsx</span>
                   </div>
                 </div>
+                <span class="mono-font text-[0.68rem] uppercase tracking-[0.16em]" style="color:var(--text-secondary);">Deploying now</span>
               </div>
+              <div class="space-y-3 mono-font text-[0.74rem] leading-6">
+                <div class="flex gap-4"><span style="color:rgba(57,255,20,0.5);">01</span><span style="color:var(--text-primary);">const launchMode = "editorial-performance";</span></div>
+                <div class="flex gap-4"><span style="color:rgba(57,255,20,0.5);">02</span><span style="color:var(--text-secondary);">render &lt;Hero headline="Convert. Perform. Dominate." /&gt;</span></div>
+                <div class="flex gap-4"><span style="color:rgba(57,255,20,0.5);">03</span><span style="color:var(--text-secondary);">ship({ lighthouse: 100, vitals: "green" })</span></div>
+              </div>
+            </div>
 
-              <!-- Floating stat cards -->
-              <div class="float-a glass-panel absolute rounded-[18px] px-4 py-4 hidden lg:block" style="bottom:-24px;left:-32px;min-width:160px;z-index:20;border-color:var(--border-strong);">
-                <div class="mono-font text-xs uppercase tracking-widest" style="color:var(--accent);">Core Web Vitals</div>
-                <div class="display-font text-2xl font-extrabold italic mt-2" style="color:var(--text-primary);">All Green</div>
-                <div class="mt-2 h-2 rounded-full" style="background:rgba(255,255,255,0.06);">
-                  <div class="h-full rounded-full" style="width:96%;background:var(--accent);"></div>
+            <!-- Card B: Core Web Vitals -->
+            <div class="float-b glass-panel rounded-[24px] p-6">
+              <div class="flex items-start justify-between mb-5">
+                <div>
+                  <div class="mono-font text-[0.68rem] uppercase tracking-[0.18em]" style="color:var(--accent);">Core Web Vitals</div>
+                  <div class="display-font mt-2 text-2xl font-extrabold italic" style="color:var(--text-primary);">All systems green.</div>
                 </div>
+                <span class="mono-font text-[0.68rem] uppercase tracking-[0.14em]" style="color:var(--text-secondary);">Production snapshot</span>
               </div>
-
-              <div class="float-b glass-panel absolute rounded-[18px] px-4 py-4 hidden lg:block" style="top:-20px;right:-28px;min-width:150px;z-index:20;">
-                <div class="mono-font text-xs uppercase tracking-widest" style="color:var(--accent);">Deploy Speed</div>
-                <div class="display-font text-2xl font-extrabold italic mt-2" style="color:var(--text-primary);">14 days</div>
-                <div class="text-xs mt-1" style="color:var(--text-secondary);">avg. launch time</div>
-              </div>
-
-              <div class="float-c glass-panel absolute rounded-[14px] px-3 py-3 hidden lg:block" style="top:38%;right:-40px;z-index:20;">
-                <div class="flex items-center gap-2">
-                  <div class="h-2 w-2 rounded-full" style="background:var(--accent);box-shadow:0 0 8px rgba(57,255,20,0.8);"></div>
-                  <span class="mono-font text-xs" style="color:var(--accent);">LIVE BUILD</span>
+              <div class="space-y-4">
+                <div class="grid items-center gap-3" style="grid-template-columns:auto 1fr auto;">
+                  <div class="flex items-center gap-2"><span class="h-2 w-2 rounded-full" style="background:#61ff43;"></span><span class="mono-font text-xs" style="color:var(--text-primary);">LCP</span></div>
+                  <div class="h-1.5 rounded-full" style="background:rgba(255,255,255,0.06);"><div class="h-full rounded-full" style="width:94%;background:linear-gradient(90deg,#2fe90f,#8bff76);"></div></div>
+                  <span class="mono-font text-xs" style="color:var(--text-secondary);">2.1s</span>
+                </div>
+                <div class="grid items-center gap-3" style="grid-template-columns:auto 1fr auto;">
+                  <div class="flex items-center gap-2"><span class="h-2 w-2 rounded-full" style="background:#61ff43;"></span><span class="mono-font text-xs" style="color:var(--text-primary);">CLS</span></div>
+                  <div class="h-1.5 rounded-full" style="background:rgba(255,255,255,0.06);"><div class="h-full rounded-full" style="width:97%;background:linear-gradient(90deg,#2fe90f,#8bff76);"></div></div>
+                  <span class="mono-font text-xs" style="color:var(--text-secondary);">0.02</span>
+                </div>
+                <div class="grid items-center gap-3" style="grid-template-columns:auto 1fr auto;">
+                  <div class="flex items-center gap-2"><span class="h-2 w-2 rounded-full" style="background:#61ff43;"></span><span class="mono-font text-xs" style="color:var(--text-primary);">FID</span></div>
+                  <div class="h-1.5 rounded-full" style="background:rgba(255,255,255,0.06);"><div class="h-full rounded-full" style="width:96%;background:linear-gradient(90deg,#2fe90f,#8bff76);"></div></div>
+                  <span class="mono-font text-xs" style="color:var(--text-secondary);">18ms</span>
                 </div>
               </div>
             </div>
 
-          </div>
-        </div>
-      </section>
-
-      <!-- ═══════════════ TECH STACK MARQUEE ═══════════════ -->
-      <section class="section-frame py-10 overflow-hidden">
-        <div class="site-shell">
-          <div class="glass-panel marquee rounded-full px-2 py-2">
-            <div class="marquee-track">
-              <!-- repeated twice -->
-              <span class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">React<span class="mx-6" style="color:var(--accent);">.</span></span>
-              <span class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">Next.js<span class="mx-6" style="color:var(--accent);">.</span></span>
-              <span class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">TypeScript<span class="mx-6" style="color:var(--accent);">.</span></span>
-              <span class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">Tailwind CSS<span class="mx-6" style="color:var(--accent);">.</span></span>
-              <span class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">Node.js<span class="mx-6" style="color:var(--accent);">.</span></span>
-              <span class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">Supabase<span class="mx-6" style="color:var(--accent);">.</span></span>
-              <span class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">Vercel<span class="mx-6" style="color:var(--accent);">.</span></span>
-              <span class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">GSAP<span class="mx-6" style="color:var(--accent);">.</span></span>
-              <span class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">Three.js<span class="mx-6" style="color:var(--accent);">.</span></span>
-              <span class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">Framer Motion<span class="mx-6" style="color:var(--accent);">.</span></span>
-              <!-- clone -->
-              <span class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">React<span class="mx-6" style="color:var(--accent);">.</span></span>
-              <span class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">Next.js<span class="mx-6" style="color:var(--accent);">.</span></span>
-              <span class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">TypeScript<span class="mx-6" style="color:var(--accent);">.</span></span>
-              <span class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">Tailwind CSS<span class="mx-6" style="color:var(--accent);">.</span></span>
-              <span class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">Node.js<span class="mx-6" style="color:var(--accent);">.</span></span>
-              <span class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">Supabase<span class="mx-6" style="color:var(--accent);">.</span></span>
-              <span class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">Vercel<span class="mx-6" style="color:var(--accent);">.</span></span>
-              <span class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">GSAP<span class="mx-6" style="color:var(--accent);">.</span></span>
-              <span class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">Three.js<span class="mx-6" style="color:var(--accent);">.</span></span>
-              <span class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">Framer Motion<span class="mx-6" style="color:var(--accent);">.</span></span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ═══════════════ SERVICES DETAIL ═══════════════ -->
-      <section id="services-detail" class="section-frame py-24 lg:py-32">
-        <div class="site-shell">
-          <div class="grid gap-10 lg:grid-cols-[0.55fr_1.45fr] lg:items-start">
-            <div class="reveal lg:sticky lg:top-28">
-              <div class="section-kicker">What we deliver</div>
-              <h2 class="display-font mt-4 text-4xl font-extrabold italic leading-[0.96] tracking-[-0.04em] lg:text-6xl" style="color:var(--text-primary);max-width:9ch;">Six pillars of web excellence.</h2>
-              <p class="mt-6 text-base leading-8 lg:text-lg" style="color:var(--text-secondary);max-width:28rem;">Every product we build is grounded in performance engineering, premium design systems, and measurable conversion impact.</p>
-              <a href="index.html#contact" class="mt-8 inline-flex items-center gap-2 text-sm font-semibold" style="color:var(--accent);">Talk to our team →</a>
-            </div>
-
-            <div class="grid gap-5 md:grid-cols-2">
-              <!-- Card 1 -->
-              <div class="hov-card feature-glow relative glass-panel rounded-[28px] p-6 lg:p-7 reveal md:col-span-2">
-                <div class="mini-label mono-font">01 / Core offering</div>
-                <h3 class="display-font mt-5 text-2xl font-bold italic lg:text-3xl" style="color:var(--text-primary);">Custom Web Applications</h3>
-                <p class="mt-4 leading-7 text-base" style="color:var(--text-secondary);">From complex SaaS dashboards to immersive marketing sites — we architect every layer from the database schema to the scroll animation. React + Next.js at the core, deployed on edge infrastructure for sub-100ms global response.</p>
-                <div class="mt-6 h-px w-full soft-divider"></div>
-                <div class="mt-4 flex items-center justify-between text-sm" style="color:var(--text-muted);">
-                  <span>End-to-end ownership</span><span style="color:var(--accent);">React · Next.js · Node</span>
-                </div>
-              </div>
-              <!-- Card 2 -->
-              <div class="hov-card feature-glow relative glass-panel rounded-[28px] p-6 lg:p-7 reveal" style="transition-delay:.06s;">
-                <div class="mini-label mono-font">02 / Visual</div>
-                <h3 class="display-font mt-5 text-xl font-bold italic lg:text-2xl" style="color:var(--text-primary);">Cinematic UI & Motion</h3>
-                <p class="mt-4 text-sm leading-7" style="color:var(--text-secondary);">GSAP-powered scroll experiences, Three.js 3D scenes, and Framer Motion micro-interactions that feel like premium product cinema — not a website.</p>
-                <div class="mt-6 h-px w-full soft-divider"></div>
-                <div class="mt-4 text-sm" style="color:var(--text-muted);">GSAP · Three.js · Lenis</div>
-              </div>
-              <!-- Card 3 -->
-              <div class="hov-card feature-glow relative glass-panel rounded-[28px] p-6 lg:p-7 reveal" style="transition-delay:.1s;">
-                <div class="mini-label mono-font">03 / Performance</div>
-                <h3 class="display-font mt-5 text-xl font-bold italic lg:text-2xl" style="color:var(--text-primary);">Lighthouse 100 Builds</h3>
-                <p class="mt-4 text-sm leading-7" style="color:var(--text-secondary);">Every build is audited for Core Web Vitals: LCP, CLS, FID. We obsess over bundle sizes, lazy loading, and edge caching so your site ranks and converts.</p>
-                <div class="mt-6 h-px w-full soft-divider"></div>
-                <div class="mt-4 text-sm" style="color:var(--text-muted);">Performance · SEO · Accessibility</div>
-              </div>
-              <!-- Card 4 -->
-              <div class="hov-card feature-glow relative glass-panel rounded-[28px] p-6 lg:p-7 reveal" style="transition-delay:.14s;">
-                <div class="mini-label mono-font">04 / E-commerce</div>
-                <h3 class="display-font mt-5 text-xl font-bold italic lg:text-2xl" style="color:var(--text-primary);">High-Converting Stores</h3>
-                <p class="mt-4 text-sm leading-7" style="color:var(--text-secondary);">Custom Shopify Plus, headless commerce, and bespoke checkout flows with trust signals, micro-animations, and A/B-tested layouts that move product.</p>
-                <div class="mt-6 h-px w-full soft-divider"></div>
-                <div class="mt-4 text-sm" style="color:var(--text-muted);">Shopify · Stripe · Headless</div>
-              </div>
-              <!-- Card 5 -->
-              <div class="hov-card feature-glow relative glass-panel rounded-[28px] p-6 lg:p-7 reveal" style="transition-delay:.18s;">
-                <div class="mini-label mono-font">05 / CMS</div>
-                <h3 class="display-font mt-5 text-xl font-bold italic lg:text-2xl" style="color:var(--text-primary);">Content Management</h3>
-                <p class="mt-4 text-sm leading-7" style="color:var(--text-secondary);">Sanity, Contentful, or custom CMS architecture so your team can publish at speed without touching a line of code. Structured content, dynamic pages, real-time previews.</p>
-                <div class="mt-6 h-px w-full soft-divider"></div>
-                <div class="mt-4 text-sm" style="color:var(--text-muted);">Sanity · Contentful · Strapi</div>
-              </div>
-              <!-- Card 6 -->
-              <div class="hov-card feature-glow relative glass-panel rounded-[28px] p-6 lg:p-7 reveal" style="transition-delay:.22s;">
-                <div class="mini-label mono-font">06 / Support</div>
-                <h3 class="display-font mt-5 text-xl font-bold italic lg:text-2xl" style="color:var(--text-primary);">Ongoing Growth Partner</h3>
-                <p class="mt-4 text-sm leading-7" style="color:var(--text-secondary);">Retainer-based partnerships with monthly sprints, performance monitoring, iterative A/B tests, and feature rollouts tied to your business OKRs.</p>
-                <div class="mt-6 h-px w-full soft-divider"></div>
-                <div class="mt-4 text-sm" style="color:var(--text-muted);">Retainer · Analytics · Iteration</div>
+            <!-- Pill -->
+            <div class="float-c self-start glass-panel rounded-full px-4 py-2" style="border-color:rgba(57,255,20,0.22);">
+              <div class="flex items-center gap-2">
+                <span class="h-2 w-2 rounded-full pulse-dot" style="background:var(--accent);"></span>
+                <span class="mono-font text-[0.7rem] uppercase tracking-[0.18em]" style="color:var(--accent);">Realtime preview synced</span>
               </div>
             </div>
           </div>
-        </div>
-      </section>
 
-      <!-- ═══════════════ SHOWCASE / CASE STUDIES ═══════════════ -->
-      <section id="showcase" class="section-frame py-24 lg:py-32">
-        <div class="site-shell">
-          <div class="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between mb-12 reveal">
+        </div>
+      </div>
+    </section>
+
+    <!-- MARQUEE -->
+    <section class="section-frame overflow-hidden py-8">
+      <div class="site-shell">
+        <div class="glass-panel marquee rounded-full px-2 py-1.5">
+          <div class="marquee-track">
+            <span class="mono-font flex items-center whitespace-nowrap px-5 py-3 text-[0.74rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">React<span class="mx-5" style="color:var(--accent);">·</span></span>
+            <span class="mono-font flex items-center whitespace-nowrap px-5 py-3 text-[0.74rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">Next.js<span class="mx-5" style="color:var(--accent);">·</span></span>
+            <span class="mono-font flex items-center whitespace-nowrap px-5 py-3 text-[0.74rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">TypeScript<span class="mx-5" style="color:var(--accent);">·</span></span>
+            <span class="mono-font flex items-center whitespace-nowrap px-5 py-3 text-[0.74rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">Tailwind CSS<span class="mx-5" style="color:var(--accent);">·</span></span>
+            <span class="mono-font flex items-center whitespace-nowrap px-5 py-3 text-[0.74rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">Node.js<span class="mx-5" style="color:var(--accent);">·</span></span>
+            <span class="mono-font flex items-center whitespace-nowrap px-5 py-3 text-[0.74rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">Supabase<span class="mx-5" style="color:var(--accent);">·</span></span>
+            <span class="mono-font flex items-center whitespace-nowrap px-5 py-3 text-[0.74rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">Prisma<span class="mx-5" style="color:var(--accent);">·</span></span>
+            <span class="mono-font flex items-center whitespace-nowrap px-5 py-3 text-[0.74rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">PostgreSQL<span class="mx-5" style="color:var(--accent);">·</span></span>
+            <span class="mono-font flex items-center whitespace-nowrap px-5 py-3 text-[0.74rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">Stripe<span class="mx-5" style="color:var(--accent);">·</span></span>
+            <span class="mono-font flex items-center whitespace-nowrap px-5 py-3 text-[0.74rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">AWS<span class="mx-5" style="color:var(--accent);">·</span></span>
+            <span class="mono-font flex items-center whitespace-nowrap px-5 py-3 text-[0.74rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">Vercel<span class="mx-5" style="color:var(--accent);">·</span></span>
+            <span class="mono-font flex items-center whitespace-nowrap px-5 py-3 text-[0.74rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">GSAP<span class="mx-5" style="color:var(--accent);">·</span></span>
+            <span class="mono-font flex items-center whitespace-nowrap px-5 py-3 text-[0.74rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">Three.js<span class="mx-5" style="color:var(--accent);">·</span></span>
+            <span class="mono-font flex items-center whitespace-nowrap px-5 py-3 text-[0.74rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">Framer Motion<span class="mx-5" style="color:var(--accent);">·</span></span>
+            <!-- clone -->
+            <span class="mono-font flex items-center whitespace-nowrap px-5 py-3 text-[0.74rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">React<span class="mx-5" style="color:var(--accent);">·</span></span>
+            <span class="mono-font flex items-center whitespace-nowrap px-5 py-3 text-[0.74rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">Next.js<span class="mx-5" style="color:var(--accent);">·</span></span>
+            <span class="mono-font flex items-center whitespace-nowrap px-5 py-3 text-[0.74rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">TypeScript<span class="mx-5" style="color:var(--accent);">·</span></span>
+            <span class="mono-font flex items-center whitespace-nowrap px-5 py-3 text-[0.74rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">Tailwind CSS<span class="mx-5" style="color:var(--accent);">·</span></span>
+            <span class="mono-font flex items-center whitespace-nowrap px-5 py-3 text-[0.74rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">Node.js<span class="mx-5" style="color:var(--accent);">·</span></span>
+            <span class="mono-font flex items-center whitespace-nowrap px-5 py-3 text-[0.74rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">Supabase<span class="mx-5" style="color:var(--accent);">·</span></span>
+            <span class="mono-font flex items-center whitespace-nowrap px-5 py-3 text-[0.74rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">Prisma<span class="mx-5" style="color:var(--accent);">·</span></span>
+            <span class="mono-font flex items-center whitespace-nowrap px-5 py-3 text-[0.74rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">PostgreSQL<span class="mx-5" style="color:var(--accent);">·</span></span>
+            <span class="mono-font flex items-center whitespace-nowrap px-5 py-3 text-[0.74rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">Stripe<span class="mx-5" style="color:var(--accent);">·</span></span>
+            <span class="mono-font flex items-center whitespace-nowrap px-5 py-3 text-[0.74rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">AWS<span class="mx-5" style="color:var(--accent);">·</span></span>
+            <span class="mono-font flex items-center whitespace-nowrap px-5 py-3 text-[0.74rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">Vercel<span class="mx-5" style="color:var(--accent);">·</span></span>
+            <span class="mono-font flex items-center whitespace-nowrap px-5 py-3 text-[0.74rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">GSAP<span class="mx-5" style="color:var(--accent);">·</span></span>
+            <span class="mono-font flex items-center whitespace-nowrap px-5 py-3 text-[0.74rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">Three.js<span class="mx-5" style="color:var(--accent);">·</span></span>
+            <span class="mono-font flex items-center whitespace-nowrap px-5 py-3 text-[0.74rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">Framer Motion<span class="mx-5" style="color:var(--accent);">·</span></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services-detail" class="section-frame py-24 lg:py-32">
+      <div class="site-shell">
+        <div class="grid gap-10 lg:grid-cols-[0.55fr_1.45fr] lg:items-start">
+          <div class="reveal lg:sticky lg:top-24">
+            <div class="section-kicker">What we deliver</div>
+            <h2 class="display-font mt-4 text-4xl font-extrabold italic leading-[0.96] tracking-[-0.04em] lg:text-5xl" style="color:var(--text-primary);max-width:9ch;">Six pillars of web excellence.</h2>
+            <p class="mt-6 max-w-[28rem] text-base leading-8" style="color:var(--text-secondary);">Every product we build is grounded in performance engineering, premium design systems, and measurable conversion impact.</p>
+            <a href="index.html#contact" class="mt-7 inline-flex items-center gap-2 text-sm font-semibold" style="color:var(--accent);">Talk to our team →</a>
+          </div>
+          <div class="grid gap-5 md:grid-cols-2">
+            <article class="service-editorial hov-card relative glass-panel rounded-[28px] p-6 lg:p-7 reveal md:col-span-2">
+              <div class="pointer-events-none absolute right-5 top-1 text-[7rem] font-extrabold italic leading-none" style="color:rgba(57,255,20,0.06);font-family:'Poppins',sans-serif;">01</div>
+              <h3 class="display-font relative z-10 text-2xl font-bold italic lg:text-3xl" style="color:var(--text-primary);">Custom Web Applications</h3>
+              <p class="relative z-10 mt-4 max-w-3xl text-base leading-8" style="color:var(--text-secondary);">From complex SaaS dashboards to immersive marketing sites — we architect every layer from database schema to motion system. React and Next.js at the core, deployed on edge infrastructure for global responsiveness.</p>
+              <div class="relative z-10 mt-6 flex flex-wrap items-center gap-4 text-sm" style="color:var(--text-muted);"><span>End-to-end ownership</span><span style="color:var(--accent);">React · Next.js · Node</span></div>
+              <div class="mini-label mono-font mt-8" style="color:var(--text-secondary);">01 / Core offering</div>
+            </article>
+            <article class="service-editorial hov-card relative glass-panel rounded-[28px] border-l-2 p-5 lg:p-6 reveal" style="border-left-color:var(--accent);transition-delay:.06s;">
+              <h3 class="display-font text-lg font-bold italic lg:text-xl" style="color:var(--text-primary);">Cinematic UI &amp; Motion</h3>
+              <p class="mt-3 text-sm leading-7" style="color:var(--text-secondary);">GSAP scroll sequences, 3D scenes, and interaction systems that feel like premium product cinema.</p>
+              <div class="mini-label mono-font mt-8" style="color:var(--text-secondary);">02 / Visual</div>
+            </article>
+            <article class="service-editorial hov-card relative glass-panel rounded-[28px] border-l-2 p-5 lg:p-6 reveal" style="border-left-color:var(--accent);transition-delay:.1s;">
+              <h3 class="display-font text-lg font-bold italic lg:text-xl" style="color:var(--text-primary);">Lighthouse 100 Builds</h3>
+              <p class="mt-3 text-sm leading-7" style="color:var(--text-secondary);">Every release is audited for Core Web Vitals, bundle weight, and accessibility — fast, indexable, conversion-ready.</p>
+              <div class="mini-label mono-font mt-8" style="color:var(--text-secondary);">03 / Performance</div>
+            </article>
+            <article class="service-editorial hov-card relative glass-panel rounded-[28px] p-5 lg:mt-6 lg:p-6 reveal" style="transition-delay:.14s;">
+              <h3 class="display-font text-lg font-bold italic lg:text-xl" style="color:var(--text-primary);">High-Converting Stores</h3>
+              <p class="mt-3 text-sm leading-7" style="color:var(--text-secondary);">Headless commerce, refined checkout UX, and premium product storytelling that convert.</p>
+              <div class="mini-label mono-font mt-8" style="color:var(--text-secondary);">04 / Commerce</div>
+            </article>
+            <article class="service-editorial hov-card relative glass-panel rounded-[28px] p-5 lg:p-6 reveal" style="transition-delay:.18s;">
+              <h3 class="display-font text-lg font-bold italic lg:text-xl" style="color:var(--text-primary);">Content Systems</h3>
+              <p class="mt-3 text-sm leading-7" style="color:var(--text-secondary);">Structured CMS with real-time previews, reusable modules, and publishing flows that keep teams fast post-launch.</p>
+              <div class="mini-label mono-font mt-8" style="color:var(--text-secondary);">05 / CMS</div>
+            </article>
+            <article class="service-editorial hov-card relative glass-panel rounded-[28px] p-5 lg:p-7 reveal md:col-span-2" style="transition-delay:.22s;">
+              <div class="grid gap-5 lg:grid-cols-[160px_1fr] lg:items-center">
+                <div class="flex items-start gap-3">
+                  <div class="display-font text-4xl font-extrabold italic leading-none" style="color:rgba(57,255,20,0.14);">06</div>
+                  <div class="h-12 w-12 rounded-xl flex items-center justify-center" style="border:1px solid rgba(57,255,20,0.18);background:rgba(57,255,20,0.06);">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" style="color:var(--accent);"><path d="M12 6v6l4 2"/><path d="M21 12a9 9 0 1 1-3.4-7.03"/></svg>
+                  </div>
+                </div>
+                <div>
+                  <h3 class="display-font text-lg font-bold italic lg:text-xl" style="color:var(--text-primary);">Ongoing Growth Partner</h3>
+                  <p class="mt-3 max-w-3xl text-sm leading-7" style="color:var(--text-secondary);">Retainer-based support with monthly sprints, performance monitoring, and feature rollouts tied to your growth goals.</p>
+                  <div class="mini-label mono-font mt-6" style="color:var(--text-secondary);">06 / Support</div>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SHOWCASE -->
+    <section id="showcase" class="section-frame py-24 lg:py-32">
+      <div class="site-shell">
+        <div class="mb-10 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between reveal">
+          <div>
+            <div class="section-kicker">Featured launches</div>
+            <h2 class="display-font mt-3 text-4xl font-extrabold italic leading-[0.96] tracking-[-0.04em] lg:text-5xl" style="color:var(--text-primary);max-width:10ch;">Real sites. Real results.</h2>
+          </div>
+          <p class="max-w-sm text-base leading-8 lg:text-right" style="color:var(--text-secondary);">Editorial index of outcomes — no generic thumbnails.</p>
+        </div>
+        <div class="reveal">
+          <a href="index.html#contact" class="case-row block py-7">
+            <div class="grid gap-4 lg:grid-cols-[90px_160px_1fr_auto_36px] lg:items-center">
+              <div class="display-font text-5xl font-extrabold italic leading-none" style="color:rgba(240,245,240,0.18);">01</div>
+              <div><span class="mono-font rounded-full px-3 py-1.5 text-xs uppercase tracking-[0.16em]" style="color:var(--accent);border:1px solid rgba(57,255,20,0.2);background:rgba(57,255,20,0.05);">SaaS Platform</span></div>
+              <div>
+                <h3 class="display-font text-xl font-bold italic" style="color:var(--text-primary);">Cortex Ops Dashboard</h3>
+                <p class="mt-2 max-w-3xl text-sm leading-7" style="color:var(--text-secondary);">Full SaaS rebuild with role-based workflows, live data visualization, and custom component system.</p>
+              </div>
+              <div class="mono-font text-xs uppercase tracking-[0.18em]" style="color:var(--accent);">+60% onboarding speed</div>
+              <div class="text-xl" style="color:var(--accent);">→</div>
+            </div>
+          </a>
+          <a href="index.html#contact" class="case-row block py-7">
+            <div class="grid gap-4 lg:grid-cols-[90px_160px_1fr_auto_36px] lg:items-center">
+              <div class="display-font text-5xl font-extrabold italic leading-none" style="color:rgba(240,245,240,0.18);">02</div>
+              <div><span class="mono-font rounded-full px-3 py-1.5 text-xs uppercase tracking-[0.16em]" style="color:var(--accent);border:1px solid rgba(57,255,20,0.2);background:rgba(57,255,20,0.05);">E-commerce</span></div>
+              <div>
+                <h3 class="display-font text-xl font-bold italic" style="color:var(--text-primary);">Helio Commerce Store</h3>
+                <p class="mt-2 max-w-3xl text-sm leading-7" style="color:var(--text-secondary);">Headless storefront, friction-cutting checkout flow, and product storytelling that converted.</p>
+              </div>
+              <div class="mono-font text-xs uppercase tracking-[0.18em]" style="color:var(--accent);">3.2x add-to-cart</div>
+              <div class="text-xl" style="color:var(--accent);">→</div>
+            </div>
+          </a>
+          <a href="index.html#contact" class="case-row block py-7" style="border-bottom:1px solid rgba(57,255,20,0.06);">
+            <div class="grid gap-4 lg:grid-cols-[90px_160px_1fr_auto_36px] lg:items-center">
+              <div class="display-font text-5xl font-extrabold italic leading-none" style="color:rgba(240,245,240,0.18);">03</div>
+              <div><span class="mono-font rounded-full px-3 py-1.5 text-xs uppercase tracking-[0.16em]" style="color:var(--accent);border:1px solid rgba(57,255,20,0.2);background:rgba(57,255,20,0.05);">Launch Site</span></div>
+              <div>
+                <h3 class="display-font text-xl font-bold italic" style="color:var(--text-primary);">Nova Pulse Launch Site</h3>
+                <p class="mt-2 max-w-3xl text-sm leading-7" style="color:var(--text-secondary);">Immersive scroll-driven experience, cinematic pacing, modular CMS, performance-first build.</p>
+              </div>
+              <div class="mono-font text-xs uppercase tracking-[0.18em]" style="color:var(--accent);">91% approval score</div>
+              <div class="text-xl" style="color:var(--accent);">→</div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- PERFORMANCE METRICS -->
+    <section class="section-frame overflow-hidden py-24 lg:py-32">
+      <div class="site-shell">
+        <div class="relative reveal overflow-hidden rounded-[38px] px-7 py-10 lg:px-12 lg:py-14" style="background:linear-gradient(180deg,rgba(11,14,11,0.98),rgba(8,10,8,0.94));border:1px solid rgba(57,255,20,0.08);">
+          <div class="spotlight" style="width:30rem;height:30rem;top:-10rem;left:-5rem;background:radial-gradient(circle,rgba(57,255,20,0.15),transparent 64%);"></div>
+          <div class="relative z-10 grid gap-12 lg:grid-cols-[0.78fr_1.22fr] lg:items-center">
             <div>
-              <div class="section-kicker">Featured launches</div>
-              <h2 class="display-font mt-4 text-4xl font-extrabold italic leading-[0.96] tracking-[-0.04em] lg:text-6xl" style="color:var(--text-primary);max-width:10ch;">Real sites. Real results.</h2>
+              <div class="section-kicker">Performance obsession</div>
+              <h2 class="display-font mt-4 font-extrabold italic leading-[0.94] tracking-[-0.04em]" style="color:var(--text-primary);font-size:clamp(2.4rem,5vw,4rem);max-width:9ch;">Numbers that speak louder than pitches.</h2>
+              <p class="mt-5 max-w-[30rem] text-base leading-8" style="color:var(--text-secondary);">Every build ships when speed, accessibility, SEO, and best practices all hit green.</p>
             </div>
-            <p class="text-base leading-8 lg:text-lg lg:text-right lg:max-w-sm" style="color:var(--text-secondary);">Each project is designed as a standalone universe with its own hierarchy, motion language, and product emphasis.</p>
-          </div>
-
-          <div class="grid gap-8 lg:grid-cols-3">
-            <!-- Case 1 -->
-            <div class="hov-card glass-panel rounded-[30px] overflow-hidden reveal" style="transition-delay:.04s;">
-              <div style="aspect-ratio:16/9;overflow:hidden;background:linear-gradient(135deg,rgba(57,255,20,0.12),rgba(255,255,255,0.02));">
-                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=80" alt="SaaS Dashboard" style="width:100%;height:100%;object-fit:cover;transform:scale(1.04);transition:transform .8s cubic-bezier(.22,1,.36,1);" class="case-img" />
-              </div>
-              <div class="p-6 lg:p-7">
-                <div class="mini-label mono-font">SaaS Platform</div>
-                <h3 class="display-font mt-4 text-2xl font-bold italic" style="color:var(--text-primary);">Cortex Ops Dashboard</h3>
-                <p class="mt-3 text-sm leading-7" style="color:var(--text-secondary);">Complete SaaS rebuild with real-time data viz, role-based auth, and a custom design system that cut onboarding friction by 60%.</p>
-                <div class="mt-5 flex items-center justify-between border-t pt-4" style="border-color:var(--border);">
-                  <span class="mono-font text-xs uppercase tracking-widest" style="color:var(--accent);">↑ 60% faster onboarding</span>
-                  <a href="index.html#contact" class="text-sm font-semibold" style="color:var(--accent);">View case →</a>
-                </div>
-              </div>
-            </div>
-            <!-- Case 2 -->
-            <div class="hov-card glass-panel rounded-[30px] overflow-hidden reveal" style="transition-delay:.1s;">
-              <div style="aspect-ratio:16/9;overflow:hidden;background:linear-gradient(135deg,rgba(57,255,20,0.08),rgba(255,255,255,0.02));">
-                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=80" alt="E-commerce" style="width:100%;height:100%;object-fit:cover;transform:scale(1.04);transition:transform .8s cubic-bezier(.22,1,.36,1);" class="case-img" />
-              </div>
-              <div class="p-6 lg:p-7">
-                <div class="mini-label mono-font">E-commerce</div>
-                <h3 class="display-font mt-4 text-2xl font-bold italic" style="color:var(--text-primary);">Helio Commerce Store</h3>
-                <p class="mt-3 text-sm leading-7" style="color:var(--text-secondary);">Headless Shopify build with custom checkout, product 3D viewer, and a UX overhaul that drove a 3.2x lift in add-to-cart rates.</p>
-                <div class="mt-5 flex items-center justify-between border-t pt-4" style="border-color:var(--border);">
-                  <span class="mono-font text-xs uppercase tracking-widest" style="color:var(--accent);">↑ 3.2x add-to-cart</span>
-                  <a href="index.html#contact" class="text-sm font-semibold" style="color:var(--accent);">View case →</a>
-                </div>
-              </div>
-            </div>
-            <!-- Case 3 -->
-            <div class="hov-card glass-panel rounded-[30px] overflow-hidden reveal" style="transition-delay:.16s;">
-              <div style="aspect-ratio:16/9;overflow:hidden;background:linear-gradient(135deg,rgba(57,255,20,0.1),rgba(255,255,255,0.02));">
-                <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=900&q=80" alt="Product Launch" style="width:100%;height:100%;object-fit:cover;transform:scale(1.04);transition:transform .8s cubic-bezier(.22,1,.36,1);" class="case-img" />
-              </div>
-              <div class="p-6 lg:p-7">
-                <div class="mini-label mono-font">Product Launch</div>
-                <h3 class="display-font mt-4 text-2xl font-bold italic" style="color:var(--text-primary);">Nova Pulse Launch Site</h3>
-                <p class="mt-3 text-sm leading-7" style="color:var(--text-secondary);">Immersive scroll-driven launch experience with 3D elements, cinematic transitions, and a modular CMS achieving 91% stakeholder approval at launch.</p>
-                <div class="mt-5 flex items-center justify-between border-t pt-4" style="border-color:var(--border);">
-                  <span class="mono-font text-xs uppercase tracking-widest" style="color:var(--accent);">91% approval score</span>
-                  <a href="index.html#contact" class="text-sm font-semibold" style="color:var(--accent);">View case →</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ═══════════════ PERFORMANCE METRICS ═══════════════ -->
-      <section class="section-frame py-24 lg:py-32">
-        <div class="site-shell">
-          <div class="glass-panel rounded-[38px] p-8 lg:p-14 reveal" style="background:linear-gradient(135deg,rgba(18,23,18,0.9),rgba(10,12,10,0.7));">
-            <div class="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
-              <div>
-                <div class="section-kicker">Performance obsession</div>
-                <h2 class="display-font mt-4 text-4xl font-extrabold italic leading-[0.95] tracking-[-0.04em] lg:text-5xl" style="color:var(--text-primary);max-width:9ch;">Numbers that speak louder than pitches.</h2>
-                <p class="mt-6 text-base leading-8" style="color:var(--text-secondary);">We measure everything — speed, accessibility, SEO, and conversion. Every build gets shipped only when all four bars hit green.</p>
-              </div>
-              <div class="space-y-6">
-                <div>
-                  <div class="flex justify-between text-sm mb-2">
-                    <span style="color:var(--text-secondary);">Performance Score</span>
-                    <span style="color:var(--text-primary);font-weight:700;">98 / 100</span>
-                  </div>
-                  <div class="h-3 rounded-full" style="background:rgba(255,255,255,0.06);">
-                    <div class="h-full rounded-full bar-fill" style="--w:98%;width:98%;background:var(--accent);"></div>
-                  </div>
-                </div>
-                <div>
-                  <div class="flex justify-between text-sm mb-2">
-                    <span style="color:var(--text-secondary);">Accessibility</span>
-                    <span style="color:var(--text-primary);font-weight:700;">100 / 100</span>
-                  </div>
-                  <div class="h-3 rounded-full" style="background:rgba(255,255,255,0.06);">
-                    <div class="h-full rounded-full bar-fill" style="--w:100%;width:100%;background:var(--accent);animation-delay:.15s;"></div>
-                  </div>
-                </div>
-                <div>
-                  <div class="flex justify-between text-sm mb-2">
-                    <span style="color:var(--text-secondary);">SEO Readiness</span>
-                    <span style="color:var(--text-primary);font-weight:700;">97 / 100</span>
-                  </div>
-                  <div class="h-3 rounded-full" style="background:rgba(255,255,255,0.06);">
-                    <div class="h-full rounded-full bar-fill" style="--w:97%;width:97%;background:var(--accent);animation-delay:.3s;"></div>
-                  </div>
-                </div>
-                <div>
-                  <div class="flex justify-between text-sm mb-2">
-                    <span style="color:var(--text-secondary);">Best Practices</span>
-                    <span style="color:var(--text-primary);font-weight:700;">100 / 100</span>
-                  </div>
-                  <div class="h-3 rounded-full" style="background:rgba(255,255,255,0.06);">
-                    <div class="h-full rounded-full bar-fill" style="--w:100%;width:100%;background:var(--accent);animation-delay:.45s;"></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ═══════════════ PROCESS ═══════════════ -->
-      <section id="process" class="section-frame py-24 lg:py-32">
-        <div class="site-shell">
-          <div class="text-center mb-14 reveal">
-            <div class="section-kicker">How we build</div>
-            <h2 class="display-font mt-4 text-4xl font-extrabold italic leading-[0.95] tracking-[-0.04em] lg:text-6xl mx-auto" style="color:var(--text-primary);max-width:14ch;">From idea to live in four precise phases.</h2>
-          </div>
-
-          <div class="relative">
-            <!-- vertical line -->
-            <div class="absolute left-6 top-0 bottom-0 w-px hidden lg:block" style="background:linear-gradient(180deg,rgba(57,255,20,0.3),rgba(57,255,20,0));left:50%;transform:translateX(-50%);"></div>
-
-            <div class="space-y-8 lg:space-y-0 lg:grid lg:grid-cols-2 lg:gap-x-14 lg:gap-y-10">
-              <!-- Step 1 -->
-              <div class="hov-card glass-panel rounded-[28px] p-6 lg:p-8 reveal">
-                <div class="flex items-start gap-5">
-                  <div class="flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center text-sm font-bold" style="background:rgba(57,255,20,0.1);border:1px solid rgba(57,255,20,0.3);color:var(--accent);font-family:'JetBrains Mono',monospace;">01</div>
-                  <div>
-                    <div class="mono-font text-xs uppercase tracking-widest mb-2" style="color:var(--accent);">Discovery</div>
-                    <h3 class="display-font text-xl font-bold italic" style="color:var(--text-primary);">Architecture & Strategy</h3>
-                    <p class="mt-3 text-sm leading-7" style="color:var(--text-secondary);">We audit your positioning, competitor landscape, and technical constraints. Then we design the information architecture, sitemap, and tech stack before a single component is built.</p>
-                  </div>
-                </div>
-              </div>
-              <!-- Step 2 -->
-              <div class="hov-card glass-panel rounded-[28px] p-6 lg:p-8 reveal lg:mt-14" style="transition-delay:.08s;">
-                <div class="flex items-start gap-5">
-                  <div class="flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center text-sm font-bold" style="background:rgba(57,255,20,0.1);border:1px solid rgba(57,255,20,0.3);color:var(--accent);font-family:'JetBrains Mono',monospace;">02</div>
-                  <div>
-                    <div class="mono-font text-xs uppercase tracking-widest mb-2" style="color:var(--accent);">Design</div>
-                    <h3 class="display-font text-xl font-bold italic" style="color:var(--text-primary);">Design System Creation</h3>
-                    <p class="mt-3 text-sm leading-7" style="color:var(--text-secondary);">Figma-first component library with motion specs, responsive grids, and brand tokens. We design the complete UI system so engineering has zero ambiguity.</p>
-                  </div>
-                </div>
-              </div>
-              <!-- Step 3 -->
-              <div class="hov-card glass-panel rounded-[28px] p-6 lg:p-8 reveal" style="transition-delay:.12s;">
-                <div class="flex items-start gap-5">
-                  <div class="flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center text-sm font-bold" style="background:rgba(57,255,20,0.1);border:1px solid rgba(57,255,20,0.3);color:var(--accent);font-family:'JetBrains Mono',monospace;">03</div>
-                  <div>
-                    <div class="mono-font text-xs uppercase tracking-widest mb-2" style="color:var(--accent);">Build</div>
-                    <h3 class="display-font text-xl font-bold italic" style="color:var(--text-primary);">Precision Engineering</h3>
-                    <p class="mt-3 text-sm leading-7" style="color:var(--text-secondary);">Component-driven development with TypeScript, Storybook documentation, CI/CD pipelines, and weekly preview deployments so you see progress in real-time.</p>
-                  </div>
-                </div>
-              </div>
-              <!-- Step 4 -->
-              <div class="hov-card glass-panel rounded-[28px] p-6 lg:p-8 reveal lg:mt-14" style="transition-delay:.16s;">
-                <div class="flex items-start gap-5">
-                  <div class="flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center text-sm font-bold" style="background:rgba(57,255,20,0.1);border:1px solid rgba(57,255,20,0.3);color:var(--accent);font-family:'JetBrains Mono',monospace;">04</div>
-                  <div>
-                    <div class="mono-font text-xs uppercase tracking-widest mb-2" style="color:var(--accent);">Launch</div>
-                    <h3 class="display-font text-xl font-bold italic" style="color:var(--text-primary);">Deploy & Optimise</h3>
-                    <p class="mt-3 text-sm leading-7" style="color:var(--text-secondary);">Edge deployment, analytics setup, Core Web Vitals audit, and 30-day post-launch support. We don't disappear after shipping — we iterate with you.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ═══════════════ PRICING / PACKAGES ═══════════════ -->
-      <section id="pricing" class="section-frame py-24 lg:py-32">
-        <div class="site-shell">
-          <div class="text-center mb-14 reveal">
-            <div class="section-kicker">Engagement models</div>
-            <h2 class="display-font mt-4 text-4xl font-extrabold italic leading-[0.95] tracking-[-0.04em] lg:text-6xl mx-auto" style="color:var(--text-primary);max-width:12ch;">Choose the build that fits your ambition.</h2>
-          </div>
-
-          <div class="grid gap-6 lg:grid-cols-3">
-            <!-- Starter -->
-            <div class="hov-card glass-panel rounded-[30px] p-7 reveal" style="transition-delay:.04s;">
-              <div class="mono-font text-xs uppercase tracking-widest mb-4" style="color:var(--text-secondary);">Starter</div>
-              <div class="display-font text-4xl font-extrabold italic" style="color:var(--text-primary);">$3,500<span class="text-lg" style="color:var(--text-secondary);">/project</span></div>
-              <p class="mt-3 text-sm leading-6" style="color:var(--text-secondary);">Perfect for brand new businesses and product launches needing a premium digital presence fast.</p>
-              <div class="mt-6 h-px soft-divider"></div>
-              <ul class="mt-6 space-y-3 text-sm" style="color:var(--text-secondary);">
-                <li class="flex gap-2"><span style="color:var(--accent);">✓</span> Up to 8 pages</li>
-                <li class="flex gap-2"><span style="color:var(--accent);">✓</span> Custom design system</li>
-                <li class="flex gap-2"><span style="color:var(--accent);">✓</span> CMS integration</li>
-                <li class="flex gap-2"><span style="color:var(--accent);">✓</span> Mobile-first responsive</li>
-                <li class="flex gap-2"><span style="color:var(--accent);">✓</span> 14-day delivery</li>
-              </ul>
-              <a href="index.html#contact" class="mt-8 w-full inline-flex items-center justify-center rounded-full border py-3.5 text-sm font-semibold transition-all hover:-translate-y-1" style="border-color:var(--border-strong);color:var(--text-primary);">Get Started</a>
-            </div>
-
-            <!-- Growth - FEATURED -->
-            <div class="hov-card relative glass-panel rounded-[30px] p-7 reveal" style="border-color:rgba(57,255,20,0.3);box-shadow:0 0 60px rgba(57,255,20,0.08);transition-delay:.1s;">
-              <div class="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full text-xs font-bold" style="background:var(--accent);color:#081008;font-family:'JetBrains Mono',monospace;letter-spacing:.1em;">MOST POPULAR</div>
-              <div class="mono-font text-xs uppercase tracking-widest mb-4" style="color:var(--accent);">Growth</div>
-              <div class="display-font text-4xl font-extrabold italic" style="color:var(--text-primary);">$8,500<span class="text-lg" style="color:var(--text-secondary);">/project</span></div>
-              <p class="mt-3 text-sm leading-6" style="color:var(--text-secondary);">Full-scale platforms with advanced motion, API integrations, and a production-ready component library.</p>
-              <div class="mt-6 h-px soft-divider"></div>
-              <ul class="mt-6 space-y-3 text-sm" style="color:var(--text-secondary);">
-                <li class="flex gap-2"><span style="color:var(--accent);">✓</span> Unlimited pages</li>
-                <li class="flex gap-2"><span style="color:var(--accent);">✓</span> 3D & GSAP animations</li>
-                <li class="flex gap-2"><span style="color:var(--accent);">✓</span> API & CRM integration</li>
-                <li class="flex gap-2"><span style="color:var(--accent);">✓</span> Analytics & A/B setup</li>
-                <li class="flex gap-2"><span style="color:var(--accent);">✓</span> 21-day delivery</li>
-                <li class="flex gap-2"><span style="color:var(--accent);">✓</span> 30-day post-launch support</li>
-              </ul>
-              <a href="index.html#contact" class="mt-8 w-full inline-flex items-center justify-center rounded-full py-3.5 text-sm font-bold transition-all hover:-translate-y-1" style="background:var(--accent);color:#081008;box-shadow:0 0 32px rgba(57,255,20,0.2);">Start Now</a>
-            </div>
-
-            <!-- Enterprise -->
-            <div class="hov-card glass-panel rounded-[30px] p-7 reveal" style="transition-delay:.16s;">
-              <div class="mono-font text-xs uppercase tracking-widest mb-4" style="color:var(--text-secondary);">Enterprise</div>
-              <div class="display-font text-4xl font-extrabold italic" style="color:var(--text-primary);">Custom</div>
-              <p class="mt-3 text-sm leading-6" style="color:var(--text-secondary);">For ambitious products that need a long-term technical partner with retainer sprints and strategic growth plans.</p>
-              <div class="mt-6 h-px soft-divider"></div>
-              <ul class="mt-6 space-y-3 text-sm" style="color:var(--text-secondary);">
-                <li class="flex gap-2"><span style="color:var(--accent);">✓</span> Full SaaS architecture</li>
-                <li class="flex gap-2"><span style="color:var(--accent);">✓</span> Dedicated team</li>
-                <li class="flex gap-2"><span style="color:var(--accent);">✓</span> Monthly sprint retainer</li>
-                <li class="flex gap-2"><span style="color:var(--accent);">✓</span> AI feature integration</li>
-                <li class="flex gap-2"><span style="color:var(--accent);">✓</span> Ongoing optimisation</li>
-              </ul>
-              <a href="index.html#contact" class="mt-8 w-full inline-flex items-center justify-center rounded-full border py-3.5 text-sm font-semibold transition-all hover:-translate-y-1" style="border-color:var(--border-strong);color:var(--text-primary);">Book a Call</a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ═══════════════ CTA ═══════════════ -->
-      <section class="relative py-24 lg:py-32">
-        <div class="site-shell">
-          <div class="glass-panel relative overflow-hidden rounded-[38px] px-6 py-14 lg:px-14 lg:py-16 reveal">
-            <div class="cta-bg absolute inset-0 rounded-[38px]"></div>
-            <div class="spotlight" style="width:28rem;height:28rem;top:-10rem;right:-6rem;background:radial-gradient(circle,rgba(57,255,20,0.14),transparent 64%);"></div>
-            <div class="relative z-10 grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
-              <div>
-                <div class="section-kicker">Ready to build something remarkable?</div>
-                <h2 class="display-font mt-4 text-4xl font-extrabold italic leading-[0.94] tracking-[-0.04em] lg:text-6xl" style="color:var(--text-primary);max-width:12ch;">Your premium web presence starts here.</h2>
-                <p class="mt-6 text-base leading-8 lg:text-lg" style="color:var(--text-secondary);max-width:38rem;">We don't take every project. We take the ones where our work can genuinely change the trajectory of your business. Tell us yours.</p>
-              </div>
-              <div class="flex flex-col gap-4">
-                <a href="mailto:info@auroveon.com" class="display-font inline-flex items-center justify-center rounded-full px-8 py-4 text-base font-bold transition-all hover:-translate-y-1" style="background:var(--accent);color:#081008;box-shadow:0 0 42px rgba(57,255,20,0.18);">Start a Project</a>
-                <a href="seo.html" class="display-font inline-flex items-center justify-center rounded-full border px-8 py-4 text-base font-bold transition-all hover:-translate-y-1" style="border-color:var(--border-strong);color:var(--text-primary);">Explore SEO Services →</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-    </main>
-
-    <!-- ═══════════════ FOOTER ═══════════════ -->
-    <footer class="relative pb-10">
-      <div class="site-shell" style="border-top:1px solid var(--border);padding-top:2.5rem;">
-        <div class="grid gap-10 lg:grid-cols-[1.2fr_0.8fr_0.8fr_0.8fr]">
-          <div>
-            <img src="assets/WhatsApp Image 2026-05-09 at 09,19,43-Picsart-BackgroundRemover.png" alt="Auroveon" style="height:72px;width:auto;max-width:240px;object-fit:contain;" />
-            <p class="mt-4 text-sm leading-7 max-w-sm" style="color:var(--text-secondary);">Software agency for AI solutions, modern web platforms, SaaS systems, and cinematic digital experiences built for ambitious brands.</p>
-            <div class="mt-6 flex flex-wrap items-center gap-4">
-              <a class="footer-social-link" href="https://linkedin.com/company/auroveon" target="_blank" rel="noreferrer" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.05-1.86-3.05-1.86 0-2.15 1.45-2.15 2.95v5.67H9.32V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.61 0 4.28 2.37 4.28 5.46v6.28ZM5.31 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14ZM7.09 20.45H3.52V9h3.57v11.45ZM22.23 0H1.77A1.77 1.77 0 0 0 0 1.77v20.46C0 23.21.79 24 1.77 24h20.46A1.77 1.77 0 0 0 24 22.23V1.77A1.77 1.77 0 0 0 22.23 0Z"/></svg></a>
-              <a class="footer-social-link" href="https://instagram.com/auroveon" target="_blank" rel="noreferrer" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2Zm0 1.8A3.95 3.95 0 0 0 3.8 7.75v8.5a3.95 3.95 0 0 0 3.95 3.95h8.5a3.95 3.95 0 0 0 3.95-3.95v-8.5a3.95 3.95 0 0 0-3.95-3.95Zm8.95 1.35a1.15 1.15 0 1 1 0 2.3 1.15 1.15 0 0 1 0-2.3ZM12 6.86A5.14 5.14 0 1 1 6.86 12 5.14 5.14 0 0 1 12 6.86Zm0 1.8A3.34 3.34 0 1 0 15.34 12 3.34 3.34 0 0 0 12 8.66Z"/></svg></a>
-              <a class="footer-social-link" href="https://twitter.com/auroveon" target="_blank" rel="noreferrer" aria-label="X"><svg viewBox="0 0 24 24"><path d="M18.9 2H22l-6.77 7.73L23.2 22h-6.25l-4.9-6.4L6.45 22H3.34l7.24-8.27L1 2h6.4l4.43 5.85L18.9 2Zm-1.1 18h1.73L6.46 3.9H4.6Z"/></svg></a>
-            </div>
-          </div>
-          <div>
-            <div class="mono-font text-xs uppercase tracking-[0.18em] mb-5" style="color:var(--accent);">Navigation</div>
-            <div class="flex flex-col gap-3 text-sm">
-              <a class="footer-link" href="index.html#services">Services</a>
-              <a class="footer-link" href="index.html#story">Process</a>
-              <a class="footer-link" href="index.html#work">Work</a>
-              <a class="footer-link" href="web-development.html" style="color:var(--accent);">Web Development</a>
-              <a class="footer-link" href="seo.html">SEO</a>
-              <a class="footer-link" href="index.html#contact">Contact</a>
-            </div>
-          </div>
-          <div>
-            <div class="mono-font text-xs uppercase tracking-[0.18em] mb-5" style="color:var(--accent);">Services</div>
-            <div class="flex flex-col gap-3 text-sm" style="color:var(--text-secondary);">
-              <span>AI Solutions</span>
-              <span>Web Development</span>
-              <span>SaaS Platforms</span>
-              <span>Automation</span>
-              <span>SEO</span>
-            </div>
-          </div>
-          <div>
-            <div class="mono-font text-xs uppercase tracking-[0.18em] mb-5" style="color:var(--accent);">Contact Us</div>
-            <div class="flex flex-col gap-4">
-              <div><div class="footer-contact-label">Email</div><div class="footer-contact-value"><a class="footer-contact-link" href="mailto:info@auroveon.com">info@auroveon.com</a></div></div>
-              <div><div class="footer-contact-label">Phone</div><div class="footer-contact-value"><a class="footer-contact-link" href="tel:+923353213863">+92 335 321 3863</a></div></div>
-              <div><div class="footer-contact-label">Address</div><div class="footer-contact-value">Street 4, Karachi, Pakistan</div></div>
-            </div>
-          </div>
-        </div>
-        <div class="mt-10 flex flex-col gap-4 pt-6 text-sm" style="color:var(--text-secondary);border-top:1px solid var(--border);">
-          <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
-            <div class="flex flex-wrap items-center gap-3">
-              <span>© 2026</span>
-              <img src="assets/WhatsApp Image 2026-05-09 at 09,19,43-Picsart-BackgroundRemover.png" alt="Auroveon" style="height:26px;width:auto;" />
-              <span>Crafted for premium digital products.</span>
-            </div>
-            <div class="flex flex-wrap items-center gap-4">
-              <a class="footer-legal-link" href="/privacy-policy">Privacy Policy</a>
-              <span>·</span>
-              <a class="footer-legal-link" href="/terms-of-service">Terms of Service</a>
+            <div class="space-y-5">
+              <div><div class="mb-2 flex justify-between text-sm"><span style="color:var(--text-secondary);">Performance Score</span><span style="color:var(--text-primary);font-weight:700;">98 / 100</span></div><div class="h-2.5 rounded-full" style="background:rgba(255,255,255,0.06);"><div class="bar-fill h-full rounded-full" style="--w:98%;width:98%;background:var(--accent);"></div></div></div>
+              <div><div class="mb-2 flex justify-between text-sm"><span style="color:var(--text-secondary);">Accessibility</span><span style="color:var(--text-primary);font-weight:700;">100 / 100</span></div><div class="h-2.5 rounded-full" style="background:rgba(255,255,255,0.06);"><div class="bar-fill h-full rounded-full" style="--w:100%;width:100%;background:var(--accent);animation-delay:.15s;"></div></div></div>
+              <div><div class="mb-2 flex justify-between text-sm"><span style="color:var(--text-secondary);">SEO Readiness</span><span style="color:var(--text-primary);font-weight:700;">97 / 100</span></div><div class="h-2.5 rounded-full" style="background:rgba(255,255,255,0.06);"><div class="bar-fill h-full rounded-full" style="--w:97%;width:97%;background:var(--accent);animation-delay:.3s;"></div></div></div>
+              <div><div class="mb-2 flex justify-between text-sm"><span style="color:var(--text-secondary);">Best Practices</span><span style="color:var(--text-primary);font-weight:700;">100 / 100</span></div><div class="h-2.5 rounded-full" style="background:rgba(255,255,255,0.06);"><div class="bar-fill h-full rounded-full" style="--w:100%;width:100%;background:var(--accent);animation-delay:.45s;"></div></div></div>
+              <p class="mono-font pt-1 text-[0.68rem] italic uppercase tracking-[0.14em]" style="color:var(--text-muted);">* Measured across all production builds. Lighthouse v10.</p>
             </div>
           </div>
         </div>
       </div>
-    </footer>
+    </section>
 
-    <!-- WhatsApp FAB -->
-    <a href="https://wa.me/923353213863" target="_blank" rel="noreferrer" aria-label="Chat with us on WhatsApp" class="whatsapp-fab">
-      <svg viewBox="0 0 24 24" fill="white" width="28" height="28"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
-    </a>
+    <!-- PROCESS -->
+    <section id="process" class="section-frame py-24 lg:py-32">
+      <div class="site-shell">
+        <div class="mb-12 text-center reveal">
+          <div class="section-kicker">How we build</div>
+          <h2 class="display-font mx-auto mt-4 text-4xl font-extrabold italic leading-[0.95] tracking-[-0.04em] lg:text-5xl" style="color:var(--text-primary);max-width:14ch;">From idea to live in four precise phases.</h2>
+        </div>
+        <div class="relative">
+          <div class="timeline-track hidden lg:block"></div>
+          <div class="grid gap-5 lg:grid-cols-4">
+            <article class="timeline-step reveal">
+              <div class="timeline-card glass-panel rounded-[26px] p-5 lg:min-h-[290px] lg:p-6">
+                <div class="display-font text-5xl font-extrabold italic leading-none" style="color:rgba(57,255,20,0.12);">01</div>
+                <div class="mt-5 flex h-12 w-12 items-center justify-center rounded-xl" style="border:1px solid rgba(57,255,20,0.18);background:rgba(57,255,20,0.06);">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" style="color:var(--accent);"><path d="M4 7h16"/><path d="M7 4v6"/><path d="M17 4v6"/><path d="M5 19l3.5-3.5L11 18l8-8"/></svg>
+                </div>
+                <h3 class="display-font mt-5 text-lg font-bold italic" style="color:var(--text-primary);">Architecture &amp; Strategy</h3>
+                <p class="mt-3 text-sm leading-7" style="color:var(--text-secondary);">We map positioning, scope, and constraints so design and engineering start from the same brief.</p>
+              </div>
+              <div class="timeline-connector hidden lg:block"></div>
+            </article>
+            <article class="timeline-step reveal" style="transition-delay:.08s;">
+              <div class="timeline-card glass-panel rounded-[26px] p-5 lg:min-h-[290px] lg:p-6">
+                <div class="display-font text-5xl font-extrabold italic leading-none" style="color:rgba(57,255,20,0.12);">02</div>
+                <div class="mt-5 flex h-12 w-12 items-center justify-center rounded-xl" style="border:1px solid rgba(57,255,20,0.18);background:rgba(57,255,20,0.06);">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" style="color:var(--accent);"><path d="M4 20h4l10-10-4-4L4 16v4Z"/><path d="M13 7l4 4"/></svg>
+                </div>
+                <h3 class="display-font mt-5 text-lg font-bold italic" style="color:var(--text-primary);">Design System Creation</h3>
+                <p class="mt-3 text-sm leading-7" style="color:var(--text-secondary);">Grids, tokens, motion rules, and interaction patterns so the visual language stays intentional.</p>
+              </div>
+              <div class="timeline-connector hidden lg:block"></div>
+            </article>
+            <article class="timeline-step reveal" style="transition-delay:.12s;">
+              <div class="timeline-card glass-panel rounded-[26px] p-5 lg:min-h-[290px] lg:p-6">
+                <div class="display-font text-5xl font-extrabold italic leading-none" style="color:rgba(57,255,20,0.12);">03</div>
+                <div class="mt-5 flex h-12 w-12 items-center justify-center rounded-xl" style="border:1px solid rgba(57,255,20,0.18);background:rgba(57,255,20,0.06);">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" style="color:var(--accent);"><path d="M8 8l-4 4 4 4"/><path d="M16 8l4 4-4 4"/><path d="M14 4l-4 16"/></svg>
+                </div>
+                <h3 class="display-font mt-5 text-lg font-bold italic" style="color:var(--text-primary);">Precision Engineering</h3>
+                <p class="mt-3 text-sm leading-7" style="color:var(--text-secondary);">Component-driven development, preview deployments, and rigorous QA keep the build clean.</p>
+              </div>
+              <div class="timeline-connector hidden lg:block"></div>
+            </article>
+            <article class="timeline-step reveal" style="transition-delay:.16s;">
+              <div class="timeline-card glass-panel rounded-[26px] p-5 lg:min-h-[290px] lg:p-6">
+                <div class="display-font text-5xl font-extrabold italic leading-none" style="color:rgba(57,255,20,0.12);">04</div>
+                <div class="mt-5 flex h-12 w-12 items-center justify-center rounded-xl" style="border:1px solid rgba(57,255,20,0.18);background:rgba(57,255,20,0.06);">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" style="color:var(--accent);"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
+                </div>
+                <h3 class="display-font mt-5 text-lg font-bold italic" style="color:var(--text-primary);">Deploy &amp; Optimise</h3>
+                <p class="mt-3 text-sm leading-7" style="color:var(--text-secondary);">Launch includes analytics, performance checks, and a refinement window post-ship.</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    <script>
-      // NAVBAR SCROLL
-      const navbar = document.getElementById('navbar');
-      window.addEventListener('scroll', () => {
-        navbar.classList.toggle('nav-scrolled', window.scrollY > 10);
-      });
+    <!-- WHY AUROVEON -->
+    <section id="why-auroveon" class="section-frame py-24 lg:py-32">
+      <div class="site-shell">
+        <!-- Counters -->
+        <div class="glass-panel relative overflow-hidden rounded-[34px] px-6 py-8 lg:px-10 lg:py-10 reveal" style="background:linear-gradient(135deg,rgba(11,14,11,0.94),rgba(8,10,8,0.88));">
+          <div class="relative z-10 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+            <div><div class="counter-value display-font font-extrabold italic" data-count="120" data-suffix="+" style="font-size:clamp(2.2rem,4.5vw,3.5rem);color:var(--text-primary);">0</div><div class="mono-font mt-2 text-[0.7rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">Websites shipped</div></div>
+            <div><div class="counter-value display-font font-extrabold italic" data-count="3.2" data-suffix="x" data-decimals="1" style="font-size:clamp(2.2rem,4.5vw,3.5rem);color:var(--text-primary);">0</div><div class="mono-font mt-2 text-[0.7rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">Avg conversion lift</div></div>
+            <div><div class="counter-value display-font font-extrabold italic" data-count="14" data-suffix=" days" style="font-size:clamp(2.2rem,4.5vw,3.5rem);color:var(--text-primary);">0</div><div class="mono-font mt-2 text-[0.7rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">Avg launch time</div></div>
+            <div><div class="counter-value display-font font-extrabold italic" data-count="100" style="font-size:clamp(2.2rem,4.5vw,3.5rem);color:var(--text-primary);">0</div><div class="mono-font mt-2 text-[0.7rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">Lighthouse score</div></div>
+          </div>
+        </div>
+        <!-- Edge Cards -->
+        <div class="mt-14 reveal">
+          <div class="section-kicker">What makes us different</div>
+          <h2 class="display-font mt-4 text-4xl font-extrabold italic leading-[0.92] tracking-[-0.04em] lg:text-5xl" style="color:var(--text-primary);max-width:11ch;">Built different. By design.</h2>
+        </div>
+        <div class="mt-8 grid gap-5 lg:grid-cols-3">
+          <article class="difference-card glass-panel rounded-[28px] p-6 reveal">
+            <div class="flex h-14 w-14 items-center justify-center rounded-xl" style="border:1px solid rgba(57,255,20,0.18);background:rgba(57,255,20,0.06);">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="color:var(--accent);"><path d="M4 7h16"/><path d="M7 4v6"/><path d="M17 4v6"/><path d="M6 13h12"/><path d="M8 17h8"/></svg>
+            </div>
+            <h3 class="display-font mt-7 text-2xl font-extrabold italic" style="color:var(--text-primary);">Zero Templates</h3>
+            <p class="mt-4 text-sm leading-8" style="color:var(--text-secondary);">Every engagement starts with strategy, structure, and a purpose-built interface language. We do not retrofit your brand into a pre-made frame.</p>
+            <div class="mono-font mt-8 text-xs italic uppercase tracking-[0.15em]" style="color:var(--text-muted);">Every pixel is a decision</div>
+          </article>
+          <article class="difference-card glass-panel rounded-[28px] p-6 reveal" style="transition-delay:.08s;">
+            <div class="flex h-14 w-14 items-center justify-center rounded-xl" style="border:1px solid rgba(57,255,20,0.18);background:rgba(57,255,20,0.06);">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="color:var(--accent);"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+            </div>
+            <h3 class="display-font mt-7 text-2xl font-extrabold italic" style="color:var(--text-primary);">Edge-First</h3>
+            <p class="mt-4 text-sm leading-8" style="color:var(--text-secondary);">The design ambition never comes at the cost of load time. Our stack and deployment strategy keep the experience fast under real-world pressure.</p>
+            <div class="mono-font mt-8 text-xs italic uppercase tracking-[0.15em]" style="color:var(--text-muted);">Speed is part of the brand</div>
+          </article>
+          <article class="difference-card glass-panel rounded-[28px] p-6 reveal" style="transition-delay:.16s;">
+            <div class="flex h-14 w-14 items-center justify-center rounded-xl" style="border:1px solid rgba(57,255,20,0.18);background:rgba(57,255,20,0.06);">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="color:var(--accent);"><path d="M12 3l2.9 5.88L21 9.76l-4.5 4.39 1.06 6.09L12 17.77l-5.56 2.47 1.06-6.09L3 9.76l6.1-.88L12 3Z"/></svg>
+            </div>
+            <h3 class="display-font mt-7 text-2xl font-extrabold italic" style="color:var(--text-primary);">Obsessive Detail</h3>
+            <p class="mt-4 text-sm leading-8" style="color:var(--text-secondary);">Spacing, cadence, type, states, and interactions are all tuned deliberately. That extra layer of care is what makes a site memorable.</p>
+            <div class="mono-font mt-8 text-xs italic uppercase tracking-[0.15em]" style="color:var(--text-muted);">No themes. No shortcuts.</div>
+          </article>
+        </div>
+      </div>
+    </section>
 
-      // MOBILE MENU
-      const btn = document.getElementById('mobileMenuBtn');
-      const menu = document.getElementById('mobileMenu');
-      btn.addEventListener('click', () => {
-        menu.classList.toggle('hidden');
-        btn.textContent = menu.classList.contains('hidden') ? '+' : '×';
-      });
+    <!-- CTA -->
+    <section class="relative py-24 lg:py-32">
+      <div class="site-shell">
+        <div class="glass-panel relative overflow-hidden rounded-[34px] px-7 py-14 lg:px-14 lg:py-16 reveal">
+          <div class="cta-bg absolute inset-0 rounded-[34px]"></div>
+          <div class="spotlight" style="width:26rem;height:26rem;top:-8rem;right:-5rem;background:radial-gradient(circle,rgba(57,255,20,0.14),transparent 64%);"></div>
+          <div class="relative z-10 grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
+            <div>
+              <div class="section-kicker flex items-center gap-3"><span class="h-2.5 w-2.5 rounded-full pulse-dot" style="background:var(--accent);"></span><span>Ready to build something remarkable?</span></div>
+              <h2 class="display-font mt-4 font-extrabold italic leading-[0.94] tracking-[-0.04em]" style="color:var(--text-primary);font-size:clamp(2.6rem,5.5vw,4.2rem);max-width:12ch;">Your premium web presence starts here.</h2>
+              <p class="mt-5 max-w-[36rem] text-base leading-8" style="color:var(--text-secondary);">We don't take every project. We take the ones where our work can genuinely change the trajectory of your business.</p>
+            </div>
+            <div class="flex flex-col gap-4">
+              <a href="mailto:info@auroveon.com" class="display-font inline-flex items-center justify-center rounded-full px-8 py-4 text-base font-bold transition-all hover:-translate-y-1" style="background:var(--accent);color:#081008;box-shadow:0 0 36px rgba(57,255,20,0.18);">Start a Project</a>
+              <a href="seo.html" class="display-font inline-flex items-center justify-center rounded-full border px-8 py-4 text-base font-bold transition-all hover:-translate-y-1" style="border-color:var(--border-strong);color:var(--text-primary);">Explore SEO Services →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-      // CUSTOM CURSOR
-      const dot = document.getElementById('cursorDot');
-      const ring = document.getElementById('cursorRing');
-      if (window.innerWidth >= 1024) {
-        dot.style.opacity = '1'; ring.style.opacity = '1';
-        let dotX=0,dotY=0,ringX=0,ringY=0,mx=0,my=0;
-        window.addEventListener('mousemove', e => { mx=e.clientX; my=e.clientY; });
-        const animate = () => {
-          dotX += (mx-dotX)*0.18; dotY += (my-dotY)*0.18;
-          ringX += (mx-ringX)*0.1; ringY += (my-ringY)*0.1;
-          dot.style.left = dotX+'px'; dot.style.top = dotY+'px';
-          ring.style.left = ringX+'px'; ring.style.top = ringY+'px';
-          requestAnimationFrame(animate);
-        };
-        animate();
-        document.querySelectorAll('a,button,[data-hover]').forEach(el => {
-          el.addEventListener('mouseenter', () => ring.classList.add('is-hovering'));
-          el.addEventListener('mouseleave', () => ring.classList.remove('is-hovering'));
-        });
-      }
+  </main>
 
-      // SCROLL REVEAL
-      const observer = new IntersectionObserver(entries => {
-        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
-      }, { threshold: 0.12 });
-      document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  <!-- FOOTER -->
+  <footer class="relative pb-10">
+    <div class="site-shell" style="border-top:1px solid var(--border);padding-top:2.5rem;">
+      <div class="grid gap-10 lg:grid-cols-[1.2fr_0.8fr_0.8fr_0.8fr]">
+        <div>
+          <img src="assets/WhatsApp Image 2026-05-09 at 09,19,43-Picsart-BackgroundRemover.png" alt="Auroveon" style="height:66px;width:auto;max-width:220px;object-fit:contain;"/>
+          <p class="mt-4 text-sm leading-7 max-w-sm" style="color:var(--text-secondary);">Software agency for AI solutions, modern web platforms, SaaS systems, and cinematic digital experiences built for ambitious brands.</p>
+          <div class="mt-6 flex flex-wrap items-center gap-3">
+            <a class="footer-social-link" href="https://linkedin.com/company/auroveon" target="_blank" rel="noreferrer" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.05-1.86-3.05-1.86 0-2.15 1.45-2.15 2.95v5.67H9.32V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.61 0 4.28 2.37 4.28 5.46v6.28ZM5.31 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14ZM7.09 20.45H3.52V9h3.57v11.45ZM22.23 0H1.77A1.77 1.77 0 0 0 0 1.77v20.46C0 23.21.79 24 1.77 24h20.46A1.77 1.77 0 0 0 24 22.23V1.77A1.77 1.77 0 0 0 22.23 0Z"/></svg></a>
+            <a class="footer-social-link" href="https://instagram.com/auroveon" target="_blank" rel="noreferrer" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2Zm0 1.8A3.95 3.95 0 0 0 3.8 7.75v8.5a3.95 3.95 0 0 0 3.95 3.95h8.5a3.95 3.95 0 0 0 3.95-3.95v-8.5a3.95 3.95 0 0 0-3.95-3.95Zm8.95 1.35a1.15 1.15 0 1 1 0 2.3 1.15 1.15 0 0 1 0-2.3ZM12 6.86A5.14 5.14 0 1 1 6.86 12 5.14 5.14 0 0 1 12 6.86Zm0 1.8A3.34 3.34 0 1 0 15.34 12 3.34 3.34 0 0 0 12 8.66Z"/></svg></a>
+            <a class="footer-social-link" href="https://twitter.com/auroveon" target="_blank" rel="noreferrer" aria-label="X"><svg viewBox="0 0 24 24"><path d="M18.9 2H22l-6.77 7.73L23.2 22h-6.25l-4.9-6.4L6.45 22H3.34l7.24-8.27L1 2h6.4l4.43 5.85L18.9 2Zm-1.1 18h1.73L6.46 3.9H4.6Z"/></svg></a>
+          </div>
+        </div>
+        <div>
+          <div class="mono-font text-xs uppercase tracking-[0.18em] mb-5" style="color:var(--accent);">Navigation</div>
+          <div class="flex flex-col gap-3 text-sm">
+            <a class="footer-link" href="index.html#services">Services</a>
+            <a class="footer-link" href="index.html#story">Process</a>
+            <a class="footer-link" href="index.html#work">Work</a>
+            <a class="footer-link" href="web-development.html" style="color:var(--accent);">Web Development</a>
+            <a class="footer-link" href="seo.html">SEO</a>
+            <a class="footer-link" href="index.html#contact">Contact</a>
+          </div>
+        </div>
+        <div>
+          <div class="mono-font text-xs uppercase tracking-[0.18em] mb-5" style="color:var(--accent);">Services</div>
+          <div class="flex flex-col gap-3 text-sm" style="color:var(--text-secondary);">
+            <span>AI Solutions</span><span>Web Development</span><span>SaaS Platforms</span><span>Automation</span><span>SEO</span>
+          </div>
+        </div>
+        <div>
+          <div class="mono-font text-xs uppercase tracking-[0.18em] mb-5" style="color:var(--accent);">Contact Us</div>
+          <div class="flex flex-col gap-4">
+            <div><div class="footer-contact-label">Email</div><div class="footer-contact-value"><a class="footer-contact-link" href="mailto:info@auroveon.com">info@auroveon.com</a></div></div>
+            <div><div class="footer-contact-label">Phone</div><div class="footer-contact-value"><a class="footer-contact-link" href="tel:+923353213863">+92 335 321 3863</a></div></div>
+            <div><div class="footer-contact-label">Address</div><div class="footer-contact-value">Street 4, Karachi, Pakistan</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="mt-10 flex flex-col gap-4 pt-5 text-sm" style="color:var(--text-secondary);border-top:1px solid var(--border);">
+        <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+          <div class="flex flex-wrap items-center gap-3">
+            <span>© 2026</span>
+            <img src="assets/WhatsApp Image 2026-05-09 at 09,19,43-Picsart-BackgroundRemover.png" alt="Auroveon" style="height:22px;width:auto;"/>
+            <span>Crafted for premium digital products.</span>
+          </div>
+          <div class="flex flex-wrap items-center gap-4">
+            <a class="footer-legal-link" href="/privacy-policy">Privacy Policy</a>
+            <span>·</span>
+            <a class="footer-legal-link" href="/terms-of-service">Terms of Service</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
 
-      // CASE IMG HOVER ZOOM
-      document.querySelectorAll('.case-img').forEach(img => {
-        img.parentElement.addEventListener('mouseenter', () => img.style.transform = 'scale(1.1)');
-        img.parentElement.addEventListener('mouseleave', () => img.style.transform = 'scale(1.04)');
-      });
+  <!-- WhatsApp FAB -->
+  <a href="https://wa.me/923353213863" target="_blank" rel="noreferrer" aria-label="Chat on WhatsApp" class="whatsapp-fab">
+    <svg viewBox="0 0 24 24" fill="white" width="28" height="28"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+  </a>
 
-      // SMOOTH SCROLL ANCHORS
-      document.querySelectorAll('a[href^="#"]').forEach(a => {
-        a.addEventListener('click', e => {
-          const target = document.querySelector(a.getAttribute('href'));
-          if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
-        });
-      });
-    </script>
-  </body>
+  <script>
+    const navbar=document.getElementById('navbar');
+    window.addEventListener('scroll',()=>navbar.classList.toggle('nav-scrolled',window.scrollY>10));
+    const btn=document.getElementById('mobileMenuBtn'),menu=document.getElementById('mobileMenu');
+    btn.addEventListener('click',()=>{menu.classList.toggle('hidden');btn.textContent=menu.classList.contains('hidden')?'+':'×';});
+    const dot=document.getElementById('cursorDot'),ring=document.getElementById('cursorRing');
+    if(window.innerWidth>=1024){
+      dot.style.opacity='1';ring.style.opacity='1';
+      let dx=0,dy=0,rx=0,ry=0,mx=0,my=0;
+      window.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;});
+      const anim=()=>{dx+=(mx-dx)*.18;dy+=(my-dy)*.18;rx+=(mx-rx)*.1;ry+=(my-ry)*.1;dot.style.left=dx+'px';dot.style.top=dy+'px';ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(anim);};
+      anim();
+      document.querySelectorAll('a,button').forEach(el=>{el.addEventListener('mouseenter',()=>ring.classList.add('is-hovering'));el.addEventListener('mouseleave',()=>ring.classList.remove('is-hovering'));});
+    }
+    const obs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}}),{threshold:0.1});
+    document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+    const cObs=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(!entry.isIntersecting)return;const el=entry.target,target=parseFloat(el.dataset.count||'0'),suffix=el.dataset.suffix||'',decimals=parseInt(el.dataset.decimals||(String(target).includes('.')?'1':'0'),10),duration=1200,start=performance.now();const tick=now=>{const p=Math.min((now-start)/duration,1),ease=1-Math.pow(1-p,3);el.textContent=`${(target*ease).toFixed(decimals)}${suffix}`;if(p<1)requestAnimationFrame(tick);else el.textContent=`${target.toFixed(decimals)}${suffix}`;};requestAnimationFrame(tick);cObs.unobserve(el);});},{threshold:0.35});
+    document.querySelectorAll('.counter-value').forEach(el=>cObs.observe(el));
+    document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{const t=document.querySelector(a.getAttribute('href'));if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'});}}));
+  </script>
+</body>
 </html>

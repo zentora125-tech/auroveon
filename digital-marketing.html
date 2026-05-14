@@ -1,0 +1,996 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Digital Marketing | Auroveon</title>
+    <meta
+      name="description"
+      content="Premium digital marketing campaigns by Auroveon across SEO, paid ads, email, content, and conversion systems designed to scale brands with real numbers."
+    />
+    <meta name="theme-color" content="#080A08" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      :root {
+        --bg-base: #080a08;
+        --accent: #39ff14;
+        --accent-dim: #2bc410;
+        --accent-glow: rgba(57, 255, 20, 0.16);
+        --text-primary: #f0f5f0;
+        --text-secondary: #7a8a7a;
+        --text-muted: #4a574a;
+        --border: rgba(57, 255, 20, 0.1);
+        --border-strong: rgba(57, 255, 20, 0.24);
+      }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        background: radial-gradient(circle at top, rgba(57,255,20,0.08), transparent 26%), linear-gradient(180deg,#080a08 0%,#090c09 50%,#070907 100%);
+        color: var(--text-primary);
+        font-family: "Inter", sans-serif;
+        overflow-x: hidden;
+        -webkit-font-smoothing: antialiased;
+      }
+      @media(min-width:1024px){body{cursor:none;}}
+      .display-font { font-family: "Poppins", sans-serif; }
+      .mono-font { font-family: "JetBrains Mono", monospace; }
+      .site-shell { width: min(1380px, calc(100% - 1.5rem)); margin: 0 auto; }
+      @media(min-width:1024px){.site-shell{width:min(1380px,calc(100% - 4rem));}}
+
+      .cursor-dot,.cursor-ring{position:fixed;top:0;left:0;transform:translate(-50%,-50%);pointer-events:none;z-index:90;opacity:0;}
+      .cursor-dot{width:10px;height:10px;border-radius:9999px;background:var(--accent);box-shadow:0 0 22px rgba(57,255,20,0.65);mix-blend-mode:screen;}
+      .cursor-ring{width:54px;height:54px;border-radius:9999px;border:1px solid rgba(57,255,20,0.22);transition:width .25s,height .25s,border-color .25s;}
+      .cursor-ring.is-hovering{width:76px;height:76px;border-color:rgba(57,255,20,0.48);}
+      @media(max-width:1023px){.cursor-dot,.cursor-ring{display:none;}}
+
+      .noise-overlay{position:fixed;inset:0;pointer-events:none;z-index:5;opacity:0.034;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:240px 240px;}
+      .glass-panel{background:linear-gradient(180deg,rgba(18,23,18,0.8),rgba(10,12,10,0.58));border:1px solid var(--border);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);box-shadow:0 18px 60px rgba(0,0,0,0.35),inset 0 1px 0 rgba(255,255,255,0.04);}
+
+      .nav-scrolled{background:rgba(8,10,8,0.86);border-bottom:1px solid var(--border);backdrop-filter:blur(22px);}
+      .nav-link{color:var(--text-secondary);transition:color .24s;}
+      .nav-link:hover,.nav-link.active-link{color:var(--text-primary);}
+
+      .eyebrow{font-family:"JetBrains Mono",monospace;color:var(--accent);font-size:0.72rem;letter-spacing:0.18em;text-transform:uppercase;}
+      .section-kicker{font-family:"Poppins",sans-serif;font-size:0.74rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--text-secondary);}
+      .mini-label{color:var(--text-muted);font-size:0.76rem;text-transform:uppercase;letter-spacing:0.16em;}
+
+      @keyframes text-shine{0%{background-position:-200% center;}100%{background-position:200% center;}}
+      .shine-word{display:inline-block;background:linear-gradient(90deg,#fff 0%,#fff 35%,#b9ffb0 44%,#eaffea 50%,#b9ffb0 56%,#fff 65%,#fff 100%);background-size:200% auto;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:text-shine 4s linear infinite;}
+      .shine-word-accent{display:inline-block;background:linear-gradient(90deg,#39ff14 0%,#39ff14 35%,#ccffcc 44%,#efffef 50%,#ccffcc 56%,#39ff14 65%,#39ff14 100%);background-size:200% auto;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:text-shine 4s linear infinite;}
+
+      .section-frame{position:relative;}
+      .section-frame::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:1px;background:linear-gradient(90deg,transparent,rgba(57,255,20,0.08),transparent);}
+
+      .hero-grid{position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg width='360' height='312' viewBox='0 0 360 312' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cg opacity='0.28' stroke='%2339ff14' stroke-width='1'%3E%3Cpath d='M90 26H180L225 104L180 182H90L45 104L90 26Z'/%3E%3Cpath d='M225 104H315L360 182L315 260H225L180 182L225 104Z'/%3E%3Cpath d='M0 104H90L135 182L90 260H0'/%3E%3Cpath d='M180 26V0'/%3E%3Cpath d='M180 182V234H225'/%3E%3Cpath d='M90 260V312'/%3E%3Cpath d='M315 260V312'/%3E%3Cpath d='M45 104H0'/%3E%3Cpath d='M360 182H320'/%3E%3Ccircle cx='180' cy='26' r='3' fill='%2339ff14'/%3E%3Ccircle cx='225' cy='104' r='3' fill='%2339ff14'/%3E%3Ccircle cx='90' cy='260' r='3' fill='%2339ff14'/%3E%3Ccircle cx='315' cy='260' r='3' fill='%2339ff14'/%3E%3C/g%3E%3C/svg%3E");background-size:360px 312px;background-position:center;opacity:0.16;mask-image:radial-gradient(circle at 65% 42%,black 0%,black 34%,transparent 84%);-webkit-mask-image:radial-gradient(circle at 65% 42%,black 0%,black 34%,transparent 84%);}
+      .spotlight{position:absolute;border-radius:9999px;filter:blur(120px);pointer-events:none;}
+
+      .hov-card{transition:border-color .28s,box-shadow .28s,transform .28s;}
+      .hov-card:hover{border-color:var(--border-strong);box-shadow:0 24px 70px rgba(0,0,0,0.38),0 0 45px rgba(57,255,20,0.1);transform:translateY(-8px);}
+
+      @keyframes float-a{0%,100%{transform:translateY(0) rotate(-2deg);}50%{transform:translateY(-14px) rotate(-1deg);}}
+      @keyframes float-b{0%,100%{transform:translateY(0) rotate(2deg);}50%{transform:translateY(-10px) rotate(3deg);}}
+      @keyframes float-c{0%,100%{transform:translateY(0);}50%{transform:translateY(-8px);}}
+      @keyframes pulse-dot{0%,100%{transform:scale(1);opacity:1;}50%{transform:scale(1.4);opacity:.72;}}
+      .float-a{animation:float-a 5s ease-in-out infinite;}
+      .float-b{animation:float-b 6.5s ease-in-out infinite;}
+      .float-c{animation:float-c 4.5s ease-in-out infinite;}
+      .pulse-dot{animation:pulse-dot 1.5s ease-in-out infinite;}
+
+      .marquee{overflow:hidden;}
+      .marquee-track{display:flex;width:max-content;animation:marquee-left 24s linear infinite;}
+      @keyframes marquee-left{0%{transform:translateX(0%);}100%{transform:translateX(-50%);}}
+
+      @keyframes count-up{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+      .count-anim{animation:count-up .8s ease-out both;}
+
+      .reveal{opacity:0;transform:translateY(50px);transition:opacity .9s cubic-bezier(.22,1,.36,1),transform .9s cubic-bezier(.22,1,.36,1);}
+      .reveal.visible{opacity:1;transform:none;}
+
+      .cta-bg{background:linear-gradient(135deg,rgba(8,10,8,0.92) 0%,rgba(8,10,8,0.78) 50%,rgba(8,10,8,0.92) 100%),url('https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1800&q=80') center/cover no-repeat;filter:saturate(.55) brightness(.58);}
+
+      .whatsapp-fab{position:fixed;bottom:28px;right:8px;z-index:9999;display:flex;align-items:center;justify-content:center;width:56px;height:56px;border:none;border-radius:50%;background:#25d366;box-shadow:0 4px 20px rgba(37,211,102,0.45);transition:transform .25s;text-decoration:none;}
+      .whatsapp-fab:hover{transform:scale(1.1);}
+
+      .footer-link{color:var(--text-secondary);transition:color .24s;}
+      .footer-link:hover{color:var(--text-primary);}
+      .footer-contact-label{font-size:0.7rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--text-secondary);}
+      .footer-contact-value{margin-top:4px;color:#fff;font-size:0.95rem;}
+      .footer-contact-link{color:#fff;text-decoration:none;transition:color .2s;}
+      .footer-contact-link:hover{color:var(--accent);}
+      .footer-legal-link{color:var(--text-secondary);transition:color .24s;}
+      .footer-legal-link:hover{color:var(--accent);}
+      .footer-social-link{display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border:1px solid #1a3a1a;border-radius:9999px;background:#111;transition:border-color .2s,transform .2s;}
+      .footer-social-link svg{width:18px;height:18px;fill:#aaa;transition:fill .2s;}
+      .footer-social-link:hover{border-color:#00ff88;transform:translateY(-1px);}
+      .footer-social-link:hover svg{fill:#00ff88;}
+
+      .editorial-stat-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid rgba(57,255,20,0.12);border-bottom:1px solid rgba(57,255,20,0.12);}
+      .editorial-stat{padding:1rem 1rem 1rem 0;}
+      .editorial-stat + .editorial-stat{padding-left:1.25rem;border-left:1px solid rgba(57,255,20,0.12);}
+
+      .timeline-track{position:absolute;left:0;right:0;top:5.75rem;height:1px;background:linear-gradient(90deg,rgba(57,255,20,0.12),rgba(57,255,20,0.26),rgba(57,255,20,0.12));}
+      .timeline-step{position:relative;}
+      .timeline-connector{position:absolute;top:2.5rem;left:calc(100% - 1.5rem);width:calc(100% - 2rem);height:1px;border-top:1px dashed rgba(57,255,20,0.26);}
+      .timeline-connector::after{content:"";position:absolute;right:-1px;top:-4px;border-top:4px solid transparent;border-bottom:4px solid transparent;border-left:7px solid rgba(57,255,20,0.45);}
+      .timeline-step:hover .timeline-connector{border-top-color:rgba(57,255,20,0.7);filter:drop-shadow(0 0 12px rgba(57,255,20,0.4));}
+      .timeline-step:hover .timeline-card{transform:translateY(-8px);border-color:var(--border-strong);box-shadow:0 24px 70px rgba(0,0,0,0.38),0 0 45px rgba(57,255,20,0.1);}
+      .timeline-card{transition:border-color .28s,box-shadow .28s,transform .28s;}
+
+      .counter-value{font-variant-numeric:tabular-nums;}
+
+      .accordion-item .accordion-body{max-height:0;overflow:hidden;transition:max-height .4s ease,padding .4s ease;}
+      .accordion-item.open .accordion-body{max-height:400px;}
+      .accordion-item .accordion-icon{transition:transform .3s ease;}
+      .accordion-item.open .accordion-icon{transform:rotate(45deg);}
+      .accordion-row{border-top:1px solid rgba(57,255,20,0.1);cursor:pointer;transition:background .25s;}
+      .accordion-row:hover{background:rgba(57,255,20,0.03);}
+      .accordion-tag{font-family:"JetBrains Mono",monospace;font-size:0.7rem;text-transform:uppercase;letter-spacing:0.14em;color:var(--accent);border:1px solid rgba(57,255,20,0.2);background:rgba(57,255,20,0.05);padding:4px 12px;border-radius:9999px;}
+
+      .results-track{display:flex;gap:1.5rem;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;cursor:grab;padding:0 max(0.75rem,calc((100vw - 1380px)/2));}
+      .results-track::-webkit-scrollbar{display:none;}
+      .results-track.dragging{cursor:grabbing;user-select:none;}
+      .result-card{scroll-snap-align:start;flex-shrink:0;min-width:380px;height:480px;}
+
+      @keyframes marquee-right{0%{transform:translateX(-50%);}100%{transform:translateX(0%);}}
+      .testimonial-track-r{animation:marquee-right 40s linear infinite;}
+      .testimonial-track-l{animation:marquee-left 40s linear infinite;}
+      .testimonial-track-l:hover,.testimonial-track-r:hover{animation-play-state:paused;}
+
+      .edge-card{position:relative;overflow:hidden;border-left:2px solid var(--accent);}
+      .edge-card::after{content:"";position:absolute;left:1.75rem;right:1.75rem;bottom:1.25rem;height:1px;background:linear-gradient(90deg,rgba(57,255,20,0),rgba(57,255,20,0.75),rgba(57,255,20,0));transform:scaleX(0);transform-origin:left;transition:transform .32s ease;}
+      .edge-card:hover::after{transform:scaleX(1);}
+
+      .testimonial-card{min-width:320px;}
+      .hero-hex-shape{clip-path:polygon(18% 6%,82% 6%,98% 50%,82% 94%,18% 94%,2% 50%);}
+
+      @media(max-width:767px){
+        .editorial-stat-row{grid-template-columns:1fr;}
+        .editorial-stat{padding:1rem 0;}
+        .editorial-stat + .editorial-stat{padding-left:0;border-left:none;border-top:1px solid rgba(57,255,20,0.12);}
+        .result-card{min-width:320px;height:auto;min-height:430px;}
+      }
+      @media(max-width:1023px){
+        .timeline-track,.timeline-connector{display:none;}
+      }
+    </style>
+  </head>
+  <body>
+    <div class="noise-overlay"></div>
+    <div class="cursor-dot" id="cursorDot"></div>
+    <div class="cursor-ring" id="cursorRing"></div>
+
+    <header id="navbar" class="fixed left-0 top-0 z-50 w-full transition-all duration-300">
+      <div class="site-shell flex h-24 items-center justify-between">
+        <a href="index.html" class="inline-flex items-center flex-shrink-0" aria-label="Auroveon home">
+          <img src="assets/WhatsApp Image 2026-05-09 at 09,19,43-Picsart-BackgroundRemover.png" alt="Auroveon" style="height:68px;width:auto;object-fit:contain;" />
+        </a>
+        <nav class="hidden items-center gap-9 lg:flex">
+          <a class="nav-link text-base font-medium" href="index.html#services">Services</a>
+          <a class="nav-link text-base font-medium" href="index.html#story">Process</a>
+          <a class="nav-link text-base font-medium" href="index.html#work">Work</a>
+          <a class="nav-link text-base font-medium" href="web-dev.html">Web Dev</a>
+          <a class="nav-link text-base font-medium" href="seo.html">SEO</a>
+          <a class="nav-link text-base font-medium" href="index.html#contact">Contact</a>
+        </nav>
+        <a href="index.html#contact" class="display-font hidden lg:inline-flex items-center gap-2 rounded-full border px-6 py-3.5 text-base font-semibold transition-all hover:-translate-y-1" style="border-color:var(--accent);color:var(--accent);background:rgba(57,255,20,0.02);">Start a Project</a>
+        <button id="mobileMenuBtn" class="glass-panel flex h-12 w-12 items-center justify-center rounded-full lg:hidden text-xl" style="border-color:var(--border);">+</button>
+      </div>
+      <div id="mobileMenu" class="site-shell pb-4 lg:hidden hidden">
+        <div class="glass-panel rounded-[28px] px-6 py-6">
+          <div class="flex flex-col gap-5 text-center">
+            <a href="index.html#services" class="display-font text-2xl font-bold italic" style="color:var(--text-primary);">Services</a>
+            <a href="index.html#work" class="display-font text-2xl font-bold italic" style="color:var(--text-primary);">Work</a>
+            <a href="web-dev.html" class="display-font text-2xl font-bold italic" style="color:var(--text-primary);">Web Dev</a>
+            <a href="seo.html" class="display-font text-2xl font-bold italic" style="color:var(--text-primary);">SEO</a>
+            <a href="index.html#contact" class="display-font text-2xl font-bold italic" style="color:var(--text-primary);">Contact</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section id="hero" class="section-frame relative flex min-h-screen items-center overflow-hidden pt-20">
+        <div class="hero-grid"></div>
+        <div class="spotlight" style="width:42rem;height:42rem;top:-10rem;right:-8rem;background:radial-gradient(circle,rgba(57,255,20,0.16),transparent 64%);"></div>
+        <div class="spotlight" style="width:26rem;height:26rem;bottom:4rem;left:-6rem;background:radial-gradient(circle,rgba(57,255,20,0.09),transparent 66%);"></div>
+        <div class="site-shell relative z-10 w-full py-10 lg:py-14">
+          <div class="grid gap-12 lg:grid-cols-[1fr_1fr] lg:items-start lg:gap-16">
+            <div class="reveal lg:pl-6 xl:pl-10">
+              <div class="glass-panel mb-8 inline-flex items-center gap-3 rounded-full px-5 py-2.5" style="border-color:var(--border-strong);">
+                <span class="h-2 w-2 rounded-full" style="background:var(--accent);box-shadow:0 0 14px rgba(57,255,20,0.7);"></span>
+                <span class="eyebrow">Digital Marketing Services</span>
+              </div>
+              <h1 class="display-font font-extrabold italic leading-[0.98] tracking-[-0.045em]" style="font-size:clamp(2.45rem,5.8vw,5.15rem);">
+                <span class="shine-word">Grow Faster.</span><br />
+                <span class="shine-word">Rank Higher.</span><br />
+                <span class="shine-word-accent">Convert More.</span>
+              </h1>
+              <p class="mt-7 max-w-[38ch] text-[1.02rem] leading-[1.82]" style="color:var(--text-secondary);">
+                We build integrated growth systems across paid media, SEO, email, content, and tracking so every click, campaign, and conversion compounds into measurable revenue.
+              </p>
+              <div class="mt-8 flex flex-wrap gap-4">
+                <a href="index.html#contact" class="display-font inline-flex items-center justify-center rounded-full px-8 py-4 text-base font-bold transition-all hover:-translate-y-1" style="background:var(--accent);color:#081008;box-shadow:0 0 42px rgba(57,255,20,0.18),0 22px 60px rgba(57,255,20,0.12);">Start Growing</a>
+                <a href="#results" class="display-font inline-flex items-center justify-center rounded-full border px-8 py-4 text-base font-bold transition-all hover:-translate-y-1" style="border-color:var(--border-strong);color:var(--text-primary);background:rgba(255,255,255,0.02);">See Results</a>
+              </div>
+            </div>
+            <div class="relative hidden min-h-[610px] self-center lg:block reveal" style="transition-delay:.15s;">
+              <div class="absolute inset-[8%] rounded-[36px] hero-hex-shape" style="background:radial-gradient(circle at 30% 25%,rgba(57,255,20,0.12),transparent 32%),linear-gradient(135deg,rgba(57,255,20,0.04),rgba(255,255,255,0.01));border:1px solid rgba(57,255,20,0.08);"></div>
+              <div class="absolute inset-[11%] hero-hex-shape" style="background-image:url(&quot;data:image/svg+xml,%3Csvg width='360' height='312' viewBox='0 0 360 312' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cg opacity='0.20' stroke='%2339ff14' stroke-width='1'%3E%3Cpath d='M90 26H180L225 104L180 182H90L45 104L90 26Z'/%3E%3Cpath d='M225 104H315L360 182L315 260H225L180 182L225 104Z'/%3E%3Cpath d='M0 104H90L135 182L90 260H0'/%3E%3Cpath d='M180 26V0'/%3E%3Cpath d='M180 182V234H225'/%3E%3Cpath d='M90 260V312'/%3E%3Cpath d='M315 260V312'/%3E%3Cpath d='M45 104H0'/%3E%3Cpath d='M360 182H320'/%3E%3C/g%3E%3C/svg%3E&quot;);background-size:360px 312px;opacity:.22;"></div>
+              <div class="float-a glass-panel absolute left-0 top-0 w-[78%] rounded-[28px] p-6" style="border-color:var(--border-strong);">
+                <div class="flex items-start justify-between gap-4">
+                  <div>
+                    <div class="mono-font text-[0.7rem] uppercase tracking-[0.18em]" style="color:var(--accent);">Campaign Live</div>
+                    <div class="mt-2 flex items-center gap-3">
+                      <span class="h-3 w-3 rounded-full pulse-dot" style="background:var(--accent);box-shadow:0 0 18px rgba(57,255,20,0.85);"></span>
+                      <span class="mono-font text-sm" style="color:var(--text-primary);">google_ads_q2.json</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="mt-7">
+                  <svg viewBox="0 0 320 150" class="h-[128px] w-full" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <line x1="24" y1="130" x2="296" y2="130" stroke="rgba(255,255,255,0.08)" />
+                    <rect x="36" y="62" width="28" height="68" rx="8" fill="rgba(57,255,20,0.48)" />
+                    <rect x="88" y="34" width="28" height="96" rx="8" fill="rgba(57,255,20,0.64)" />
+                    <rect x="140" y="75" width="28" height="55" rx="8" fill="rgba(57,255,20,0.4)" />
+                    <rect x="192" y="20" width="28" height="110" rx="8" fill="rgba(57,255,20,0.88)" />
+                    <rect x="244" y="48" width="28" height="82" rx="8" fill="rgba(57,255,20,0.54)" />
+                    <text x="50" y="146" text-anchor="middle" font-size="10" fill="#7a8a7a" font-family="JetBrains Mono">Mon</text>
+                    <text x="102" y="146" text-anchor="middle" font-size="10" fill="#7a8a7a" font-family="JetBrains Mono">Tue</text>
+                    <text x="154" y="146" text-anchor="middle" font-size="10" fill="#7a8a7a" font-family="JetBrains Mono">Wed</text>
+                    <text x="206" y="146" text-anchor="middle" font-size="10" fill="#7a8a7a" font-family="JetBrains Mono">Thu</text>
+                    <text x="258" y="146" text-anchor="middle" font-size="10" fill="#7a8a7a" font-family="JetBrains Mono">Fri</text>
+                  </svg>
+                </div>
+                <div class="mono-font mt-5 text-xs uppercase tracking-[0.18em]" style="color:var(--accent);">CTR +38% this week</div>
+              </div>
+              <div class="float-b glass-panel absolute bottom-0 right-0 w-[73%] rounded-[28px] p-6">
+                <div class="flex items-end justify-between gap-4">
+                  <div class="mono-font text-[0.7rem] uppercase tracking-[0.18em]" style="color:var(--accent);">Organic Growth</div>
+                  <div class="mono-font text-xs uppercase tracking-[0.16em]" style="color:var(--text-secondary);">Last 30 days</div>
+                </div>
+                <div class="mt-5">
+                  <svg viewBox="0 0 340 180" class="h-[152px] w-full" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path d="M20 25V155M84 25V155M148 25V155M212 25V155M276 25V155M320 25V155" stroke="rgba(255,255,255,0.06)" />
+                    <path d="M20 155H320M20 122H320M20 89H320M20 56H320M20 25H320" stroke="rgba(255,255,255,0.04)" />
+                    <path d="M24 136C52 130 66 118 88 112C111 105 124 95 148 84C171 72 192 73 214 58C237 42 260 44 282 36C297 31 307 27 320 24" stroke="#39ff14" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+                    <path d="M24 136C52 130 66 118 88 112C111 105 124 95 148 84C171 72 192 73 214 58C237 42 260 44 282 36C297 31 307 27 320 24" stroke="rgba(57,255,20,0.2)" stroke-width="14" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </div>
+                <div class="mt-5 grid gap-4 sm:grid-cols-2">
+                  <div class="rounded-2xl px-4 py-4" style="background:rgba(255,255,255,0.03);border:1px solid rgba(57,255,20,0.08);">
+                    <div class="mono-font text-[0.7rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">Impressions</div>
+                    <div class="display-font mt-2 text-2xl font-extrabold italic" style="color:var(--text-primary);">+124%</div>
+                  </div>
+                  <div class="rounded-2xl px-4 py-4" style="background:rgba(255,255,255,0.03);border:1px solid rgba(57,255,20,0.08);">
+                    <div class="mono-font text-[0.7rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">Clicks</div>
+                    <div class="display-font mt-2 text-2xl font-extrabold italic" style="color:var(--text-primary);">+89%</div>
+                  </div>
+                </div>
+              </div>
+              <div class="float-c absolute bottom-[26%] left-[10%] rounded-full px-4 py-2 glass-panel" style="border-color:rgba(57,255,20,0.22);">
+                <div class="flex items-center gap-3">
+                  <span class="h-2.5 w-2.5 rounded-full pulse-dot" style="background:var(--accent);"></span>
+                  <span class="mono-font text-[0.72rem] uppercase tracking-[0.18em]" style="color:var(--accent);">ROAS 4.8x tracked live</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-frame overflow-hidden py-10">
+        <div class="site-shell">
+          <div class="glass-panel marquee rounded-full px-2 py-2">
+            <div class="marquee-track">
+              <span class="mono-font flex items-center whitespace-nowrap px-6 py-4 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">Google Ads<span class="mx-6" style="color:var(--accent);">.</span></span>
+              <span class="mono-font flex items-center whitespace-nowrap px-6 py-4 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">Meta Ads<span class="mx-6" style="color:var(--accent);">.</span></span>
+              <span class="mono-font flex items-center whitespace-nowrap px-6 py-4 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">SEO<span class="mx-6" style="color:var(--accent);">.</span></span>
+              <span class="mono-font flex items-center whitespace-nowrap px-6 py-4 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">Content Marketing<span class="mx-6" style="color:var(--accent);">.</span></span>
+              <span class="mono-font flex items-center whitespace-nowrap px-6 py-4 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">Email Marketing<span class="mx-6" style="color:var(--accent);">.</span></span>
+              <span class="mono-font flex items-center whitespace-nowrap px-6 py-4 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">LinkedIn Ads<span class="mx-6" style="color:var(--accent);">.</span></span>
+              <span class="mono-font flex items-center whitespace-nowrap px-6 py-4 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">TikTok Ads<span class="mx-6" style="color:var(--accent);">.</span></span>
+              <span class="mono-font flex items-center whitespace-nowrap px-6 py-4 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">Conversion Rate Optimisation<span class="mx-6" style="color:var(--accent);">.</span></span>
+              <span class="mono-font flex items-center whitespace-nowrap px-6 py-4 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">Analytics &amp; Tracking<span class="mx-6" style="color:var(--accent);">.</span></span>
+              <span class="mono-font flex items-center whitespace-nowrap px-6 py-4 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">Marketing Automation<span class="mx-6" style="color:var(--accent);">.</span></span>
+              <span class="mono-font flex items-center whitespace-nowrap px-6 py-4 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">Influencer Strategy<span class="mx-6" style="color:var(--accent);">.</span></span>
+              <span class="mono-font flex items-center whitespace-nowrap px-6 py-4 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">YouTube Ads<span class="mx-6" style="color:var(--accent);">.</span></span>
+              <span class="mono-font flex items-center whitespace-nowrap px-6 py-4 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">Google Ads<span class="mx-6" style="color:var(--accent);">.</span></span>
+              <span class="mono-font flex items-center whitespace-nowrap px-6 py-4 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">Meta Ads<span class="mx-6" style="color:var(--accent);">.</span></span>
+              <span class="mono-font flex items-center whitespace-nowrap px-6 py-4 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">SEO<span class="mx-6" style="color:var(--accent);">.</span></span>
+              <span class="mono-font flex items-center whitespace-nowrap px-6 py-4 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">Content Marketing<span class="mx-6" style="color:var(--accent);">.</span></span>
+              <span class="mono-font flex items-center whitespace-nowrap px-6 py-4 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">Email Marketing<span class="mx-6" style="color:var(--accent);">.</span></span>
+              <span class="mono-font flex items-center whitespace-nowrap px-6 py-4 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">LinkedIn Ads<span class="mx-6" style="color:var(--accent);">.</span></span>
+              <span class="mono-font flex items-center whitespace-nowrap px-6 py-4 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">TikTok Ads<span class="mx-6" style="color:var(--accent);">.</span></span>
+              <span class="mono-font flex items-center whitespace-nowrap px-6 py-4 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">Conversion Rate Optimisation<span class="mx-6" style="color:var(--accent);">.</span></span>
+              <span class="mono-font flex items-center whitespace-nowrap px-6 py-4 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">Analytics &amp; Tracking<span class="mx-6" style="color:var(--accent);">.</span></span>
+              <span class="mono-font flex items-center whitespace-nowrap px-6 py-4 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">Marketing Automation<span class="mx-6" style="color:var(--accent);">.</span></span>
+              <span class="mono-font flex items-center whitespace-nowrap px-6 py-4 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">Influencer Strategy<span class="mx-6" style="color:var(--accent);">.</span></span>
+              <span class="mono-font flex items-center whitespace-nowrap px-6 py-4 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">YouTube Ads<span class="mx-6" style="color:var(--accent);">.</span></span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="services" class="section-frame py-24 lg:py-32">
+        <div class="site-shell">
+          <div class="grid gap-10 lg:grid-cols-[0.55fr_1.45fr] lg:items-start">
+            <div class="reveal lg:sticky lg:top-28">
+              <div class="section-kicker">Our Services</div>
+              <h2 class="display-font mt-4 text-4xl font-extrabold italic leading-[0.96] tracking-[-0.04em] lg:text-6xl" style="color:var(--text-primary);max-width:9ch;">Six channels. One unified strategy.</h2>
+              <p class="mt-6 max-w-[28rem] text-base leading-8 lg:text-lg" style="color:var(--text-secondary);">We connect acquisition, retention, content, and measurement into one operating system so spend is efficient, messaging is aligned, and growth compounds instead of resetting every month.</p>
+              <a href="index.html#contact" class="mt-8 inline-flex items-center gap-2 text-sm font-semibold" style="color:var(--accent);">See full capabilities &rarr;</a>
+            </div>
+            <div class="reveal">
+              <div class="accordion-item open">
+                <div class="accordion-row flex items-center gap-4 px-0 py-7">
+                  <div class="mono-font text-lg" style="color:rgba(57,255,20,0.3);">01</div>
+                  <div class="display-font flex-1 text-xl font-bold italic lg:text-2xl" style="color:var(--text-primary);">Paid Search &amp; Google Ads</div>
+                  <div class="accordion-icon text-3xl leading-none" style="color:var(--accent);">+</div>
+                </div>
+                <div class="accordion-body">
+                  <div class="pb-7">
+                    <p class="max-w-3xl text-sm leading-8 lg:text-base" style="color:var(--text-secondary);">Campaign architecture, intent mapping, landing-page alignment, and bid strategy management built to lower wasted spend and push profitable scale.</p>
+                    <div class="mt-5 flex flex-wrap gap-3">
+                      <span class="accordion-tag">Campaign Setup</span>
+                      <span class="accordion-tag">A/B Testing</span>
+                      <span class="accordion-tag">Bid Strategy</span>
+                    </div>
+                    <div class="mt-6 h-px w-full" style="background:linear-gradient(90deg,rgba(57,255,20,0.5),rgba(57,255,20,0));"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <div class="accordion-row flex items-center gap-4 px-0 py-7">
+                  <div class="mono-font text-lg" style="color:rgba(57,255,20,0.3);">02</div>
+                  <div class="display-font flex-1 text-xl font-bold italic lg:text-2xl" style="color:var(--text-primary);">Meta &amp; Social Advertising</div>
+                  <div class="accordion-icon text-3xl leading-none" style="color:var(--accent);">+</div>
+                </div>
+                <div class="accordion-body">
+                  <div class="pb-7">
+                    <p class="max-w-3xl text-sm leading-8 lg:text-base" style="color:var(--text-secondary);">Audience testing, creative iteration, funnel segmentation, and spend control across Meta, TikTok, and paid social ecosystems focused on real revenue outcomes.</p>
+                    <div class="mt-5 flex flex-wrap gap-3">
+                      <span class="accordion-tag">Creative Testing</span>
+                      <span class="accordion-tag">Audience Mapping</span>
+                      <span class="accordion-tag">Retargeting</span>
+                    </div>
+                    <div class="mt-6 h-px w-full" style="background:linear-gradient(90deg,rgba(57,255,20,0.5),rgba(57,255,20,0));"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <div class="accordion-row flex items-center gap-4 px-0 py-7">
+                  <div class="mono-font text-lg" style="color:rgba(57,255,20,0.3);">03</div>
+                  <div class="display-font flex-1 text-xl font-bold italic lg:text-2xl" style="color:var(--text-primary);">Search Engine Optimisation</div>
+                  <div class="accordion-icon text-3xl leading-none" style="color:var(--accent);">+</div>
+                </div>
+                <div class="accordion-body">
+                  <div class="pb-7">
+                    <p class="max-w-3xl text-sm leading-8 lg:text-base" style="color:var(--text-secondary);">Technical SEO, content planning, topical authority mapping, and on-page optimisation designed to turn organic search into a long-term acquisition engine.</p>
+                    <div class="mt-5 flex flex-wrap gap-3">
+                      <span class="accordion-tag">Technical SEO</span>
+                      <span class="accordion-tag">Keyword Clusters</span>
+                      <span class="accordion-tag">Content Briefs</span>
+                    </div>
+                    <div class="mt-6 h-px w-full" style="background:linear-gradient(90deg,rgba(57,255,20,0.5),rgba(57,255,20,0));"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <div class="accordion-row flex items-center gap-4 px-0 py-7">
+                  <div class="mono-font text-lg" style="color:rgba(57,255,20,0.3);">04</div>
+                  <div class="display-font flex-1 text-xl font-bold italic lg:text-2xl" style="color:var(--text-primary);">Content &amp; Email Marketing</div>
+                  <div class="accordion-icon text-3xl leading-none" style="color:var(--accent);">+</div>
+                </div>
+                <div class="accordion-body">
+                  <div class="pb-7">
+                    <p class="max-w-3xl text-sm leading-8 lg:text-base" style="color:var(--text-secondary);">Lifecycle email systems, lead nurture sequences, editorial content planning, and conversion-focused messaging that keeps demand warm across the funnel.</p>
+                    <div class="mt-5 flex flex-wrap gap-3">
+                      <span class="accordion-tag">Flows</span>
+                      <span class="accordion-tag">Campaign Calendars</span>
+                      <span class="accordion-tag">Lead Nurture</span>
+                    </div>
+                    <div class="mt-6 h-px w-full" style="background:linear-gradient(90deg,rgba(57,255,20,0.5),rgba(57,255,20,0));"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <div class="accordion-row flex items-center gap-4 px-0 py-7">
+                  <div class="mono-font text-lg" style="color:rgba(57,255,20,0.3);">05</div>
+                  <div class="display-font flex-1 text-xl font-bold italic lg:text-2xl" style="color:var(--text-primary);">Analytics &amp; Conversion Tracking</div>
+                  <div class="accordion-icon text-3xl leading-none" style="color:var(--accent);">+</div>
+                </div>
+                <div class="accordion-body">
+                  <div class="pb-7">
+                    <p class="max-w-3xl text-sm leading-8 lg:text-base" style="color:var(--text-secondary);">Pixel implementation, event mapping, attribution cleanup, dashboarding, and reporting frameworks that make every marketing decision measurable and defensible.</p>
+                    <div class="mt-5 flex flex-wrap gap-3">
+                      <span class="accordion-tag">GA4</span>
+                      <span class="accordion-tag">Event Tracking</span>
+                      <span class="accordion-tag">Attribution</span>
+                    </div>
+                    <div class="mt-6 h-px w-full" style="background:linear-gradient(90deg,rgba(57,255,20,0.5),rgba(57,255,20,0));"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item" style="border-bottom:1px solid rgba(57,255,20,0.1);">
+                <div class="accordion-row flex items-center gap-4 px-0 py-7">
+                  <div class="mono-font text-lg" style="color:rgba(57,255,20,0.3);">06</div>
+                  <div class="display-font flex-1 text-xl font-bold italic lg:text-2xl" style="color:var(--text-primary);">Marketing Automation</div>
+                  <div class="accordion-icon text-3xl leading-none" style="color:var(--accent);">+</div>
+                </div>
+                <div class="accordion-body">
+                  <div class="pb-7">
+                    <p class="max-w-3xl text-sm leading-8 lg:text-base" style="color:var(--text-secondary);">Automated lead routing, CRM syncing, behavioural segmentation, and trigger-based workflows that make growth scalable without adding operational chaos.</p>
+                    <div class="mt-5 flex flex-wrap gap-3">
+                      <span class="accordion-tag">CRM Sync</span>
+                      <span class="accordion-tag">Lead Routing</span>
+                      <span class="accordion-tag">Workflow Logic</span>
+                    </div>
+                    <div class="mt-6 h-px w-full" style="background:linear-gradient(90deg,rgba(57,255,20,0.5),rgba(57,255,20,0));"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="results" class="section-frame overflow-hidden py-24 lg:py-32">
+        <div class="site-shell">
+          <div class="mb-10 flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between reveal">
+            <div>
+              <div class="section-kicker">Client Results</div>
+              <h2 class="display-font mt-4 text-4xl font-extrabold italic leading-[0.96] tracking-[-0.04em] lg:text-6xl" style="color:var(--text-primary);max-width:10ch;">Real numbers. Real clients.</h2>
+            </div>
+            <div class="flex items-center gap-3">
+              <button id="resultsPrev" class="glass-panel flex h-14 w-14 items-center justify-center rounded-full text-2xl transition-all hover:-translate-y-1" style="border-color:var(--border-strong);color:var(--text-primary);" aria-label="Previous results">&larr;</button>
+              <button id="resultsNext" class="glass-panel flex h-14 w-14 items-center justify-center rounded-full text-2xl transition-all hover:-translate-y-1" style="border-color:var(--border-strong);color:var(--text-primary);" aria-label="Next results">&rarr;</button>
+            </div>
+          </div>
+        </div>
+        <div id="resultsTrack" class="results-track reveal" style="transition-delay:.08s;">
+          <article class="result-card glass-panel rounded-[36px] p-8 lg:p-10">
+            <div class="display-font text-[clamp(4rem,8vw,7rem)] font-extrabold italic leading-none" style="color:var(--accent);">4.8x</div>
+            <div class="mono-font mt-3 text-xs uppercase tracking-[0.18em]" style="color:var(--text-secondary);">ROAS achieved for fashion brand</div>
+            <div class="mt-8 h-px w-full" style="background:linear-gradient(90deg,rgba(57,255,20,0.5),rgba(57,255,20,0));"></div>
+            <div class="mt-8">
+              <div class="mono-font text-xs uppercase tracking-[0.18em]" style="color:var(--accent);">Fashion E-commerce · Meta Ads</div>
+              <p class="mt-5 max-w-[24ch] text-base leading-8" style="color:var(--text-secondary);">Creative testing, funnel segmentation, and smart retargeting pushed profitable scale without burning margin.</p>
+            </div>
+          </article>
+          <article class="result-card glass-panel rounded-[36px] p-8 lg:p-10">
+            <div class="grid h-full gap-8 lg:grid-cols-[0.55fr_0.45fr]">
+              <div class="flex flex-col justify-between">
+                <div>
+                  <div class="display-font text-[clamp(3.4rem,7vw,5.8rem)] font-extrabold italic leading-none" style="color:var(--accent);">+312%</div>
+                  <div class="mono-font mt-3 text-xs uppercase tracking-[0.18em]" style="color:var(--text-secondary);">Organic traffic growth</div>
+                </div>
+                <div class="mono-font text-xs uppercase tracking-[0.18em]" style="color:var(--accent);">SaaS Brand · SEO Campaign</div>
+              </div>
+              <div class="flex flex-col justify-between">
+                <svg viewBox="0 0 180 160" class="w-full" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path d="M18 140V20M58 140V20M98 140V20M138 140V20" stroke="rgba(255,255,255,0.05)" />
+                  <rect x="24" y="92" width="20" height="48" rx="8" fill="rgba(57,255,20,0.38)" />
+                  <rect x="64" y="64" width="20" height="76" rx="8" fill="rgba(57,255,20,0.52)" />
+                  <rect x="104" y="34" width="20" height="106" rx="8" fill="rgba(57,255,20,0.72)" />
+                  <rect x="144" y="16" width="20" height="124" rx="8" fill="rgba(57,255,20,0.9)" />
+                </svg>
+                <p class="text-sm leading-7" style="color:var(--text-secondary);">Topic clusters, technical cleanup, and high-intent pages created sustained search lift.</p>
+              </div>
+            </div>
+          </article>
+          <article class="result-card glass-panel rounded-[36px] p-8 lg:p-10">
+            <div class="relative flex h-full flex-col justify-between overflow-hidden">
+              <div class="pointer-events-none absolute left-0 top-[-1.3rem] display-font text-[9rem] font-extrabold italic leading-none" style="color:rgba(57,255,20,0.12);">&ldquo;</div>
+              <p class="relative z-10 mt-20 max-w-[18ch] text-2xl italic leading-[1.5]" style="color:var(--text-primary);">Auroveon took us from invisible to ranking #1 in 90 days.</p>
+              <div>
+                <div class="mono-font text-xs uppercase tracking-[0.18em]" style="color:var(--text-primary);">Marketing Lead</div>
+                <div class="mono-font mt-2 text-xs uppercase tracking-[0.18em]" style="color:var(--text-secondary);">Tech Startup</div>
+                <div class="mono-font mt-5 text-xs uppercase tracking-[0.18em]" style="color:var(--accent);">SEO / Content</div>
+              </div>
+            </div>
+          </article>
+          <article class="result-card glass-panel rounded-[36px] p-8 lg:p-10">
+            <div class="display-font text-[clamp(4rem,8vw,7rem)] font-extrabold italic leading-none" style="color:var(--accent);">68%</div>
+            <div class="mono-font mt-3 text-xs uppercase tracking-[0.18em]" style="color:var(--text-secondary);">Lower CPA for D2C growth</div>
+            <div class="mt-8 h-px w-full" style="background:linear-gradient(90deg,rgba(57,255,20,0.5),rgba(57,255,20,0));"></div>
+            <div class="mt-8">
+              <div class="mono-font text-xs uppercase tracking-[0.18em]" style="color:var(--accent);">D2C Brand · Google Ads</div>
+              <p class="mt-5 max-w-[24ch] text-base leading-8" style="color:var(--text-secondary);">Search restructuring and landing-page message match cut acquisition costs while keeping volume strong.</p>
+            </div>
+          </article>
+          <article class="result-card glass-panel rounded-[36px] p-8 lg:p-10">
+            <div class="grid h-full gap-8 lg:grid-cols-[0.55fr_0.45fr]">
+              <div class="flex flex-col justify-between">
+                <div>
+                  <div class="display-font text-[clamp(3.4rem,7vw,5.8rem)] font-extrabold italic leading-none" style="color:var(--accent);">+890%</div>
+                  <div class="mono-font mt-3 text-xs uppercase tracking-[0.18em]" style="color:var(--text-secondary);">Email revenue growth</div>
+                </div>
+                <div class="mono-font text-xs uppercase tracking-[0.18em]" style="color:var(--accent);">Retail Brand · Email Marketing</div>
+              </div>
+              <div class="flex flex-col justify-between">
+                <svg viewBox="0 0 180 160" class="w-full" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path d="M18 120C40 130 54 105 74 96C95 88 110 74 128 68C146 61 156 43 164 28" stroke="#39ff14" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+                  <path d="M18 120C40 130 54 105 74 96C95 88 110 74 128 68C146 61 156 43 164 28" stroke="rgba(57,255,20,0.16)" stroke-width="14" stroke-linecap="round" stroke-linejoin="round" />
+                  <path d="M18 140H164M18 110H164M18 80H164M18 50H164M18 20H164" stroke="rgba(255,255,255,0.05)" />
+                </svg>
+                <p class="text-sm leading-7" style="color:var(--text-secondary);">Lifecycle automation and offer sequencing turned the list into a dependable revenue channel.</p>
+              </div>
+            </div>
+          </article>
+          <article class="result-card glass-panel rounded-[36px] p-8 lg:p-10">
+            <div class="relative flex h-full flex-col justify-between overflow-hidden">
+              <div class="pointer-events-none absolute left-0 top-[-1.3rem] display-font text-[9rem] font-extrabold italic leading-none" style="color:rgba(57,255,20,0.12);">&ldquo;</div>
+              <p class="relative z-10 mt-20 max-w-[18ch] text-2xl italic leading-[1.5]" style="color:var(--text-primary);">Our ROAS went from 1.2x to 5.6x in one quarter.</p>
+              <div>
+                <div class="mono-font text-xs uppercase tracking-[0.18em]" style="color:var(--text-primary);">Founder</div>
+                <div class="mono-font mt-2 text-xs uppercase tracking-[0.18em]" style="color:var(--text-secondary);">Apparel Brand</div>
+                <div class="mono-font mt-5 text-xs uppercase tracking-[0.18em]" style="color:var(--accent);">Paid Social / CRO</div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="process" class="section-frame py-24 lg:py-32">
+        <div class="site-shell">
+          <div class="mb-14 text-center reveal">
+            <div class="section-kicker">How We Grow You</div>
+            <h2 class="display-font mx-auto mt-4 text-4xl font-extrabold italic leading-[0.95] tracking-[-0.04em] lg:text-6xl" style="color:var(--text-primary);max-width:14ch;">From audit to scale in four focused phases.</h2>
+          </div>
+          <div class="relative">
+            <div class="timeline-track hidden lg:block"></div>
+            <div class="grid gap-6 lg:grid-cols-4">
+              <article class="timeline-step reveal">
+                <div class="timeline-card glass-panel rounded-[30px] p-6 lg:min-h-[320px] lg:p-7">
+                  <div class="display-font text-6xl font-extrabold italic leading-none" style="color:rgba(57,255,20,0.12);">01</div>
+                  <div class="mt-6 flex h-14 w-14 items-center justify-center rounded-2xl" style="border:1px solid rgba(57,255,20,0.18);background:rgba(57,255,20,0.06);">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" style="color:var(--accent);"><circle cx="11" cy="11" r="6"></circle><path d="m20 20-3.5-3.5"></path></svg>
+                  </div>
+                  <h3 class="display-font mt-6 text-xl font-bold italic" style="color:var(--text-primary);">Audit &amp; Intel</h3>
+                  <p class="mt-4 text-sm leading-7" style="color:var(--text-secondary);">Full account audit, competitor analysis, pixel verification, and baseline KPI mapping before a single dollar is moved.</p>
+                </div>
+                <div class="timeline-connector hidden lg:block"></div>
+              </article>
+              <article class="timeline-step reveal" style="transition-delay:.08s;">
+                <div class="timeline-card glass-panel rounded-[30px] p-6 lg:min-h-[320px] lg:p-7">
+                  <div class="display-font text-6xl font-extrabold italic leading-none" style="color:rgba(57,255,20,0.12);">02</div>
+                  <div class="mt-6 flex h-14 w-14 items-center justify-center rounded-2xl" style="border:1px solid rgba(57,255,20,0.18);background:rgba(57,255,20,0.06);">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" style="color:var(--accent);"><path d="M4 6h16v12H4z"></path><path d="M9 6v12"></path><path d="M15 6v12"></path><path d="M4 12h16"></path></svg>
+                  </div>
+                  <h3 class="display-font mt-6 text-xl font-bold italic" style="color:var(--text-primary);">Strategy Build</h3>
+                  <p class="mt-4 text-sm leading-7" style="color:var(--text-secondary);">Channel mix, budget allocation, audience architecture, and a practical 90-day plan that tells the team exactly what happens next.</p>
+                </div>
+                <div class="timeline-connector hidden lg:block"></div>
+              </article>
+              <article class="timeline-step reveal" style="transition-delay:.12s;">
+                <div class="timeline-card glass-panel rounded-[30px] p-6 lg:min-h-[320px] lg:p-7">
+                  <div class="display-font text-6xl font-extrabold italic leading-none" style="color:rgba(57,255,20,0.12);">03</div>
+                  <div class="mt-6 flex h-14 w-14 items-center justify-center rounded-2xl" style="border:1px solid rgba(57,255,20,0.18);background:rgba(57,255,20,0.06);">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" style="color:var(--accent);"><path d="M5 19h14"></path><path d="M12 5l4 5-4 2-4-2 4-5Z"></path><path d="M12 12v7"></path></svg>
+                  </div>
+                  <h3 class="display-font mt-6 text-xl font-bold italic" style="color:var(--text-primary);">Launch &amp; Optimise</h3>
+                  <p class="mt-4 text-sm leading-7" style="color:var(--text-secondary);">Campaign activation, creative testing, bid iteration, and weekly reporting loops that keep learning cycles fast.</p>
+                </div>
+                <div class="timeline-connector hidden lg:block"></div>
+              </article>
+              <article class="timeline-step reveal" style="transition-delay:.16s;">
+                <div class="timeline-card glass-panel rounded-[30px] p-6 lg:min-h-[320px] lg:p-7">
+                  <div class="display-font text-6xl font-extrabold italic leading-none" style="color:rgba(57,255,20,0.12);">04</div>
+                  <div class="mt-6 flex h-14 w-14 items-center justify-center rounded-2xl" style="border:1px solid rgba(57,255,20,0.18);background:rgba(57,255,20,0.06);">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" style="color:var(--accent);"><path d="M4 16l5-5 4 4 7-7"></path><path d="M20 12V7h-5"></path></svg>
+                  </div>
+                  <h3 class="display-font mt-6 text-xl font-bold italic" style="color:var(--text-primary);">Scale &amp; Compound</h3>
+                  <p class="mt-4 text-sm leading-7" style="color:var(--text-secondary);">Winner replication, budget scaling, new channel expansion, and quarterly review cycles that keep growth compounding.</p>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="why-auroveon" class="section-frame py-24 lg:py-32">
+        <div class="site-shell">
+          <div class="glass-panel relative overflow-hidden rounded-[38px] px-6 py-8 lg:px-10 lg:py-10 reveal" style="background:linear-gradient(135deg,rgba(11,14,11,0.94),rgba(8,10,8,0.88));">
+            <div class="absolute inset-0" style="background-image:linear-gradient(135deg,transparent 0%,transparent 42%,rgba(57,255,20,0.05) 42.5%,transparent 43%,transparent 100%);opacity:.5;"></div>
+            <div class="relative z-10 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+              <div>
+                <div class="counter-value display-font text-[clamp(2.6rem,5vw,4rem)] font-extrabold italic" data-count="85" data-suffix="+" style="color:var(--text-primary);">0</div>
+                <div class="mono-font mt-2 text-[0.72rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">Brands scaled</div>
+              </div>
+              <div>
+                <div class="counter-value display-font text-[clamp(2.6rem,5vw,4rem)] font-extrabold italic" data-count="4.8" data-suffix="x" data-decimals="1" style="color:var(--text-primary);">0</div>
+                <div class="mono-font mt-2 text-[0.72rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">Average ROAS</div>
+              </div>
+              <div>
+                <div class="counter-value display-font text-[clamp(2.6rem,5vw,4rem)] font-extrabold italic" data-count="90" data-suffix=" days" style="color:var(--text-primary);">0</div>
+                <div class="mono-font mt-2 text-[0.72rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">To first results</div>
+              </div>
+              <div>
+                <div class="counter-value display-font text-[clamp(2.6rem,5vw,4rem)] font-extrabold italic" data-count="100" data-suffix="%" style="color:var(--text-primary);">0</div>
+                <div class="mono-font mt-2 text-[0.72rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">Transparent reporting</div>
+              </div>
+            </div>
+          </div>
+          <div class="mt-16 reveal">
+            <div class="section-kicker">The Auroveon Edge</div>
+            <h2 class="display-font mt-4 text-4xl font-extrabold italic leading-[0.92] tracking-[-0.04em] lg:text-6xl" style="color:var(--text-primary);max-width:11ch;">Built to scale with clarity.</h2>
+          </div>
+          <div class="mt-10 grid gap-6 lg:grid-cols-3 lg:items-start">
+            <article class="edge-card glass-panel rounded-[32px] p-7 reveal lg:min-h-[360px]">
+              <div class="flex h-16 w-16 items-center justify-center rounded-2xl" style="border:1px solid rgba(57,255,20,0.18);background:rgba(57,255,20,0.06);">
+                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="color:var(--accent);"><path d="M4 19h16"></path><path d="M7 16V9"></path><path d="M12 16V5"></path><path d="M17 16v-4"></path></svg>
+              </div>
+              <h3 class="display-font mt-8 text-3xl font-extrabold italic" style="color:var(--text-primary);">Data Before Gut</h3>
+              <p class="mt-5 text-sm leading-8" style="color:var(--text-secondary);">Tracking comes first, reporting is readable, and every optimisation is anchored to evidence. We do not guess and then decorate the guess with jargon.</p>
+              <div class="mono-font mt-10 text-xs italic uppercase tracking-[0.15em]" style="color:var(--text-muted);">Every decision is traceable</div>
+            </article>
+            <article class="edge-card glass-panel rounded-[32px] p-7 reveal lg:mt-10" style="transition-delay:.08s;">
+              <div class="flex h-16 w-16 items-center justify-center rounded-2xl" style="border:1px solid rgba(57,255,20,0.18);background:rgba(57,255,20,0.06);">
+                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="color:var(--accent);"><path d="M4 7h16"></path><path d="M7 12h10"></path><path d="M10 17h4"></path></svg>
+              </div>
+              <h3 class="display-font mt-8 text-3xl font-extrabold italic" style="color:var(--text-primary);">Full-Funnel Thinking</h3>
+              <p class="mt-5 text-sm leading-8" style="color:var(--text-secondary);">Ads, SEO, landing pages, email, and analytics work together here. We do not run isolated tactics that look busy but fail to compound.</p>
+              <div class="mono-font mt-10 text-xs italic uppercase tracking-[0.15em]" style="color:var(--text-muted);">We don't run ads. We build ecosystems</div>
+            </article>
+            <article class="edge-card glass-panel rounded-[32px] p-7 reveal lg:min-h-[360px]" style="transition-delay:.16s;">
+              <div class="flex h-16 w-16 items-center justify-center rounded-2xl" style="border:1px solid rgba(57,255,20,0.18);background:rgba(57,255,20,0.06);">
+                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="color:var(--accent);"><path d="M4 7h16"></path><path d="M4 12h10"></path><path d="M4 17h7"></path><path d="M18 12l2 2-2 2"></path></svg>
+              </div>
+              <h3 class="display-font mt-8 text-3xl font-extrabold italic" style="color:var(--text-primary);">Transparent by Default</h3>
+              <p class="mt-5 text-sm leading-8" style="color:var(--text-secondary);">Clean dashboards, honest reporting, and visible performance logic mean you always know what is working, what is not, and what we are changing next.</p>
+              <div class="mono-font mt-10 text-xs italic uppercase tracking-[0.15em]" style="color:var(--text-muted);">You see everything we see</div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="testimonials" class="section-frame overflow-hidden py-24 lg:py-32">
+        <div class="site-shell">
+          <div class="mb-12 reveal">
+            <div class="section-kicker">Testimonials</div>
+            <h2 class="display-font mt-4 text-4xl font-extrabold italic leading-[0.96] tracking-[-0.04em] lg:text-6xl" style="color:var(--text-primary);max-width:12ch;">What growth feels like on the client side.</h2>
+          </div>
+        </div>
+        <div class="space-y-6">
+          <div class="marquee overflow-hidden reveal">
+            <div class="testimonial-track-l flex w-max gap-6">
+              <article class="testimonial-card glass-panel rounded-[28px] p-6">
+                <div class="text-sm tracking-[0.2em]" style="color:var(--accent);">★★★★★</div>
+                <p class="mt-4 text-sm italic leading-7" style="color:var(--text-primary);">Our Google Ads ROAS went from 1.8x to 4.6x in 8 weeks.</p>
+                <div class="mt-6 display-font text-sm font-bold" style="color:var(--text-primary);">Zara M.</div>
+                <div class="mono-font mt-1 text-xs uppercase tracking-[0.16em]" style="color:var(--text-muted);">E-commerce Director</div>
+                <div class="mt-4 inline-flex rounded-full px-3 py-1.5 mono-font text-[0.68rem] uppercase tracking-[0.16em]" style="color:var(--accent);background:rgba(57,255,20,0.05);border:1px solid rgba(57,255,20,0.16);">Paid Media</div>
+              </article>
+              <article class="testimonial-card glass-panel rounded-[28px] p-6">
+                <div class="text-sm tracking-[0.2em]" style="color:var(--accent);">★★★★★</div>
+                <p class="mt-4 text-sm italic leading-7" style="color:var(--text-primary);">We ranked for 200+ keywords in under 3 months. Insane SEO work.</p>
+                <div class="mt-6 display-font text-sm font-bold" style="color:var(--text-primary);">Ali K.</div>
+                <div class="mono-font mt-1 text-xs uppercase tracking-[0.16em]" style="color:var(--text-muted);">SaaS Founder</div>
+                <div class="mt-4 inline-flex rounded-full px-3 py-1.5 mono-font text-[0.68rem] uppercase tracking-[0.16em]" style="color:var(--accent);background:rgba(57,255,20,0.05);border:1px solid rgba(57,255,20,0.16);">SEO</div>
+              </article>
+              <article class="testimonial-card glass-panel rounded-[28px] p-6">
+                <div class="text-sm tracking-[0.2em]" style="color:var(--accent);">★★★★★</div>
+                <p class="mt-4 text-sm italic leading-7" style="color:var(--text-primary);">The Meta campaigns actually understood our audience better than we did.</p>
+                <div class="mt-6 display-font text-sm font-bold" style="color:var(--text-primary);">Sara T.</div>
+                <div class="mono-font mt-1 text-xs uppercase tracking-[0.16em]" style="color:var(--text-muted);">CMO</div>
+                <div class="mt-4 inline-flex rounded-full px-3 py-1.5 mono-font text-[0.68rem] uppercase tracking-[0.16em]" style="color:var(--accent);background:rgba(57,255,20,0.05);border:1px solid rgba(57,255,20,0.16);">Meta Ads</div>
+              </article>
+              <article class="testimonial-card glass-panel rounded-[28px] p-6">
+                <div class="text-sm tracking-[0.2em]" style="color:var(--accent);">★★★★★</div>
+                <p class="mt-4 text-sm italic leading-7" style="color:var(--text-primary);">Email revenue up 890%. These guys know lifecycle marketing.</p>
+                <div class="mt-6 display-font text-sm font-bold" style="color:var(--text-primary);">Omar R.</div>
+                <div class="mono-font mt-1 text-xs uppercase tracking-[0.16em]" style="color:var(--text-muted);">Retail Brand</div>
+                <div class="mt-4 inline-flex rounded-full px-3 py-1.5 mono-font text-[0.68rem] uppercase tracking-[0.16em]" style="color:var(--accent);background:rgba(57,255,20,0.05);border:1px solid rgba(57,255,20,0.16);">Email</div>
+              </article>
+              <article class="testimonial-card glass-panel rounded-[28px] p-6">
+                <div class="text-sm tracking-[0.2em]" style="color:var(--accent);">★★★★★</div>
+                <p class="mt-4 text-sm italic leading-7" style="color:var(--text-primary);">Our Google Ads ROAS went from 1.8x to 4.6x in 8 weeks.</p>
+                <div class="mt-6 display-font text-sm font-bold" style="color:var(--text-primary);">Zara M.</div>
+                <div class="mono-font mt-1 text-xs uppercase tracking-[0.16em]" style="color:var(--text-muted);">E-commerce Director</div>
+                <div class="mt-4 inline-flex rounded-full px-3 py-1.5 mono-font text-[0.68rem] uppercase tracking-[0.16em]" style="color:var(--accent);background:rgba(57,255,20,0.05);border:1px solid rgba(57,255,20,0.16);">Paid Media</div>
+              </article>
+              <article class="testimonial-card glass-panel rounded-[28px] p-6">
+                <div class="text-sm tracking-[0.2em]" style="color:var(--accent);">★★★★★</div>
+                <p class="mt-4 text-sm italic leading-7" style="color:var(--text-primary);">We ranked for 200+ keywords in under 3 months. Insane SEO work.</p>
+                <div class="mt-6 display-font text-sm font-bold" style="color:var(--text-primary);">Ali K.</div>
+                <div class="mono-font mt-1 text-xs uppercase tracking-[0.16em]" style="color:var(--text-muted);">SaaS Founder</div>
+                <div class="mt-4 inline-flex rounded-full px-3 py-1.5 mono-font text-[0.68rem] uppercase tracking-[0.16em]" style="color:var(--accent);background:rgba(57,255,20,0.05);border:1px solid rgba(57,255,20,0.16);">SEO</div>
+              </article>
+              <article class="testimonial-card glass-panel rounded-[28px] p-6">
+                <div class="text-sm tracking-[0.2em]" style="color:var(--accent);">★★★★★</div>
+                <p class="mt-4 text-sm italic leading-7" style="color:var(--text-primary);">The Meta campaigns actually understood our audience better than we did.</p>
+                <div class="mt-6 display-font text-sm font-bold" style="color:var(--text-primary);">Sara T.</div>
+                <div class="mono-font mt-1 text-xs uppercase tracking-[0.16em]" style="color:var(--text-muted);">CMO</div>
+                <div class="mt-4 inline-flex rounded-full px-3 py-1.5 mono-font text-[0.68rem] uppercase tracking-[0.16em]" style="color:var(--accent);background:rgba(57,255,20,0.05);border:1px solid rgba(57,255,20,0.16);">Meta Ads</div>
+              </article>
+              <article class="testimonial-card glass-panel rounded-[28px] p-6">
+                <div class="text-sm tracking-[0.2em]" style="color:var(--accent);">★★★★★</div>
+                <p class="mt-4 text-sm italic leading-7" style="color:var(--text-primary);">Email revenue up 890%. These guys know lifecycle marketing.</p>
+                <div class="mt-6 display-font text-sm font-bold" style="color:var(--text-primary);">Omar R.</div>
+                <div class="mono-font mt-1 text-xs uppercase tracking-[0.16em]" style="color:var(--text-muted);">Retail Brand</div>
+                <div class="mt-4 inline-flex rounded-full px-3 py-1.5 mono-font text-[0.68rem] uppercase tracking-[0.16em]" style="color:var(--accent);background:rgba(57,255,20,0.05);border:1px solid rgba(57,255,20,0.16);">Email</div>
+              </article>
+            </div>
+          </div>
+          <div class="marquee overflow-hidden reveal" style="transition-delay:.08s;">
+            <div class="testimonial-track-r flex w-max gap-6">
+              <article class="testimonial-card glass-panel rounded-[28px] p-6">
+                <div class="text-sm tracking-[0.2em]" style="color:var(--accent);">★★★★★</div>
+                <p class="mt-4 text-sm italic leading-7" style="color:var(--text-primary);">Finally an agency that sends real data, not vanity metrics.</p>
+                <div class="mt-6 display-font text-sm font-bold" style="color:var(--text-primary);">Nadia F.</div>
+                <div class="mono-font mt-1 text-xs uppercase tracking-[0.16em]" style="color:var(--text-muted);">Marketing Lead</div>
+                <div class="mt-4 inline-flex rounded-full px-3 py-1.5 mono-font text-[0.68rem] uppercase tracking-[0.16em]" style="color:var(--accent);background:rgba(57,255,20,0.05);border:1px solid rgba(57,255,20,0.16);">Analytics</div>
+              </article>
+              <article class="testimonial-card glass-panel rounded-[28px] p-6">
+                <div class="text-sm tracking-[0.2em]" style="color:var(--accent);">★★★★★</div>
+                <p class="mt-4 text-sm italic leading-7" style="color:var(--text-primary);">CPA dropped 68% while we scaled spend 3x. That's rare.</p>
+                <div class="mt-6 display-font text-sm font-bold" style="color:var(--text-primary);">Bilal S.</div>
+                <div class="mono-font mt-1 text-xs uppercase tracking-[0.16em]" style="color:var(--text-muted);">D2C Brand</div>
+                <div class="mt-4 inline-flex rounded-full px-3 py-1.5 mono-font text-[0.68rem] uppercase tracking-[0.16em]" style="color:var(--accent);background:rgba(57,255,20,0.05);border:1px solid rgba(57,255,20,0.16);">Google Ads</div>
+              </article>
+              <article class="testimonial-card glass-panel rounded-[28px] p-6">
+                <div class="text-sm tracking-[0.2em]" style="color:var(--accent);">★★★★★</div>
+                <p class="mt-4 text-sm italic leading-7" style="color:var(--text-primary);">Content strategy completely changed how we generate leads.</p>
+                <div class="mt-6 display-font text-sm font-bold" style="color:var(--text-primary);">Fatima A.</div>
+                <div class="mono-font mt-1 text-xs uppercase tracking-[0.16em]" style="color:var(--text-muted);">B2B Startup</div>
+                <div class="mt-4 inline-flex rounded-full px-3 py-1.5 mono-font text-[0.68rem] uppercase tracking-[0.16em]" style="color:var(--accent);background:rgba(57,255,20,0.05);border:1px solid rgba(57,255,20,0.16);">Content</div>
+              </article>
+              <article class="testimonial-card glass-panel rounded-[28px] p-6">
+                <div class="text-sm tracking-[0.2em]" style="color:var(--accent);">★★★★★</div>
+                <p class="mt-4 text-sm italic leading-7" style="color:var(--text-primary);">From 0 to 50k monthly organic visitors in 4 months.</p>
+                <div class="mt-6 display-font text-sm font-bold" style="color:var(--text-primary);">Hamza W.</div>
+                <div class="mono-font mt-1 text-xs uppercase tracking-[0.16em]" style="color:var(--text-muted);">Tech Company</div>
+                <div class="mt-4 inline-flex rounded-full px-3 py-1.5 mono-font text-[0.68rem] uppercase tracking-[0.16em]" style="color:var(--accent);background:rgba(57,255,20,0.05);border:1px solid rgba(57,255,20,0.16);">Organic Growth</div>
+              </article>
+              <article class="testimonial-card glass-panel rounded-[28px] p-6">
+                <div class="text-sm tracking-[0.2em]" style="color:var(--accent);">★★★★★</div>
+                <p class="mt-4 text-sm italic leading-7" style="color:var(--text-primary);">Finally an agency that sends real data, not vanity metrics.</p>
+                <div class="mt-6 display-font text-sm font-bold" style="color:var(--text-primary);">Nadia F.</div>
+                <div class="mono-font mt-1 text-xs uppercase tracking-[0.16em]" style="color:var(--text-muted);">Marketing Lead</div>
+                <div class="mt-4 inline-flex rounded-full px-3 py-1.5 mono-font text-[0.68rem] uppercase tracking-[0.16em]" style="color:var(--accent);background:rgba(57,255,20,0.05);border:1px solid rgba(57,255,20,0.16);">Analytics</div>
+              </article>
+              <article class="testimonial-card glass-panel rounded-[28px] p-6">
+                <div class="text-sm tracking-[0.2em]" style="color:var(--accent);">★★★★★</div>
+                <p class="mt-4 text-sm italic leading-7" style="color:var(--text-primary);">CPA dropped 68% while we scaled spend 3x. That's rare.</p>
+                <div class="mt-6 display-font text-sm font-bold" style="color:var(--text-primary);">Bilal S.</div>
+                <div class="mono-font mt-1 text-xs uppercase tracking-[0.16em]" style="color:var(--text-muted);">D2C Brand</div>
+                <div class="mt-4 inline-flex rounded-full px-3 py-1.5 mono-font text-[0.68rem] uppercase tracking-[0.16em]" style="color:var(--accent);background:rgba(57,255,20,0.05);border:1px solid rgba(57,255,20,0.16);">Google Ads</div>
+              </article>
+              <article class="testimonial-card glass-panel rounded-[28px] p-6">
+                <div class="text-sm tracking-[0.2em]" style="color:var(--accent);">★★★★★</div>
+                <p class="mt-4 text-sm italic leading-7" style="color:var(--text-primary);">Content strategy completely changed how we generate leads.</p>
+                <div class="mt-6 display-font text-sm font-bold" style="color:var(--text-primary);">Fatima A.</div>
+                <div class="mono-font mt-1 text-xs uppercase tracking-[0.16em]" style="color:var(--text-muted);">B2B Startup</div>
+                <div class="mt-4 inline-flex rounded-full px-3 py-1.5 mono-font text-[0.68rem] uppercase tracking-[0.16em]" style="color:var(--accent);background:rgba(57,255,20,0.05);border:1px solid rgba(57,255,20,0.16);">Content</div>
+              </article>
+              <article class="testimonial-card glass-panel rounded-[28px] p-6">
+                <div class="text-sm tracking-[0.2em]" style="color:var(--accent);">★★★★★</div>
+                <p class="mt-4 text-sm italic leading-7" style="color:var(--text-primary);">From 0 to 50k monthly organic visitors in 4 months.</p>
+                <div class="mt-6 display-font text-sm font-bold" style="color:var(--text-primary);">Hamza W.</div>
+                <div class="mono-font mt-1 text-xs uppercase tracking-[0.16em]" style="color:var(--text-muted);">Tech Company</div>
+                <div class="mt-4 inline-flex rounded-full px-3 py-1.5 mono-font text-[0.68rem] uppercase tracking-[0.16em]" style="color:var(--accent);background:rgba(57,255,20,0.05);border:1px solid rgba(57,255,20,0.16);">Organic Growth</div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="relative py-24 lg:py-32">
+        <div class="site-shell">
+          <div class="glass-panel relative overflow-hidden rounded-[38px] px-7 py-16 lg:px-16 lg:py-20 reveal">
+            <div class="cta-bg absolute inset-0 rounded-[38px]"></div>
+            <div class="spotlight" style="width:28rem;height:28rem;top:-10rem;right:-6rem;background:radial-gradient(circle,rgba(57,255,20,0.14),transparent 64%);"></div>
+            <div class="relative z-10 grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
+              <div>
+                <div class="section-kicker flex items-center gap-3"><span class="h-2.5 w-2.5 rounded-full pulse-dot" style="background:var(--accent);"></span><span>Ready to scale with intent?</span></div>
+                <h2 class="display-font mt-4 font-extrabold italic leading-[0.94] tracking-[-0.04em]" style="color:var(--text-primary);font-size:clamp(3rem,6vw,4.6rem);max-width:12ch;">Your growth campaign starts today.</h2>
+                <p class="mt-6 max-w-[38rem] text-base leading-8 lg:text-lg" style="color:var(--text-secondary);">We don't run generic campaigns. We build growth systems tailored to your market, your margins, and your goals.</p>
+              </div>
+              <div class="flex flex-col gap-4">
+                <a href="mailto:info@auroveon.com" class="display-font inline-flex items-center justify-center rounded-full px-8 py-4 text-base font-bold transition-all hover:-translate-y-1" style="background:var(--accent);color:#081008;box-shadow:0 0 42px rgba(57,255,20,0.18);">Start Your Campaign</a>
+                <a href="web-dev.html" class="display-font inline-flex items-center justify-center rounded-full border px-8 py-4 text-base font-bold transition-all hover:-translate-y-1" style="border-color:var(--border-strong);color:var(--text-primary);">Explore Web Dev &rarr;</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="relative pb-10">
+      <div class="site-shell" style="border-top:1px solid var(--border);padding-top:2.5rem;">
+        <div class="grid gap-10 lg:grid-cols-[1.2fr_0.8fr_0.8fr_0.8fr]">
+          <div>
+            <img src="assets/WhatsApp Image 2026-05-09 at 09,19,43-Picsart-BackgroundRemover.png" alt="Auroveon" style="height:72px;width:auto;max-width:240px;object-fit:contain;" />
+            <p class="mt-4 max-w-sm text-sm leading-7" style="color:var(--text-secondary);">Software agency for AI solutions, modern web platforms, SaaS systems, and cinematic digital experiences built for ambitious brands.</p>
+            <div class="mt-6 flex flex-wrap items-center gap-4">
+              <a class="footer-social-link" href="https://linkedin.com/company/auroveon" target="_blank" rel="noreferrer" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.05-1.86-3.05-1.86 0-2.15 1.45-2.15 2.95v5.67H9.32V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.61 0 4.28 2.37 4.28 5.46v6.28ZM5.31 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14ZM7.09 20.45H3.52V9h3.57v11.45ZM22.23 0H1.77A1.77 1.77 0 0 0 0 1.77v20.46C0 23.21.79 24 1.77 24h20.46A1.77 1.77 0 0 0 24 22.23V1.77A1.77 1.77 0 0 0 22.23 0Z"/></svg></a>
+              <a class="footer-social-link" href="https://instagram.com/auroveon" target="_blank" rel="noreferrer" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2Zm0 1.8A3.95 3.95 0 0 0 3.8 7.75v8.5a3.95 3.95 0 0 0 3.95 3.95h8.5a3.95 3.95 0 0 0 3.95-3.95v-8.5a3.95 3.95 0 0 0-3.95-3.95Zm8.95 1.35a1.15 1.15 0 1 1 0 2.3 1.15 1.15 0 0 1 0-2.3ZM12 6.86A5.14 5.14 0 1 1 6.86 12 5.14 5.14 0 0 1 12 6.86Zm0 1.8A3.34 3.34 0 1 0 15.34 12 3.34 3.34 0 0 0 12 8.66Z"/></svg></a>
+              <a class="footer-social-link" href="https://twitter.com/auroveon" target="_blank" rel="noreferrer" aria-label="X"><svg viewBox="0 0 24 24"><path d="M18.9 2H22l-6.77 7.73L23.2 22h-6.25l-4.9-6.4L6.45 22H3.34l7.24-8.27L1 2h6.4l4.43 5.85L18.9 2Zm-1.1 18h1.73L6.46 3.9H4.6Z"/></svg></a>
+            </div>
+          </div>
+          <div>
+            <div class="mono-font mb-5 text-xs uppercase tracking-[0.18em]" style="color:var(--accent);">Navigation</div>
+            <div class="flex flex-col gap-3 text-sm">
+              <a class="footer-link" href="index.html#services">Services</a>
+              <a class="footer-link" href="index.html#story">Process</a>
+              <a class="footer-link" href="index.html#work">Work</a>
+              <a class="footer-link" href="web-dev.html">Web Development</a>
+              <a class="footer-link" href="seo.html">SEO</a>
+              <a class="footer-link" href="index.html#contact">Contact</a>
+            </div>
+          </div>
+          <div>
+            <div class="mono-font mb-5 text-xs uppercase tracking-[0.18em]" style="color:var(--accent);">Services</div>
+            <div class="flex flex-col gap-3 text-sm" style="color:var(--text-secondary);">
+              <span>AI Solutions</span>
+              <span>Web Development</span>
+              <span>SaaS Platforms</span>
+              <span>Automation</span>
+              <span>SEO</span>
+            </div>
+          </div>
+          <div>
+            <div class="mono-font mb-5 text-xs uppercase tracking-[0.18em]" style="color:var(--accent);">Contact Us</div>
+            <div class="flex flex-col gap-4">
+              <div><div class="footer-contact-label">Email</div><div class="footer-contact-value"><a class="footer-contact-link" href="mailto:info@auroveon.com">info@auroveon.com</a></div></div>
+              <div><div class="footer-contact-label">Phone</div><div class="footer-contact-value"><a class="footer-contact-link" href="tel:+923353213863">+92 335 321 3863</a></div></div>
+              <div><div class="footer-contact-label">Address</div><div class="footer-contact-value">Street 4, Karachi, Pakistan</div></div>
+            </div>
+          </div>
+        </div>
+        <div class="mt-10 flex flex-col gap-4 pt-6 text-sm" style="color:var(--text-secondary);border-top:1px solid var(--border);">
+          <div class="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+            <div class="flex flex-wrap items-center gap-3">
+              <span>&copy; 2026</span>
+              <img src="assets/WhatsApp Image 2026-05-09 at 09,19,43-Picsart-BackgroundRemover.png" alt="Auroveon" style="height:26px;width:auto;" />
+              <span>Crafted for premium digital products.</span>
+            </div>
+            <div class="flex flex-wrap items-center gap-4">
+              <a class="footer-legal-link" href="/privacy-policy">Privacy Policy</a>
+              <span>&middot;</span>
+              <a class="footer-legal-link" href="/terms-of-service">Terms of Service</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <a href="https://wa.me/923353213863" target="_blank" rel="noreferrer" aria-label="Chat with us on WhatsApp" class="whatsapp-fab">
+      <svg viewBox="0 0 24 24" fill="white" width="28" height="28"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+    </a>
+
+    <script>
+      const navbar = document.getElementById("navbar");
+      window.addEventListener("scroll", () => {
+        navbar.classList.toggle("nav-scrolled", window.scrollY > 10);
+      });
+
+      const btn = document.getElementById("mobileMenuBtn");
+      const menu = document.getElementById("mobileMenu");
+      btn.addEventListener("click", () => {
+        menu.classList.toggle("hidden");
+        btn.textContent = menu.classList.contains("hidden") ? "+" : "x";
+      });
+
+      const dot = document.getElementById("cursorDot");
+      const ring = document.getElementById("cursorRing");
+      if (window.innerWidth >= 1024) {
+        dot.style.opacity = "1";
+        ring.style.opacity = "1";
+        let dotX = 0, dotY = 0, ringX = 0, ringY = 0, mx = 0, my = 0;
+        window.addEventListener("mousemove", (e) => { mx = e.clientX; my = e.clientY; });
+        const animate = () => {
+          dotX += (mx - dotX) * 0.18;
+          dotY += (my - dotY) * 0.18;
+          ringX += (mx - ringX) * 0.1;
+          ringY += (my - ringY) * 0.1;
+          dot.style.left = dotX + "px";
+          dot.style.top = dotY + "px";
+          ring.style.left = ringX + "px";
+          ring.style.top = ringY + "px";
+          requestAnimationFrame(animate);
+        };
+        animate();
+        document.querySelectorAll("a,button,[data-hover]").forEach((el) => {
+          el.addEventListener("mouseenter", () => ring.classList.add("is-hovering"));
+          el.addEventListener("mouseleave", () => ring.classList.remove("is-hovering"));
+        });
+      }
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+      document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
+
+      const counterObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          const el = entry.target;
+          const target = parseFloat(el.dataset.count || "0");
+          const suffix = el.dataset.suffix || "";
+          const decimals = parseInt(el.dataset.decimals || (String(target).includes(".") ? "1" : "0"), 10);
+          const duration = 1200;
+          const start = performance.now();
+          const tick = (now) => {
+            const progress = Math.min((now - start) / duration, 1);
+            const eased = 1 - Math.pow(1 - progress, 3);
+            const value = target * eased;
+            el.textContent = `${value.toFixed(decimals)}${suffix}`;
+            if (progress < 1) requestAnimationFrame(tick);
+            else el.textContent = `${target.toFixed(decimals)}${suffix}`;
+          };
+          requestAnimationFrame(tick);
+          counterObserver.unobserve(el);
+        });
+      }, { threshold: 0.35 });
+      document.querySelectorAll(".counter-value").forEach((el) => counterObserver.observe(el));
+
+      const accordionItems = document.querySelectorAll(".accordion-item");
+      accordionItems.forEach((item) => {
+        const row = item.querySelector(".accordion-row");
+        row.addEventListener("click", () => {
+          if (item.classList.contains("open")) return;
+          accordionItems.forEach((other) => {
+            if (other !== item) other.classList.remove("open");
+          });
+          item.classList.add("open");
+        });
+      });
+      if (accordionItems.length && !document.querySelector(".accordion-item.open")) {
+        accordionItems[0].classList.add("open");
+      }
+
+      const resultsTrack = document.getElementById("resultsTrack");
+      const resultsPrev = document.getElementById("resultsPrev");
+      const resultsNext = document.getElementById("resultsNext");
+      resultsPrev.addEventListener("click", () => {
+        resultsTrack.scrollBy({ left: -400, behavior: "smooth" });
+      });
+      resultsNext.addEventListener("click", () => {
+        resultsTrack.scrollBy({ left: 400, behavior: "smooth" });
+      });
+
+      let isDragging = false;
+      let startX = 0;
+      let scrollStart = 0;
+      resultsTrack.addEventListener("mousedown", (e) => {
+        isDragging = true;
+        resultsTrack.classList.add("dragging");
+        startX = e.pageX;
+        scrollStart = resultsTrack.scrollLeft;
+      });
+      window.addEventListener("mouseup", () => {
+        isDragging = false;
+        resultsTrack.classList.remove("dragging");
+      });
+      resultsTrack.addEventListener("mouseleave", () => {
+        isDragging = false;
+        resultsTrack.classList.remove("dragging");
+      });
+      window.addEventListener("mousemove", (e) => {
+        if (!isDragging) return;
+        const delta = e.pageX - startX;
+        resultsTrack.scrollLeft = scrollStart - delta;
+      });
+
+      document.querySelectorAll('a[href^="#"]').forEach((a) => {
+        a.addEventListener("click", (e) => {
+          const target = document.querySelector(a.getAttribute("href"));
+          if (target) {
+            e.preventDefault();
+            target.scrollIntoView({ behavior: "smooth", block: "start" });
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
