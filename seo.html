@@ -1,0 +1,745 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SEO Services | Auroveon</title>
+    <meta name="description" content="Technical SEO, content strategy, and authority building that ranks your brand on page one — sustainably. Auroveon's data-driven SEO agency." />
+    <meta name="theme-color" content="#080A08" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      :root {
+        --bg-base: #080a08;
+        --accent: #39ff14;
+        --accent-dim: #2bc410;
+        --text-primary: #f0f5f0;
+        --text-secondary: #7a8a7a;
+        --text-muted: #4a574a;
+        --border: rgba(57, 255, 20, 0.1);
+        --border-strong: rgba(57, 255, 20, 0.24);
+      }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        background: radial-gradient(circle at top, rgba(57,255,20,0.07), transparent 26%), linear-gradient(180deg,#080a08 0%,#090c09 50%,#070907 100%);
+        color: var(--text-primary);
+        font-family: "Inter", sans-serif;
+        overflow-x: hidden;
+        -webkit-font-smoothing: antialiased;
+      }
+      @media(min-width:1024px){body{cursor:none;}}
+      .display-font { font-family: "Poppins", sans-serif; }
+      .mono-font { font-family: "JetBrains Mono", monospace; }
+      .site-shell { width: min(1380px, calc(100% - 1.5rem)); margin: 0 auto; }
+      @media(min-width:1024px){.site-shell{width:min(1380px,calc(100% - 4rem));}}
+
+      .cursor-dot,.cursor-ring{position:fixed;top:0;left:0;transform:translate(-50%,-50%);pointer-events:none;z-index:90;opacity:0;}
+      .cursor-dot{width:10px;height:10px;border-radius:9999px;background:var(--accent);box-shadow:0 0 22px rgba(57,255,20,0.65);mix-blend-mode:screen;}
+      .cursor-ring{width:54px;height:54px;border-radius:9999px;border:1px solid rgba(57,255,20,0.22);transition:width .25s,height .25s,border-color .25s;}
+      .cursor-ring.is-hovering{width:76px;height:76px;border-color:rgba(57,255,20,0.48);}
+      @media(max-width:1023px){.cursor-dot,.cursor-ring{display:none;}}
+
+      .noise-overlay{position:fixed;inset:0;pointer-events:none;z-index:5;opacity:0.034;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:240px 240px;}
+      .glass-panel{background:linear-gradient(180deg,rgba(18,23,18,0.8),rgba(10,12,10,0.58));border:1px solid var(--border);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);box-shadow:0 18px 60px rgba(0,0,0,0.35),inset 0 1px 0 rgba(255,255,255,0.04);}
+      .nav-scrolled{background:rgba(8,10,8,0.86);border-bottom:1px solid var(--border);backdrop-filter:blur(22px);}
+      .nav-link{color:var(--text-secondary);transition:color .24s;}
+      .nav-link:hover,.nav-link.active-link{color:var(--text-primary);}
+      .eyebrow{font-family:"JetBrains Mono",monospace;color:var(--accent);font-size:0.72rem;letter-spacing:0.18em;text-transform:uppercase;}
+      .section-kicker{font-family:"Poppins",sans-serif;font-size:0.74rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--text-secondary);}
+      .mini-label{color:var(--text-muted);font-size:0.76rem;text-transform:uppercase;letter-spacing:0.16em;}
+      .soft-divider{background:linear-gradient(90deg,transparent,rgba(57,255,20,0.28),transparent);}
+
+      @keyframes text-shine{0%{background-position:-200% center;}100%{background-position:200% center;}}
+      .shine-word{display:inline-block;background:linear-gradient(90deg,#fff 0%,#fff 35%,#b9ffb0 44%,#eaffea 50%,#b9ffb0 56%,#fff 65%,#fff 100%);background-size:200% auto;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:text-shine 4s linear infinite;}
+      .shine-word-accent{display:inline-block;background:linear-gradient(90deg,#39ff14 0%,#39ff14 35%,#ccffcc 44%,#efffef 50%,#ccffcc 56%,#39ff14 65%,#39ff14 100%);background-size:200% auto;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:text-shine 4s linear infinite;}
+
+      .section-frame{position:relative;}
+      .section-frame::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:1px;background:linear-gradient(90deg,transparent,rgba(57,255,20,0.08),transparent);}
+      .hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(57,255,20,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(57,255,20,0.04) 1px,transparent 1px);background-size:74px 74px;mask-image:radial-gradient(circle at 60% 40%,black 0%,black 40%,transparent 85%);-webkit-mask-image:radial-gradient(circle at 60% 40%,black 0%,black 40%,transparent 85%);}
+      .spotlight{position:absolute;border-radius:9999px;filter:blur(120px);pointer-events:none;}
+
+      .hov-card{transition:border-color .28s,box-shadow .28s,transform .28s;}
+      .hov-card:hover{border-color:var(--border-strong);box-shadow:0 24px 70px rgba(0,0,0,0.38),0 0 45px rgba(57,255,20,0.1);transform:translateY(-8px);}
+
+      .marquee{overflow:hidden;}
+      .marquee-track{display:flex;width:max-content;animation:marquee-left 28s linear infinite;}
+      @keyframes marquee-left{0%{transform:translateX(0%);}100%{transform:translateX(-50%);}}
+
+      .reveal{opacity:0;transform:translateY(50px);transition:opacity .9s cubic-bezier(.22,1,.36,1),transform .9s cubic-bezier(.22,1,.36,1);}
+      .reveal.visible{opacity:1;transform:none;}
+      .cta-bg{position:absolute;inset:0;background:linear-gradient(100deg,rgba(8,10,8,0.88) 14%,rgba(8,10,8,0.7) 54%,rgba(8,10,8,0.88) 100%),url('https://images.unsplash.com/photo-1555421689-d68471e189f2?auto=format&fit=crop&w=1800&q=80') center/cover no-repeat;filter:saturate(.5) brightness(.58);}
+      .whatsapp-fab{position:fixed;bottom:28px;right:8px;z-index:9999;display:flex;align-items:center;justify-content:center;width:56px;height:56px;border:none;border-radius:50%;background:#25d366;box-shadow:0 4px 20px rgba(37,211,102,0.45);transition:transform .25s;text-decoration:none;}
+      .whatsapp-fab:hover{transform:scale(1.1);}
+      .footer-link{color:var(--text-secondary);transition:color .24s;}
+      .footer-link:hover{color:var(--text-primary);}
+      .footer-contact-label{font-size:0.7rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--text-secondary);}
+      .footer-contact-value{margin-top:4px;color:#fff;font-size:0.95rem;}
+      .footer-contact-link{color:#fff;text-decoration:none;transition:color .2s;}
+      .footer-contact-link:hover{color:var(--accent);}
+      .footer-legal-link{color:var(--text-secondary);transition:color .24s;}
+      .footer-legal-link:hover{color:var(--accent);}
+      .footer-social-link{display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border:1px solid #1a3a1a;border-radius:9999px;background:#111;transition:border-color .2s,transform .2s;}
+      .footer-social-link svg{width:18px;height:18px;fill:#aaa;transition:fill .2s;}
+      .footer-social-link:hover{border-color:#00ff88;transform:translateY(-1px);}
+      .footer-social-link:hover svg{fill:#00ff88;}
+      .feature-glow::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at top right,rgba(57,255,20,0.1),transparent 30%);pointer-events:none;}
+
+      /* SERP RESULT MOCKUP */
+      .serp-card{background:rgba(255,255,255,0.96);border-radius:16px;padding:18px 22px;margin-bottom:12px;}
+      .serp-card .serp-url{color:#1a73e8;font-size:0.78rem;margin-bottom:3px;font-family:Arial,sans-serif;}
+      .serp-card .serp-title{color:#1a0dab;font-size:1.05rem;font-weight:600;line-height:1.3;font-family:Arial,sans-serif;margin-bottom:5px;}
+      .serp-card .serp-desc{color:#4d5156;font-size:0.82rem;line-height:1.5;font-family:Arial,sans-serif;}
+      .serp-featured{border-left:4px solid var(--accent);background:rgba(57,255,20,0.06) !important;}
+      .serp-badge{display:inline-block;padding:2px 8px;border-radius:4px;font-size:0.65rem;font-family:"JetBrains Mono",monospace;letter-spacing:.1em;text-transform:uppercase;background:rgba(57,255,20,0.15);color:var(--accent);margin-bottom:8px;}
+
+      @keyframes float-up{0%,100%{transform:translateY(0);}50%{transform:translateY(-12px);}}
+      @keyframes float-side{0%,100%{transform:translateY(0) rotate(-2deg);}50%{transform:translateY(-8px) rotate(0deg);}}
+      .float-up{animation:float-up 5s ease-in-out infinite;}
+      .float-side{animation:float-side 6s ease-in-out infinite;}
+
+      /* RANK COUNTER ANIM */
+      @keyframes slide-up{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);}}
+      .slide-up{animation:slide-up .7s ease-out both;}
+
+      /* ACCORDION */
+      .accordion-body{max-height:0;overflow:hidden;transition:max-height .4s ease;}
+      .accordion-body.open{max-height:500px;}
+      .accordion-toggle{cursor:pointer;}
+
+      /* TABS FOR SERVICES */
+      .seo-tab-content{display:none;}
+      .seo-tab-content.active{display:block;}
+      .seo-tab-btn{padding:10px 20px;border-radius:9999px;font-family:"JetBrains Mono",monospace;font-size:0.72rem;letter-spacing:.12em;text-transform:uppercase;border:1px solid var(--border);color:var(--text-secondary);background:transparent;cursor:pointer;transition:all .25s;}
+      .seo-tab-btn.active{border-color:var(--accent);color:var(--accent);background:rgba(57,255,20,0.04);}
+
+      /* BAR ANIM */
+      @keyframes bar-fill{from{width:0%;}to{width:var(--w);}}
+      .bar-animated{animation:bar-fill 1.4s cubic-bezier(.22,1,.36,1) both;}
+    </style>
+  </head>
+  <body>
+    <div class="noise-overlay"></div>
+    <div class="cursor-dot" id="cursorDot"></div>
+    <div class="cursor-ring" id="cursorRing"></div>
+
+    <!-- NAVBAR -->
+    <header id="navbar" class="fixed left-0 top-0 z-50 w-full transition-all duration-300">
+      <div class="site-shell flex h-24 items-center justify-between">
+        <a href="index.html" class="inline-flex items-center flex-shrink-0" aria-label="Auroveon home">
+          <img src="assets/WhatsApp Image 2026-05-09 at 09,19,43-Picsart-BackgroundRemover.png" alt="Auroveon" style="height:68px;width:auto;object-fit:contain;" />
+        </a>
+        <nav class="hidden items-center gap-9 lg:flex">
+          <a class="nav-link text-base font-medium" href="index.html#services">Services</a>
+          <a class="nav-link text-base font-medium" href="index.html#story">Process</a>
+          <a class="nav-link text-base font-medium" href="index.html#work">Work</a>
+          <a class="nav-link text-base font-medium" href="web-development.html">Web Dev</a>
+          <a class="nav-link text-base font-medium active-link" href="seo.html">SEO</a>
+          <a class="nav-link text-base font-medium" href="index.html#contact">Contact</a>
+        </nav>
+        <a href="index.html#contact" class="display-font hidden lg:inline-flex items-center gap-2 rounded-full border px-6 py-3.5 text-base font-semibold transition-all hover:-translate-y-1" style="border-color:var(--accent);color:var(--accent);background:rgba(57,255,20,0.02);">Start a Project</a>
+        <button id="mobileMenuBtn" class="glass-panel flex h-12 w-12 items-center justify-center rounded-full lg:hidden text-xl">+</button>
+      </div>
+      <div id="mobileMenu" class="site-shell pb-4 lg:hidden hidden">
+        <div class="glass-panel rounded-[28px] px-6 py-6">
+          <div class="flex flex-col gap-5 text-center">
+            <a href="index.html#services" class="display-font text-2xl font-bold italic" style="color:var(--text-primary);">Services</a>
+            <a href="index.html#work" class="display-font text-2xl font-bold italic" style="color:var(--text-primary);">Work</a>
+            <a href="web-development.html" class="display-font text-2xl font-bold italic" style="color:var(--text-primary);">Web Dev</a>
+            <a href="seo.html" class="display-font text-2xl font-bold italic" style="color:var(--accent);">SEO</a>
+            <a href="index.html#contact" class="display-font text-2xl font-bold italic" style="color:var(--text-primary);">Contact</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+
+      <!-- ═══════════════ HERO ═══════════════ -->
+      <section id="hero" class="section-frame relative min-h-screen overflow-hidden pt-24 flex items-center">
+        <div class="hero-grid"></div>
+        <div class="spotlight" style="width:44rem;height:44rem;top:-12rem;right:-10rem;background:radial-gradient(circle,rgba(57,255,20,0.14),transparent 60%);"></div>
+        <div class="spotlight" style="width:22rem;height:22rem;bottom:6rem;left:-4rem;background:radial-gradient(circle,rgba(57,255,20,0.08),transparent 68%);"></div>
+
+        <div class="site-shell relative z-10 w-full py-10 lg:py-16">
+          <div class="grid gap-12 lg:grid-cols-[1fr_1fr] lg:items-center">
+
+            <!-- LEFT COPY -->
+            <div class="reveal">
+              <div class="glass-panel inline-flex items-center gap-3 rounded-full px-4 py-2 mb-6">
+                <span class="h-2 w-2 rounded-full" style="background:var(--accent);box-shadow:0 0 14px rgba(57,255,20,0.7);"></span>
+                <span class="eyebrow">SEO Services — Page #1 Strategy</span>
+              </div>
+
+              <h1 class="display-font font-extrabold italic leading-[0.94] tracking-[-0.045em]" style="font-size:clamp(2.8rem,7vw,6.2rem);">
+                <span class="shine-word">Rank Higher.</span><br/>
+                <span class="shine-word">Convert Faster.</span><br/>
+                <span class="shine-word-accent">Stay There.</span>
+              </h1>
+
+              <p class="mt-6 max-w-xl text-lg leading-8" style="color:var(--text-secondary);">
+                We don't chase algorithms. We build the technical foundation, content architecture, and authority signals that Google rewards for years — not weeks. Sustainable. Scalable. Strategic.
+              </p>
+
+              <div class="mt-8 flex flex-col gap-4 sm:flex-row">
+                <a href="index.html#contact" class="display-font inline-flex items-center justify-center rounded-full px-7 py-4 text-base font-bold transition-all hover:-translate-y-1" style="background:var(--accent);color:#081008;box-shadow:0 0 42px rgba(57,255,20,0.18);">Get SEO Audit</a>
+                <a href="#strategy" class="display-font inline-flex items-center justify-center rounded-full border px-7 py-4 text-base font-bold transition-all hover:-translate-y-1" style="border-color:var(--border-strong);color:var(--text-primary);background:rgba(255,255,255,0.02);">See Our Approach</a>
+              </div>
+
+              <!-- KEY STATS -->
+              <div class="mt-10 grid grid-cols-3 gap-4">
+                <div class="glass-panel rounded-[20px] px-4 py-5">
+                  <div class="display-font text-3xl font-extrabold italic" style="color:var(--text-primary);">3.8x</div>
+                  <p class="mt-1 text-xs leading-5" style="color:var(--text-secondary);">avg. organic traffic growth</p>
+                </div>
+                <div class="glass-panel rounded-[20px] px-4 py-5">
+                  <div class="display-font text-3xl font-extrabold italic" style="color:var(--text-primary);">62%</div>
+                  <p class="mt-1 text-xs leading-5" style="color:var(--text-secondary);">avg. ranking improvement in 90 days</p>
+                </div>
+                <div class="glass-panel rounded-[20px] px-4 py-5">
+                  <div class="display-font text-3xl font-extrabold italic" style="color:var(--text-primary);">48+</div>
+                  <p class="mt-1 text-xs leading-5" style="color:var(--text-secondary);">brands ranked on page one</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- RIGHT: SERP MOCKUP -->
+            <div class="relative reveal" style="transition-delay:.15s;">
+              <div class="spotlight" style="width:20rem;height:20rem;top:10%;right:-5%;background:radial-gradient(circle,rgba(57,255,20,0.1),transparent 64%);"></div>
+
+              <!-- Google SERP mockup -->
+              <div class="glass-panel rounded-[20px] p-5 lg:p-6" style="border-color:rgba(57,255,20,0.15);">
+                <!-- Google bar -->
+                <div style="display:flex;align-items:center;gap:10px;background:rgba(255,255,255,0.96);border-radius:30px;padding:10px 16px;margin-bottom:16px;">
+                  <svg width="18" height="18" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z" fill="#4285f4"/></svg>
+                  <span style="flex:1;font-family:Arial,sans-serif;font-size:.85rem;color:#202124;">your target keyword</span>
+                  <svg width="16" height="16" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" fill="#5f6368"/></svg>
+                </div>
+
+                <!-- Paid ad label -->
+                <div class="mono-font text-xs mb-2" style="color:var(--text-muted);letter-spacing:.12em;">ORGANIC RESULTS · PAGE 1</div>
+
+                <!-- Result #1 — FEATURED (client) -->
+                <div class="serp-card serp-featured float-up">
+                  <div class="serp-badge">✦ YOUR BRAND</div>
+                  <div class="serp-url">auroveon.com › your-industry › solution</div>
+                  <div class="serp-title">Premium [Your Service] Solutions — Auroveon</div>
+                  <div class="serp-desc">We help ambitious brands build digital authority through technical SEO, content clusters, and sustainable ranking strategies that outperform paid ads...</div>
+                </div>
+
+                <!-- Result #2 -->
+                <div class="serp-card" style="opacity:.7;">
+                  <div class="serp-url">competitor-one.com › services</div>
+                  <div class="serp-title">Competitor Solutions — Standard Agency</div>
+                  <div class="serp-desc">Generic service descriptions with low technical depth and thin content. Not optimised for user intent...</div>
+                </div>
+
+                <!-- Result #3 -->
+                <div class="serp-card" style="opacity:.5;">
+                  <div class="serp-url">competitor-two.com › about</div>
+                  <div class="serp-title">Another Competitor — Average Results</div>
+                  <div class="serp-desc">Old-school SEO tactics, keyword stuffing, and no structured data. Losing rank every month...</div>
+                </div>
+              </div>
+
+              <!-- Floating badge -->
+              <div class="float-side glass-panel absolute rounded-[18px] px-4 py-4 hidden lg:block" style="bottom:-20px;left:-28px;min-width:170px;z-index:20;border-color:var(--border-strong);">
+                <div class="mono-font text-xs uppercase tracking-widest mb-2" style="color:var(--accent);">Organic Growth</div>
+                <div class="display-font text-2xl font-extrabold italic" style="color:var(--text-primary);">+384%</div>
+                <div class="text-xs mt-1" style="color:var(--text-secondary);">traffic in 6 months</div>
+              </div>
+
+              <div class="glass-panel absolute rounded-[14px] px-3 py-3 hidden lg:block" style="top:-16px;right:-20px;z-index:20;">
+                <div class="flex items-center gap-2">
+                  <div class="h-2 w-2 rounded-full" style="background:var(--accent);box-shadow:0 0 8px rgba(57,255,20,.8);"></div>
+                  <span class="mono-font text-xs" style="color:var(--accent);">RANK #1</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- KEYWORDS MARQUEE -->
+      <section class="section-frame py-10 overflow-hidden">
+        <div class="site-shell">
+          <div class="glass-panel marquee rounded-full px-2 py-2">
+            <div class="marquee-track">
+              <span class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">Technical SEO<span class="mx-6" style="color:var(--accent);">.</span></span>
+              <span class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">Core Web Vitals<span class="mx-6" style="color:var(--accent);">.</span></span>
+              <span class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">E-E-A-T Authority<span class="mx-6" style="color:var(--accent);">.</span></span>
+              <span class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">Keyword Research<span class="mx-6" style="color:var(--accent);">.</span></span>
+              <span class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">Link Building<span class="mx-6" style="color:var(--accent);">.</span></span>
+              <span class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">Schema Markup<span class="mx-6" style="color:var(--accent);">.</span></span>
+              <span class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">Content Clusters<span class="mx-6" style="color:var(--accent);">.</span></span>
+              <span class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">Local SEO<span class="mx-6" style="color:var(--accent);">.</span></span>
+              <span class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">AI Search Optimisation<span class="mx-6" style="color:var(--accent);">.</span></span>
+              <!-- clone -->
+              <span class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">Technical SEO<span class="mx-6" style="color:var(--accent);">.</span></span>
+              <span class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">Core Web Vitals<span class="mx-6" style="color:var(--accent);">.</span></span>
+              <span class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">E-E-A-T Authority<span class="mx-6" style="color:var(--accent);">.</span></span>
+              <span class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">Keyword Research<span class="mx-6" style="color:var(--accent);">.</span></span>
+              <span class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">Link Building<span class="mx-6" style="color:var(--accent);">.</span></span>
+              <span class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">Schema Markup<span class="mx-6" style="color:var(--accent);">.</span></span>
+              <span class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">Content Clusters<span class="mx-6" style="color:var(--accent);">.</span></span>
+              <span class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">Local SEO<span class="mx-6" style="color:var(--accent);">.</span></span>
+              <span class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">AI Search Optimisation<span class="mx-6" style="color:var(--accent);">.</span></span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══════════════ SEO PILLARS ═══════════════ -->
+      <section id="strategy" class="section-frame py-24 lg:py-32">
+        <div class="site-shell">
+          <div class="grid gap-10 lg:grid-cols-[0.55fr_1.45fr] lg:items-start">
+            <div class="reveal lg:sticky lg:top-28">
+              <div class="section-kicker">The four pillars</div>
+              <h2 class="display-font mt-4 text-4xl font-extrabold italic leading-[0.96] tracking-[-0.04em] lg:text-6xl" style="color:var(--text-primary);max-width:9ch;">SEO that builds equity, not dependency.</h2>
+              <p class="mt-6 text-base leading-8 lg:text-lg" style="color:var(--text-secondary);max-width:28rem;">We approach SEO as a product problem, not a checklist. Every recommendation is tied to business revenue, not vanity metrics.</p>
+              <a href="index.html#contact" class="mt-8 inline-flex items-center gap-2 text-sm font-semibold" style="color:var(--accent);">Request free SEO audit →</a>
+            </div>
+
+            <div class="grid gap-5 md:grid-cols-2">
+              <div class="hov-card feature-glow relative glass-panel rounded-[28px] p-6 lg:p-7 md:col-span-2 reveal">
+                <div class="mini-label mono-font">01 / Foundation</div>
+                <h3 class="display-font mt-5 text-2xl font-bold italic lg:text-3xl" style="color:var(--text-primary);">Technical SEO Architecture</h3>
+                <p class="mt-4 leading-7 text-base" style="color:var(--text-secondary);">Crawlability, indexation, Core Web Vitals, structured data, XML sitemaps, canonical tags, hreflang, page speed — we audit and fix every technical signal Google uses to evaluate site quality before we touch a single piece of content.</p>
+                <div class="mt-6 h-px w-full soft-divider"></div>
+                <div class="mt-4 flex items-center justify-between text-sm" style="color:var(--text-muted);">
+                  <span>The foundation everything else builds on</span><span style="color:var(--accent);">GSC · Screaming Frog · PageSpeed</span>
+                </div>
+              </div>
+              <div class="hov-card feature-glow relative glass-panel rounded-[28px] p-6 lg:p-7 reveal" style="transition-delay:.06s;">
+                <div class="mini-label mono-font">02 / Content</div>
+                <h3 class="display-font mt-5 text-xl font-bold italic lg:text-2xl" style="color:var(--text-primary);">Topical Authority & Clusters</h3>
+                <p class="mt-4 text-sm leading-7" style="color:var(--text-secondary);">Pillar pages + supporting cluster content mapped to the full keyword universe. We own the topic, not just the keyword — so rankings compound over time.</p>
+                <div class="mt-5 text-sm" style="color:var(--text-muted);">Surfer SEO · NLP · Semantic clustering</div>
+              </div>
+              <div class="hov-card feature-glow relative glass-panel rounded-[28px] p-6 lg:p-7 reveal" style="transition-delay:.1s;">
+                <div class="mini-label mono-font">03 / Authority</div>
+                <h3 class="display-font mt-5 text-xl font-bold italic lg:text-2xl" style="color:var(--text-primary);">Link Acquisition & E-E-A-T</h3>
+                <p class="mt-4 text-sm leading-7" style="color:var(--text-secondary);">White-hat digital PR, editorial link placement, brand mentions, and author authority profiles. We build the trust signals that move domain rating from 20 to 60+.</p>
+                <div class="mt-5 text-sm" style="color:var(--text-muted);">Ahrefs · Moz · Journalist outreach</div>
+              </div>
+              <div class="hov-card feature-glow relative glass-panel rounded-[28px] p-6 lg:p-7 reveal" style="transition-delay:.14s;">
+                <div class="mini-label mono-font">04 / Local</div>
+                <h3 class="display-font mt-5 text-xl font-bold italic lg:text-2xl" style="color:var(--text-primary);">Local & GBP Domination</h3>
+                <p class="mt-4 text-sm leading-7" style="color:var(--text-secondary);">Google Business Profile optimisation, local citations, review velocity, and geo-targeted content pages for every service area you want to own in Karachi and beyond.</p>
+                <div class="mt-5 text-sm" style="color:var(--text-muted);">GBP · Local citations · NAP consistency</div>
+              </div>
+              <div class="hov-card feature-glow relative glass-panel rounded-[28px] p-6 lg:p-7 reveal" style="transition-delay:.18s;">
+                <div class="mini-label mono-font">05 / Analytics</div>
+                <h3 class="display-font mt-5 text-xl font-bold italic lg:text-2xl" style="color:var(--text-primary);">Data-Driven Reporting</h3>
+                <p class="mt-4 text-sm leading-7" style="color:var(--text-secondary);">Monthly dashboards with ranking movements, organic revenue attribution, CTR by page, and a clear roadmap so you always know what's happening and why.</p>
+                <div class="mt-5 text-sm" style="color:var(--text-muted);">GA4 · GSC · Looker Studio</div>
+              </div>
+              <div class="hov-card feature-glow relative glass-panel rounded-[28px] p-6 lg:p-7 reveal" style="transition-delay:.22s;">
+                <div class="mini-label mono-font">06 / AI Search</div>
+                <h3 class="display-font mt-5 text-xl font-bold italic lg:text-2xl" style="color:var(--text-primary);">AIO & SGE Readiness</h3>
+                <p class="mt-4 text-sm leading-7" style="color:var(--text-secondary);">Optimising for AI Overviews, ChatGPT citations, and Perplexity answers. The future of search is generative — your content needs to be the source it pulls from.</p>
+                <div class="mt-5 text-sm" style="color:var(--text-muted);">SGE · AIO · Brand mentions</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══════════════ RESULTS / PROOF ═══════════════ -->
+      <section class="section-frame py-24 lg:py-32">
+        <div class="site-shell">
+          <div class="text-center mb-14 reveal">
+            <div class="section-kicker">Proof of performance</div>
+            <h2 class="display-font mt-4 text-4xl font-extrabold italic leading-[0.95] tracking-[-0.04em] lg:text-6xl mx-auto" style="color:var(--text-primary);max-width:13ch;">The numbers behind our rankings.</h2>
+          </div>
+
+          <div class="grid gap-6 lg:grid-cols-3 mb-10">
+            <!-- Result card 1 -->
+            <div class="hov-card glass-panel rounded-[30px] p-7 reveal" style="transition-delay:.04s;">
+              <div class="mini-label mono-font mb-4">SaaS Client · B2B</div>
+              <div class="display-font text-5xl font-extrabold italic" style="color:var(--accent);">+384%</div>
+              <div class="text-base font-semibold mt-2" style="color:var(--text-primary);">Organic traffic in 6 months</div>
+              <p class="mt-3 text-sm leading-7" style="color:var(--text-secondary);">From 1,200 to 5,800 monthly organic sessions. 34 new page-one rankings across bottom-of-funnel commercial intent keywords.</p>
+              <div class="mt-6 h-px soft-divider"></div>
+              <div class="mt-4 mono-font text-xs uppercase tracking-widest" style="color:var(--accent);">Technical SEO + Content clusters</div>
+            </div>
+            <!-- Result card 2 -->
+            <div class="hov-card glass-panel rounded-[30px] p-7 reveal" style="transition-delay:.1s;">
+              <div class="mini-label mono-font mb-4">E-commerce · Fashion</div>
+              <div class="display-font text-5xl font-extrabold italic" style="color:var(--accent);">+212%</div>
+              <div class="text-base font-semibold mt-2" style="color:var(--text-primary);">Revenue from organic in 90 days</div>
+              <p class="mt-3 text-sm leading-7" style="color:var(--text-secondary);">Core Web Vitals overhaul + product schema + blog cluster drove 8,400 new monthly visitors with a 3.1% organic conversion rate.</p>
+              <div class="mt-6 h-px soft-divider"></div>
+              <div class="mt-4 mono-font text-xs uppercase tracking-widest" style="color:var(--accent);">Schema + CWV + Content</div>
+            </div>
+            <!-- Result card 3 -->
+            <div class="hov-card glass-panel rounded-[30px] p-7 reveal" style="transition-delay:.16s;">
+              <div class="mini-label mono-font mb-4">Local Service · Karachi</div>
+              <div class="display-font text-5xl font-extrabold italic" style="color:var(--accent);">3× leads</div>
+              <div class="text-base font-semibold mt-2" style="color:var(--text-primary);">Local inbound leads in 60 days</div>
+              <p class="mt-3 text-sm leading-7" style="color:var(--text-secondary);">GBP optimisation, local citations, and 12 geo-targeted landing pages ranked positions 1–3 for 28 local service keywords.</p>
+              <div class="mt-6 h-px soft-divider"></div>
+              <div class="mt-4 mono-font text-xs uppercase tracking-widest" style="color:var(--accent);">Local SEO + GBP + Citations</div>
+            </div>
+          </div>
+
+          <!-- RANKING VISUALISER -->
+          <div class="glass-panel rounded-[34px] p-8 lg:p-12 reveal">
+            <div class="grid gap-10 lg:grid-cols-2 lg:items-center">
+              <div>
+                <div class="section-kicker">Ranking movement</div>
+                <h3 class="display-font mt-4 text-3xl font-extrabold italic leading-tight" style="color:var(--text-primary);">Keyword position gains after 90 days.</h3>
+                <p class="mt-4 text-sm leading-7" style="color:var(--text-secondary);">Tracked across 5 priority keywords for a Karachi-based software client. Starting positions vs 90-day positions.</p>
+              </div>
+              <div class="space-y-5">
+                <div>
+                  <div class="flex justify-between text-sm mb-2"><span style="color:var(--text-secondary);">"software agency Karachi"</span><span style="color:var(--accent);font-weight:700;">Pos. 1</span></div>
+                  <div class="relative h-4 rounded-full" style="background:rgba(255,255,255,0.05);">
+                    <div class="h-full rounded-full bar-animated" style="--w:100%;width:100%;background:linear-gradient(90deg,var(--accent),#2bc410);"></div>
+                    <div class="absolute right-2 top-1/2 -translate-y-1/2 mono-font text-[0.6rem]" style="color:#081008;">was 28</div>
+                  </div>
+                </div>
+                <div>
+                  <div class="flex justify-between text-sm mb-2"><span style="color:var(--text-secondary);">"web development Pakistan"</span><span style="color:var(--accent);font-weight:700;">Pos. 3</span></div>
+                  <div class="relative h-4 rounded-full" style="background:rgba(255,255,255,0.05);">
+                    <div class="h-full rounded-full bar-animated" style="--w:95%;width:95%;background:linear-gradient(90deg,var(--accent),#2bc410);animation-delay:.1s;"></div>
+                    <div class="absolute right-2 top-1/2 -translate-y-1/2 mono-font text-[0.6rem]" style="color:#081008;">was 41</div>
+                  </div>
+                </div>
+                <div>
+                  <div class="flex justify-between text-sm mb-2"><span style="color:var(--text-secondary);">"AI solutions Karachi"</span><span style="color:var(--accent);font-weight:700;">Pos. 2</span></div>
+                  <div class="relative h-4 rounded-full" style="background:rgba(255,255,255,0.05);">
+                    <div class="h-full rounded-full bar-animated" style="--w:97%;width:97%;background:linear-gradient(90deg,var(--accent),#2bc410);animation-delay:.2s;"></div>
+                    <div class="absolute right-2 top-1/2 -translate-y-1/2 mono-font text-[0.6rem]" style="color:#081008;">was 35</div>
+                  </div>
+                </div>
+                <div>
+                  <div class="flex justify-between text-sm mb-2"><span style="color:var(--text-secondary);">"SaaS development agency"</span><span style="color:var(--accent);font-weight:700;">Pos. 5</span></div>
+                  <div class="relative h-4 rounded-full" style="background:rgba(255,255,255,0.05);">
+                    <div class="h-full rounded-full bar-animated" style="--w:90%;width:90%;background:linear-gradient(90deg,var(--accent),#2bc410);animation-delay:.3s;"></div>
+                    <div class="absolute right-2 top-1/2 -translate-y-1/2 mono-font text-[0.6rem]" style="color:#081008;">was 52</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══════════════ PROCESS ═══════════════ -->
+      <section id="process" class="section-frame py-24 lg:py-32">
+        <div class="site-shell">
+          <div class="text-center mb-14 reveal">
+            <div class="section-kicker">Our SEO process</div>
+            <h2 class="display-font mt-4 text-4xl font-extrabold italic leading-[0.95] tracking-[-0.04em] lg:text-6xl mx-auto" style="color:var(--text-primary);max-width:13ch;">Methodical. Measurable. Month by month.</h2>
+          </div>
+
+          <div class="grid gap-5 lg:grid-cols-4">
+            <div class="hov-card glass-panel rounded-[28px] p-6 reveal" style="transition-delay:.04s;">
+              <div class="w-10 h-10 rounded-full flex items-center justify-center mb-5" style="background:rgba(57,255,20,0.1);border:1px solid rgba(57,255,20,0.3);">
+                <span class="mono-font text-xs" style="color:var(--accent);">01</span>
+              </div>
+              <div class="mono-font text-xs uppercase tracking-widest mb-3" style="color:var(--accent);">Month 1</div>
+              <h3 class="display-font text-xl font-bold italic mb-3" style="color:var(--text-primary);">Deep Audit & Strategy</h3>
+              <p class="text-sm leading-7" style="color:var(--text-secondary);">Full technical audit, competitor gap analysis, keyword universe mapping, and a 6-month content + authority roadmap with clear KPIs.</p>
+            </div>
+            <div class="hov-card glass-panel rounded-[28px] p-6 reveal" style="transition-delay:.1s;">
+              <div class="w-10 h-10 rounded-full flex items-center justify-center mb-5" style="background:rgba(57,255,20,0.1);border:1px solid rgba(57,255,20,0.3);">
+                <span class="mono-font text-xs" style="color:var(--accent);">02</span>
+              </div>
+              <div class="mono-font text-xs uppercase tracking-widest mb-3" style="color:var(--accent);">Month 2–3</div>
+              <h3 class="display-font text-xl font-bold italic mb-3" style="color:var(--text-primary);">Technical Fixes & Foundations</h3>
+              <p class="text-sm leading-7" style="color:var(--text-secondary);">Core Web Vitals, structured data, internal linking overhaul, and on-page optimisation for your 20 highest-priority pages.</p>
+            </div>
+            <div class="hov-card glass-panel rounded-[28px] p-6 reveal" style="transition-delay:.15s;">
+              <div class="w-10 h-10 rounded-full flex items-center justify-center mb-5" style="background:rgba(57,255,20,0.1);border:1px solid rgba(57,255,20,0.3);">
+                <span class="mono-font text-xs" style="color:var(--accent);">03</span>
+              </div>
+              <div class="mono-font text-xs uppercase tracking-widest mb-3" style="color:var(--accent);">Month 3–5</div>
+              <h3 class="display-font text-xl font-bold italic mb-3" style="color:var(--text-primary);">Content & Authority</h3>
+              <p class="text-sm leading-7" style="color:var(--text-secondary);">Publish pillar + cluster content, begin link acquisition campaign, build brand mentions and E-E-A-T signals that move domain authority.</p>
+            </div>
+            <div class="hov-card glass-panel rounded-[28px] p-6 reveal" style="transition-delay:.2s;">
+              <div class="w-10 h-10 rounded-full flex items-center justify-center mb-5" style="background:rgba(57,255,20,0.1);border:1px solid rgba(57,255,20,0.3);">
+                <span class="mono-font text-xs" style="color:var(--accent);">04</span>
+              </div>
+              <div class="mono-font text-xs uppercase tracking-widest mb-3" style="color:var(--accent);">Month 6+</div>
+              <h3 class="display-font text-xl font-bold italic mb-3" style="color:var(--text-primary);">Scale & Compound</h3>
+              <p class="text-sm leading-7" style="color:var(--text-secondary);">Expand into new keyword territories, convert informational traffic to leads, iterate on CTR and conversion with monthly performance reviews.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══════════════ PACKAGES ═══════════════ -->
+      <section id="packages" class="section-frame py-24 lg:py-32">
+        <div class="site-shell">
+          <div class="text-center mb-14 reveal">
+            <div class="section-kicker">SEO packages</div>
+            <h2 class="display-font mt-4 text-4xl font-extrabold italic leading-[0.95] tracking-[-0.04em] lg:text-6xl mx-auto" style="color:var(--text-primary);max-width:12ch;">Transparent pricing. Compounding results.</h2>
+          </div>
+
+          <div class="grid gap-6 lg:grid-cols-3">
+            <!-- Starter -->
+            <div class="hov-card glass-panel rounded-[30px] p-7 reveal" style="transition-delay:.04s;">
+              <div class="mono-font text-xs uppercase tracking-widest mb-4" style="color:var(--text-secondary);">Essentials</div>
+              <div class="display-font text-4xl font-extrabold italic" style="color:var(--text-primary);">$800<span class="text-lg" style="color:var(--text-secondary);">/month</span></div>
+              <p class="mt-3 text-sm leading-6" style="color:var(--text-secondary);">Local businesses and startups ready to build organic visibility from a solid foundation.</p>
+              <div class="mt-6 h-px soft-divider"></div>
+              <ul class="mt-6 space-y-3 text-sm" style="color:var(--text-secondary);">
+                <li class="flex gap-2"><span style="color:var(--accent);">✓</span> Full technical audit</li>
+                <li class="flex gap-2"><span style="color:var(--accent);">✓</span> On-page optimisation (10 pages/mo)</li>
+                <li class="flex gap-2"><span style="color:var(--accent);">✓</span> 4 blog posts/month</li>
+                <li class="flex gap-2"><span style="color:var(--accent);">✓</span> GBP management</li>
+                <li class="flex gap-2"><span style="color:var(--accent);">✓</span> Monthly ranking report</li>
+              </ul>
+              <a href="index.html#contact" class="mt-8 w-full inline-flex items-center justify-center rounded-full border py-3.5 text-sm font-semibold transition-all hover:-translate-y-1" style="border-color:var(--border-strong);color:var(--text-primary);">Get Started</a>
+            </div>
+
+            <!-- Growth - FEATURED -->
+            <div class="hov-card relative glass-panel rounded-[30px] p-7 reveal" style="border-color:rgba(57,255,20,0.3);box-shadow:0 0 60px rgba(57,255,20,0.08);transition-delay:.1s;">
+              <div class="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full text-xs font-bold" style="background:var(--accent);color:#081008;font-family:'JetBrains Mono',monospace;letter-spacing:.1em;">MOST POPULAR</div>
+              <div class="mono-font text-xs uppercase tracking-widest mb-4" style="color:var(--accent);">Growth</div>
+              <div class="display-font text-4xl font-extrabold italic" style="color:var(--text-primary);">$1,800<span class="text-lg" style="color:var(--text-secondary);">/month</span></div>
+              <p class="mt-3 text-sm leading-6" style="color:var(--text-secondary);">Scaling brands that need aggressive keyword growth, authority building, and content velocity.</p>
+              <div class="mt-6 h-px soft-divider"></div>
+              <ul class="mt-6 space-y-3 text-sm" style="color:var(--text-secondary);">
+                <li class="flex gap-2"><span style="color:var(--accent);">✓</span> Everything in Essentials</li>
+                <li class="flex gap-2"><span style="color:var(--accent);">✓</span> 10 blog posts + 2 pillar pages</li>
+                <li class="flex gap-2"><span style="color:var(--accent);">✓</span> 8 quality backlinks/month</li>
+                <li class="flex gap-2"><span style="color:var(--accent);">✓</span> Schema markup implementation</li>
+                <li class="flex gap-2"><span style="color:var(--accent);">✓</span> Competitor gap targeting</li>
+                <li class="flex gap-2"><span style="color:var(--accent);">✓</span> Weekly performance calls</li>
+              </ul>
+              <a href="index.html#contact" class="mt-8 w-full inline-flex items-center justify-center rounded-full py-3.5 text-sm font-bold transition-all hover:-translate-y-1" style="background:var(--accent);color:#081008;box-shadow:0 0 32px rgba(57,255,20,0.2);">Start Now</a>
+            </div>
+
+            <!-- Authority -->
+            <div class="hov-card glass-panel rounded-[30px] p-7 reveal" style="transition-delay:.16s;">
+              <div class="mono-font text-xs uppercase tracking-widest mb-4" style="color:var(--text-secondary);">Authority</div>
+              <div class="display-font text-4xl font-extrabold italic" style="color:var(--text-primary);">Custom</div>
+              <p class="mt-3 text-sm leading-6" style="color:var(--text-secondary);">Established businesses targeting national/international markets with full-scale content operations and PR-led link acquisition.</p>
+              <div class="mt-6 h-px soft-divider"></div>
+              <ul class="mt-6 space-y-3 text-sm" style="color:var(--text-secondary);">
+                <li class="flex gap-2"><span style="color:var(--accent);">✓</span> Everything in Growth</li>
+                <li class="flex gap-2"><span style="color:var(--accent);">✓</span> Digital PR & journalist outreach</li>
+                <li class="flex gap-2"><span style="color:var(--accent);">✓</span> International SEO / hreflang</li>
+                <li class="flex gap-2"><span style="color:var(--accent);">✓</span> AI search (SGE/AIO) readiness</li>
+                <li class="flex gap-2"><span style="color:var(--accent);">✓</span> Dedicated SEO strategist</li>
+              </ul>
+              <a href="index.html#contact" class="mt-8 w-full inline-flex items-center justify-center rounded-full border py-3.5 text-sm font-semibold transition-all hover:-translate-y-1" style="border-color:var(--border-strong);color:var(--text-primary);">Book Strategy Call</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══════════════ FAQ ═══════════════ -->
+      <section class="section-frame py-24 lg:py-32">
+        <div class="site-shell">
+          <div class="grid gap-12 lg:grid-cols-[0.7fr_1.3fr] lg:items-start">
+            <div class="reveal">
+              <div class="section-kicker">Common questions</div>
+              <h2 class="display-font mt-4 text-4xl font-extrabold italic leading-[0.96] tracking-[-0.04em] lg:text-5xl" style="color:var(--text-primary);max-width:9ch;">Everything you've wanted to ask.</h2>
+              <p class="mt-6 text-base leading-8" style="color:var(--text-secondary);">No jargon. No vague promises. Just honest answers about how SEO works and what you can realistically expect.</p>
+            </div>
+            <div class="space-y-4 reveal" style="transition-delay:.08s;">
+              <!-- FAQ items -->
+              <div class="hov-card glass-panel rounded-[22px] overflow-hidden">
+                <div class="accordion-toggle flex items-center justify-between px-6 py-5" onclick="toggleFAQ(this)">
+                  <span class="display-font text-lg font-bold italic" style="color:var(--text-primary);">How long before I see ranking results?</span>
+                  <span class="mono-font text-xl" style="color:var(--accent);" id="faq-icon-0">+</span>
+                </div>
+                <div class="accordion-body px-6 pb-5">
+                  <p class="text-sm leading-7" style="color:var(--text-secondary);">Typically 60–90 days for technical improvements to show, 3–6 months for meaningful ranking movement on competitive keywords. SEO compounds — the results from month 3 accelerate in months 6–12. We set realistic timelines in the first strategy session based on your current domain authority and competition level.</p>
+                </div>
+              </div>
+              <div class="hov-card glass-panel rounded-[22px] overflow-hidden">
+                <div class="accordion-toggle flex items-center justify-between px-6 py-5" onclick="toggleFAQ(this)">
+                  <span class="display-font text-lg font-bold italic" style="color:var(--text-primary);">Do you guarantee page-one rankings?</span>
+                  <span class="mono-font text-xl" style="color:var(--accent);" id="faq-icon-1">+</span>
+                </div>
+                <div class="accordion-body px-6 pb-5">
+                  <p class="text-sm leading-7" style="color:var(--text-secondary);">No ethical SEO agency can guarantee specific rankings — Google controls the algorithm. What we guarantee is transparent, methodical work tied to our proven framework, and documented progress every month. Our clients average position 1–5 for target keywords within 6 months because our process is sound, not because we made promises.</p>
+                </div>
+              </div>
+              <div class="hov-card glass-panel rounded-[22px] overflow-hidden">
+                <div class="accordion-toggle flex items-center justify-between px-6 py-5" onclick="toggleFAQ(this)">
+                  <span class="display-font text-lg font-bold italic" style="color:var(--text-primary);">What's the difference between SEO and paid ads?</span>
+                  <span class="mono-font text-xl" style="color:var(--accent);" id="faq-icon-2">+</span>
+                </div>
+                <div class="accordion-body px-6 pb-5">
+                  <p class="text-sm leading-7" style="color:var(--text-secondary);">Paid ads stop the moment you stop paying. SEO builds an asset — your rankings and content equity grow over time and continue driving traffic and leads even if you pause spending. Most ambitious brands use both: paid ads for immediate revenue while SEO builds the long-term moat. We help you decide the right balance.</p>
+                </div>
+              </div>
+              <div class="hov-card glass-panel rounded-[22px] overflow-hidden">
+                <div class="accordion-toggle flex items-center justify-between px-6 py-5" onclick="toggleFAQ(this)">
+                  <span class="display-font text-lg font-bold italic" style="color:var(--text-primary);">Do I need a new website for SEO to work?</span>
+                  <span class="mono-font text-xl" style="color:var(--accent);" id="faq-icon-3">+</span>
+                </div>
+                <div class="accordion-body px-6 pb-5">
+                  <p class="text-sm leading-7" style="color:var(--text-secondary);">Not necessarily — we work with existing sites all the time. However, if your site has major technical debt (poor page speed, bad URL structure, no mobile optimisation), the SEO work pairs naturally with a web development engagement. We assess your site honestly in the audit and tell you exactly what level of intervention will deliver the best ROI.</p>
+                </div>
+              </div>
+              <div class="hov-card glass-panel rounded-[22px] overflow-hidden">
+                <div class="accordion-toggle flex items-center justify-between px-6 py-5" onclick="toggleFAQ(this)">
+                  <span class="display-font text-lg font-bold italic" style="color:var(--text-primary);">How does AI search (SGE) change SEO?</span>
+                  <span class="mono-font text-xl" style="color:var(--accent);" id="faq-icon-4">+</span>
+                </div>
+                <div class="accordion-body px-6 pb-5">
+                  <p class="text-sm leading-7" style="color:var(--text-secondary);">AI Overviews and ChatGPT citations increasingly pull from authoritative, well-structured content. The same signals that make you rank on Google — E-E-A-T, structured data, clear entity relationships, topical depth — are what make you cited in AI answers. We future-proof your content for both traditional and generative search simultaneously.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <section class="relative py-24 lg:py-32">
+        <div class="site-shell">
+          <div class="glass-panel relative overflow-hidden rounded-[38px] px-6 py-14 lg:px-14 lg:py-16 reveal">
+            <div class="cta-bg rounded-[38px]"></div>
+            <div class="spotlight" style="width:28rem;height:28rem;top:-10rem;right:-6rem;background:radial-gradient(circle,rgba(57,255,20,0.14),transparent 64%);"></div>
+            <div class="relative z-10 grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
+              <div>
+                <div class="section-kicker">Start ranking today</div>
+                <h2 class="display-font mt-4 text-4xl font-extrabold italic leading-[0.94] tracking-[-0.04em] lg:text-6xl" style="color:var(--text-primary);max-width:12ch;">Free SEO audit. No obligation. Pure clarity.</h2>
+                <p class="mt-6 text-base leading-8 lg:text-lg" style="color:var(--text-secondary);max-width:38rem;">We'll audit your site's technical health, keyword gaps, and competitor positioning — then show you exactly what it will take to rank on page one for your best keywords.</p>
+              </div>
+              <div class="flex flex-col gap-4">
+                <a href="mailto:info@auroveon.com" class="display-font inline-flex items-center justify-center rounded-full px-8 py-4 text-base font-bold transition-all hover:-translate-y-1" style="background:var(--accent);color:#081008;box-shadow:0 0 42px rgba(57,255,20,0.18);">Get Free Audit</a>
+                <a href="web-development.html" class="display-font inline-flex items-center justify-center rounded-full border px-8 py-4 text-base font-bold transition-all hover:-translate-y-1" style="border-color:var(--border-strong);color:var(--text-primary);">Explore Web Dev →</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="relative pb-10">
+      <div class="site-shell" style="border-top:1px solid var(--border);padding-top:2.5rem;">
+        <div class="grid gap-10 lg:grid-cols-[1.2fr_0.8fr_0.8fr_0.8fr]">
+          <div>
+            <img src="assets/WhatsApp Image 2026-05-09 at 09,19,43-Picsart-BackgroundRemover.png" alt="Auroveon" style="height:72px;width:auto;max-width:240px;object-fit:contain;" />
+            <p class="mt-4 text-sm leading-7 max-w-sm" style="color:var(--text-secondary);">Software agency for AI solutions, modern web platforms, SaaS systems, and cinematic digital experiences built for ambitious brands.</p>
+            <div class="mt-6 flex flex-wrap items-center gap-4">
+              <a class="footer-social-link" href="https://linkedin.com/company/auroveon" target="_blank" rel="noreferrer" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.05-1.86-3.05-1.86 0-2.15 1.45-2.15 2.95v5.67H9.32V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.61 0 4.28 2.37 4.28 5.46v6.28ZM5.31 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14ZM7.09 20.45H3.52V9h3.57v11.45ZM22.23 0H1.77A1.77 1.77 0 0 0 0 1.77v20.46C0 23.21.79 24 1.77 24h20.46A1.77 1.77 0 0 0 24 22.23V1.77A1.77 1.77 0 0 0 22.23 0Z"/></svg></a>
+              <a class="footer-social-link" href="https://instagram.com/auroveon" target="_blank" rel="noreferrer" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2Zm0 1.8A3.95 3.95 0 0 0 3.8 7.75v8.5a3.95 3.95 0 0 0 3.95 3.95h8.5a3.95 3.95 0 0 0 3.95-3.95v-8.5a3.95 3.95 0 0 0-3.95-3.95Zm8.95 1.35a1.15 1.15 0 1 1 0 2.3 1.15 1.15 0 0 1 0-2.3ZM12 6.86A5.14 5.14 0 1 1 6.86 12 5.14 5.14 0 0 1 12 6.86Zm0 1.8A3.34 3.34 0 1 0 15.34 12 3.34 3.34 0 0 0 12 8.66Z"/></svg></a>
+              <a class="footer-social-link" href="https://twitter.com/auroveon" target="_blank" rel="noreferrer" aria-label="X"><svg viewBox="0 0 24 24"><path d="M18.9 2H22l-6.77 7.73L23.2 22h-6.25l-4.9-6.4L6.45 22H3.34l7.24-8.27L1 2h6.4l4.43 5.85L18.9 2Zm-1.1 18h1.73L6.46 3.9H4.6Z"/></svg></a>
+            </div>
+          </div>
+          <div>
+            <div class="mono-font text-xs uppercase tracking-[0.18em] mb-5" style="color:var(--accent);">Navigation</div>
+            <div class="flex flex-col gap-3 text-sm">
+              <a class="footer-link" href="index.html#services">Services</a>
+              <a class="footer-link" href="index.html#story">Process</a>
+              <a class="footer-link" href="index.html#work">Work</a>
+              <a class="footer-link" href="web-development.html">Web Development</a>
+              <a class="footer-link" href="seo.html" style="color:var(--accent);">SEO</a>
+              <a class="footer-link" href="index.html#contact">Contact</a>
+            </div>
+          </div>
+          <div>
+            <div class="mono-font text-xs uppercase tracking-[0.18em] mb-5" style="color:var(--accent);">Services</div>
+            <div class="flex flex-col gap-3 text-sm" style="color:var(--text-secondary);">
+              <span>AI Solutions</span><span>Web Development</span><span>SaaS Platforms</span><span>Automation</span><span>SEO</span>
+            </div>
+          </div>
+          <div>
+            <div class="mono-font text-xs uppercase tracking-[0.18em] mb-5" style="color:var(--accent);">Contact Us</div>
+            <div class="flex flex-col gap-4">
+              <div><div class="footer-contact-label">Email</div><div class="footer-contact-value"><a class="footer-contact-link" href="mailto:info@auroveon.com">info@auroveon.com</a></div></div>
+              <div><div class="footer-contact-label">Phone</div><div class="footer-contact-value"><a class="footer-contact-link" href="tel:+923353213863">+92 335 321 3863</a></div></div>
+              <div><div class="footer-contact-label">Address</div><div class="footer-contact-value">Street 4, Karachi, Pakistan</div></div>
+            </div>
+          </div>
+        </div>
+        <div class="mt-10 flex flex-col gap-4 pt-6 text-sm" style="color:var(--text-secondary);border-top:1px solid var(--border);">
+          <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+            <div class="flex flex-wrap items-center gap-3">
+              <span>© 2026</span>
+              <img src="assets/WhatsApp Image 2026-05-09 at 09,19,43-Picsart-BackgroundRemover.png" alt="Auroveon" style="height:26px;width:auto;" />
+              <span>Crafted for premium digital products.</span>
+            </div>
+            <div class="flex flex-wrap items-center gap-4">
+              <a class="footer-legal-link" href="/privacy-policy">Privacy Policy</a>
+              <span>·</span>
+              <a class="footer-legal-link" href="/terms-of-service">Terms of Service</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- WhatsApp FAB -->
+    <a href="https://wa.me/923353213863" target="_blank" rel="noreferrer" aria-label="Chat on WhatsApp" class="whatsapp-fab">
+      <svg viewBox="0 0 24 24" fill="white" width="28" height="28"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+    </a>
+
+    <script>
+      // NAVBAR
+      const navbar = document.getElementById('navbar');
+      window.addEventListener('scroll', () => { navbar.classList.toggle('nav-scrolled', window.scrollY > 10); });
+
+      // MOBILE MENU
+      const btn = document.getElementById('mobileMenuBtn');
+      const menu = document.getElementById('mobileMenu');
+      btn.addEventListener('click', () => { menu.classList.toggle('hidden'); btn.textContent = menu.classList.contains('hidden') ? '+' : '×'; });
+
+      // CURSOR
+      const dot = document.getElementById('cursorDot');
+      const ring = document.getElementById('cursorRing');
+      if (window.innerWidth >= 1024) {
+        dot.style.opacity = '1'; ring.style.opacity = '1';
+        let dotX=0,dotY=0,ringX=0,ringY=0,mx=0,my=0;
+        window.addEventListener('mousemove', e => { mx=e.clientX; my=e.clientY; });
+        const tick = () => {
+          dotX += (mx-dotX)*.18; dotY += (my-dotY)*.18;
+          ringX += (mx-ringX)*.1; ringY += (my-ringY)*.1;
+          dot.style.left=dotX+'px'; dot.style.top=dotY+'px';
+          ring.style.left=ringX+'px'; ring.style.top=ringY+'px';
+          requestAnimationFrame(tick);
+        };
+        tick();
+        document.querySelectorAll('a,button').forEach(el => {
+          el.addEventListener('mouseenter', () => ring.classList.add('is-hovering'));
+          el.addEventListener('mouseleave', () => ring.classList.remove('is-hovering'));
+        });
+      }
+
+      // REVEAL
+      const obs = new IntersectionObserver(entries => {
+        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+      }, { threshold: 0.1 });
+      document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+      // FAQ ACCORDION
+      function toggleFAQ(el) {
+        const body = el.nextElementSibling;
+        const idx = el.parentElement.parentElement.querySelectorAll('.accordion-toggle').length > 0
+          ? Array.from(el.parentElement.parentElement.querySelectorAll('.accordion-toggle')).indexOf(el)
+          : 0;
+        const icon = el.querySelector('span:last-child');
+        const isOpen = body.classList.contains('open');
+        // close all
+        document.querySelectorAll('.accordion-body').forEach(b => b.classList.remove('open'));
+        document.querySelectorAll('.accordion-toggle span:last-child').forEach(i => i.textContent = '+');
+        if (!isOpen) {
+          body.classList.add('open');
+          icon.textContent = '−';
+        }
+      }
+
+      // SMOOTH ANCHORS
+      document.querySelectorAll('a[href^="#"]').forEach(a => {
+        a.addEventListener('click', e => {
+          const t = document.querySelector(a.getAttribute('href'));
+          if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth' }); }
+        });
+      });
+    </script>
+  </body>
+</html>
