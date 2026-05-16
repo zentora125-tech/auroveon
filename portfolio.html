@@ -1,0 +1,1314 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio | Auroveon — Digital Work</title>
+    <meta name="description" content="Auroveon's portfolio — 10 ambitious digital products built with AI, premium web, and cinematic UX." />
+    <meta name="theme-color" content="#080A08" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      :root {
+        --bg-base: #080a08;
+        --bg-2: #0c0f0c;
+        --bg-3: #111411;
+        --bg-4: #161a16;
+        --accent: #39ff14;
+        --accent-dim: #2bc410;
+        --accent-glow: rgba(57, 255, 20, 0.16);
+        --accent-glow-strong: rgba(57, 255, 20, 0.36);
+        --text-primary: #f0f5f0;
+        --text-secondary: #7a8a7a;
+        --text-muted: #4a574a;
+        --border: rgba(57, 255, 20, 0.1);
+        --border-strong: rgba(57, 255, 20, 0.24);
+        --glass: rgba(12, 15, 12, 0.58);
+        --glass-2: rgba(17, 20, 17, 0.82);
+      }
+
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+
+      body {
+        background:
+          radial-gradient(circle at top, rgba(57, 255, 20, 0.09), transparent 28%),
+          linear-gradient(180deg, #080a08 0%, #090c09 48%, #070907 100%);
+        color: var(--text-primary);
+        font-family: "Inter", sans-serif;
+        overflow-x: hidden;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      @media (min-width: 1024px) { body { cursor: none; } }
+
+      .display-font { font-family: "Poppins", sans-serif; }
+      .mono-font { font-family: "JetBrains Mono", monospace; }
+
+      .site-shell {
+        width: min(1380px, calc(100% - 1.5rem));
+        margin: 0 auto;
+      }
+      @media (min-width: 1024px) {
+        .site-shell { width: min(1380px, calc(100% - 4rem)); }
+      }
+
+      .noise-overlay {
+        position: fixed; inset: 0; pointer-events: none; z-index: 5;
+        opacity: 0.034;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+        background-size: 240px 240px;
+      }
+
+      .cursor-dot, .cursor-ring {
+        position: fixed; top: 0; left: 0;
+        transform: translate(-50%, -50%);
+        pointer-events: none; z-index: 90; opacity: 0;
+      }
+      .cursor-dot {
+        width: 10px; height: 10px; border-radius: 9999px;
+        background: var(--accent);
+        box-shadow: 0 0 22px rgba(57, 255, 20, 0.65);
+        mix-blend-mode: screen;
+      }
+      .cursor-ring {
+        width: 54px; height: 54px; border-radius: 9999px;
+        border: 1px solid rgba(57, 255, 20, 0.22);
+        background: radial-gradient(circle, rgba(57, 255, 20, 0.12), transparent 72%);
+        transition: width .25s ease, height .25s ease, border-color .25s ease;
+      }
+      .cursor-ring.is-hovering { width: 76px; height: 76px; border-color: rgba(57,255,20,0.48); }
+      @media (max-width: 1023px) { .cursor-dot, .cursor-ring { display: none; } }
+
+      .glass-panel {
+        background: linear-gradient(180deg, rgba(18,23,18,0.8), rgba(10,12,10,0.58));
+        border: 1px solid var(--border);
+        backdrop-filter: blur(22px);
+        -webkit-backdrop-filter: blur(22px);
+        box-shadow: 0 18px 60px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.04);
+      }
+
+      .soft-divider {
+        background: linear-gradient(90deg, transparent, rgba(57,255,20,0.28), transparent);
+      }
+
+      .eyebrow {
+        font-family: "JetBrains Mono", monospace;
+        color: var(--accent); font-size: 0.72rem;
+        letter-spacing: 0.18em; text-transform: uppercase;
+      }
+
+      .section-kicker {
+        font-family: "Poppins", sans-serif; font-size: 0.74rem;
+        font-weight: 700; letter-spacing: 0.18em;
+        text-transform: uppercase; color: var(--text-secondary);
+      }
+
+      /* NAV */
+      .nav-scrolled {
+        background: rgba(8,10,8,0.86);
+        border-bottom: 0px solid var(--border);
+        backdrop-filter: blur(22px);
+      }
+      .nav-link { color: var(--text-secondary); transition: color .24s ease; }
+      .nav-link:hover { color: var(--text-primary); }
+      .nav-link.active { color: var(--accent); }
+
+      .nav-dropdown-wrap { position: relative; }
+      .nav-dropdown-wrap:hover .nav-dropdown { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); pointer-events: auto; }
+      .nav-dropdown {
+        position: absolute; top: calc(100% + 14px); left: 50%; transform: translateX(-50%) translateY(-8px);
+        min-width: 200px; background: rgba(10,13,10,0.98);
+        border: 1px solid var(--border); border-radius: 20px; padding: 10px;
+        opacity: 0; visibility: hidden;
+        transition: opacity .22s ease, transform .22s ease, visibility .22s;
+        backdrop-filter: blur(22px); z-index: 100;
+        box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 30px rgba(57,255,20,0.06);
+      }
+      .nav-dropdown a { display: block; padding: 9px 14px; border-radius: 12px; color: var(--text-secondary); font-size: .9rem; font-weight: 500; transition: color .2s ease, background .2s ease; text-decoration: none; }
+      .nav-dropdown a:hover { color: var(--accent); background: rgba(57,255,20,0.06); }
+      .nav-dropdown-btn { display: flex; align-items: center; gap: 5px; color: var(--text-secondary); transition: color .24s ease; font-size: 1rem; font-weight: 500; background: none; border: none; cursor: pointer; font-family: inherit; padding: 0; }
+      .nav-dropdown-wrap:hover .nav-dropdown-btn { color: var(--text-primary); }
+      .nav-dropdown-btn svg { transition: transform .22s ease; }
+      .nav-dropdown-wrap:hover .nav-dropdown-btn svg { transform: rotate(180deg); }
+
+      /* HERO */
+      .hero-image {
+        position: absolute; inset: 0;
+        background:
+          linear-gradient(100deg, rgba(8,10,8,0.94) 16%, rgba(8,10,8,0.72) 52%, rgba(8,10,8,0.9) 100%),
+          radial-gradient(circle at 78% 30%, rgba(57,255,20,0.14), transparent 24%),
+          url("https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1800&q=80") center/cover no-repeat;
+        transform: scale(1.04);
+        filter: saturate(0.5) contrast(1.08) brightness(0.38);
+      }
+      .hero-grid {
+        position: absolute; inset: 0;
+        background-image:
+          linear-gradient(rgba(57,255,20,0.035) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(57,255,20,0.035) 1px, transparent 1px);
+        background-size: 74px 74px;
+        mask-image: radial-gradient(circle at 50% 50%, black 0%, black 42%, transparent 88%);
+        -webkit-mask-image: radial-gradient(circle at 50% 50%, black 0%, black 42%, transparent 88%);
+      }
+      .hero-spotlight {
+        position: absolute; border-radius: 9999px;
+        filter: blur(130px); pointer-events: none;
+      }
+
+      /* HEADLINE */
+      .headline-italics {
+        font-family: "Poppins", sans-serif;
+        font-style: italic; font-weight: 800;
+        letter-spacing: -0.045em; line-height: 1;
+      }
+
+      @keyframes text-shine {
+        0% { background-position: -200% center; }
+        100% { background-position: 200% center; }
+      }
+
+      .shine-text .shine-inner {
+        background: linear-gradient(90deg, #ffffff 0%, #ffffff 35%, #b9ffb0 44%, #eaffea 50%, #b9ffb0 56%, #ffffff 65%, #ffffff 100%);
+        background-size: 200% auto;
+        background-position: -200% center;
+        -webkit-background-clip: text; background-clip: text;
+        -webkit-text-fill-color: transparent; color: transparent;
+        animation: text-shine 4s linear infinite;
+      }
+      .shine-accent .shine-inner {
+        background: linear-gradient(90deg, #39ff14 0%, #39ff14 35%, #ccffcc 44%, #efffef 50%, #ccffcc 56%, #39ff14 65%, #39ff14 100%);
+        background-size: 200% auto;
+        background-position: -200% center;
+        -webkit-background-clip: text; background-clip: text;
+        -webkit-text-fill-color: transparent; color: transparent;
+        animation: text-shine 4s linear infinite;
+      }
+
+      /* SECTION */
+      .section-frame { position: relative; }
+      .section-frame::after {
+        content: ""; position: absolute; left: 0; right: 0; bottom: -1px;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, rgba(57,255,20,0.08), transparent);
+      }
+
+      /* MARQUEE */
+      .marquee { overflow: hidden; }
+      .marquee-track {
+        display: flex; width: max-content;
+        animation: marquee-left 28s linear infinite;
+      }
+      @keyframes marquee-left {
+        0% { transform: translateX(0%); }
+        100% { transform: translateX(-50%); }
+      }
+
+      /* FOOTER */
+      .footer-link, .nav-link { transition: color .24s ease; }
+      .footer-link { color: var(--text-secondary); }
+      .footer-link:hover { color: var(--text-primary); }
+      .footer-legal-link { color: var(--text-secondary); transition: color .24s ease; }
+      .footer-legal-link:hover { color: var(--accent); }
+      .footer-contact-label { font-size: .7rem; text-transform: uppercase; letter-spacing: .12em; color: var(--text-secondary); }
+      .footer-contact-value { margin-top: 4px; color: #fff; font-size: .95rem; }
+      .footer-contact-link { color: #fff; text-decoration: none; transition: color .2s ease; }
+      .footer-contact-link:hover { color: var(--accent); text-decoration: underline; }
+
+      .footer-social-link {
+        display: inline-flex; align-items: center; justify-content: center;
+        width: 42px; height: 42px;
+        border: 1px solid #1a3a1a; border-radius: 9999px; background: #111;
+        transition: border-color .2s ease, transform .2s ease;
+      }
+      .footer-social-link svg { width: 18px; height: 18px; fill: #aaa; transition: fill .2s ease; }
+      .footer-social-link:hover { border-color: #00ff88; transform: translateY(-1px); }
+      .footer-social-link:hover svg { fill: #00ff88; }
+
+      /* WHATSAPP FAB */
+      .whatsapp-fab {
+        position: fixed; bottom: 28px; right: 8px; z-index: 9999;
+        display: flex; align-items: center; justify-content: center;
+        width: 56px; height: 56px;
+        border: none; border-radius: 50%;
+        background: #25d366;
+        box-shadow: 0 4px 20px rgba(37,211,102,0.45);
+        transition: all .25s ease;
+      }
+      .whatsapp-fab:hover { transform: scale(1.1); }
+
+      /* BRAND LOGO */
+      .brand-logo { display: block; width: auto; height: 100%; object-fit: contain; }
+      .brand-logo-link { display: inline-flex; align-items: center; flex-shrink: 0; }
+      .brand-logo-nav { height: 68px; }
+      .brand-logo-footer { height: 72px; max-width: min(100%, 240px); }
+      .brand-logo-inline { height: 26px; }
+
+      /* ========== PORTFOLIO SPECIFIC ========== */
+
+      /* Hero floating badges */
+      .hero-badge {
+        position: absolute;
+        backdrop-filter: blur(20px);
+        border: 1px solid var(--border);
+        background: rgba(10,13,10,0.82);
+        border-radius: 20px;
+        padding: 14px 20px;
+        pointer-events: none;
+      }
+
+      /* PROJECT GRID — unique layouts */
+
+      /* Layout A: Full bleed spotlight */
+      .proj-spotlight {
+        position: relative;
+        border-radius: 36px;
+        overflow: hidden;
+        border: 1px solid var(--border);
+        background: rgba(8,10,8,0.92);
+        transition: border-color .35s ease, box-shadow .35s ease;
+      }
+      .proj-spotlight:hover {
+        border-color: var(--border-strong);
+        box-shadow: 0 32px 90px rgba(0,0,0,0.5), 0 0 60px rgba(57,255,20,0.12);
+      }
+      .proj-spotlight .proj-thumb {
+        width: 100%; height: 360px; object-fit: cover;
+        filter: saturate(0.55) brightness(0.55);
+        transition: filter .6s ease, transform .6s cubic-bezier(.22,1,.36,1);
+      }
+      .proj-spotlight:hover .proj-thumb {
+        filter: saturate(0.75) brightness(0.65);
+        transform: scale(1.04);
+      }
+      .proj-spotlight .proj-overlay {
+        position: absolute; inset: 0;
+        background: linear-gradient(180deg, transparent 30%, rgba(8,10,8,0.92) 100%);
+      }
+      .proj-spotlight .proj-content {
+        position: absolute; bottom: 0; left: 0; right: 0; padding: 32px;
+      }
+
+      /* Layout B: Side-by-side info */
+      .proj-sidebyside {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0;
+        border-radius: 36px;
+        overflow: hidden;
+        border: 1px solid var(--border);
+        transition: border-color .35s ease, box-shadow .35s ease;
+      }
+      @media (max-width: 767px) {
+        .proj-sidebyside { grid-template-columns: 1fr; }
+      }
+      .proj-sidebyside:hover {
+        border-color: var(--border-strong);
+        box-shadow: 0 32px 90px rgba(0,0,0,0.5), 0 0 60px rgba(57,255,20,0.1);
+      }
+      .proj-sidebyside .proj-visual {
+        position: relative; overflow: hidden; min-height: 320px;
+        background: rgba(8,10,8,0.8);
+      }
+      .proj-sidebyside .proj-visual img {
+        width: 100%; height: 100%; object-fit: cover;
+        filter: saturate(0.5) brightness(0.52);
+        transition: filter .6s ease, transform .6s cubic-bezier(.22,1,.36,1);
+      }
+      .proj-sidebyside:hover .proj-visual img {
+        filter: saturate(0.72) brightness(0.68);
+        transform: scale(1.06);
+      }
+      .proj-sidebyside .proj-info {
+        padding: 36px 32px;
+        background: linear-gradient(135deg, rgba(12,15,12,0.95), rgba(8,10,8,0.98));
+        display: flex; flex-direction: column; justify-content: space-between;
+        border-left: 1px solid var(--border);
+      }
+
+      /* Layout C: Tall card with number */
+      .proj-tall {
+        border-radius: 32px; overflow: hidden;
+        border: 1px solid var(--border);
+        background: rgba(8,10,8,0.88);
+        position: relative;
+        transition: border-color .35s ease, box-shadow .35s ease;
+        display: flex; flex-direction: column;
+      }
+      .proj-tall:hover {
+        border-color: var(--border-strong);
+        box-shadow: 0 28px 80px rgba(0,0,0,0.45), 0 0 50px rgba(57,255,20,0.1);
+      }
+      .proj-tall .proj-tall-thumb {
+        height: 240px; overflow: hidden;
+      }
+      .proj-tall .proj-tall-thumb img {
+        width: 100%; height: 100%; object-fit: cover;
+        filter: saturate(0.5) brightness(0.52);
+        transition: filter .6s ease, transform .6s cubic-bezier(.22,1,.36,1);
+      }
+      .proj-tall:hover .proj-tall-thumb img {
+        filter: saturate(0.72) brightness(0.68); transform: scale(1.06);
+      }
+      .proj-tall .proj-tall-body { padding: 28px; flex: 1; display: flex; flex-direction: column; gap: 16px; }
+
+      /* Layout D: Horizontal strip */
+      .proj-strip {
+        display: flex; align-items: stretch;
+        border-radius: 32px; overflow: hidden;
+        border: 1px solid var(--border);
+        background: rgba(8,10,8,0.88);
+        transition: border-color .35s ease, box-shadow .35s ease;
+      }
+      @media (max-width: 767px) { .proj-strip { flex-direction: column; } }
+      .proj-strip:hover {
+        border-color: var(--border-strong);
+        box-shadow: 0 28px 80px rgba(0,0,0,0.45), 0 0 50px rgba(57,255,20,0.1);
+      }
+      .proj-strip .proj-strip-bar {
+        width: 6px; background: linear-gradient(180deg, var(--accent), transparent);
+        flex-shrink: 0;
+      }
+      .proj-strip .proj-strip-thumb {
+        width: 280px; flex-shrink: 0; overflow: hidden;
+      }
+      @media (max-width: 767px) { .proj-strip .proj-strip-thumb { width: 100%; height: 200px; } }
+      .proj-strip .proj-strip-thumb img {
+        width: 100%; height: 100%; object-fit: cover;
+        filter: saturate(0.5) brightness(0.52);
+        transition: filter .6s ease, transform .6s ease;
+      }
+      .proj-strip:hover .proj-strip-thumb img { filter: saturate(0.72) brightness(0.68); transform: scale(1.04); }
+      .proj-strip .proj-strip-body { padding: 32px 28px; flex: 1; display: flex; flex-direction: column; justify-content: space-between; }
+
+      /* Shared tag pill */
+      .proj-tag {
+        display: inline-flex; align-items: center; gap: 6px;
+        border: 1px solid var(--border); border-radius: 9999px;
+        padding: 4px 12px;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase;
+        color: var(--text-secondary);
+      }
+      .proj-tag.accent { border-color: rgba(57,255,20,0.28); color: var(--accent); }
+
+      /* Tech stack pill */
+      .tech-pill {
+        display: inline-block;
+        border: 1px solid var(--border);
+        border-radius: 8px; padding: 3px 10px;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.64rem; letter-spacing: 0.1em;
+        color: var(--text-muted); background: rgba(255,255,255,0.02);
+      }
+
+      /* Accent number */
+      .proj-num {
+        font-family: "Poppins", sans-serif;
+        font-weight: 800; font-style: italic;
+        font-size: 4rem; line-height: 1;
+        color: rgba(57,255,20,0.08);
+        user-select: none;
+      }
+
+      /* Result badge */
+      .result-badge {
+        background: rgba(57,255,20,0.06);
+        border: 1px solid rgba(57,255,20,0.16);
+        border-radius: 12px; padding: 10px 14px;
+      }
+
+      /* REVEAL */
+      @keyframes revealUp {
+        from { opacity: 0; transform: translateY(48px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      .reveal { opacity: 0; }
+      .reveal.visible {
+        animation: revealUp 0.85s cubic-bezier(.22,1,.36,1) forwards;
+      }
+
+      /* STATS ROW */
+      .stat-card {
+        border-radius: 28px; padding: 28px;
+        border: 1px solid var(--border);
+        background: linear-gradient(135deg, rgba(12,15,12,0.9), rgba(8,10,8,0.8));
+        transition: border-color .3s ease;
+      }
+      .stat-card:hover { border-color: var(--border-strong); }
+
+      /* FILTER BAR */
+      .filter-btn {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase;
+        padding: 8px 18px; border-radius: 9999px;
+        border: 1px solid var(--border); color: var(--text-secondary);
+        background: rgba(255,255,255,0.01); cursor: pointer;
+        transition: all .25s ease;
+      }
+      .filter-btn:hover { border-color: var(--border-strong); color: var(--text-primary); }
+      .filter-btn.active { border-color: var(--accent); color: var(--accent); background: rgba(57,255,20,0.06); }
+
+      /* PROCESS MINI */
+      .process-mini-card {
+        border-radius: 24px; padding: 24px;
+        border: 1px solid var(--border);
+        background: linear-gradient(135deg, rgba(14,18,14,0.9), rgba(8,10,8,0.8));
+        transition: border-color .3s ease, transform .3s ease;
+      }
+      .process-mini-card:hover { border-color: var(--border-strong); transform: translateY(-6px); }
+
+      /* CTA SECTION */
+      .cta-image-panel {
+        position: absolute; inset: 0;
+        background:
+          linear-gradient(100deg, rgba(8,10,8,0.86) 12%, rgba(8,10,8,0.68) 54%, rgba(8,10,8,0.86) 100%),
+          radial-gradient(circle at 78% 38%, rgba(57,255,20,0.12), transparent 24%),
+          url("https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1800&q=80") center/cover no-repeat;
+        filter: saturate(0.58) brightness(0.62);
+      }
+
+      /* ORBITAL */
+      .orbital-line {
+        position: absolute; border: 1px solid rgba(57,255,20,0.12); border-radius: 9999px;
+      }
+
+      /* METRICS MARQUEE */
+      .metrics-track {
+        display: flex; width: max-content;
+        animation: marquee-left 22s linear infinite;
+      }
+
+      /* mobile nav */
+      .mob-menu {
+        position: absolute; top: 100%; left: 0; right: 0;
+        background: rgba(8,10,8,0.98);
+        border-bottom: 1px solid var(--border);
+        backdrop-filter: blur(22px);
+        padding: 24px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="noise-overlay"></div>
+
+    <!-- CURSOR -->
+    <div class="cursor-dot" id="cur-dot"></div>
+    <div class="cursor-ring" id="cur-ring"></div>
+
+    <!-- ===================== NAVBAR ===================== -->
+    <header id="navbar" class="fixed left-0 top-0 z-50 w-full transition-all duration-300">
+      <div class="site-shell flex h-24 items-center justify-between">
+        <a href="index.html" class="brand-logo-link" aria-label="Auroveon home">
+          <img src="assets/WhatsApp Image 2026-05-09 at 09,19,43-Picsart-BackgroundRemover.png" alt="Auroveon" class="brand-logo brand-logo-nav" />
+        </a>
+
+        <!-- Desktop nav -->
+        <nav class="hidden items-center gap-9 lg:flex">
+          <a class="nav-link text-base font-medium" href="index.html">Home</a>
+          <a class="nav-link text-base font-medium" href="about.html">About</a>
+          <div class="nav-dropdown-wrap">
+            <button class="nav-dropdown-btn text-base" aria-haspopup="true">
+              Services
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                <path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <div class="nav-dropdown">
+              <a href="services.html#web-development">Web Development</a>
+              <a href="services.html#app-development">App Development</a>
+              <a href="services.html#ai-automation">AI Automation</a>
+              <a href="services.html#digital-marketing">Digital Marketing</a>
+              <a href="services.html#seo">SEO</a>
+              <a href="services.html#ui-ux">UI/UX</a>
+            </div>
+          </div>
+          <a class="nav-link text-base font-medium" href="blogs.html">Blogs</a>
+          <a class="nav-link text-base font-medium active" href="portfolio.html">Portfolio</a>
+          <a class="nav-link text-base font-medium" href="contact.html">Contact</a>
+        </nav>
+
+        <a href="contact.html" class="hidden lg:inline-flex items-center gap-2 rounded-full border px-6 py-3.5 text-base font-semibold display-font transition-all hover:-translate-y-0.5"
+           style="border-color:var(--accent);color:var(--accent);background:rgba(57,255,20,0.02);">
+          Start a Project
+        </a>
+
+        <button id="mob-toggle" class="glass-panel flex h-12 w-12 items-center justify-center rounded-full lg:hidden" style="border-color:var(--border);">
+          <span id="mob-icon" class="text-xl" style="color:var(--text-primary)">+</span>
+        </button>
+      </div>
+
+      <!-- Mobile menu -->
+      <div id="mob-menu" class="mob-menu hidden lg:hidden">
+        <div class="flex flex-col gap-5 text-center">
+          <a href="index.html" class="display-font text-2xl font-bold italic" style="color:var(--text-primary)">Home</a>
+          <a href="about.html" class="display-font text-2xl font-bold italic" style="color:var(--text-primary)">About</a>
+          <a href="services.html" class="display-font text-2xl font-bold italic" style="color:var(--text-primary)">Services</a>
+          <a href="blogs.html" class="display-font text-2xl font-bold italic" style="color:var(--text-primary)">Blogs</a>
+          <a href="portfolio.html" class="display-font text-2xl font-bold italic" style="color:var(--accent)">Portfolio</a>
+          <a href="contact.html" class="display-font text-2xl font-bold italic" style="color:var(--text-primary)">Contact</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- ===================== HERO ===================== -->
+    <section id="hero" class="section-frame relative min-h-screen overflow-hidden pt-20">
+      <div class="hero-image"></div>
+      <div class="hero-grid"></div>
+
+      <div class="hero-spotlight" style="width:40rem;height:40rem;top:-10rem;right:-8rem;background:radial-gradient(circle,rgba(57,255,20,0.16),transparent 66%);"></div>
+      <div class="hero-spotlight" style="width:28rem;height:28rem;bottom:4rem;left:-6rem;background:radial-gradient(circle,rgba(57,255,20,0.1),transparent 68%);"></div>
+
+      <div class="site-shell relative z-10 flex min-h-[calc(100svh-5rem)] items-center py-8">
+        <div class="grid w-full gap-12 lg:grid-cols-2 lg:items-center">
+
+          <!-- LEFT COPY -->
+          <div>
+            <div class="glass-panel inline-flex items-center gap-3 rounded-full px-4 py-2 reveal">
+              <span class="h-2 w-2 rounded-full" style="background:var(--accent);box-shadow:0 0 14px rgba(57,255,20,0.7)"></span>
+              <span class="eyebrow">10 Ambitious Projects Shipped</span>
+            </div>
+
+            <h1 class="headline-italics mt-6 text-[clamp(2.6rem,6.5vw,6rem)]">
+              <span class="shine-text block"><span class="shine-inner">Work That</span></span>
+              <span class="shine-text block"><span class="shine-inner">Speaks</span></span>
+              <span class="shine-accent block"><span class="shine-inner">Louder.</span></span>
+            </h1>
+
+            <p class="mt-6 max-w-xl text-lg leading-8 reveal" style="color:var(--text-secondary);">
+              A curated selection of digital products we've engineered from concept to launch — AI systems, web platforms, SaaS architectures, and cinematic brand experiences.
+            </p>
+
+            <div class="mt-8 flex flex-col gap-4 sm:flex-row reveal">
+              <a href="#projects" class="display-font inline-flex items-center justify-center rounded-full px-7 py-4 text-base font-bold transition-all hover:-translate-y-1"
+                 style="background:var(--accent);color:#081008;box-shadow:0 0 42px rgba(57,255,20,0.18),0 22px 60px rgba(57,255,20,0.12);">
+                Explore Projects
+              </a>
+              <a href="contact.html" class="display-font inline-flex items-center justify-center rounded-full border px-7 py-4 text-base font-bold transition-all hover:-translate-y-1"
+                 style="border-color:var(--border-strong);color:var(--text-primary);background:rgba(255,255,255,0.02);">
+                Start Yours
+              </a>
+            </div>
+
+            <!-- Quick stats -->
+            <div class="mt-10 grid grid-cols-3 gap-4 reveal">
+              <div>
+                <div class="display-font text-3xl font-extrabold italic" style="color:var(--text-primary)">10+</div>
+                <div class="mt-1 text-sm" style="color:var(--text-secondary)">Projects Delivered</div>
+              </div>
+              <div>
+                <div class="display-font text-3xl font-extrabold italic" style="color:var(--text-primary)">98%</div>
+                <div class="mt-1 text-sm" style="color:var(--text-secondary)">Client Retention</div>
+              </div>
+              <div>
+                <div class="display-font text-3xl font-extrabold italic" style="color:var(--text-primary)">3x</div>
+                <div class="mt-1 text-sm" style="color:var(--text-secondary)">Avg. ROI Lift</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- RIGHT VISUAL MOCKUP -->
+          <div class="relative hidden lg:block">
+            <div class="orbital-line" style="width:88%;height:88%;top:6%;left:6%"></div>
+            <div class="orbital-line" style="width:66%;height:66%;top:17%;left:17%"></div>
+
+            <!-- Central glass mockup -->
+            <div class="glass-panel rounded-[36px] overflow-hidden relative" style="min-height:520px;">
+              <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=80"
+                   alt="Portfolio showcase" class="absolute inset-0 w-full h-full object-cover"
+                   style="filter:saturate(0.4) brightness(0.35);" />
+
+              <div class="absolute inset-0" style="background:linear-gradient(180deg,rgba(8,10,8,0.3),rgba(8,10,8,0.85));"></div>
+
+              <!-- Floating badge top left -->
+              <div class="hero-badge" style="top:24px;left:24px;max-width:200px;">
+                <div class="eyebrow" style="font-size:.64rem;">Live projects</div>
+                <div class="display-font text-xl font-extrabold italic mt-1" style="color:var(--text-primary)">10 shipped</div>
+                <div class="mt-2 flex gap-2">
+                  <span class="tech-pill">AI</span>
+                  <span class="tech-pill">SaaS</span>
+                  <span class="tech-pill">Web</span>
+                </div>
+              </div>
+
+              <!-- Floating badge top right -->
+              <div class="hero-badge" style="top:24px;right:24px;">
+                <div style="width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 12px rgba(57,255,20,0.6);margin-bottom:8px;"></div>
+                <div class="mono-font text-xs" style="color:var(--accent)">All live</div>
+                <div class="text-xs mt-1" style="color:var(--text-secondary)">Production ready</div>
+              </div>
+
+              <!-- Main content -->
+              <div class="absolute bottom-0 left-0 right-0 p-8">
+                <div class="eyebrow mb-4">Featured work</div>
+                <div class="display-font text-3xl font-extrabold italic leading-tight" style="color:var(--text-primary);">
+                  AI-native products with cinematic precision.
+                </div>
+                <div class="mt-6 flex flex-wrap gap-3">
+                  <span class="proj-tag accent">Cortex AI</span>
+                  <span class="proj-tag accent">Helio SaaS</span>
+                  <span class="proj-tag accent">Nova Pulse</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Side floating card -->
+            <div class="glass-panel absolute -right-8 top-1/3 rounded-[24px] p-5" style="width:180px;">
+              <div class="eyebrow" style="font-size:.62rem;">Avg. launch time</div>
+              <div class="display-font text-2xl font-extrabold italic mt-2" style="color:var(--text-primary)">6 weeks</div>
+              <div class="text-xs mt-1" style="color:var(--text-secondary)">Concept → live</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== PROOF STRIP ===================== -->
+    <section class="section-frame relative overflow-hidden pb-6 pt-12">
+      <div class="site-shell">
+        <div class="glass-panel marquee rounded-full border px-2 py-2" style="border-color:var(--border)">
+          <div class="marquee-track">
+            <!-- 2 copies -->
+            <div class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary)">AI Systems<span class="mx-6" style="color:var(--accent)">.</span></div>
+            <div class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary)">SaaS Platforms<span class="mx-6" style="color:var(--accent)">.</span></div>
+            <div class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary)">Web Development<span class="mx-6" style="color:var(--accent)">.</span></div>
+            <div class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary)">AI Automation<span class="mx-6" style="color:var(--accent)">.</span></div>
+            <div class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary)">UI/UX Design<span class="mx-6" style="color:var(--accent)">.</span></div>
+            <div class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary)">Digital Marketing<span class="mx-6" style="color:var(--accent)">.</span></div>
+            <div class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary)">SEO Mastery<span class="mx-6" style="color:var(--accent)">.</span></div>
+            <div class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary)">App Development<span class="mx-6" style="color:var(--accent)">.</span></div>
+            <!-- repeat -->
+            <div class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary)">AI Systems<span class="mx-6" style="color:var(--accent)">.</span></div>
+            <div class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary)">SaaS Platforms<span class="mx-6" style="color:var(--accent)">.</span></div>
+            <div class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary)">Web Development<span class="mx-6" style="color:var(--accent)">.</span></div>
+            <div class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary)">AI Automation<span class="mx-6" style="color:var(--accent)">.</span></div>
+            <div class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary)">UI/UX Design<span class="mx-6" style="color:var(--accent)">.</span></div>
+            <div class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary)">Digital Marketing<span class="mx-6" style="color:var(--accent)">.</span></div>
+            <div class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary)">SEO Mastery<span class="mx-6" style="color:var(--accent)">.</span></div>
+            <div class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary)">App Development<span class="mx-6" style="color:var(--accent)">.</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== PROJECTS SECTION ===================== -->
+    <section id="projects" class="section-frame relative py-24 lg:py-32">
+      <div class="site-shell">
+
+        <!-- Section header -->
+        <div class="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between mb-14 reveal">
+          <div>
+            <div class="section-kicker">Selected Work</div>
+            <h2 class="display-font mt-4 text-4xl font-extrabold italic leading-[0.96] tracking-[-0.04em] lg:text-6xl" style="color:var(--text-primary);max-width:12ch;">
+              10 products. 10 different worlds.
+            </h2>
+          </div>
+          <p class="max-w-md text-base leading-8 lg:text-right lg:text-lg" style="color:var(--text-secondary);">
+            Every project had a different problem, audience, and ambition. Here's how we solved each one with precision.
+          </p>
+        </div>
+
+        <!-- FILTER BAR -->
+        <div class="flex flex-wrap gap-3 mb-14 reveal">
+          <button class="filter-btn active" data-filter="all">All</button>
+          <button class="filter-btn" data-filter="ai">AI Systems</button>
+          <button class="filter-btn" data-filter="web">Web Platforms</button>
+          <button class="filter-btn" data-filter="saas">SaaS</button>
+          <button class="filter-btn" data-filter="automation">Automation</button>
+          <button class="filter-btn" data-filter="uiux">UI/UX</button>
+        </div>
+
+        <!-- ===== PROJECT 01 — Full bleed spotlight (wide) ===== -->
+        <div class="proj-spotlight reveal mb-6" data-categories="ai web">
+          <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1600&q=80" alt="Cortex AI Dashboard" class="proj-thumb w-full" style="height:440px;" />
+          <div class="proj-overlay"></div>
+          <div class="proj-content">
+            <div class="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+              <div>
+                <div class="flex items-center gap-3 mb-4">
+                  <span class="proj-tag accent">AI System</span>
+                  <span class="proj-tag">Enterprise</span>
+                  <span class="proj-num" style="font-size:2rem;color:rgba(57,255,20,0.18)">01</span>
+                </div>
+                <h3 class="display-font text-4xl font-extrabold italic leading-tight lg:text-5xl" style="color:var(--text-primary);">Cortex AI — Operational Intelligence Platform</h3>
+                <p class="mt-3 max-w-2xl text-base leading-7" style="color:var(--text-secondary);">Built a full AI command layer replacing fragmented manual ops. Custom inference pipelines, real-time dashboards, and guardrail systems — all inside one cohesive product surface.</p>
+                <div class="mt-4 flex flex-wrap gap-2">
+                  <span class="tech-pill">Next.js</span><span class="tech-pill">OpenAI API</span><span class="tech-pill">PostgreSQL</span><span class="tech-pill">Vercel</span>
+                </div>
+              </div>
+              <div class="result-badge flex-shrink-0">
+                <div class="eyebrow" style="font-size:.64rem;">Outcome</div>
+                <div class="display-font text-2xl font-extrabold italic mt-1" style="color:var(--accent);">42% faster</div>
+                <div class="text-sm" style="color:var(--text-secondary);">internal resolution</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== PROJECT 02 + 03 — Side by side tall cards ===== -->
+        <div class="grid gap-6 md:grid-cols-2 mb-6">
+
+          <!-- 02 -->
+          <div class="proj-tall reveal" data-categories="saas web">
+            <div class="proj-tall-thumb">
+              <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80" alt="Helio Commerce" />
+            </div>
+            <div class="proj-tall-body">
+              <div>
+                <div class="flex items-center justify-between mb-4">
+                  <span class="proj-tag accent">SaaS Platform</span>
+                  <span class="proj-num">02</span>
+                </div>
+                <h3 class="display-font text-2xl font-extrabold italic leading-tight" style="color:var(--text-primary);">Helio Commerce — SaaS Rebuild</h3>
+                <p class="mt-3 text-sm leading-7" style="color:var(--text-secondary);">Complete frontend overhaul and product repositioning. Built modular component library, billing flows, and permission systems from scratch.</p>
+              </div>
+              <div>
+                <div class="flex flex-wrap gap-2 mb-4">
+                  <span class="tech-pill">React</span><span class="tech-pill">Stripe</span><span class="tech-pill">Supabase</span>
+                </div>
+                <div class="result-badge">
+                  <div class="eyebrow" style="font-size:.64rem;">Outcome</div>
+                  <div class="display-font text-xl font-extrabold italic mt-1" style="color:var(--accent);">+62% enterprise trust</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 03 -->
+          <div class="proj-tall reveal" data-categories="web uiux">
+            <div class="proj-tall-thumb">
+              <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=800&q=80" alt="Nova Pulse Launch" />
+            </div>
+            <div class="proj-tall-body">
+              <div>
+                <div class="flex items-center justify-between mb-4">
+                  <span class="proj-tag accent">Product Launch</span>
+                  <span class="proj-num">03</span>
+                </div>
+                <h3 class="display-font text-2xl font-extrabold italic leading-tight" style="color:var(--text-primary);">Nova Pulse — Launch System</h3>
+                <p class="mt-3 text-sm leading-7" style="color:var(--text-secondary);">Created immersive storytelling site combining 3D hero, modular CMS, scroll-driven motion, and a memorable premium visual identity.</p>
+              </div>
+              <div>
+                <div class="flex flex-wrap gap-2 mb-4">
+                  <span class="tech-pill">Three.js</span><span class="tech-pill">GSAP</span><span class="tech-pill">Sanity CMS</span>
+                </div>
+                <div class="result-badge">
+                  <div class="eyebrow" style="font-size:.64rem;">Outcome</div>
+                  <div class="display-font text-xl font-extrabold italic mt-1" style="color:var(--accent);">91% stakeholder approval</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== PROJECT 04 — Side by side (info right) ===== -->
+        <div class="proj-sidebyside reveal mb-6" data-categories="ai automation">
+          <div class="proj-visual">
+            <img src="https://images.unsplash.com/photo-1504639725590-34d0984388bd?auto=format&fit=crop&w=800&q=80" alt="Aria AI Copilot" />
+            <div style="position:absolute;inset:0;background:linear-gradient(90deg,transparent 60%,rgba(8,10,8,0.6));"></div>
+          </div>
+          <div class="proj-info" style="background:linear-gradient(135deg,rgba(12,15,12,0.98),rgba(8,10,8,0.99));">
+            <div>
+              <div class="flex items-center justify-between mb-6">
+                <span class="proj-tag accent">AI Copilot</span>
+                <span class="proj-num">04</span>
+              </div>
+              <h3 class="display-font text-3xl font-extrabold italic leading-tight" style="color:var(--text-primary);">Aria — Intelligent Support Copilot</h3>
+              <p class="mt-4 text-base leading-7" style="color:var(--text-secondary);">Custom LLM fine-tuning with retrieval-augmented generation, context memory, and a polished chat UI. Reduced support ticket volume dramatically.</p>
+              <div class="flex flex-wrap gap-2 mt-5">
+                <span class="tech-pill">LangChain</span><span class="tech-pill">Pinecone</span><span class="tech-pill">FastAPI</span><span class="tech-pill">React</span>
+              </div>
+            </div>
+            <div class="result-badge mt-6">
+              <div class="eyebrow" style="font-size:.64rem;">Outcome</div>
+              <div class="display-font text-2xl font-extrabold italic mt-1" style="color:var(--accent);">67% ticket reduction</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== PROJECT 05 + 06 + 07 — Three tall cards ===== -->
+        <div class="grid gap-6 md:grid-cols-3 mb-6">
+
+          <!-- 05 -->
+          <div class="proj-tall reveal" data-categories="web uiux">
+            <div class="proj-tall-thumb">
+              <img src="https://images.unsplash.com/photo-1522542550221-31fd19575a2d?auto=format&fit=crop&w=700&q=80" alt="Zenith Branding" />
+            </div>
+            <div class="proj-tall-body">
+              <div>
+                <div class="flex items-center justify-between mb-3">
+                  <span class="proj-tag accent">Brand + Web</span>
+                  <span class="proj-num">05</span>
+                </div>
+                <h3 class="display-font text-xl font-extrabold italic leading-tight" style="color:var(--text-primary);">Zenith — Brand Identity & Web</h3>
+                <p class="mt-3 text-sm leading-7" style="color:var(--text-secondary);">Full brand identity system paired with a cinematic marketing site featuring scroll-driven reveals and editorial typography.</p>
+              </div>
+              <div>
+                <div class="flex flex-wrap gap-2 mb-3">
+                  <span class="tech-pill">Figma</span><span class="tech-pill">GSAP</span><span class="tech-pill">Webflow</span>
+                </div>
+                <div class="result-badge">
+                  <div class="display-font text-lg font-extrabold italic" style="color:var(--accent);">+80% brand recall</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 06 -->
+          <div class="proj-tall reveal" data-categories="saas automation">
+            <div class="proj-tall-thumb">
+              <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=700&q=80" alt="FlowSync Automation" />
+            </div>
+            <div class="proj-tall-body">
+              <div>
+                <div class="flex items-center justify-between mb-3">
+                  <span class="proj-tag accent">Automation</span>
+                  <span class="proj-num">06</span>
+                </div>
+                <h3 class="display-font text-xl font-extrabold italic leading-tight" style="color:var(--text-primary);">FlowSync — Ops Automation Suite</h3>
+                <p class="mt-3 text-sm leading-7" style="color:var(--text-secondary);">Eliminated manual bottlenecks across sales, ops, and support with an n8n + custom API automation layer and a clean dashboard UI.</p>
+              </div>
+              <div>
+                <div class="flex flex-wrap gap-2 mb-3">
+                  <span class="tech-pill">n8n</span><span class="tech-pill">Node.js</span><span class="tech-pill">Zapier Alt</span>
+                </div>
+                <div class="result-badge">
+                  <div class="display-font text-lg font-extrabold italic" style="color:var(--accent);">18hrs/week saved</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 07 -->
+          <div class="proj-tall reveal" data-categories="web ai">
+            <div class="proj-tall-thumb">
+              <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=700&q=80" alt="PulseTrack App" />
+            </div>
+            <div class="proj-tall-body">
+              <div>
+                <div class="flex items-center justify-between mb-3">
+                  <span class="proj-tag accent">App + AI</span>
+                  <span class="proj-num">07</span>
+                </div>
+                <h3 class="display-font text-xl font-extrabold italic leading-tight" style="color:var(--text-primary);">PulseTrack — Analytics App</h3>
+                <p class="mt-3 text-sm leading-7" style="color:var(--text-secondary);">Real-time analytics mobile app with AI-powered insights layer, custom charts, and push notification intelligence engine.</p>
+              </div>
+              <div>
+                <div class="flex flex-wrap gap-2 mb-3">
+                  <span class="tech-pill">React Native</span><span class="tech-pill">Python</span><span class="tech-pill">Redis</span>
+                </div>
+                <div class="result-badge">
+                  <div class="display-font text-lg font-extrabold italic" style="color:var(--accent);">4.8★ App Store</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== PROJECT 08 — Side by side (info left) ===== -->
+        <div class="proj-sidebyside reveal mb-6" data-categories="saas uiux" style="direction:rtl;">
+          <div class="proj-visual" style="direction:ltr;">
+            <img src="https://images.unsplash.com/photo-1555421689-d68471e189f2?auto=format&fit=crop&w=800&q=80" alt="Vault SaaS Dashboard" />
+          </div>
+          <div class="proj-info" style="direction:ltr;background:linear-gradient(135deg,rgba(8,10,8,0.99),rgba(12,15,12,0.98));border-left:none;border-right:1px solid var(--border);">
+            <div>
+              <div class="flex items-center justify-between mb-6">
+                <span class="proj-tag accent">SaaS Dashboard</span>
+                <span class="proj-num">08</span>
+              </div>
+              <h3 class="display-font text-3xl font-extrabold italic leading-tight" style="color:var(--text-primary);">Vault — Financial SaaS Platform</h3>
+              <p class="mt-4 text-base leading-7" style="color:var(--text-secondary);">Premium financial management SaaS with granular role permissions, multi-tenant architecture, interactive charts, and a glass-panel design system.</p>
+              <div class="flex flex-wrap gap-2 mt-5">
+                <span class="tech-pill">Next.js</span><span class="tech-pill">Prisma</span><span class="tech-pill">Chart.js</span><span class="tech-pill">Auth0</span>
+              </div>
+            </div>
+            <div class="result-badge mt-6">
+              <div class="eyebrow" style="font-size:.64rem;">Outcome</div>
+              <div class="display-font text-2xl font-extrabold italic mt-1" style="color:var(--accent);">3x user retention lift</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== PROJECT 09 — Horizontal strip ===== -->
+        <div class="proj-strip reveal mb-6" data-categories="automation ai">
+          <div class="proj-strip-bar"></div>
+          <div class="proj-strip-thumb">
+            <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=600&q=80" alt="EchoBot AI" />
+          </div>
+          <div class="proj-strip-body glass-panel" style="border:none;border-radius:0;">
+            <div>
+              <div class="flex items-center gap-4 mb-4">
+                <span class="proj-tag accent">AI Chatbot</span>
+                <span class="proj-num">09</span>
+              </div>
+              <h3 class="display-font text-3xl font-extrabold italic leading-tight" style="color:var(--text-primary);">EchoBot — Conversational AI for E-Commerce</h3>
+              <p class="mt-4 text-base leading-7 max-w-2xl" style="color:var(--text-secondary);">Deployed a context-aware shopping assistant with product recommendation engine, live order tracking integration, and multi-language support — boosting conversion rate significantly.</p>
+            </div>
+            <div class="flex flex-wrap items-center gap-4 mt-6">
+              <div class="flex flex-wrap gap-2">
+                <span class="tech-pill">GPT-4o</span><span class="tech-pill">Shopify API</span><span class="tech-pill">TypeScript</span>
+              </div>
+              <div class="result-badge ml-auto">
+                <div class="eyebrow" style="font-size:.62rem;">Outcome</div>
+                <div class="display-font text-xl font-extrabold italic mt-1" style="color:var(--accent);">+38% conversions</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== PROJECT 10 — Full bleed spotlight (final) ===== -->
+        <div class="proj-spotlight reveal" data-categories="web uiux">
+          <img src="https://images.unsplash.com/photo-1559136555-9303baea8ebd?auto=format&fit=crop&w=1600&q=80" alt="Stratum Agency Site" class="proj-thumb w-full" style="height:400px;" />
+          <div class="proj-overlay"></div>
+          <div class="proj-content">
+            <div class="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+              <div>
+                <div class="flex items-center gap-3 mb-4">
+                  <span class="proj-tag accent">Agency Website</span>
+                  <span class="proj-tag">Cinematic UX</span>
+                  <span class="proj-num" style="font-size:2rem;color:rgba(57,255,20,0.18)">10</span>
+                </div>
+                <h3 class="display-font text-4xl font-extrabold italic leading-tight lg:text-5xl" style="color:var(--text-primary);">Stratum — Premium Agency Digital Presence</h3>
+                <p class="mt-3 max-w-2xl text-base leading-7" style="color:var(--text-secondary);">Full cinematic agency site with Three.js 3D hero, scroll-driven storytelling, animated service sections, and a structured content system built for conversions.</p>
+                <div class="mt-4 flex flex-wrap gap-2">
+                  <span class="tech-pill">React</span><span class="tech-pill">Three.js</span><span class="tech-pill">GSAP</span><span class="tech-pill">Lenis</span>
+                </div>
+              </div>
+              <div class="result-badge flex-shrink-0">
+                <div class="eyebrow" style="font-size:.64rem;">Outcome</div>
+                <div class="display-font text-2xl font-extrabold italic mt-1" style="color:var(--accent);">2.8x inquiry rate</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ===================== IMPACT METRICS SECTION ===================== -->
+    <section class="section-frame relative py-24 lg:py-32" style="background:linear-gradient(180deg,transparent,rgba(57,255,20,0.03),transparent);">
+      <div class="site-shell">
+        <div class="text-center mb-14 reveal">
+          <div class="section-kicker">By the numbers</div>
+          <h2 class="display-font mt-4 text-4xl font-extrabold italic leading-[0.96] tracking-[-0.04em] lg:text-6xl" style="color:var(--text-primary);">
+            Results that compound.
+          </h2>
+        </div>
+
+        <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 reveal">
+          <div class="stat-card text-center">
+            <div class="display-font text-5xl font-extrabold italic" style="color:var(--accent);">10+</div>
+            <div class="mt-3 text-base font-semibold" style="color:var(--text-primary);">Projects Shipped</div>
+            <div class="mt-2 text-sm" style="color:var(--text-secondary);">Across AI, SaaS, web & mobile</div>
+          </div>
+          <div class="stat-card text-center">
+            <div class="display-font text-5xl font-extrabold italic" style="color:var(--accent);">98%</div>
+            <div class="mt-3 text-base font-semibold" style="color:var(--text-primary);">Client Retention</div>
+            <div class="mt-2 text-sm" style="color:var(--text-secondary);">Long-term build partnerships</div>
+          </div>
+          <div class="stat-card text-center">
+            <div class="display-font text-5xl font-extrabold italic" style="color:var(--accent);">3x</div>
+            <div class="mt-3 text-base font-semibold" style="color:var(--text-primary);">Avg. ROI Lift</div>
+            <div class="mt-2 text-sm" style="color:var(--text-secondary);">Post-launch performance gain</div>
+          </div>
+          <div class="stat-card text-center">
+            <div class="display-font text-5xl font-extrabold italic" style="color:var(--accent);">6wk</div>
+            <div class="mt-3 text-base font-semibold" style="color:var(--text-primary);">Avg. Launch Timeline</div>
+            <div class="mt-2 text-sm" style="color:var(--text-secondary);">Concept to production</div>
+          </div>
+        </div>
+
+        <!-- Scrolling outcomes -->
+        <div class="marquee mt-14 reveal" style="mask-image:linear-gradient(90deg,transparent,black 12%,black 88%,transparent);">
+          <div class="metrics-track">
+            <div class="mono-font whitespace-nowrap px-8 py-3 text-sm uppercase tracking-[0.14em]" style="color:var(--text-muted);">42% faster resolution<span class="mx-6" style="color:var(--accent)">→</span></div>
+            <div class="mono-font whitespace-nowrap px-8 py-3 text-sm uppercase tracking-[0.14em]" style="color:var(--text-muted);">67% ticket reduction<span class="mx-6" style="color:var(--accent)">→</span></div>
+            <div class="mono-font whitespace-nowrap px-8 py-3 text-sm uppercase tracking-[0.14em]" style="color:var(--text-muted);">91% stakeholder approval<span class="mx-6" style="color:var(--accent)">→</span></div>
+            <div class="mono-font whitespace-nowrap px-8 py-3 text-sm uppercase tracking-[0.14em]" style="color:var(--text-muted);">+38% conversions<span class="mx-6" style="color:var(--accent)">→</span></div>
+            <div class="mono-font whitespace-nowrap px-8 py-3 text-sm uppercase tracking-[0.14em]" style="color:var(--text-muted);">4.8★ app rating<span class="mx-6" style="color:var(--accent)">→</span></div>
+            <div class="mono-font whitespace-nowrap px-8 py-3 text-sm uppercase tracking-[0.14em]" style="color:var(--text-muted);">18hrs/week saved<span class="mx-6" style="color:var(--accent)">→</span></div>
+            <div class="mono-font whitespace-nowrap px-8 py-3 text-sm uppercase tracking-[0.14em]" style="color:var(--text-muted);">2.8x inquiry rate<span class="mx-6" style="color:var(--accent)">→</span></div>
+            <div class="mono-font whitespace-nowrap px-8 py-3 text-sm uppercase tracking-[0.14em]" style="color:var(--text-muted);">3x user retention<span class="mx-6" style="color:var(--accent)">→</span></div>
+            <!-- repeat -->
+            <div class="mono-font whitespace-nowrap px-8 py-3 text-sm uppercase tracking-[0.14em]" style="color:var(--text-muted);">42% faster resolution<span class="mx-6" style="color:var(--accent)">→</span></div>
+            <div class="mono-font whitespace-nowrap px-8 py-3 text-sm uppercase tracking-[0.14em]" style="color:var(--text-muted);">67% ticket reduction<span class="mx-6" style="color:var(--accent)">→</span></div>
+            <div class="mono-font whitespace-nowrap px-8 py-3 text-sm uppercase tracking-[0.14em]" style="color:var(--text-muted);">91% stakeholder approval<span class="mx-6" style="color:var(--accent)">→</span></div>
+            <div class="mono-font whitespace-nowrap px-8 py-3 text-sm uppercase tracking-[0.14em]" style="color:var(--text-muted);">+38% conversions<span class="mx-6" style="color:var(--accent)">→</span></div>
+            <div class="mono-font whitespace-nowrap px-8 py-3 text-sm uppercase tracking-[0.14em]" style="color:var(--text-muted);">4.8★ app rating<span class="mx-6" style="color:var(--accent)">→</span></div>
+            <div class="mono-font whitespace-nowrap px-8 py-3 text-sm uppercase tracking-[0.14em]" style="color:var(--text-muted);">18hrs/week saved<span class="mx-6" style="color:var(--accent)">→</span></div>
+            <div class="mono-font whitespace-nowrap px-8 py-3 text-sm uppercase tracking-[0.14em]" style="color:var(--text-muted);">2.8x inquiry rate<span class="mx-6" style="color:var(--accent)">→</span></div>
+            <div class="mono-font whitespace-nowrap px-8 py-3 text-sm uppercase tracking-[0.14em]" style="color:var(--text-muted);">3x user retention<span class="mx-6" style="color:var(--accent)">→</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== HOW WE BUILD SECTION ===================== -->
+    <section class="section-frame relative py-24 lg:py-32">
+      <div class="site-shell">
+        <div class="grid gap-12 lg:grid-cols-[0.65fr_1.35fr] lg:items-start">
+          <div class="reveal">
+            <div class="section-kicker">Our Build Approach</div>
+            <h2 class="display-font mt-4 text-4xl font-extrabold italic leading-[0.95] tracking-[-0.04em] lg:text-5xl" style="color:var(--text-primary);max-width:10ch;">
+              From signal to shipped product.
+            </h2>
+            <p class="mt-6 text-base leading-8 lg:text-lg" style="color:var(--text-secondary);max-width:28rem;">
+              Every project in this portfolio followed a tight process designed to eliminate ambiguity and maximise launch impact.
+            </p>
+            <a href="contact.html" class="display-font mt-8 inline-flex items-center justify-center rounded-full px-6 py-3.5 text-base font-bold transition-all hover:-translate-y-1"
+               style="background:var(--accent);color:#081008;box-shadow:0 0 36px rgba(57,255,20,0.16);">
+              Start a Project
+            </a>
+          </div>
+
+          <div class="grid gap-4 sm:grid-cols-2 reveal">
+            <div class="process-mini-card">
+              <div class="eyebrow" style="font-size:.64rem;">Step 01</div>
+              <div class="display-font text-2xl font-extrabold italic mt-3" style="color:var(--text-primary);">Discovery</div>
+              <p class="mt-3 text-sm leading-7" style="color:var(--text-secondary);">Deep-dive into market tension, audience pressure, and experience gaps. Scope, research, and a clear product roadmap before any pixel is drawn.</p>
+              <div class="mt-4 flex flex-wrap gap-2">
+                <span class="tech-pill">Research</span><span class="tech-pill">Scoping</span><span class="tech-pill">Roadmap</span>
+              </div>
+            </div>
+            <div class="process-mini-card">
+              <div class="eyebrow" style="font-size:.64rem;">Step 02</div>
+              <div class="display-font text-2xl font-extrabold italic mt-3" style="color:var(--text-primary);">Design</div>
+              <p class="mt-3 text-sm leading-7" style="color:var(--text-secondary);">Narrative layouts, premium motion systems, and service architecture shaped together so design and engineering move as one.</p>
+              <div class="mt-4 flex flex-wrap gap-2">
+                <span class="tech-pill">Wireframes</span><span class="tech-pill">Motion</span><span class="tech-pill">System</span>
+              </div>
+            </div>
+            <div class="process-mini-card">
+              <div class="eyebrow" style="font-size:.64rem;">Step 03</div>
+              <div class="display-font text-2xl font-extrabold italic mt-3" style="color:var(--text-primary);">Build</div>
+              <p class="mt-3 text-sm leading-7" style="color:var(--text-secondary);">From 3D scenes to real product flows — built for performance, maintainability, and measurable business outcomes.</p>
+              <div class="mt-4 flex flex-wrap gap-2">
+                <span class="tech-pill">Frontend</span><span class="tech-pill">Backend</span><span class="tech-pill">QA</span>
+              </div>
+            </div>
+            <div class="process-mini-card">
+              <div class="eyebrow" style="font-size:.64rem;">Step 04</div>
+              <div class="display-font text-2xl font-extrabold italic mt-3" style="color:var(--text-primary);">Launch</div>
+              <p class="mt-3 text-sm leading-7" style="color:var(--text-secondary);">Analytics, QA loops, and controlled release strategies turn ambitious visuals into dependable production work.</p>
+              <div class="mt-4 flex flex-wrap gap-2">
+                <span class="tech-pill">Analytics</span><span class="tech-pill">Release</span><span class="tech-pill">Iteration</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== CTA SECTION ===================== -->
+    <section class="relative py-24 lg:py-32">
+      <div class="site-shell">
+        <div class="glass-panel relative overflow-hidden rounded-[38px] border px-6 py-12 lg:px-12 lg:py-14" style="border-color:var(--border);">
+          <div class="cta-image-panel"></div>
+          <div class="hero-spotlight" style="width:30rem;height:30rem;top:-12rem;right:-8rem;background:radial-gradient(circle,rgba(57,255,20,0.14),transparent 64%);"></div>
+          <div class="relative z-10 grid gap-8 lg:grid-cols-[1fr_auto] lg:items-end">
+            <div class="reveal">
+              <div class="section-kicker">Ready to be next?</div>
+              <h2 class="display-font mt-4 text-4xl font-extrabold italic leading-[0.94] tracking-[-0.04em] lg:text-6xl" style="color:var(--text-primary);max-width:11ch;">
+                Your project belongs in this portfolio.
+              </h2>
+              <p class="mt-6 max-w-2xl text-base leading-8 lg:text-lg" style="color:var(--text-secondary);">
+                We've built 10 ambitious products. Each one solved a real problem with premium engineering and cinematic design. Let's build yours next.
+              </p>
+            </div>
+            <div class="reveal flex flex-col gap-4 sm:flex-row lg:flex-col">
+              <a href="mailto:info@auroveon.com"
+                 class="display-font inline-flex items-center justify-center rounded-full px-7 py-4 text-base font-bold transition-all hover:-translate-y-1"
+                 style="background:var(--accent);color:#081008;box-shadow:0 0 42px rgba(57,255,20,0.18),0 22px 60px rgba(57,255,20,0.12);">
+                Start a Project
+              </a>
+              <a href="index.html"
+                 class="display-font inline-flex items-center justify-center rounded-full border px-7 py-4 text-base font-bold transition-all hover:-translate-y-1"
+                 style="border-color:var(--border-strong);color:var(--text-primary);">
+                Back to Home
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== FOOTER ===================== -->
+    <footer class="relative pb-10">
+      <div class="site-shell border-t pt-10" style="border-color:var(--border);">
+        <div class="grid gap-10 lg:grid-cols-[1.2fr_0.8fr_0.8fr_0.8fr]">
+          <div>
+            <img src="assets/WhatsApp Image 2026-05-09 at 09,19,43-Picsart-BackgroundRemover.png" alt="Auroveon" class="brand-logo brand-logo-footer" />
+            <p class="mt-4 max-w-sm text-sm leading-7" style="color:var(--text-secondary);">
+              Software agency for AI solutions, modern web platforms, SaaS systems, and cinematic digital experiences built for ambitious brands.
+            </p>
+            <div class="mt-6 flex flex-wrap items-center gap-4">
+              <a class="footer-social-link" href="https://linkedin.com/company/auroveon" target="_blank" rel="noreferrer" aria-label="LinkedIn">
+                <svg viewBox="0 0 24 24"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.05-1.86-3.05-1.86 0-2.15 1.45-2.15 2.95v5.67H9.32V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.61 0 4.28 2.37 4.28 5.46v6.28ZM5.31 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14ZM7.09 20.45H3.52V9h3.57v11.45ZM22.23 0H1.77A1.77 1.77 0 0 0 0 1.77v20.46C0 23.21.79 24 1.77 24h20.46A1.77 1.77 0 0 0 24 22.23V1.77A1.77 1.77 0 0 0 22.23 0Z"/></svg>
+              </a>
+              <a class="footer-social-link" href="https://instagram.com/auroveon" target="_blank" rel="noreferrer" aria-label="Instagram">
+                <svg viewBox="0 0 24 24"><path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2Zm0 1.8A3.95 3.95 0 0 0 3.8 7.75v8.5a3.95 3.95 0 0 0 3.95 3.95h8.5a3.95 3.95 0 0 0 3.95-3.95v-8.5a3.95 3.95 0 0 0-3.95-3.95Zm8.95 1.35a1.15 1.15 0 1 1 0 2.3 1.15 1.15 0 0 1 0-2.3ZM12 6.86A5.14 5.14 0 1 1 6.86 12 5.14 5.14 0 0 1 12 6.86Zm0 1.8A3.34 3.34 0 1 0 15.34 12 3.34 3.34 0 0 0 12 8.66Z"/></svg>
+              </a>
+              <a class="footer-social-link" href="https://twitter.com/auroveon" target="_blank" rel="noreferrer" aria-label="X (Twitter)">
+                <svg viewBox="0 0 24 24"><path d="M18.9 2H22l-6.77 7.73L23.2 22h-6.25l-4.9-6.4L6.45 22H3.34l7.24-8.27L1 2h6.4l4.43 5.85L18.9 2Zm-1.1 18h1.73L6.46 3.9H4.6Z"/></svg>
+              </a>
+              <a class="footer-social-link" href="https://tiktok.com/@auroveon" target="_blank" rel="noreferrer" aria-label="TikTok">
+                <svg viewBox="0 0 24 24"><path d="M14.03 2c.2 1.69 1.15 3.16 2.64 4.05.96.58 2.08.88 3.23.87v3.17a8.1 8.1 0 0 1-3.8-.97v6.05c0 3.94-3.19 7.13-7.13 7.13s-7.13-3.19-7.13-7.13 3.19-7.13 7.13-7.13c.33 0 .66.03.98.08v3.23a4 4 0 1 0 2.82 3.82V2h3.26Z"/></svg>
+              </a>
+            </div>
+          </div>
+
+          <div>
+            <div class="mono-font text-xs uppercase tracking-[0.18em]" style="color:var(--accent);">Navigation</div>
+            <div class="mt-5 flex flex-col gap-3 text-sm">
+              <a class="footer-link" href="index.html">Home</a>
+              <a class="footer-link" href="about.html">About</a>
+              <a class="footer-link" href="services.html">Services</a>
+              <a class="footer-link" href="portfolio.html">Portfolio</a>
+              <a class="footer-link" href="contact.html">Contact</a>
+            </div>
+          </div>
+
+          <div>
+            <div class="mono-font text-xs uppercase tracking-[0.18em]" style="color:var(--accent);">Services</div>
+            <div class="mt-5 flex flex-col gap-3 text-sm" style="color:var(--text-secondary);">
+              <span>AI Solutions</span>
+              <span>Web Development</span>
+              <span>SaaS Platforms</span>
+              <span>Automation</span>
+              <span>UI/UX Design</span>
+              <span>SEO</span>
+            </div>
+          </div>
+
+          <div>
+            <div class="mono-font text-xs uppercase tracking-[0.18em]" style="color:var(--accent);">Contact Us</div>
+            <div class="mt-5 flex flex-col gap-4">
+              <div>
+                <div class="footer-contact-label">Email</div>
+                <div class="footer-contact-value"><a class="footer-contact-link" href="mailto:info@auroveon.com">info@auroveon.com</a></div>
+              </div>
+              <div>
+                <div class="footer-contact-label">Phone</div>
+                <div class="footer-contact-value"><a class="footer-contact-link" href="tel:+923353213863">+92 335 321 3863</a></div>
+              </div>
+              <div>
+                <div class="footer-contact-label">Address</div>
+                <div class="footer-contact-value">Street 4, Karachi, Pakistan</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-10 flex flex-col gap-4 border-t pt-6 text-sm lg:flex-row lg:items-center lg:justify-between" style="border-color:var(--border);color:var(--text-secondary);">
+          <div class="flex flex-wrap items-center gap-3">
+            <span>&copy; 2026</span>
+            <img src="assets/WhatsApp Image 2026-05-09 at 09,19,43-Picsart-BackgroundRemover.png" alt="Auroveon" class="brand-logo brand-logo-inline" />
+            <span>Crafted for premium digital products.</span>
+          </div>
+          <div class="flex flex-wrap items-center gap-4">
+            <a class="footer-legal-link" href="/privacy-policy">Privacy Policy</a>
+            <span style="color:var(--text-secondary)">·</span>
+            <a class="footer-legal-link" href="/terms-of-service">Terms of Service</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- WHATSAPP FAB -->
+    <a href="https://wa.me/923353213863" target="_blank" rel="noreferrer" aria-label="Chat on WhatsApp" class="whatsapp-fab">
+      <svg viewBox="0 0 24 24" fill="white" width="28" height="28"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+    </a>
+
+    <script>
+      // ===== CURSOR =====
+      if (window.innerWidth >= 1024) {
+        const dot = document.getElementById('cur-dot');
+        const ring = document.getElementById('cur-ring');
+        dot.style.opacity = '1'; ring.style.opacity = '1';
+        let dx = 0, dy = 0, rx = 0, ry = 0;
+        window.addEventListener('mousemove', e => {
+          dx = e.clientX; dy = e.clientY;
+        });
+        const lerp = (a, b, t) => a + (b - a) * t;
+        const loop = () => {
+          dot.style.left = dx + 'px'; dot.style.top = dy + 'px';
+          rx = lerp(rx, dx, 0.12); ry = lerp(ry, dy, 0.12);
+          ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+          requestAnimationFrame(loop);
+        };
+        loop();
+        document.querySelectorAll('a, button, [data-hover]').forEach(el => {
+          el.addEventListener('mouseenter', () => ring.classList.add('is-hovering'));
+          el.addEventListener('mouseleave', () => ring.classList.remove('is-hovering'));
+        });
+      }
+
+      // ===== NAVBAR SCROLL =====
+      const navbar = document.getElementById('navbar');
+      window.addEventListener('scroll', () => {
+        navbar.classList.toggle('nav-scrolled', window.scrollY > 10);
+      });
+
+      // ===== MOBILE MENU =====
+      const mobToggle = document.getElementById('mob-toggle');
+      const mobMenu = document.getElementById('mob-menu');
+      const mobIcon = document.getElementById('mob-icon');
+      let mobOpen = false;
+      mobToggle.addEventListener('click', () => {
+        mobOpen = !mobOpen;
+        mobMenu.classList.toggle('hidden', !mobOpen);
+        mobIcon.textContent = mobOpen ? '×' : '+';
+      });
+
+      // ===== SCROLL REVEAL =====
+      const reveals = document.querySelectorAll('.reveal');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry, i) => {
+          if (entry.isIntersecting) {
+            entry.target.style.animationDelay = (Array.from(reveals).indexOf(entry.target) % 4) * 80 + 'ms';
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+      reveals.forEach(el => observer.observe(el));
+
+      // ===== FILTER BUTTONS =====
+      const filterBtns = document.querySelectorAll('.filter-btn');
+      const projItems = document.querySelectorAll('[data-categories]');
+
+      filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          filterBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          const filter = btn.dataset.filter;
+          projItems.forEach(item => {
+            const cats = item.dataset.categories || '';
+            const show = filter === 'all' || cats.includes(filter);
+            item.style.transition = 'opacity .35s ease, transform .35s ease';
+            if (show) {
+              item.style.opacity = '1';
+              item.style.transform = 'translateY(0)';
+              item.style.pointerEvents = 'auto';
+            } else {
+              item.style.opacity = '0.18';
+              item.style.transform = 'translateY(8px)';
+              item.style.pointerEvents = 'none';
+            }
+          });
+        });
+      });
+
+      // ===== SMOOTH SCROLL =====
+      document.querySelectorAll('a[href^="#"]').forEach(a => {
+        a.addEventListener('click', e => {
+          const target = document.querySelector(a.getAttribute('href'));
+          if (target) {
+            e.preventDefault();
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
