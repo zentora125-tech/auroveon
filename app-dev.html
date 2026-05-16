@@ -1,0 +1,3133 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>App Development | Auroveon</title>
+    <meta
+      name="description"
+      content="Native & cross-platform mobile apps engineered for scale, speed, and unforgettable user experiences."
+    />
+    <meta name="theme-color" content="#080A08" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;1,700;1,800&family=JetBrains+Mono:wght@400;500;700&family=DM+Serif+Display:ital@0;1&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      :root {
+        --bg: #080a08;
+        --acc: #39ff14;
+        --acc2: #39ff14;
+        --acc-dim: #2bc410;
+        --acc-glow: rgba(57, 255, 20, 0.18);
+        --acc2-glow: rgba(57, 255, 20, 0.14);
+        --tp: #f0f5f0;
+        --ts: #7a8a7a;
+        --tm: #3a4a3a;
+        --bd: rgba(57, 255, 20, 0.1);
+        --bds: rgba(57, 255, 20, 0.26);
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        background:
+          radial-gradient(
+            ellipse 80% 40% at 70% 0%,
+            rgba(57, 255, 20, 0.09),
+            transparent
+          ),
+          radial-gradient(
+            ellipse 60% 30% at 20% 60%,
+            rgba(57, 255, 20, 0.06),
+            transparent
+          ),
+          #080a08;
+        color: var(--tp);
+        font-family: "Poppins", sans-serif;
+        overflow-x: hidden;
+        -webkit-font-smoothing: antialiased;
+      }
+      @media (min-width: 1024px) {
+        body {
+          cursor: none;
+        }
+      }
+      .dm {
+        font-family: "DM Serif Display", serif;
+      }
+      .mono {
+        font-family: "JetBrains Mono", monospace;
+      }
+      .wrap {
+        width: min(1360px, calc(100% - 3rem));
+        margin: 0 auto;
+      }
+      @media (min-width: 1024px) {
+        .wrap {
+          width: min(1360px, calc(100% - 6rem));
+        }
+      }
+
+      /* CURSOR */
+      .cd,
+      .cr {
+        position: fixed;
+        top: 0;
+        left: 0;
+        transform: translate(-50%, -50%);
+        pointer-events: none;
+        z-index: 9999;
+        opacity: 0;
+      }
+      .cd {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--acc);
+        box-shadow: 0 0 18px rgba(57, 255, 20, 0.8);
+      }
+      .cr {
+        width: 46px;
+        height: 46px;
+        border-radius: 50%;
+        border: 1px solid rgba(57, 255, 20, 0.28);
+        transition:
+          width 0.22s,
+          height 0.22s,
+          border-color 0.22s;
+      }
+      .cr.hov {
+        width: 68px;
+        height: 68px;
+        border-color: rgba(57, 255, 20, 0.55);
+      }
+      @media (max-width: 1023px) {
+        .cd,
+        .cr {
+          display: none;
+        }
+      }
+
+      /* NOISE */
+      .noise {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: 4;
+        opacity: 0.03;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+        background-size: 200px;
+      }
+
+      /* NAV */
+      .nav-glass {
+        background: rgba(8, 10, 8, 0.86);
+        border-bottom: 0px solid var(--bd);
+        backdrop-filter: blur(20px);
+      }
+      .nl {
+        color: var(--ts);
+        transition: color 0.22s;
+        text-decoration: none;
+        font-size: 0.875rem;
+        font-weight: 500;
+      }
+      .nl:hover,
+      .nl.act {
+        color: var(--tp);
+      }
+
+      /* GLASS */
+      .glass {
+        background: linear-gradient(
+          160deg,
+          rgba(18, 24, 18, 0.8),
+          rgba(9, 12, 9, 0.6)
+        );
+        border: 1px solid var(--bd);
+        backdrop-filter: blur(18px);
+        box-shadow:
+          0 16px 50px rgba(0, 0, 0, 0.3),
+          inset 0 1px 0 rgba(255, 255, 255, 0.04);
+      }
+      .contact-card {
+        background: linear-gradient(
+          180deg,
+          rgba(8, 10, 8, 0.94),
+          rgba(8, 10, 8, 0.78)
+        );
+      }
+      .cta-image-panel {
+        position: absolute;
+        inset: 0;
+        background: url("https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8YXBwJTIwZGV2ZWxvcG1lbnR8ZW58MHx8MHx8fDA%3D")
+          center/cover no-repeat;
+        filter: saturate(0.5) brightness(0.42);
+      }
+      .hero-spotlight {
+        position: absolute;
+        border-radius: 9999px;
+        filter: blur(120px);
+        pointer-events: none;
+      }
+      .section-kicker {
+        font-family: "Poppins", sans-serif;
+        font-size: 0.74rem;
+        font-weight: 700;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--ts);
+      }
+
+      /* REVEAL */
+      .rv {
+        opacity: 0;
+        transform: translateY(36px);
+        transition:
+          opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1),
+          transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+      .rv.vis {
+        opacity: 1;
+        transform: none;
+      }
+
+      /* EYEBROW */
+      .ey {
+        font-family: "JetBrains Mono", monospace;
+        color: var(--acc);
+        font-size: 0.68rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+      }
+      .ey2 {
+        font-family: "JetBrains Mono", monospace;
+        color: var(--acc2);
+        font-size: 0.68rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+      }
+
+      /* SHINE */
+      @keyframes shine {
+        0% {
+          background-position: -200% center;
+        }
+        100% {
+          background-position: 200% center;
+        }
+      }
+      .sw {
+        display: inline;
+        background: linear-gradient(
+          90deg,
+          #fff 0%,
+          #fff 35%,
+          #b9ffb0 44%,
+          #eaffea 50%,
+          #b9ffb0 56%,
+          #fff 65%,
+          #fff 100%
+        );
+        background-size: 200% auto;
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: shine 4.5s linear infinite;
+      }
+      .sw2 {
+        display: inline;
+        background: linear-gradient(
+          90deg,
+          #39ff14 0%,
+          #c7ff83 40%,
+          #39ff14 80%,
+          #c7ff83 100%
+        );
+        background-size: 200% auto;
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: shine 3.5s linear infinite;
+      }
+
+      /* PULSE */
+      @keyframes pdot {
+        0%,
+        100% {
+          transform: scale(1);
+          opacity: 1;
+        }
+        50% {
+          transform: scale(1.5);
+          opacity: 0.7;
+        }
+      }
+      .pd {
+        animation: pdot 1.6s ease-in-out infinite;
+      }
+
+      /* FLOAT */
+      @keyframes fla {
+        0%,
+        100% {
+          transform: translateY(0) rotate(-1deg);
+        }
+        50% {
+          transform: translateY(-10px) rotate(0.5deg);
+        }
+      }
+      @keyframes flb {
+        0%,
+        100% {
+          transform: translateY(0) rotate(1deg);
+        }
+        50% {
+          transform: translateY(-7px) rotate(-1deg);
+        }
+      }
+      .fla {
+        animation: fla 5.5s ease-in-out infinite;
+      }
+      .flb {
+        animation: flb 7s ease-in-out infinite;
+      }
+
+      /* MARQUEE */
+      .mqt {
+        display: flex;
+        width: max-content;
+        animation: mql 30s linear infinite;
+      }
+      @keyframes mql {
+        0% {
+          transform: translateX(0);
+        }
+        100% {
+          transform: translateX(-50%);
+        }
+      }
+
+      /* COUNTER */
+      .cv {
+        font-variant-numeric: tabular-nums;
+      }
+
+      /* SCROLLBAR */
+      ::-webkit-scrollbar {
+        width: 4px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #080a08;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: rgba(57, 255, 20, 0.3);
+        border-radius: 4px;
+      }
+
+      /* ═══ HERO SPECIAL ELEMENTS ═══ */
+      .hero-bg-ring {
+        position: absolute;
+        border-radius: 50%;
+        border: 1px solid rgba(57, 255, 20, 0.06);
+        animation: spin-slow 30s linear infinite;
+      }
+      @keyframes spin-slow {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+      .hero-phone-frame {
+        position: relative;
+        width: 240px;
+        height: 480px;
+        border-radius: 38px;
+        border: 2px solid rgba(57, 255, 20, 0.3);
+        background: linear-gradient(
+          160deg,
+          rgba(12, 18, 12, 0.95),
+          rgba(6, 8, 6, 0.98)
+        );
+        box-shadow:
+          0 0 60px rgba(57, 255, 20, 0.12),
+          0 40px 100px rgba(0, 0, 0, 0.6),
+          inset 0 1px 0 rgba(255, 255, 255, 0.06);
+        overflow: hidden;
+      }
+      .phone-notch {
+        position: absolute;
+        top: 12px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 22px;
+        border-radius: 12px;
+        background: rgba(0, 0, 0, 0.9);
+        z-index: 10;
+      }
+      .phone-screen-content {
+        position: absolute;
+        inset: 0;
+        padding: 50px 16px 20px;
+      }
+
+      /* ═══ ORBIT SECTION ═══ */
+      .orbit-wrapper {
+        position: relative;
+        width: 420px;
+        height: 420px;
+        flex-shrink: 0;
+      }
+      .orbit-center {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle,
+          rgba(57, 255, 20, 0.2),
+          rgba(57, 255, 20, 0.05)
+        );
+        border: 1px solid rgba(57, 255, 20, 0.3);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 0 40px rgba(57, 255, 20, 0.15);
+      }
+      .orbit-ring {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        border-radius: 50%;
+        border: 1px dashed rgba(57, 255, 20, 0.15);
+      }
+      .orbit-planet {
+        position: absolute;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(
+          135deg,
+          rgba(18, 24, 18, 0.9),
+          rgba(10, 14, 10, 0.8)
+        );
+        border: 1px solid var(--bd);
+        backdrop-filter: blur(12px);
+      }
+      @keyframes orbit1 {
+        from {
+          transform: translate(-50%, -50%) rotate(0deg) translateX(var(--r))
+            rotate(0deg);
+        }
+        to {
+          transform: translate(-50%, -50%) rotate(360deg) translateX(var(--r))
+            rotate(-360deg);
+        }
+      }
+      @keyframes orbit2 {
+        from {
+          transform: translate(-50%, -50%) rotate(120deg) translateX(var(--r))
+            rotate(-120deg);
+        }
+        to {
+          transform: translate(-50%, -50%) rotate(480deg) translateX(var(--r))
+            rotate(-480deg);
+        }
+      }
+      @keyframes orbit3 {
+        from {
+          transform: translate(-50%, -50%) rotate(240deg) translateX(var(--r))
+            rotate(-240deg);
+        }
+        to {
+          transform: translate(-50%, -50%) rotate(600deg) translateX(var(--r))
+            rotate(-600deg);
+        }
+      }
+
+      /* ═══ ZIGZAG SECTION ═══ */
+      .zz-step {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 5rem;
+        align-items: center;
+      }
+      .zz-step:nth-child(even) {
+        direction: rtl;
+      }
+      .zz-step:nth-child(even) > * {
+        direction: ltr;
+      }
+      @media (max-width: 900px) {
+        .zz-step {
+          grid-template-columns: 1fr;
+          direction: ltr;
+        }
+        .zz-step:nth-child(even) {
+          direction: ltr;
+        }
+      }
+
+      /* ═══ DIAGONAL CUT ═══ */
+      .diag-cut {
+        position: relative;
+        clip-path: polygon(0 4%, 100% 0%, 100% 96%, 0 100%);
+      }
+      @media (max-width: 767px) {
+        .diag-cut {
+          clip-path: none;
+        }
+      }
+
+      /* ═══ PLATFORM STRIP ═══ */
+      .plat-strip {
+        display: flex;
+        align-items: stretch;
+        border: 1px solid var(--bd);
+        border-radius: 28px;
+        overflow: hidden;
+      }
+      .plat-item {
+        flex: 1;
+        padding: 2rem 1.5rem;
+        position: relative;
+        transition: background 0.3s;
+      }
+      .plat-item:not(:last-child) {
+        border-right: 1px solid var(--bd);
+      }
+      .plat-item:hover {
+        background: rgba(57, 255, 20, 0.04);
+      }
+      .plat-item::after {
+        content: "";
+        position: absolute;
+        left: 1.5rem;
+        right: 1.5rem;
+        bottom: 0;
+        height: 2px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          var(--acc),
+          transparent
+        );
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.3s;
+      }
+      .plat-item:hover::after {
+        transform: scaleX(1);
+      }
+      @media (max-width: 767px) {
+        .plat-strip {
+          flex-direction: column;
+        }
+        .plat-item:not(:last-child) {
+          border-right: none;
+          border-bottom: 1px solid var(--bd);
+        }
+      }
+
+      /* ═══ TIMELINE VERTICAL ═══ */
+      .vtl {
+        position: relative;
+        padding-left: 3rem;
+      }
+      .vtl::before {
+        content: "";
+        position: absolute;
+        left: 0.875rem;
+        top: 0;
+        bottom: 0;
+        width: 1px;
+        background: linear-gradient(
+          180deg,
+          rgba(57, 255, 20, 0),
+          rgba(57, 255, 20, 0.4),
+          rgba(57, 255, 20, 0)
+        );
+      }
+      .vtl-item {
+        position: relative;
+        padding-bottom: 3rem;
+      }
+      .vtl-dot {
+        position: absolute;
+        left: -2.125rem;
+        top: 0.375rem;
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        background: var(--acc);
+        box-shadow: 0 0 16px rgba(57, 255, 20, 0.5);
+        border: 2px solid #080a08;
+      }
+      .vtl-connector {
+        position: absolute;
+        left: -2.035rem;
+        top: 1.25rem;
+        width: 1px;
+        height: calc(100% - 0.5rem);
+        background: linear-gradient(
+          180deg,
+          rgba(57, 255, 20, 0.4),
+          rgba(57, 255, 20, 0)
+        );
+      }
+
+      /* ═══ STACK CARDS ═══ */
+      .stack-card {
+        transition:
+          transform 0.3s,
+          box-shadow 0.3s,
+          border-color 0.3s;
+      }
+      .stack-card:hover {
+        transform: translateX(10px) translateY(-4px);
+        border-color: var(--bds);
+        box-shadow:
+          0 20px 60px rgba(0, 0, 0, 0.4),
+          0 0 40px rgba(57, 255, 20, 0.08);
+      }
+
+      /* ═══ BIG STAT ═══ */
+      .big-stat-row {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        border: 1px solid var(--bd);
+        border-radius: 28px;
+        overflow: hidden;
+      }
+      .big-stat {
+        padding: 2.5rem 2rem;
+        position: relative;
+        transition: background 0.3s;
+      }
+      .big-stat:not(:last-child) {
+        border-right: 1px solid var(--bd);
+      }
+      .big-stat::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+          circle at 20% 30%,
+          rgba(57, 255, 20, 0.06),
+          transparent 60%
+        );
+        opacity: 0;
+        transition: opacity 0.3s;
+      }
+      .big-stat:hover::before {
+        opacity: 1;
+      }
+      @media (max-width: 767px) {
+        .big-stat-row {
+          grid-template-columns: 1fr 1fr;
+        }
+        .big-stat:nth-child(2) {
+          border-right: none;
+        }
+        .big-stat:nth-child(3) {
+          border-right: 1px solid var(--bd);
+        }
+        .big-stat:nth-child(1),
+        .big-stat:nth-child(2) {
+          border-bottom: 1px solid var(--bd);
+        }
+      }
+
+      /* ═══ MARQUEE ═══ */
+      .mq-wrap {
+        overflow: hidden;
+      }
+
+      /* ═══ FLOATING PHONE VISUAL ═══ */
+      .app-ui-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        background: rgba(12, 18, 12, 0.9);
+        border: 1px solid rgba(57, 255, 20, 0.2);
+        border-radius: 999px;
+        padding: 0.4rem 0.9rem;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.65rem;
+        color: var(--ts);
+      }
+
+      /* ═══ WHATSAPP ═══ */
+      .wfab {
+        position: fixed;
+        bottom: 28px;
+        right: 16px;
+        z-index: 9999;
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        background: #25d366;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 20px rgba(37, 211, 102, 0.45);
+        transition: transform 0.25s;
+        text-decoration: none;
+      }
+      .wfab:hover {
+        transform: scale(1.1);
+      }
+
+      /* ═══ FOOTER LINKS ═══ */
+      .fl {
+        color: var(--ts);
+        text-decoration: none;
+        transition: color 0.2s;
+        font-size: 0.875rem;
+      }
+      .fl:hover {
+        color: var(--tp);
+      }
+      .fsl {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 42px;
+        height: 42px;
+        border: 1px solid rgba(57, 255, 20, 0.12);
+        border-radius: 50%;
+        background: rgba(20, 28, 20, 0.6);
+        transition:
+          border-color 0.2s,
+          transform 0.2s;
+      }
+      .fsl svg {
+        width: 18px;
+        height: 18px;
+        fill: #888;
+        transition: fill 0.2s;
+      }
+      .fsl:hover {
+        border-color: var(--acc);
+        transform: translateY(-2px);
+      }
+      .fsl:hover svg {
+        fill: var(--acc);
+      }
+
+      /* ═══ PROGRESS BAR ANIM ═══ */
+      @keyframes bf {
+        from {
+          width: 0;
+        }
+        to {
+          width: var(--w);
+        }
+      }
+      .bf {
+        animation: bf 1.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+      }
+
+      /* ═══ GLOW LINE ═══ */
+      .glow-line {
+        height: 1px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(57, 255, 20, 0.3),
+          rgba(57, 255, 20, 0.16),
+          transparent
+        );
+      }
+
+      /* ═══ GRADIENT TEXT DUAL ═══ */
+      .dual-grad {
+        background: linear-gradient(120deg, #39ff14, #c7ff83);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="noise"></div>
+    <div class="cd" id="cd"></div>
+    <div class="cr" id="cr"></div>
+
+    <!-- ══════ NAV ══════ -->
+    <header
+      id="nav"
+      class="fixed left-0 top-0 z-50 w-full transition-all duration-300"
+    >
+      <div class="wrap flex h-20 items-center justify-between">
+        <a href="index.html" aria-label="Auroveon home">
+          <img
+            src="assets/WhatsApp Image 2026-05-09 at 09,19,43-Picsart-BackgroundRemover.png"
+            alt="Auroveon"
+            style="height: 58px; width: auto; object-fit: contain"
+          />
+        </a>
+        <nav class="hidden items-center gap-8 lg:flex">
+          <a class="nl" href="index.html#services">Services</a>
+          <a class="nl" href="index.html#story">Process</a>
+          <a class="nl" href="index.html#work">Work</a>
+          <a class="nl" href="web-development.html">Web Dev</a>
+          <a class="nl act" href="app-development.html">App Dev</a>
+          <a class="nl" href="seo.html">SEO</a>
+          <a class="nl" href="index.html#contact">Contact</a>
+        </nav>
+        <a
+          href="index.html#contact"
+          class="hidden lg:inline-flex items-center rounded-full border px-5 py-3 text-sm font-semibold transition-all hover:-translate-y-1"
+          style="
+            border-color: var(--acc);
+            color: var(--acc);
+            background: rgba(57, 255, 20, 0.02);
+            font-family: &quot;Poppins&quot;, sans-serif;
+          "
+          >Build Your App</a
+        >
+        <button
+          id="mBtn"
+          class="glass flex h-11 w-11 items-center justify-center rounded-full lg:hidden text-xl"
+        >
+          +
+        </button>
+      </div>
+      <div id="mMen" class="wrap pb-4 lg:hidden hidden">
+        <div class="glass rounded-[24px] px-6 py-6">
+          <div class="flex flex-col gap-5 text-center">
+            <a
+              href="index.html#services"
+              class="text-xl font-bold italic"
+              style="
+                color: var(--tp);
+                font-family: &quot;Poppins&quot;, sans-serif;
+              "
+              >Services</a
+            >
+            <a
+              href="web-development.html"
+              class="text-xl font-bold italic"
+              style="
+                color: var(--tp);
+                font-family: &quot;Poppins&quot;, sans-serif;
+              "
+              >Web Dev</a
+            >
+            <a
+              href="app-development.html"
+              class="text-xl font-bold italic"
+              style="
+                color: var(--acc);
+                font-family: &quot;Poppins&quot;, sans-serif;
+              "
+              >App Dev</a
+            >
+            <a
+              href="seo.html"
+              class="text-xl font-bold italic"
+              style="
+                color: var(--tp);
+                font-family: &quot;Poppins&quot;, sans-serif;
+              "
+              >SEO</a
+            >
+            <a
+              href="index.html#contact"
+              class="text-xl font-bold italic"
+              style="
+                color: var(--tp);
+                font-family: &quot;Poppins&quot;, sans-serif;
+              "
+              >Contact</a
+            >
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <!-- ══════════════════════════════════
+         HERO — CINEMATIC SPLIT
+    ══════════════════════════════════ -->
+      <section
+        id="hero"
+        class="relative flex min-h-screen items-center overflow-hidden pt-20"
+      >
+        <!-- Radial rings -->
+        <div
+          class="hero-bg-ring"
+          style="
+            width: 700px;
+            height: 700px;
+            top: 50%;
+            left: 60%;
+            margin-left: -350px;
+            margin-top: -350px;
+          "
+        ></div>
+        <div
+          class="hero-bg-ring"
+          style="
+            width: 480px;
+            height: 480px;
+            top: 50%;
+            left: 60%;
+            margin-left: -240px;
+            margin-top: -240px;
+            animation-direction: reverse;
+            animation-duration: 20s;
+          "
+        ></div>
+        <!-- Spotlights -->
+        <div
+          class="absolute pointer-events-none"
+          style="
+            width: 34rem;
+            height: 34rem;
+            top: -6rem;
+            right: -4rem;
+            background: radial-gradient(
+              circle,
+              rgba(57, 255, 20, 0.14),
+              transparent 62%
+            );
+            filter: blur(100px);
+          "
+        ></div>
+        <div
+          class="absolute pointer-events-none"
+          style="
+            width: 22rem;
+            height: 22rem;
+            bottom: 0;
+            left: -3rem;
+            background: radial-gradient(
+              circle,
+              rgba(57, 255, 20, 0.08),
+              transparent 66%
+            );
+            filter: blur(80px);
+          "
+        ></div>
+
+        <div class="wrap relative z-10 w-full py-10 lg:py-14">
+          <div
+            class="grid gap-10 lg:grid-cols-[1fr_480px] lg:items-start lg:gap-16"
+          >
+            <!-- LEFT -->
+            <div class="rv lg:pl-6 xl:pl-10">
+              <div
+                class="glass mb-6 inline-flex items-center gap-3 rounded-full px-4 py-2"
+                style="border-color: var(--bds)"
+              >
+                <span
+                  class="h-2 w-2 rounded-full pd"
+                  style="
+                    background: var(--acc);
+                    box-shadow: 0 0 12px rgba(57, 255, 20, 0.8);
+                  "
+                ></span>
+                <span class="ey">App Development Studio</span>
+              </div>
+
+              <h1
+                class="font-extrabold italic leading-[1.0] tracking-[-0.04em]"
+                style="
+                  font-size: clamp(2.8rem, 5.8vw, 5.4rem);
+                  font-family: &quot;Poppins&quot;, sans-serif;
+                "
+              >
+                <span class="sw">Apps That</span><br />
+                <span
+                  class="dm italic"
+                  style="
+                    font-size: 1.15em;
+                    -webkit-text-fill-color: transparent;
+                    background: linear-gradient(
+                      90deg,
+                      #f0f5f0,
+                      rgba(57, 255, 20, 0.9)
+                    );
+                    -webkit-background-clip: text;
+                    background-clip: text;
+                  "
+                  >Live in</span
+                ><br />
+                <span class="sw2">Every Pocket.</span>
+              </h1>
+
+              <p
+                class="mt-6 max-w-[40ch] text-base leading-[1.9]"
+                style="color: var(--ts)"
+              >
+                Native iOS, Android, and cross-platform apps engineered from
+                architecture to App Store. Not wrappers. Not templates. Real
+                code that scales, performs, and converts users into advocates.
+              </p>
+
+              <div class="mt-8 flex flex-wrap gap-3">
+                <a
+                  href="index.html#contact"
+                  class="inline-flex items-center justify-center rounded-full px-8 py-3.5 text-sm font-bold transition-all hover:-translate-y-1"
+                  style="
+                    background: var(--acc);
+                    color: #061006;
+                    font-family: &quot;Poppins&quot;, sans-serif;
+                    box-shadow: 0 0 40px rgba(57, 255, 20, 0.2);
+                  "
+                  >Start Your App</a
+                >
+                <a
+                  href="#platform"
+                  class="inline-flex items-center justify-center rounded-full border px-8 py-3.5 text-sm font-bold transition-all hover:-translate-y-1"
+                  style="
+                    border-color: var(--bds);
+                    color: var(--tp);
+                    font-family: &quot;Poppins&quot;, sans-serif;
+                  "
+                  >Explore Services</a
+                >
+              </div>
+            </div>
+
+            <!-- RIGHT — Phone Mockup -->
+            <div
+              class="hidden lg:flex flex-col items-center rv"
+              style="margin-left: -2rem; transition-delay: 0.18s"
+            >
+              <div class="fla relative">
+                <div class="hero-phone-frame">
+                  <div class="phone-notch"></div>
+                  <div class="phone-screen-content flex flex-col gap-3">
+                    <!-- App UI mockup inside phone -->
+                    <div class="flex items-center justify-between mb-1">
+                      <span
+                        class="mono text-[.58rem] uppercase tracking-[.15em]"
+                        style="color: var(--acc)"
+                        >Dashboard</span
+                      >
+                      <span class="mono text-[.58rem]" style="color: var(--ts)"
+                        >9:41 AM</span
+                      >
+                    </div>
+                    <div
+                      class="rounded-2xl p-3"
+                      style="
+                        background: rgba(57, 255, 20, 0.06);
+                        border: 1px solid rgba(57, 255, 20, 0.14);
+                      "
+                    >
+                      <div class="mono text-[.58rem]" style="color: var(--ts)">
+                        Total Revenue
+                      </div>
+                      <div
+                        class="font-bold italic text-lg mt-1"
+                        style="
+                          color: var(--tp);
+                          font-family: &quot;Poppins&quot;, sans-serif;
+                        "
+                      >
+                        $84,320
+                      </div>
+                      <div
+                        class="mono text-[.6rem] mt-1"
+                        style="color: var(--acc)"
+                      >
+                        ▲ 24.3% this week
+                      </div>
+                    </div>
+                    <!-- mini chart bars -->
+                    <div class="flex items-end gap-1 px-1" style="height: 50px">
+                      <div
+                        class="flex-1 rounded-t"
+                        style="height: 30%; background: rgba(57, 255, 20, 0.15)"
+                      ></div>
+                      <div
+                        class="flex-1 rounded-t"
+                        style="height: 55%; background: rgba(57, 255, 20, 0.2)"
+                      ></div>
+                      <div
+                        class="flex-1 rounded-t"
+                        style="height: 40%; background: rgba(57, 255, 20, 0.15)"
+                      ></div>
+                      <div
+                        class="flex-1 rounded-t"
+                        style="height: 75%; background: rgba(57, 255, 20, 0.3)"
+                      ></div>
+                      <div
+                        class="flex-1 rounded-t"
+                        style="height: 60%; background: rgba(57, 255, 20, 0.2)"
+                      ></div>
+                      <div
+                        class="flex-1 rounded-t"
+                        style="
+                          height: 90%;
+                          background: var(--acc);
+                          box-shadow: 0 0 8px rgba(57, 255, 20, 0.4);
+                        "
+                      ></div>
+                      <div
+                        class="flex-1 rounded-t"
+                        style="height: 70%; background: rgba(57, 255, 20, 0.25)"
+                      ></div>
+                    </div>
+                    <!-- quick stats row -->
+                    <div class="grid grid-cols-2 gap-2">
+                      <div
+                        class="rounded-xl p-2"
+                        style="
+                          background: rgba(57, 255, 20, 0.06);
+                          border: 1px solid rgba(57, 255, 20, 0.14);
+                        "
+                      >
+                        <div
+                          class="mono text-[.55rem]"
+                          style="color: var(--ts)"
+                        >
+                          Users
+                        </div>
+                        <div
+                          class="font-bold text-sm"
+                          style="
+                            color: var(--tp);
+                            font-family: &quot;Poppins&quot;, sans-serif;
+                          "
+                        >
+                          12.4K
+                        </div>
+                      </div>
+                      <div
+                        class="rounded-xl p-2"
+                        style="
+                          background: rgba(57, 255, 20, 0.06);
+                          border: 1px solid rgba(57, 255, 20, 0.14);
+                        "
+                      >
+                        <div
+                          class="mono text-[.55rem]"
+                          style="color: var(--ts)"
+                        >
+                          Retention
+                        </div>
+                        <div
+                          class="font-bold text-sm"
+                          style="
+                            color: var(--tp);
+                            font-family: &quot;Poppins&quot;, sans-serif;
+                          "
+                        >
+                          78.2%
+                        </div>
+                      </div>
+                    </div>
+                    <!-- Notification -->
+                    <div
+                      class="rounded-2xl px-3 py-2 mt-2 flex items-center gap-2"
+                      style="
+                        background: rgba(57, 255, 20, 0.04);
+                        border: 1px solid rgba(57, 255, 20, 0.12);
+                      "
+                    >
+                      <span
+                        class="h-2 w-2 rounded-full pd flex-shrink-0"
+                        style="background: var(--acc)"
+                      ></span>
+                      <span class="mono text-[.58rem]" style="color: var(--ts)"
+                        >New order #4821 — $320</span
+                      >
+                    </div>
+                    <!-- bottom nav bar -->
+                    <div
+                      class="flex justify-around mt-auto pt-2 pb-1"
+                      style="border-top: 1px solid rgba(57, 255, 20, 0.1)"
+                    >
+                      <div class="flex flex-col items-center gap-1">
+                        <div
+                          style="
+                            width: 18px;
+                            height: 2px;
+                            background: var(--acc);
+                            border-radius: 2px;
+                          "
+                        ></div>
+                        <span
+                          class="mono text-[.52rem]"
+                          style="color: var(--acc)"
+                          >Home</span
+                        >
+                      </div>
+                      <span class="mono text-[.55rem]" style="color: var(--tm)"
+                        >Analytics</span
+                      >
+                      <span class="mono text-[.55rem]" style="color: var(--tm)"
+                        >Orders</span
+                      >
+                      <span class="mono text-[.55rem]" style="color: var(--tm)"
+                        >Profile</span
+                      >
+                    </div>
+                  </div>
+                </div>
+                <!-- Floating pills around phone -->
+                <div
+                  class="absolute fla"
+                  style="top: -20px; right: -100px; transition-delay: 0.3s"
+                >
+                  <div
+                    class="glass app-ui-pill"
+                    style="
+                      border-color: rgba(57, 255, 20, 0.22);
+                      color: var(--acc2);
+                    "
+                  >
+                    <span
+                      class="h-1.5 w-1.5 rounded-full pd"
+                      style="background: var(--acc2)"
+                    ></span>
+                    React Native
+                  </div>
+                </div>
+                <div class="absolute flb" style="bottom: 60px; left: -120px">
+                  <div class="glass app-ui-pill">
+                    <span
+                      class="h-1.5 w-1.5 rounded-full pd"
+                      style="background: var(--acc)"
+                    ></span>
+                    Swift / Kotlin
+                  </div>
+                </div>
+                <div
+                  class="absolute fla"
+                  style="bottom: 160px; right: -90px; animation-delay: 1s"
+                >
+                  <div
+                    class="glass rounded-xl px-3 py-2 text-center"
+                    style="border-color: rgba(57, 255, 20, 0.18)"
+                  >
+                    <div class="mono text-[.62rem]" style="color: var(--acc)">
+                      Lighthouse
+                    </div>
+                    <div
+                      class="font-bold text-lg"
+                      style="
+                        color: var(--tp);
+                        font-family: &quot;Poppins&quot;, sans-serif;
+                      "
+                    >
+                      98
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- GLOW DIVIDER -->
+      <div class="glow-line"></div>
+
+      <!-- ══════════════════════════════════
+         TECH MARQUEE
+    ══════════════════════════════════ -->
+      <section class="overflow-hidden py-8">
+        <div class="wrap">
+          <div class="glass mq-wrap rounded-full px-2 py-1">
+            <div class="mqt">
+              <span
+                class="mono flex items-center whitespace-nowrap px-6 py-3 text-[.72rem] uppercase tracking-[.16em]"
+                style="color: var(--ts)"
+                >React Native<span class="mx-5" style="color: var(--acc)"
+                  >·</span
+                ></span
+              >
+              <span
+                class="mono flex items-center whitespace-nowrap px-6 py-3 text-[.72rem] uppercase tracking-[.16em]"
+                style="color: var(--ts)"
+                >Swift<span class="mx-5" style="color: var(--acc2)"
+                  >·</span
+                ></span
+              >
+              <span
+                class="mono flex items-center whitespace-nowrap px-6 py-3 text-[.72rem] uppercase tracking-[.16em]"
+                style="color: var(--ts)"
+                >Kotlin<span class="mx-5" style="color: var(--acc)"
+                  >·</span
+                ></span
+              >
+              <span
+                class="mono flex items-center whitespace-nowrap px-6 py-3 text-[.72rem] uppercase tracking-[.16em]"
+                style="color: var(--ts)"
+                >Flutter<span class="mx-5" style="color: var(--acc2)"
+                  >·</span
+                ></span
+              >
+              <span
+                class="mono flex items-center whitespace-nowrap px-6 py-3 text-[.72rem] uppercase tracking-[.16em]"
+                style="color: var(--ts)"
+                >Expo<span class="mx-5" style="color: var(--acc)">·</span></span
+              >
+              <span
+                class="mono flex items-center whitespace-nowrap px-6 py-3 text-[.72rem] uppercase tracking-[.16em]"
+                style="color: var(--ts)"
+                >Firebase<span class="mx-5" style="color: var(--acc2)"
+                  >·</span
+                ></span
+              >
+              <span
+                class="mono flex items-center whitespace-nowrap px-6 py-3 text-[.72rem] uppercase tracking-[.16em]"
+                style="color: var(--ts)"
+                >Supabase<span class="mx-5" style="color: var(--acc)"
+                  >·</span
+                ></span
+              >
+              <span
+                class="mono flex items-center whitespace-nowrap px-6 py-3 text-[.72rem] uppercase tracking-[.16em]"
+                style="color: var(--ts)"
+                >GraphQL<span class="mx-5" style="color: var(--acc2)"
+                  >·</span
+                ></span
+              >
+              <span
+                class="mono flex items-center whitespace-nowrap px-6 py-3 text-[.72rem] uppercase tracking-[.16em]"
+                style="color: var(--ts)"
+                >Node.js<span class="mx-5" style="color: var(--acc)"
+                  >·</span
+                ></span
+              >
+              <span
+                class="mono flex items-center whitespace-nowrap px-6 py-3 text-[.72rem] uppercase tracking-[.16em]"
+                style="color: var(--ts)"
+                >Stripe SDK<span class="mx-5" style="color: var(--acc2)"
+                  >·</span
+                ></span
+              >
+              <span
+                class="mono flex items-center whitespace-nowrap px-6 py-3 text-[.72rem] uppercase tracking-[.16em]"
+                style="color: var(--ts)"
+                >Push Notifications<span class="mx-5" style="color: var(--acc)"
+                  >·</span
+                ></span
+              >
+              <span
+                class="mono flex items-center whitespace-nowrap px-6 py-3 text-[.72rem] uppercase tracking-[.16em]"
+                style="color: var(--ts)"
+                >App Store Connect<span class="mx-5" style="color: var(--acc2)"
+                  >·</span
+                ></span
+              >
+              <!-- clone -->
+              <span
+                class="mono flex items-center whitespace-nowrap px-6 py-3 text-[.72rem] uppercase tracking-[.16em]"
+                style="color: var(--ts)"
+                >React Native<span class="mx-5" style="color: var(--acc)"
+                  >·</span
+                ></span
+              >
+              <span
+                class="mono flex items-center whitespace-nowrap px-6 py-3 text-[.72rem] uppercase tracking-[.16em]"
+                style="color: var(--ts)"
+                >Swift<span class="mx-5" style="color: var(--acc2)"
+                  >·</span
+                ></span
+              >
+              <span
+                class="mono flex items-center whitespace-nowrap px-6 py-3 text-[.72rem] uppercase tracking-[.16em]"
+                style="color: var(--ts)"
+                >Kotlin<span class="mx-5" style="color: var(--acc)"
+                  >·</span
+                ></span
+              >
+              <span
+                class="mono flex items-center whitespace-nowrap px-6 py-3 text-[.72rem] uppercase tracking-[.16em]"
+                style="color: var(--ts)"
+                >Flutter<span class="mx-5" style="color: var(--acc2)"
+                  >·</span
+                ></span
+              >
+              <span
+                class="mono flex items-center whitespace-nowrap px-6 py-3 text-[.72rem] uppercase tracking-[.16em]"
+                style="color: var(--ts)"
+                >Expo<span class="mx-5" style="color: var(--acc)">·</span></span
+              >
+              <span
+                class="mono flex items-center whitespace-nowrap px-6 py-3 text-[.72rem] uppercase tracking-[.16em]"
+                style="color: var(--ts)"
+                >Firebase<span class="mx-5" style="color: var(--acc2)"
+                  >·</span
+                ></span
+              >
+              <span
+                class="mono flex items-center whitespace-nowrap px-6 py-3 text-[.72rem] uppercase tracking-[.16em]"
+                style="color: var(--ts)"
+                >Supabase<span class="mx-5" style="color: var(--acc)"
+                  >·</span
+                ></span
+              >
+              <span
+                class="mono flex items-center whitespace-nowrap px-6 py-3 text-[.72rem] uppercase tracking-[.16em]"
+                style="color: var(--ts)"
+                >GraphQL<span class="mx-5" style="color: var(--acc2)"
+                  >·</span
+                ></span
+              >
+              <span
+                class="mono flex items-center whitespace-nowrap px-6 py-3 text-[.72rem] uppercase tracking-[.16em]"
+                style="color: var(--ts)"
+                >Node.js<span class="mx-5" style="color: var(--acc)"
+                  >·</span
+                ></span
+              >
+              <span
+                class="mono flex items-center whitespace-nowrap px-6 py-3 text-[.72rem] uppercase tracking-[.16em]"
+                style="color: var(--ts)"
+                >Stripe SDK<span class="mx-5" style="color: var(--acc2)"
+                  >·</span
+                ></span
+              >
+              <span
+                class="mono flex items-center whitespace-nowrap px-6 py-3 text-[.72rem] uppercase tracking-[.16em]"
+                style="color: var(--ts)"
+                >Push Notifications<span class="mx-5" style="color: var(--acc)"
+                  >·</span
+                ></span
+              >
+              <span
+                class="mono flex items-center whitespace-nowrap px-6 py-3 text-[.72rem] uppercase tracking-[.16em]"
+                style="color: var(--ts)"
+                >App Store Connect<span class="mx-5" style="color: var(--acc2)"
+                  >·</span
+                ></span
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ══════════════════════════════════
+         PLATFORMS — HORIZONTAL STRIP (not cards)
+    ══════════════════════════════════ -->
+      <section id="platform" class="py-24 lg:py-32">
+        <div class="wrap">
+          <div class="text-center mb-14 rv">
+            <div class="ey2 mb-4">Every Platform. One Team.</div>
+            <h2
+              class="font-extrabold italic leading-[.94] tracking-[-0.04em]"
+              style="
+                font-size: clamp(2.4rem, 5vw, 4rem);
+                font-family: &quot;Poppins&quot;, sans-serif;
+              "
+            >
+              <span style="color: var(--tp)">We build where</span><br />
+              <span class="dual-grad">your users live.</span>
+            </h2>
+          </div>
+          <div class="plat-strip rv glass" style="transition-delay: 0.1s">
+            <div class="plat-item">
+              <div
+                class="mono text-[.62rem] uppercase tracking-[.18em] mb-4"
+                style="color: var(--acc)"
+              >
+                01 · iOS
+              </div>
+              <div
+                class="text-3xl font-bold italic mb-3"
+                style="
+                  color: var(--tp);
+                  font-family: &quot;Poppins&quot;, sans-serif;
+                "
+              ></div>
+              <div
+                class="font-extrabold italic text-4xl mb-2"
+                style="
+                  color: var(--tp);
+                  font-family: &quot;DM Serif Display&quot;, serif;
+                "
+              >
+                Native iOS
+              </div>
+              <p class="text-sm leading-7" style="color: var(--ts)">
+                Pure Swift &amp; SwiftUI. Human Interface Guidelines —
+                respected, then broken beautifully.
+              </p>
+              <div
+                class="mt-6 mono text-xs"
+                style="color: rgba(57, 255, 20, 0.4)"
+              >
+                swift · swiftui · xcode
+              </div>
+            </div>
+            <div class="plat-item">
+              <div
+                class="mono text-[.62rem] uppercase tracking-[.18em] mb-4"
+                style="color: var(--acc2)"
+              >
+                02 · Android
+              </div>
+              <div
+                class="font-extrabold italic text-4xl mb-2"
+                style="
+                  color: var(--tp);
+                  font-family: &quot;DM Serif Display&quot;, serif;
+                "
+              >
+                Native Android
+              </div>
+              <p class="text-sm leading-7" style="color: var(--ts)">
+                Kotlin-first with Jetpack Compose. Material You design system —
+                precisely implemented.
+              </p>
+              <div
+                class="mt-6 mono text-xs"
+                style="color: rgba(57, 255, 20, 0.35)"
+              >
+                kotlin · jetpack · compose
+              </div>
+            </div>
+            <div class="plat-item">
+              <div
+                class="mono text-[.62rem] uppercase tracking-[.18em] mb-4"
+                style="color: var(--acc)"
+              >
+                03 · Cross-Platform
+              </div>
+              <div
+                class="font-extrabold italic text-4xl mb-2"
+                style="
+                  color: var(--tp);
+                  font-family: &quot;DM Serif Display&quot;, serif;
+                "
+              >
+                React Native
+              </div>
+              <p class="text-sm leading-7" style="color: var(--ts)">
+                One codebase. Two stores. Native performance via bridgeless
+                architecture and Reanimated 3.
+              </p>
+              <div
+                class="mt-6 mono text-xs"
+                style="color: rgba(57, 255, 20, 0.4)"
+              >
+                react native · expo · reanimated
+              </div>
+            </div>
+            <div class="plat-item" style="border-right: none">
+              <div
+                class="mono text-[.62rem] uppercase tracking-[.18em] mb-4"
+                style="color: var(--acc2)"
+              >
+                04 · Flutter
+              </div>
+              <div
+                class="font-extrabold italic text-4xl mb-2"
+                style="
+                  color: var(--tp);
+                  font-family: &quot;DM Serif Display&quot;, serif;
+                "
+              >
+                Flutter
+              </div>
+              <p class="text-sm leading-7" style="color: var(--ts)">
+                Pixel-perfect across iOS, Android, and web from a single Dart
+                codebase. 120fps smooth.
+              </p>
+              <div
+                class="mt-6 mono text-xs"
+                style="color: rgba(57, 255, 20, 0.35)"
+              >
+                flutter · dart · 120fps
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ══════════════════════════════════
+         SERVICES — ORBIT LAYOUT
+    ══════════════════════════════════ -->
+      <section
+        class="py-24 lg:py-32 overflow-hidden"
+        style="
+          background: linear-gradient(
+            180deg,
+            transparent,
+            rgba(57, 255, 20, 0.02),
+            transparent
+          );
+        "
+      >
+        <div class="wrap">
+          <div class="grid gap-16 lg:grid-cols-[1fr_420px] lg:items-center">
+            <!-- LEFT TEXT -->
+            <div class="rv">
+              <div class="ey mb-4">What we build</div>
+              <h2
+                class="font-extrabold italic leading-[.92] tracking-[-0.04em] mb-6"
+                style="
+                  font-size: clamp(2.4rem, 5vw, 4.2rem);
+                  font-family: &quot;Poppins&quot;, sans-serif;
+                  color: var(--tp);
+                  max-width: 12ch;
+                "
+              >
+                Six types of apps.<br />
+                <span class="dual-grad">One obsession.</span>
+              </h2>
+              <p
+                class="text-base leading-8 mb-10 max-w-[36ch]"
+                style="color: var(--ts)"
+              >
+                Whether you need a consumer marketplace, enterprise tool, or
+                AI-powered mobile experience — we architect it to last.
+              </p>
+              <div class="space-y-4">
+                <div
+                  class="stack-card glass rounded-2xl p-5 flex items-start gap-4"
+                  style="border-left: 2px solid var(--acc)"
+                >
+                  <div
+                    class="mono text-xs pt-1"
+                    style="color: rgba(57, 255, 20, 0.4)"
+                  >
+                    01
+                  </div>
+                  <div>
+                    <div
+                      class="font-bold italic text-base"
+                      style="
+                        color: var(--tp);
+                        font-family: &quot;Poppins&quot;, sans-serif;
+                      "
+                    >
+                      Consumer Apps
+                    </div>
+                    <div class="text-sm mt-1" style="color: var(--ts)">
+                      Marketplace, social, on-demand, fitness — apps that
+                      acquire and retain millions.
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="stack-card glass rounded-2xl p-5 flex items-start gap-4"
+                  style="border-left: 2px solid var(--acc2)"
+                >
+                  <div
+                    class="mono text-xs pt-1"
+                    style="color: rgba(57, 255, 20, 0.4)"
+                  >
+                    02
+                  </div>
+                  <div>
+                    <div
+                      class="font-bold italic text-base"
+                      style="
+                        color: var(--tp);
+                        font-family: &quot;Poppins&quot;, sans-serif;
+                      "
+                    >
+                      Enterprise &amp; B2B Tools
+                    </div>
+                    <div class="text-sm mt-1" style="color: var(--ts)">
+                      Field ops, CRM, inventory, analytics dashboards that
+                      actually get used.
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="stack-card glass rounded-2xl p-5 flex items-start gap-4"
+                  style="border-left: 2px solid var(--acc)"
+                >
+                  <div
+                    class="mono text-xs pt-1"
+                    style="color: rgba(57, 255, 20, 0.4)"
+                  >
+                    03
+                  </div>
+                  <div>
+                    <div
+                      class="font-bold italic text-base"
+                      style="
+                        color: var(--tp);
+                        font-family: &quot;Poppins&quot;, sans-serif;
+                      "
+                    >
+                      SaaS Mobile Extensions
+                    </div>
+                    <div class="text-sm mt-1" style="color: var(--ts)">
+                      Companion apps that extend your platform to the pocket of
+                      every user.
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="stack-card glass rounded-2xl p-5 flex items-start gap-4"
+                  style="border-left: 2px solid var(--acc2)"
+                >
+                  <div
+                    class="mono text-xs pt-1"
+                    style="color: rgba(57, 255, 20, 0.4)"
+                  >
+                    04
+                  </div>
+                  <div>
+                    <div
+                      class="font-bold italic text-base"
+                      style="
+                        color: var(--tp);
+                        font-family: &quot;Poppins&quot;, sans-serif;
+                      "
+                    >
+                      AI-Powered Apps
+                    </div>
+                    <div class="text-sm mt-1" style="color: var(--ts)">
+                      LLM integrations, on-device ML, computer vision —
+                      intelligence built in.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- RIGHT ORBIT -->
+            <div
+              class="hidden lg:flex justify-center rv"
+              style="transition-delay: 0.2s"
+            >
+              <div class="orbit-wrapper">
+                <!-- Rings -->
+                <div
+                  class="orbit-ring"
+                  style="
+                    width: 160px;
+                    height: 160px;
+                    margin-left: -80px;
+                    margin-top: -80px;
+                  "
+                ></div>
+                <div
+                  class="orbit-ring"
+                  style="
+                    width: 280px;
+                    height: 280px;
+                    margin-left: -140px;
+                    margin-top: -140px;
+                  "
+                ></div>
+                <div
+                  class="orbit-ring"
+                  style="
+                    width: 390px;
+                    height: 390px;
+                    margin-left: -195px;
+                    margin-top: -195px;
+                  "
+                ></div>
+                <!-- Center -->
+                <div class="orbit-center">
+                  <div class="text-center">
+                    <div
+                      class="font-extrabold italic text-xl"
+                      style="
+                        color: var(--acc);
+                        font-family: &quot;Poppins&quot;, sans-serif;
+                      "
+                    >
+                      App
+                    </div>
+                    <div
+                      class="mono text-[.6rem] uppercase tracking-[.14em]"
+                      style="color: var(--ts)"
+                    >
+                      Studio
+                    </div>
+                  </div>
+                </div>
+                <!-- Inner planets - r=80 -->
+                <div
+                  class="orbit-planet"
+                  style="
+                    width: 52px;
+                    height: 52px;
+                    left: 50%;
+                    top: 50%;
+                    --r: 80px;
+                    animation: orbit1 8s linear infinite;
+                  "
+                >
+                  <svg
+                    width="22"
+                    height="22"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.6"
+                    style="color: var(--acc)"
+                  >
+                    <path d="M12 2a10 10 0 1 0 0 20A10 10 0 0 0 12 2z" />
+                    <path
+                      d="M2 12h20M12 2c-2.8 3-4 6-4 10s1.2 7 4 10M12 2c2.8 3 4 6 4 10s-1.2 7-4 10"
+                    />
+                  </svg>
+                </div>
+                <div
+                  class="orbit-planet"
+                  style="
+                    width: 52px;
+                    height: 52px;
+                    left: 50%;
+                    top: 50%;
+                    --r: 80px;
+                    animation: orbit3 8s linear infinite;
+                  "
+                >
+                  <svg
+                    width="22"
+                    height="22"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.6"
+                    style="color: var(--acc2)"
+                  >
+                    <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                    <path d="M2 17l10 5 10-5M2 12l10 5 10-5" />
+                  </svg>
+                </div>
+                <!-- Mid planets - r=140 -->
+                <div
+                  class="orbit-planet"
+                  style="
+                    width: 58px;
+                    height: 58px;
+                    left: 50%;
+                    top: 50%;
+                    --r: 140px;
+                    animation: orbit1 13s linear infinite reverse;
+                  "
+                >
+                  <svg
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.6"
+                    style="color: var(--acc)"
+                  >
+                    <path
+                      d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2v-4M9 21H5a2 2 0 0 1-2-2v-4m0 0h18"
+                    />
+                  </svg>
+                </div>
+                <div
+                  class="orbit-planet"
+                  style="
+                    width: 58px;
+                    height: 58px;
+                    left: 50%;
+                    top: 50%;
+                    --r: 140px;
+                    animation: orbit2 13s linear infinite reverse;
+                  "
+                >
+                  <svg
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.6"
+                    style="color: var(--acc2)"
+                  >
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                  </svg>
+                </div>
+                <div
+                  class="orbit-planet"
+                  style="
+                    width: 58px;
+                    height: 58px;
+                    left: 50%;
+                    top: 50%;
+                    --r: 140px;
+                    animation: orbit3 13s linear infinite reverse;
+                  "
+                >
+                  <svg
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.6"
+                    style="color: var(--acc)"
+                  >
+                    <path
+                      d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"
+                    />
+                  </svg>
+                </div>
+                <!-- Outer planets - r=192 -->
+                <div
+                  class="orbit-planet"
+                  style="
+                    width: 66px;
+                    height: 66px;
+                    left: 50%;
+                    top: 50%;
+                    --r: 192px;
+                    animation: orbit1 20s linear infinite;
+                  "
+                >
+                  <div class="text-center">
+                    <div
+                      class="mono text-[.56rem] uppercase tracking-[.1em]"
+                      style="color: var(--acc)"
+                    >
+                      iOS
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="orbit-planet"
+                  style="
+                    width: 66px;
+                    height: 66px;
+                    left: 50%;
+                    top: 50%;
+                    --r: 192px;
+                    animation: orbit2 20s linear infinite;
+                  "
+                >
+                  <div class="text-center">
+                    <div
+                      class="mono text-[.56rem] uppercase tracking-[.1em]"
+                      style="color: var(--acc2)"
+                    >
+                      Android
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="orbit-planet"
+                  style="
+                    width: 66px;
+                    height: 66px;
+                    left: 50%;
+                    top: 50%;
+                    --r: 192px;
+                    animation: orbit3 20s linear infinite;
+                  "
+                >
+                  <div class="text-center">
+                    <div
+                      class="mono text-[.56rem] uppercase"
+                      style="color: var(--acc)"
+                    >
+                      Flutter
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ══════════════════════════════════
+         STATS — BIG HORIZONTAL BAND
+    ══════════════════════════════════ -->
+      <section class="py-16">
+        <div class="wrap rv">
+          <div class="big-stat-row">
+            <div class="big-stat">
+              <div
+                class="cv font-extrabold italic"
+                data-count="40"
+                data-suffix="+"
+                style="
+                  font-size: clamp(2.8rem, 5vw, 4.5rem);
+                  color: var(--tp);
+                  font-family: &quot;Poppins&quot;, sans-serif;
+                "
+              >
+                0
+              </div>
+              <div
+                class="mono mt-2 text-[.68rem] uppercase tracking-[.18em]"
+                style="color: var(--ts)"
+              >
+                Apps shipped
+              </div>
+            </div>
+            <div class="big-stat">
+              <div
+                class="cv font-extrabold italic"
+                data-count="4.9"
+                data-suffix="★"
+                data-dec="1"
+                style="
+                  font-size: clamp(2.8rem, 5vw, 4.5rem);
+                  color: var(--acc);
+                  font-family: &quot;Poppins&quot;, sans-serif;
+                "
+              >
+                0
+              </div>
+              <div
+                class="mono mt-2 text-[.68rem] uppercase tracking-[.18em]"
+                style="color: var(--ts)"
+              >
+                Average store rating
+              </div>
+            </div>
+            <div class="big-stat">
+              <div
+                class="cv font-extrabold italic"
+                data-count="2.3"
+                data-suffix="M+"
+                data-dec="1"
+                style="
+                  font-size: clamp(2.8rem, 5vw, 4.5rem);
+                  color: var(--acc2);
+                  font-family: &quot;Poppins&quot;, sans-serif;
+                "
+              >
+                0
+              </div>
+              <div
+                class="mono mt-2 text-[.68rem] uppercase tracking-[.18em]"
+                style="color: var(--ts)"
+              >
+                Active downloads
+              </div>
+            </div>
+            <div class="big-stat">
+              <div
+                class="cv font-extrabold italic"
+                data-count="16"
+                data-suffix=" wks"
+                style="
+                  font-size: clamp(2.8rem, 5vw, 4.5rem);
+                  color: var(--tp);
+                  font-family: &quot;Poppins&quot;, sans-serif;
+                "
+              >
+                0
+              </div>
+              <div
+                class="mono mt-2 text-[.68rem] uppercase tracking-[.18em]"
+                style="color: var(--ts)"
+              >
+                Avg launch time
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ══════════════════════════════════
+         PERFORMANCE — DIAGONAL PANEL
+    ══════════════════════════════════ -->
+      <section class="py-24 lg:py-32">
+        <div class="wrap">
+          <div
+            class="diag-cut glass relative overflow-hidden rounded-[38px] px-8 py-14 lg:px-14 lg:py-16 rv"
+          >
+            <div
+              class="absolute pointer-events-none"
+              style="
+                width: 34rem;
+                height: 34rem;
+                top: -10rem;
+                right: -6rem;
+                background: radial-gradient(
+                  circle,
+                  rgba(57, 255, 20, 0.12),
+                  transparent 62%
+                );
+                filter: blur(90px);
+              "
+            ></div>
+            <div
+              class="absolute pointer-events-none"
+              style="
+                width: 20rem;
+                height: 20rem;
+                bottom: -6rem;
+                left: -4rem;
+                background: radial-gradient(
+                  circle,
+                  rgba(57, 255, 20, 0.08),
+                  transparent 60%
+                );
+                filter: blur(80px);
+              "
+            ></div>
+            <div
+              class="relative z-10 grid gap-12 lg:grid-cols-[1fr_1fr] lg:items-center"
+            >
+              <div>
+                <div class="ey mb-4">Performance by default</div>
+                <h2
+                  class="font-extrabold italic leading-[.93] tracking-[-0.04em] mb-6"
+                  style="
+                    font-size: clamp(2.4rem, 5vw, 3.8rem);
+                    font-family: &quot;Poppins&quot;, sans-serif;
+                    color: var(--tp);
+                  "
+                >
+                  Apps that load fast.<br />
+                  <span class="dual-grad">Apps that stay fast.</span>
+                </h2>
+                <p
+                  class="text-base leading-8 max-w-[34ch]"
+                  style="color: var(--ts)"
+                >
+                  Every release is profiled, bundle-analyzed, and stress-tested
+                  on real devices before it reaches your users.
+                </p>
+              </div>
+              <div class="space-y-5">
+                <div>
+                  <div class="flex justify-between text-sm mb-2">
+                    <span style="color: var(--ts)"
+                      >App Launch Time (cold start)</span
+                    ><span class="font-bold" style="color: var(--tp)"
+                      >&lt; 1.2s</span
+                    >
+                  </div>
+                  <div
+                    class="h-2.5 rounded-full"
+                    style="background: rgba(255, 255, 255, 0.05)"
+                  >
+                    <div
+                      class="bf h-full rounded-full"
+                      style="
+                        --w: 94%;
+                        width: 94%;
+                        background: linear-gradient(90deg, var(--acc), #8bff76);
+                      "
+                    ></div>
+                  </div>
+                </div>
+                <div>
+                  <div class="flex justify-between text-sm mb-2">
+                    <span style="color: var(--ts)"
+                      >Frame Rate (Reanimated UI)</span
+                    ><span class="font-bold" style="color: var(--tp)"
+                      >120fps</span
+                    >
+                  </div>
+                  <div
+                    class="h-2.5 rounded-full"
+                    style="background: rgba(255, 255, 255, 0.05)"
+                  >
+                    <div
+                      class="bf h-full rounded-full"
+                      style="
+                        --w: 100%;
+                        width: 100%;
+                        background: linear-gradient(
+                          90deg,
+                          var(--acc2),
+                          #c7ff83
+                        );
+                        animation-delay: 0.15s;
+                      "
+                    ></div>
+                  </div>
+                </div>
+                <div>
+                  <div class="flex justify-between text-sm mb-2">
+                    <span style="color: var(--ts)"
+                      >Crash Rate (production avg)</span
+                    ><span class="font-bold" style="color: var(--tp)"
+                      >&lt; 0.1%</span
+                    >
+                  </div>
+                  <div
+                    class="h-2.5 rounded-full"
+                    style="background: rgba(255, 255, 255, 0.05)"
+                  >
+                    <div
+                      class="bf h-full rounded-full"
+                      style="
+                        --w: 99%;
+                        width: 99%;
+                        background: linear-gradient(90deg, var(--acc), #8bff76);
+                        animation-delay: 0.3s;
+                      "
+                    ></div>
+                  </div>
+                </div>
+                <div>
+                  <div class="flex justify-between text-sm mb-2">
+                    <span style="color: var(--ts)"
+                      >App Store Review Pass Rate</span
+                    ><span class="font-bold" style="color: var(--tp)"
+                      >100%</span
+                    >
+                  </div>
+                  <div
+                    class="h-2.5 rounded-full"
+                    style="background: rgba(255, 255, 255, 0.05)"
+                  >
+                    <div
+                      class="bf h-full rounded-full"
+                      style="
+                        --w: 100%;
+                        width: 100%;
+                        background: linear-gradient(
+                          90deg,
+                          var(--acc2),
+                          #c7ff83
+                        );
+                        animation-delay: 0.45s;
+                      "
+                    ></div>
+                  </div>
+                </div>
+                <div>
+                  <div class="flex justify-between text-sm mb-2">
+                    <span style="color: var(--ts)"
+                      >Avg User Retention (30-day)</span
+                    ><span class="font-bold" style="color: var(--tp)">78%</span>
+                  </div>
+                  <div
+                    class="h-2.5 rounded-full"
+                    style="background: rgba(255, 255, 255, 0.05)"
+                  >
+                    <div
+                      class="bf h-full rounded-full"
+                      style="
+                        --w: 78%;
+                        width: 78%;
+                        background: linear-gradient(90deg, var(--acc), #8bff76);
+                        animation-delay: 0.6s;
+                      "
+                    ></div>
+                  </div>
+                </div>
+                <p
+                  class="mono text-[.64rem] italic uppercase tracking-[.12em] pt-1"
+                  style="color: var(--tm)"
+                >
+                  * Measured across all production apps. Reported via Firebase +
+                  App Store Connect.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ══════════════════════════════════
+         CASE STUDIES — VERTICAL EDITORIAL
+    ══════════════════════════════════ -->
+      <section id="work" class="py-24 lg:py-32">
+        <div class="wrap">
+          <div class="mb-12 rv">
+            <div class="ey mb-3">Featured launches</div>
+            <h2
+              class="font-extrabold italic leading-[.94] tracking-[-0.04em]"
+              style="
+                font-size: clamp(2.4rem, 5vw, 4rem);
+                font-family: &quot;Poppins&quot;, sans-serif;
+                color: var(--tp);
+                max-width: 10ch;
+              "
+            >
+              Apps in the wild.
+            </h2>
+          </div>
+          <!-- Horizontal editorial case rows with vertical gutter numbers -->
+          <div class="rv space-y-0">
+            <a
+              href="index.html#contact"
+              class="block py-8 transition-all hover:pl-3 group"
+              style="border-top: 1px solid rgba(57, 255, 20, 0.1)"
+            >
+              <div
+                class="grid gap-4 lg:grid-cols-[80px_140px_1fr_auto_30px] lg:items-center"
+              >
+                <div
+                  class="font-extrabold italic text-5xl leading-none"
+                  style="
+                    color: rgba(240, 245, 240, 0.1);
+                    font-family: &quot;Poppins&quot;, sans-serif;
+                  "
+                >
+                  01
+                </div>
+                <div>
+                  <span
+                    class="mono rounded-full px-3 py-1.5 text-xs uppercase tracking-[.14em]"
+                    style="
+                      color: var(--acc);
+                      border: 1px solid rgba(57, 255, 20, 0.18);
+                      background: rgba(57, 255, 20, 0.05);
+                    "
+                    >iOS · Android</span
+                  >
+                </div>
+                <div>
+                  <h3
+                    class="font-bold italic text-xl mb-2"
+                    style="
+                      color: var(--tp);
+                      font-family: &quot;Poppins&quot;, sans-serif;
+                    "
+                  >
+                    Pulse Health Coach
+                  </h3>
+                  <p
+                    class="text-sm leading-7 max-w-3xl"
+                    style="color: var(--ts)"
+                  >
+                    AI-powered fitness app with real-time motion tracking,
+                    adaptive workout plans, and social challenges. Reached 400K
+                    downloads in 3 months post-launch.
+                  </p>
+                </div>
+                <div
+                  class="mono text-xs uppercase tracking-[.16em]"
+                  style="color: var(--acc)"
+                >
+                  400K downloads
+                </div>
+                <div
+                  class="text-xl transition-transform group-hover:translate-x-2"
+                  style="color: var(--acc)"
+                >
+                  →
+                </div>
+              </div>
+            </a>
+            <a
+              href="index.html#contact"
+              class="block py-8 transition-all hover:pl-3 group"
+              style="border-top: 1px solid rgba(57, 255, 20, 0.1)"
+            >
+              <div
+                class="grid gap-4 lg:grid-cols-[80px_140px_1fr_auto_30px] lg:items-center"
+              >
+                <div
+                  class="font-extrabold italic text-5xl leading-none"
+                  style="
+                    color: rgba(240, 245, 240, 0.1);
+                    font-family: &quot;Poppins&quot;, sans-serif;
+                  "
+                >
+                  02
+                </div>
+                <div>
+                  <span
+                    class="mono rounded-full px-3 py-1.5 text-xs uppercase tracking-[.14em]"
+                    style="
+                      color: var(--acc2);
+                      border: 1px solid rgba(57, 255, 20, 0.18);
+                      background: rgba(57, 255, 20, 0.05);
+                    "
+                    >React Native</span
+                  >
+                </div>
+                <div>
+                  <h3
+                    class="font-bold italic text-xl mb-2"
+                    style="
+                      color: var(--tp);
+                      font-family: &quot;Poppins&quot;, sans-serif;
+                    "
+                  >
+                    Kargo — Last-Mile Delivery
+                  </h3>
+                  <p
+                    class="text-sm leading-7 max-w-3xl"
+                    style="color: var(--ts)"
+                  >
+                    Consumer + driver app with live GPS tracking, dynamic
+                    pricing, and an operations dashboard. Processes 20K+
+                    deliveries daily across 5 cities.
+                  </p>
+                </div>
+                <div
+                  class="mono text-xs uppercase tracking-[.16em]"
+                  style="color: var(--acc2)"
+                >
+                  20K orders/day
+                </div>
+                <div
+                  class="text-xl transition-transform group-hover:translate-x-2"
+                  style="color: var(--acc2)"
+                >
+                  →
+                </div>
+              </div>
+            </a>
+            <a
+              href="index.html#contact"
+              class="block py-8 transition-all hover:pl-3 group"
+              style="
+                border-top: 1px solid rgba(57, 255, 20, 0.1);
+                border-bottom: 1px solid rgba(57, 255, 20, 0.06);
+              "
+            >
+              <div
+                class="grid gap-4 lg:grid-cols-[80px_140px_1fr_auto_30px] lg:items-center"
+              >
+                <div
+                  class="font-extrabold italic text-5xl leading-none"
+                  style="
+                    color: rgba(240, 245, 240, 0.1);
+                    font-family: &quot;Poppins&quot;, sans-serif;
+                  "
+                >
+                  03
+                </div>
+                <div>
+                  <span
+                    class="mono rounded-full px-3 py-1.5 text-xs uppercase tracking-[.14em]"
+                    style="
+                      color: var(--acc);
+                      border: 1px solid rgba(57, 255, 20, 0.18);
+                      background: rgba(57, 255, 20, 0.05);
+                    "
+                    >Flutter</span
+                  >
+                </div>
+                <div>
+                  <h3
+                    class="font-bold italic text-xl mb-2"
+                    style="
+                      color: var(--tp);
+                      font-family: &quot;Poppins&quot;, sans-serif;
+                    "
+                  >
+                    Vault — Finance Manager
+                  </h3>
+                  <p
+                    class="text-sm leading-7 max-w-3xl"
+                    style="color: var(--ts)"
+                  >
+                    Personal finance app with bank-grade security, ML spend
+                    categorization, and goal-based savings. Rated 4.9 stars,
+                    featured by App Store editorial.
+                  </p>
+                </div>
+                <div
+                  class="mono text-xs uppercase tracking-[.16em]"
+                  style="color: var(--acc)"
+                >
+                  4.9★ featured
+                </div>
+                <div
+                  class="text-xl transition-transform group-hover:translate-x-2"
+                  style="color: var(--acc)"
+                >
+                  →
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ══════════════════════════════════
+         WHY US — ASYMMETRIC FEATURE GRID
+    ══════════════════════════════════ -->
+      <section
+        class="py-24 lg:py-32"
+        style="
+          background: linear-gradient(
+            180deg,
+            transparent,
+            rgba(57, 255, 20, 0.015),
+            transparent
+          );
+        "
+      >
+        <div class="wrap">
+          <div class="mb-14 rv">
+            <div class="ey2 mb-3">The Auroveon difference</div>
+            <h2
+              class="font-extrabold italic leading-[.93] tracking-[-0.04em]"
+              style="
+                font-size: clamp(2.4rem, 5vw, 4rem);
+                font-family: &quot;Poppins&quot;, sans-serif;
+                max-width: 13ch;
+              "
+            >
+              <span style="color: var(--tp)">Not an agency.</span><br />
+              <span class="dual-grad">A product studio.</span>
+            </h2>
+          </div>
+          <!-- Asymmetric grid: 1 wide + 2 narrow -->
+          <div class="grid gap-5 lg:grid-cols-[1.6fr_1fr_1fr] rv">
+            <div
+              class="glass rounded-[30px] p-8 relative overflow-hidden"
+              style="border-left: 2px solid var(--acc)"
+            >
+              <div
+                class="absolute right-0 top-0 w-40 h-40 opacity-5"
+                style="
+                  background: radial-gradient(circle, var(--acc), transparent);
+                "
+              ></div>
+              <div
+                class="w-14 h-14 rounded-2xl flex items-center justify-center mb-7"
+                style="
+                  border: 1px solid rgba(57, 255, 20, 0.2);
+                  background: rgba(57, 255, 20, 0.06);
+                "
+              >
+                <svg
+                  width="28"
+                  height="28"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.6"
+                  style="color: var(--acc)"
+                >
+                  <path
+                    d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275Z"
+                  />
+                </svg>
+              </div>
+              <h3
+                class="font-extrabold italic text-2xl mb-4"
+                style="
+                  color: var(--tp);
+                  font-family: &quot;DM Serif Display&quot;, serif;
+                "
+              >
+                Product-First Thinking
+              </h3>
+              <p class="text-sm leading-8" style="color: var(--ts)">
+                We don't just build what you ask for. We pressure-test features
+                against user psychology, market timing, and retention mechanics.
+                Your app ships with a strategy, not just code.
+              </p>
+              <div
+                class="mono mt-8 text-xs italic uppercase tracking-[.14em]"
+                style="color: var(--tm)"
+              >
+                Strategy is a feature
+              </div>
+            </div>
+            <div
+              class="glass rounded-[30px] p-7 relative overflow-hidden"
+              style="border-left: 2px solid var(--acc2)"
+            >
+              <div
+                class="w-12 h-12 rounded-2xl flex items-center justify-center mb-6"
+                style="
+                  border: 1px solid rgba(57, 255, 20, 0.2);
+                  background: rgba(57, 255, 20, 0.06);
+                "
+              >
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.6"
+                  style="color: var(--acc2)"
+                >
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                </svg>
+              </div>
+              <h3
+                class="font-extrabold italic text-xl mb-3"
+                style="
+                  color: var(--tp);
+                  font-family: &quot;DM Serif Display&quot;, serif;
+                "
+              >
+                Security &amp; Compliance
+              </h3>
+              <p class="text-sm leading-7" style="color: var(--ts)">
+                OWASP mobile top-10. End-to-end encryption. GDPR,
+                HIPAA-conscious architecture where needed. We build apps your
+                legal team doesn't fear.
+              </p>
+              <div
+                class="mono mt-6 text-xs italic uppercase tracking-[.14em]"
+                style="color: var(--tm)"
+              >
+                Zero compromises
+              </div>
+            </div>
+            <div
+              class="glass rounded-[30px] p-7 relative overflow-hidden"
+              style="border-left: 2px solid var(--acc)"
+            >
+              <div
+                class="w-12 h-12 rounded-2xl flex items-center justify-center mb-6"
+                style="
+                  border: 1px solid rgba(57, 255, 20, 0.2);
+                  background: rgba(57, 255, 20, 0.06);
+                "
+              >
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.6"
+                  style="color: var(--acc)"
+                >
+                  <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
+                </svg>
+              </div>
+              <h3
+                class="font-extrabold italic text-xl mb-3"
+                style="
+                  color: var(--tp);
+                  font-family: &quot;DM Serif Display&quot;, serif;
+                "
+              >
+                Growth Analytics
+              </h3>
+              <p class="text-sm leading-7" style="color: var(--ts)">
+                Every app ships with Mixpanel/Firebase funnels, retention
+                cohorts, and a 90-day insight report. We track what drives
+                growth, not just downloads.
+              </p>
+              <div
+                class="mono mt-6 text-xs italic uppercase tracking-[.14em]"
+                style="color: var(--tm)"
+              >
+                Data tells the truth
+              </div>
+            </div>
+          </div>
+          <!-- Second row: 2 narrow + 1 wide -->
+          <div
+            class="grid gap-5 lg:grid-cols-[1fr_1fr_1.6fr] mt-5 rv"
+            style="transition-delay: 0.1s"
+          >
+            <div
+              class="glass rounded-[30px] p-7"
+              style="border-left: 2px solid var(--acc2)"
+            >
+              <div
+                class="w-12 h-12 rounded-2xl flex items-center justify-center mb-6"
+                style="
+                  border: 1px solid rgba(57, 255, 20, 0.2);
+                  background: rgba(57, 255, 20, 0.06);
+                "
+              >
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.6"
+                  style="color: var(--acc2)"
+                >
+                  <path
+                    d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+                  />
+                  <path d="m22 6-10 7L2 6" />
+                </svg>
+              </div>
+              <h3
+                class="font-extrabold italic text-xl mb-3"
+                style="
+                  color: var(--tp);
+                  font-family: &quot;DM Serif Display&quot;, serif;
+                "
+              >
+                Direct Access
+              </h3>
+              <p class="text-sm leading-7" style="color: var(--ts)">
+                No account managers. You talk to the engineer and designer
+                building your app via shared Slack. Decisions move fast.
+              </p>
+            </div>
+            <div
+              class="glass rounded-[30px] p-7"
+              style="border-left: 2px solid var(--acc)"
+            >
+              <div
+                class="w-12 h-12 rounded-2xl flex items-center justify-center mb-6"
+                style="
+                  border: 1px solid rgba(57, 255, 20, 0.2);
+                  background: rgba(57, 255, 20, 0.06);
+                "
+              >
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.6"
+                  style="color: var(--acc)"
+                >
+                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                </svg>
+              </div>
+              <h3
+                class="font-extrabold italic text-xl mb-3"
+                style="
+                  color: var(--tp);
+                  font-family: &quot;DM Serif Display&quot;, serif;
+                "
+              >
+                IP Ownership
+              </h3>
+              <p class="text-sm leading-7" style="color: var(--ts)">
+                You own 100% of the code, designs, and assets from day one. No
+                platform lock-in. No hidden licensing. Your app, your rules.
+              </p>
+            </div>
+            <div
+              class="glass rounded-[30px] p-8 relative overflow-hidden"
+              style="border-left: 2px solid var(--acc2)"
+            >
+              <div
+                class="absolute right-0 top-0 w-40 h-40 opacity-5"
+                style="
+                  background: radial-gradient(circle, var(--acc2), transparent);
+                "
+              ></div>
+              <div
+                class="w-14 h-14 rounded-2xl flex items-center justify-center mb-7"
+                style="
+                  border: 1px solid rgba(57, 255, 20, 0.2);
+                  background: rgba(57, 255, 20, 0.06);
+                "
+              >
+                <svg
+                  width="28"
+                  height="28"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.6"
+                  style="color: var(--acc2)"
+                >
+                  <path d="M12 6v6l4 2" />
+                  <circle cx="12" cy="12" r="10" />
+                </svg>
+              </div>
+              <h3
+                class="font-extrabold italic text-2xl mb-4"
+                style="
+                  color: var(--tp);
+                  font-family: &quot;DM Serif Display&quot;, serif;
+                "
+              >
+                Post-Launch Partner
+              </h3>
+              <p class="text-sm leading-8" style="color: var(--ts)">
+                Launch is week 16 — not the finish line. Retainer-based sprints
+                keep your app competitive as the market evolves. Monthly feature
+                drops, performance monitoring, and user feedback loops.
+              </p>
+              <div
+                class="mono mt-8 text-xs italic uppercase tracking-[.14em]"
+                style="color: var(--tm)"
+              >
+                Long-term, not transactional
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ══════════════════════════════════
+         CTA — FULL IMMERSIVE (home page style)
+    ══════════════════════════════════ -->
+      <section id="contact" class="relative py-24 lg:py-32">
+        <div class="wrap">
+          <div
+            class="glass contact-card relative overflow-hidden rounded-[38px] border border-[var(--bd)] px-6 py-12 lg:px-12 lg:py-14 rv"
+            style="
+              background: linear-gradient(
+                180deg,
+                rgba(8, 10, 8, 0.94),
+                rgba(8, 10, 8, 0.78)
+              );
+            "
+          >
+            <div class="cta-image-panel"></div>
+            <div
+              class="hero-spotlight"
+              style="
+                width: 30rem;
+                height: 30rem;
+                top: -12rem;
+                right: -8rem;
+                background: radial-gradient(
+                  circle,
+                  rgba(57, 255, 20, 0.14),
+                  transparent 64%
+                );
+              "
+            ></div>
+            <div
+              class="relative z-10 grid gap-8 lg:grid-cols-[1fr_auto] lg:items-end"
+            >
+              <div class="rv">
+                <div class="section-kicker">
+                  Let's build the standout version
+                </div>
+                <h2
+                  class="display-font mt-4 max-w-[11ch] text-4xl font-extrabold italic leading-[0.94] tracking-[-0.04em] text-[var(--tp)] lg:text-6xl"
+                  style="font-family: &quot;Poppins&quot;, sans-serif"
+                >
+                  Luxury tech presence. Real product thinking.
+                </h2>
+                <p
+                  class="mt-6 max-w-2xl text-base leading-8 text-[var(--ts)] lg:text-lg"
+                  style="font-family: &quot;Poppins&quot;, sans-serif"
+                >
+                  If you want the app page to feel like an experience instead of
+                  a template, we can shape the brand, the product story, and the
+                  engineering system together.
+                </p>
+              </div>
+
+              <div class="rv flex flex-col gap-4 sm:flex-row lg:flex-col">
+                <a
+                  href="mailto:info@auroveon.com"
+                  class="display-font inline-flex items-center justify-center rounded-full px-7 py-4 text-base font-bold"
+                  style="
+                    background: var(--acc);
+                    color: #081008;
+                    box-shadow:
+                      0 0 42px rgba(57, 255, 20, 0.18),
+                      0 22px 60px rgba(57, 255, 20, 0.12);
+                    font-family: &quot;Poppins&quot;, sans-serif;
+                  "
+                  >Start a Project</a
+                >
+                <a
+                  href="#hero"
+                  class="display-font inline-flex items-center justify-center rounded-full border px-7 py-4 text-base font-bold"
+                  style="
+                    border-color: var(--bds);
+                    color: var(--tp);
+                    font-family: &quot;Poppins&quot;, sans-serif;
+                  "
+                  >View Hero Again</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ══════ FOOTER ══════ -->
+    <footer class="relative pb-10">
+      <div
+        class="wrap"
+        style="border-top: 1px solid var(--bd); padding-top: 2.5rem"
+      >
+        <div class="grid gap-10 lg:grid-cols-[1.2fr_.8fr_.8fr_.8fr]">
+          <div>
+            <img
+              src="assets/WhatsApp Image 2026-05-09 at 09,19,43-Picsart-BackgroundRemover.png"
+              alt="Auroveon"
+              style="
+                height: 62px;
+                width: auto;
+                max-width: 200px;
+                object-fit: contain;
+              "
+            />
+            <p class="mt-4 text-sm leading-7 max-w-sm" style="color: var(--ts)">
+              Software agency for AI solutions, mobile apps, modern web
+              platforms, SaaS systems, and cinematic digital experiences.
+            </p>
+            <div class="mt-6 flex gap-3">
+              <a
+                class="fsl"
+                href="https://linkedin.com/company/auroveon"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="LinkedIn"
+                ><svg viewBox="0 0 24 24">
+                  <path
+                    d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.05-1.86-3.05-1.86 0-2.15 1.45-2.15 2.95v5.67H9.32V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.61 0 4.28 2.37 4.28 5.46v6.28ZM5.31 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14ZM7.09 20.45H3.52V9h3.57v11.45ZM22.23 0H1.77A1.77 1.77 0 0 0 0 1.77v20.46C0 23.21.79 24 1.77 24h20.46A1.77 1.77 0 0 0 24 22.23V1.77A1.77 1.77 0 0 0 22.23 0Z"
+                  /></svg
+              ></a>
+              <a
+                class="fsl"
+                href="https://instagram.com/auroveon"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Instagram"
+                ><svg viewBox="0 0 24 24">
+                  <path
+                    d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2Zm0 1.8A3.95 3.95 0 0 0 3.8 7.75v8.5a3.95 3.95 0 0 0 3.95 3.95h8.5a3.95 3.95 0 0 0 3.95-3.95v-8.5a3.95 3.95 0 0 0-3.95-3.95Zm8.95 1.35a1.15 1.15 0 1 1 0 2.3 1.15 1.15 0 0 1 0-2.3ZM12 6.86A5.14 5.14 0 1 1 6.86 12 5.14 5.14 0 0 1 12 6.86Zm0 1.8A3.34 3.34 0 1 0 15.34 12 3.34 3.34 0 0 0 12 8.66Z"
+                  /></svg
+              ></a>
+              <a
+                class="fsl"
+                href="https://twitter.com/auroveon"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="X"
+                ><svg viewBox="0 0 24 24">
+                  <path
+                    d="M18.9 2H22l-6.77 7.73L23.2 22h-6.25l-4.9-6.4L6.45 22H3.34l7.24-8.27L1 2h6.4l4.43 5.85L18.9 2Zm-1.1 18h1.73L6.46 3.9H4.6Z"
+                  /></svg
+              ></a>
+            </div>
+          </div>
+          <div>
+            <div
+              class="mono text-xs uppercase tracking-[.18em] mb-5"
+              style="color: var(--acc)"
+            >
+              Navigation
+            </div>
+            <div class="flex flex-col gap-3">
+              <a class="fl" href="index.html#services">Services</a>
+              <a class="fl" href="index.html#work">Work</a>
+              <a class="fl" href="web-development.html">Web Development</a>
+              <a
+                class="fl"
+                href="app-development.html"
+                style="color: var(--acc)"
+                >App Development</a
+              >
+              <a class="fl" href="seo.html">SEO</a>
+              <a class="fl" href="index.html#contact">Contact</a>
+            </div>
+          </div>
+          <div>
+            <div
+              class="mono text-xs uppercase tracking-[.18em] mb-5"
+              style="color: var(--acc)"
+            >
+              Services
+            </div>
+            <div class="flex flex-col gap-3 text-sm" style="color: var(--ts)">
+              <span>iOS Development</span><span>Android Development</span
+              ><span>React Native</span><span>Flutter</span
+              ><span>App Strategy</span>
+            </div>
+          </div>
+          <div>
+            <div
+              class="mono text-xs uppercase tracking-[.18em] mb-5"
+              style="color: var(--acc)"
+            >
+              Contact Us
+            </div>
+            <div class="flex flex-col gap-4">
+              <div>
+                <div
+                  class="text-[.7rem] uppercase tracking-[.12em]"
+                  style="color: var(--ts)"
+                >
+                  Email
+                </div>
+                <a
+                  href="mailto:info@auroveon.com"
+                  class="mt-1 block text-sm text-white hover:text-[#39ff14] transition-colors"
+                  >info@auroveon.com</a
+                >
+              </div>
+              <div>
+                <div
+                  class="text-[.7rem] uppercase tracking-[.12em]"
+                  style="color: var(--ts)"
+                >
+                  Phone
+                </div>
+                <a
+                  href="tel:+923353213863"
+                  class="mt-1 block text-sm text-white hover:text-[#39ff14] transition-colors"
+                  >+92 335 321 3863</a
+                >
+              </div>
+              <div>
+                <div
+                  class="text-[.7rem] uppercase tracking-[.12em]"
+                  style="color: var(--ts)"
+                >
+                  Address
+                </div>
+                <div class="mt-1 text-sm text-white">
+                  Street 4, Karachi, Pakistan
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="mt-10 pt-5 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 text-sm"
+          style="color: var(--ts); border-top: 1px solid var(--bd)"
+        >
+          <div class="flex flex-wrap items-center gap-3">
+            <span>© 2026</span>
+            <img
+              src="assets/WhatsApp Image 2026-05-09 at 09,19,43-Picsart-BackgroundRemover.png"
+              alt="Auroveon"
+              style="height: 20px; width: auto"
+            />
+            <span>Crafted for premium digital products.</span>
+          </div>
+          <div class="flex gap-4">
+            <a
+              href="/privacy-policy"
+              class="hover:text-[#39ff14] transition-colors"
+              >Privacy Policy</a
+            >
+            <span>·</span>
+            <a
+              href="/terms-of-service"
+              class="hover:text-[#39ff14] transition-colors"
+              >Terms of Service</a
+            >
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- WhatsApp -->
+    <a
+      href="https://wa.me/923353213863"
+      target="_blank"
+      rel="noreferrer"
+      aria-label="Chat on WhatsApp"
+      class="wfab"
+    >
+      <svg viewBox="0 0 24 24" fill="white" width="28" height="28">
+        <path
+          d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"
+        />
+      </svg>
+    </a>
+
+    <script>
+      // NAV SCROLL
+      const nav = document.getElementById("nav");
+      window.addEventListener("scroll", () =>
+        nav.classList.toggle("nav-glass", window.scrollY > 10),
+      );
+
+      // MOBILE MENU
+      const mBtn = document.getElementById("mBtn"),
+        mMen =
+          document.getElementById("mobileMenu") ||
+          document.getElementById("mMen");
+      if (mBtn && mMen)
+        mBtn.addEventListener("click", () => {
+          mMen.classList.toggle("hidden");
+          mBtn.textContent = mMen.classList.contains("hidden") ? "+" : "×";
+        });
+
+      // CUSTOM CURSOR
+      const cd = document.getElementById("cd"),
+        cr = document.getElementById("cr");
+      if (window.innerWidth >= 1024) {
+        cd.style.opacity = "1";
+        cr.style.opacity = "1";
+        let dx = 0,
+          dy = 0,
+          rx = 0,
+          ry = 0,
+          mx = 0,
+          my = 0;
+        window.addEventListener("mousemove", (e) => {
+          mx = e.clientX;
+          my = e.clientY;
+        });
+        const anim = () => {
+          dx += (mx - dx) * 0.2;
+          dy += (my - dy) * 0.2;
+          rx += (mx - rx) * 0.09;
+          ry += (my - ry) * 0.09;
+          cd.style.left = dx + "px";
+          cd.style.top = dy + "px";
+          cr.style.left = rx + "px";
+          cr.style.top = ry + "px";
+          requestAnimationFrame(anim);
+        };
+        anim();
+        document.querySelectorAll("a,button").forEach((el) => {
+          el.addEventListener("mouseenter", () => cr.classList.add("hov"));
+          el.addEventListener("mouseleave", () => cr.classList.remove("hov"));
+        });
+      }
+
+      // REVEAL
+      const obs = new IntersectionObserver(
+        (e) =>
+          e.forEach((x) => {
+            if (x.isIntersecting) {
+              x.target.classList.add("vis");
+              obs.unobserve(x.target);
+            }
+          }),
+        { threshold: 0.08 },
+      );
+      document.querySelectorAll(".rv").forEach((el) => obs.observe(el));
+
+      // COUNTERS
+      const cObs = new IntersectionObserver(
+        (e) => {
+          e.forEach((en) => {
+            if (!en.isIntersecting) return;
+            const el = en.target,
+              tgt = parseFloat(el.dataset.count || "0"),
+              suf = el.dataset.suffix || "",
+              dec = parseInt(el.dataset.dec || "0"),
+              dur = 1400,
+              s = performance.now();
+            const tick = (n) => {
+              const p = Math.min((n - s) / dur, 1),
+                ease = 1 - Math.pow(1 - p, 3);
+              el.textContent = `${(tgt * ease).toFixed(dec)}${suf}`;
+              if (p < 1) requestAnimationFrame(tick);
+              else el.textContent = `${tgt.toFixed(dec)}${suf}`;
+            };
+            requestAnimationFrame(tick);
+            cObs.unobserve(el);
+          });
+        },
+        { threshold: 0.3 },
+      );
+      document.querySelectorAll(".cv").forEach((el) => cObs.observe(el));
+
+      // SMOOTH SCROLL
+      document.querySelectorAll('a[href^="#"]').forEach((a) =>
+        a.addEventListener("click", (e) => {
+          const t = document.querySelector(a.getAttribute("href"));
+          if (t) {
+            e.preventDefault();
+            t.scrollIntoView({ behavior: "smooth", block: "start" });
+          }
+        }),
+      );
+    </script>
+  </body>
+</html>
