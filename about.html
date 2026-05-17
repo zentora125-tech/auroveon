@@ -212,14 +212,16 @@
       }
       .shine-text {
         background: linear-gradient(90deg, #ffffff 0%, #ffffff 35%, #b9ffb0 44%, #eaffea 50%, #b9ffb0 56%, #ffffff 65%, #ffffff 100%);
-        background-size: 200% auto; display: inline; overflow: visible;
+        background-size: 200% auto; display: inline-block; overflow: visible;
+        padding-right: 0.14em;
         -webkit-background-clip: text; background-clip: text;
         -webkit-text-fill-color: transparent; color: transparent;
         animation: text-shine 4s linear infinite;
       }
       .shine-text-accent {
         background: linear-gradient(90deg, var(--accent) 0%, var(--accent) 35%, #ccffcc 44%, #efffef 50%, #ccffcc 56%, var(--accent) 65%, var(--accent) 100%);
-        background-size: 200% auto; display: inline; overflow: visible;
+        background-size: 200% auto; display: inline-block; overflow: visible;
+        padding-right: 0.14em;
         -webkit-background-clip: text; background-clip: text;
         -webkit-text-fill-color: transparent; color: transparent;
         animation: text-shine 4s linear infinite;
@@ -260,6 +262,123 @@
         -webkit-mask-image: radial-gradient(circle at 60% 40%, black 0%, black 42%, transparent 88%);
       }
 
+      /* Orbit wrapper */
+      .about-orbit {
+        pointer-events: none;
+        z-index: 10;
+      }
+
+      /* Static rings */
+      .orbit-ring {
+        transform-origin: 240px 240px;
+        filter: drop-shadow(0 0 8px rgba(57,255,20,0.22));
+      }
+      .ring-1 { animation: ring-spin 18s linear infinite; }
+      .ring-2 { animation: ring-spin 13s linear infinite reverse; }
+      .ring-3 { animation: ring-spin 9s linear infinite; }
+
+      @keyframes ring-spin {
+        from { transform: rotateX(68deg) rotateZ(0deg); }
+        to { transform: rotateX(68deg) rotateZ(360deg); }
+      }
+
+      /* Orbiting dots */
+      .orbit-dot-wrap {
+        position: absolute;
+        border-radius: 50%;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+      }
+      .ring-1-anim { animation: dot-orbit 18s linear infinite; }
+      .ring-2-anim { animation: dot-orbit 13s linear infinite reverse; }
+      .ring-3-anim { animation: dot-orbit 9s linear infinite; }
+
+      @keyframes dot-orbit {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+      }
+
+      .orbit-dot {
+        position: absolute;
+        top: -4px;
+        left: 50%;
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: #39ff14;
+        box-shadow: 0 0 8px rgba(57,255,20,0.9), 0 0 18px rgba(57,255,20,0.5);
+        transform: translateX(-50%);
+      }
+
+      /* Stat pills */
+      .orbit-pill {
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        padding: 8px 14px;
+        border-radius: 12px;
+        border: 1px solid rgba(57,255,20,0.15);
+        background: rgba(12,15,12,0.75);
+        backdrop-filter: blur(10px);
+        animation: pill-float 5s ease-in-out infinite;
+        pointer-events: none;
+      }
+      .orbit-pill:nth-child(odd) { animation-delay: 0s; }
+      .orbit-pill:nth-child(even) { animation-delay: 2.5s; }
+
+      @keyframes pill-float {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-7px); }
+      }
+
+      .orbit-pill-label {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.62rem;
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+        color: var(--accent);
+      }
+      .orbit-pill-value {
+        font-size: 0.82rem;
+        font-weight: 700;
+        color: var(--text-primary);
+        font-family: "Poppins", sans-serif;
+      }
+
+      /* Center logo */
+      .orbit-logo-wrap {
+        position: relative;
+        z-index: 5;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .orbit-logo {
+        width: 90px;
+        height: 90px;
+        object-fit: contain;
+        filter: drop-shadow(0 0 18px rgba(57,255,20,0.5));
+        animation: logo-breathe 4s ease-in-out infinite;
+      }
+      .orbit-logo-glow {
+        position: absolute;
+        inset: -20px;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(57,255,20,0.12) 0%, transparent 70%);
+        animation: logo-breathe 4s ease-in-out infinite;
+      }
+
+      @keyframes logo-breathe {
+        0%, 100% {
+          filter: drop-shadow(0 0 14px rgba(57,255,20,0.4));
+          transform: scale(1);
+        }
+        50% {
+          filter: drop-shadow(0 0 28px rgba(57,255,20,0.75));
+          transform: scale(1.04);
+        }
+      }
       /* Marquee */
       .marquee { overflow: hidden; position: relative; }
       .marquee-track {
@@ -272,20 +391,82 @@
       }
 
       /* Timeline */
-      .timeline-line {
-        position: absolute; left: 20px; top: 0; bottom: 0; width: 2px;
-        background: linear-gradient(180deg, var(--accent), rgba(57,255,20,0.06));
-        border-radius: 9999px;
+      .timeline-line-track {
+        position: absolute;
+        left: 50%;
+        top: 0;
+        bottom: 0;
+        width: 1px;
+        background: rgba(57, 255, 20, 0.08);
+        transform: translateX(-50%);
       }
-      @media (min-width: 768px) { .timeline-line { left: 50%; transform: translateX(-50%); } }
+
+      #timeline-progress {
+        position: absolute;
+        left: 50%;
+        top: 0;
+        width: 2px;
+        height: 0%;
+        background: linear-gradient(to bottom, var(--accent), rgba(57,255,20,0.3));
+        transform: translateX(-50%);
+        box-shadow: 0 0 10px rgba(57, 255, 20, 0.4);
+        transition: height 0.1s linear;
+        z-index: 1;
+      }
+
+      .milestone-card {
+        opacity: 0;
+        transform: translateY(24px);
+        transition:
+          opacity 0.6s ease,
+          transform 0.6s ease,
+          border-color 0.3s ease,
+          box-shadow 0.3s ease;
+      }
+      .milestone-card.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .milestone-card.is-visible:hover {
+        transform: translateY(-8px);
+      }
+
+      .skill-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.3rem 0.85rem;
+  border-radius: 999px;
+  border: 1px solid var(--border-strong);
+  background: rgba(57, 255, 20, 0.05);
+  color: var(--text-secondary);
+  font-size: 0.72rem;
+  font-family: var(--mono-font, monospace);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.skill-tag:hover {
+  background: rgba(57, 255, 20, 0.1);
+  color: var(--accent);
+}
 
       .timeline-dot {
-        position: absolute; width: 14px; height: 14px; border-radius: 9999px;
-        background: var(--accent); left: 14px; top: 28px;
-        box-shadow: 0 0 20px rgba(57,255,20,0.6);
-        border: 2px solid var(--bg-base);
+        position: absolute;
+        left: 50%;
+        top: 1.5rem;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: var(--accent);
+        transform: translateX(-50%) scale(0);
+        box-shadow: 0 0 12px rgba(57, 255, 20, 0.6);
+        transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        z-index: 2;
       }
-      @media (min-width: 768px) { .timeline-dot { left: calc(50% - 7px); } }
+      .timeline-dot.is-visible {
+        transform: translateX(-50%) scale(1);
+      }
 
       /* CTA section */
       .cta-image-panel {
@@ -330,10 +511,20 @@
         width: 80px; height: 80px; border-radius: 9999px;
         border: 2px solid var(--border-strong);
         background: linear-gradient(135deg, rgba(57,255,20,0.18), rgba(57,255,20,0.04));
+        overflow: hidden;
+        flex-shrink: 0;
         display: flex; align-items: center; justify-content: center;
         font-family: "Poppins", sans-serif; font-weight: 800; font-style: italic;
         font-size: 1.5rem; color: var(--accent);
         box-shadow: 0 0 30px rgba(57,255,20,0.15);
+      }
+      .avatar-ring img {
+        width: 100%;
+        height: 100%;
+        display: block;
+        object-fit: cover;
+        object-position: center;
+        border-radius: inherit;
       }
 
       /* Skill bar */
@@ -418,7 +609,8 @@
         <div class="hero-spotlight" style="width:24rem;height:24rem;bottom:0;left:-6rem;background:radial-gradient(circle,rgba(57,255,20,0.1),transparent 68%);"></div>
 
         <div class="site-shell relative z-10 py-16 lg:py-24">
-          <div class="max-w-4xl">
+          <div class="lg:grid lg:grid-cols-2 lg:items-center lg:gap-12">
+          <div class="">
             <div class="glass-panel inline-flex items-center gap-3 rounded-full px-4 py-2 reveal">
               <span class="h-2 w-2 rounded-full bg-[var(--accent)] pulse-dot"></span>
               <span class="eyebrow">About Auroveon</span>
@@ -435,7 +627,7 @@
             </p>
 
             <div class="mt-8 flex flex-wrap gap-4 reveal reveal-d3">
-              <a href="index.html#contact"
+              <a href="contact.html"
                 class="display-font inline-flex items-center justify-center rounded-full px-7 py-4 text-base font-bold text-[#081008] hover:-translate-y-1 transition-transform"
                 style="background:var(--accent);box-shadow:0 0 42px rgba(57,255,20,0.18),0 22px 60px rgba(57,255,20,0.12);">
                 Start a Project
@@ -447,6 +639,46 @@
               </a>
             </div>
           </div>
+          <div class="about-orbit hidden lg:flex items-center justify-center absolute right-0 top-1/2 -translate-y-1/2" style="width:480px;height:480px;right:-2rem;">
+            <svg class="absolute inset-0 w-full h-full" viewBox="0 0 480 480" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <ellipse class="orbit-ring ring-1" cx="240" cy="240" rx="180" ry="70" stroke="#39ff14" stroke-width="1" stroke-opacity="0.48"/>
+              <ellipse class="orbit-ring ring-2" cx="240" cy="240" rx="145" ry="55" stroke="#39ff14" stroke-width="1" stroke-opacity="0.34"/>
+              <ellipse class="orbit-ring ring-3" cx="240" cy="240" rx="110" ry="42" stroke="#39ff14" stroke-width="0.95" stroke-opacity="0.24"/>
+            </svg>
+
+            <div class="orbit-dot-wrap ring-1-anim" style="width:360px;height:140px;position:absolute;">
+              <span class="orbit-dot"></span>
+            </div>
+            <div class="orbit-dot-wrap ring-2-anim" style="width:290px;height:110px;position:absolute;">
+              <span class="orbit-dot" style="opacity:0.6"></span>
+            </div>
+            <div class="orbit-dot-wrap ring-3-anim" style="width:220px;height:84px;position:absolute;">
+              <span class="orbit-dot" style="opacity:0.4"></span>
+            </div>
+
+            <div class="orbit-pill" style="top:18%;left:2%;">
+              <span class="orbit-pill-label">Founded</span>
+              <span class="orbit-pill-value">2026</span>
+            </div>
+            <div class="orbit-pill" style="top:14%;right:4%;">
+              <span class="orbit-pill-label">Team</span>
+              <span class="orbit-pill-value">3 Founders</span>
+            </div>
+            <div class="orbit-pill" style="bottom:18%;left:4%;">
+              <span class="orbit-pill-label">Based In</span>
+              <span class="orbit-pill-value">Karachi, PK</span>
+            </div>
+            <div class="orbit-pill" style="bottom:14%;right:2%;">
+              <span class="orbit-pill-label">Approach</span>
+              <span class="orbit-pill-value">AI Native</span>
+            </div>
+
+            <div class="orbit-logo-wrap">
+              <img src="./assets/WhatsApp Image 2026-05-09 at 09,19,43-Picsart-BackgroundRemover.png" alt="Auroveon" class="orbit-logo" />
+              <div class="orbit-logo-glow"></div>
+            </div>
+          </div>
+          </div>
         </div>
       </section>
 
@@ -457,7 +689,7 @@
             <div class="marquee-track">
               <!-- doubled for seamless loop -->
               <script>
-                const items = ["AI-Native Agency","Founded 2025","Karachi, Pakistan","Premium Builds","3 Founders","120+ Projects","98% Retention","OpenAI-Ready","Automation Led","UI/UX Obsessed","Scalable by Default","Enterprise Grade","AI-Native Agency","Founded 2025","Karachi, Pakistan","Premium Builds","3 Founders","120+ Projects","98% Retention","OpenAI-Ready","Automation Led","UI/UX Obsessed","Scalable by Default","Enterprise Grade"];
+                const items = ["AI-Native Agency","Founded 2025","Karachi, Pakistan","Premium Builds","3 Founders","120+ Projects","98% Retention","Automation Led","UI/UX Obsessed","Scalable by Default","Enterprise Grade","AI-Native Agency","Founded 2026","Karachi, Pakistan","Premium Builds","3 Founders","60+ Projects","98% Retention","OpenAI-Ready","Automation Led","UI/UX Obsessed","Scalable by Default","Enterprise Grade"];
                 document.write(items.map(item => `<div class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em] text-[var(--text-secondary)]"><span>${item}</span><span class="mx-6 text-[var(--accent)]">.</span></div>`).join(''));
               </script>
             </div>
@@ -479,11 +711,11 @@
                   <circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/>
                 </svg>
               </div>
-              <h2 class="display-font text-3xl lg:text-4xl font-extrabold italic leading-tight text-[var(--text-primary)]">
-                Build software that feels alive — not just functional.
+              <h2 class="display-font text-2xl lg:text-3xl font-extrabold italic leading-tight text-[var(--text-primary)]">
+                Build software that feels alive. Not just functional.
               </h2>
-              <p class="mt-5 text-base leading-8 text-[var(--text-secondary)]">
-                We exist to bridge the gap between engineering excellence and cinematic design. Every product we ship should feel like it was crafted with intention — not assembled from templates. Our mission is to raise the bar for what software can look, feel, and think like.
+              <p class="mt-5 text-sm leading-7 text-[var(--text-secondary)]">
+                We believe great software should feel like it was made with care. Every product we build is designed to look sharp, work fast, and leave an impression.
               </p>
               <div class="mt-8 h-px w-full soft-divider"></div>
               <div class="mt-5 flex items-center gap-3">
@@ -501,11 +733,11 @@
                   <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
                 </svg>
               </div>
-              <h2 class="display-font text-3xl lg:text-4xl font-extrabold italic leading-tight text-[var(--text-primary)]">
-                To become the most trusted AI-native agency in South Asia.
+              <h2 class="display-font text-2xl lg:text-3xl font-extrabold italic leading-tight text-[var(--text-primary)]">
+                To become the most trusted AI native agency in South Asia.
               </h2>
-              <p class="mt-5 text-base leading-8 text-[var(--text-secondary)]">
-                We envision a future where ambitious brands across Pakistan and beyond have access to world-class AI systems, premium web platforms, and scalable SaaS products — all under one roof. Auroveon is building that future, one project at a time.
+              <p class="mt-5 text-sm leading-7 text-[var(--text-secondary)]">
+                We want ambitious brands from Karachi to the Gulf to have access to world-class AI tools and premium digital products without compromise. That's the future we're building toward.
               </p>
               <div class="mt-8 h-px w-full soft-divider"></div>
               <div class="mt-5 flex items-center gap-3">
@@ -527,7 +759,7 @@
                 <div class="mt-3 text-sm leading-6 text-[var(--text-secondary)]">Co-Founders united by one mission</div>
               </div>
               <div class="stat-card text-center px-4 py-2">
-                <div class="display-font text-5xl lg:text-6xl font-extrabold italic text-[var(--text-primary)]">120+</div>
+                <div class="display-font text-5xl lg:text-6xl font-extrabold italic text-[var(--text-primary)]">60+</div>
                 <div class="mt-3 text-sm leading-6 text-[var(--text-secondary)]">Digital products shipped globally</div>
               </div>
               <div class="stat-card text-center px-4 py-2">
@@ -565,67 +797,68 @@
 
             <!-- Timeline -->
             <div class="relative pl-10 md:pl-0">
-              <div class="timeline-line hidden md:block"></div>
+              <div class="timeline-line-track hidden md:block"></div>
+              <div id="timeline-progress" class="hidden md:block"></div>
 
-              <!-- Item 1 -->
-              <div class="relative mb-12 md:grid md:grid-cols-2 md:gap-10">
-                <div class="timeline-dot hidden md:block"></div>
-                <div class="md:text-right md:pr-10 pt-1">
-                  <div class="mono-font text-[0.72rem] uppercase tracking-[0.18em] text-[var(--accent)]">2024 — Q4</div>
-                  <h3 class="display-font mt-3 text-2xl font-bold italic text-[var(--text-primary)]">The Spark</h3>
-                </div>
-                <div class="milestone-card glass-panel rounded-[24px] border border-[var(--border)] p-6 md:ml-10 mt-4 md:mt-0">
-                  <p class="text-sm leading-7 text-[var(--text-secondary)]">
-                    Three friends — bound by a shared frustration with low-quality, generic software — decided to build something different. The name Auroveon was born: "Auro" for gold-standard quality, "Veon" for vision and velocity.
-                  </p>
-                </div>
-              </div>
+             <!-- Item 1 -->
+<div class="relative mb-12 md:grid md:grid-cols-2 md:gap-10">
+  <div class="timeline-dot hidden md:block"></div>
+  <div class="md:text-right md:pr-10 pt-1">
+    <div class="mono-font text-[0.72rem] uppercase tracking-[0.18em] text-[var(--accent)]">2026 — Q1</div>
+    <h3 class="display-font mt-3 text-2xl font-bold italic text-[var(--text-primary)]">The Spark</h3>
+  </div>
+  <div class="milestone-card glass-panel rounded-[24px] border border-[var(--border)] p-6 md:ml-10 mt-4 md:mt-0">
+    <p class="text-sm leading-7 text-[var(--text-secondary)]">
+      Three friends, tired of seeing Pakistani software treated as cheap output, decided to build something they could be proud of. The name Auroveon was born. Auro for gold standard quality. Veon for vision and velocity.
+    </p>
+  </div>
+</div>
 
-              <!-- Item 2 -->
-              <div class="relative mb-12 md:grid md:grid-cols-2 md:gap-10">
-                <div class="timeline-dot hidden md:block"></div>
-                <div class="md:text-right md:pr-10 pt-1">
-                  <div class="mono-font text-[0.72rem] uppercase tracking-[0.18em] text-[var(--accent)]">2025 — Q1</div>
-                  <h3 class="display-font mt-3 text-2xl font-bold italic text-[var(--text-primary)]">Official Launch</h3>
-                </div>
-                <div class="milestone-card glass-panel rounded-[24px] border border-[var(--border)] p-6 md:ml-10 mt-4 md:mt-0">
-                  <p class="text-sm leading-7 text-[var(--text-secondary)]">
-                    Auroveon was officially registered and launched. Domain secured. First clients onboarded. The agency began delivering premium web platforms and AI integrations within weeks of opening its doors.
-                  </p>
-                </div>
-              </div>
+<!-- Item 2 -->
+<div class="relative mb-12 md:grid md:grid-cols-2 md:gap-10">
+  <div class="timeline-dot hidden md:block"></div>
+  <div class="md:text-right md:pr-10 pt-1">
+    <div class="mono-font text-[0.72rem] uppercase tracking-[0.18em] text-[var(--accent)]">2026 — Q2</div>
+    <h3 class="display-font mt-3 text-2xl font-bold italic text-[var(--text-primary)]">Official Launch</h3>
+  </div>
+  <div class="milestone-card glass-panel rounded-[24px] border border-[var(--border)] p-6 md:ml-10 mt-4 md:mt-0">
+    <p class="text-sm leading-7 text-[var(--text-secondary)]">
+      Auroveon was officially registered. The website went live. Our first clients came on board and within weeks we were already shipping. No slow start. No waiting around.
+    </p>
+  </div>
+</div>
 
-              <!-- Item 3 -->
-              <div class="relative mb-12 md:grid md:grid-cols-2 md:gap-10">
-                <div class="timeline-dot hidden md:block"></div>
-                <div class="md:text-right md:pr-10 pt-1">
-                  <div class="mono-font text-[0.72rem] uppercase tracking-[0.18em] text-[var(--accent)]">2025 — Q3</div>
-                  <h3 class="display-font mt-3 text-2xl font-bold italic text-[var(--text-primary)]">First 50 Projects</h3>
-                </div>
-                <div class="milestone-card glass-panel rounded-[24px] border border-[var(--border)] p-6 md:ml-10 mt-4 md:mt-0">
-                  <p class="text-sm leading-7 text-[var(--text-secondary)]">
-                    Crossed the 50-project milestone with clients across Pakistan, UAE, and the UK. The team's AI-first approach began earning recognition in regional startup circles and enterprise channels.
-                  </p>
-                </div>
-              </div>
+<!-- Item 3 -->
+<div class="relative mb-12 md:grid md:grid-cols-2 md:gap-10">
+  <div class="timeline-dot hidden md:block"></div>
+  <div class="md:text-right md:pr-10 pt-1">
+    <div class="mono-font text-[0.72rem] uppercase tracking-[0.18em] text-[var(--accent)]">2026 — Q2</div>
+    <h3 class="display-font mt-3 text-2xl font-bold italic text-[var(--text-primary)]">First Projects Shipped</h3>
+  </div>
+  <div class="milestone-card glass-panel rounded-[24px] border border-[var(--border)] p-6 md:ml-10 mt-4 md:mt-0">
+    <p class="text-sm leading-7 text-[var(--text-secondary)]">
+      Early projects went out the door and clients noticed the difference. Word spread. Our AI first approach started getting attention from startups and founders who wanted more than just a dev shop.
+    </p>
+  </div>
+</div>
 
-              <!-- Item 4 -->
-              <div class="relative md:grid md:grid-cols-2 md:gap-10">
-                <div class="timeline-dot hidden md:block"></div>
-                <div class="md:text-right md:pr-10 pt-1">
-                  <div class="mono-font text-[0.72rem] uppercase tracking-[0.18em] text-[var(--accent)]">2026 — Now</div>
-                  <h3 class="display-font mt-3 text-2xl font-bold italic text-[var(--text-primary)]">120+ & Growing</h3>
-                </div>
-                <div class="milestone-card glass-panel rounded-[24px] border border-[var(--border)] p-6 md:ml-10 mt-4 md:mt-0">
-                  <p class="text-sm leading-7 text-[var(--text-secondary)]">
-                    Today Auroveon serves ambitious startups and established companies alike. Our flagship website is live, our service suite is complete, and we are actively expanding our team to meet growing demand for AI-native digital products.
-                  </p>
-                  <div class="mt-4 flex items-center gap-2">
-                    <span class="h-2 w-2 rounded-full bg-[var(--accent)] pulse-dot"></span>
-                    <span class="mono-font text-xs uppercase tracking-[0.14em] text-[var(--accent)]">Live & Shipping</span>
-                  </div>
-                </div>
-              </div>
+<!-- Item 4 -->
+<div class="relative md:grid md:grid-cols-2 md:gap-10">
+  <div class="timeline-dot hidden md:block"></div>
+  <div class="md:text-right md:pr-10 pt-1">
+    <div class="mono-font text-[0.72rem] uppercase tracking-[0.18em] text-[var(--accent)]">2026 — Now</div>
+    <h3 class="display-font mt-3 text-2xl font-bold italic text-[var(--text-primary)]">Just Getting Started</h3>
+  </div>
+  <div class="milestone-card glass-panel rounded-[24px] border border-[var(--border)] p-6 md:ml-10 mt-4 md:mt-0">
+    <p class="text-sm leading-7 text-[var(--text-secondary)]">
+      We are early and we know it. But the foundation is solid, the team is sharp, and the work speaks for itself. Auroveon is actively taking on new projects and growing fast.
+    </p>
+    <div class="mt-4 flex items-center gap-2">
+      <span class="h-2 w-2 rounded-full bg-[var(--accent)] pulse-dot"></span>
+      <span class="mono-font text-xs uppercase tracking-[0.14em] text-[var(--accent)]">Live & Shipping</span>
+    </div>
+  </div>
+</div>
             </div>
           </div>
         </div>
@@ -718,34 +951,27 @@
             <!-- Co-Founder 1 -->
             <div class="team-card glass-panel rounded-[32px] border border-[var(--border)] p-7 lg:p-8">
               <div class="flex items-start gap-5 mb-7">
-                <div class="avatar-ring flex-shrink-0">MQ</div>
+                <div class="avatar-ring flex-shrink-0"><img src="./assets/member3.png" alt="Member image"></img></div>
                 <div>
                   <div class="mono-font text-xs uppercase tracking-[0.18em] text-[var(--accent)] mb-2">Co-Founder</div>
                   <h3 class="display-font text-2xl font-bold italic text-[var(--text-primary)]">Muhammad Qasim</h3>
-                  <p class="text-sm text-[var(--text-secondary)] mt-1">Strategy & Business</p>
+                  <p class="text-sm text-[var(--text-secondary)] mt-1">Software Engineer</p>
                 </div>
               </div>
-              <p class="text-sm leading-7 text-[var(--text-secondary)] mb-7">
-                Leads client relationships, business strategy, and project direction. Ensures every engagement delivers measurable value and maintains Auroveon's standard of excellence.
-              </p>
-              <div class="space-y-4">
-                <div>
-                  <div class="flex items-center justify-between text-xs text-[var(--text-secondary)] mb-2"><span>Business Strategy</span><span class="text-[var(--text-primary)]">95%</span></div>
-                  <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:95%"></div></div>
-                </div>
-                <div>
-                  <div class="flex items-center justify-between text-xs text-[var(--text-secondary)] mb-2"><span>Client Management</span><span class="text-[var(--text-primary)]">92%</span></div>
-                  <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:92%"></div></div>
-                </div>
-                <div>
-                  <div class="flex items-center justify-between text-xs text-[var(--text-secondary)] mb-2"><span>Product Vision</span><span class="text-[var(--text-primary)]">90%</span></div>
-                  <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:90%"></div></div>
-                </div>
-              </div>
+             <p class="mt-5 text-sm leading-7 text-[var(--text-secondary)]">
+  A software engineering graduate who leads client relationships and project direction at Auroveon. Brings both technical depth and business thinking to every engagement.
+</p>
+<div class="mt-6 flex flex-wrap gap-2">
+  <span class="skill-tag">Full-Stack Dev</span>
+  <span class="skill-tag">Client Strategy</span>
+  <span class="skill-tag">Web Platforms</span>
+  <span class="skill-tag">Project Direction</span>
+  <span class="skill-tag">AI & Automation</span>
+</div>
               <div class="mt-7 h-px w-full soft-divider"></div>
               <div class="mt-5 flex items-center justify-between">
                 <div class="flex gap-3">
-                  <a href="https://linkedin.com/company/auroveon" target="_blank" class="w-9 h-9 rounded-full border border-[var(--border)] flex items-center justify-center hover:border-[var(--accent)] transition-colors">
+                  <a href="https://www.linkedin.com/in/muhammad-qasim-44a9132b4/" target="_blank" class="w-9 h-9 rounded-full border border-[var(--border)] flex items-center justify-center hover:border-[var(--accent)] transition-colors">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="var(--text-secondary)"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.05-1.86-3.05-1.86 0-2.15 1.45-2.15 2.95v5.67H9.32V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.61 0 4.28 2.37 4.28 5.46v6.28ZM5.31 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14ZM7.09 20.45H3.52V9h3.57v11.45Z"/></svg>
                   </a>
                 </div>
@@ -756,34 +982,26 @@
             <!-- Co-Founder 2 -->
             <div class="team-card glass-panel rounded-[32px] border border-[var(--border)] p-7 lg:p-8">
               <div class="flex items-start gap-5 mb-7">
-                <div class="avatar-ring flex-shrink-0">ZA</div>
+                <div class="avatar-ring flex-shrink-0"><img src="./assets/member1.jpeg" alt="Member image"></img></div>
                 <div>
                   <div class="mono-font text-xs uppercase tracking-[0.18em] text-[var(--accent)] mb-2">Co-Founder</div>
                   <h3 class="display-font text-2xl font-bold italic text-[var(--text-primary)]">Zaid Ali Khan</h3>
-                  <p class="text-sm text-[var(--text-secondary)] mt-1">Engineering & AI</p>
+                  <p class="text-sm text-[var(--text-secondary)] mt-1">Software Engineer</p>
                 </div>
               </div>
-              <p class="text-sm leading-7 text-[var(--text-secondary)] mb-7">
-                Architects the technical backbone of every product. From AI pipelines to scalable SaaS infrastructure, drives engineering decisions that give Auroveon its competitive edge.
-              </p>
-              <div class="space-y-4">
-                <div>
-                  <div class="flex items-center justify-between text-xs text-[var(--text-secondary)] mb-2"><span>AI & Machine Learning</span><span class="text-[var(--text-primary)]">94%</span></div>
-                  <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:94%"></div></div>
-                </div>
-                <div>
-                  <div class="flex items-center justify-between text-xs text-[var(--text-secondary)] mb-2"><span>Full-Stack Engineering</span><span class="text-[var(--text-primary)]">96%</span></div>
-                  <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:96%"></div></div>
-                </div>
-                <div>
-                  <div class="flex items-center justify-between text-xs text-[var(--text-secondary)] mb-2"><span>System Architecture</span><span class="text-[var(--text-primary)]">91%</span></div>
-                  <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:91%"></div></div>
-                </div>
-              </div>
+             <p class="mt-5 text-sm leading-7 text-[var(--text-secondary)]">
+  Currently in his 4th semester and already working professionally as a full-stack developer. Handles everything from Python backends to ASP.NET systems and AI integrations across Auroveon projects.
+</p>
+<div class="mt-6 flex flex-wrap gap-2">
+  <span class="skill-tag">Python</span>
+  <span class="skill-tag">ASP.NET</span>
+  <span class="skill-tag">AI Integration</span>
+  <span class="skill-tag">Full-Stack Dev</span>
+</div>
               <div class="mt-7 h-px w-full soft-divider"></div>
               <div class="mt-5 flex items-center justify-between">
                 <div class="flex gap-3">
-                  <a href="https://linkedin.com/company/auroveon" target="_blank" class="w-9 h-9 rounded-full border border-[var(--border)] flex items-center justify-center hover:border-[var(--accent)] transition-colors">
+                  <a href="https://www.linkedin.com/in/zaid-ali-khan-22ba70299/" target="_blank" class="w-9 h-9 rounded-full border border-[var(--border)] flex items-center justify-center hover:border-[var(--accent)] transition-colors">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="var(--text-secondary)"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.05-1.86-3.05-1.86 0-2.15 1.45-2.15 2.95v5.67H9.32V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.61 0 4.28 2.37 4.28 5.46v6.28ZM5.31 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14ZM7.09 20.45H3.52V9h3.57v11.45Z"/></svg>
                   </a>
                 </div>
@@ -794,34 +1012,26 @@
             <!-- Co-Founder 3 -->
             <div class="team-card glass-panel rounded-[32px] border border-[var(--border)] p-7 lg:p-8">
               <div class="flex items-start gap-5 mb-7">
-                <div class="avatar-ring flex-shrink-0">HZ</div>
+                <div class="avatar-ring flex-shrink-0"><img src="./assets/member2.jpeg" alt="Member image"></img></div>
                 <div>
                   <div class="mono-font text-xs uppercase tracking-[0.18em] text-[var(--accent)] mb-2">Co-Founder</div>
                   <h3 class="display-font text-2xl font-bold italic text-[var(--text-primary)]">Hamza</h3>
-                  <p class="text-sm text-[var(--text-secondary)] mt-1">Design & Experience</p>
+                  <p class="text-sm text-[var(--text-secondary)] mt-1">Software Engineer</p>
                 </div>
               </div>
-              <p class="text-sm leading-7 text-[var(--text-secondary)] mb-7">
-                Leads the visual direction and user experience of every project. Believes great design is not decoration — it is the difference between products people use and products people love.
-              </p>
-              <div class="space-y-4">
-                <div>
-                  <div class="flex items-center justify-between text-xs text-[var(--text-secondary)] mb-2"><span>UI/UX Design</span><span class="text-[var(--text-primary)]">97%</span></div>
-                  <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:97%"></div></div>
-                </div>
-                <div>
-                  <div class="flex items-center justify-between text-xs text-[var(--text-secondary)] mb-2"><span>Motion & 3D</span><span class="text-[var(--text-primary)]">89%</span></div>
-                  <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:89%"></div></div>
-                </div>
-                <div>
-                  <div class="flex items-center justify-between text-xs text-[var(--text-secondary)] mb-2"><span>Brand Identity</span><span class="text-[var(--text-primary)]">93%</span></div>
-                  <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:93%"></div></div>
-                </div>
-              </div>
+             <p class="mt-5 text-sm leading-7 text-[var(--text-secondary)]">
+  3rd semester student already working full-time as a developer. Bridges the gap between clean code and sharp design — making sure Auroveon products work well and look exceptional.
+</p>
+<div class="mt-6 flex flex-wrap gap-2">
+  <span class="skill-tag">Full-Stack Dev</span>
+  <span class="skill-tag">UI/UX Design</span>
+  <span class="skill-tag">Brand Identity</span>
+  <span class="skill-tag">Motion & 3D</span>
+</div>
               <div class="mt-7 h-px w-full soft-divider"></div>
               <div class="mt-5 flex items-center justify-between">
                 <div class="flex gap-3">
-                  <a href="https://linkedin.com/company/auroveon" target="_blank" class="w-9 h-9 rounded-full border border-[var(--border)] flex items-center justify-center hover:border-[var(--accent)] transition-colors">
+                  <a href="https://www.linkedin.com/in/hafiz-hamza-009642289?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" class="w-9 h-9 rounded-full border border-[var(--border)] flex items-center justify-center hover:border-[var(--accent)] transition-colors">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="var(--text-secondary)"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.05-1.86-3.05-1.86 0-2.15 1.45-2.15 2.95v5.67H9.32V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.61 0 4.28 2.37 4.28 5.46v6.28ZM5.31 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14ZM7.09 20.45H3.52V9h3.57v11.45Z"/></svg>
                   </a>
                 </div>
@@ -830,19 +1040,6 @@
             </div>
           </div>
 
-          <!-- Team note -->
-          <div class="mt-10 glass-panel rounded-[28px] border border-[var(--border)] p-7 lg:p-8 text-center max-w-2xl mx-auto">
-            <div class="mono-font text-xs uppercase tracking-[0.18em] text-[var(--accent)] mb-3">Hiring</div>
-            <h3 class="display-font text-2xl font-bold italic text-[var(--text-primary)]">We are growing. Want to join the team?</h3>
-            <p class="mt-4 text-sm leading-7 text-[var(--text-secondary)]">
-              We are looking for exceptional designers, engineers, and AI specialists who share our obsession with quality. If that sounds like you, reach out.
-            </p>
-            <a href="mailto:info@auroveon.com"
-              class="mt-6 inline-flex items-center gap-2 rounded-full border px-6 py-3 text-sm font-semibold hover:-translate-y-0.5 transition-transform"
-              style="border-color:var(--accent);color:var(--accent);background:rgba(57,255,20,0.04);">
-              Get In Touch
-            </a>
-          </div>
         </div>
       </section>
 
@@ -908,7 +1105,7 @@
                 </p>
               </div>
               <div class="flex flex-col gap-4 sm:flex-row lg:flex-col">
-                <a href="mailto:info@auroveon.com"
+                <a href="contact.html"
                   class="display-font inline-flex items-center justify-center rounded-full px-7 py-4 text-base font-bold text-[#081008] hover:-translate-y-1 transition-transform"
                   style="background:var(--accent);box-shadow:0 0 42px rgba(57,255,20,0.18),0 22px 60px rgba(57,255,20,0.12);">
                   Start a Project
@@ -937,6 +1134,64 @@
       if (footerRoot) ReactDOM.createRoot(footerRoot).render(<Footer />);
       const whatsappFabRoot = document.getElementById("whatsapp-fab-root");
       if (whatsappFabRoot) ReactDOM.createRoot(whatsappFabRoot).render(<WhatsAppFAB />);
+    </script>
+
+    <script>
+      (function () {
+        const section = document.getElementById("story");
+        const progress = document.getElementById("timeline-progress");
+        const cards = document.querySelectorAll(".milestone-card");
+        const dots = document.querySelectorAll(".timeline-dot");
+
+        if (!section || !progress) return;
+
+        cards.forEach((card, i) => {
+          card.style.opacity = "0";
+          card.style.transform = "translateY(32px)";
+          card.style.transition = `opacity 0.7s ease ${i * 0.15}s, transform 0.7s ease ${i * 0.15}s`;
+        });
+
+        dots.forEach((dot) => {
+          dot.style.transform = "translateX(-50%) scale(0)";
+          dot.style.transition =
+            "transform 0.5s cubic-bezier(0.34,1.56,0.64,1)";
+        });
+
+        function updateLine() {
+          const rect = section.getBoundingClientRect();
+          const total = section.offsetHeight;
+          const seen = Math.min(
+            Math.max(-rect.top + window.innerHeight * 0.65, 0),
+            total,
+          );
+          progress.style.height = `${(seen / total) * 100}%`;
+        }
+
+        const cardObserver = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                const el = entry.target;
+                el.style.opacity = "1";
+                el.style.transform = el.classList.contains("timeline-dot")
+                  ? "translateX(-50%) scale(1)"
+                  : "translateY(0)";
+                cardObserver.unobserve(el);
+              }
+            });
+          },
+          {
+            threshold: 0.2,
+            rootMargin: "0px 0px -100px 0px",
+          },
+        );
+
+        cards.forEach((card) => cardObserver.observe(card));
+        dots.forEach((dot) => cardObserver.observe(dot));
+
+        window.addEventListener("scroll", updateLine, { passive: true });
+        updateLine();
+      })();
     </script>
 
 
@@ -971,7 +1226,7 @@
       }
 
       // ---- Intersection Observer for scroll reveals ----
-      const revealEls = document.querySelectorAll('.value-card, .team-card, .stat-card, .milestone-card');
+      const revealEls = document.querySelectorAll('.value-card, .team-card, .stat-card');
       const obs = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
