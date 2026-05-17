@@ -267,6 +267,16 @@
         pointer-events: none;
         z-index: 10;
       }
+      @media (max-width: 1280px) {
+        .about-orbit {
+          width: 340px !important;
+          height: 340px !important;
+          right: -1rem !important;
+        }
+        .orbit-logo { width: 70px; height: 70px; }
+        .orbit-pill { padding: 6px 10px; }
+        .orbit-pill-value { font-size: 0.72rem; }
+      }
 
       /* Static rings */
       .orbit-ring {
@@ -602,7 +612,7 @@
     <main>
 
       <!-- ====== HERO SECTION ====== -->
-      <section class="section-frame relative min-h-[70vh] overflow-hidden pt-24 flex items-center">
+      <section class="section-frame relative min-h-[70vh] overflow-hidden pt-16 flex items-center">
         <div class="about-hero-bg"></div>
         <div class="hero-grid"></div>
         <div class="hero-spotlight" style="width:36rem;height:36rem;top:-8rem;right:-6rem;background:radial-gradient(circle,rgba(57,255,20,0.18),transparent 66%);"></div>
@@ -617,9 +627,9 @@
             </div>
 
             <h1 class="headline-italics mt-6 text-[clamp(2.8rem,7vw,6.2rem)] reveal reveal-d1">
-              <span class="shine-text">We Are Builders.</span><br/>
-              <span class="shine-text">Designers. Engineers.</span><br/>
-              <span class="shine-text-accent">Dreamers.</span>
+              <span class="shine-text">We Build.</span><br/>
+              <span class="shine-text">We Design.</span><br/>
+              <span class="shine-text-accent">We Dream.</span>
             </h1>
 
             <p class="mt-7 max-w-2xl text-lg leading-8 text-[var(--text-secondary)] reveal reveal-d2">
@@ -639,7 +649,7 @@
               </a>
             </div>
           </div>
-          <div class="about-orbit hidden lg:flex items-center justify-center absolute right-0 top-1/2 -translate-y-1/2" style="width:480px;height:480px;right:-2rem;">
+          <div class="about-orbit hidden lg:flex items-center justify-center absolute" style="width:420px;height:420px;right:0rem;top:50%;transform:translateY(-60%);">
             <svg class="absolute inset-0 w-full h-full" viewBox="0 0 480 480" fill="none" xmlns="http://www.w3.org/2000/svg">
               <ellipse class="orbit-ring ring-1" cx="240" cy="240" rx="180" ry="70" stroke="#39ff14" stroke-width="1" stroke-opacity="0.48"/>
               <ellipse class="orbit-ring ring-2" cx="240" cy="240" rx="145" ry="55" stroke="#39ff14" stroke-width="1" stroke-opacity="0.34"/>
