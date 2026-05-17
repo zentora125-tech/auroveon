@@ -294,9 +294,22 @@
         position: absolute; inset: 0;
         background: linear-gradient(180deg, transparent 30%, rgba(8,10,8,0.92) 100%);
       }
-      .proj-spotlight .proj-content {
-        position: absolute; bottom: 0; left: 0; right: 0; padding: 32px;
-      }
+     .proj-spotlight .proj-content {
+  position: absolute; bottom: 0; left: 0; right: 0; padding: 32px;
+}
+
+@media (max-width: 767px) {
+  .proj-spotlight .proj-content {
+    position: relative;
+    padding: 20px;
+  }
+  .proj-spotlight .proj-thumb {
+    height: 220px !important;
+  }
+  .proj-spotlight {
+    overflow: visible;
+  }
+}
 
       /* Layout B: Side-by-side info */
       .proj-sidebyside {
@@ -539,6 +552,32 @@
       .whatsapp-fab { position: fixed; bottom: 28px; right: 8px; z-index: 9999; display: flex; align-items: center; justify-content: center; width: 56px; height: 56px; border: none; border-radius: 50%; background: #25d366; box-shadow: 0 4px 20px rgba(37,211,102,0.45); transition: all 0.25s ease; text-decoration: none; }
       .whatsapp-fab:hover { transform: scale(1.1); }
 
+      @media (max-width: 767px) {
+  .proj-spotlight .proj-content h3 {
+    font-size: 1.4rem !important;
+  }
+  .proj-spotlight .proj-content p {
+    font-size: 0.82rem !important;
+  }
+  .proj-spotlight .proj-content .lg\:flex-row {
+    flex-direction: column !important;
+  }
+}
+
+.site-shell {
+  width: min(1380px, calc(100% - 2rem));
+  margin: 0 auto;
+}
+
+.proj-spotlight {
+  position: relative;
+  border-radius: 36px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: rgba(8,10,8,0.92);
+  transition: border-color .35s ease, box-shadow .35s ease;
+}
+
     </style>
   </head>
   <body>
@@ -569,14 +608,14 @@
               <span class="eyebrow">10 Ambitious Projects Shipped</span>
             </div>
 
-            <h1 class="headline-italics mt-6 text-[clamp(2.6rem,6.5vw,6rem)]">
+            <h1 class="headline-italics mt-6 text-[clamp(2.6rem,6.5vw,6rem)]" style="padding-right: 0.1em;">
               <span class="shine-text block"><span class="shine-inner">Work That</span></span>
-              <span class="shine-text block"><span class="shine-inner">Speaks</span></span>
-              <span class="shine-accent block"><span class="shine-inner">Louder.</span></span>
+              <span class="shine-text block"><span class="shine-inner">Proves</span></span>
+              <span class="shine-accent block"><span class="shine-inner">Everything.</span></span>
             </h1>
 
             <p class="mt-6 max-w-xl text-lg leading-8 reveal" style="color:var(--text-secondary);">
-              A curated selection of digital products we've engineered from concept to launch — AI systems, web platforms, SaaS architectures, and cinematic brand experiences.
+              A handpicked portfolio of digital products built end-to-end — from growth platforms and real estate systems to BPO infrastructure and conversion-obsessed web experiences
             </p>
 
             <div class="mt-8 flex flex-col gap-4 sm:flex-row reveal">
@@ -589,76 +628,60 @@
                 Start Yours
               </a>
             </div>
-
-            <!-- Quick stats -->
-            <div class="mt-10 grid grid-cols-3 gap-4 reveal">
-              <div>
-                <div class="display-font text-3xl font-extrabold italic" style="color:var(--text-primary)">10+</div>
-                <div class="mt-1 text-sm" style="color:var(--text-secondary)">Projects Delivered</div>
-              </div>
-              <div>
-                <div class="display-font text-3xl font-extrabold italic" style="color:var(--text-primary)">98%</div>
-                <div class="mt-1 text-sm" style="color:var(--text-secondary)">Client Retention</div>
-              </div>
-              <div>
-                <div class="display-font text-3xl font-extrabold italic" style="color:var(--text-primary)">3x</div>
-                <div class="mt-1 text-sm" style="color:var(--text-secondary)">Avg. ROI Lift</div>
-              </div>
-            </div>
           </div>
 
           <!-- RIGHT VISUAL MOCKUP -->
-          <div class="relative hidden lg:block">
-            <div class="orbital-line" style="width:88%;height:88%;top:6%;left:6%"></div>
-            <div class="orbital-line" style="width:66%;height:66%;top:17%;left:17%"></div>
+         <div class="relative hidden lg:block">
+  <div class="orbital-line" style="width:88%;height:88%;top:6%;left:6%"></div>
+  <div class="orbital-line" style="width:66%;height:66%;top:17%;left:17%"></div>
 
-            <!-- Central glass mockup -->
-            <div class="glass-panel rounded-[36px] overflow-hidden relative" style="min-height:520px;">
-              <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=80"
-                   alt="Portfolio showcase" class="absolute inset-0 w-full h-full object-cover"
-                   style="filter:saturate(0.4) brightness(0.35);" />
+  <!-- Central glass mockup -->
+  <div class="glass-panel rounded-[36px] overflow-hidden relative" style="min-height:520px;">
+<img src="https://www.yankodesign.com/images/design_news/2020/06/all-black-desk-setups-that-will-inspire-you-to-adapt-this-modern-minimal-trend/01-Black-Desk-Setup_-minimal_modern.jpg"
+    alt="Portfolio showcase" class="absolute inset-0 w-full h-full object-cover"
+    style="filter:saturate(0.2) brightness(0.5);" />
 
-              <div class="absolute inset-0" style="background:linear-gradient(180deg,rgba(8,10,8,0.3),rgba(8,10,8,0.85));"></div>
+    <div class="absolute inset-0" style="background:linear-gradient(180deg,rgba(8,10,8,0.3),rgba(8,10,8,0.85));"></div>
 
-              <!-- Floating badge top left -->
-              <div class="hero-badge" style="top:24px;left:24px;max-width:200px;">
-                <div class="eyebrow" style="font-size:.64rem;">Live projects</div>
-                <div class="display-font text-xl font-extrabold italic mt-1" style="color:var(--text-primary)">10 shipped</div>
-                <div class="mt-2 flex gap-2">
-                  <span class="tech-pill">AI</span>
-                  <span class="tech-pill">SaaS</span>
-                  <span class="tech-pill">Web</span>
-                </div>
-              </div>
+    <!-- Floating badge top left -->
+    <div class="hero-badge" style="top:24px;left:24px;max-width:200px;">
+      <div class="eyebrow" style="font-size:.64rem;">Live Projects</div>
+      <div class="display-font text-xl font-extrabold italic mt-1" style="color:var(--text-primary)">10 Shipped</div>
+      <div class="mt-2 flex gap-2">
+        <span class="tech-pill">Real Estate</span>
+        <span class="tech-pill">BPO</span>
+        <span class="tech-pill">Web</span>
+      </div>
+    </div>
 
-              <!-- Floating badge top right -->
-              <div class="hero-badge" style="top:24px;right:24px;">
-                <div style="width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 12px rgba(57,255,20,0.6);margin-bottom:8px;"></div>
-                <div class="mono-font text-xs" style="color:var(--accent)">All live</div>
-                <div class="text-xs mt-1" style="color:var(--text-secondary)">Production ready</div>
-              </div>
+    <!-- Floating badge top right -->
+    <div class="hero-badge" style="top:24px;right:24px;">
+      <div style="width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 12px rgba(57,255,20,0.6);margin-bottom:8px;"></div>
+      <div class="mono-font text-xs" style="color:var(--accent)">All Live</div>
+      <div class="text-xs mt-1" style="color:var(--text-secondary)">Production Ready</div>
+    </div>
 
-              <!-- Main content -->
-              <div class="absolute bottom-0 left-0 right-0 p-8">
-                <div class="eyebrow mb-4">Featured work</div>
-                <div class="display-font text-3xl font-extrabold italic leading-tight" style="color:var(--text-primary);">
-                  AI-native products with cinematic precision.
-                </div>
-                <div class="mt-6 flex flex-wrap gap-3">
-                  <span class="proj-tag accent">Cortex AI</span>
-                  <span class="proj-tag accent">Helio SaaS</span>
-                  <span class="proj-tag accent">Nova Pulse</span>
-                </div>
-              </div>
-            </div>
+    <!-- Main content -->
+    <div class="absolute bottom-0 left-0 right-0 p-8">
+      <div class="eyebrow mb-4">Featured Work</div>
+      <div class="display-font text-3xl font-extrabold italic leading-tight" style="color:var(--text-primary);">
+        Real businesses. Real platforms. Built to perform.
+      </div>
+      <div class="mt-6 flex flex-wrap gap-3">
+        <span class="proj-tag accent">Funnel Plane</span>
+        <span class="proj-tag accent">Ember Realtors</span>
+        <span class="proj-tag accent">Propstar Tech</span>
+      </div>
+    </div>
+  </div>
 
-            <!-- Side floating card -->
-            <div class="glass-panel absolute -right-8 top-1/3 rounded-[24px] p-5" style="width:180px;">
-              <div class="eyebrow" style="font-size:.62rem;">Avg. launch time</div>
-              <div class="display-font text-2xl font-extrabold italic mt-2" style="color:var(--text-primary)">6 weeks</div>
-              <div class="text-xs mt-1" style="color:var(--text-secondary)">Concept → live</div>
-            </div>
-          </div>
+  <!-- Side floating card -->
+  <div class="glass-panel absolute -right-8 top-1/3 rounded-[24px] p-5" style="width:180px;">
+    <div class="eyebrow" style="font-size:.62rem;">Avg. Launch Time</div>
+    <div class="display-font text-2xl font-extrabold italic mt-2" style="color:var(--text-primary)">6 Weeks</div>
+    <div class="text-xs mt-1" style="color:var(--text-secondary)">Concept → Live</div>
+  </div>
+</div>
         </div>
       </div>
     </section>
@@ -692,7 +715,7 @@
     </section>
 
     <!-- ===================== PROJECTS SECTION ===================== -->
-    <section id="projects" class="section-frame relative py-24 lg:py-32">
+ <section id="projects" class="section-frame relative py-24 lg:py-32">
       <div class="site-shell">
 
         <!-- Section header -->
@@ -703,47 +726,40 @@
               10 products. 10 different worlds.
             </h2>
           </div>
-          <p class="max-w-md text-base leading-8 lg:text-right lg:text-lg" style="color:var(--text-secondary);">
-            Every project had a different problem, audience, and ambition. Here's how we solved each one with precision.
-          </p>
-        </div>
-
-        <!-- FILTER BAR -->
-        <div class="flex flex-wrap gap-3 mb-14 reveal">
-          <button class="filter-btn active" data-filter="all">All</button>
-          <button class="filter-btn" data-filter="ai">AI Systems</button>
-          <button class="filter-btn" data-filter="web">Web Platforms</button>
-          <button class="filter-btn" data-filter="saas">SaaS</button>
-          <button class="filter-btn" data-filter="automation">Automation</button>
-          <button class="filter-btn" data-filter="uiux">UI/UX</button>
         </div>
 
         <!-- ===== PROJECT 01 — Full bleed spotlight (wide) ===== -->
-        <div class="proj-spotlight reveal mb-6" data-categories="ai web">
-          <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1600&q=80" alt="Cortex AI Dashboard" class="proj-thumb w-full" style="height:440px;" />
-          <div class="proj-overlay"></div>
-          <div class="proj-content">
-            <div class="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
-              <div>
-                <div class="flex items-center gap-3 mb-4">
-                  <span class="proj-tag accent">AI System</span>
-                  <span class="proj-tag">Enterprise</span>
-                  <span class="proj-num" style="font-size:2rem;color:rgba(57,255,20,0.18)">01</span>
-                </div>
-                <h3 class="display-font text-4xl font-extrabold italic leading-tight lg:text-5xl" style="color:var(--text-primary);">Cortex AI — Operational Intelligence Platform</h3>
-                <p class="mt-3 max-w-2xl text-base leading-7" style="color:var(--text-secondary);">Built a full AI command layer replacing fragmented manual ops. Custom inference pipelines, real-time dashboards, and guardrail systems — all inside one cohesive product surface.</p>
-                <div class="mt-4 flex flex-wrap gap-2">
-                  <span class="tech-pill">Next.js</span><span class="tech-pill">OpenAI API</span><span class="tech-pill">PostgreSQL</span><span class="tech-pill">Vercel</span>
-                </div>
-              </div>
-              <div class="result-badge flex-shrink-0">
-                <div class="eyebrow" style="font-size:.64rem;">Outcome</div>
-                <div class="display-font text-2xl font-extrabold italic mt-1" style="color:var(--accent);">42% faster</div>
-                <div class="text-sm" style="color:var(--text-secondary);">internal resolution</div>
-              </div>
-            </div>
-          </div>
+   <div class="proj-spotlight reveal mb-6" data-categories="ai web">
+  <img src="https://plus.unsplash.com/premium_photo-1683133974170-762dc561d292?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8YnVzaW5lc3N8ZW58MHx8MHx8fDA%3D" alt="Funnel Plane Growth Dashboard" class="proj-thumb w-full" style="height:440px;" />
+  <div class="proj-overlay"></div>
+  <div class="proj-content">
+    <div class="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+      <div>
+        <div class="flex items-center gap-3 mb-4">
+          <span class="proj-tag accent">Digital Growth</span>
+          <span class="proj-num" style="font-size:2rem;color:rgba(57,255,20,0.18)">01</span>
         </div>
+        <h3 class="display-font text-4xl font-extrabold italic leading-tight lg:text-5xl" style="color:var(--text-primary);">Funnel Plane — Digital Growth Engine for Businesses</h3>
+        <p class="mt-3 max-w-2xl text-base leading-7" style="color:var(--text-secondary);">Built a full-spectrum digital growth platform replacing fragmented agency work. Google & Meta Ads, AI Voice Agents, GHL Funnels, and CRM Automation — all under one cohesive growth engine.</p>
+        <div class="mt-4 flex flex-wrap gap-2">
+          <span class="tech-pill">Google Ads</span><span class="tech-pill">Meta Ads</span><span class="tech-pill">AI Voice Agents</span><span class="tech-pill">GHL Funnels</span><span class="tech-pill">CRM Automation</span>
+        </div>
+      </div>
+      <div class="result-badge flex-shrink-0">
+        <div class="eyebrow" style="font-size:.64rem;">Outcome</div>
+        <div class="display-font text-2xl font-extrabold italic mt-1" style="color:var(--accent);">9.2× ROAS</div>
+        <div class="text-sm" style="color:var(--text-secondary);">avg. return on ad spend</div>
+      </div>
+      <a href="https://funnelplane.com/" target="_blank" rel="noopener" 
+   style="display:inline-flex;align-items:center;gap:8px;margin-top:14px;padding:8px 18px;border:2px solid var(--border);border-radius:999px;font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);background:transparent;text-decoration:none;transition:all .2s;" 
+   onmouseover="this.style.background='rgba(57,255,20,0.08)'" 
+   onmouseout="this.style.background='transparent'">
+  <span style="width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 8px rgba(57,255,20,0.6);"></span>
+  View Live
+</a>
+    </div>
+  </div>
+</div>
 
         <!-- ===== PROJECT 02 + 03 — Side by side tall cards ===== -->
         <div class="grid gap-6 md:grid-cols-2 mb-6">
@@ -751,25 +767,32 @@
           <!-- 02 -->
           <div class="proj-tall reveal" data-categories="saas web">
             <div class="proj-tall-thumb">
-              <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80" alt="Helio Commerce" />
+              <img src="https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aG9tZXN8ZW58MHx8MHx8fDA%3D" alt="Helio Commerce" />
             </div>
             <div class="proj-tall-body">
               <div>
                 <div class="flex items-center justify-between mb-4">
-                  <span class="proj-tag accent">SaaS Platform</span>
+                  <span class="proj-tag accent">Offer Engine</span>
                   <span class="proj-num">02</span>
                 </div>
-                <h3 class="display-font text-2xl font-extrabold italic leading-tight" style="color:var(--text-primary);">Helio Commerce — SaaS Rebuild</h3>
-                <p class="mt-3 text-sm leading-7" style="color:var(--text-secondary);">Complete frontend overhaul and product repositioning. Built modular component library, billing flows, and permission systems from scratch.</p>
+                <h3 class="display-font text-2xl font-extrabold italic leading-tight" style="color:var(--text-primary);">Wrangler Homes — Cash Offer Funnel System</h3>
+                <p class="mt-3 text-sm leading-7" style="color:var(--text-secondary);">Complete frontend overhaul and product repositioning. Engineered a 3-step cash offer acquisition funnel with 24-hour response logic, as-is property intake, and trust-anchored UI — driving $500M+ in closed deals since 1994..</p>
               </div>
               <div>
                 <div class="flex flex-wrap gap-2 mb-4">
-                  <span class="tech-pill">React</span><span class="tech-pill">Stripe</span><span class="tech-pill">Supabase</span>
-                </div>
+          <span class="tech-pill">Funnel Design</span><span class="tech-pill">Form UX</span><span class="tech-pill">CRM Integration</span>
+        </div>
                 <div class="result-badge">
                   <div class="eyebrow" style="font-size:.64rem;">Outcome</div>
-                  <div class="display-font text-xl font-extrabold italic mt-1" style="color:var(--accent);">+62% enterprise trust</div>
+                  <div class="display-font text-xl font-extrabold italic mt-1" style="color:var(--accent);">$500M+ cash closedt</div>
                 </div>
+                      <a href="https://wranglerhomes.com/" target="_blank" rel="noopener" 
+   style="display:inline-flex;align-items:center;gap:8px;margin-top:14px;padding:8px 18px;border:2px solid var(--border);border-radius:999px;font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);background:transparent;text-decoration:none;transition:all .2s;" 
+   onmouseover="this.style.background='rgba(57,255,20,0.08)'" 
+   onmouseout="this.style.background='transparent'">
+  <span style="width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 8px rgba(57,255,20,0.6);"></span>
+  View Live
+</a>
               </div>
             </div>
           </div>
@@ -777,25 +800,32 @@
           <!-- 03 -->
           <div class="proj-tall reveal" data-categories="web uiux">
             <div class="proj-tall-thumb">
-              <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=800&q=80" alt="Nova Pulse Launch" />
+              <img src="https://res.cloudinary.com/theflooringbull/image/upload/v1769444440/portfolio-bedroom_k8yedo.jpg" alt="Nova Pulse Launch" />
             </div>
             <div class="proj-tall-body">
               <div>
                 <div class="flex items-center justify-between mb-4">
-                  <span class="proj-tag accent">Product Launch</span>
+                  <span class="proj-tag accent">Home Services</span>
                   <span class="proj-num">03</span>
                 </div>
-                <h3 class="display-font text-2xl font-extrabold italic leading-tight" style="color:var(--text-primary);">Nova Pulse — Launch System</h3>
-                <p class="mt-3 text-sm leading-7" style="color:var(--text-secondary);">Created immersive storytelling site combining 3D hero, modular CMS, scroll-driven motion, and a memorable premium visual identity.</p>
+                <h3 class="display-font text-2xl font-extrabold italic leading-tight" style="color:var(--text-primary);">The Flooring Bull — Premium Flooring Installation</h3>
+                <p class="mt-3 text-sm leading-7" style="color:var(--text-secondary);">Full-service flooring platform for vinyl, hardwood, laminate, tile & carpet installs across Georgia. Built in-home estimate flow, before/after showcase, and a 3-step project funnel — furniture moving included, zero hidden fees.</p>
               </div>
               <div>
                 <div class="flex flex-wrap gap-2 mb-4">
-                  <span class="tech-pill">Three.js</span><span class="tech-pill">GSAP</span><span class="tech-pill">Sanity CMS</span>
+                  <span class="tech-pill">Flooring Calculator</span><span class="tech-pill">Lead Funnel</span><span class="tech-pill"> Before/After UI</span>
                 </div>
                 <div class="result-badge">
                   <div class="eyebrow" style="font-size:.64rem;">Outcome</div>
-                  <div class="display-font text-xl font-extrabold italic mt-1" style="color:var(--accent);">91% stakeholder approval</div>
+                  <div class="display-font text-xl font-extrabold italic mt-1" style="color:var(--accent);">across all Georgia installs</div>
                 </div>
+                      <a href="https://theflooringbull.com/" target="_blank" rel="noopener" 
+   style="display:inline-flex;align-items:center;gap:8px;margin-top:14px;padding:8px 18px;border:2px solid var(--border);border-radius:999px;font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);background:transparent;text-decoration:none;transition:all .2s;" 
+   onmouseover="this.style.background='rgba(57,255,20,0.08)'" 
+   onmouseout="this.style.background='transparent'">
+  <span style="width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 8px rgba(57,255,20,0.6);"></span>
+  View Live
+</a>
               </div>
             </div>
           </div>
@@ -804,25 +834,32 @@
         <!-- ===== PROJECT 04 — Side by side (info right) ===== -->
         <div class="proj-sidebyside reveal mb-6" data-categories="ai automation">
           <div class="proj-visual">
-            <img src="https://images.unsplash.com/photo-1504639725590-34d0984388bd?auto=format&fit=crop&w=800&q=80" alt="Aria AI Copilot" />
+            <img src="https://plus.unsplash.com/premium_photo-1661902934269-17eaf4b04f9f?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8bHV4dXJ5JTIwaG9tZXN8ZW58MHx8MHx8fDA%3D" alt="Aria AI Copilot" />
             <div style="position:absolute;inset:0;background:linear-gradient(90deg,transparent 60%,rgba(8,10,8,0.6));"></div>
           </div>
           <div class="proj-info" style="background:linear-gradient(135deg,rgba(12,15,12,0.98),rgba(8,10,8,0.99));">
             <div>
               <div class="flex items-center justify-between mb-6">
-                <span class="proj-tag accent">AI Copilot</span>
+                <span class="proj-tag accent">Luxury Real Estate</span>
                 <span class="proj-num">04</span>
               </div>
-              <h3 class="display-font text-3xl font-extrabold italic leading-tight" style="color:var(--text-primary);">Aria — Intelligent Support Copilot</h3>
-              <p class="mt-4 text-base leading-7" style="color:var(--text-secondary);">Custom LLM fine-tuning with retrieval-augmented generation, context memory, and a polished chat UI. Reduced support ticket volume dramatically.</p>
+              <h3 class="display-font text-2xl font-extrabold italic leading-tight" style="color:var(--text-primary);">Ember Realtors — Global Luxury Real Estate Firm</h3>
+              <p class="mt-4 text-base leading-7" style="color:var(--text-secondary);">Bespoke digital platform for a global high-net-worth real estate firm. Built curated property search, signature listings showcase, new developments portal, and a strategic sell-side appraisal flow — from Billionaires' Row to Palm Jumeirah.</p>
               <div class="flex flex-wrap gap-2 mt-5">
-                <span class="tech-pill">LangChain</span><span class="tech-pill">Pinecone</span><span class="tech-pill">FastAPI</span><span class="tech-pill">React</span>
+                <span class="tech-pill">Property Search</span><span class="tech-pill">Listings UI</span><span class="tech-pill">Market Intelligence</span><span class="tech-pill">Lead Funnel</span>
               </div>
             </div>
             <div class="result-badge mt-6">
               <div class="eyebrow" style="font-size:.64rem;">Outcome</div>
-              <div class="display-font text-2xl font-extrabold italic mt-1" style="color:var(--accent);">67% ticket reduction</div>
+              <div class="display-font text-2xl font-extrabold italic mt-1" style="color:var(--accent);">$89M+ listings</div>
             </div>
+                  <a href="https://emberrealtors.com/" target="_blank" rel="noopener" 
+   style="display:inline-flex;align-items:center;gap:8px;margin-top:14px;padding:8px 18px;border:2px solid var(--border);border-radius:999px;font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);background:transparent;text-decoration:none;transition:all .2s;" 
+   onmouseover="this.style.background='rgba(57,255,20,0.08)'" 
+   onmouseout="this.style.background='transparent'">
+  <span style="width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 8px rgba(57,255,20,0.6);"></span>
+  View Live
+</a>
           </div>
         </div>
 
@@ -832,24 +869,31 @@
           <!-- 05 -->
           <div class="proj-tall reveal" data-categories="web uiux">
             <div class="proj-tall-thumb">
-              <img src="https://images.unsplash.com/photo-1522542550221-31fd19575a2d?auto=format&fit=crop&w=700&q=80" alt="Zenith Branding" />
+              <img src="https://images.unsplash.com/photo-1551583899-d3f6258ec7c9?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8Y2FsbGluZyUyMGhlYWRwaG9uZSUyMG1lbnxlbnwwfHwwfHx8MA%3D%3D" alt="Zenith Branding" />
             </div>
             <div class="proj-tall-body">
               <div>
                 <div class="flex items-center justify-between mb-3">
-                  <span class="proj-tag accent">Brand + Web</span>
+                  <span class="proj-tag accent">Sales & Outreach</span>
                   <span class="proj-num">05</span>
                 </div>
-                <h3 class="display-font text-xl font-extrabold italic leading-tight" style="color:var(--text-primary);">Zenith — Brand Identity & Web</h3>
-                <p class="mt-3 text-sm leading-7" style="color:var(--text-secondary);">Full brand identity system paired with a cinematic marketing site featuring scroll-driven reveals and editorial typography.</p>
+                <h3 class="display-font text-xl font-extrabold italic leading-tight" style="color:var(--text-primary);">Run It Remote — Cold Calling & Lead Generation Engine</h3>
+                <p class="mt-3 text-sm leading-7" style="color:var(--text-secondary);">Full-scale remote sales platform for cold calling, appointment setting, and AI automation across 9+ industries. Built lead gen pipelines, live dashboards, and quality validation systems — turning cold prospects into closed deals at scale.</p>
               </div>
               <div>
                 <div class="flex flex-wrap gap-2 mb-3">
-                  <span class="tech-pill">Figma</span><span class="tech-pill">GSAP</span><span class="tech-pill">Webflow</span>
+                  <span class="tech-pill">Lead Generation</span><span class="tech-pill">Appointment Setting</span><span class="tech-pill">AI Automation</span>
                 </div>
                 <div class="result-badge">
-                  <div class="display-font text-lg font-extrabold italic" style="color:var(--accent);">+80% brand recall</div>
+                  <div class="display-font text-lg font-extrabold italic" style="color:var(--accent);">2.5× avg ROI</div>
                 </div>
+                      <a href="https://runit-remote.netlify.app/" target="_blank" rel="noopener" 
+   style="display:inline-flex;align-items:center;gap:8px;margin-top:14px;padding:8px 18px;border:2px solid var(--border);border-radius:999px;font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);background:transparent;text-decoration:none;transition:all .2s;" 
+   onmouseover="this.style.background='rgba(57,255,20,0.08)'" 
+   onmouseout="this.style.background='transparent'">
+  <span style="width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 8px rgba(57,255,20,0.6);"></span>
+  View Live
+</a>
               </div>
             </div>
           </div>
@@ -862,19 +906,26 @@
             <div class="proj-tall-body">
               <div>
                 <div class="flex items-center justify-between mb-3">
-                  <span class="proj-tag accent">Automation</span>
+                  <span class="proj-tag accent">BPO & Outsourcing</span>
                   <span class="proj-num">06</span>
                 </div>
-                <h3 class="display-font text-xl font-extrabold italic leading-tight" style="color:var(--text-primary);">FlowSync — Ops Automation Suite</h3>
-                <p class="mt-3 text-sm leading-7" style="color:var(--text-secondary);">Eliminated manual bottlenecks across sales, ops, and support with an n8n + custom API automation layer and a clean dashboard UI.</p>
+                <h3 class="display-font text-xl font-extrabold italic leading-tight" style="color:var(--text-primary);">Propstar Technologies — BPO for U.S. Real Estate</h3>
+                <p class="mt-3 text-sm leading-7" style="color:var(--text-secondary);">End-to-end BPO platform bridging Karachi talent with the U.S. real estate market. Built lead generation pipelines, call executive systems, QA workflows, and a careers portal — 400+ professionals, 23 departments, all under one brand.</p>
               </div>
               <div>
                 <div class="flex flex-wrap gap-2 mb-3">
-                  <span class="tech-pill">n8n</span><span class="tech-pill">Node.js</span><span class="tech-pill">Zapier Alt</span>
+                  <span class="tech-pill">Lead Generation</span><span class="tech-pill">Call Operations</span><span class="tech-pill">Quality Control</span>
                 </div>
                 <div class="result-badge">
-                  <div class="display-font text-lg font-extrabold italic" style="color:var(--accent);">18hrs/week saved</div>
+                  <div class="display-font text-lg font-extrabold italic" style="color:var(--accent);">1.2M+ leads</div>
                 </div>
+                      <a href="https://propstar.netlify.app/" target="_blank" rel="noopener" 
+   style="display:inline-flex;align-items:center;gap:8px;margin-top:14px;padding:8px 18px;border:2px solid var(--border);border-radius:999px;font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);background:transparent;text-decoration:none;transition:all .2s;" 
+   onmouseover="this.style.background='rgba(57,255,20,0.08)'" 
+   onmouseout="this.style.background='transparent'">
+  <span style="width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 8px rgba(57,255,20,0.6);"></span>
+  View Live
+</a>
               </div>
             </div>
           </div>
@@ -882,24 +933,31 @@
           <!-- 07 -->
           <div class="proj-tall reveal" data-categories="web ai">
             <div class="proj-tall-thumb">
-              <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=700&q=80" alt="PulseTrack App" />
+              <img src="https://images.unsplash.com/photo-1544984243-ec57ea16fe25?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8bHV4dXJ5JTIwaG9tZXN8ZW58MHx8MHx8fDA%3D" alt="PulseTrack App" />
             </div>
             <div class="proj-tall-body">
               <div>
                 <div class="flex items-center justify-between mb-3">
-                  <span class="proj-tag accent">App + AI</span>
+                  <span class="proj-tag accent">Construction</span>
                   <span class="proj-num">07</span>
                 </div>
-                <h3 class="display-font text-xl font-extrabold italic leading-tight" style="color:var(--text-primary);">PulseTrack — Analytics App</h3>
-                <p class="mt-3 text-sm leading-7" style="color:var(--text-secondary);">Real-time analytics mobile app with AI-powered insights layer, custom charts, and push notification intelligence engine.</p>
+                <h3 class="display-font text-xl font-extrabold italic leading-tight" style="color:var(--text-primary);">Kahloon Construction — Premium Construction Services, Ontario</h3>
+                <p class="mt-3 text-sm leading-7" style="color:var(--text-secondary);">Full-scale construction platform for a fast-growing Ontario-based firm. Built project showcase, services portal, and lead intake flow covering general construction, renovation, bathroom repairs, and tiling — 100+ projects completed since 2020.</p>
               </div>
               <div>
                 <div class="flex flex-wrap gap-2 mb-3">
-                  <span class="tech-pill">React Native</span><span class="tech-pill">Python</span><span class="tech-pill">Redis</span>
+                  <span class="tech-pill">Project Showcase</span><span class="tech-pill">Services Portal </span><span class="tech-pill">CMS</span>
                 </div>
                 <div class="result-badge">
-                  <div class="display-font text-lg font-extrabold italic" style="color:var(--accent);">4.8★ App Store</div>
+                  <div class="display-font text-lg font-extrabold italic" style="color:var(--accent);">completed across Ontario</div>
                 </div>
+                      <a href="https://kahloonconstruction.com/" target="_blank" rel="noopener" 
+   style="display:inline-flex;align-items:center;gap:8px;margin-top:14px;padding:8px 18px;border:2px solid var(--border);border-radius:999px;font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);background:transparent;text-decoration:none;transition:all .2s;" 
+   onmouseover="this.style.background='rgba(57,255,20,0.08)'" 
+   onmouseout="this.style.background='transparent'">
+  <span style="width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 8px rgba(57,255,20,0.6);"></span>
+  View Live
+</a>
               </div>
             </div>
           </div>
@@ -908,24 +966,31 @@
         <!-- ===== PROJECT 08 — Side by side (info left) ===== -->
         <div class="proj-sidebyside reveal mb-6" data-categories="saas uiux" style="direction:rtl;">
           <div class="proj-visual" style="direction:ltr;">
-            <img src="https://images.unsplash.com/photo-1555421689-d68471e189f2?auto=format&fit=crop&w=800&q=80" alt="Vault SaaS Dashboard" />
+            <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8bHV4dXJ5JTIwaG9tZXN8ZW58MHx8MHx8fDA%3D" alt="Vault SaaS Dashboard" />
           </div>
           <div class="proj-info" style="direction:ltr;background:linear-gradient(135deg,rgba(8,10,8,0.99),rgba(12,15,12,0.98));border-left:none;border-right:1px solid var(--border);">
             <div>
               <div class="flex items-center justify-between mb-6">
-                <span class="proj-tag accent">SaaS Dashboard</span>
+                <span class="proj-tag accent">Construction</span>
                 <span class="proj-num">08</span>
               </div>
-              <h3 class="display-font text-3xl font-extrabold italic leading-tight" style="color:var(--text-primary);">Vault — Financial SaaS Platform</h3>
-              <p class="mt-4 text-base leading-7" style="color:var(--text-secondary);">Premium financial management SaaS with granular role permissions, multi-tenant architecture, interactive charts, and a glass-panel design system.</p>
+              <h3 class="display-font text-2xl font-extrabold italic leading-tight" style="color:var(--text-primary);">Shergill Construction — Building Structures That Last, Ontario</h3>
+              <p class="mt-4 text-base leading-7" style="color:var(--text-secondary);">End-to-end construction platform for one of Ontario's trusted builders. Built project portfolio, services showcase, and quote intake flow covering commercial builds, custom residential homes, and full renovations — 6+ years, 100+ projects delivered.</p>
               <div class="flex flex-wrap gap-2 mt-5">
-                <span class="tech-pill">Next.js</span><span class="tech-pill">Prisma</span><span class="tech-pill">Chart.js</span><span class="tech-pill">Auth0</span>
+                <span class="tech-pill">Project Portfolio</span><span class="tech-pill">Quote Intake</span><span class="tech-pill">Services Showcase</span><span class="tech-pill">CMS</span>
               </div>
             </div>
             <div class="result-badge mt-6">
               <div class="eyebrow" style="font-size:.64rem;">Outcome</div>
-              <div class="display-font text-2xl font-extrabold italic mt-1" style="color:var(--accent);">3x user retention lift</div>
+              <div class="display-font text-2xl font-extrabold italic mt-1" style="color:var(--accent);">100% client satisfactiont</div>
             </div>
+                  <a href="https://shergillconstructions.com/" target="_blank" rel="noopener" 
+   style="display:inline-flex;align-items:center;gap:8px;margin-top:14px;padding:8px 18px;border:2px solid var(--border);border-radius:999px;font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);background:transparent;text-decoration:none;transition:all .2s;" 
+   onmouseover="this.style.background='rgba(57,255,20,0.08)'" 
+   onmouseout="this.style.background='transparent'">
+  <span style="width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 8px rgba(57,255,20,0.6);"></span>
+  View Live
+</a>
           </div>
         </div>
 
@@ -933,25 +998,32 @@
         <div class="proj-strip reveal mb-6" data-categories="automation ai">
           <div class="proj-strip-bar"></div>
           <div class="proj-strip-thumb">
-            <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=600&q=80" alt="EchoBot AI" />
+            <img src="https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8ZSUyMGNvbW1lcmNlJTIwY2xvdGhlc3xlbnwwfHwwfHx8MA%3D%3D" alt="EchoBot AI" />
           </div>
           <div class="proj-strip-body glass-panel" style="border:none;border-radius:0;">
             <div>
               <div class="flex items-center gap-4 mb-4">
-                <span class="proj-tag accent">AI Chatbot</span>
+                <span class="proj-tag accent">E-Commerce</span>
                 <span class="proj-num">09</span>
               </div>
-              <h3 class="display-font text-3xl font-extrabold italic leading-tight" style="color:var(--text-primary);">EchoBot — Conversational AI for E-Commerce</h3>
-              <p class="mt-4 text-base leading-7 max-w-2xl" style="color:var(--text-secondary);">Deployed a context-aware shopping assistant with product recommendation engine, live order tracking integration, and multi-language support — boosting conversion rate significantly.</p>
+              <h3 class="display-font text-2xl font-extrabold italic leading-tight" style="color:var(--text-primary);">Cara — Fashion E-Commerce Store</h3>
+              <p class="mt-4 text-base leading-7 max-w-2xl" style="color:var(--text-secondary);">Full-featured fashion e-commerce storefront built for a Karachi-based clothing brand. Includes product catalog, seasonal collections, cart system, newsletter flow, and repair services — up to 70% off deals and buy-1-get-1 campaign support.</p>
             </div>
             <div class="flex flex-wrap items-center gap-4 mt-6">
               <div class="flex flex-wrap gap-2">
-                <span class="tech-pill">GPT-4o</span><span class="tech-pill">Shopify API</span><span class="tech-pill">TypeScript</span>
+                <span class="tech-pill">Product Catalog</span><span class="tech-pill">Cart System</span><span class="tech-pill">Promo Campaigns </span>
               </div>
               <div class="result-badge ml-auto">
                 <div class="eyebrow" style="font-size:.62rem;">Outcome</div>
-                <div class="display-font text-xl font-extrabold italic mt-1" style="color:var(--accent);">+38% conversions</div>
+                <div class="display-font text-xl font-extrabold italic mt-1" style="color:var(--accent);">live deals & seasonal drops</div>
               </div>
+                    <a href="https://zaidalicara.netlify.app/" target="_blank" rel="noopener" 
+   style="display:inline-flex;align-items:center;gap:8px;margin-top:14px;padding:8px 18px;border:2px solid var(--border);border-radius:999px;font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);background:transparent;text-decoration:none;transition:all .2s;" 
+   onmouseover="this.style.background='rgba(57,255,20,0.08)'" 
+   onmouseout="this.style.background='transparent'">
+  <span style="width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 8px rgba(57,255,20,0.6);"></span>
+  View Live
+</a>
             </div>
           </div>
         </div>
@@ -978,6 +1050,13 @@
                 <div class="eyebrow" style="font-size:.64rem;">Outcome</div>
                 <div class="display-font text-2xl font-extrabold italic mt-1" style="color:var(--accent);">2.8x inquiry rate</div>
               </div>
+                    <a href="URL_HERE" target="_blank" rel="noopener" 
+   style="display:inline-flex;align-items:center;gap:8px;margin-top:14px;padding:8px 18px;border:2px solid var(--border);border-radius:999px;font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);background:transparent;text-decoration:none;transition:all .2s;" 
+   onmouseover="this.style.background='rgba(57,255,20,0.08)'" 
+   onmouseout="this.style.background='transparent'">
+  <span style="width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 8px rgba(57,255,20,0.6);"></span>
+  View Live
+</a>
             </div>
           </div>
         </div>
@@ -993,29 +1072,6 @@
           <h2 class="display-font mt-4 text-4xl font-extrabold italic leading-[0.96] tracking-[-0.04em] lg:text-6xl" style="color:var(--text-primary);">
             Results that compound.
           </h2>
-        </div>
-
-        <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 reveal">
-          <div class="stat-card text-center">
-            <div class="display-font text-5xl font-extrabold italic" style="color:var(--accent);">10+</div>
-            <div class="mt-3 text-base font-semibold" style="color:var(--text-primary);">Projects Shipped</div>
-            <div class="mt-2 text-sm" style="color:var(--text-secondary);">Across AI, SaaS, web & mobile</div>
-          </div>
-          <div class="stat-card text-center">
-            <div class="display-font text-5xl font-extrabold italic" style="color:var(--accent);">98%</div>
-            <div class="mt-3 text-base font-semibold" style="color:var(--text-primary);">Client Retention</div>
-            <div class="mt-2 text-sm" style="color:var(--text-secondary);">Long-term build partnerships</div>
-          </div>
-          <div class="stat-card text-center">
-            <div class="display-font text-5xl font-extrabold italic" style="color:var(--accent);">3x</div>
-            <div class="mt-3 text-base font-semibold" style="color:var(--text-primary);">Avg. ROI Lift</div>
-            <div class="mt-2 text-sm" style="color:var(--text-secondary);">Post-launch performance gain</div>
-          </div>
-          <div class="stat-card text-center">
-            <div class="display-font text-5xl font-extrabold italic" style="color:var(--accent);">6wk</div>
-            <div class="mt-3 text-base font-semibold" style="color:var(--text-primary);">Avg. Launch Timeline</div>
-            <div class="mt-2 text-sm" style="color:var(--text-secondary);">Concept to production</div>
-          </div>
         </div>
 
         <!-- Scrolling outcomes -->
