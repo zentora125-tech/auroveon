@@ -13,8 +13,16 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
       rel="stylesheet"
     />
+
     <script src="https://cdn.tailwindcss.com"></script>
 
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <script type="text/babel" src="../components/navbar.js"></script>
+    <script type="text/babel" src="../components/footer.js"></script>
+    <script type="text/babel" src="../components/whatsapp-fab.js"></script>
     <style>
       :root {
         --bg-base: #080a08;
@@ -26,170 +34,1123 @@
         --border: rgba(57, 255, 20, 0.1);
         --border-strong: rgba(57, 255, 20, 0.24);
       }
-      * { margin: 0; padding: 0; box-sizing: border-box; }
-      html { scroll-behavior: smooth; }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
       body {
-        background: radial-gradient(circle at top, rgba(57,255,20,0.07), transparent 26%), linear-gradient(180deg,#080a08 0%,#090c09 50%,#070907 100%);
+        background:
+          radial-gradient(
+            circle at top,
+            rgba(57, 255, 20, 0.07),
+            transparent 26%
+          ),
+          linear-gradient(180deg, #080a08 0%, #090c09 50%, #070907 100%);
         color: var(--text-primary);
         font-family: "Inter", sans-serif;
         overflow-x: hidden;
         -webkit-font-smoothing: antialiased;
       }
-      @media(min-width:1024px){body{cursor:none;}}
-      .display-font { font-family: "Poppins", sans-serif; }
-      .mono-font { font-family: "JetBrains Mono", monospace; }
-      .site-shell { width: min(1380px, calc(100% - 1.5rem)); margin: 0 auto; }
-      @media(min-width:1024px){.site-shell{width:min(1380px,calc(100% - 4rem));}}
+      @media (min-width: 1024px) {
+        body {
+          cursor: none;
+        }
+      }
+      .display-font {
+        font-family: "Poppins", sans-serif;
+      }
+      .mono-font {
+        font-family: "JetBrains Mono", monospace;
+      }
+      .site-shell {
+        width: min(1380px, calc(100% - 1.5rem));
+        margin: 0 auto;
+      }
+      @media (min-width: 1024px) {
+        .site-shell {
+          width: min(1380px, calc(100% - 4rem));
+        }
+      }
 
-      .cursor-dot,.cursor-ring{position:fixed;top:0;left:0;transform:translate(-50%,-50%);pointer-events:none;z-index:90;opacity:0;}
-      .cursor-dot{width:10px;height:10px;border-radius:9999px;background:var(--accent);box-shadow:0 0 22px rgba(57,255,20,0.65);mix-blend-mode:screen;}
-      .cursor-ring{width:54px;height:54px;border-radius:9999px;border:1px solid rgba(57,255,20,0.22);transition:width .25s,height .25s,border-color .25s;}
-      .cursor-ring.is-hovering{width:76px;height:76px;border-color:rgba(57,255,20,0.48);}
-      @media(max-width:1023px){.cursor-dot,.cursor-ring{display:none;}}
+      .cursor-dot,
+      .cursor-ring {
+        position: fixed;
+        top: 0;
+        left: 0;
+        transform: translate(-50%, -50%);
+        pointer-events: none;
+        z-index: 90;
+        opacity: 0;
+      }
+      .cursor-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 9999px;
+        background: var(--accent);
+        box-shadow: 0 0 22px rgba(57, 255, 20, 0.65);
+        mix-blend-mode: screen;
+      }
+      .cursor-ring {
+        width: 54px;
+        height: 54px;
+        border-radius: 9999px;
+        border: 1px solid rgba(57, 255, 20, 0.22);
+        transition:
+          width 0.25s,
+          height 0.25s,
+          border-color 0.25s;
+      }
+      .cursor-ring.is-hovering {
+        width: 76px;
+        height: 76px;
+        border-color: rgba(57, 255, 20, 0.48);
+      }
+      @media (max-width: 1023px) {
+        .cursor-dot,
+        .cursor-ring {
+          display: none;
+        }
+      }
 
-      .noise-overlay{position:fixed;inset:0;pointer-events:none;z-index:5;opacity:0.034;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:240px 240px;}
-      .glass-panel{background:linear-gradient(180deg,rgba(18,23,18,0.8),rgba(10,12,10,0.58));border:1px solid var(--border);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);box-shadow:0 18px 60px rgba(0,0,0,0.35),inset 0 1px 0 rgba(255,255,255,0.04);}
-      .nav-scrolled{background:rgba(8,10,8,0.86);border-bottom:1px solid var(--border);backdrop-filter:blur(22px);}
-      .nav-link{color:var(--text-secondary);transition:color .24s;}
-      .nav-link:hover,.nav-link.active-link{color:var(--text-primary);}
-      .eyebrow{font-family:"JetBrains Mono",monospace;color:var(--accent);font-size:0.72rem;letter-spacing:0.18em;text-transform:uppercase;}
-      .section-kicker{font-family:"Poppins",sans-serif;font-size:0.74rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--text-secondary);}
-      .mini-label{color:var(--text-muted);font-size:0.76rem;text-transform:uppercase;letter-spacing:0.16em;}
-      .soft-divider{background:linear-gradient(90deg,transparent,rgba(57,255,20,0.28),transparent);}
+      .noise-overlay {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: 5;
+        opacity: 0.034;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+        background-size: 240px 240px;
+      }
+      .glass-panel {
+        background: linear-gradient(
+          180deg,
+          rgba(18, 23, 18, 0.8),
+          rgba(10, 12, 10, 0.58)
+        );
+        border: 1px solid var(--border);
+        backdrop-filter: blur(22px);
+        -webkit-backdrop-filter: blur(22px);
+        box-shadow:
+          0 18px 60px rgba(0, 0, 0, 0.35),
+          inset 0 1px 0 rgba(255, 255, 255, 0.04);
+      }
+      .nav-scrolled {
+        background: rgba(8, 10, 8, 0.86);
+        border-bottom: 1px solid var(--border);
+        backdrop-filter: blur(22px);
+      }
+      .nav-link {
+        color: var(--text-secondary);
+        transition: color 0.24s;
+      }
+      .nav-link:hover,
+      .nav-link.active-link {
+        color: var(--text-primary);
+      }
+      .eyebrow {
+        font-family: "JetBrains Mono", monospace;
+        color: var(--accent);
+        font-size: 0.72rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+      }
+      .section-kicker {
+        font-family: "Poppins", sans-serif;
+        font-size: 0.74rem;
+        font-weight: 700;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--text-secondary);
+      }
+      .mini-label {
+        color: var(--text-muted);
+        font-size: 0.76rem;
+        text-transform: uppercase;
+        letter-spacing: 0.16em;
+      }
+      .soft-divider {
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(57, 255, 20, 0.28),
+          transparent
+        );
+      }
 
-      @keyframes text-shine{0%{background-position:-200% center;}100%{background-position:200% center;}}
-      .shine-word{display:inline-block;background:linear-gradient(90deg,#fff 0%,#fff 35%,#b9ffb0 44%,#eaffea 50%,#b9ffb0 56%,#fff 65%,#fff 100%);background-size:200% auto;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:text-shine 4s linear infinite;}
-      .shine-word-accent{display:inline-block;background:linear-gradient(90deg,#39ff14 0%,#39ff14 35%,#ccffcc 44%,#efffef 50%,#ccffcc 56%,#39ff14 65%,#39ff14 100%);background-size:200% auto;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:text-shine 4s linear infinite;}
+      @keyframes text-shine {
+        0% {
+          background-position: -200% center;
+        }
+        100% {
+          background-position: 200% center;
+        }
+      }
+      .shine-word {
+        display: inline-block;
+        background: linear-gradient(
+          90deg,
+          #fff 0%,
+          #fff 35%,
+          #b9ffb0 44%,
+          #eaffea 50%,
+          #b9ffb0 56%,
+          #fff 65%,
+          #fff 100%
+        );
+        background-size: 200% auto;
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: text-shine 4s linear infinite;
+      }
+      .shine-word-accent {
+        display: inline-block;
+        background: linear-gradient(
+          90deg,
+          #39ff14 0%,
+          #39ff14 35%,
+          #ccffcc 44%,
+          #efffef 50%,
+          #ccffcc 56%,
+          #39ff14 65%,
+          #39ff14 100%
+        );
+        background-size: 200% auto;
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: text-shine 4s linear infinite;
+      }
 
-      .section-frame{position:relative;}
-      .section-frame::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:1px;background:linear-gradient(90deg,transparent,rgba(57,255,20,0.08),transparent);}
-      .hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(57,255,20,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(57,255,20,0.04) 1px,transparent 1px);background-size:74px 74px;mask-image:radial-gradient(circle at 60% 40%,black 0%,black 40%,transparent 85%);-webkit-mask-image:radial-gradient(circle at 60% 40%,black 0%,black 40%,transparent 85%);}
-      .spotlight{position:absolute;border-radius:9999px;filter:blur(120px);pointer-events:none;}
+      .section-frame {
+        position: relative;
+      }
+      .section-frame::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: -1px;
+        height: 1px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(57, 255, 20, 0.08),
+          transparent
+        );
+      }
+      .hero-grid {
+        position: absolute;
+        inset: 0;
+        background-image:
+          linear-gradient(rgba(57, 255, 20, 0.04) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(57, 255, 20, 0.04) 1px, transparent 1px);
+        background-size: 74px 74px;
+        mask-image: radial-gradient(
+          circle at 60% 40%,
+          black 0%,
+          black 40%,
+          transparent 85%
+        );
+        -webkit-mask-image: radial-gradient(
+          circle at 60% 40%,
+          black 0%,
+          black 40%,
+          transparent 85%
+        );
+      }
+      .spotlight {
+        position: absolute;
+        border-radius: 9999px;
+        filter: blur(120px);
+        pointer-events: none;
+      }
 
-      .hov-card{transition:border-color .28s,box-shadow .28s,transform .28s;}
-      .hov-card:hover{border-color:var(--border-strong);box-shadow:0 24px 70px rgba(0,0,0,0.38),0 0 45px rgba(57,255,20,0.1);transform:translateY(-8px);}
+      .hov-card {
+        transition:
+          border-color 0.28s,
+          box-shadow 0.28s,
+          transform 0.28s;
+      }
+      .hov-card:hover {
+        border-color: var(--border-strong);
+        box-shadow:
+          0 24px 70px rgba(0, 0, 0, 0.38),
+          0 0 45px rgba(57, 255, 20, 0.1);
+        transform: translateY(-8px);
+      }
 
-      .marquee{overflow:hidden;}
-      .marquee-track{display:flex;width:max-content;animation:marquee-left 28s linear infinite;}
-      @keyframes marquee-left{0%{transform:translateX(0%);}100%{transform:translateX(-50%);}}
+      .marquee {
+        overflow: hidden;
+      }
+      .marquee-track {
+        display: flex;
+        width: max-content;
+        animation: marquee-left 28s linear infinite;
+      }
+      @keyframes marquee-left {
+        0% {
+          transform: translateX(0%);
+        }
+        100% {
+          transform: translateX(-50%);
+        }
+      }
 
-      .reveal{opacity:0;transform:translateY(50px);transition:opacity .9s cubic-bezier(.22,1,.36,1),transform .9s cubic-bezier(.22,1,.36,1);}
-      .reveal.visible{opacity:1;transform:none;}
-      .cta-bg{position:absolute;inset:0;background:linear-gradient(100deg,rgba(8,10,8,0.88) 14%,rgba(8,10,8,0.7) 54%,rgba(8,10,8,0.88) 100%),url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1800&q=80') center/cover no-repeat;filter:saturate(.5) brightness(.5);}
-      .whatsapp-fab{position:fixed;bottom:28px;right:8px;z-index:9999;display:flex;align-items:center;justify-content:center;width:56px;height:56px;border:none;border-radius:50%;background:#25d366;box-shadow:0 4px 20px rgba(37,211,102,0.45);transition:transform .25s;text-decoration:none;}
-      .whatsapp-fab:hover{transform:scale(1.1);}
-      .footer-link{color:var(--text-secondary);transition:color .24s;}
-      .footer-link:hover{color:var(--text-primary);}
-      .footer-contact-label{font-size:0.7rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--text-secondary);}
-      .footer-contact-value{margin-top:4px;color:#fff;font-size:0.95rem;}
-      .footer-contact-link{color:#fff;text-decoration:none;transition:color .2s;}
-      .footer-contact-link:hover{color:var(--accent);}
-      .footer-legal-link{color:var(--text-secondary);transition:color .24s;}
-      .footer-legal-link:hover{color:var(--accent);}
-      .footer-social-link{display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border:1px solid #1a3a1a;border-radius:9999px;background:#111;transition:border-color .2s,transform .2s;}
-      .footer-social-link svg{width:18px;height:18px;fill:#aaa;transition:fill .2s;}
-      .footer-social-link:hover{border-color:#00ff88;transform:translateY(-1px);}
-      .footer-social-link:hover svg{fill:#00ff88;}
-      .feature-glow::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at top right,rgba(57,255,20,0.1),transparent 30%);pointer-events:none;}
+      .reveal {
+        opacity: 0;
+        transform: translateY(50px);
+        transition:
+          opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+          transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+      .reveal.visible {
+        opacity: 1;
+        transform: none;
+      }
+      .cta-bg {
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(
+            100deg,
+            rgba(8, 10, 8, 0.88) 14%,
+            rgba(8, 10, 8, 0.7) 54%,
+            rgba(8, 10, 8, 0.88) 100%
+          ),
+          url("https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1800&q=80")
+            center/cover no-repeat;
+        filter: saturate(0.5) brightness(0.5);
+      }
+      .whatsapp-fab {
+        position: fixed;
+        bottom: 28px;
+        right: 8px;
+        z-index: 9999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 56px;
+        height: 56px;
+        border: none;
+        border-radius: 50%;
+        background: #25d366;
+        box-shadow: 0 4px 20px rgba(37, 211, 102, 0.45);
+        transition: transform 0.25s;
+        text-decoration: none;
+      }
+      .whatsapp-fab:hover {
+        transform: scale(1.1);
+      }
+      .footer-link {
+        color: var(--text-secondary);
+        transition: color 0.24s;
+      }
+      .footer-link:hover {
+        color: var(--text-primary);
+      }
+      .footer-contact-label {
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: var(--text-secondary);
+      }
+      .footer-contact-value {
+        margin-top: 4px;
+        color: #fff;
+        font-size: 0.95rem;
+      }
+      .footer-contact-link {
+        color: #fff;
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+      .footer-contact-link:hover {
+        color: var(--accent);
+      }
+      .footer-legal-link {
+        color: var(--text-secondary);
+        transition: color 0.24s;
+      }
+      .footer-legal-link:hover {
+        color: var(--accent);
+      }
+      .footer-social-link {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 42px;
+        height: 42px;
+        border: 1px solid #1a3a1a;
+        border-radius: 9999px;
+        background: #111;
+        transition:
+          border-color 0.2s,
+          transform 0.2s;
+      }
+      .footer-social-link svg {
+        width: 18px;
+        height: 18px;
+        fill: #aaa;
+        transition: fill 0.2s;
+      }
+      .footer-social-link:hover {
+        border-color: #00ff88;
+        transform: translateY(-1px);
+      }
+      .footer-social-link:hover svg {
+        fill: #00ff88;
+      }
+      .feature-glow::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+          circle at top right,
+          rgba(57, 255, 20, 0.1),
+          transparent 30%
+        );
+        pointer-events: none;
+      }
 
-      @keyframes float-up{0%,100%{transform:translateY(0);}50%{transform:translateY(-12px);}}
-      @keyframes float-side{0%,100%{transform:translateY(0) rotate(-2deg);}50%{transform:translateY(-8px) rotate(0deg);}}
-      .float-up{animation:float-up 5s ease-in-out infinite;}
-      .float-side{animation:float-side 6s ease-in-out infinite;}
+      @keyframes float-up {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-12px);
+        }
+      }
+      @keyframes float-side {
+        0%,
+        100% {
+          transform: translateY(0) rotate(-2deg);
+        }
+        50% {
+          transform: translateY(-8px) rotate(0deg);
+        }
+      }
+      .float-up {
+        animation: float-up 5s ease-in-out infinite;
+      }
+      .float-side {
+        animation: float-side 6s ease-in-out infinite;
+      }
 
-      .accordion-body{max-height:0;overflow:hidden;transition:max-height .4s ease;}
-      .accordion-body.open{max-height:500px;}
-      .accordion-toggle{cursor:pointer;padding:20px 24px;}
-      .accordion-body.open{padding-left:24px;border-left:2px solid rgba(0,255,136,0.25);margin-left:24px;margin-right:24px;margin-bottom:8px;padding-bottom:12px;}
-      .accordion-body p{margin-top:8px;}
-      .faq-icon{display:inline-block;transition:transform 0.2s ease;}
-      .faq-item.open .faq-icon{transform:rotate(45deg);}
-      .faq-item.open .accordion-toggle .faq-question{color:#00ff88;}
-      .faq-item{border-bottom:1px solid #1a2e1e;}
-      .faq-item:last-child{border-bottom:none;}
+      .accordion-body {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s ease;
+      }
+      .accordion-body.open {
+        max-height: 500px;
+      }
+      .accordion-toggle {
+        cursor: pointer;
+        padding: 20px 24px;
+      }
+      .accordion-body.open {
+        padding-left: 24px;
+        border-left: 2px solid rgba(0, 255, 136, 0.25);
+        margin-left: 24px;
+        margin-right: 24px;
+        margin-bottom: 8px;
+        padding-bottom: 12px;
+      }
+      .accordion-body p {
+        margin-top: 8px;
+      }
+      .faq-icon {
+        display: inline-block;
+        transition: transform 0.2s ease;
+      }
+      .faq-item.open .faq-icon {
+        transform: rotate(45deg);
+      }
+      .faq-item.open .accordion-toggle .faq-question {
+        color: #00ff88;
+      }
+      .faq-item {
+        border-bottom: 1px solid #1a2e1e;
+      }
+      .faq-item:last-child {
+        border-bottom: none;
+      }
 
-      .hero-canvas-shell{position:relative;width:100%;max-width:620px;margin:0 auto;border-radius:32px;min-height:560px;overflow:visible;display:flex;align-items:center;justify-content:center;}
-      .hero-static-glow{display:none;position:relative;min-height:320px;border-radius:32px;overflow:hidden;}
-      .hero-static-glow::before{content:"";position:absolute;inset:10% 12%;border-radius:9999px;background:radial-gradient(circle,rgba(57,255,20,0.22),rgba(57,255,20,0.08) 38%,transparent 68%);filter:blur(10px);}
-      .hero-static-glow::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 46%,rgba(57,255,20,0.18),transparent 32%),linear-gradient(180deg,rgba(18,23,18,0.6),rgba(10,12,10,0.24));border:1px solid rgba(57,255,20,0.14);border-radius:32px;}
+      .hero-canvas-shell {
+        position: relative;
+        width: 100%;
+        max-width: 620px;
+        margin: 0 auto;
+        border-radius: 32px;
+        min-height: 560px;
+        overflow: visible;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .hero-static-glow {
+        display: none;
+        position: relative;
+        min-height: 320px;
+        border-radius: 32px;
+        overflow: hidden;
+      }
+      .hero-static-glow::before {
+        content: "";
+        position: absolute;
+        inset: 10% 12%;
+        border-radius: 9999px;
+        background: radial-gradient(
+          circle,
+          rgba(57, 255, 20, 0.22),
+          rgba(57, 255, 20, 0.08) 38%,
+          transparent 68%
+        );
+        filter: blur(10px);
+      }
+      .hero-static-glow::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(
+            circle at 50% 46%,
+            rgba(57, 255, 20, 0.18),
+            transparent 32%
+          ),
+          linear-gradient(180deg, rgba(18, 23, 18, 0.6), rgba(10, 12, 10, 0.24));
+        border: 1px solid rgba(57, 255, 20, 0.14);
+        border-radius: 32px;
+      }
 
-      .stat-pill{min-height:112px;}
+      .stat-pill {
+        min-height: 112px;
+      }
 
       /* SVG AI Avatar */
-      .avatar-container{width:420px;height:420px;position:relative;box-shadow:0 0 80px 20px rgba(57,255,20,0.12),0 0 160px 40px rgba(57,255,20,0.06);border-radius:9999px;}
-      .avatar-container svg{display:block;width:100%;height:100%;}
-      .avatar-iris{transition:transform 0.08s linear;}
-      @keyframes avatar-breathe{0%,100%{transform:scale(1);}50%{transform:scale(1.025);}}
-      .avatar-head-group{transform-origin:210px 210px;animation:avatar-breathe 4s ease-in-out infinite;}
-      .avatar-head-group.blink .avatar-eye-shape{ry:4!important;transition:ry 0.06s ease-in;}
-      .avatar-head-group.jiggle{animation:avatar-jiggle 0.35s ease-out;}
-      @keyframes avatar-jiggle{0%{transform:scale(1) rotate(0deg);}20%{transform:scale(1) rotate(3deg);}50%{transform:scale(1) rotate(-3deg);}80%{transform:scale(1) rotate(1.5deg);}100%{transform:scale(1) rotate(0deg);}}
-      @media(max-width:767px){.avatar-container{width:280px;height:280px;}}
-
-      .persona-heading-wrap{position:relative;z-index:20;margin-bottom:140px;}
-      .persona-stage{position:relative;z-index:10;min-height:620px;margin-top:80px;}
-      .persona-line{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.74;}
-      .persona-line path{stroke:rgba(57,255,20,0.56);stroke-width:2.2;fill:none;stroke-linecap:round;stroke-dasharray:7 10;}
-      .persona-fan{position:relative;height:100%;display:flex;align-items:center;justify-content:center;padding:2rem 0;}
-      .persona-card{position:absolute;top:50%;width:min(22vw,240px);min-height:360px;padding:1.8rem;border-radius:34px;background:linear-gradient(180deg,rgba(16,20,16,0.94),rgba(9,11,9,0.74));border:1px solid rgba(57,255,20,0.18);box-shadow:0 24px 80px rgba(0,0,0,0.42);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);transform-origin:center center;transition:transform 1s cubic-bezier(.22,1,.36,1),opacity .8s ease;opacity:.72;}
-      .persona-card::before{content:"";position:absolute;inset:0;border-radius:34px;background:radial-gradient(circle at top,rgba(57,255,20,0.08),transparent 42%);pointer-events:none;}
-      .persona-card-number{font-family:"Poppins",sans-serif;font-weight:800;font-size:4.2rem;line-height:1;color:rgba(57,255,20,0.16);letter-spacing:-0.06em;}
-      .persona-card[data-card="1"]{transform:translate(-50%,-50%) translateX(0) rotate(0deg);}
-      .persona-card[data-card="2"]{transform:translate(-50%,-50%) translateX(0) rotate(0deg);}
-      .persona-card[data-card="3"]{transform:translate(-50%,-50%) translateX(0) rotate(0deg);}
-      .persona-card[data-card="4"]{transform:translate(-50%,-50%) translateX(0) rotate(0deg);}
-      .persona-fan-section.is-active .persona-card{opacity:1;}
-      .persona-fan-section.is-active .persona-card[data-card="1"]{transform:translate(-50%,-50%) translateX(-300px) rotate(-4deg);}
-      .persona-fan-section.is-active .persona-card[data-card="2"]{transform:translate(-50%,-50%) translateX(-96px) rotate(-1deg);}
-      .persona-fan-section.is-active .persona-card[data-card="3"]{transform:translate(-50%,-50%) translateX(104px) rotate(2deg);}
-      .persona-fan-section.is-active .persona-card[data-card="4"]{transform:translate(-50%,-50%) translateX(306px) rotate(5deg);}
-      .persona-card-body{position:absolute;left:1.8rem;right:1.8rem;bottom:1.8rem;}
-      @media(max-width:1023px){
-        .persona-fan-section{padding-top:120px!important;}
-        .persona-heading-wrap{margin-bottom:60px;}
-        .persona-stage{min-height:auto;margin-top:0;}
-        .persona-line{display:none;}
-        .persona-fan{display:grid;gap:1rem;padding:0;}
-        .persona-card{position:relative;top:auto;left:auto;width:100%;min-height:unset;transform:none!important;opacity:1;padding:1.5rem;margin-bottom:16px;}
+      .avatar-container {
+        width: 420px;
+        height: 420px;
+        position: relative;
+        box-shadow:
+          0 0 80px 20px rgba(57, 255, 20, 0.12),
+          0 0 160px 40px rgba(57, 255, 20, 0.06);
+        border-radius: 9999px;
       }
-      @media(min-width:1024px){
-        .persona-fan-section{padding-top:180px!important;}
+      .avatar-container svg {
+        display: block;
+        width: 100%;
+        height: 100%;
       }
-
-      .stack-row{display:grid;gap:1.2rem;}
-      @media(min-width:1024px){.stack-row{grid-template-columns:repeat(4,minmax(0,1fr));}}
-      .stack-clip-card{position:relative;padding:2rem 1.5rem;clip-path:polygon(0 0,calc(100% - 36px) 0,100% 50%,calc(100% - 36px) 100%,0 100%,18px 50%);background:linear-gradient(180deg,rgba(16,20,16,0.92),rgba(8,10,8,0.76));border:1px solid rgba(57,255,20,0.14);border-top:2px solid var(--accent);min-height:260px;opacity:0;transform:translateX(var(--stack-offset,0)) translateY(36px);transition:transform .9s cubic-bezier(.22,1,.36,1),opacity .8s ease;}
-      .stack-clip-card::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at top right,rgba(57,255,20,0.1),transparent 34%);pointer-events:none;}
-      .stack-clip-card:nth-child(odd){--stack-offset:-60px;}
-      .stack-clip-card:nth-child(even){--stack-offset:60px;}
-      .stack-section.is-active .stack-clip-card{opacity:1;transform:translateX(0) translateY(0);}
-
-      .process-stack-wrap{position:relative;max-width:960px;margin:0 auto;display:flex;flex-direction:column;gap:16px;}
-      .process-stack-card{position:relative;padding:1.5rem 2rem 1.5rem 2.5rem;border-radius:18px;background:linear-gradient(180deg,rgba(16,20,16,0.9),rgba(8,10,8,0.7));border:1px solid rgba(57,255,20,0.12);box-shadow:0 10px 40px rgba(0,0,0,0.24);opacity:0;transform:translateY(60px) scale(0.96);transition:opacity 0.7s ease,transform 0.7s cubic-bezier(0.22,1,0.36,1);display:grid;grid-template-columns:auto 1fr 1.8fr;align-items:center;gap:1.5rem;}
-      .process-stack-card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;border-radius:18px 0 0 18px;background:var(--accent);transform:scaleY(0);transform-origin:top;transition:transform 0.5s cubic-bezier(0.22,1,0.36,1);}
-      .process-stack-card.card-visible{opacity:1;transform:translateY(0) scale(1);}
-      .process-stack-card.card-visible::before{transform:scaleY(1);transition-delay:0.2s;}
-      .process-step-number{font-family:"Poppins",sans-serif;font-weight:800;font-size:2.4rem;line-height:1;color:rgba(57,255,20,0.22);letter-spacing:-0.04em;min-width:60px;text-align:center;}
-      .process-step-heading{}
-      .process-step-desc{}
-      @media(max-width:767px){
-        .process-stack-card{grid-template-columns:auto 1fr;gap:1rem;}
-        .process-step-desc{grid-column:1 / -1;}
+      .avatar-iris {
+        transition: transform 0.08s linear;
       }
-
-      .workflow-shell{position:relative;overflow:hidden;}
-      .workflow-shell::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 0%,rgba(57,255,20,0.08),transparent 42%);pointer-events:none;}
-      .flow-line{stroke-dasharray:12 14;animation:flow-line 12s linear infinite;}
-      @keyframes flow-line{from{stroke-dashoffset:0;}to{stroke-dashoffset:-260;}}
-
-      @media(prefers-reduced-motion:reduce){
-        .float-up,.float-side,.marquee-track,.reveal,.stack-clip-card,.process-stack-card,.persona-card,.ai-avatar-shell{animation:none!important;transition:none!important;}
-        .flow-line{animation:none!important;}
+      @keyframes avatar-breathe {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.025);
+        }
+      }
+      .avatar-head-group {
+        transform-origin: 210px 210px;
+        animation: avatar-breathe 4s ease-in-out infinite;
+      }
+      .avatar-head-group.blink .avatar-eye-shape {
+        ry: 4 !important;
+        transition: ry 0.06s ease-in;
+      }
+      .avatar-head-group.jiggle {
+        animation: avatar-jiggle 0.35s ease-out;
+      }
+      @keyframes avatar-jiggle {
+        0% {
+          transform: scale(1) rotate(0deg);
+        }
+        20% {
+          transform: scale(1) rotate(3deg);
+        }
+        50% {
+          transform: scale(1) rotate(-3deg);
+        }
+        80% {
+          transform: scale(1) rotate(1.5deg);
+        }
+        100% {
+          transform: scale(1) rotate(0deg);
+        }
+      }
+      @media (max-width: 767px) {
+        .avatar-container {
+          width: 280px;
+          height: 280px;
+        }
       }
 
-      @media(max-width:767px){
-        .hero-canvas-shell{display:none;}
-        .hero-static-glow{display:block;}
+      .persona-heading-wrap {
+        position: relative;
+        z-index: 20;
+        margin-bottom: 140px;
+      }
+      .persona-stage {
+        position: relative;
+        z-index: 10;
+        min-height: 620px;
+        margin-top: 80px;
+      }
+      .persona-line {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        opacity: 0.74;
+      }
+      .persona-line path {
+        stroke: rgba(57, 255, 20, 0.56);
+        stroke-width: 2.2;
+        fill: none;
+        stroke-linecap: round;
+        stroke-dasharray: 7 10;
+      }
+      .persona-fan {
+        position: relative;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem 0;
+      }
+      .persona-card {
+        position: absolute;
+        top: 50%;
+        width: min(22vw, 240px);
+        min-height: 360px;
+        padding: 1.8rem;
+        border-radius: 34px;
+        background: linear-gradient(
+          180deg,
+          rgba(16, 20, 16, 0.94),
+          rgba(9, 11, 9, 0.74)
+        );
+        border: 1px solid rgba(57, 255, 20, 0.18);
+        box-shadow: 0 24px 80px rgba(0, 0, 0, 0.42);
+        backdrop-filter: blur(18px);
+        -webkit-backdrop-filter: blur(18px);
+        transform-origin: center center;
+        transition:
+          transform 1s cubic-bezier(0.22, 1, 0.36, 1),
+          opacity 0.8s ease;
+        opacity: 0.72;
+      }
+      .persona-card::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: 34px;
+        background: radial-gradient(
+          circle at top,
+          rgba(57, 255, 20, 0.08),
+          transparent 42%
+        );
+        pointer-events: none;
+      }
+      .persona-card-number {
+        font-family: "Poppins", sans-serif;
+        font-weight: 800;
+        font-size: 4.2rem;
+        line-height: 1;
+        color: rgba(57, 255, 20, 0.16);
+        letter-spacing: -0.06em;
+      }
+      .persona-card[data-card="1"] {
+        transform: translate(-50%, -50%) translateX(0) rotate(0deg);
+      }
+      .persona-card[data-card="2"] {
+        transform: translate(-50%, -50%) translateX(0) rotate(0deg);
+      }
+      .persona-card[data-card="3"] {
+        transform: translate(-50%, -50%) translateX(0) rotate(0deg);
+      }
+      .persona-card[data-card="4"] {
+        transform: translate(-50%, -50%) translateX(0) rotate(0deg);
+      }
+      .persona-fan-section.is-active .persona-card {
+        opacity: 1;
+      }
+      .persona-fan-section.is-active .persona-card[data-card="1"] {
+        transform: translate(-50%, -50%) translateX(-300px) rotate(-4deg);
+      }
+      .persona-fan-section.is-active .persona-card[data-card="2"] {
+        transform: translate(-50%, -50%) translateX(-96px) rotate(-1deg);
+      }
+      .persona-fan-section.is-active .persona-card[data-card="3"] {
+        transform: translate(-50%, -50%) translateX(104px) rotate(2deg);
+      }
+      .persona-fan-section.is-active .persona-card[data-card="4"] {
+        transform: translate(-50%, -50%) translateX(306px) rotate(5deg);
+      }
+      .persona-card-body {
+        position: absolute;
+        left: 1.8rem;
+        right: 1.8rem;
+        bottom: 1.8rem;
+      }
+      @media (max-width: 1023px) {
+        .persona-fan-section {
+          padding-top: 120px !important;
+        }
+        .persona-heading-wrap {
+          margin-bottom: 60px;
+        }
+        .persona-stage {
+          min-height: auto;
+          margin-top: 0;
+        }
+        .persona-line {
+          display: none;
+        }
+        .persona-fan {
+          display: grid;
+          gap: 1rem;
+          padding: 0;
+        }
+        .persona-card {
+          position: relative;
+          top: auto;
+          left: auto;
+          width: 100%;
+          min-height: unset;
+          transform: none !important;
+          opacity: 1;
+          padding: 1.5rem;
+          margin-bottom: 16px;
+        }
+      }
+      @media (min-width: 1024px) {
+        .persona-fan-section {
+          padding-top: 180px !important;
+        }
+      }
+
+      .stack-row {
+        display: grid;
+        gap: 1.2rem;
+      }
+      @media (min-width: 1024px) {
+        .stack-row {
+          grid-template-columns: repeat(4, minmax(0, 1fr));
+        }
+      }
+      .stack-clip-card {
+        position: relative;
+        padding: 2rem 1.5rem;
+        clip-path: polygon(
+          0 0,
+          calc(100% - 36px) 0,
+          100% 50%,
+          calc(100% - 36px) 100%,
+          0 100%,
+          18px 50%
+        );
+        background: linear-gradient(
+          180deg,
+          rgba(16, 20, 16, 0.92),
+          rgba(8, 10, 8, 0.76)
+        );
+        border: 1px solid rgba(57, 255, 20, 0.14);
+        border-top: 2px solid var(--accent);
+        min-height: 260px;
+        opacity: 0;
+        transform: translateX(var(--stack-offset, 0)) translateY(36px);
+        transition:
+          transform 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+          opacity 0.8s ease;
+      }
+      .stack-clip-card::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+          circle at top right,
+          rgba(57, 255, 20, 0.1),
+          transparent 34%
+        );
+        pointer-events: none;
+      }
+      .stack-clip-card:nth-child(odd) {
+        --stack-offset: -60px;
+      }
+      .stack-clip-card:nth-child(even) {
+        --stack-offset: 60px;
+      }
+      .stack-section.is-active .stack-clip-card {
+        opacity: 1;
+        transform: translateX(0) translateY(0);
+      }
+
+      .process-stack-wrap {
+        position: relative;
+        max-width: 960px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+      .process-stack-card {
+        position: relative;
+        padding: 1.5rem 2rem 1.5rem 2.5rem;
+        border-radius: 18px;
+        background: linear-gradient(
+          180deg,
+          rgba(16, 20, 16, 0.9),
+          rgba(8, 10, 8, 0.7)
+        );
+        border: 1px solid rgba(57, 255, 20, 0.12);
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.24);
+        opacity: 0;
+        transform: translateY(60px) scale(0.96);
+        transition:
+          opacity 0.7s ease,
+          transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+        display: grid;
+        grid-template-columns: auto 1fr 1.8fr;
+        align-items: center;
+        gap: 1.5rem;
+      }
+      .process-stack-card::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 3px;
+        border-radius: 18px 0 0 18px;
+        background: var(--accent);
+        transform: scaleY(0);
+        transform-origin: top;
+        transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+      .process-stack-card.card-visible {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+      .process-stack-card.card-visible::before {
+        transform: scaleY(1);
+        transition-delay: 0.2s;
+      }
+      .process-step-number {
+        font-family: "Poppins", sans-serif;
+        font-weight: 800;
+        font-size: 2.4rem;
+        line-height: 1;
+        color: rgba(57, 255, 20, 0.22);
+        letter-spacing: -0.04em;
+        min-width: 60px;
+        text-align: center;
+      }
+      .process-step-heading {
+      }
+      .process-step-desc {
+      }
+      @media (max-width: 767px) {
+        .process-stack-card {
+          grid-template-columns: auto 1fr;
+          gap: 1rem;
+        }
+        .process-step-desc {
+          grid-column: 1 / -1;
+        }
+      }
+
+      .workflow-shell {
+        position: relative;
+        overflow: hidden;
+      }
+      .workflow-shell::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+          circle at 50% 0%,
+          rgba(57, 255, 20, 0.08),
+          transparent 42%
+        );
+        pointer-events: none;
+      }
+      .flow-line {
+        stroke-dasharray: 12 14;
+        animation: flow-line 12s linear infinite;
+      }
+      @keyframes flow-line {
+        from {
+          stroke-dashoffset: 0;
+        }
+        to {
+          stroke-dashoffset: -260;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .float-up,
+        .float-side,
+        .marquee-track,
+        .reveal,
+        .stack-clip-card,
+        .process-stack-card,
+        .persona-card,
+        .ai-avatar-shell {
+          animation: none !important;
+          transition: none !important;
+        }
+        .flow-line {
+          animation: none !important;
+        }
+      }
+
+      @media (max-width: 767px) {
+        .hero-canvas-shell {
+          display: none;
+        }
+        .hero-static-glow {
+          display: block;
+        }
+      }
+
+      /* Shared layout components */
+      .site-shell {
+        width: min(1380px, calc(100% - 1.5rem));
+        margin: 0 auto;
+      }
+      @media (min-width: 1024px) {
+        .site-shell {
+          width: min(1380px, calc(100% - 4rem));
+        }
+      }
+      .display-font {
+        font-family: "Poppins", sans-serif;
+      }
+      .mono-font {
+        font-family: "JetBrains Mono", monospace;
+      }
+      .brand-logo {
+        display: block;
+        width: auto;
+        height: 100%;
+        object-fit: contain;
+      }
+      .brand-logo-link {
+        display: inline-flex;
+        align-items: center;
+        flex-shrink: 0;
+      }
+      .brand-logo-nav {
+        height: 68px;
+      }
+      .brand-logo-footer {
+        height: 72px;
+        max-width: min(100%, 240px);
+      }
+      .brand-logo-inline {
+        height: 26px;
+      }
+      .footer-social-row {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 16px;
+      }
+      .nav-scrolled {
+        background: rgba(8, 10, 8, 0.86);
+        border-bottom: 1px solid var(--border);
+        backdrop-filter: blur(22px);
+      }
+      .nav-link {
+        color: var(--text-secondary);
+        transition: color 0.24s ease;
+      }
+      .nav-link:hover {
+        color: var(--text-primary);
+      }
+      .nav-dropdown-wrap {
+        position: relative;
+      }
+      .nav-dropdown-wrap:hover .nav-dropdown {
+        opacity: 1;
+        visibility: visible;
+        transform: translateX(-50%) translateY(0);
+        pointer-events: auto;
+      }
+      .nav-dropdown {
+        position: absolute;
+        top: calc(100% + 14px);
+        left: 50%;
+        transform: translateX(-50%) translateY(-8px);
+        min-width: 220px;
+        background: rgba(10, 13, 10, 0.98);
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        padding: 10px;
+        opacity: 0;
+        visibility: hidden;
+        transition:
+          opacity 0.22s ease,
+          transform 0.22s ease,
+          visibility 0.22s;
+        backdrop-filter: blur(22px);
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        z-index: 100;
+      }
+      .nav-dropdown a {
+        display: block;
+        padding: 9px 14px;
+        border-radius: 12px;
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+        font-weight: 500;
+        transition:
+          color 0.2s ease,
+          background 0.2s ease;
+        text-decoration: none;
+      }
+      .nav-dropdown a:hover {
+        color: var(--accent);
+        background: rgba(57, 255, 20, 0.06);
+      }
+      .nav-dropdown-btn {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        color: var(--text-secondary);
+        transition: color 0.24s ease;
+        font-size: 1rem;
+        font-weight: 500;
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-family: inherit;
+        padding: 0;
+      }
+      .nav-dropdown-wrap:hover .nav-dropdown-btn {
+        color: var(--text-primary);
+      }
+      .nav-dropdown-btn svg {
+        transition: transform 0.22s ease;
+      }
+      .nav-dropdown-wrap:hover .nav-dropdown-btn svg {
+        transform: rotate(180deg);
+      }
+      .mob-dropdown {
+        display: none;
+        flex-direction: column;
+        gap: 4px;
+        padding: 8px 0;
+      }
+      .mob-dropdown.open {
+        display: flex;
+      }
+      .mob-dropdown a {
+        display: block;
+        padding: 10px 18px;
+        border-radius: 12px;
+        color: var(--text-secondary);
+        font-size: 1rem;
+        font-weight: 500;
+        transition:
+          color 0.2s ease,
+          background 0.2s ease;
+        text-decoration: none;
+      }
+      .mob-dropdown a:hover {
+        color: var(--accent);
+        background: rgba(57, 255, 20, 0.06);
+      }
+      .footer-link {
+        color: var(--text-secondary);
+        transition: color 0.24s ease;
+      }
+      .footer-link:hover {
+        color: var(--text-primary);
+      }
+      .footer-contact-label {
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: var(--text-secondary);
+      }
+      .footer-contact-value {
+        margin-top: 4px;
+        color: #fff;
+        font-size: 0.95rem;
+      }
+      .footer-contact-link {
+        color: #fff;
+        text-decoration: none;
+        transition: color 0.2s ease;
+      }
+      .footer-contact-link:hover {
+        color: var(--accent);
+      }
+      .footer-social-link {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 42px;
+        height: 42px;
+        border: 1px solid #1a3a1a;
+        border-radius: 9999px;
+        background: #111;
+        transition:
+          border-color 0.2s ease,
+          transform 0.2s ease;
+      }
+      .footer-social-link svg {
+        width: 18px;
+        height: 18px;
+        fill: #aaa;
+        transition: fill 0.2s ease;
+      }
+      .footer-social-link:hover {
+        border-color: #00ff88;
+        transform: translateY(-1px);
+      }
+      .footer-social-link:hover svg {
+        fill: #00ff88;
+      }
+      .footer-legal-link {
+        color: var(--text-secondary);
+        transition: color 0.24s ease;
+      }
+      .footer-legal-link:hover {
+        color: var(--accent);
+      }
+      .whatsapp-fab {
+        position: fixed;
+        bottom: 28px;
+        right: 8px;
+        z-index: 9999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 56px;
+        height: 56px;
+        border: none;
+        border-radius: 50%;
+        background: #25d366;
+        box-shadow: 0 4px 20px rgba(37, 211, 102, 0.45);
+        transition: all 0.25s ease;
+        text-decoration: none;
+      }
+      .whatsapp-fab:hover {
+        transform: scale(1.1);
       }
     </style>
   </head>
@@ -197,152 +1158,389 @@
     <div class="noise-overlay"></div>
     <div class="cursor-dot" id="cursorDot"></div>
     <div class="cursor-ring" id="cursorRing"></div>
-
-
-    <header id="navbar" class="fixed left-0 top-0 z-50 w-full transition-all duration-300">
-      <div class="site-shell flex h-24 items-center justify-between">
-        <a href="index.html" class="inline-flex items-center flex-shrink-0" aria-label="Auroveon home">
-          <img src="assets/WhatsApp Image 2026-05-09 at 09,19,43-Picsart-BackgroundRemover.png" alt="Auroveon" style="height:68px;width:auto;object-fit:contain;" />
-        </a>
-        <nav class="hidden items-center gap-9 lg:flex">
-          <a class="nav-link text-base font-medium" href="index.html#services">Services</a>
-          <a class="nav-link text-base font-medium" href="index.html#story">Process</a>
-          <a class="nav-link text-base font-medium" href="index.html#work">Work</a>
-          <a class="nav-link text-base font-medium" href="web-dev.html">Web Dev</a>
-          <a class="nav-link text-base font-medium" href="seo.html">SEO</a>
-          <a class="nav-link text-base font-medium active-link" href="ai-automation.html">AI Automation</a>
-          <a class="nav-link text-base font-medium" href="index.html#contact">Contact</a>
-        </nav>
-        <a href="index.html#contact" class="display-font hidden lg:inline-flex items-center gap-2 rounded-full border px-6 py-3.5 text-base font-semibold transition-all hover:-translate-y-1" style="border-color:var(--accent);color:var(--accent);background:rgba(57,255,20,0.02);">Start a Project</a>
-        <button id="mobileMenuBtn" class="glass-panel flex h-12 w-12 items-center justify-center rounded-full lg:hidden text-xl">+</button>
-      </div>
-      <div id="mobileMenu" class="site-shell pb-4 lg:hidden hidden">
-        <div class="glass-panel rounded-[28px] px-6 py-6">
-          <div class="flex flex-col gap-5 text-center">
-            <a href="index.html#services" class="display-font text-2xl font-bold italic" style="color:var(--text-primary);">Services</a>
-            <a href="index.html#work" class="display-font text-2xl font-bold italic" style="color:var(--text-primary);">Work</a>
-            <a href="web-dev.html" class="display-font text-2xl font-bold italic" style="color:var(--text-primary);">Web Dev</a>
-            <a href="seo.html" class="display-font text-2xl font-bold italic" style="color:var(--text-primary);">SEO</a>
-            <a href="ai-automation.html" class="display-font text-2xl font-bold italic" style="color:var(--accent);">AI Automation</a>
-            <a href="index.html#contact" class="display-font text-2xl font-bold italic" style="color:var(--text-primary);">Contact</a>
-          </div>
-        </div>
-      </div>
-    </header>
+    <div id="navbar-root"></div>
 
     <main>
-      <section id="hero" class="section-frame relative min-h-screen overflow-hidden pt-24 flex items-center">
+      <section
+        id="hero"
+        class="section-frame relative min-h-screen overflow-hidden pt-24 flex items-center"
+      >
         <div class="hero-grid"></div>
-        <div class="spotlight" style="width:44rem;height:44rem;top:-12rem;right:-10rem;background:radial-gradient(circle,rgba(57,255,20,0.14),transparent 60%);"></div>
-        <div class="spotlight" style="width:22rem;height:22rem;bottom:6rem;left:-4rem;background:radial-gradient(circle,rgba(57,255,20,0.08),transparent 68%);"></div>
+        <div
+          class="spotlight"
+          style="
+            width: 44rem;
+            height: 44rem;
+            top: -12rem;
+            right: -10rem;
+            background: radial-gradient(
+              circle,
+              rgba(57, 255, 20, 0.14),
+              transparent 60%
+            );
+          "
+        ></div>
+        <div
+          class="spotlight"
+          style="
+            width: 22rem;
+            height: 22rem;
+            bottom: 6rem;
+            left: -4rem;
+            background: radial-gradient(
+              circle,
+              rgba(57, 255, 20, 0.08),
+              transparent 68%
+            );
+          "
+        ></div>
 
         <div class="site-shell relative z-10 w-full py-10 lg:py-16">
           <div class="grid gap-12 lg:grid-cols-[1fr_1fr] lg:items-center">
-            <div class="reveal" style="padding-left:clamp(0px,9%,80px);">
-              <div class="glass-panel inline-flex items-center gap-3 rounded-full px-4 py-2 mb-6">
-                <span class="h-2 w-2 rounded-full" style="background:var(--accent);box-shadow:0 0 14px rgba(57,255,20,0.7);"></span>
+            <div class="reveal" style="padding-left: clamp(0px, 9%, 80px)">
+              <div
+                class="glass-panel inline-flex items-center gap-3 rounded-full px-4 py-2 mb-6"
+              >
+                <span
+                  class="h-2 w-2 rounded-full"
+                  style="
+                    background: var(--accent);
+                    box-shadow: 0 0 14px rgba(57, 255, 20, 0.7);
+                  "
+                ></span>
                 <span class="eyebrow">AI Automation — Intelligent Systems</span>
               </div>
 
-              <h1 class="display-font font-extrabold italic leading-[0.94] tracking-[-0.045em]" style="font-size:clamp(2.8rem,7vw,6.2rem);">
+              <h1
+                class="display-font font-extrabold italic leading-[0.94] tracking-[-0.045em]"
+                style="font-size: clamp(2.8rem, 7vw, 6.2rem)"
+              >
                 <span class="shine-word">Automate Everything.</span><br />
                 <span class="shine-word">Scale Without Limits.</span><br />
                 <span class="shine-word-accent">Think in Systems.</span>
               </h1>
 
-              <p class="mt-6 max-w-xl text-lg leading-8" style="color:var(--text-secondary);">
-                We automate repetitive workflows, deploy intelligent agents, and connect every tool in your stack so your team can move faster with fewer handoffs, fewer errors, and far more leverage.
+              <p
+                class="mt-6 max-w-xl text-lg leading-8"
+                style="color: var(--text-secondary)"
+              >
+                We automate repetitive workflows, deploy intelligent agents, and
+                connect every tool in your stack so your team can move faster
+                with fewer handoffs, fewer errors, and far more leverage.
               </p>
 
               <div class="mt-8 flex flex-col gap-4 sm:flex-row">
-                <a href="index.html#contact" class="display-font inline-flex items-center justify-center rounded-full px-7 py-4 text-base font-bold transition-all hover:-translate-y-1" style="background:var(--accent);color:#081008;box-shadow:0 0 42px rgba(57,255,20,0.18);">Book Automation Audit</a>
-                <a href="#automations" class="display-font inline-flex items-center justify-center rounded-full border px-7 py-4 text-base font-bold transition-all hover:-translate-y-1" style="border-color:var(--border-strong);color:var(--text-primary);background:rgba(255,255,255,0.02);">See What We Automate</a>
+                <a
+                  href="index.html#contact"
+                  class="display-font inline-flex items-center justify-center rounded-full px-7 py-4 text-base font-bold transition-all hover:-translate-y-1"
+                  style="
+                    background: var(--accent);
+                    color: #081008;
+                    box-shadow: 0 0 42px rgba(57, 255, 20, 0.18);
+                  "
+                  >Book Automation Audit</a
+                >
+                <a
+                  href="#automations"
+                  class="display-font inline-flex items-center justify-center rounded-full border px-7 py-4 text-base font-bold transition-all hover:-translate-y-1"
+                  style="
+                    border-color: var(--border-strong);
+                    color: var(--text-primary);
+                    background: rgba(255, 255, 255, 0.02);
+                  "
+                  >See What We Automate</a
+                >
               </div>
 
               <div class="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-3">
                 <div class="glass-panel stat-pill rounded-[20px] px-4 py-5">
-                  <div class="display-font text-3xl font-extrabold italic" style="color:var(--text-primary);">10x</div>
-                  <p class="mt-1 text-xs leading-5" style="color:var(--text-secondary);">faster workflows</p>
+                  <div
+                    class="display-font text-3xl font-extrabold italic"
+                    style="color: var(--text-primary)"
+                  >
+                    10x
+                  </div>
+                  <p
+                    class="mt-1 text-xs leading-5"
+                    style="color: var(--text-secondary)"
+                  >
+                    faster workflows
+                  </p>
                 </div>
                 <div class="glass-panel stat-pill rounded-[20px] px-4 py-5">
-                  <div class="display-font text-3xl font-extrabold italic" style="color:var(--text-primary);">85%</div>
-                  <p class="mt-1 text-xs leading-5" style="color:var(--text-secondary);">cost reduction on ops</p>
+                  <div
+                    class="display-font text-3xl font-extrabold italic"
+                    style="color: var(--text-primary)"
+                  >
+                    85%
+                  </div>
+                  <p
+                    class="mt-1 text-xs leading-5"
+                    style="color: var(--text-secondary)"
+                  >
+                    cost reduction on ops
+                  </p>
                 </div>
                 <div class="glass-panel stat-pill rounded-[20px] px-4 py-5">
-                  <div class="display-font text-3xl font-extrabold italic" style="color:var(--text-primary);">300+</div>
-                  <p class="mt-1 text-xs leading-5" style="color:var(--text-secondary);">automations deployed</p>
+                  <div
+                    class="display-font text-3xl font-extrabold italic"
+                    style="color: var(--text-primary)"
+                  >
+                    300+
+                  </div>
+                  <p
+                    class="mt-1 text-xs leading-5"
+                    style="color: var(--text-secondary)"
+                  >
+                    automations deployed
+                  </p>
                 </div>
               </div>
             </div>
 
-            <div class="relative reveal" style="transition-delay:.15s;">
-              <div class="spotlight" style="width:24rem;height:24rem;top:8%;right:-5%;background:radial-gradient(circle,rgba(57,255,20,0.1),transparent 64%);"></div>
+            <div class="relative reveal" style="transition-delay: 0.15s">
+              <div
+                class="spotlight"
+                style="
+                  width: 24rem;
+                  height: 24rem;
+                  top: 8%;
+                  right: -5%;
+                  background: radial-gradient(
+                    circle,
+                    rgba(57, 255, 20, 0.1),
+                    transparent 64%
+                  );
+                "
+              ></div>
               <div class="hero-canvas-shell float-up">
                 <div class="avatar-container" id="aiAvatarContainer">
-                  <svg viewBox="0 0 420 420" xmlns="http://www.w3.org/2000/svg" id="aiAvatarSVG">
+                  <svg
+                    viewBox="0 0 420 420"
+                    xmlns="http://www.w3.org/2000/svg"
+                    id="aiAvatarSVG"
+                  >
                     <defs>
-                      <filter id="avatarGlow" x="-50%" y="-50%" width="200%" height="200%">
-                        <feGaussianBlur stdDeviation="6" result="blur"/>
-                        <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                      <filter
+                        id="avatarGlow"
+                        x="-50%"
+                        y="-50%"
+                        width="200%"
+                        height="200%"
+                      >
+                        <feGaussianBlur stdDeviation="6" result="blur" />
+                        <feMerge>
+                          <feMergeNode in="blur" />
+                          <feMergeNode in="SourceGraphic" />
+                        </feMerge>
                       </filter>
-                      <filter id="eyeGlow" x="-100%" y="-100%" width="300%" height="300%">
-                        <feGaussianBlur stdDeviation="8" result="blur"/>
-                        <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                      <filter
+                        id="eyeGlow"
+                        x="-100%"
+                        y="-100%"
+                        width="300%"
+                        height="300%"
+                      >
+                        <feGaussianBlur stdDeviation="8" result="blur" />
+                        <feMerge>
+                          <feMergeNode in="blur" />
+                          <feMergeNode in="SourceGraphic" />
+                        </feMerge>
                       </filter>
                       <radialGradient id="irisGrad" cx="40%" cy="40%" r="50%">
-                        <stop offset="0%" stop-color="#efffef"/>
-                        <stop offset="25%" stop-color="#9eff87"/>
-                        <stop offset="55%" stop-color="#39ff14"/>
-                        <stop offset="85%" stop-color="#0f3509"/>
-                        <stop offset="100%" stop-color="#061006"/>
+                        <stop offset="0%" stop-color="#efffef" />
+                        <stop offset="25%" stop-color="#9eff87" />
+                        <stop offset="55%" stop-color="#39ff14" />
+                        <stop offset="85%" stop-color="#0f3509" />
+                        <stop offset="100%" stop-color="#061006" />
                       </radialGradient>
                       <linearGradient id="faceGrad" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="0%" stop-color="rgba(18,23,18,0.92)"/>
-                        <stop offset="100%" stop-color="rgba(8,10,8,0.8)"/>
+                        <stop offset="0%" stop-color="rgba(18,23,18,0.92)" />
+                        <stop offset="100%" stop-color="rgba(8,10,8,0.8)" />
                       </linearGradient>
                     </defs>
                     <g class="avatar-head-group" id="avatarHeadGroup">
                       <!-- Friendly robot head: rounded rectangle -->
-                      <rect x="90" y="80" width="240" height="260" rx="60" ry="60" fill="url(#faceGrad)" stroke="rgba(57,255,20,0.28)" stroke-width="2"/>
+                      <rect
+                        x="90"
+                        y="80"
+                        width="240"
+                        height="260"
+                        rx="60"
+                        ry="60"
+                        fill="url(#faceGrad)"
+                        stroke="rgba(57,255,20,0.28)"
+                        stroke-width="2"
+                      />
                       <!-- Inner visor panel -->
-                      <rect x="115" y="145" width="190" height="110" rx="30" ry="30" fill="rgba(6,10,6,0.6)" stroke="rgba(57,255,20,0.12)" stroke-width="1"/>
+                      <rect
+                        x="115"
+                        y="145"
+                        width="190"
+                        height="110"
+                        rx="30"
+                        ry="30"
+                        fill="rgba(6,10,6,0.6)"
+                        stroke="rgba(57,255,20,0.12)"
+                        stroke-width="1"
+                      />
                       <!-- Antenna stalk -->
-                      <line x1="210" y1="80" x2="210" y2="38" stroke="rgba(57,255,20,0.35)" stroke-width="2.5" stroke-linecap="round"/>
+                      <line
+                        x1="210"
+                        y1="80"
+                        x2="210"
+                        y2="38"
+                        stroke="rgba(57,255,20,0.35)"
+                        stroke-width="2.5"
+                        stroke-linecap="round"
+                      />
                       <!-- Antenna tip (glowing orb) -->
-                      <circle cx="210" cy="32" r="10" fill="#39ff14" opacity="0.6" filter="url(#eyeGlow)"/>
-                      <circle cx="210" cy="32" r="5" fill="#efffef"/>
+                      <circle
+                        cx="210"
+                        cy="32"
+                        r="10"
+                        fill="#39ff14"
+                        opacity="0.6"
+                        filter="url(#eyeGlow)"
+                      />
+                      <circle cx="210" cy="32" r="5" fill="#efffef" />
                       <!-- Left ear (rounded) -->
-                      <rect x="62" y="140" width="32" height="70" rx="14" ry="14" fill="url(#faceGrad)" stroke="rgba(57,255,20,0.2)" stroke-width="1.5"/>
-                      <circle cx="78" cy="165" r="4" fill="#39ff14" opacity="0.3"/>
+                      <rect
+                        x="62"
+                        y="140"
+                        width="32"
+                        height="70"
+                        rx="14"
+                        ry="14"
+                        fill="url(#faceGrad)"
+                        stroke="rgba(57,255,20,0.2)"
+                        stroke-width="1.5"
+                      />
+                      <circle
+                        cx="78"
+                        cy="165"
+                        r="4"
+                        fill="#39ff14"
+                        opacity="0.3"
+                      />
                       <!-- Right ear (rounded) -->
-                      <rect x="326" y="140" width="32" height="70" rx="14" ry="14" fill="url(#faceGrad)" stroke="rgba(57,255,20,0.2)" stroke-width="1.5"/>
-                      <circle cx="342" cy="165" r="4" fill="#39ff14" opacity="0.3"/>
+                      <rect
+                        x="326"
+                        y="140"
+                        width="32"
+                        height="70"
+                        rx="14"
+                        ry="14"
+                        fill="url(#faceGrad)"
+                        stroke="rgba(57,255,20,0.2)"
+                        stroke-width="1.5"
+                      />
+                      <circle
+                        cx="342"
+                        cy="165"
+                        r="4"
+                        fill="#39ff14"
+                        opacity="0.3"
+                      />
                       <!-- Left eye: friendly rounded -->
-                      <ellipse class="avatar-eye-shape" cx="165" cy="200" rx="30" ry="28" fill="url(#irisGrad)" filter="url(#eyeGlow)"/>
+                      <ellipse
+                        class="avatar-eye-shape"
+                        cx="165"
+                        cy="200"
+                        rx="30"
+                        ry="28"
+                        fill="url(#irisGrad)"
+                        filter="url(#eyeGlow)"
+                      />
                       <!-- Left iris (tracks mouse) -->
-                      <circle class="avatar-iris" id="leftIris" cx="165" cy="200" r="9" fill="#041004"/>
+                      <circle
+                        class="avatar-iris"
+                        id="leftIris"
+                        cx="165"
+                        cy="200"
+                        r="9"
+                        fill="#041004"
+                      />
                       <!-- Left eye highlight -->
-                      <circle cx="156" cy="192" r="6" fill="rgba(255,255,255,0.85)"/>
+                      <circle
+                        cx="156"
+                        cy="192"
+                        r="6"
+                        fill="rgba(255,255,255,0.85)"
+                      />
                       <!-- Right eye: friendly rounded -->
-                      <ellipse class="avatar-eye-shape" cx="255" cy="200" rx="30" ry="28" fill="url(#irisGrad)" filter="url(#eyeGlow)"/>
+                      <ellipse
+                        class="avatar-eye-shape"
+                        cx="255"
+                        cy="200"
+                        rx="30"
+                        ry="28"
+                        fill="url(#irisGrad)"
+                        filter="url(#eyeGlow)"
+                      />
                       <!-- Right iris (tracks mouse) -->
-                      <circle class="avatar-iris" id="rightIris" cx="255" cy="200" r="9" fill="#041004"/>
+                      <circle
+                        class="avatar-iris"
+                        id="rightIris"
+                        cx="255"
+                        cy="200"
+                        r="9"
+                        fill="#041004"
+                      />
                       <!-- Right eye highlight -->
-                      <circle cx="246" cy="192" r="6" fill="rgba(255,255,255,0.85)"/>
+                      <circle
+                        cx="246"
+                        cy="192"
+                        r="6"
+                        fill="rgba(255,255,255,0.85)"
+                      />
                       <!-- Friendly smile -->
-                      <path d="M175,280 Q195,305 210,305 Q225,305 245,280" fill="none" stroke="rgba(57,255,20,0.35)" stroke-width="2.5" stroke-linecap="round"/>
+                      <path
+                        d="M175,280 Q195,305 210,305 Q225,305 245,280"
+                        fill="none"
+                        stroke="rgba(57,255,20,0.35)"
+                        stroke-width="2.5"
+                        stroke-linecap="round"
+                      />
                       <!-- Cheek dots (blush) -->
-                      <circle cx="130" cy="260" r="8" fill="rgba(57,255,20,0.06)"/>
-                      <circle cx="290" cy="260" r="8" fill="rgba(57,255,20,0.06)"/>
+                      <circle
+                        cx="130"
+                        cy="260"
+                        r="8"
+                        fill="rgba(57,255,20,0.06)"
+                      />
+                      <circle
+                        cx="290"
+                        cy="260"
+                        r="8"
+                        fill="rgba(57,255,20,0.06)"
+                      />
                       <!-- Forehead detail line -->
-                      <line x1="170" y1="120" x2="250" y2="120" stroke="rgba(57,255,20,0.1)" stroke-width="1" stroke-linecap="round"/>
+                      <line
+                        x1="170"
+                        y1="120"
+                        x2="250"
+                        y2="120"
+                        stroke="rgba(57,255,20,0.1)"
+                        stroke-width="1"
+                        stroke-linecap="round"
+                      />
                     </g>
                   </svg>
                 </div>
               </div>
               <div class="hero-static-glow glass-panel">
                 <div class="absolute inset-0 flex items-center justify-center">
-                  <div class="rounded-full border px-5 py-3 mono-font text-[0.72rem] uppercase tracking-[0.18em]" style="border-color:rgba(57,255,20,0.16);color:var(--accent);background:rgba(8,10,8,0.42);">AI Avatar</div>
+                  <div
+                    class="rounded-full border px-5 py-3 mono-font text-[0.72rem] uppercase tracking-[0.18em]"
+                    style="
+                      border-color: rgba(57, 255, 20, 0.16);
+                      color: var(--accent);
+                      background: rgba(8, 10, 8, 0.42);
+                    "
+                  >
+                    AI Avatar
+                  </div>
                 </div>
               </div>
             </div>
@@ -354,26 +1552,158 @@
         <div class="site-shell">
           <div class="glass-panel marquee rounded-full px-2 py-2">
             <div class="marquee-track">
-              <span class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">Workflow Automation<span class="mx-6" style="color:var(--accent);">.</span></span>
-              <span class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">AI Agents<span class="mx-6" style="color:var(--accent);">.</span></span>
-              <span class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">Zapier/Make Integration<span class="mx-6" style="color:var(--accent);">.</span></span>
-              <span class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">LLM Pipelines<span class="mx-6" style="color:var(--accent);">.</span></span>
-              <span class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">Process Mining<span class="mx-6" style="color:var(--accent);">.</span></span>
-              <span class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">RPA Bots<span class="mx-6" style="color:var(--accent);">.</span></span>
-              <span class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">API Orchestration<span class="mx-6" style="color:var(--accent);">.</span></span>
-              <span class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">Auto-Reporting<span class="mx-6" style="color:var(--accent);">.</span></span>
-              <span class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">Smart Triggers<span class="mx-6" style="color:var(--accent);">.</span></span>
-              <span class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">n8n Workflows<span class="mx-6" style="color:var(--accent);">.</span></span>
-              <span class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">Workflow Automation<span class="mx-6" style="color:var(--accent);">.</span></span>
-              <span class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">AI Agents<span class="mx-6" style="color:var(--accent);">.</span></span>
-              <span class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">Zapier/Make Integration<span class="mx-6" style="color:var(--accent);">.</span></span>
-              <span class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">LLM Pipelines<span class="mx-6" style="color:var(--accent);">.</span></span>
-              <span class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">Process Mining<span class="mx-6" style="color:var(--accent);">.</span></span>
-              <span class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">RPA Bots<span class="mx-6" style="color:var(--accent);">.</span></span>
-              <span class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">API Orchestration<span class="mx-6" style="color:var(--accent);">.</span></span>
-              <span class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">Auto-Reporting<span class="mx-6" style="color:var(--accent);">.</span></span>
-              <span class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">Smart Triggers<span class="mx-6" style="color:var(--accent);">.</span></span>
-              <span class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">n8n Workflows<span class="mx-6" style="color:var(--accent);">.</span></span>
+              <span
+                class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]"
+                style="color: var(--text-secondary)"
+                >Workflow Automation<span
+                  class="mx-6"
+                  style="color: var(--accent)"
+                  >.</span
+                ></span
+              >
+              <span
+                class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]"
+                style="color: var(--text-secondary)"
+                >AI Agents<span class="mx-6" style="color: var(--accent)"
+                  >.</span
+                ></span
+              >
+              <span
+                class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]"
+                style="color: var(--text-secondary)"
+                >Zapier/Make Integration<span
+                  class="mx-6"
+                  style="color: var(--accent)"
+                  >.</span
+                ></span
+              >
+              <span
+                class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]"
+                style="color: var(--text-secondary)"
+                >LLM Pipelines<span class="mx-6" style="color: var(--accent)"
+                  >.</span
+                ></span
+              >
+              <span
+                class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]"
+                style="color: var(--text-secondary)"
+                >Process Mining<span class="mx-6" style="color: var(--accent)"
+                  >.</span
+                ></span
+              >
+              <span
+                class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]"
+                style="color: var(--text-secondary)"
+                >RPA Bots<span class="mx-6" style="color: var(--accent)"
+                  >.</span
+                ></span
+              >
+              <span
+                class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]"
+                style="color: var(--text-secondary)"
+                >API Orchestration<span
+                  class="mx-6"
+                  style="color: var(--accent)"
+                  >.</span
+                ></span
+              >
+              <span
+                class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]"
+                style="color: var(--text-secondary)"
+                >Auto-Reporting<span class="mx-6" style="color: var(--accent)"
+                  >.</span
+                ></span
+              >
+              <span
+                class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]"
+                style="color: var(--text-secondary)"
+                >Smart Triggers<span class="mx-6" style="color: var(--accent)"
+                  >.</span
+                ></span
+              >
+              <span
+                class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]"
+                style="color: var(--text-secondary)"
+                >n8n Workflows<span class="mx-6" style="color: var(--accent)"
+                  >.</span
+                ></span
+              >
+              <span
+                class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]"
+                style="color: var(--text-secondary)"
+                >Workflow Automation<span
+                  class="mx-6"
+                  style="color: var(--accent)"
+                  >.</span
+                ></span
+              >
+              <span
+                class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]"
+                style="color: var(--text-secondary)"
+                >AI Agents<span class="mx-6" style="color: var(--accent)"
+                  >.</span
+                ></span
+              >
+              <span
+                class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]"
+                style="color: var(--text-secondary)"
+                >Zapier/Make Integration<span
+                  class="mx-6"
+                  style="color: var(--accent)"
+                  >.</span
+                ></span
+              >
+              <span
+                class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]"
+                style="color: var(--text-secondary)"
+                >LLM Pipelines<span class="mx-6" style="color: var(--accent)"
+                  >.</span
+                ></span
+              >
+              <span
+                class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]"
+                style="color: var(--text-secondary)"
+                >Process Mining<span class="mx-6" style="color: var(--accent)"
+                  >.</span
+                ></span
+              >
+              <span
+                class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]"
+                style="color: var(--text-secondary)"
+                >RPA Bots<span class="mx-6" style="color: var(--accent)"
+                  >.</span
+                ></span
+              >
+              <span
+                class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]"
+                style="color: var(--text-secondary)"
+                >API Orchestration<span
+                  class="mx-6"
+                  style="color: var(--accent)"
+                  >.</span
+                ></span
+              >
+              <span
+                class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]"
+                style="color: var(--text-secondary)"
+                >Auto-Reporting<span class="mx-6" style="color: var(--accent)"
+                  >.</span
+                ></span
+              >
+              <span
+                class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]"
+                style="color: var(--text-secondary)"
+                >Smart Triggers<span class="mx-6" style="color: var(--accent)"
+                  >.</span
+                ></span
+              >
+              <span
+                class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]"
+                style="color: var(--text-secondary)"
+                >n8n Workflows<span class="mx-6" style="color: var(--accent)"
+                  >.</span
+                ></span
+              >
             </div>
           </div>
         </div>
@@ -384,99 +1714,277 @@
           <div class="grid gap-10 lg:grid-cols-[0.55fr_1.45fr] lg:items-start">
             <div class="reveal lg:sticky lg:top-28">
               <div class="section-kicker">What we automate</div>
-              <h2 class="display-font mt-4 text-4xl font-extrabold italic leading-[0.96] tracking-[-0.04em] lg:text-6xl" style="color:var(--text-primary);max-width:9ch;">From manual chaos to machine precision.</h2>
-              <p class="mt-6 text-base leading-8 lg:text-lg" style="color:var(--text-secondary);max-width:28rem;">We build automation systems that remove repetitive work, reduce operational friction, and turn disconnected tools into a single intelligent operating layer.</p>
-              <a href="index.html#contact" class="mt-8 inline-flex items-center gap-2 text-sm font-semibold" style="color:var(--accent);">Request automation audit →</a>
+              <h2
+                class="display-font mt-4 text-4xl font-extrabold italic leading-[0.96] tracking-[-0.04em] lg:text-6xl"
+                style="color: var(--text-primary); max-width: 9ch"
+              >
+                From manual chaos to machine precision.
+              </h2>
+              <p
+                class="mt-6 text-base leading-8 lg:text-lg"
+                style="color: var(--text-secondary); max-width: 28rem"
+              >
+                We build automation systems that remove repetitive work, reduce
+                operational friction, and turn disconnected tools into a single
+                intelligent operating layer.
+              </p>
+              <a
+                href="index.html#contact"
+                class="mt-8 inline-flex items-center gap-2 text-sm font-semibold"
+                style="color: var(--accent)"
+                >Request automation audit →</a
+              >
             </div>
 
             <div class="grid gap-5 md:grid-cols-2">
-              <div class="hov-card feature-glow relative glass-panel rounded-[28px] p-6 lg:p-7 md:col-span-2 reveal">
+              <div
+                class="hov-card feature-glow relative glass-panel rounded-[28px] p-6 lg:p-7 md:col-span-2 reveal"
+              >
                 <div class="mini-label mono-font">01 / Systems</div>
-                <h3 class="display-font mt-5 text-2xl font-bold italic lg:text-3xl" style="color:var(--text-primary);">Workflow &amp; Process Automation</h3>
-                <p class="mt-4 leading-7 text-base" style="color:var(--text-secondary);">We map repetitive handoffs, approvals, updates, and back-office tasks into automated systems that run reliably across your business without constant manual oversight.</p>
+                <h3
+                  class="display-font mt-5 text-2xl font-bold italic lg:text-3xl"
+                  style="color: var(--text-primary)"
+                >
+                  Workflow &amp; Process Automation
+                </h3>
+                <p
+                  class="mt-4 leading-7 text-base"
+                  style="color: var(--text-secondary)"
+                >
+                  We map repetitive handoffs, approvals, updates, and
+                  back-office tasks into automated systems that run reliably
+                  across your business without constant manual oversight.
+                </p>
                 <div class="mt-6 h-px w-full soft-divider"></div>
-                <div class="mt-4 flex items-center justify-between gap-4 text-sm flex-wrap" style="color:var(--text-muted);">
+                <div
+                  class="mt-4 flex items-center justify-between gap-4 text-sm flex-wrap"
+                  style="color: var(--text-muted)"
+                >
                   <span>Replace clicks, copy-paste, and busywork</span>
-                  <span style="color:var(--accent);">n8n · Make · Zapier</span>
+                  <span style="color: var(--accent)">n8n · Make · Zapier</span>
                 </div>
               </div>
-              <div class="hov-card feature-glow relative glass-panel rounded-[28px] p-6 lg:p-7 reveal" style="transition-delay:.06s;">
+              <div
+                class="hov-card feature-glow relative glass-panel rounded-[28px] p-6 lg:p-7 reveal"
+                style="transition-delay: 0.06s"
+              >
                 <div class="mini-label mono-font">02 / Intelligence</div>
-                <h3 class="display-font mt-5 text-xl font-bold italic lg:text-2xl" style="color:var(--text-primary);">AI Agent Deployment</h3>
-                <p class="mt-4 text-sm leading-7" style="color:var(--text-secondary);">Purpose-built agents that read, classify, generate, route, and follow up using your context, rules, knowledge base, and operational goals.</p>
-                <div class="mt-5 text-sm" style="color:var(--text-muted);">OpenAI · Claude · Vector search</div>
+                <h3
+                  class="display-font mt-5 text-xl font-bold italic lg:text-2xl"
+                  style="color: var(--text-primary)"
+                >
+                  AI Agent Deployment
+                </h3>
+                <p
+                  class="mt-4 text-sm leading-7"
+                  style="color: var(--text-secondary)"
+                >
+                  Purpose-built agents that read, classify, generate, route, and
+                  follow up using your context, rules, knowledge base, and
+                  operational goals.
+                </p>
+                <div class="mt-5 text-sm" style="color: var(--text-muted)">
+                  OpenAI · Claude · Vector search
+                </div>
               </div>
-              <div class="hov-card feature-glow relative glass-panel rounded-[28px] p-6 lg:p-7 reveal" style="transition-delay:.1s;">
+              <div
+                class="hov-card feature-glow relative glass-panel rounded-[28px] p-6 lg:p-7 reveal"
+                style="transition-delay: 0.1s"
+              >
                 <div class="mini-label mono-font">03 / Revenue</div>
-                <h3 class="display-font mt-5 text-xl font-bold italic lg:text-2xl" style="color:var(--text-primary);">CRM &amp; Sales Automation</h3>
-                <p class="mt-4 text-sm leading-7" style="color:var(--text-secondary);">Lead capture, enrichment, follow-up, scoring, routing, reminders, and pipeline updates automated end-to-end so deals move faster with less admin drag.</p>
-                <div class="mt-5 text-sm" style="color:var(--text-muted);">HubSpot · Salesforce · Pipedrive</div>
+                <h3
+                  class="display-font mt-5 text-xl font-bold italic lg:text-2xl"
+                  style="color: var(--text-primary)"
+                >
+                  CRM &amp; Sales Automation
+                </h3>
+                <p
+                  class="mt-4 text-sm leading-7"
+                  style="color: var(--text-secondary)"
+                >
+                  Lead capture, enrichment, follow-up, scoring, routing,
+                  reminders, and pipeline updates automated end-to-end so deals
+                  move faster with less admin drag.
+                </p>
+                <div class="mt-5 text-sm" style="color: var(--text-muted)">
+                  HubSpot · Salesforce · Pipedrive
+                </div>
               </div>
-              <div class="hov-card feature-glow relative glass-panel rounded-[28px] p-6 lg:p-7 reveal" style="transition-delay:.14s;">
+              <div
+                class="hov-card feature-glow relative glass-panel rounded-[28px] p-6 lg:p-7 reveal"
+                style="transition-delay: 0.14s"
+              >
                 <div class="mini-label mono-font">04 / Visibility</div>
-                <h3 class="display-font mt-5 text-xl font-bold italic lg:text-2xl" style="color:var(--text-primary);">Data Pipeline &amp; Reporting</h3>
-                <p class="mt-4 text-sm leading-7" style="color:var(--text-secondary);">We consolidate fragmented data into clean pipelines, dashboards, and recurring reporting flows so leaders get decisions, not spreadsheet chaos.</p>
-                <div class="mt-5 text-sm" style="color:var(--text-muted);">Postgres · Airtable · Looker Studio</div>
+                <h3
+                  class="display-font mt-5 text-xl font-bold italic lg:text-2xl"
+                  style="color: var(--text-primary)"
+                >
+                  Data Pipeline &amp; Reporting
+                </h3>
+                <p
+                  class="mt-4 text-sm leading-7"
+                  style="color: var(--text-secondary)"
+                >
+                  We consolidate fragmented data into clean pipelines,
+                  dashboards, and recurring reporting flows so leaders get
+                  decisions, not spreadsheet chaos.
+                </p>
+                <div class="mt-5 text-sm" style="color: var(--text-muted)">
+                  Postgres · Airtable · Looker Studio
+                </div>
               </div>
-              <div class="hov-card feature-glow relative glass-panel rounded-[28px] p-6 lg:p-7 reveal" style="transition-delay:.18s;">
+              <div
+                class="hov-card feature-glow relative glass-panel rounded-[28px] p-6 lg:p-7 reveal"
+                style="transition-delay: 0.18s"
+              >
                 <div class="mini-label mono-font">05 / Connectivity</div>
-                <h3 class="display-font mt-5 text-xl font-bold italic lg:text-2xl" style="color:var(--text-primary);">API Integration &amp; Orchestration</h3>
-                <p class="mt-4 text-sm leading-7" style="color:var(--text-secondary);">From event triggers to multi-step orchestration, we connect your apps, databases, and internal tools into one dependable automation backbone.</p>
-                <div class="mt-5 text-sm" style="color:var(--text-muted);">REST APIs · Webhooks · Middleware</div>
+                <h3
+                  class="display-font mt-5 text-xl font-bold italic lg:text-2xl"
+                  style="color: var(--text-primary)"
+                >
+                  API Integration &amp; Orchestration
+                </h3>
+                <p
+                  class="mt-4 text-sm leading-7"
+                  style="color: var(--text-secondary)"
+                >
+                  From event triggers to multi-step orchestration, we connect
+                  your apps, databases, and internal tools into one dependable
+                  automation backbone.
+                </p>
+                <div class="mt-5 text-sm" style="color: var(--text-muted)">
+                  REST APIs · Webhooks · Middleware
+                </div>
               </div>
-              <div class="hov-card feature-glow relative glass-panel rounded-[28px] p-6 lg:p-7 reveal" style="transition-delay:.22s;">
+              <div
+                class="hov-card feature-glow relative glass-panel rounded-[28px] p-6 lg:p-7 reveal"
+                style="transition-delay: 0.22s"
+              >
                 <div class="mini-label mono-font">06 / Documents</div>
-                <h3 class="display-font mt-5 text-xl font-bold italic lg:text-2xl" style="color:var(--text-primary);">Document &amp; Communication Automation</h3>
-                <p class="mt-4 text-sm leading-7" style="color:var(--text-secondary);">Generate documents, extract key fields, classify files, draft replies, and push updates across email, chat, and customer-facing systems automatically.</p>
-                <div class="mt-5 text-sm" style="color:var(--text-muted);">OCR · Email flows · WhatsApp API</div>
+                <h3
+                  class="display-font mt-5 text-xl font-bold italic lg:text-2xl"
+                  style="color: var(--text-primary)"
+                >
+                  Document &amp; Communication Automation
+                </h3>
+                <p
+                  class="mt-4 text-sm leading-7"
+                  style="color: var(--text-secondary)"
+                >
+                  Generate documents, extract key fields, classify files, draft
+                  replies, and push updates across email, chat, and
+                  customer-facing systems automatically.
+                </p>
+                <div class="mt-5 text-sm" style="color: var(--text-muted)">
+                  OCR · Email flows · WhatsApp API
+                </div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section class="persona-fan-section section-frame py-24 lg:py-32" id="personas">
+      <section
+        class="persona-fan-section section-frame py-24 lg:py-32"
+        id="personas"
+      >
         <div class="site-shell">
           <div class="persona-heading-wrap text-center reveal">
             <div class="section-kicker">Who it's for</div>
-            <h2 class="display-font mt-4 text-4xl font-extrabold italic leading-[0.95] tracking-[-0.04em] lg:text-6xl mx-auto" style="color:var(--text-primary);max-width:12ch;">Automation for the teams carrying too much by hand.</h2>
+            <h2
+              class="display-font mt-4 text-4xl font-extrabold italic leading-[0.95] tracking-[-0.04em] lg:text-6xl mx-auto"
+              style="color: var(--text-primary); max-width: 12ch"
+            >
+              Automation for the teams carrying too much by hand.
+            </h2>
           </div>
 
           <div class="persona-stage">
-            <svg class="persona-line" viewBox="0 0 1200 540" preserveAspectRatio="none" aria-hidden="true">
-              <path d="M130 296C248 226 330 196 450 254C560 308 628 348 732 280C840 210 950 208 1080 286"></path>
+            <svg
+              class="persona-line"
+              viewBox="0 0 1200 540"
+              preserveAspectRatio="none"
+              aria-hidden="true"
+            >
+              <path
+                d="M130 296C248 226 330 196 450 254C560 308 628 348 732 280C840 210 950 208 1080 286"
+              ></path>
             </svg>
             <div class="persona-fan">
-              <article class="persona-card" data-card="1" style="left:50%;">
+              <article class="persona-card" data-card="1" style="left: 50%">
                 <div class="persona-card-number">1</div>
                 <div class="persona-card-body">
                   <div class="mini-label mono-font mb-4">Leadership</div>
-                  <h3 class="display-font text-2xl font-bold italic" style="color:var(--text-primary);">Founders &amp; CEOs</h3>
-                  <p class="mt-4 text-sm leading-7" style="color:var(--text-secondary);">For leaders who want scale without adding layers of operational overhead every quarter.</p>
+                  <h3
+                    class="display-font text-2xl font-bold italic"
+                    style="color: var(--text-primary)"
+                  >
+                    Founders &amp; CEOs
+                  </h3>
+                  <p
+                    class="mt-4 text-sm leading-7"
+                    style="color: var(--text-secondary)"
+                  >
+                    For leaders who want scale without adding layers of
+                    operational overhead every quarter.
+                  </p>
                 </div>
               </article>
-              <article class="persona-card" data-card="2" style="left:50%;">
+              <article class="persona-card" data-card="2" style="left: 50%">
                 <div class="persona-card-number">2</div>
                 <div class="persona-card-body">
                   <div class="mini-label mono-font mb-4">Operations</div>
-                  <h3 class="display-font text-2xl font-bold italic" style="color:var(--text-primary);">Operations Managers</h3>
-                  <p class="mt-4 text-sm leading-7" style="color:var(--text-secondary);">For teams buried in approvals, reporting, handoffs, and process sprawl that never stops growing.</p>
+                  <h3
+                    class="display-font text-2xl font-bold italic"
+                    style="color: var(--text-primary)"
+                  >
+                    Operations Managers
+                  </h3>
+                  <p
+                    class="mt-4 text-sm leading-7"
+                    style="color: var(--text-secondary)"
+                  >
+                    For teams buried in approvals, reporting, handoffs, and
+                    process sprawl that never stops growing.
+                  </p>
                 </div>
               </article>
-              <article class="persona-card" data-card="3" style="left:50%;">
+              <article class="persona-card" data-card="3" style="left: 50%">
                 <div class="persona-card-number">3</div>
                 <div class="persona-card-body">
                   <div class="mini-label mono-font mb-4">Growth</div>
-                  <h3 class="display-font text-2xl font-bold italic" style="color:var(--text-primary);">Marketing Teams</h3>
-                  <p class="mt-4 text-sm leading-7" style="color:var(--text-secondary);">For growth teams that need faster campaign execution, cleaner attribution, and automated follow-up loops.</p>
+                  <h3
+                    class="display-font text-2xl font-bold italic"
+                    style="color: var(--text-primary)"
+                  >
+                    Marketing Teams
+                  </h3>
+                  <p
+                    class="mt-4 text-sm leading-7"
+                    style="color: var(--text-secondary)"
+                  >
+                    For growth teams that need faster campaign execution,
+                    cleaner attribution, and automated follow-up loops.
+                  </p>
                 </div>
               </article>
-              <article class="persona-card" data-card="4" style="left:50%;">
+              <article class="persona-card" data-card="4" style="left: 50%">
                 <div class="persona-card-number">4</div>
                 <div class="persona-card-body">
                   <div class="mini-label mono-font mb-4">Product</div>
-                  <h3 class="display-font text-2xl font-bold italic" style="color:var(--text-primary);">Product &amp; Dev Teams</h3>
-                  <p class="mt-4 text-sm leading-7" style="color:var(--text-secondary);">For builders who want toolchains, alerts, sync jobs, and internal ops stitched into one system.</p>
+                  <h3
+                    class="display-font text-2xl font-bold italic"
+                    style="color: var(--text-primary)"
+                  >
+                    Product &amp; Dev Teams
+                  </h3>
+                  <p
+                    class="mt-4 text-sm leading-7"
+                    style="color: var(--text-secondary)"
+                  >
+                    For builders who want toolchains, alerts, sync jobs, and
+                    internal ops stitched into one system.
+                  </p>
                 </div>
               </article>
             </div>
@@ -488,77 +1996,221 @@
         <div class="site-shell">
           <div class="text-center mb-14 reveal">
             <div class="section-kicker">Automation stack</div>
-            <h2 class="display-font mt-4 text-4xl font-extrabold italic leading-[0.95] tracking-[-0.04em] lg:text-6xl mx-auto" style="color:var(--text-primary);max-width:12ch;">The layers that make the machine move.</h2>
+            <h2
+              class="display-font mt-4 text-4xl font-extrabold italic leading-[0.95] tracking-[-0.04em] lg:text-6xl mx-auto"
+              style="color: var(--text-primary); max-width: 12ch"
+            >
+              The layers that make the machine move.
+            </h2>
           </div>
 
           <div class="stack-row">
-            <article class="stack-clip-card" style="transition-delay:.04s;">
+            <article class="stack-clip-card" style="transition-delay: 0.04s">
               <div class="mini-label mono-font mb-5">Layer 01</div>
-              <h3 class="display-font text-2xl font-bold italic" style="color:var(--text-primary);">AI Models</h3>
-              <p class="mt-4 text-sm leading-7" style="color:var(--text-secondary);">Reasoning, classification, drafting, routing, extraction, and decision support at the core of intelligent flows.</p>
-              <div class="mt-6 mono-font text-xs uppercase tracking-[0.18em]" style="color:var(--accent);">GPT-4 · Claude · Gemini</div>
+              <h3
+                class="display-font text-2xl font-bold italic"
+                style="color: var(--text-primary)"
+              >
+                AI Models
+              </h3>
+              <p
+                class="mt-4 text-sm leading-7"
+                style="color: var(--text-secondary)"
+              >
+                Reasoning, classification, drafting, routing, extraction, and
+                decision support at the core of intelligent flows.
+              </p>
+              <div
+                class="mt-6 mono-font text-xs uppercase tracking-[0.18em]"
+                style="color: var(--accent)"
+              >
+                GPT-4 · Claude · Gemini
+              </div>
             </article>
-            <article class="stack-clip-card" style="transition-delay:.12s;">
+            <article class="stack-clip-card" style="transition-delay: 0.12s">
               <div class="mini-label mono-font mb-5">Layer 02</div>
-              <h3 class="display-font text-2xl font-bold italic" style="color:var(--text-primary);">Automation Platforms</h3>
-              <p class="mt-4 text-sm leading-7" style="color:var(--text-secondary);">Multi-step workflows, triggers, retries, human review nodes, and orchestration across your ecosystem.</p>
-              <div class="mt-6 mono-font text-xs uppercase tracking-[0.18em]" style="color:var(--accent);">n8n · Make · Zapier</div>
+              <h3
+                class="display-font text-2xl font-bold italic"
+                style="color: var(--text-primary)"
+              >
+                Automation Platforms
+              </h3>
+              <p
+                class="mt-4 text-sm leading-7"
+                style="color: var(--text-secondary)"
+              >
+                Multi-step workflows, triggers, retries, human review nodes, and
+                orchestration across your ecosystem.
+              </p>
+              <div
+                class="mt-6 mono-font text-xs uppercase tracking-[0.18em]"
+                style="color: var(--accent)"
+              >
+                n8n · Make · Zapier
+              </div>
             </article>
-            <article class="stack-clip-card" style="transition-delay:.2s;">
+            <article class="stack-clip-card" style="transition-delay: 0.2s">
               <div class="mini-label mono-font mb-5">Layer 03</div>
-              <h3 class="display-font text-2xl font-bold italic" style="color:var(--text-primary);">Data Layer</h3>
-              <p class="mt-4 text-sm leading-7" style="color:var(--text-secondary);">Structured storage, lookup tables, reporting sinks, and operational memory for every automation path.</p>
-              <div class="mt-6 mono-font text-xs uppercase tracking-[0.18em]" style="color:var(--accent);">Airtable · Postgres · Sheets</div>
+              <h3
+                class="display-font text-2xl font-bold italic"
+                style="color: var(--text-primary)"
+              >
+                Data Layer
+              </h3>
+              <p
+                class="mt-4 text-sm leading-7"
+                style="color: var(--text-secondary)"
+              >
+                Structured storage, lookup tables, reporting sinks, and
+                operational memory for every automation path.
+              </p>
+              <div
+                class="mt-6 mono-font text-xs uppercase tracking-[0.18em]"
+                style="color: var(--accent)"
+              >
+                Airtable · Postgres · Sheets
+              </div>
             </article>
-            <article class="stack-clip-card" style="transition-delay:.28s;">
+            <article class="stack-clip-card" style="transition-delay: 0.28s">
               <div class="mini-label mono-font mb-5">Layer 04</div>
-              <h3 class="display-font text-2xl font-bold italic" style="color:var(--text-primary);">Communication</h3>
-              <p class="mt-4 text-sm leading-7" style="color:var(--text-secondary);">Alerts, customer messages, approvals, and team notifications delivered inside the channels people already use.</p>
-              <div class="mt-6 mono-font text-xs uppercase tracking-[0.18em]" style="color:var(--accent);">Slack · Email · WhatsApp</div>
+              <h3
+                class="display-font text-2xl font-bold italic"
+                style="color: var(--text-primary)"
+              >
+                Communication
+              </h3>
+              <p
+                class="mt-4 text-sm leading-7"
+                style="color: var(--text-secondary)"
+              >
+                Alerts, customer messages, approvals, and team notifications
+                delivered inside the channels people already use.
+              </p>
+              <div
+                class="mt-6 mono-font text-xs uppercase tracking-[0.18em]"
+                style="color: var(--accent)"
+              >
+                Slack · Email · WhatsApp
+              </div>
             </article>
           </div>
         </div>
       </section>
 
-      <section class="process-stack-section section-frame py-24 lg:py-32" id="process">
+      <section
+        class="process-stack-section section-frame py-24 lg:py-32"
+        id="process"
+      >
         <div class="site-shell">
           <div class="text-center mb-14 reveal">
             <div class="section-kicker">How it works</div>
-            <h2 class="display-font mt-4 text-4xl font-extrabold italic leading-[0.95] tracking-[-0.04em] lg:text-6xl mx-auto" style="color:var(--text-primary);max-width:11ch;">A practical build process for complex automation.</h2>
+            <h2
+              class="display-font mt-4 text-4xl font-extrabold italic leading-[0.95] tracking-[-0.04em] lg:text-6xl mx-auto"
+              style="color: var(--text-primary); max-width: 11ch"
+            >
+              A practical build process for complex automation.
+            </h2>
           </div>
 
           <div class="process-stack-wrap" id="processCardsContainer">
             <article class="process-stack-card" data-process-card="0">
               <div class="process-step-number">01</div>
               <div class="process-step-heading">
-                <div class="mono-font text-xs uppercase tracking-[0.18em] mb-1" style="color:var(--accent);">Step 01</div>
-                <h3 class="display-font text-xl font-bold italic lg:text-2xl" style="color:var(--text-primary);">Discovery &amp; Mapping</h3>
+                <div
+                  class="mono-font text-xs uppercase tracking-[0.18em] mb-1"
+                  style="color: var(--accent)"
+                >
+                  Step 01
+                </div>
+                <h3
+                  class="display-font text-xl font-bold italic lg:text-2xl"
+                  style="color: var(--text-primary)"
+                >
+                  Discovery &amp; Mapping
+                </h3>
               </div>
-              <p class="process-step-desc text-sm leading-7" style="color:var(--text-secondary);">We audit your tools, flows, pain points, approval paths, and manual tasks to identify the highest-leverage automation opportunities first.</p>
+              <p
+                class="process-step-desc text-sm leading-7"
+                style="color: var(--text-secondary)"
+              >
+                We audit your tools, flows, pain points, approval paths, and
+                manual tasks to identify the highest-leverage automation
+                opportunities first.
+              </p>
             </article>
             <article class="process-stack-card" data-process-card="1">
               <div class="process-step-number">02</div>
               <div class="process-step-heading">
-                <div class="mono-font text-xs uppercase tracking-[0.18em] mb-1" style="color:var(--accent);">Step 02</div>
-                <h3 class="display-font text-xl font-bold italic lg:text-2xl" style="color:var(--text-primary);">Architecture Design</h3>
+                <div
+                  class="mono-font text-xs uppercase tracking-[0.18em] mb-1"
+                  style="color: var(--accent)"
+                >
+                  Step 02
+                </div>
+                <h3
+                  class="display-font text-xl font-bold italic lg:text-2xl"
+                  style="color: var(--text-primary)"
+                >
+                  Architecture Design
+                </h3>
               </div>
-              <p class="process-step-desc text-sm leading-7" style="color:var(--text-secondary);">We design the automation logic, exception handling, prompts, data flows, fallback paths, and human review checkpoints before building.</p>
+              <p
+                class="process-step-desc text-sm leading-7"
+                style="color: var(--text-secondary)"
+              >
+                We design the automation logic, exception handling, prompts,
+                data flows, fallback paths, and human review checkpoints before
+                building.
+              </p>
             </article>
             <article class="process-stack-card" data-process-card="2">
               <div class="process-step-number">03</div>
               <div class="process-step-heading">
-                <div class="mono-font text-xs uppercase tracking-[0.18em] mb-1" style="color:var(--accent);">Step 03</div>
-                <h3 class="display-font text-xl font-bold italic lg:text-2xl" style="color:var(--text-primary);">Build &amp; Integrate</h3>
+                <div
+                  class="mono-font text-xs uppercase tracking-[0.18em] mb-1"
+                  style="color: var(--accent)"
+                >
+                  Step 03
+                </div>
+                <h3
+                  class="display-font text-xl font-bold italic lg:text-2xl"
+                  style="color: var(--text-primary)"
+                >
+                  Build &amp; Integrate
+                </h3>
               </div>
-              <p class="process-step-desc text-sm leading-7" style="color:var(--text-secondary);">We implement the workflows, integrate APIs and platforms, connect your systems, and test each decision branch with production realism.</p>
+              <p
+                class="process-step-desc text-sm leading-7"
+                style="color: var(--text-secondary)"
+              >
+                We implement the workflows, integrate APIs and platforms,
+                connect your systems, and test each decision branch with
+                production realism.
+              </p>
             </article>
             <article class="process-stack-card" data-process-card="3">
               <div class="process-step-number">04</div>
               <div class="process-step-heading">
-                <div class="mono-font text-xs uppercase tracking-[0.18em] mb-1" style="color:var(--accent);">Step 04</div>
-                <h3 class="display-font text-xl font-bold italic lg:text-2xl" style="color:var(--text-primary);">Deploy &amp; Monitor</h3>
+                <div
+                  class="mono-font text-xs uppercase tracking-[0.18em] mb-1"
+                  style="color: var(--accent)"
+                >
+                  Step 04
+                </div>
+                <h3
+                  class="display-font text-xl font-bold italic lg:text-2xl"
+                  style="color: var(--text-primary)"
+                >
+                  Deploy &amp; Monitor
+                </h3>
               </div>
-              <p class="process-step-desc text-sm leading-7" style="color:var(--text-secondary);">Once live, we track runs, add safeguards, refine prompts, monitor failures, and keep the system reliable as usage scales.</p>
+              <p
+                class="process-step-desc text-sm leading-7"
+                style="color: var(--text-secondary)"
+              >
+                Once live, we track runs, add safeguards, refine prompts,
+                monitor failures, and keep the system reliable as usage scales.
+              </p>
             </article>
           </div>
         </div>
@@ -568,48 +2220,154 @@
         <div class="site-shell">
           <div class="text-center mb-14 reveal">
             <div class="section-kicker">Proof of results</div>
-            <h2 class="display-font mt-4 text-4xl font-extrabold italic leading-[0.95] tracking-[-0.04em] lg:text-6xl mx-auto" style="color:var(--text-primary);max-width:13ch;">Automation outcomes you can actually feel.</h2>
+            <h2
+              class="display-font mt-4 text-4xl font-extrabold italic leading-[0.95] tracking-[-0.04em] lg:text-6xl mx-auto"
+              style="color: var(--text-primary); max-width: 13ch"
+            >
+              Automation outcomes you can actually feel.
+            </h2>
           </div>
 
           <div class="grid gap-6 lg:grid-cols-3 mb-10">
-            <div class="hov-card glass-panel rounded-[30px] p-7 reveal" style="transition-delay:.04s;">
+            <div
+              class="hov-card glass-panel rounded-[30px] p-7 reveal"
+              style="transition-delay: 0.04s"
+            >
               <div class="mini-label mono-font mb-4">Fintech client</div>
-              <div class="display-font text-5xl font-extrabold italic" style="color:var(--accent);">12hrs → 18min</div>
-              <div class="text-base font-semibold mt-2" style="color:var(--text-primary);">Report generation pipeline</div>
-              <p class="mt-3 text-sm leading-7" style="color:var(--text-secondary);">Automated collection, summarisation, approval, and delivery of recurring operational reports across multiple data sources.</p>
+              <div
+                class="display-font text-5xl font-extrabold italic"
+                style="color: var(--accent)"
+              >
+                12hrs → 18min
+              </div>
+              <div
+                class="text-base font-semibold mt-2"
+                style="color: var(--text-primary)"
+              >
+                Report generation pipeline
+              </div>
+              <p
+                class="mt-3 text-sm leading-7"
+                style="color: var(--text-secondary)"
+              >
+                Automated collection, summarisation, approval, and delivery of
+                recurring operational reports across multiple data sources.
+              </p>
               <div class="mt-6 h-px soft-divider"></div>
-              <div class="mt-4 mono-font text-xs uppercase tracking-widest" style="color:var(--accent);">Data sync + AI summary + delivery</div>
+              <div
+                class="mt-4 mono-font text-xs uppercase tracking-widest"
+                style="color: var(--accent)"
+              >
+                Data sync + AI summary + delivery
+              </div>
             </div>
-            <div class="hov-card glass-panel rounded-[30px] p-7 reveal" style="transition-delay:.1s;">
+            <div
+              class="hov-card glass-panel rounded-[30px] p-7 reveal"
+              style="transition-delay: 0.1s"
+            >
               <div class="mini-label mono-font mb-4">E-commerce brand</div>
-              <div class="display-font text-5xl font-extrabold italic" style="color:var(--accent);">400% ROI</div>
-              <div class="text-base font-semibold mt-2" style="color:var(--text-primary);">CRM automation engine</div>
-              <p class="mt-3 text-sm leading-7" style="color:var(--text-secondary);">Lead nurturing, segmentation, abandoned-cart handling, and post-purchase messaging turned follow-up into a system instead of a task list.</p>
+              <div
+                class="display-font text-5xl font-extrabold italic"
+                style="color: var(--accent)"
+              >
+                400% ROI
+              </div>
+              <div
+                class="text-base font-semibold mt-2"
+                style="color: var(--text-primary)"
+              >
+                CRM automation engine
+              </div>
+              <p
+                class="mt-3 text-sm leading-7"
+                style="color: var(--text-secondary)"
+              >
+                Lead nurturing, segmentation, abandoned-cart handling, and
+                post-purchase messaging turned follow-up into a system instead
+                of a task list.
+              </p>
               <div class="mt-6 h-px soft-divider"></div>
-              <div class="mt-4 mono-font text-xs uppercase tracking-widest" style="color:var(--accent);">Scoring + sequences + attribution</div>
+              <div
+                class="mt-4 mono-font text-xs uppercase tracking-widest"
+                style="color: var(--accent)"
+              >
+                Scoring + sequences + attribution
+              </div>
             </div>
-            <div class="hov-card glass-panel rounded-[30px] p-7 reveal" style="transition-delay:.16s;">
+            <div
+              class="hov-card glass-panel rounded-[30px] p-7 reveal"
+              style="transition-delay: 0.16s"
+            >
               <div class="mini-label mono-font mb-4">Law firm</div>
-              <div class="display-font text-5xl font-extrabold italic" style="color:var(--accent);">Zero manual errors</div>
-              <div class="text-base font-semibold mt-2" style="color:var(--text-primary);">Document processing workflow</div>
-              <p class="mt-3 text-sm leading-7" style="color:var(--text-secondary);">Files were classified, data extracted, reviewed, and routed automatically with exception handling built into every branch.</p>
+              <div
+                class="display-font text-5xl font-extrabold italic"
+                style="color: var(--accent)"
+              >
+                Zero manual errors
+              </div>
+              <div
+                class="text-base font-semibold mt-2"
+                style="color: var(--text-primary)"
+              >
+                Document processing workflow
+              </div>
+              <p
+                class="mt-3 text-sm leading-7"
+                style="color: var(--text-secondary)"
+              >
+                Files were classified, data extracted, reviewed, and routed
+                automatically with exception handling built into every branch.
+              </p>
               <div class="mt-6 h-px soft-divider"></div>
-              <div class="mt-4 mono-font text-xs uppercase tracking-widest" style="color:var(--accent);">OCR + validation + routing</div>
+              <div
+                class="mt-4 mono-font text-xs uppercase tracking-widest"
+                style="color: var(--accent)"
+              >
+                OCR + validation + routing
+              </div>
             </div>
           </div>
 
-          <div class="workflow-shell glass-panel rounded-[34px] p-8 lg:p-12 reveal">
+          <div
+            class="workflow-shell glass-panel rounded-[34px] p-8 lg:p-12 reveal"
+          >
             <div class="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
               <div>
                 <div class="section-kicker">Workflow diagram</div>
-                <h3 class="display-font mt-4 text-3xl font-extrabold italic leading-tight" style="color:var(--text-primary);">A live system beats a manual checklist.</h3>
-                <p class="mt-4 text-sm leading-7" style="color:var(--text-secondary);">A simplified automation pipeline showing how triggers, AI processing, decision logic, and outputs connect inside a reliable machine.</p>
+                <h3
+                  class="display-font mt-4 text-3xl font-extrabold italic leading-tight"
+                  style="color: var(--text-primary)"
+                >
+                  A live system beats a manual checklist.
+                </h3>
+                <p
+                  class="mt-4 text-sm leading-7"
+                  style="color: var(--text-secondary)"
+                >
+                  A simplified automation pipeline showing how triggers, AI
+                  processing, decision logic, and outputs connect inside a
+                  reliable machine.
+                </p>
               </div>
               <div>
-                <svg viewBox="0 0 760 260" width="100%" height="auto" aria-hidden="true">
+                <svg
+                  viewBox="0 0 760 260"
+                  width="100%"
+                  height="auto"
+                  aria-hidden="true"
+                >
                   <defs>
-                    <filter id="nodeGlow" x="-30%" y="-30%" width="160%" height="160%">
-                      <feGaussianBlur stdDeviation="8" result="blur"></feGaussianBlur>
+                    <filter
+                      id="nodeGlow"
+                      x="-30%"
+                      y="-30%"
+                      width="160%"
+                      height="160%"
+                    >
+                      <feGaussianBlur
+                        stdDeviation="8"
+                        result="blur"
+                      ></feGaussianBlur>
                       <feMerge>
                         <feMergeNode in="blur"></feMergeNode>
                         <feMergeNode in="SourceGraphic"></feMergeNode>
@@ -617,44 +2375,239 @@
                     </filter>
                   </defs>
 
-                  <path class="flow-line" d="M150 72H264" stroke="rgba(57,255,20,0.58)" stroke-width="3" fill="none"></path>
-                  <path class="flow-line" d="M380 72H492" stroke="rgba(57,255,20,0.58)" stroke-width="3" fill="none"></path>
-                  <path class="flow-line" d="M608 72H660V184H608" stroke="rgba(57,255,20,0.58)" stroke-width="3" fill="none"></path>
-                  <path class="flow-line" d="M492 184H380" stroke="rgba(57,255,20,0.58)" stroke-width="3" fill="none"></path>
+                  <path
+                    class="flow-line"
+                    d="M150 72H264"
+                    stroke="rgba(57,255,20,0.58)"
+                    stroke-width="3"
+                    fill="none"
+                  ></path>
+                  <path
+                    class="flow-line"
+                    d="M380 72H492"
+                    stroke="rgba(57,255,20,0.58)"
+                    stroke-width="3"
+                    fill="none"
+                  ></path>
+                  <path
+                    class="flow-line"
+                    d="M608 72H660V184H608"
+                    stroke="rgba(57,255,20,0.58)"
+                    stroke-width="3"
+                    fill="none"
+                  ></path>
+                  <path
+                    class="flow-line"
+                    d="M492 184H380"
+                    stroke="rgba(57,255,20,0.58)"
+                    stroke-width="3"
+                    fill="none"
+                  ></path>
 
                   <circle r="6" fill="#39ff14" filter="url(#nodeGlow)">
-                    <animateMotion dur="4.6s" repeatCount="indefinite" path="M150 72H264"></animateMotion>
+                    <animateMotion
+                      dur="4.6s"
+                      repeatCount="indefinite"
+                      path="M150 72H264"
+                    ></animateMotion>
                   </circle>
                   <circle r="6" fill="#39ff14" filter="url(#nodeGlow)">
-                    <animateMotion dur="4.6s" begin="1s" repeatCount="indefinite" path="M380 72H492"></animateMotion>
+                    <animateMotion
+                      dur="4.6s"
+                      begin="1s"
+                      repeatCount="indefinite"
+                      path="M380 72H492"
+                    ></animateMotion>
                   </circle>
                   <circle r="6" fill="#39ff14" filter="url(#nodeGlow)">
-                    <animateMotion dur="5.2s" begin=".7s" repeatCount="indefinite" path="M608 72H660V184H608"></animateMotion>
+                    <animateMotion
+                      dur="5.2s"
+                      begin=".7s"
+                      repeatCount="indefinite"
+                      path="M608 72H660V184H608"
+                    ></animateMotion>
                   </circle>
                   <circle r="6" fill="#39ff14" filter="url(#nodeGlow)">
-                    <animateMotion dur="3.8s" begin="1.3s" repeatCount="indefinite" path="M492 184H380"></animateMotion>
+                    <animateMotion
+                      dur="3.8s"
+                      begin="1.3s"
+                      repeatCount="indefinite"
+                      path="M492 184H380"
+                    ></animateMotion>
                   </circle>
 
-                  <rect x="24" y="28" width="126" height="88" rx="24" fill="rgba(13,18,13,0.88)" stroke="rgba(57,255,20,0.32)"></rect>
-                  <rect x="264" y="28" width="116" height="88" rx="24" fill="rgba(13,18,13,0.88)" stroke="rgba(57,255,20,0.32)"></rect>
-                  <rect x="492" y="28" width="116" height="88" rx="24" fill="rgba(13,18,13,0.88)" stroke="rgba(57,255,20,0.32)"></rect>
-                  <rect x="492" y="140" width="116" height="88" rx="24" fill="rgba(13,18,13,0.88)" stroke="rgba(57,255,20,0.32)"></rect>
+                  <rect
+                    x="24"
+                    y="28"
+                    width="126"
+                    height="88"
+                    rx="24"
+                    fill="rgba(13,18,13,0.88)"
+                    stroke="rgba(57,255,20,0.32)"
+                  ></rect>
+                  <rect
+                    x="264"
+                    y="28"
+                    width="116"
+                    height="88"
+                    rx="24"
+                    fill="rgba(13,18,13,0.88)"
+                    stroke="rgba(57,255,20,0.32)"
+                  ></rect>
+                  <rect
+                    x="492"
+                    y="28"
+                    width="116"
+                    height="88"
+                    rx="24"
+                    fill="rgba(13,18,13,0.88)"
+                    stroke="rgba(57,255,20,0.32)"
+                  ></rect>
+                  <rect
+                    x="492"
+                    y="140"
+                    width="116"
+                    height="88"
+                    rx="24"
+                    fill="rgba(13,18,13,0.88)"
+                    stroke="rgba(57,255,20,0.32)"
+                  ></rect>
 
-                  <text x="87" y="58" text-anchor="middle" fill="#7a8a7a" font-size="11" font-family="JetBrains Mono, monospace" letter-spacing="2">NODE 01</text>
-                  <text x="87" y="86" text-anchor="middle" fill="#f0f5f0" font-size="22" font-family="Poppins, sans-serif" font-style="italic" font-weight="700">Trigger</text>
-                  <text x="87" y="103" text-anchor="middle" fill="#7a8a7a" font-size="11" font-family="Inter, sans-serif">Webhook or scheduled event</text>
+                  <text
+                    x="87"
+                    y="58"
+                    text-anchor="middle"
+                    fill="#7a8a7a"
+                    font-size="11"
+                    font-family="JetBrains Mono, monospace"
+                    letter-spacing="2"
+                  >
+                    NODE 01
+                  </text>
+                  <text
+                    x="87"
+                    y="86"
+                    text-anchor="middle"
+                    fill="#f0f5f0"
+                    font-size="22"
+                    font-family="Poppins, sans-serif"
+                    font-style="italic"
+                    font-weight="700"
+                  >
+                    Trigger
+                  </text>
+                  <text
+                    x="87"
+                    y="103"
+                    text-anchor="middle"
+                    fill="#7a8a7a"
+                    font-size="11"
+                    font-family="Inter, sans-serif"
+                  >
+                    Webhook or scheduled event
+                  </text>
 
-                  <text x="322" y="58" text-anchor="middle" fill="#7a8a7a" font-size="11" font-family="JetBrains Mono, monospace" letter-spacing="2">NODE 02</text>
-                  <text x="322" y="86" text-anchor="middle" fill="#f0f5f0" font-size="22" font-family="Poppins, sans-serif" font-style="italic" font-weight="700">AI Process</text>
-                  <text x="322" y="103" text-anchor="middle" fill="#7a8a7a" font-size="11" font-family="Inter, sans-serif">Classify, extract, generate</text>
+                  <text
+                    x="322"
+                    y="58"
+                    text-anchor="middle"
+                    fill="#7a8a7a"
+                    font-size="11"
+                    font-family="JetBrains Mono, monospace"
+                    letter-spacing="2"
+                  >
+                    NODE 02
+                  </text>
+                  <text
+                    x="322"
+                    y="86"
+                    text-anchor="middle"
+                    fill="#f0f5f0"
+                    font-size="22"
+                    font-family="Poppins, sans-serif"
+                    font-style="italic"
+                    font-weight="700"
+                  >
+                    AI Process
+                  </text>
+                  <text
+                    x="322"
+                    y="103"
+                    text-anchor="middle"
+                    fill="#7a8a7a"
+                    font-size="11"
+                    font-family="Inter, sans-serif"
+                  >
+                    Classify, extract, generate
+                  </text>
 
-                  <text x="550" y="58" text-anchor="middle" fill="#7a8a7a" font-size="11" font-family="JetBrains Mono, monospace" letter-spacing="2">NODE 03</text>
-                  <text x="550" y="86" text-anchor="middle" fill="#f0f5f0" font-size="22" font-family="Poppins, sans-serif" font-style="italic" font-weight="700">Decision</text>
-                  <text x="550" y="103" text-anchor="middle" fill="#7a8a7a" font-size="11" font-family="Inter, sans-serif">Rules and confidence checks</text>
+                  <text
+                    x="550"
+                    y="58"
+                    text-anchor="middle"
+                    fill="#7a8a7a"
+                    font-size="11"
+                    font-family="JetBrains Mono, monospace"
+                    letter-spacing="2"
+                  >
+                    NODE 03
+                  </text>
+                  <text
+                    x="550"
+                    y="86"
+                    text-anchor="middle"
+                    fill="#f0f5f0"
+                    font-size="22"
+                    font-family="Poppins, sans-serif"
+                    font-style="italic"
+                    font-weight="700"
+                  >
+                    Decision
+                  </text>
+                  <text
+                    x="550"
+                    y="103"
+                    text-anchor="middle"
+                    fill="#7a8a7a"
+                    font-size="11"
+                    font-family="Inter, sans-serif"
+                  >
+                    Rules and confidence checks
+                  </text>
 
-                  <text x="550" y="170" text-anchor="middle" fill="#7a8a7a" font-size="11" font-family="JetBrains Mono, monospace" letter-spacing="2">NODE 04</text>
-                  <text x="550" y="198" text-anchor="middle" fill="#f0f5f0" font-size="22" font-family="Poppins, sans-serif" font-style="italic" font-weight="700">Output</text>
-                  <text x="550" y="215" text-anchor="middle" fill="#7a8a7a" font-size="11" font-family="Inter, sans-serif">Update, notify, or deliver</text>
+                  <text
+                    x="550"
+                    y="170"
+                    text-anchor="middle"
+                    fill="#7a8a7a"
+                    font-size="11"
+                    font-family="JetBrains Mono, monospace"
+                    letter-spacing="2"
+                  >
+                    NODE 04
+                  </text>
+                  <text
+                    x="550"
+                    y="198"
+                    text-anchor="middle"
+                    fill="#f0f5f0"
+                    font-size="22"
+                    font-family="Poppins, sans-serif"
+                    font-style="italic"
+                    font-weight="700"
+                  >
+                    Output
+                  </text>
+                  <text
+                    x="550"
+                    y="215"
+                    text-anchor="middle"
+                    fill="#7a8a7a"
+                    font-size="11"
+                    font-family="Inter, sans-serif"
+                  >
+                    Update, notify, or deliver
+                  </text>
                 </svg>
               </div>
             </div>
@@ -667,62 +2620,200 @@
           <div class="grid gap-12 lg:grid-cols-[0.7fr_1.3fr] lg:items-start">
             <div class="reveal">
               <div class="section-kicker">Common questions</div>
-              <h2 class="display-font mt-4 text-4xl font-extrabold italic leading-[0.96] tracking-[-0.04em] lg:text-5xl" style="color:var(--text-primary);max-width:9ch;">Everything you've wanted to ask.</h2>
-              <p class="mt-6 text-base leading-8" style="color:var(--text-secondary);">Clear answers on timelines, tooling, autonomy, reliability, and how we make automation practical instead of risky.</p>
+              <h2
+                class="display-font mt-4 text-4xl font-extrabold italic leading-[0.96] tracking-[-0.04em] lg:text-5xl"
+                style="color: var(--text-primary); max-width: 9ch"
+              >
+                Everything you've wanted to ask.
+              </h2>
+              <p
+                class="mt-6 text-base leading-8"
+                style="color: var(--text-secondary)"
+              >
+                Clear answers on timelines, tooling, autonomy, reliability, and
+                how we make automation practical instead of risky.
+              </p>
             </div>
-            <div class="space-y-0 reveal" style="transition-delay:.08s;">
-              <div class="faq-item hov-card glass-panel rounded-[22px] overflow-hidden mb-4">
-                <div class="accordion-toggle flex items-center justify-between" onclick="toggleFAQ(this)">
-                  <span class="faq-question display-font text-lg font-bold italic" style="color:var(--text-primary);">How long does an automation take to build?</span>
-                  <span class="faq-icon mono-font text-xl" style="color:var(--accent);">+</span>
+            <div class="space-y-0 reveal" style="transition-delay: 0.08s">
+              <div
+                class="faq-item hov-card glass-panel rounded-[22px] overflow-hidden mb-4"
+              >
+                <div
+                  class="accordion-toggle flex items-center justify-between"
+                  onclick="toggleFAQ(this)"
+                >
+                  <span
+                    class="faq-question display-font text-lg font-bold italic"
+                    style="color: var(--text-primary)"
+                    >How long does an automation take to build?</span
+                  >
+                  <span
+                    class="faq-icon mono-font text-xl"
+                    style="color: var(--accent)"
+                    >+</span
+                  >
                 </div>
                 <div class="accordion-body">
-                  <p class="text-sm leading-7" style="color:var(--text-secondary);">Simple flows can go live in days. More advanced systems with multiple integrations, AI decisioning, and review paths typically take 2–6 weeks. We define scope, logic, and rollout phases upfront so you know what ships when.</p>
+                  <p
+                    class="text-sm leading-7"
+                    style="color: var(--text-secondary)"
+                  >
+                    Simple flows can go live in days. More advanced systems with
+                    multiple integrations, AI decisioning, and review paths
+                    typically take 2–6 weeks. We define scope, logic, and
+                    rollout phases upfront so you know what ships when.
+                  </p>
                 </div>
               </div>
-              <div class="faq-item hov-card glass-panel rounded-[22px] overflow-hidden mb-4">
-                <div class="accordion-toggle flex items-center justify-between" onclick="toggleFAQ(this)">
-                  <span class="faq-question display-font text-lg font-bold italic" style="color:var(--text-primary);">Do we need to change our existing tools?</span>
-                  <span class="faq-icon mono-font text-xl" style="color:var(--accent);">+</span>
+              <div
+                class="faq-item hov-card glass-panel rounded-[22px] overflow-hidden mb-4"
+              >
+                <div
+                  class="accordion-toggle flex items-center justify-between"
+                  onclick="toggleFAQ(this)"
+                >
+                  <span
+                    class="faq-question display-font text-lg font-bold italic"
+                    style="color: var(--text-primary)"
+                    >Do we need to change our existing tools?</span
+                  >
+                  <span
+                    class="faq-icon mono-font text-xl"
+                    style="color: var(--accent)"
+                    >+</span
+                  >
                 </div>
                 <div class="accordion-body">
-                  <p class="text-sm leading-7" style="color:var(--text-secondary);">Usually no. We design around the tools you already use first, then recommend replacements only when an existing tool is creating major friction, weak data quality, or avoidable cost.</p>
+                  <p
+                    class="text-sm leading-7"
+                    style="color: var(--text-secondary)"
+                  >
+                    Usually no. We design around the tools you already use
+                    first, then recommend replacements only when an existing
+                    tool is creating major friction, weak data quality, or
+                    avoidable cost.
+                  </p>
                 </div>
               </div>
-              <div class="faq-item hov-card glass-panel rounded-[22px] overflow-hidden mb-4">
-                <div class="accordion-toggle flex items-center justify-between" onclick="toggleFAQ(this)">
-                  <span class="faq-question display-font text-lg font-bold italic" style="color:var(--text-primary);">Can AI agents make decisions autonomously?</span>
-                  <span class="faq-icon mono-font text-xl" style="color:var(--accent);">+</span>
+              <div
+                class="faq-item hov-card glass-panel rounded-[22px] overflow-hidden mb-4"
+              >
+                <div
+                  class="accordion-toggle flex items-center justify-between"
+                  onclick="toggleFAQ(this)"
+                >
+                  <span
+                    class="faq-question display-font text-lg font-bold italic"
+                    style="color: var(--text-primary)"
+                    >Can AI agents make decisions autonomously?</span
+                  >
+                  <span
+                    class="faq-icon mono-font text-xl"
+                    style="color: var(--accent)"
+                    >+</span
+                  >
                 </div>
                 <div class="accordion-body">
-                  <p class="text-sm leading-7" style="color:var(--text-secondary);">Yes, within defined boundaries. We set confidence thresholds, rule-based guardrails, escalation paths, and human approval checkpoints so autonomy is useful without becoming reckless.</p>
+                  <p
+                    class="text-sm leading-7"
+                    style="color: var(--text-secondary)"
+                  >
+                    Yes, within defined boundaries. We set confidence
+                    thresholds, rule-based guardrails, escalation paths, and
+                    human approval checkpoints so autonomy is useful without
+                    becoming reckless.
+                  </p>
                 </div>
               </div>
-              <div class="faq-item hov-card glass-panel rounded-[22px] overflow-hidden mb-4">
-                <div class="accordion-toggle flex items-center justify-between" onclick="toggleFAQ(this)">
-                  <span class="faq-question display-font text-lg font-bold italic" style="color:var(--text-primary);">How do you handle errors and edge cases?</span>
-                  <span class="faq-icon mono-font text-xl" style="color:var(--accent);">+</span>
+              <div
+                class="faq-item hov-card glass-panel rounded-[22px] overflow-hidden mb-4"
+              >
+                <div
+                  class="accordion-toggle flex items-center justify-between"
+                  onclick="toggleFAQ(this)"
+                >
+                  <span
+                    class="faq-question display-font text-lg font-bold italic"
+                    style="color: var(--text-primary)"
+                    >How do you handle errors and edge cases?</span
+                  >
+                  <span
+                    class="faq-icon mono-font text-xl"
+                    style="color: var(--accent)"
+                    >+</span
+                  >
                 </div>
                 <div class="accordion-body">
-                  <p class="text-sm leading-7" style="color:var(--text-secondary);">Every production flow gets logging, retries, alerts, fallback logic, and exception branches. If a workflow hits uncertain input or a failed dependency, it reroutes safely instead of silently breaking.</p>
+                  <p
+                    class="text-sm leading-7"
+                    style="color: var(--text-secondary)"
+                  >
+                    Every production flow gets logging, retries, alerts,
+                    fallback logic, and exception branches. If a workflow hits
+                    uncertain input or a failed dependency, it reroutes safely
+                    instead of silently breaking.
+                  </p>
                 </div>
               </div>
-              <div class="faq-item hov-card glass-panel rounded-[22px] overflow-hidden mb-4">
-                <div class="accordion-toggle flex items-center justify-between" onclick="toggleFAQ(this)">
-                  <span class="faq-question display-font text-lg font-bold italic" style="color:var(--text-primary);">What's the difference between RPA and AI automation?</span>
-                  <span class="faq-icon mono-font text-xl" style="color:var(--accent);">+</span>
+              <div
+                class="faq-item hov-card glass-panel rounded-[22px] overflow-hidden mb-4"
+              >
+                <div
+                  class="accordion-toggle flex items-center justify-between"
+                  onclick="toggleFAQ(this)"
+                >
+                  <span
+                    class="faq-question display-font text-lg font-bold italic"
+                    style="color: var(--text-primary)"
+                    >What's the difference between RPA and AI automation?</span
+                  >
+                  <span
+                    class="faq-icon mono-font text-xl"
+                    style="color: var(--accent)"
+                    >+</span
+                  >
                 </div>
                 <div class="accordion-body">
-                  <p class="text-sm leading-7" style="color:var(--text-secondary);">RPA is best for deterministic, rule-based actions like form entry and button-clicking. AI automation adds reasoning, language handling, extraction, summarisation, and probabilistic decisions where rigid rules alone are not enough.</p>
+                  <p
+                    class="text-sm leading-7"
+                    style="color: var(--text-secondary)"
+                  >
+                    RPA is best for deterministic, rule-based actions like form
+                    entry and button-clicking. AI automation adds reasoning,
+                    language handling, extraction, summarisation, and
+                    probabilistic decisions where rigid rules alone are not
+                    enough.
+                  </p>
                 </div>
               </div>
-              <div class="faq-item hov-card glass-panel rounded-[22px] overflow-hidden mb-4">
-                <div class="accordion-toggle flex items-center justify-between" onclick="toggleFAQ(this)">
-                  <span class="faq-question display-font text-lg font-bold italic" style="color:var(--text-primary);">Is our data secure during automation?</span>
-                  <span class="faq-icon mono-font text-xl" style="color:var(--accent);">+</span>
+              <div
+                class="faq-item hov-card glass-panel rounded-[22px] overflow-hidden mb-4"
+              >
+                <div
+                  class="accordion-toggle flex items-center justify-between"
+                  onclick="toggleFAQ(this)"
+                >
+                  <span
+                    class="faq-question display-font text-lg font-bold italic"
+                    style="color: var(--text-primary)"
+                    >Is our data secure during automation?</span
+                  >
+                  <span
+                    class="faq-icon mono-font text-xl"
+                    style="color: var(--accent)"
+                    >+</span
+                  >
                 </div>
                 <div class="accordion-body">
-                  <p class="text-sm leading-7" style="color:var(--text-secondary);">Security is part of the architecture, not an afterthought. We minimise data exposure, use scoped credentials, respect role boundaries, and design flows around the sensitivity level of the systems involved.</p>
+                  <p
+                    class="text-sm leading-7"
+                    style="color: var(--text-secondary)"
+                  >
+                    Security is part of the architecture, not an afterthought.
+                    We minimise data exposure, use scoped credentials, respect
+                    role boundaries, and design flows around the sensitivity
+                    level of the systems involved.
+                  </p>
                 </div>
               </div>
             </div>
@@ -732,172 +2823,149 @@
 
       <section class="relative py-24 lg:py-32">
         <div class="site-shell">
-          <div class="glass-panel relative overflow-hidden rounded-[38px] px-6 py-14 lg:px-14 lg:py-16 reveal">
+          <div
+            class="glass-panel relative overflow-hidden rounded-[38px] px-6 py-14 lg:px-14 lg:py-16 reveal"
+          >
             <div class="cta-bg rounded-[38px]"></div>
-            <div class="spotlight" style="width:28rem;height:28rem;top:-10rem;right:-6rem;background:radial-gradient(circle,rgba(57,255,20,0.14),transparent 64%);"></div>
-            <div class="relative z-10 grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
+            <div
+              class="spotlight"
+              style="
+                width: 28rem;
+                height: 28rem;
+                top: -10rem;
+                right: -6rem;
+                background: radial-gradient(
+                  circle,
+                  rgba(57, 255, 20, 0.14),
+                  transparent 64%
+                );
+              "
+            ></div>
+            <div
+              class="relative z-10 grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center"
+            >
               <div>
                 <div class="section-kicker">Book your audit</div>
-                <h2 class="display-font mt-4 text-4xl font-extrabold italic leading-[0.94] tracking-[-0.04em] lg:text-6xl" style="color:var(--text-primary);max-width:12ch;">Stop doing manually what machines can do better.</h2>
-                <p class="mt-6 text-base leading-8 lg:text-lg" style="color:var(--text-secondary);max-width:38rem;">Book a free automation audit and we'll show you where your workflows leak time, where AI can step in safely, and what a smarter operating system could look like.</p>
+                <h2
+                  class="display-font mt-4 text-4xl font-extrabold italic leading-[0.94] tracking-[-0.04em] lg:text-6xl"
+                  style="color: var(--text-primary); max-width: 12ch"
+                >
+                  Stop doing manually what machines can do better.
+                </h2>
+                <p
+                  class="mt-6 text-base leading-8 lg:text-lg"
+                  style="color: var(--text-secondary); max-width: 38rem"
+                >
+                  Book a free automation audit and we'll show you where your
+                  workflows leak time, where AI can step in safely, and what a
+                  smarter operating system could look like.
+                </p>
               </div>
               <div class="flex flex-col gap-4">
-                <a href="index.html#contact" class="display-font inline-flex items-center justify-center rounded-full px-8 py-4 text-base font-bold transition-all hover:-translate-y-1" style="background:var(--accent);color:#081008;box-shadow:0 0 42px rgba(57,255,20,0.18);">Book Free Audit</a>
-                <a href="seo.html" class="display-font inline-flex items-center justify-center rounded-full border px-8 py-4 text-base font-bold transition-all hover:-translate-y-1" style="border-color:var(--border-strong);color:var(--text-primary);">Explore SEO Services →</a>
+                <a
+                  href="index.html#contact"
+                  class="display-font inline-flex items-center justify-center rounded-full px-8 py-4 text-base font-bold transition-all hover:-translate-y-1"
+                  style="
+                    background: var(--accent);
+                    color: #081008;
+                    box-shadow: 0 0 42px rgba(57, 255, 20, 0.18);
+                  "
+                  >Book Free Audit</a
+                >
+                <a
+                  href="seo.html"
+                  class="display-font inline-flex items-center justify-center rounded-full border px-8 py-4 text-base font-bold transition-all hover:-translate-y-1"
+                  style="
+                    border-color: var(--border-strong);
+                    color: var(--text-primary);
+                  "
+                  >Explore SEO Services →</a
+                >
               </div>
             </div>
           </div>
         </div>
       </section>
     </main>
+    <div id="footer-root"></div>
+    <div id="whatsapp-fab-root"></div>
 
-    <footer class="relative pb-10">
-      <div class="site-shell" style="border-top:1px solid var(--border);padding-top:2.5rem;">
-        <div class="grid gap-10 lg:grid-cols-[1.2fr_0.8fr_0.8fr_0.8fr]">
-          <div>
-            <img src="assets/WhatsApp Image 2026-05-09 at 09,19,43-Picsart-BackgroundRemover.png" alt="Auroveon" style="height:72px;width:auto;max-width:240px;object-fit:contain;" />
-            <p class="mt-4 text-sm leading-7 max-w-sm" style="color:var(--text-secondary);">Software agency for AI solutions, modern web platforms, SaaS systems, and cinematic digital experiences built for ambitious brands.</p>
-            <div class="mt-6 flex flex-wrap items-center gap-4">
-              <a class="footer-social-link" href="https://linkedin.com/company/auroveon" target="_blank" rel="noreferrer" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.05-1.86-3.05-1.86 0-2.15 1.45-2.15 2.95v5.67H9.32V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.61 0 4.28 2.37 4.28 5.46v6.28ZM5.31 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14ZM7.09 20.45H3.52V9h3.57v11.45ZM22.23 0H1.77A1.77 1.77 0 0 0 0 1.77v20.46C0 23.21.79 24 1.77 24h20.46A1.77 1.77 0 0 0 24 22.23V1.77A1.77 1.77 0 0 0 22.23 0Z"/></svg></a>
-              <a class="footer-social-link" href="https://instagram.com/auroveon" target="_blank" rel="noreferrer" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2Zm0 1.8A3.95 3.95 0 0 0 3.8 7.75v8.5a3.95 3.95 0 0 0 3.95 3.95h8.5a3.95 3.95 0 0 0 3.95-3.95v-8.5a3.95 3.95 0 0 0-3.95-3.95Zm8.95 1.35a1.15 1.15 0 1 1 0 2.3 1.15 1.15 0 0 1 0-2.3ZM12 6.86A5.14 5.14 0 1 1 6.86 12 5.14 5.14 0 0 1 12 6.86Zm0 1.8A3.34 3.34 0 1 0 15.34 12 3.34 3.34 0 0 0 12 8.66Z"/></svg></a>
-              <a class="footer-social-link" href="https://twitter.com/auroveon" target="_blank" rel="noreferrer" aria-label="X"><svg viewBox="0 0 24 24"><path d="M18.9 2H22l-6.77 7.73L23.2 22h-6.25l-4.9-6.4L6.45 22H3.34l7.24-8.27L1 2h6.4l4.43 5.85L18.9 2Zm-1.1 18h1.73L6.46 3.9H4.6Z"/></svg></a>
-            </div>
-          </div>
-          <div>
-            <div class="mono-font text-xs uppercase tracking-[0.18em] mb-5" style="color:var(--accent);">Navigation</div>
-            <div class="flex flex-col gap-3 text-sm">
-              <a class="footer-link" href="index.html#services">Services</a>
-              <a class="footer-link" href="index.html#story">Process</a>
-              <a class="footer-link" href="index.html#work">Work</a>
-              <a class="footer-link" href="web-dev.html">Web Development</a>
-              <a class="footer-link" href="seo.html">SEO</a>
-              <a class="footer-link" href="ai-automation.html" style="color:var(--accent);">AI Automation</a>
-              <a class="footer-link" href="index.html#contact">Contact</a>
-            </div>
-          </div>
-          <div>
-            <div class="mono-font text-xs uppercase tracking-[0.18em] mb-5" style="color:var(--accent);">Services</div>
-            <div class="flex flex-col gap-3 text-sm" style="color:var(--text-secondary);">
-              <span>AI Solutions</span><span>Web Development</span><span>SaaS Platforms</span><span>Automation</span><span>SEO</span>
-            </div>
-          </div>
-          <div>
-            <div class="mono-font text-xs uppercase tracking-[0.18em] mb-5" style="color:var(--accent);">Contact Us</div>
-            <div class="flex flex-col gap-4">
-              <div><div class="footer-contact-label">Email</div><div class="footer-contact-value"><a class="footer-contact-link" href="mailto:info@auroveon.com">info@auroveon.com</a></div></div>
-              <div><div class="footer-contact-label">Phone</div><div class="footer-contact-value"><a class="footer-contact-link" href="tel:+923353213863">+92 335 321 3863</a></div></div>
-              <div><div class="footer-contact-label">Address</div><div class="footer-contact-value">Street 4, Karachi, Pakistan</div></div>
-            </div>
-          </div>
-        </div>
-        <div class="mt-10 flex flex-col gap-4 pt-6 text-sm" style="color:var(--text-secondary);border-top:1px solid var(--border);">
-          <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
-            <div class="flex flex-wrap items-center gap-3">
-              <span>© 2026</span>
-              <img src="assets/WhatsApp Image 2026-05-09 at 09,19,43-Picsart-BackgroundRemover.png" alt="Auroveon" style="height:26px;width:auto;" />
-              <span>Crafted for premium digital products.</span>
-            </div>
-            <div class="flex flex-wrap items-center gap-4">
-              <a class="footer-legal-link" href="/privacy-policy">Privacy Policy</a>
-              <span>·</span>
-              <a class="footer-legal-link" href="/terms-of-service">Terms of Service</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </footer>
-
-    <a href="https://wa.me/923353213863" target="_blank" rel="noreferrer" aria-label="Chat on WhatsApp" class="whatsapp-fab">
-      <svg viewBox="0 0 24 24" fill="white" width="28" height="28"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
-    </a>
+    <script type="text/babel">
+      const navbarRoot = document.getElementById("navbar-root");
+      if (navbarRoot) ReactDOM.createRoot(navbarRoot).render(<Navbar />);
+      const footerRoot = document.getElementById("footer-root");
+      if (footerRoot) ReactDOM.createRoot(footerRoot).render(<Footer />);
+      const whatsappFabRoot = document.getElementById("whatsapp-fab-root");
+      if (whatsappFabRoot)
+        ReactDOM.createRoot(whatsappFabRoot).render(<WhatsAppFAB />);
+    </script>
 
     <script>
-      const navbar = document.getElementById('navbar');
-      window.addEventListener('scroll', () => { navbar.classList.toggle('nav-scrolled', window.scrollY > 10); });
-
-      const btn = document.getElementById('mobileMenuBtn');
-      const menu = document.getElementById('mobileMenu');
-      btn.addEventListener('click', () => { menu.classList.toggle('hidden'); btn.textContent = menu.classList.contains('hidden') ? '+' : '×'; });
-
-      const dot = document.getElementById('cursorDot');
-      const ring = document.getElementById('cursorRing');
-      let cursorX = window.innerWidth / 2;
-      let cursorY = window.innerHeight / 2;
-      if (window.innerWidth >= 1024) {
-        dot.style.opacity = '1';
-        ring.style.opacity = '1';
-        let dotX = cursorX;
-        let dotY = cursorY;
-        let ringX = cursorX;
-        let ringY = cursorY;
-        window.addEventListener('mousemove', e => { cursorX = e.clientX; cursorY = e.clientY; });
-        const tick = () => {
-          dotX += (cursorX - dotX) * 0.18;
-          dotY += (cursorY - dotY) * 0.18;
-          ringX += (cursorX - ringX) * 0.1;
-          ringY += (cursorY - ringY) * 0.1;
-          dot.style.left = dotX + 'px';
-          dot.style.top = dotY + 'px';
-          ring.style.left = ringX + 'px';
-          ring.style.top = ringY + 'px';
-          requestAnimationFrame(tick);
-        };
-        tick();
-        document.querySelectorAll('a,button').forEach(el => {
-          el.addEventListener('mouseenter', () => ring.classList.add('is-hovering'));
-          el.addEventListener('mouseleave', () => ring.classList.remove('is-hovering'));
-        });
-      }
-
-      const revealObserver = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            revealObserver.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.1 });
-      document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+      const revealObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+              revealObserver.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.1 },
+      );
+      document
+        .querySelectorAll(".reveal")
+        .forEach((el) => revealObserver.observe(el));
 
       function toggleFAQ(el) {
         const body = el.nextElementSibling;
-        const faqItem = el.closest('.faq-item');
-        const isOpen = body.classList.contains('open');
-        document.querySelectorAll('.accordion-body').forEach(b => b.classList.remove('open'));
-        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
-        document.querySelectorAll('.faq-question').forEach(q => q.style.color = '');
+        const faqItem = el.closest(".faq-item");
+        const isOpen = body.classList.contains("open");
+        document
+          .querySelectorAll(".accordion-body")
+          .forEach((b) => b.classList.remove("open"));
+        document
+          .querySelectorAll(".faq-item")
+          .forEach((i) => i.classList.remove("open"));
+        document
+          .querySelectorAll(".faq-question")
+          .forEach((q) => (q.style.color = ""));
         if (!isOpen) {
-          body.classList.add('open');
-          faqItem.classList.add('open');
-          el.querySelector('.faq-question').style.color = '#00ff88';
+          body.classList.add("open");
+          faqItem.classList.add("open");
+          el.querySelector(".faq-question").style.color = "#00ff88";
         }
       }
 
-      document.querySelectorAll('a[href^="#"]').forEach(a => {
-        a.addEventListener('click', e => {
-          const t = document.querySelector(a.getAttribute('href'));
+      document.querySelectorAll('a[href^="#"]').forEach((a) => {
+        a.addEventListener("click", (e) => {
+          const t = document.querySelector(a.getAttribute("href"));
           if (t) {
             e.preventDefault();
-            t.scrollIntoView({ behavior: 'smooth' });
+            t.scrollIntoView({ behavior: "smooth" });
           }
         });
       });
 
-      const sectionTriggerObserver = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('is-active');
-            sectionTriggerObserver.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.24 });
-      document.querySelectorAll('.persona-fan-section,.stack-section').forEach(el => sectionTriggerObserver.observe(el));
+      const sectionTriggerObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-active");
+              sectionTriggerObserver.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.24 },
+      );
+      document
+        .querySelectorAll(".persona-fan-section,.stack-section")
+        .forEach((el) => sectionTriggerObserver.observe(el));
 
       /* ── FIX 1: SVG Avatar Eye Tracking ── */
-      const leftIris = document.getElementById('leftIris');
-      const rightIris = document.getElementById('rightIris');
-      const avatarHeadGroup = document.getElementById('avatarHeadGroup');
-      const avatarSVG = document.getElementById('aiAvatarSVG');
+      const leftIris = document.getElementById("leftIris");
+      const rightIris = document.getElementById("rightIris");
+      const avatarHeadGroup = document.getElementById("avatarHeadGroup");
+      const avatarSVG = document.getElementById("aiAvatarSVG");
 
       if (leftIris && rightIris && avatarSVG) {
         const leftCenter = { x: 165, y: 200 };
@@ -908,7 +2976,7 @@
         let currentIrisX = 0;
         let currentIrisY = 0;
 
-        window.addEventListener('mousemove', e => {
+        window.addEventListener("mousemove", (e) => {
           const rect = avatarSVG.getBoundingClientRect();
           const svgCenterX = rect.left + rect.width / 2;
           const svgCenterY = rect.top + rect.height * 0.48;
@@ -916,54 +2984,104 @@
           const dy = e.clientY - svgCenterY;
           const dist = Math.max(Math.hypot(dx, dy), 1);
           targetIrisX = (dx / dist) * irisLimit;
-          targetIrisY = (dy / dist) * Math.min(irisLimit * 0.7, Math.abs(dy / dist) * irisLimit);
+          targetIrisY =
+            (dy / dist) *
+            Math.min(irisLimit * 0.7, Math.abs(dy / dist) * irisLimit);
         });
 
         const animateIris = () => {
           currentIrisX += (targetIrisX - currentIrisX) * 0.1;
           currentIrisY += (targetIrisY - currentIrisY) * 0.1;
-          leftIris.setAttribute('cx', leftCenter.x + currentIrisX);
-          leftIris.setAttribute('cy', leftCenter.y + currentIrisY);
-          rightIris.setAttribute('cx', rightCenter.x + currentIrisX);
-          rightIris.setAttribute('cy', rightCenter.y + currentIrisY);
+          leftIris.setAttribute("cx", leftCenter.x + currentIrisX);
+          leftIris.setAttribute("cy", leftCenter.y + currentIrisY);
+          rightIris.setAttribute("cx", rightCenter.x + currentIrisX);
+          rightIris.setAttribute("cy", rightCenter.y + currentIrisY);
           requestAnimationFrame(animateIris);
         };
         animateIris();
 
         /* Click reaction: blink + jiggle */
-        document.addEventListener('click', () => {
+        document.addEventListener("click", () => {
           if (!avatarHeadGroup) return;
-          const eyes = avatarSVG.querySelectorAll('.avatar-eye-shape');
-          eyes.forEach(eye => {
-            const origRY = eye.getAttribute('ry');
-            eye.setAttribute('ry', '4');
-            setTimeout(() => eye.setAttribute('ry', origRY), 120);
+          const eyes = avatarSVG.querySelectorAll(".avatar-eye-shape");
+          eyes.forEach((eye) => {
+            const origRY = eye.getAttribute("ry");
+            eye.setAttribute("ry", "4");
+            setTimeout(() => eye.setAttribute("ry", origRY), 120);
           });
-          avatarHeadGroup.style.animation = 'none';
+          avatarHeadGroup.style.animation = "none";
           avatarHeadGroup.offsetHeight; /* reflow */
-          avatarHeadGroup.style.animation = 'avatar-jiggle 0.35s ease-out, avatar-breathe 4s ease-in-out 0.35s infinite';
+          avatarHeadGroup.style.animation =
+            "avatar-jiggle 0.35s ease-out, avatar-breathe 4s ease-in-out 0.35s infinite";
         });
       }
 
       /* ── FIX 3: Process Cards Sequential Animation ── */
-      const processContainer = document.getElementById('processCardsContainer');
+      const processContainer = document.getElementById("processCardsContainer");
       if (processContainer) {
-        const processCards = processContainer.querySelectorAll('.process-stack-card');
+        const processCards = processContainer.querySelectorAll(
+          ".process-stack-card",
+        );
         let processAnimated = false;
-        const processObserver = new IntersectionObserver(entries => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting && !processAnimated) {
-              processAnimated = true;
-              processCards.forEach((card, i) => {
-                setTimeout(() => {
-                  card.classList.add('card-visible');
-                }, i * 180);
-              });
-              processObserver.unobserve(entry.target);
-            }
-          });
-        }, { threshold: 0.15 });
+        const processObserver = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting && !processAnimated) {
+                processAnimated = true;
+                processCards.forEach((card, i) => {
+                  setTimeout(() => {
+                    card.classList.add("card-visible");
+                  }, i * 180);
+                });
+                processObserver.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.15 },
+        );
         processObserver.observe(processContainer);
+      }
+
+      const cursorDot = document.getElementById("cursorDot");
+      const cursorRing = document.getElementById("cursorRing");
+      if (window.innerWidth >= 1024 && cursorDot && cursorRing) {
+        cursorDot.style.opacity = "1";
+        cursorRing.style.opacity = "1";
+
+        let dotX = 0;
+        let dotY = 0;
+        let ringX = 0;
+        let ringY = 0;
+        let mouseX = 0;
+        let mouseY = 0;
+
+        window.addEventListener("mousemove", (e) => {
+          mouseX = e.clientX;
+          mouseY = e.clientY;
+        });
+
+        const animateCursor = () => {
+          dotX += (mouseX - dotX) * 0.18;
+          dotY += (mouseY - dotY) * 0.18;
+          ringX += (mouseX - ringX) * 0.1;
+          ringY += (mouseY - ringY) * 0.1;
+          cursorDot.style.left = `${dotX}px`;
+          cursorDot.style.top = `${dotY}px`;
+          cursorRing.style.left = `${ringX}px`;
+          cursorRing.style.top = `${ringY}px`;
+          requestAnimationFrame(animateCursor);
+        };
+
+        animateCursor();
+
+        document.querySelectorAll("a, button").forEach((el) => {
+          el.addEventListener("mouseenter", () =>
+            cursorRing.classList.add("is-hovering"),
+          );
+          el.addEventListener("mouseleave", () =>
+            cursorRing.classList.remove("is-hovering"),
+          );
+        });
       }
     </script>
   </body>
