@@ -4,9 +4,15 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Portfolio | Auroveon — Digital Work</title>
-    <meta name="description" content="Auroveon's portfolio — 10 ambitious digital products built with AI, premium web, and cinematic UX." />
+    <meta
+      name="description"
+      content="Auroveon's portfolio — 10 ambitious digital products built with AI, premium web, and cinematic UX."
+    />
     <meta name="theme-color" content="#080A08" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
 
     <script src="https://cdn.tailwindcss.com"></script>
 
@@ -17,7 +23,6 @@
     <script type="text/babel" src="components/footer.js"></script>
     <script type="text/babel" src="components/whatsapp-fab.js"></script>
     <style>
-      
       :root {
         --bg-base: #080a08;
         --bg-2: #0c0f0c;
@@ -36,12 +41,22 @@
         --glass-2: rgba(17, 20, 17, 0.82);
       }
 
-      * { margin: 0; padding: 0; box-sizing: border-box; }
-      html { scroll-behavior: smooth; }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
 
       body {
         background:
-          radial-gradient(circle at top, rgba(57, 255, 20, 0.09), transparent 28%),
+          radial-gradient(
+            circle at top,
+            rgba(57, 255, 20, 0.09),
+            transparent 28%
+          ),
           linear-gradient(180deg, #080a08 0%, #090c09 48%, #070907 100%);
         color: var(--text-primary);
         font-family: "Inter", sans-serif;
@@ -49,209 +64,463 @@
         -webkit-font-smoothing: antialiased;
       }
 
-      @media (min-width: 1024px) { body { cursor: none; } }
+      @media (min-width: 1024px) {
+        body {
+          cursor: none;
+        }
+      }
 
-      .display-font { font-family: "Poppins", sans-serif; }
-      .mono-font { font-family: "JetBrains Mono", monospace; }
+      .display-font {
+        font-family: "Poppins", sans-serif;
+      }
+      .mono-font {
+        font-family: "JetBrains Mono", monospace;
+      }
 
       .site-shell {
         width: min(1380px, calc(100% - 1.5rem));
         margin: 0 auto;
       }
       @media (min-width: 1024px) {
-        .site-shell { width: min(1380px, calc(100% - 4rem)); }
+        .site-shell {
+          width: min(1380px, calc(100% - 4rem));
+        }
       }
 
       .noise-overlay {
-        position: fixed; inset: 0; pointer-events: none; z-index: 5;
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: 5;
         opacity: 0.034;
         background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
         background-size: 240px 240px;
       }
 
-      .cursor-dot, .cursor-ring {
-        position: fixed; top: 0; left: 0;
+      .cursor-dot,
+      .cursor-ring {
+        position: fixed;
+        top: 0;
+        left: 0;
         transform: translate(-50%, -50%);
-        pointer-events: none; z-index: 90; opacity: 0;
+        pointer-events: none;
+        z-index: 90;
+        opacity: 0;
       }
       .cursor-dot {
-        width: 10px; height: 10px; border-radius: 9999px;
+        width: 10px;
+        height: 10px;
+        border-radius: 9999px;
         background: var(--accent);
         box-shadow: 0 0 22px rgba(57, 255, 20, 0.65);
         mix-blend-mode: screen;
       }
       .cursor-ring {
-        width: 54px; height: 54px; border-radius: 9999px;
+        width: 54px;
+        height: 54px;
+        border-radius: 9999px;
         border: 1px solid rgba(57, 255, 20, 0.22);
-        background: radial-gradient(circle, rgba(57, 255, 20, 0.12), transparent 72%);
-        transition: width .25s ease, height .25s ease, border-color .25s ease;
+        background: radial-gradient(
+          circle,
+          rgba(57, 255, 20, 0.12),
+          transparent 72%
+        );
+        transition:
+          width 0.25s ease,
+          height 0.25s ease,
+          border-color 0.25s ease;
       }
-      .cursor-ring.is-hovering { width: 76px; height: 76px; border-color: rgba(57,255,20,0.48); }
-      @media (max-width: 1023px) { .cursor-dot, .cursor-ring { display: none; } }
+      .cursor-ring.is-hovering {
+        width: 76px;
+        height: 76px;
+        border-color: rgba(57, 255, 20, 0.48);
+      }
+      @media (max-width: 1023px) {
+        .cursor-dot,
+        .cursor-ring {
+          display: none;
+        }
+      }
 
       .glass-panel {
-        background: linear-gradient(180deg, rgba(18,23,18,0.8), rgba(10,12,10,0.58));
+        background: linear-gradient(
+          180deg,
+          rgba(18, 23, 18, 0.8),
+          rgba(10, 12, 10, 0.58)
+        );
         border: 1px solid var(--border);
         backdrop-filter: blur(22px);
         -webkit-backdrop-filter: blur(22px);
-        box-shadow: 0 18px 60px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.04);
+        box-shadow:
+          0 18px 60px rgba(0, 0, 0, 0.35),
+          inset 0 1px 0 rgba(255, 255, 255, 0.04);
       }
 
       .soft-divider {
-        background: linear-gradient(90deg, transparent, rgba(57,255,20,0.28), transparent);
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(57, 255, 20, 0.28),
+          transparent
+        );
       }
 
       .eyebrow {
         font-family: "JetBrains Mono", monospace;
-        color: var(--accent); font-size: 0.72rem;
-        letter-spacing: 0.18em; text-transform: uppercase;
+        color: var(--accent);
+        font-size: 0.72rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
       }
 
       .section-kicker {
-        font-family: "Poppins", sans-serif; font-size: 0.74rem;
-        font-weight: 700; letter-spacing: 0.18em;
-        text-transform: uppercase; color: var(--text-secondary);
+        font-family: "Poppins", sans-serif;
+        font-size: 0.74rem;
+        font-weight: 700;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--text-secondary);
       }
 
       /* NAV */
       .nav-scrolled {
-        background: rgba(8,10,8,0.86);
+        background: rgba(8, 10, 8, 0.86);
         border-bottom: 0px solid var(--border);
         backdrop-filter: blur(22px);
       }
-      .nav-link { color: var(--text-secondary); transition: color .24s ease; }
-      .nav-link:hover { color: var(--text-primary); }
-      .nav-link.active { color: var(--accent); }
-
-      .nav-dropdown-wrap { position: relative; }
-      .nav-dropdown-wrap:hover .nav-dropdown { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); pointer-events: auto; }
-      .nav-dropdown {
-        position: absolute; top: calc(100% + 14px); left: 50%; transform: translateX(-50%) translateY(-8px);
-        min-width: 200px; background: rgba(10,13,10,0.98);
-        border: 1px solid var(--border); border-radius: 20px; padding: 10px;
-        opacity: 0; visibility: hidden;
-        transition: opacity .22s ease, transform .22s ease, visibility .22s;
-        backdrop-filter: blur(22px); z-index: 100;
-        box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 30px rgba(57,255,20,0.06);
+      .nav-link {
+        color: var(--text-secondary);
+        transition: color 0.24s ease;
       }
-      .nav-dropdown a { display: block; padding: 9px 14px; border-radius: 12px; color: var(--text-secondary); font-size: .9rem; font-weight: 500; transition: color .2s ease, background .2s ease; text-decoration: none; }
-      .nav-dropdown a:hover { color: var(--accent); background: rgba(57,255,20,0.06); }
-      .nav-dropdown-btn { display: flex; align-items: center; gap: 5px; color: var(--text-secondary); transition: color .24s ease; font-size: 1rem; font-weight: 500; background: none; border: none; cursor: pointer; font-family: inherit; padding: 0; }
-      .nav-dropdown-wrap:hover .nav-dropdown-btn { color: var(--text-primary); }
-      .nav-dropdown-btn svg { transition: transform .22s ease; }
-      .nav-dropdown-wrap:hover .nav-dropdown-btn svg { transform: rotate(180deg); }
+      .nav-link:hover {
+        color: var(--text-primary);
+      }
+      .nav-link.active {
+        color: var(--accent);
+      }
+
+      .nav-dropdown-wrap {
+        position: relative;
+      }
+      .nav-dropdown-wrap:hover .nav-dropdown {
+        opacity: 1;
+        visibility: visible;
+        transform: translateX(-50%) translateY(0);
+        pointer-events: auto;
+      }
+      .nav-dropdown {
+        position: absolute;
+        top: calc(100% + 14px);
+        left: 50%;
+        transform: translateX(-50%) translateY(-8px);
+        min-width: 200px;
+        background: rgba(10, 13, 10, 0.98);
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        padding: 10px;
+        opacity: 0;
+        visibility: hidden;
+        transition:
+          opacity 0.22s ease,
+          transform 0.22s ease,
+          visibility 0.22s;
+        backdrop-filter: blur(22px);
+        z-index: 100;
+        box-shadow:
+          0 20px 60px rgba(0, 0, 0, 0.5),
+          0 0 30px rgba(57, 255, 20, 0.06);
+      }
+      .nav-dropdown a {
+        display: block;
+        padding: 9px 14px;
+        border-radius: 12px;
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+        font-weight: 500;
+        transition:
+          color 0.2s ease,
+          background 0.2s ease;
+        text-decoration: none;
+      }
+      .nav-dropdown a:hover {
+        color: var(--accent);
+        background: rgba(57, 255, 20, 0.06);
+      }
+      .nav-dropdown-btn {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        color: var(--text-secondary);
+        transition: color 0.24s ease;
+        font-size: 1rem;
+        font-weight: 500;
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-family: inherit;
+        padding: 0;
+      }
+      .nav-dropdown-wrap:hover .nav-dropdown-btn {
+        color: var(--text-primary);
+      }
+      .nav-dropdown-btn svg {
+        transition: transform 0.22s ease;
+      }
+      .nav-dropdown-wrap:hover .nav-dropdown-btn svg {
+        transform: rotate(180deg);
+      }
 
       /* HERO */
       .hero-image {
-        position: absolute; inset: 0;
+        position: absolute;
+        inset: 0;
         background:
-          linear-gradient(100deg, rgba(8,10,8,0.94) 16%, rgba(8,10,8,0.72) 52%, rgba(8,10,8,0.9) 100%),
-          radial-gradient(circle at 78% 30%, rgba(57,255,20,0.14), transparent 24%),
-          url("https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1800&q=80") center/cover no-repeat;
+          linear-gradient(
+            100deg,
+            rgba(8, 10, 8, 0.94) 16%,
+            rgba(8, 10, 8, 0.72) 52%,
+            rgba(8, 10, 8, 0.9) 100%
+          ),
+          radial-gradient(
+            circle at 78% 30%,
+            rgba(57, 255, 20, 0.14),
+            transparent 24%
+          ),
+          url("https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1800&q=80")
+            center/cover no-repeat;
         transform: scale(1.04);
         filter: saturate(0.5) contrast(1.08) brightness(0.38);
       }
       .hero-grid {
-        position: absolute; inset: 0;
+        position: absolute;
+        inset: 0;
         background-image:
-          linear-gradient(rgba(57,255,20,0.035) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(57,255,20,0.035) 1px, transparent 1px);
+          linear-gradient(rgba(57, 255, 20, 0.035) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(57, 255, 20, 0.035) 1px, transparent 1px);
         background-size: 74px 74px;
-        mask-image: radial-gradient(circle at 50% 50%, black 0%, black 42%, transparent 88%);
-        -webkit-mask-image: radial-gradient(circle at 50% 50%, black 0%, black 42%, transparent 88%);
+        mask-image: radial-gradient(
+          circle at 50% 50%,
+          black 0%,
+          black 42%,
+          transparent 88%
+        );
+        -webkit-mask-image: radial-gradient(
+          circle at 50% 50%,
+          black 0%,
+          black 42%,
+          transparent 88%
+        );
       }
       .hero-spotlight {
-        position: absolute; border-radius: 9999px;
-        filter: blur(130px); pointer-events: none;
+        position: absolute;
+        border-radius: 9999px;
+        filter: blur(130px);
+        pointer-events: none;
       }
 
       /* HEADLINE */
       .headline-italics {
         font-family: "Poppins", sans-serif;
-        font-style: italic; font-weight: 800;
-        letter-spacing: -0.045em; line-height: 1;
+        font-style: italic;
+        font-weight: 800;
+        letter-spacing: -0.045em;
+        line-height: 1;
       }
 
       @keyframes text-shine {
-        0% { background-position: -200% center; }
-        100% { background-position: 200% center; }
+        0% {
+          background-position: -200% center;
+        }
+        100% {
+          background-position: 200% center;
+        }
       }
 
       .shine-text .shine-inner {
-        background: linear-gradient(90deg, #ffffff 0%, #ffffff 35%, #b9ffb0 44%, #eaffea 50%, #b9ffb0 56%, #ffffff 65%, #ffffff 100%);
+        background: linear-gradient(
+          90deg,
+          #ffffff 0%,
+          #ffffff 35%,
+          #b9ffb0 44%,
+          #eaffea 50%,
+          #b9ffb0 56%,
+          #ffffff 65%,
+          #ffffff 100%
+        );
         background-size: 200% auto;
         background-position: -200% center;
-        -webkit-background-clip: text; background-clip: text;
-        -webkit-text-fill-color: transparent; color: transparent;
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        color: transparent;
         animation: text-shine 4s linear infinite;
       }
       .shine-accent .shine-inner {
-        background: linear-gradient(90deg, #39ff14 0%, #39ff14 35%, #ccffcc 44%, #efffef 50%, #ccffcc 56%, #39ff14 65%, #39ff14 100%);
+        background: linear-gradient(
+          90deg,
+          #39ff14 0%,
+          #39ff14 35%,
+          #ccffcc 44%,
+          #efffef 50%,
+          #ccffcc 56%,
+          #39ff14 65%,
+          #39ff14 100%
+        );
         background-size: 200% auto;
         background-position: -200% center;
-        -webkit-background-clip: text; background-clip: text;
-        -webkit-text-fill-color: transparent; color: transparent;
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        color: transparent;
         animation: text-shine 4s linear infinite;
       }
 
       /* SECTION */
-      .section-frame { position: relative; }
+      .section-frame {
+        position: relative;
+      }
       .section-frame::after {
-        content: ""; position: absolute; left: 0; right: 0; bottom: -1px;
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: -1px;
         height: 1px;
-        background: linear-gradient(90deg, transparent, rgba(57,255,20,0.08), transparent);
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(57, 255, 20, 0.08),
+          transparent
+        );
       }
 
       /* MARQUEE */
-      .marquee { overflow: hidden; }
+      .marquee {
+        overflow: hidden;
+      }
       .marquee-track {
-        display: flex; width: max-content;
+        display: flex;
+        width: max-content;
         animation: marquee-left 28s linear infinite;
       }
       @keyframes marquee-left {
-        0% { transform: translateX(0%); }
-        100% { transform: translateX(-50%); }
+        0% {
+          transform: translateX(0%);
+        }
+        100% {
+          transform: translateX(-50%);
+        }
       }
 
       /* FOOTER */
-      .footer-link, .nav-link { transition: color .24s ease; }
-      .footer-link { color: var(--text-secondary); }
-      .footer-link:hover { color: var(--text-primary); }
-      .footer-legal-link { color: var(--text-secondary); transition: color .24s ease; }
-      .footer-legal-link:hover { color: var(--accent); }
-      .footer-contact-label { font-size: .7rem; text-transform: uppercase; letter-spacing: .12em; color: var(--text-secondary); }
-      .footer-contact-value { margin-top: 4px; color: #fff; font-size: .95rem; }
-      .footer-contact-link { color: #fff; text-decoration: none; transition: color .2s ease; }
-      .footer-contact-link:hover { color: var(--accent); text-decoration: underline; }
+      .footer-link,
+      .nav-link {
+        transition: color 0.24s ease;
+      }
+      .footer-link {
+        color: var(--text-secondary);
+      }
+      .footer-link:hover {
+        color: var(--text-primary);
+      }
+      .footer-legal-link {
+        color: var(--text-secondary);
+        transition: color 0.24s ease;
+      }
+      .footer-legal-link:hover {
+        color: var(--accent);
+      }
+      .footer-contact-label {
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: var(--text-secondary);
+      }
+      .footer-contact-value {
+        margin-top: 4px;
+        color: #fff;
+        font-size: 0.95rem;
+      }
+      .footer-contact-link {
+        color: #fff;
+        text-decoration: none;
+        transition: color 0.2s ease;
+      }
+      .footer-contact-link:hover {
+        color: var(--accent);
+        text-decoration: underline;
+      }
 
       .footer-social-link {
-        display: inline-flex; align-items: center; justify-content: center;
-        width: 42px; height: 42px;
-        border: 1px solid #1a3a1a; border-radius: 9999px; background: #111;
-        transition: border-color .2s ease, transform .2s ease;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 42px;
+        height: 42px;
+        border: 1px solid #1a3a1a;
+        border-radius: 9999px;
+        background: #111;
+        transition:
+          border-color 0.2s ease,
+          transform 0.2s ease;
       }
-      .footer-social-link svg { width: 18px; height: 18px; fill: #aaa; transition: fill .2s ease; }
-      .footer-social-link:hover { border-color: #00ff88; transform: translateY(-1px); }
-      .footer-social-link:hover svg { fill: #00ff88; }
+      .footer-social-link svg {
+        width: 18px;
+        height: 18px;
+        fill: #aaa;
+        transition: fill 0.2s ease;
+      }
+      .footer-social-link:hover {
+        border-color: #00ff88;
+        transform: translateY(-1px);
+      }
+      .footer-social-link:hover svg {
+        fill: #00ff88;
+      }
 
       /* WHATSAPP FAB */
       .whatsapp-fab {
-        position: fixed; bottom: 28px; right: 8px; z-index: 9999;
-        display: flex; align-items: center; justify-content: center;
-        width: 56px; height: 56px;
-        border: none; border-radius: 50%;
+        position: fixed;
+        bottom: 28px;
+        right: 8px;
+        z-index: 9999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 56px;
+        height: 56px;
+        border: none;
+        border-radius: 50%;
         background: #25d366;
-        box-shadow: 0 4px 20px rgba(37,211,102,0.45);
-        transition: all .25s ease;
+        box-shadow: 0 4px 20px rgba(37, 211, 102, 0.45);
+        transition: all 0.25s ease;
       }
-      .whatsapp-fab:hover { transform: scale(1.1); }
+      .whatsapp-fab:hover {
+        transform: scale(1.1);
+      }
 
       /* BRAND LOGO */
-      .brand-logo { display: block; width: auto; height: 100%; object-fit: contain; }
-      .brand-logo-link { display: inline-flex; align-items: center; flex-shrink: 0; }
-      .brand-logo-nav { height: 68px; }
-      .brand-logo-footer { height: 72px; max-width: min(100%, 240px); }
-      .brand-logo-inline { height: 26px; }
+      .brand-logo {
+        display: block;
+        width: auto;
+        height: 100%;
+        object-fit: contain;
+      }
+      .brand-logo-link {
+        display: inline-flex;
+        align-items: center;
+        flex-shrink: 0;
+      }
+      .brand-logo-nav {
+        height: 68px;
+      }
+      .brand-logo-footer {
+        height: 72px;
+        max-width: min(100%, 240px);
+      }
+      .brand-logo-inline {
+        height: 26px;
+      }
 
       /* ========== PORTFOLIO SPECIFIC ========== */
 
@@ -260,7 +529,7 @@
         position: absolute;
         backdrop-filter: blur(20px);
         border: 1px solid var(--border);
-        background: rgba(10,13,10,0.82);
+        background: rgba(10, 13, 10, 0.82);
         border-radius: 20px;
         padding: 14px 20px;
         pointer-events: none;
@@ -274,42 +543,59 @@
         border-radius: 36px;
         overflow: hidden;
         border: 1px solid var(--border);
-        background: rgba(8,10,8,0.92);
-        transition: border-color .35s ease, box-shadow .35s ease;
+        background: rgba(8, 10, 8, 0.92);
+        transition:
+          border-color 0.35s ease,
+          box-shadow 0.35s ease;
       }
       .proj-spotlight:hover {
         border-color: var(--border-strong);
-        box-shadow: 0 32px 90px rgba(0,0,0,0.5), 0 0 60px rgba(57,255,20,0.12);
+        box-shadow:
+          0 32px 90px rgba(0, 0, 0, 0.5),
+          0 0 60px rgba(57, 255, 20, 0.12);
       }
       .proj-spotlight .proj-thumb {
-        width: 100%; height: 360px; object-fit: cover;
+        width: 100%;
+        height: 360px;
+        object-fit: cover;
         filter: saturate(0.55) brightness(0.55);
-        transition: filter .6s ease, transform .6s cubic-bezier(.22,1,.36,1);
+        transition:
+          filter 0.6s ease,
+          transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
       }
       .proj-spotlight:hover .proj-thumb {
         filter: saturate(0.75) brightness(0.65);
         transform: scale(1.04);
       }
       .proj-spotlight .proj-overlay {
-        position: absolute; inset: 0;
-        background: linear-gradient(180deg, transparent 30%, rgba(8,10,8,0.92) 100%);
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          180deg,
+          transparent 30%,
+          rgba(8, 10, 8, 0.92) 100%
+        );
       }
-     .proj-spotlight .proj-content {
-  position: absolute; bottom: 0; left: 0; right: 0; padding: 32px;
-}
+      .proj-spotlight .proj-content {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 32px;
+      }
 
-@media (max-width: 767px) {
-  .proj-spotlight .proj-content {
-    position: relative;
-    padding: 20px;
-  }
-  .proj-spotlight .proj-thumb {
-    height: 220px !important;
-  }
-  .proj-spotlight {
-    overflow: visible;
-  }
-}
+      @media (max-width: 767px) {
+        .proj-spotlight .proj-content {
+          position: relative;
+          padding: 20px;
+        }
+        .proj-spotlight .proj-thumb {
+          height: 220px !important;
+        }
+        .proj-spotlight {
+          overflow: visible;
+        }
+      }
 
       /* Layout B: Side-by-side info */
       .proj-sidebyside {
@@ -319,23 +605,35 @@
         border-radius: 36px;
         overflow: hidden;
         border: 1px solid var(--border);
-        transition: border-color .35s ease, box-shadow .35s ease;
+        transition:
+          border-color 0.35s ease,
+          box-shadow 0.35s ease;
       }
       @media (max-width: 767px) {
-        .proj-sidebyside { grid-template-columns: 1fr; }
+        .proj-sidebyside {
+          grid-template-columns: 1fr;
+        }
       }
       .proj-sidebyside:hover {
         border-color: var(--border-strong);
-        box-shadow: 0 32px 90px rgba(0,0,0,0.5), 0 0 60px rgba(57,255,20,0.1);
+        box-shadow:
+          0 32px 90px rgba(0, 0, 0, 0.5),
+          0 0 60px rgba(57, 255, 20, 0.1);
       }
       .proj-sidebyside .proj-visual {
-        position: relative; overflow: hidden; min-height: 320px;
-        background: rgba(8,10,8,0.8);
+        position: relative;
+        overflow: hidden;
+        min-height: 320px;
+        background: rgba(8, 10, 8, 0.8);
       }
       .proj-sidebyside .proj-visual img {
-        width: 100%; height: 100%; object-fit: cover;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
         filter: saturate(0.5) brightness(0.52);
-        transition: filter .6s ease, transform .6s cubic-bezier(.22,1,.36,1);
+        transition:
+          filter 0.6s ease,
+          transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
       }
       .proj-sidebyside:hover .proj-visual img {
         filter: saturate(0.72) brightness(0.68);
@@ -343,241 +641,551 @@
       }
       .proj-sidebyside .proj-info {
         padding: 36px 32px;
-        background: linear-gradient(135deg, rgba(12,15,12,0.95), rgba(8,10,8,0.98));
-        display: flex; flex-direction: column; justify-content: space-between;
+        background: linear-gradient(
+          135deg,
+          rgba(12, 15, 12, 0.95),
+          rgba(8, 10, 8, 0.98)
+        );
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
         border-left: 1px solid var(--border);
       }
 
       /* Layout C: Tall card with number */
       .proj-tall {
-        border-radius: 32px; overflow: hidden;
+        border-radius: 32px;
+        overflow: hidden;
         border: 1px solid var(--border);
-        background: rgba(8,10,8,0.88);
+        background: rgba(8, 10, 8, 0.88);
         position: relative;
-        transition: border-color .35s ease, box-shadow .35s ease;
-        display: flex; flex-direction: column;
+        transition:
+          border-color 0.35s ease,
+          box-shadow 0.35s ease;
+        display: flex;
+        flex-direction: column;
       }
       .proj-tall:hover {
         border-color: var(--border-strong);
-        box-shadow: 0 28px 80px rgba(0,0,0,0.45), 0 0 50px rgba(57,255,20,0.1);
+        box-shadow:
+          0 28px 80px rgba(0, 0, 0, 0.45),
+          0 0 50px rgba(57, 255, 20, 0.1);
       }
       .proj-tall .proj-tall-thumb {
-        height: 240px; overflow: hidden;
+        height: 240px;
+        overflow: hidden;
       }
       .proj-tall .proj-tall-thumb img {
-        width: 100%; height: 100%; object-fit: cover;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
         filter: saturate(0.5) brightness(0.52);
-        transition: filter .6s ease, transform .6s cubic-bezier(.22,1,.36,1);
+        transition:
+          filter 0.6s ease,
+          transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
       }
       .proj-tall:hover .proj-tall-thumb img {
-        filter: saturate(0.72) brightness(0.68); transform: scale(1.06);
+        filter: saturate(0.72) brightness(0.68);
+        transform: scale(1.06);
       }
-      .proj-tall .proj-tall-body { padding: 28px; flex: 1; display: flex; flex-direction: column; gap: 16px; }
+      .proj-tall .proj-tall-body {
+        padding: 28px;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
 
       /* Layout D: Horizontal strip */
       .proj-strip {
-        display: flex; align-items: stretch;
-        border-radius: 32px; overflow: hidden;
+        display: flex;
+        align-items: stretch;
+        border-radius: 32px;
+        overflow: hidden;
         border: 1px solid var(--border);
-        background: rgba(8,10,8,0.88);
-        transition: border-color .35s ease, box-shadow .35s ease;
+        background: rgba(8, 10, 8, 0.88);
+        transition:
+          border-color 0.35s ease,
+          box-shadow 0.35s ease;
       }
-      @media (max-width: 767px) { .proj-strip { flex-direction: column; } }
+      @media (max-width: 767px) {
+        .proj-strip {
+          flex-direction: column;
+        }
+      }
       .proj-strip:hover {
         border-color: var(--border-strong);
-        box-shadow: 0 28px 80px rgba(0,0,0,0.45), 0 0 50px rgba(57,255,20,0.1);
+        box-shadow:
+          0 28px 80px rgba(0, 0, 0, 0.45),
+          0 0 50px rgba(57, 255, 20, 0.1);
       }
       .proj-strip .proj-strip-bar {
-        width: 6px; background: linear-gradient(180deg, var(--accent), transparent);
+        width: 6px;
+        background: linear-gradient(180deg, var(--accent), transparent);
         flex-shrink: 0;
       }
       .proj-strip .proj-strip-thumb {
-        width: 280px; flex-shrink: 0; overflow: hidden;
+        width: 280px;
+        flex-shrink: 0;
+        overflow: hidden;
       }
-      @media (max-width: 767px) { .proj-strip .proj-strip-thumb { width: 100%; height: 200px; } }
+      @media (max-width: 767px) {
+        .proj-strip .proj-strip-thumb {
+          width: 100%;
+          height: 200px;
+        }
+      }
       .proj-strip .proj-strip-thumb img {
-        width: 100%; height: 100%; object-fit: cover;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
         filter: saturate(0.5) brightness(0.52);
-        transition: filter .6s ease, transform .6s ease;
+        transition:
+          filter 0.6s ease,
+          transform 0.6s ease;
       }
-      .proj-strip:hover .proj-strip-thumb img { filter: saturate(0.72) brightness(0.68); transform: scale(1.04); }
-      .proj-strip .proj-strip-body { padding: 32px 28px; flex: 1; display: flex; flex-direction: column; justify-content: space-between; }
+      .proj-strip:hover .proj-strip-thumb img {
+        filter: saturate(0.72) brightness(0.68);
+        transform: scale(1.04);
+      }
+      .proj-strip .proj-strip-body {
+        padding: 32px 28px;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
 
       /* Shared tag pill */
       .proj-tag {
-        display: inline-flex; align-items: center; gap: 6px;
-        border: 1px solid var(--border); border-radius: 9999px;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        border: 1px solid var(--border);
+        border-radius: 9999px;
         padding: 4px 12px;
         font-family: "JetBrains Mono", monospace;
-        font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase;
+        font-size: 0.68rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
         color: var(--text-secondary);
       }
-      .proj-tag.accent { border-color: rgba(57,255,20,0.28); color: var(--accent); }
+      .proj-tag.accent {
+        border-color: rgba(57, 255, 20, 0.28);
+        color: var(--accent);
+      }
 
       /* Tech stack pill */
       .tech-pill {
         display: inline-block;
         border: 1px solid var(--border);
-        border-radius: 8px; padding: 3px 10px;
+        border-radius: 8px;
+        padding: 3px 10px;
         font-family: "JetBrains Mono", monospace;
-        font-size: 0.64rem; letter-spacing: 0.1em;
-        color: var(--text-muted); background: rgba(255,255,255,0.02);
+        font-size: 0.64rem;
+        letter-spacing: 0.1em;
+        color: var(--text-muted);
+        background: rgba(255, 255, 255, 0.02);
       }
 
       /* Accent number */
       .proj-num {
         font-family: "Poppins", sans-serif;
-        font-weight: 800; font-style: italic;
-        font-size: 4rem; line-height: 1;
-        color: rgba(57,255,20,0.08);
+        font-weight: 800;
+        font-style: italic;
+        font-size: 4rem;
+        line-height: 1;
+        color: rgba(57, 255, 20, 0.08);
         user-select: none;
       }
 
       /* Result badge */
       .result-badge {
-        background: rgba(57,255,20,0.06);
-        border: 1px solid rgba(57,255,20,0.16);
-        border-radius: 12px; padding: 10px 14px;
+        background: rgba(57, 255, 20, 0.06);
+        border: 1px solid rgba(57, 255, 20, 0.16);
+        border-radius: 12px;
+        padding: 10px 14px;
       }
 
       /* REVEAL */
       @keyframes revealUp {
-        from { opacity: 0; transform: translateY(48px); }
-        to { opacity: 1; transform: translateY(0); }
+        from {
+          opacity: 0;
+          transform: translateY(48px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
       }
-      .reveal { opacity: 0; }
+      .reveal {
+        opacity: 0;
+      }
       .reveal.visible {
-        animation: revealUp 0.85s cubic-bezier(.22,1,.36,1) forwards;
+        animation: revealUp 0.85s cubic-bezier(0.22, 1, 0.36, 1) forwards;
       }
 
       /* STATS ROW */
       .stat-card {
-        border-radius: 28px; padding: 28px;
+        border-radius: 28px;
+        padding: 28px;
         border: 1px solid var(--border);
-        background: linear-gradient(135deg, rgba(12,15,12,0.9), rgba(8,10,8,0.8));
-        transition: border-color .3s ease;
+        background: linear-gradient(
+          135deg,
+          rgba(12, 15, 12, 0.9),
+          rgba(8, 10, 8, 0.8)
+        );
+        transition: border-color 0.3s ease;
       }
-      .stat-card:hover { border-color: var(--border-strong); }
+      .stat-card:hover {
+        border-color: var(--border-strong);
+      }
 
       /* FILTER BAR */
       .filter-btn {
         font-family: "JetBrains Mono", monospace;
-        font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase;
-        padding: 8px 18px; border-radius: 9999px;
-        border: 1px solid var(--border); color: var(--text-secondary);
-        background: rgba(255,255,255,0.01); cursor: pointer;
-        transition: all .25s ease;
+        font-size: 0.72rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        padding: 8px 18px;
+        border-radius: 9999px;
+        border: 1px solid var(--border);
+        color: var(--text-secondary);
+        background: rgba(255, 255, 255, 0.01);
+        cursor: pointer;
+        transition: all 0.25s ease;
       }
-      .filter-btn:hover { border-color: var(--border-strong); color: var(--text-primary); }
-      .filter-btn.active { border-color: var(--accent); color: var(--accent); background: rgba(57,255,20,0.06); }
+      .filter-btn:hover {
+        border-color: var(--border-strong);
+        color: var(--text-primary);
+      }
+      .filter-btn.active {
+        border-color: var(--accent);
+        color: var(--accent);
+        background: rgba(57, 255, 20, 0.06);
+      }
 
       /* PROCESS MINI */
       .process-mini-card {
-        border-radius: 24px; padding: 24px;
+        border-radius: 24px;
+        padding: 24px;
         border: 1px solid var(--border);
-        background: linear-gradient(135deg, rgba(14,18,14,0.9), rgba(8,10,8,0.8));
-        transition: border-color .3s ease, transform .3s ease;
+        background: linear-gradient(
+          135deg,
+          rgba(14, 18, 14, 0.9),
+          rgba(8, 10, 8, 0.8)
+        );
+        transition:
+          border-color 0.3s ease,
+          transform 0.3s ease;
       }
-      .process-mini-card:hover { border-color: var(--border-strong); transform: translateY(-6px); }
+      .process-mini-card:hover {
+        border-color: var(--border-strong);
+        transform: translateY(-6px);
+      }
 
       /* CTA SECTION */
       .cta-image-panel {
-        position: absolute; inset: 0;
+        position: absolute;
+        inset: 0;
         background:
-          linear-gradient(100deg, rgba(8,10,8,0.86) 12%, rgba(8,10,8,0.68) 54%, rgba(8,10,8,0.86) 100%),
-          radial-gradient(circle at 78% 38%, rgba(57,255,20,0.12), transparent 24%),
-          url("https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1800&q=80") center/cover no-repeat;
+          linear-gradient(
+            100deg,
+            rgba(8, 10, 8, 0.86) 12%,
+            rgba(8, 10, 8, 0.68) 54%,
+            rgba(8, 10, 8, 0.86) 100%
+          ),
+          radial-gradient(
+            circle at 78% 38%,
+            rgba(57, 255, 20, 0.12),
+            transparent 24%
+          ),
+          url("https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1800&q=80")
+            center/cover no-repeat;
         filter: saturate(0.58) brightness(0.62);
       }
 
       /* ORBITAL */
       .orbital-line {
-        position: absolute; border: 1px solid rgba(57,255,20,0.12); border-radius: 9999px;
+        position: absolute;
+        border: 1px solid rgba(57, 255, 20, 0.12);
+        border-radius: 9999px;
       }
 
       /* METRICS MARQUEE */
       .metrics-track {
-        display: flex; width: max-content;
+        display: flex;
+        width: max-content;
         animation: marquee-left 22s linear infinite;
       }
 
       /* mobile nav */
       .mob-menu {
-        position: absolute; top: 100%; left: 0; right: 0;
-        background: rgba(8,10,8,0.98);
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: rgba(8, 10, 8, 0.98);
         border-bottom: 1px solid var(--border);
         backdrop-filter: blur(22px);
         padding: 24px;
       }
-    
+
       /* Shared layout components */
-      .site-shell { width: min(1380px, calc(100% - 1.5rem)); margin: 0 auto; }
-      @media (min-width: 1024px) { .site-shell { width: min(1380px, calc(100% - 4rem)); } }
-      .display-font { font-family: "Poppins", sans-serif; }
-      .mono-font { font-family: "JetBrains Mono", monospace; }
-      .brand-logo { display: block; width: auto; height: 100%; object-fit: contain; }
-      .brand-logo-link { display: inline-flex; align-items: center; flex-shrink: 0; }
-      .brand-logo-nav { height: 68px; }
-      .brand-logo-footer { height: 72px; max-width: min(100%, 240px); }
-      .brand-logo-inline { height: 26px; }
-      .footer-social-row { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; }
-      .nav-scrolled { background: rgba(8,10,8,0.86); border-bottom: 1px solid var(--border); backdrop-filter: blur(22px); }
-      .nav-link { color: var(--text-secondary); transition: color 0.24s ease; }
-      .nav-link:hover { color: var(--text-primary); }
-      .nav-dropdown-wrap { position: relative; }
-      .nav-dropdown-wrap:hover .nav-dropdown { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); pointer-events: auto; }
-      .nav-dropdown { position: absolute; top: calc(100% + 14px); left: 50%; transform: translateX(-50%) translateY(-8px); min-width: 220px; background: rgba(10,13,10,0.98); border: 1px solid var(--border); border-radius: 20px; padding: 10px; opacity: 0; visibility: hidden; transition: opacity 0.22s ease, transform 0.22s ease, visibility 0.22s; backdrop-filter: blur(22px); box-shadow: 0 20px 60px rgba(0,0,0,0.5); z-index: 100; }
-      .nav-dropdown a { display: block; padding: 9px 14px; border-radius: 12px; color: var(--text-secondary); font-size: 0.9rem; font-weight: 500; transition: color 0.2s ease, background 0.2s ease; text-decoration: none; }
-      .nav-dropdown a:hover { color: var(--accent); background: rgba(57,255,20,0.06); }
-      .nav-dropdown-btn { display: flex; align-items: center; gap: 5px; color: var(--text-secondary); transition: color 0.24s ease; font-size: 1rem; font-weight: 500; background: none; border: none; cursor: pointer; font-family: inherit; padding: 0; }
-      .nav-dropdown-wrap:hover .nav-dropdown-btn { color: var(--text-primary); }
-      .nav-dropdown-btn svg { transition: transform 0.22s ease; }
-      .nav-dropdown-wrap:hover .nav-dropdown-btn svg { transform: rotate(180deg); }
-      .mob-dropdown { display: none; flex-direction: column; gap: 4px; padding: 8px 0; }
-      .mob-dropdown.open { display: flex; }
-      .mob-dropdown a { display: block; padding: 10px 18px; border-radius: 12px; color: var(--text-secondary); font-size: 1rem; font-weight: 500; transition: color 0.2s ease, background 0.2s ease; text-decoration: none; }
-      .mob-dropdown a:hover { color: var(--accent); background: rgba(57,255,20,0.06); }
-      .footer-link { color: var(--text-secondary); transition: color 0.24s ease; }
-      .footer-link:hover { color: var(--text-primary); }
-      .footer-contact-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--text-secondary); }
-      .footer-contact-value { margin-top: 4px; color: #fff; font-size: 0.95rem; }
-      .footer-contact-link { color: #fff; text-decoration: none; transition: color 0.2s ease; }
-      .footer-contact-link:hover { color: var(--accent); }
-      .footer-social-link { display: inline-flex; align-items: center; justify-content: center; width: 42px; height: 42px; border: 1px solid #1a3a1a; border-radius: 9999px; background: #111; transition: border-color 0.2s ease, transform 0.2s ease; }
-      .footer-social-link svg { width: 18px; height: 18px; fill: #aaa; transition: fill 0.2s ease; }
-      .footer-social-link:hover { border-color: #00ff88; transform: translateY(-1px); }
-      .footer-social-link:hover svg { fill: #00ff88; }
-      .footer-legal-link { color: var(--text-secondary); transition: color 0.24s ease; }
-      .footer-legal-link:hover { color: var(--accent); }
-      .whatsapp-fab { position: fixed; bottom: 28px; right: 8px; z-index: 9999; display: flex; align-items: center; justify-content: center; width: 56px; height: 56px; border: none; border-radius: 50%; background: #25d366; box-shadow: 0 4px 20px rgba(37,211,102,0.45); transition: all 0.25s ease; text-decoration: none; }
-      .whatsapp-fab:hover { transform: scale(1.1); }
+      .site-shell {
+        width: min(1380px, calc(100% - 1.5rem));
+        margin: 0 auto;
+      }
+      @media (min-width: 1024px) {
+        .site-shell {
+          width: min(1380px, calc(100% - 4rem));
+        }
+      }
+      .display-font {
+        font-family: "Poppins", sans-serif;
+      }
+      .mono-font {
+        font-family: "JetBrains Mono", monospace;
+      }
+      .brand-logo {
+        display: block;
+        width: auto;
+        height: 100%;
+        object-fit: contain;
+      }
+      .brand-logo-link {
+        display: inline-flex;
+        align-items: center;
+        flex-shrink: 0;
+      }
+      .brand-logo-nav {
+        height: 68px;
+      }
+      .brand-logo-footer {
+        height: 72px;
+        max-width: min(100%, 240px);
+      }
+      .brand-logo-inline {
+        height: 26px;
+      }
+      .footer-social-row {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 16px;
+      }
+      .nav-scrolled {
+        background: rgba(8, 10, 8, 0.86);
+        border-bottom: 1px solid var(--border);
+        backdrop-filter: blur(22px);
+      }
+      .nav-link {
+        color: var(--text-secondary);
+        transition: color 0.24s ease;
+      }
+      .nav-link:hover {
+        color: var(--text-primary);
+      }
+      .nav-dropdown-wrap {
+        position: relative;
+      }
+      .nav-dropdown-wrap:hover .nav-dropdown {
+        opacity: 1;
+        visibility: visible;
+        transform: translateX(-50%) translateY(0);
+        pointer-events: auto;
+      }
+      .nav-dropdown {
+        position: absolute;
+        top: calc(100% + 14px);
+        left: 50%;
+        transform: translateX(-50%) translateY(-8px);
+        min-width: 220px;
+        background: rgba(10, 13, 10, 0.98);
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        padding: 10px;
+        opacity: 0;
+        visibility: hidden;
+        transition:
+          opacity 0.22s ease,
+          transform 0.22s ease,
+          visibility 0.22s;
+        backdrop-filter: blur(22px);
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        z-index: 100;
+      }
+      .nav-dropdown a {
+        display: block;
+        padding: 9px 14px;
+        border-radius: 12px;
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+        font-weight: 500;
+        transition:
+          color 0.2s ease,
+          background 0.2s ease;
+        text-decoration: none;
+      }
+      .nav-dropdown a:hover {
+        color: var(--accent);
+        background: rgba(57, 255, 20, 0.06);
+      }
+      .nav-dropdown-btn {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        color: var(--text-secondary);
+        transition: color 0.24s ease;
+        font-size: 1rem;
+        font-weight: 500;
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-family: inherit;
+        padding: 0;
+      }
+      .nav-dropdown-wrap:hover .nav-dropdown-btn {
+        color: var(--text-primary);
+      }
+      .nav-dropdown-btn svg {
+        transition: transform 0.22s ease;
+      }
+      .nav-dropdown-wrap:hover .nav-dropdown-btn svg {
+        transform: rotate(180deg);
+      }
+      .mob-dropdown {
+        display: none;
+        flex-direction: column;
+        gap: 4px;
+        padding: 8px 0;
+      }
+      .mob-dropdown.open {
+        display: flex;
+      }
+      .mob-dropdown a {
+        display: block;
+        padding: 10px 18px;
+        border-radius: 12px;
+        color: var(--text-secondary);
+        font-size: 1rem;
+        font-weight: 500;
+        transition:
+          color 0.2s ease,
+          background 0.2s ease;
+        text-decoration: none;
+      }
+      .mob-dropdown a:hover {
+        color: var(--accent);
+        background: rgba(57, 255, 20, 0.06);
+      }
+      .footer-link {
+        color: var(--text-secondary);
+        transition: color 0.24s ease;
+      }
+      .footer-link:hover {
+        color: var(--text-primary);
+      }
+      .footer-contact-label {
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: var(--text-secondary);
+      }
+      .footer-contact-value {
+        margin-top: 4px;
+        color: #fff;
+        font-size: 0.95rem;
+      }
+      .footer-contact-link {
+        color: #fff;
+        text-decoration: none;
+        transition: color 0.2s ease;
+      }
+      .footer-contact-link:hover {
+        color: var(--accent);
+      }
+      .footer-social-link {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 42px;
+        height: 42px;
+        border: 1px solid #1a3a1a;
+        border-radius: 9999px;
+        background: #111;
+        transition:
+          border-color 0.2s ease,
+          transform 0.2s ease;
+      }
+      .footer-social-link svg {
+        width: 18px;
+        height: 18px;
+        fill: #aaa;
+        transition: fill 0.2s ease;
+      }
+      .footer-social-link:hover {
+        border-color: #00ff88;
+        transform: translateY(-1px);
+      }
+      .footer-social-link:hover svg {
+        fill: #00ff88;
+      }
+      .footer-legal-link {
+        color: var(--text-secondary);
+        transition: color 0.24s ease;
+      }
+      .footer-legal-link:hover {
+        color: var(--accent);
+      }
+      .whatsapp-fab {
+        position: fixed;
+        bottom: 28px;
+        right: 8px;
+        z-index: 9999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 56px;
+        height: 56px;
+        border: none;
+        border-radius: 50%;
+        background: #25d366;
+        box-shadow: 0 4px 20px rgba(37, 211, 102, 0.45);
+        transition: all 0.25s ease;
+        text-decoration: none;
+      }
+      .whatsapp-fab:hover {
+        transform: scale(1.1);
+      }
 
       @media (max-width: 767px) {
-  .proj-spotlight .proj-content h3 {
-    font-size: 1.4rem !important;
-  }
-  .proj-spotlight .proj-content p {
-    font-size: 0.82rem !important;
-  }
-  .proj-spotlight .proj-content .lg\:flex-row {
-    flex-direction: column !important;
-  }
-}
+        .proj-spotlight .proj-content h3 {
+          font-size: 1.4rem !important;
+        }
+        .proj-spotlight .proj-content p {
+          font-size: 0.82rem !important;
+        }
+        .proj-spotlight .proj-content .lg\:flex-row {
+          flex-direction: column !important;
+        }
+      }
 
-.site-shell {
-  width: min(1380px, calc(100% - 2rem));
-  margin: 0 auto;
-}
+      .site-shell {
+        width: min(1380px, calc(100% - 2rem));
+        margin: 0 auto;
+      }
 
-.proj-spotlight {
-  position: relative;
-  border-radius: 36px;
-  overflow: hidden;
-  border: 1px solid var(--border);
-  background: rgba(8,10,8,0.92);
-  transition: border-color .35s ease, box-shadow .35s ease;
-}
-
+      .proj-spotlight {
+        position: relative;
+        border-radius: 36px;
+        overflow: hidden;
+        border: 1px solid var(--border);
+        background: rgba(8, 10, 8, 0.92);
+        transition:
+          border-color 0.35s ease,
+          box-shadow 0.35s ease;
+      }
     </style>
   </head>
   <body>
@@ -591,97 +1199,224 @@
     <div id="navbar-root"></div>
 
     <!-- ===================== HERO ===================== -->
-    <section id="hero" class="section-frame relative min-h-screen overflow-hidden pt-20">
+    <section
+      id="hero"
+      class="section-frame relative min-h-screen overflow-hidden pt-20"
+    >
       <div class="hero-image"></div>
       <div class="hero-grid"></div>
 
-      <div class="hero-spotlight" style="width:40rem;height:40rem;top:-10rem;right:-8rem;background:radial-gradient(circle,rgba(57,255,20,0.16),transparent 66%);"></div>
-      <div class="hero-spotlight" style="width:28rem;height:28rem;bottom:4rem;left:-6rem;background:radial-gradient(circle,rgba(57,255,20,0.1),transparent 68%);"></div>
+      <div
+        class="hero-spotlight"
+        style="
+          width: 40rem;
+          height: 40rem;
+          top: -10rem;
+          right: -8rem;
+          background: radial-gradient(
+            circle,
+            rgba(57, 255, 20, 0.16),
+            transparent 66%
+          );
+        "
+      ></div>
+      <div
+        class="hero-spotlight"
+        style="
+          width: 28rem;
+          height: 28rem;
+          bottom: 4rem;
+          left: -6rem;
+          background: radial-gradient(
+            circle,
+            rgba(57, 255, 20, 0.1),
+            transparent 68%
+          );
+        "
+      ></div>
 
-      <div class="site-shell relative z-10 flex min-h-[calc(100svh-5rem)] items-center py-8">
+      <div
+        class="site-shell relative z-10 flex min-h-[calc(100svh-5rem)] items-center py-8"
+      >
         <div class="grid w-full gap-12 lg:grid-cols-2 lg:items-center">
-
           <!-- LEFT COPY -->
           <div>
-            <div class="glass-panel inline-flex items-center gap-3 rounded-full px-4 py-2 reveal">
-              <span class="h-2 w-2 rounded-full" style="background:var(--accent);box-shadow:0 0 14px rgba(57,255,20,0.7)"></span>
+            <div
+              class="glass-panel inline-flex items-center gap-3 rounded-full px-4 py-2 reveal"
+            >
+              <span
+                class="h-2 w-2 rounded-full"
+                style="
+                  background: var(--accent);
+                  box-shadow: 0 0 14px rgba(57, 255, 20, 0.7);
+                "
+              ></span>
               <span class="eyebrow">10 Ambitious Projects Shipped</span>
             </div>
 
-            <h1 class="headline-italics mt-6 text-[clamp(2.6rem,6.5vw,6rem)]" style="padding-right: 0.1em;">
-              <span class="shine-text block"><span class="shine-inner">Work That</span></span>
-              <span class="shine-text block"><span class="shine-inner">Proves</span></span>
-              <span class="shine-accent block"><span class="shine-inner">Everything.</span></span>
+            <h1
+              class="headline-italics mt-6 text-[clamp(2.6rem,6.5vw,6rem)]"
+              style="padding-right: 0.1em"
+            >
+              <span class="shine-text block"
+                ><span class="shine-inner">Work That</span></span
+              >
+              <span class="shine-text block"
+                ><span class="shine-inner">Proves</span></span
+              >
+              <span class="shine-accent block"
+                ><span class="shine-inner">Everything.</span></span
+              >
             </h1>
 
-            <p class="mt-6 max-w-xl text-lg leading-8 reveal" style="color:var(--text-secondary);">
-              A handpicked portfolio of digital products built end-to-end — from growth platforms and real estate systems to BPO infrastructure and conversion-obsessed web experiences
+            <p
+              class="mt-6 max-w-xl text-lg leading-8 reveal"
+              style="color: var(--text-secondary)"
+            >
+              A handpicked portfolio of digital products built end-to-end — from
+              growth platforms and real estate systems to BPO infrastructure and
+              conversion-obsessed web experiences
             </p>
 
             <div class="mt-8 flex flex-col gap-4 sm:flex-row reveal">
-              <a href="#projects" class="display-font inline-flex items-center justify-center rounded-full px-7 py-4 text-base font-bold transition-all hover:-translate-y-1"
-                 style="background:var(--accent);color:#081008;box-shadow:0 0 42px rgba(57,255,20,0.18),0 22px 60px rgba(57,255,20,0.12);">
+              <a
+                href="#projects"
+                class="display-font inline-flex items-center justify-center rounded-full px-7 py-4 text-base font-bold transition-all hover:-translate-y-1"
+                style="
+                  background: var(--accent);
+                  color: #081008;
+                  box-shadow:
+                    0 0 42px rgba(57, 255, 20, 0.18),
+                    0 22px 60px rgba(57, 255, 20, 0.12);
+                "
+              >
                 Explore Projects
               </a>
-              <a href="contact.html" class="display-font inline-flex items-center justify-center rounded-full border px-7 py-4 text-base font-bold transition-all hover:-translate-y-1"
-                 style="border-color:var(--border-strong);color:var(--text-primary);background:rgba(255,255,255,0.02);">
+              <a
+                href="contact.html"
+                class="display-font inline-flex items-center justify-center rounded-full border px-7 py-4 text-base font-bold transition-all hover:-translate-y-1"
+                style="
+                  border-color: var(--border-strong);
+                  color: var(--text-primary);
+                  background: rgba(255, 255, 255, 0.02);
+                "
+              >
                 Start Yours
               </a>
             </div>
           </div>
 
           <!-- RIGHT VISUAL MOCKUP -->
-         <div class="relative hidden lg:block">
-  <div class="orbital-line" style="width:88%;height:88%;top:6%;left:6%"></div>
-  <div class="orbital-line" style="width:66%;height:66%;top:17%;left:17%"></div>
+          <div class="relative hidden lg:block">
+            <div
+              class="orbital-line"
+              style="width: 88%; height: 88%; top: 6%; left: 6%"
+            ></div>
+            <div
+              class="orbital-line"
+              style="width: 66%; height: 66%; top: 17%; left: 17%"
+            ></div>
 
-  <!-- Central glass mockup -->
-  <div class="glass-panel rounded-[36px] overflow-hidden relative" style="min-height:520px;">
-<img src="https://www.yankodesign.com/images/design_news/2020/06/all-black-desk-setups-that-will-inspire-you-to-adapt-this-modern-minimal-trend/01-Black-Desk-Setup_-minimal_modern.jpg"
-    alt="Portfolio showcase" class="absolute inset-0 w-full h-full object-cover"
-    style="filter:saturate(0.2) brightness(0.5);" />
+            <!-- Central glass mockup -->
+            <div
+              class="glass-panel rounded-[36px] overflow-hidden relative"
+              style="min-height: 520px"
+            >
+              <img
+                src="https://www.yankodesign.com/images/design_news/2020/06/all-black-desk-setups-that-will-inspire-you-to-adapt-this-modern-minimal-trend/01-Black-Desk-Setup_-minimal_modern.jpg"
+                alt="Portfolio showcase"
+                class="absolute inset-0 w-full h-full object-cover"
+                style="filter: saturate(0.2) brightness(0.5)"
+              />
 
-    <div class="absolute inset-0" style="background:linear-gradient(180deg,rgba(8,10,8,0.3),rgba(8,10,8,0.85));"></div>
+              <div
+                class="absolute inset-0"
+                style="
+                  background: linear-gradient(
+                    180deg,
+                    rgba(8, 10, 8, 0.3),
+                    rgba(8, 10, 8, 0.85)
+                  );
+                "
+              ></div>
 
-    <!-- Floating badge top left -->
-    <div class="hero-badge" style="top:24px;left:24px;max-width:200px;">
-      <div class="eyebrow" style="font-size:.64rem;">Live Projects</div>
-      <div class="display-font text-xl font-extrabold italic mt-1" style="color:var(--text-primary)">10 Shipped</div>
-      <div class="mt-2 flex gap-2">
-        <span class="tech-pill">Real Estate</span>
-        <span class="tech-pill">BPO</span>
-        <span class="tech-pill">Web</span>
-      </div>
-    </div>
+              <!-- Floating badge top left -->
+              <div
+                class="hero-badge"
+                style="top: 24px; left: 24px; max-width: 200px"
+              >
+                <div class="eyebrow" style="font-size: 0.64rem">
+                  Live Projects
+                </div>
+                <div
+                  class="display-font text-xl font-extrabold italic mt-1"
+                  style="color: var(--text-primary)"
+                >
+                  10 Shipped
+                </div>
+                <div class="mt-2 flex gap-2">
+                  <span class="tech-pill">Real Estate</span>
+                  <span class="tech-pill">BPO</span>
+                  <span class="tech-pill">Web</span>
+                </div>
+              </div>
 
-    <!-- Floating badge top right -->
-    <div class="hero-badge" style="top:24px;right:24px;">
-      <div style="width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 12px rgba(57,255,20,0.6);margin-bottom:8px;"></div>
-      <div class="mono-font text-xs" style="color:var(--accent)">All Live</div>
-      <div class="text-xs mt-1" style="color:var(--text-secondary)">Production Ready</div>
-    </div>
+              <!-- Floating badge top right -->
+              <div class="hero-badge" style="top: 24px; right: 24px">
+                <div
+                  style="
+                    width: 8px;
+                    height: 8px;
+                    border-radius: 50%;
+                    background: var(--accent);
+                    box-shadow: 0 0 12px rgba(57, 255, 20, 0.6);
+                    margin-bottom: 8px;
+                  "
+                ></div>
+                <div class="mono-font text-xs" style="color: var(--accent)">
+                  All Live
+                </div>
+                <div class="text-xs mt-1" style="color: var(--text-secondary)">
+                  Production Ready
+                </div>
+              </div>
 
-    <!-- Main content -->
-    <div class="absolute bottom-0 left-0 right-0 p-8">
-      <div class="eyebrow mb-4">Featured Work</div>
-      <div class="display-font text-3xl font-extrabold italic leading-tight" style="color:var(--text-primary);">
-        Real businesses. Real platforms. Built to perform.
-      </div>
-      <div class="mt-6 flex flex-wrap gap-3">
-        <span class="proj-tag accent">Funnel Plane</span>
-        <span class="proj-tag accent">Ember Realtors</span>
-        <span class="proj-tag accent">Propstar Tech</span>
-      </div>
-    </div>
-  </div>
+              <!-- Main content -->
+              <div class="absolute bottom-0 left-0 right-0 p-8">
+                <div class="eyebrow mb-4">Featured Work</div>
+                <div
+                  class="display-font text-3xl font-extrabold italic leading-tight"
+                  style="color: var(--text-primary)"
+                >
+                  Real businesses. Real platforms. Built to perform.
+                </div>
+                <div class="mt-6 flex flex-wrap gap-3">
+                  <span class="proj-tag accent">Funnel Plane</span>
+                  <span class="proj-tag accent">Ember Realtors</span>
+                  <span class="proj-tag accent">Propstar Tech</span>
+                </div>
+              </div>
+            </div>
 
-  <!-- Side floating card -->
-  <div class="glass-panel absolute -right-8 top-1/3 rounded-[24px] p-5" style="width:180px;">
-    <div class="eyebrow" style="font-size:.62rem;">Avg. Launch Time</div>
-    <div class="display-font text-2xl font-extrabold italic mt-2" style="color:var(--text-primary)">6 Weeks</div>
-    <div class="text-xs mt-1" style="color:var(--text-secondary)">Concept → Live</div>
-  </div>
-</div>
+            <!-- Side floating card -->
+            <div
+              class="glass-panel absolute -right-8 top-1/3 rounded-[24px] p-5"
+              style="width: 180px"
+            >
+              <div class="eyebrow" style="font-size: 0.62rem">
+                Avg. Launch Time
+              </div>
+              <div
+                class="display-font text-2xl font-extrabold italic mt-2"
+                style="color: var(--text-primary)"
+              >
+                14 days
+              </div>
+              <div class="text-xs mt-1" style="color: var(--text-secondary)">
+                Concept → Live
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -689,85 +1424,268 @@
     <!-- ===================== PROOF STRIP ===================== -->
     <section class="section-frame relative overflow-hidden pb-6 pt-12">
       <div class="site-shell">
-        <div class="glass-panel marquee rounded-full border px-2 py-2" style="border-color:var(--border)">
+        <div
+          class="glass-panel marquee rounded-full border px-2 py-2"
+          style="border-color: var(--border)"
+        >
           <div class="marquee-track">
             <!-- 2 copies -->
-            <div class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary)">AI Systems<span class="mx-6" style="color:var(--accent)">.</span></div>
-            <div class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary)">SaaS Platforms<span class="mx-6" style="color:var(--accent)">.</span></div>
-            <div class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary)">Web Development<span class="mx-6" style="color:var(--accent)">.</span></div>
-            <div class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary)">AI Automation<span class="mx-6" style="color:var(--accent)">.</span></div>
-            <div class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary)">UI/UX Design<span class="mx-6" style="color:var(--accent)">.</span></div>
-            <div class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary)">Digital Marketing<span class="mx-6" style="color:var(--accent)">.</span></div>
-            <div class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary)">SEO Mastery<span class="mx-6" style="color:var(--accent)">.</span></div>
-            <div class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary)">App Development<span class="mx-6" style="color:var(--accent)">.</span></div>
+            <div
+              class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]"
+              style="color: var(--text-secondary)"
+            >
+              AI Systems<span class="mx-6" style="color: var(--accent)">.</span>
+            </div>
+            <div
+              class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]"
+              style="color: var(--text-secondary)"
+            >
+              SaaS Platforms<span class="mx-6" style="color: var(--accent)"
+                >.</span
+              >
+            </div>
+            <div
+              class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]"
+              style="color: var(--text-secondary)"
+            >
+              Web Development<span class="mx-6" style="color: var(--accent)"
+                >.</span
+              >
+            </div>
+            <div
+              class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]"
+              style="color: var(--text-secondary)"
+            >
+              AI Automation<span class="mx-6" style="color: var(--accent)"
+                >.</span
+              >
+            </div>
+            <div
+              class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]"
+              style="color: var(--text-secondary)"
+            >
+              UI/UX Design<span class="mx-6" style="color: var(--accent)"
+                >.</span
+              >
+            </div>
+            <div
+              class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]"
+              style="color: var(--text-secondary)"
+            >
+              Digital Marketing<span class="mx-6" style="color: var(--accent)"
+                >.</span
+              >
+            </div>
+            <div
+              class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]"
+              style="color: var(--text-secondary)"
+            >
+              SEO Mastery<span class="mx-6" style="color: var(--accent)"
+                >.</span
+              >
+            </div>
+            <div
+              class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]"
+              style="color: var(--text-secondary)"
+            >
+              App Development<span class="mx-6" style="color: var(--accent)"
+                >.</span
+              >
+            </div>
             <!-- repeat -->
-            <div class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary)">AI Systems<span class="mx-6" style="color:var(--accent)">.</span></div>
-            <div class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary)">SaaS Platforms<span class="mx-6" style="color:var(--accent)">.</span></div>
-            <div class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary)">Web Development<span class="mx-6" style="color:var(--accent)">.</span></div>
-            <div class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary)">AI Automation<span class="mx-6" style="color:var(--accent)">.</span></div>
-            <div class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary)">UI/UX Design<span class="mx-6" style="color:var(--accent)">.</span></div>
-            <div class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary)">Digital Marketing<span class="mx-6" style="color:var(--accent)">.</span></div>
-            <div class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary)">SEO Mastery<span class="mx-6" style="color:var(--accent)">.</span></div>
-            <div class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary)">App Development<span class="mx-6" style="color:var(--accent)">.</span></div>
+            <div
+              class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]"
+              style="color: var(--text-secondary)"
+            >
+              AI Systems<span class="mx-6" style="color: var(--accent)">.</span>
+            </div>
+            <div
+              class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]"
+              style="color: var(--text-secondary)"
+            >
+              SaaS Platforms<span class="mx-6" style="color: var(--accent)"
+                >.</span
+              >
+            </div>
+            <div
+              class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]"
+              style="color: var(--text-secondary)"
+            >
+              Web Development<span class="mx-6" style="color: var(--accent)"
+                >.</span
+              >
+            </div>
+            <div
+              class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]"
+              style="color: var(--text-secondary)"
+            >
+              AI Automation<span class="mx-6" style="color: var(--accent)"
+                >.</span
+              >
+            </div>
+            <div
+              class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]"
+              style="color: var(--text-secondary)"
+            >
+              UI/UX Design<span class="mx-6" style="color: var(--accent)"
+                >.</span
+              >
+            </div>
+            <div
+              class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]"
+              style="color: var(--text-secondary)"
+            >
+              Digital Marketing<span class="mx-6" style="color: var(--accent)"
+                >.</span
+              >
+            </div>
+            <div
+              class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]"
+              style="color: var(--text-secondary)"
+            >
+              SEO Mastery<span class="mx-6" style="color: var(--accent)"
+                >.</span
+              >
+            </div>
+            <div
+              class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]"
+              style="color: var(--text-secondary)"
+            >
+              App Development<span class="mx-6" style="color: var(--accent)"
+                >.</span
+              >
+            </div>
           </div>
         </div>
       </div>
     </section>
 
     <!-- ===================== PROJECTS SECTION ===================== -->
- <section id="projects" class="section-frame relative py-24 lg:py-32">
+    <section id="projects" class="section-frame relative py-24 lg:py-32">
       <div class="site-shell">
-
         <!-- Section header -->
-        <div class="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between mb-14 reveal">
+        <div
+          class="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between mb-14 reveal"
+        >
           <div>
             <div class="section-kicker">Selected Work</div>
-            <h2 class="display-font mt-4 text-4xl font-extrabold italic leading-[0.96] tracking-[-0.04em] lg:text-6xl" style="color:var(--text-primary);max-width:12ch;">
+            <h2
+              class="display-font mt-4 text-4xl font-extrabold italic leading-[0.96] tracking-[-0.04em] lg:text-6xl"
+              style="color: var(--text-primary); max-width: 12ch"
+            >
               10 products. 10 different worlds.
             </h2>
           </div>
         </div>
 
         <!-- ===== PROJECT 01 — Full bleed spotlight (wide) ===== -->
-   <div class="proj-spotlight reveal mb-6" data-categories="ai web">
-  <img src="https://plus.unsplash.com/premium_photo-1683133974170-762dc561d292?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8YnVzaW5lc3N8ZW58MHx8MHx8fDA%3D" alt="Funnel Plane Growth Dashboard" class="proj-thumb w-full" style="height:440px;" />
-  <div class="proj-overlay"></div>
-  <div class="proj-content">
-    <div class="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
-      <div>
-        <div class="flex items-center gap-3 mb-4">
-          <span class="proj-tag accent">Digital Growth</span>
-          <span class="proj-num" style="font-size:2rem;color:rgba(57,255,20,0.18)">01</span>
+        <div
+          id="funnel-plane"
+          class="proj-spotlight reveal mb-6"
+          data-categories="ai web"
+        >
+          <img
+            src="https://plus.unsplash.com/premium_photo-1683133974170-762dc561d292?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8YnVzaW5lc3N8ZW58MHx8MHx8fDA%3D"
+            alt="Funnel Plane Growth Dashboard"
+            class="proj-thumb w-full"
+            style="height: 440px"
+          />
+          <div class="proj-overlay"></div>
+          <div class="proj-content">
+            <div
+              class="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between"
+            >
+              <div>
+                <div class="flex items-center gap-3 mb-4">
+                  <span class="proj-tag accent">Digital Growth</span>
+                  <span
+                    class="proj-num"
+                    style="font-size: 2rem; color: rgba(57, 255, 20, 0.18)"
+                    >01</span
+                  >
+                </div>
+                <h3
+                  class="display-font text-4xl font-extrabold italic leading-tight lg:text-5xl"
+                  style="color: var(--text-primary)"
+                >
+                  Funnel Plane — Digital Growth Engine for Businesses
+                </h3>
+                <p
+                  class="mt-3 max-w-2xl text-base leading-7"
+                  style="color: var(--text-secondary)"
+                >
+                  Built a full-spectrum digital growth platform replacing
+                  fragmented agency work. Google & Meta Ads, AI Voice Agents,
+                  GHL Funnels, and CRM Automation — all under one cohesive
+                  growth engine.
+                </p>
+                <div class="mt-4 flex flex-wrap gap-2">
+                  <span class="tech-pill">Google Ads</span
+                  ><span class="tech-pill">Meta Ads</span
+                  ><span class="tech-pill">AI Voice Agents</span
+                  ><span class="tech-pill">GHL Funnels</span
+                  ><span class="tech-pill">CRM Automation</span>
+                </div>
+              </div>
+              <div class="result-badge flex-shrink-0">
+                <div class="eyebrow" style="font-size: 0.64rem">Outcome</div>
+                <div
+                  class="display-font text-2xl font-extrabold italic mt-1"
+                  style="color: var(--accent)"
+                >
+                  9.2× ROAS
+                </div>
+                <div class="text-sm" style="color: var(--text-secondary)">
+                  avg. return on ad spend
+                </div>
+              </div>
+              <a
+                href="https://funnelplane.com/"
+                target="_blank"
+                rel="noopener"
+                style="
+                  display: inline-flex;
+                  align-items: center;
+                  gap: 8px;
+                  margin-top: 14px;
+                  padding: 8px 18px;
+                  border: 2px solid var(--border);
+                  border-radius: 999px;
+                  font-size: 0.75rem;
+                  letter-spacing: 0.08em;
+                  text-transform: uppercase;
+                  color: var(--accent);
+                  background: transparent;
+                  text-decoration: none;
+                  transition: all 0.2s;
+                "
+                onmouseover="this.style.background = 'rgba(57,255,20,0.08)'"
+                onmouseout="this.style.background = 'transparent'"
+              >
+                <span
+                  style="
+                    width: 6px;
+                    height: 6px;
+                    border-radius: 50%;
+                    background: var(--accent);
+                    box-shadow: 0 0 8px rgba(57, 255, 20, 0.6);
+                  "
+                ></span>
+                View Live
+              </a>
+            </div>
+          </div>
         </div>
-        <h3 class="display-font text-4xl font-extrabold italic leading-tight lg:text-5xl" style="color:var(--text-primary);">Funnel Plane — Digital Growth Engine for Businesses</h3>
-        <p class="mt-3 max-w-2xl text-base leading-7" style="color:var(--text-secondary);">Built a full-spectrum digital growth platform replacing fragmented agency work. Google & Meta Ads, AI Voice Agents, GHL Funnels, and CRM Automation — all under one cohesive growth engine.</p>
-        <div class="mt-4 flex flex-wrap gap-2">
-          <span class="tech-pill">Google Ads</span><span class="tech-pill">Meta Ads</span><span class="tech-pill">AI Voice Agents</span><span class="tech-pill">GHL Funnels</span><span class="tech-pill">CRM Automation</span>
-        </div>
-      </div>
-      <div class="result-badge flex-shrink-0">
-        <div class="eyebrow" style="font-size:.64rem;">Outcome</div>
-        <div class="display-font text-2xl font-extrabold italic mt-1" style="color:var(--accent);">9.2× ROAS</div>
-        <div class="text-sm" style="color:var(--text-secondary);">avg. return on ad spend</div>
-      </div>
-      <a href="https://funnelplane.com/" target="_blank" rel="noopener" 
-   style="display:inline-flex;align-items:center;gap:8px;margin-top:14px;padding:8px 18px;border:2px solid var(--border);border-radius:999px;font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);background:transparent;text-decoration:none;transition:all .2s;" 
-   onmouseover="this.style.background='rgba(57,255,20,0.08)'" 
-   onmouseout="this.style.background='transparent'">
-  <span style="width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 8px rgba(57,255,20,0.6);"></span>
-  View Live
-</a>
-    </div>
-  </div>
-</div>
 
         <!-- ===== PROJECT 02 + 03 — Side by side tall cards ===== -->
         <div class="grid gap-6 md:grid-cols-2 mb-6">
-
           <!-- 02 -->
           <div class="proj-tall reveal" data-categories="saas web">
             <div class="proj-tall-thumb">
-              <img src="https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aG9tZXN8ZW58MHx8MHx8fDA%3D" alt="Helio Commerce" />
+              <img
+                src="https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aG9tZXN8ZW58MHx8MHx8fDA%3D"
+                alt="Helio Commerce"
+              />
             </div>
             <div class="proj-tall-body">
               <div>
@@ -775,24 +1693,71 @@
                   <span class="proj-tag accent">Offer Engine</span>
                   <span class="proj-num">02</span>
                 </div>
-                <h3 class="display-font text-2xl font-extrabold italic leading-tight" style="color:var(--text-primary);">Wrangler Homes — Cash Offer Funnel System</h3>
-                <p class="mt-3 text-sm leading-7" style="color:var(--text-secondary);">Complete frontend overhaul and product repositioning. Engineered a 3-step cash offer acquisition funnel with 24-hour response logic, as-is property intake, and trust-anchored UI — driving $500M+ in closed deals since 1994..</p>
+                <h3
+                  class="display-font text-2xl font-extrabold italic leading-tight"
+                  style="color: var(--text-primary)"
+                >
+                  Wrangler Homes — Cash Offer Funnel System
+                </h3>
+                <p
+                  class="mt-3 text-sm leading-7"
+                  style="color: var(--text-secondary)"
+                >
+                  Complete frontend overhaul and product repositioning.
+                  Engineered a 3-step cash offer acquisition funnel with 24-hour
+                  response logic, as-is property intake, and trust-anchored UI —
+                  driving $500M+ in closed deals since 1994..
+                </p>
               </div>
               <div>
                 <div class="flex flex-wrap gap-2 mb-4">
-          <span class="tech-pill">Funnel Design</span><span class="tech-pill">Form UX</span><span class="tech-pill">CRM Integration</span>
-        </div>
-                <div class="result-badge">
-                  <div class="eyebrow" style="font-size:.64rem;">Outcome</div>
-                  <div class="display-font text-xl font-extrabold italic mt-1" style="color:var(--accent);">$500M+ cash closedt</div>
+                  <span class="tech-pill">Funnel Design</span
+                  ><span class="tech-pill">Form UX</span
+                  ><span class="tech-pill">CRM Integration</span>
                 </div>
-                      <a href="https://wranglerhomes.com/" target="_blank" rel="noopener" 
-   style="display:inline-flex;align-items:center;gap:8px;margin-top:14px;padding:8px 18px;border:2px solid var(--border);border-radius:999px;font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);background:transparent;text-decoration:none;transition:all .2s;" 
-   onmouseover="this.style.background='rgba(57,255,20,0.08)'" 
-   onmouseout="this.style.background='transparent'">
-  <span style="width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 8px rgba(57,255,20,0.6);"></span>
-  View Live
-</a>
+                <div class="result-badge">
+                  <div class="eyebrow" style="font-size: 0.64rem">Outcome</div>
+                  <div
+                    class="display-font text-xl font-extrabold italic mt-1"
+                    style="color: var(--accent)"
+                  >
+                    $500M+ cash closedt
+                  </div>
+                </div>
+                <a
+                  href="https://wranglerhomes.com/"
+                  target="_blank"
+                  rel="noopener"
+                  style="
+                    display: inline-flex;
+                    align-items: center;
+                    gap: 8px;
+                    margin-top: 14px;
+                    padding: 8px 18px;
+                    border: 2px solid var(--border);
+                    border-radius: 999px;
+                    font-size: 0.75rem;
+                    letter-spacing: 0.08em;
+                    text-transform: uppercase;
+                    color: var(--accent);
+                    background: transparent;
+                    text-decoration: none;
+                    transition: all 0.2s;
+                  "
+                  onmouseover="this.style.background = 'rgba(57,255,20,0.08)'"
+                  onmouseout="this.style.background = 'transparent'"
+                >
+                  <span
+                    style="
+                      width: 6px;
+                      height: 6px;
+                      border-radius: 50%;
+                      background: var(--accent);
+                      box-shadow: 0 0 8px rgba(57, 255, 20, 0.6);
+                    "
+                  ></span>
+                  View Live
+                </a>
               </div>
             </div>
           </div>
@@ -800,7 +1765,10 @@
           <!-- 03 -->
           <div class="proj-tall reveal" data-categories="web uiux">
             <div class="proj-tall-thumb">
-              <img src="https://res.cloudinary.com/theflooringbull/image/upload/v1769444440/portfolio-bedroom_k8yedo.jpg" alt="Nova Pulse Launch" />
+              <img
+                src="https://res.cloudinary.com/theflooringbull/image/upload/v1769444440/portfolio-bedroom_k8yedo.jpg"
+                alt="Nova Pulse Launch"
+              />
             </div>
             <div class="proj-tall-body">
               <div>
@@ -808,68 +1776,195 @@
                   <span class="proj-tag accent">Home Services</span>
                   <span class="proj-num">03</span>
                 </div>
-                <h3 class="display-font text-2xl font-extrabold italic leading-tight" style="color:var(--text-primary);">The Flooring Bull — Premium Flooring Installation</h3>
-                <p class="mt-3 text-sm leading-7" style="color:var(--text-secondary);">Full-service flooring platform for vinyl, hardwood, laminate, tile & carpet installs across Georgia. Built in-home estimate flow, before/after showcase, and a 3-step project funnel — furniture moving included, zero hidden fees.</p>
+                <h3
+                  class="display-font text-2xl font-extrabold italic leading-tight"
+                  style="color: var(--text-primary)"
+                >
+                  The Flooring Bull — Premium Flooring Installation
+                </h3>
+                <p
+                  class="mt-3 text-sm leading-7"
+                  style="color: var(--text-secondary)"
+                >
+                  Full-service flooring platform for vinyl, hardwood, laminate,
+                  tile & carpet installs across Georgia. Built in-home estimate
+                  flow, before/after showcase, and a 3-step project funnel —
+                  furniture moving included, zero hidden fees.
+                </p>
               </div>
               <div>
                 <div class="flex flex-wrap gap-2 mb-4">
-                  <span class="tech-pill">Flooring Calculator</span><span class="tech-pill">Lead Funnel</span><span class="tech-pill"> Before/After UI</span>
+                  <span class="tech-pill">Flooring Calculator</span
+                  ><span class="tech-pill">Lead Funnel</span
+                  ><span class="tech-pill"> Before/After UI</span>
                 </div>
                 <div class="result-badge">
-                  <div class="eyebrow" style="font-size:.64rem;">Outcome</div>
-                  <div class="display-font text-xl font-extrabold italic mt-1" style="color:var(--accent);">across all Georgia installs</div>
+                  <div class="eyebrow" style="font-size: 0.64rem">Outcome</div>
+                  <div
+                    class="display-font text-xl font-extrabold italic mt-1"
+                    style="color: var(--accent)"
+                  >
+                    across all Georgia installs
+                  </div>
                 </div>
-                      <a href="https://theflooringbull.com/" target="_blank" rel="noopener" 
-   style="display:inline-flex;align-items:center;gap:8px;margin-top:14px;padding:8px 18px;border:2px solid var(--border);border-radius:999px;font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);background:transparent;text-decoration:none;transition:all .2s;" 
-   onmouseover="this.style.background='rgba(57,255,20,0.08)'" 
-   onmouseout="this.style.background='transparent'">
-  <span style="width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 8px rgba(57,255,20,0.6);"></span>
-  View Live
-</a>
+                <a
+                  href="https://theflooringbull.com/"
+                  target="_blank"
+                  rel="noopener"
+                  style="
+                    display: inline-flex;
+                    align-items: center;
+                    gap: 8px;
+                    margin-top: 14px;
+                    padding: 8px 18px;
+                    border: 2px solid var(--border);
+                    border-radius: 999px;
+                    font-size: 0.75rem;
+                    letter-spacing: 0.08em;
+                    text-transform: uppercase;
+                    color: var(--accent);
+                    background: transparent;
+                    text-decoration: none;
+                    transition: all 0.2s;
+                  "
+                  onmouseover="this.style.background = 'rgba(57,255,20,0.08)'"
+                  onmouseout="this.style.background = 'transparent'"
+                >
+                  <span
+                    style="
+                      width: 6px;
+                      height: 6px;
+                      border-radius: 50%;
+                      background: var(--accent);
+                      box-shadow: 0 0 8px rgba(57, 255, 20, 0.6);
+                    "
+                  ></span>
+                  View Live
+                </a>
               </div>
             </div>
           </div>
         </div>
 
         <!-- ===== PROJECT 04 — Side by side (info right) ===== -->
-        <div class="proj-sidebyside reveal mb-6" data-categories="ai automation">
+        <div
+          id="ember-realtors"
+          class="proj-sidebyside reveal mb-6"
+          data-categories="ai automation"
+        >
           <div class="proj-visual">
-            <img src="https://plus.unsplash.com/premium_photo-1661902934269-17eaf4b04f9f?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8bHV4dXJ5JTIwaG9tZXN8ZW58MHx8MHx8fDA%3D" alt="Aria AI Copilot" />
-            <div style="position:absolute;inset:0;background:linear-gradient(90deg,transparent 60%,rgba(8,10,8,0.6));"></div>
+            <img
+              src="https://plus.unsplash.com/premium_photo-1661902934269-17eaf4b04f9f?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8bHV4dXJ5JTIwaG9tZXN8ZW58MHx8MHx8fDA%3D"
+              alt="Aria AI Copilot"
+            />
+            <div
+              style="
+                position: absolute;
+                inset: 0;
+                background: linear-gradient(
+                  90deg,
+                  transparent 60%,
+                  rgba(8, 10, 8, 0.6)
+                );
+              "
+            ></div>
           </div>
-          <div class="proj-info" style="background:linear-gradient(135deg,rgba(12,15,12,0.98),rgba(8,10,8,0.99));">
+          <div
+            class="proj-info"
+            style="
+              background: linear-gradient(
+                135deg,
+                rgba(12, 15, 12, 0.98),
+                rgba(8, 10, 8, 0.99)
+              );
+            "
+          >
             <div>
               <div class="flex items-center justify-between mb-6">
                 <span class="proj-tag accent">Luxury Real Estate</span>
                 <span class="proj-num">04</span>
               </div>
-              <h3 class="display-font text-2xl font-extrabold italic leading-tight" style="color:var(--text-primary);">Ember Realtors — Global Luxury Real Estate Firm</h3>
-              <p class="mt-4 text-base leading-7" style="color:var(--text-secondary);">Bespoke digital platform for a global high-net-worth real estate firm. Built curated property search, signature listings showcase, new developments portal, and a strategic sell-side appraisal flow — from Billionaires' Row to Palm Jumeirah.</p>
+              <h3
+                class="display-font text-2xl font-extrabold italic leading-tight"
+                style="color: var(--text-primary)"
+              >
+                Ember Realtors — Global Luxury Real Estate Firm
+              </h3>
+              <p
+                class="mt-4 text-base leading-7"
+                style="color: var(--text-secondary)"
+              >
+                Bespoke digital platform for a global high-net-worth real estate
+                firm. Built curated property search, signature listings
+                showcase, new developments portal, and a strategic sell-side
+                appraisal flow — from Billionaires' Row to Palm Jumeirah.
+              </p>
               <div class="flex flex-wrap gap-2 mt-5">
-                <span class="tech-pill">Property Search</span><span class="tech-pill">Listings UI</span><span class="tech-pill">Market Intelligence</span><span class="tech-pill">Lead Funnel</span>
+                <span class="tech-pill">Property Search</span
+                ><span class="tech-pill">Listings UI</span
+                ><span class="tech-pill">Market Intelligence</span
+                ><span class="tech-pill">Lead Funnel</span>
               </div>
             </div>
             <div class="result-badge mt-6">
-              <div class="eyebrow" style="font-size:.64rem;">Outcome</div>
-              <div class="display-font text-2xl font-extrabold italic mt-1" style="color:var(--accent);">$89M+ listings</div>
+              <div class="eyebrow" style="font-size: 0.64rem">Outcome</div>
+              <div
+                class="display-font text-2xl font-extrabold italic mt-1"
+                style="color: var(--accent)"
+              >
+                $89M+ listings
+              </div>
             </div>
-                  <a href="https://emberrealtors.com/" target="_blank" rel="noopener" 
-   style="display:inline-flex;align-items:center;gap:8px;margin-top:14px;padding:8px 18px;border:2px solid var(--border);border-radius:999px;font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);background:transparent;text-decoration:none;transition:all .2s;" 
-   onmouseover="this.style.background='rgba(57,255,20,0.08)'" 
-   onmouseout="this.style.background='transparent'">
-  <span style="width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 8px rgba(57,255,20,0.6);"></span>
-  View Live
-</a>
+            <a
+              href="https://emberrealtors.com/"
+              target="_blank"
+              rel="noopener"
+              style="
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+                margin-top: 14px;
+                padding: 8px 18px;
+                border: 2px solid var(--border);
+                border-radius: 999px;
+                font-size: 0.75rem;
+                letter-spacing: 0.08em;
+                text-transform: uppercase;
+                color: var(--accent);
+                background: transparent;
+                text-decoration: none;
+                transition: all 0.2s;
+              "
+              onmouseover="this.style.background = 'rgba(57,255,20,0.08)'"
+              onmouseout="this.style.background = 'transparent'"
+            >
+              <span
+                style="
+                  width: 6px;
+                  height: 6px;
+                  border-radius: 50%;
+                  background: var(--accent);
+                  box-shadow: 0 0 8px rgba(57, 255, 20, 0.6);
+                "
+              ></span>
+              View Live
+            </a>
           </div>
         </div>
 
         <!-- ===== PROJECT 05 + 06 + 07 — Three tall cards ===== -->
         <div class="grid gap-6 md:grid-cols-3 mb-6">
-
           <!-- 05 -->
-          <div class="proj-tall reveal" data-categories="web uiux">
+          <div
+            id="run-it-remote"
+            class="proj-tall reveal"
+            data-categories="web uiux"
+          >
             <div class="proj-tall-thumb">
-              <img src="https://images.unsplash.com/photo-1551583899-d3f6258ec7c9?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8Y2FsbGluZyUyMGhlYWRwaG9uZSUyMG1lbnxlbnwwfHwwfHx8MA%3D%3D" alt="Zenith Branding" />
+              <img
+                src="https://images.unsplash.com/photo-1551583899-d3f6258ec7c9?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8Y2FsbGluZyUyMGhlYWRwaG9uZSUyMG1lbnxlbnwwfHwwfHx8MA%3D%3D"
+                alt="Zenith Branding"
+              />
             </div>
             <div class="proj-tall-body">
               <div>
@@ -877,23 +1972,70 @@
                   <span class="proj-tag accent">Sales & Outreach</span>
                   <span class="proj-num">05</span>
                 </div>
-                <h3 class="display-font text-xl font-extrabold italic leading-tight" style="color:var(--text-primary);">Run It Remote — Cold Calling & Lead Generation Engine</h3>
-                <p class="mt-3 text-sm leading-7" style="color:var(--text-secondary);">Full-scale remote sales platform for cold calling, appointment setting, and AI automation across 9+ industries. Built lead gen pipelines, live dashboards, and quality validation systems — turning cold prospects into closed deals at scale.</p>
+                <h3
+                  class="display-font text-xl font-extrabold italic leading-tight"
+                  style="color: var(--text-primary)"
+                >
+                  Run It Remote — Cold Calling & Lead Generation Engine
+                </h3>
+                <p
+                  class="mt-3 text-sm leading-7"
+                  style="color: var(--text-secondary)"
+                >
+                  Full-scale remote sales platform for cold calling, appointment
+                  setting, and AI automation across 9+ industries. Built lead
+                  gen pipelines, live dashboards, and quality validation systems
+                  — turning cold prospects into closed deals at scale.
+                </p>
               </div>
               <div>
                 <div class="flex flex-wrap gap-2 mb-3">
-                  <span class="tech-pill">Lead Generation</span><span class="tech-pill">Appointment Setting</span><span class="tech-pill">AI Automation</span>
+                  <span class="tech-pill">Lead Generation</span
+                  ><span class="tech-pill">Appointment Setting</span
+                  ><span class="tech-pill">AI Automation</span>
                 </div>
                 <div class="result-badge">
-                  <div class="display-font text-lg font-extrabold italic" style="color:var(--accent);">2.5× avg ROI</div>
+                  <div
+                    class="display-font text-lg font-extrabold italic"
+                    style="color: var(--accent)"
+                  >
+                    2.5× avg ROI
+                  </div>
                 </div>
-                      <a href="https://runit-remote.netlify.app/" target="_blank" rel="noopener" 
-   style="display:inline-flex;align-items:center;gap:8px;margin-top:14px;padding:8px 18px;border:2px solid var(--border);border-radius:999px;font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);background:transparent;text-decoration:none;transition:all .2s;" 
-   onmouseover="this.style.background='rgba(57,255,20,0.08)'" 
-   onmouseout="this.style.background='transparent'">
-  <span style="width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 8px rgba(57,255,20,0.6);"></span>
-  View Live
-</a>
+                <a
+                  href="https://runit-remote.netlify.app/"
+                  target="_blank"
+                  rel="noopener"
+                  style="
+                    display: inline-flex;
+                    align-items: center;
+                    gap: 8px;
+                    margin-top: 14px;
+                    padding: 8px 18px;
+                    border: 2px solid var(--border);
+                    border-radius: 999px;
+                    font-size: 0.75rem;
+                    letter-spacing: 0.08em;
+                    text-transform: uppercase;
+                    color: var(--accent);
+                    background: transparent;
+                    text-decoration: none;
+                    transition: all 0.2s;
+                  "
+                  onmouseover="this.style.background = 'rgba(57,255,20,0.08)'"
+                  onmouseout="this.style.background = 'transparent'"
+                >
+                  <span
+                    style="
+                      width: 6px;
+                      height: 6px;
+                      border-radius: 50%;
+                      background: var(--accent);
+                      box-shadow: 0 0 8px rgba(57, 255, 20, 0.6);
+                    "
+                  ></span>
+                  View Live
+                </a>
               </div>
             </div>
           </div>
@@ -901,7 +2043,10 @@
           <!-- 06 -->
           <div class="proj-tall reveal" data-categories="saas automation">
             <div class="proj-tall-thumb">
-              <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=700&q=80" alt="FlowSync Automation" />
+              <img
+                src="https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=700&q=80"
+                alt="FlowSync Automation"
+              />
             </div>
             <div class="proj-tall-body">
               <div>
@@ -909,23 +2054,70 @@
                   <span class="proj-tag accent">BPO & Outsourcing</span>
                   <span class="proj-num">06</span>
                 </div>
-                <h3 class="display-font text-xl font-extrabold italic leading-tight" style="color:var(--text-primary);">Propstar Technologies — BPO for U.S. Real Estate</h3>
-                <p class="mt-3 text-sm leading-7" style="color:var(--text-secondary);">End-to-end BPO platform bridging Karachi talent with the U.S. real estate market. Built lead generation pipelines, call executive systems, QA workflows, and a careers portal — 400+ professionals, 23 departments, all under one brand.</p>
+                <h3
+                  class="display-font text-xl font-extrabold italic leading-tight"
+                  style="color: var(--text-primary)"
+                >
+                  Propstar Technologies — BPO for U.S. Real Estate
+                </h3>
+                <p
+                  class="mt-3 text-sm leading-7"
+                  style="color: var(--text-secondary)"
+                >
+                  End-to-end BPO platform bridging Karachi talent with the U.S.
+                  real estate market. Built lead generation pipelines, call
+                  executive systems, QA workflows, and a careers portal — 400+
+                  professionals, 23 departments, all under one brand.
+                </p>
               </div>
               <div>
                 <div class="flex flex-wrap gap-2 mb-3">
-                  <span class="tech-pill">Lead Generation</span><span class="tech-pill">Call Operations</span><span class="tech-pill">Quality Control</span>
+                  <span class="tech-pill">Lead Generation</span
+                  ><span class="tech-pill">Call Operations</span
+                  ><span class="tech-pill">Quality Control</span>
                 </div>
                 <div class="result-badge">
-                  <div class="display-font text-lg font-extrabold italic" style="color:var(--accent);">1.2M+ leads</div>
+                  <div
+                    class="display-font text-lg font-extrabold italic"
+                    style="color: var(--accent)"
+                  >
+                    1.2M+ leads
+                  </div>
                 </div>
-                      <a href="https://propstar.netlify.app/" target="_blank" rel="noopener" 
-   style="display:inline-flex;align-items:center;gap:8px;margin-top:14px;padding:8px 18px;border:2px solid var(--border);border-radius:999px;font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);background:transparent;text-decoration:none;transition:all .2s;" 
-   onmouseover="this.style.background='rgba(57,255,20,0.08)'" 
-   onmouseout="this.style.background='transparent'">
-  <span style="width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 8px rgba(57,255,20,0.6);"></span>
-  View Live
-</a>
+                <a
+                  href="https://propstar.netlify.app/"
+                  target="_blank"
+                  rel="noopener"
+                  style="
+                    display: inline-flex;
+                    align-items: center;
+                    gap: 8px;
+                    margin-top: 14px;
+                    padding: 8px 18px;
+                    border: 2px solid var(--border);
+                    border-radius: 999px;
+                    font-size: 0.75rem;
+                    letter-spacing: 0.08em;
+                    text-transform: uppercase;
+                    color: var(--accent);
+                    background: transparent;
+                    text-decoration: none;
+                    transition: all 0.2s;
+                  "
+                  onmouseover="this.style.background = 'rgba(57,255,20,0.08)'"
+                  onmouseout="this.style.background = 'transparent'"
+                >
+                  <span
+                    style="
+                      width: 6px;
+                      height: 6px;
+                      border-radius: 50%;
+                      background: var(--accent);
+                      box-shadow: 0 0 8px rgba(57, 255, 20, 0.6);
+                    "
+                  ></span>
+                  View Live
+                </a>
               </div>
             </div>
           </div>
@@ -933,7 +2125,10 @@
           <!-- 07 -->
           <div class="proj-tall reveal" data-categories="web ai">
             <div class="proj-tall-thumb">
-              <img src="https://images.unsplash.com/photo-1544984243-ec57ea16fe25?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8bHV4dXJ5JTIwaG9tZXN8ZW58MHx8MHx8fDA%3D" alt="PulseTrack App" />
+              <img
+                src="https://images.unsplash.com/photo-1544984243-ec57ea16fe25?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8bHV4dXJ5JTIwaG9tZXN8ZW58MHx8MHx8fDA%3D"
+                alt="PulseTrack App"
+              />
             </div>
             <div class="proj-tall-body">
               <div>
@@ -941,56 +2136,171 @@
                   <span class="proj-tag accent">Construction</span>
                   <span class="proj-num">07</span>
                 </div>
-                <h3 class="display-font text-xl font-extrabold italic leading-tight" style="color:var(--text-primary);">Kahloon Construction — Premium Construction Services, Ontario</h3>
-                <p class="mt-3 text-sm leading-7" style="color:var(--text-secondary);">Full-scale construction platform for a fast-growing Ontario-based firm. Built project showcase, services portal, and lead intake flow covering general construction, renovation, bathroom repairs, and tiling — 100+ projects completed since 2020.</p>
+                <h3
+                  class="display-font text-xl font-extrabold italic leading-tight"
+                  style="color: var(--text-primary)"
+                >
+                  Kahloon Construction — Premium Construction Services, Ontario
+                </h3>
+                <p
+                  class="mt-3 text-sm leading-7"
+                  style="color: var(--text-secondary)"
+                >
+                  Full-scale construction platform for a fast-growing
+                  Ontario-based firm. Built project showcase, services portal,
+                  and lead intake flow covering general construction,
+                  renovation, bathroom repairs, and tiling — 100+ projects
+                  completed since 2020.
+                </p>
               </div>
               <div>
                 <div class="flex flex-wrap gap-2 mb-3">
-                  <span class="tech-pill">Project Showcase</span><span class="tech-pill">Services Portal </span><span class="tech-pill">CMS</span>
+                  <span class="tech-pill">Project Showcase</span
+                  ><span class="tech-pill">Services Portal </span
+                  ><span class="tech-pill">CMS</span>
                 </div>
                 <div class="result-badge">
-                  <div class="display-font text-lg font-extrabold italic" style="color:var(--accent);">completed across Ontario</div>
+                  <div
+                    class="display-font text-lg font-extrabold italic"
+                    style="color: var(--accent)"
+                  >
+                    completed across Ontario
+                  </div>
                 </div>
-                      <a href="https://kahloonconstruction.com/" target="_blank" rel="noopener" 
-   style="display:inline-flex;align-items:center;gap:8px;margin-top:14px;padding:8px 18px;border:2px solid var(--border);border-radius:999px;font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);background:transparent;text-decoration:none;transition:all .2s;" 
-   onmouseover="this.style.background='rgba(57,255,20,0.08)'" 
-   onmouseout="this.style.background='transparent'">
-  <span style="width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 8px rgba(57,255,20,0.6);"></span>
-  View Live
-</a>
+                <a
+                  href="https://kahloonconstruction.com/"
+                  target="_blank"
+                  rel="noopener"
+                  style="
+                    display: inline-flex;
+                    align-items: center;
+                    gap: 8px;
+                    margin-top: 14px;
+                    padding: 8px 18px;
+                    border: 2px solid var(--border);
+                    border-radius: 999px;
+                    font-size: 0.75rem;
+                    letter-spacing: 0.08em;
+                    text-transform: uppercase;
+                    color: var(--accent);
+                    background: transparent;
+                    text-decoration: none;
+                    transition: all 0.2s;
+                  "
+                  onmouseover="this.style.background = 'rgba(57,255,20,0.08)'"
+                  onmouseout="this.style.background = 'transparent'"
+                >
+                  <span
+                    style="
+                      width: 6px;
+                      height: 6px;
+                      border-radius: 50%;
+                      background: var(--accent);
+                      box-shadow: 0 0 8px rgba(57, 255, 20, 0.6);
+                    "
+                  ></span>
+                  View Live
+                </a>
               </div>
             </div>
           </div>
         </div>
 
         <!-- ===== PROJECT 08 — Side by side (info left) ===== -->
-        <div class="proj-sidebyside reveal mb-6" data-categories="saas uiux" style="direction:rtl;">
-          <div class="proj-visual" style="direction:ltr;">
-            <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8bHV4dXJ5JTIwaG9tZXN8ZW58MHx8MHx8fDA%3D" alt="Vault SaaS Dashboard" />
+        <div
+          class="proj-sidebyside reveal mb-6"
+          data-categories="saas uiux"
+          style="direction: rtl"
+        >
+          <div class="proj-visual" style="direction: ltr">
+            <img
+              src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8bHV4dXJ5JTIwaG9tZXN8ZW58MHx8MHx8fDA%3D"
+              alt="Vault SaaS Dashboard"
+            />
           </div>
-          <div class="proj-info" style="direction:ltr;background:linear-gradient(135deg,rgba(8,10,8,0.99),rgba(12,15,12,0.98));border-left:none;border-right:1px solid var(--border);">
+          <div
+            class="proj-info"
+            style="
+              direction: ltr;
+              background: linear-gradient(
+                135deg,
+                rgba(8, 10, 8, 0.99),
+                rgba(12, 15, 12, 0.98)
+              );
+              border-left: none;
+              border-right: 1px solid var(--border);
+            "
+          >
             <div>
               <div class="flex items-center justify-between mb-6">
                 <span class="proj-tag accent">Construction</span>
                 <span class="proj-num">08</span>
               </div>
-              <h3 class="display-font text-2xl font-extrabold italic leading-tight" style="color:var(--text-primary);">Shergill Construction — Building Structures That Last, Ontario</h3>
-              <p class="mt-4 text-base leading-7" style="color:var(--text-secondary);">End-to-end construction platform for one of Ontario's trusted builders. Built project portfolio, services showcase, and quote intake flow covering commercial builds, custom residential homes, and full renovations — 6+ years, 100+ projects delivered.</p>
+              <h3
+                class="display-font text-2xl font-extrabold italic leading-tight"
+                style="color: var(--text-primary)"
+              >
+                Shergill Construction — Building Structures That Last, Ontario
+              </h3>
+              <p
+                class="mt-4 text-base leading-7"
+                style="color: var(--text-secondary)"
+              >
+                End-to-end construction platform for one of Ontario's trusted
+                builders. Built project portfolio, services showcase, and quote
+                intake flow covering commercial builds, custom residential
+                homes, and full renovations — 6+ years, 100+ projects delivered.
+              </p>
               <div class="flex flex-wrap gap-2 mt-5">
-                <span class="tech-pill">Project Portfolio</span><span class="tech-pill">Quote Intake</span><span class="tech-pill">Services Showcase</span><span class="tech-pill">CMS</span>
+                <span class="tech-pill">Project Portfolio</span
+                ><span class="tech-pill">Quote Intake</span
+                ><span class="tech-pill">Services Showcase</span
+                ><span class="tech-pill">CMS</span>
               </div>
             </div>
             <div class="result-badge mt-6">
-              <div class="eyebrow" style="font-size:.64rem;">Outcome</div>
-              <div class="display-font text-2xl font-extrabold italic mt-1" style="color:var(--accent);">100% client satisfactiont</div>
+              <div class="eyebrow" style="font-size: 0.64rem">Outcome</div>
+              <div
+                class="display-font text-2xl font-extrabold italic mt-1"
+                style="color: var(--accent)"
+              >
+                100% client satisfactiont
+              </div>
             </div>
-                  <a href="https://shergillconstructions.com/" target="_blank" rel="noopener" 
-   style="display:inline-flex;align-items:center;gap:8px;margin-top:14px;padding:8px 18px;border:2px solid var(--border);border-radius:999px;font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);background:transparent;text-decoration:none;transition:all .2s;" 
-   onmouseover="this.style.background='rgba(57,255,20,0.08)'" 
-   onmouseout="this.style.background='transparent'">
-  <span style="width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 8px rgba(57,255,20,0.6);"></span>
-  View Live
-</a>
+            <a
+              href="https://shergillconstructions.com/"
+              target="_blank"
+              rel="noopener"
+              style="
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+                margin-top: 14px;
+                padding: 8px 18px;
+                border: 2px solid var(--border);
+                border-radius: 999px;
+                font-size: 0.75rem;
+                letter-spacing: 0.08em;
+                text-transform: uppercase;
+                color: var(--accent);
+                background: transparent;
+                text-decoration: none;
+                transition: all 0.2s;
+              "
+              onmouseover="this.style.background = 'rgba(57,255,20,0.08)'"
+              onmouseout="this.style.background = 'transparent'"
+            >
+              <span
+                style="
+                  width: 6px;
+                  height: 6px;
+                  border-radius: 50%;
+                  background: var(--accent);
+                  box-shadow: 0 0 8px rgba(57, 255, 20, 0.6);
+                "
+              ></span>
+              View Live
+            </a>
           </div>
         </div>
 
@@ -998,102 +2308,360 @@
         <div class="proj-strip reveal mb-6" data-categories="automation ai">
           <div class="proj-strip-bar"></div>
           <div class="proj-strip-thumb">
-            <img src="https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8ZSUyMGNvbW1lcmNlJTIwY2xvdGhlc3xlbnwwfHwwfHx8MA%3D%3D" alt="EchoBot AI" />
+            <img
+              src="https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8ZSUyMGNvbW1lcmNlJTIwY2xvdGhlc3xlbnwwfHwwfHx8MA%3D%3D"
+              alt="EchoBot AI"
+            />
           </div>
-          <div class="proj-strip-body glass-panel" style="border:none;border-radius:0;">
+          <div
+            class="proj-strip-body glass-panel"
+            style="border: none; border-radius: 0"
+          >
             <div>
               <div class="flex items-center gap-4 mb-4">
                 <span class="proj-tag accent">E-Commerce</span>
                 <span class="proj-num">09</span>
               </div>
-              <h3 class="display-font text-2xl font-extrabold italic leading-tight" style="color:var(--text-primary);">Cara — Fashion E-Commerce Store</h3>
-              <p class="mt-4 text-base leading-7 max-w-2xl" style="color:var(--text-secondary);">Full-featured fashion e-commerce storefront built for a Karachi-based clothing brand. Includes product catalog, seasonal collections, cart system, newsletter flow, and repair services — up to 70% off deals and buy-1-get-1 campaign support.</p>
+              <h3
+                class="display-font text-2xl font-extrabold italic leading-tight"
+                style="color: var(--text-primary)"
+              >
+                Cara — Fashion E-Commerce Store
+              </h3>
+              <p
+                class="mt-4 text-base leading-7 max-w-2xl"
+                style="color: var(--text-secondary)"
+              >
+                Full-featured fashion e-commerce storefront built for a
+                Karachi-based clothing brand. Includes product catalog, seasonal
+                collections, cart system, newsletter flow, and repair services —
+                up to 70% off deals and buy-1-get-1 campaign support.
+              </p>
             </div>
             <div class="flex flex-wrap items-center gap-4 mt-6">
               <div class="flex flex-wrap gap-2">
-                <span class="tech-pill">Product Catalog</span><span class="tech-pill">Cart System</span><span class="tech-pill">Promo Campaigns </span>
+                <span class="tech-pill">Product Catalog</span
+                ><span class="tech-pill">Cart System</span
+                ><span class="tech-pill">Promo Campaigns </span>
               </div>
               <div class="result-badge ml-auto">
-                <div class="eyebrow" style="font-size:.62rem;">Outcome</div>
-                <div class="display-font text-xl font-extrabold italic mt-1" style="color:var(--accent);">live deals & seasonal drops</div>
+                <div class="eyebrow" style="font-size: 0.62rem">Outcome</div>
+                <div
+                  class="display-font text-xl font-extrabold italic mt-1"
+                  style="color: var(--accent)"
+                >
+                  live deals & seasonal drops
+                </div>
               </div>
-                    <a href="https://zaidalicara.netlify.app/" target="_blank" rel="noopener" 
-   style="display:inline-flex;align-items:center;gap:8px;margin-top:14px;padding:8px 18px;border:2px solid var(--border);border-radius:999px;font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);background:transparent;text-decoration:none;transition:all .2s;" 
-   onmouseover="this.style.background='rgba(57,255,20,0.08)'" 
-   onmouseout="this.style.background='transparent'">
-  <span style="width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 8px rgba(57,255,20,0.6);"></span>
-  View Live
-</a>
+              <a
+                href="https://zaidalicara.netlify.app/"
+                target="_blank"
+                rel="noopener"
+                style="
+                  display: inline-flex;
+                  align-items: center;
+                  gap: 8px;
+                  margin-top: 14px;
+                  padding: 8px 18px;
+                  border: 2px solid var(--border);
+                  border-radius: 999px;
+                  font-size: 0.75rem;
+                  letter-spacing: 0.08em;
+                  text-transform: uppercase;
+                  color: var(--accent);
+                  background: transparent;
+                  text-decoration: none;
+                  transition: all 0.2s;
+                "
+                onmouseover="this.style.background = 'rgba(57,255,20,0.08)'"
+                onmouseout="this.style.background = 'transparent'"
+              >
+                <span
+                  style="
+                    width: 6px;
+                    height: 6px;
+                    border-radius: 50%;
+                    background: var(--accent);
+                    box-shadow: 0 0 8px rgba(57, 255, 20, 0.6);
+                  "
+                ></span>
+                View Live
+              </a>
             </div>
           </div>
         </div>
 
         <!-- ===== PROJECT 10 — Full bleed spotlight (final) ===== -->
         <div class="proj-spotlight reveal" data-categories="web uiux">
-          <img src="https://images.unsplash.com/photo-1559136555-9303baea8ebd?auto=format&fit=crop&w=1600&q=80" alt="Stratum Agency Site" class="proj-thumb w-full" style="height:400px;" />
+          <img
+            src="https://images.unsplash.com/photo-1559136555-9303baea8ebd?auto=format&fit=crop&w=1600&q=80"
+            alt="Stratum Agency Site"
+            class="proj-thumb w-full"
+            style="height: 400px"
+          />
           <div class="proj-overlay"></div>
           <div class="proj-content">
-            <div class="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+            <div
+              class="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between"
+            >
               <div>
                 <div class="flex items-center gap-3 mb-4">
                   <span class="proj-tag accent">Agency Website</span>
                   <span class="proj-tag">Cinematic UX</span>
-                  <span class="proj-num" style="font-size:2rem;color:rgba(57,255,20,0.18)">10</span>
+                  <span
+                    class="proj-num"
+                    style="font-size: 2rem; color: rgba(57, 255, 20, 0.18)"
+                    >10</span
+                  >
                 </div>
-                <h3 class="display-font text-4xl font-extrabold italic leading-tight lg:text-5xl" style="color:var(--text-primary);">Stratum — Premium Agency Digital Presence</h3>
-                <p class="mt-3 max-w-2xl text-base leading-7" style="color:var(--text-secondary);">Full cinematic agency site with Three.js 3D hero, scroll-driven storytelling, animated service sections, and a structured content system built for conversions.</p>
+                <h3
+                  class="display-font text-4xl font-extrabold italic leading-tight lg:text-5xl"
+                  style="color: var(--text-primary)"
+                >
+                  Stratum — Premium Agency Digital Presence
+                </h3>
+                <p
+                  class="mt-3 max-w-2xl text-base leading-7"
+                  style="color: var(--text-secondary)"
+                >
+                  Full cinematic agency site with Three.js 3D hero,
+                  scroll-driven storytelling, animated service sections, and a
+                  structured content system built for conversions.
+                </p>
                 <div class="mt-4 flex flex-wrap gap-2">
-                  <span class="tech-pill">React</span><span class="tech-pill">Three.js</span><span class="tech-pill">GSAP</span><span class="tech-pill">Lenis</span>
+                  <span class="tech-pill">React</span
+                  ><span class="tech-pill">Three.js</span
+                  ><span class="tech-pill">GSAP</span
+                  ><span class="tech-pill">Lenis</span>
                 </div>
               </div>
               <div class="result-badge flex-shrink-0">
-                <div class="eyebrow" style="font-size:.64rem;">Outcome</div>
-                <div class="display-font text-2xl font-extrabold italic mt-1" style="color:var(--accent);">2.8x inquiry rate</div>
+                <div class="eyebrow" style="font-size: 0.64rem">Outcome</div>
+                <div
+                  class="display-font text-2xl font-extrabold italic mt-1"
+                  style="color: var(--accent)"
+                >
+                  2.8x inquiry rate
+                </div>
               </div>
-                    <a href="URL_HERE" target="_blank" rel="noopener" 
-   style="display:inline-flex;align-items:center;gap:8px;margin-top:14px;padding:8px 18px;border:2px solid var(--border);border-radius:999px;font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);background:transparent;text-decoration:none;transition:all .2s;" 
-   onmouseover="this.style.background='rgba(57,255,20,0.08)'" 
-   onmouseout="this.style.background='transparent'">
-  <span style="width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 8px rgba(57,255,20,0.6);"></span>
-  View Live
-</a>
+              <a
+                href="URL_HERE"
+                target="_blank"
+                rel="noopener"
+                style="
+                  display: inline-flex;
+                  align-items: center;
+                  gap: 8px;
+                  margin-top: 14px;
+                  padding: 8px 18px;
+                  border: 2px solid var(--border);
+                  border-radius: 999px;
+                  font-size: 0.75rem;
+                  letter-spacing: 0.08em;
+                  text-transform: uppercase;
+                  color: var(--accent);
+                  background: transparent;
+                  text-decoration: none;
+                  transition: all 0.2s;
+                "
+                onmouseover="this.style.background = 'rgba(57,255,20,0.08)'"
+                onmouseout="this.style.background = 'transparent'"
+              >
+                <span
+                  style="
+                    width: 6px;
+                    height: 6px;
+                    border-radius: 50%;
+                    background: var(--accent);
+                    box-shadow: 0 0 8px rgba(57, 255, 20, 0.6);
+                  "
+                ></span>
+                View Live
+              </a>
             </div>
           </div>
         </div>
-
       </div>
     </section>
 
     <!-- ===================== IMPACT METRICS SECTION ===================== -->
-    <section class="section-frame relative py-24 lg:py-32" style="background:linear-gradient(180deg,transparent,rgba(57,255,20,0.03),transparent);">
+    <section
+      class="section-frame relative py-24 lg:py-32"
+      style="
+        background: linear-gradient(
+          180deg,
+          transparent,
+          rgba(57, 255, 20, 0.03),
+          transparent
+        );
+      "
+    >
       <div class="site-shell">
         <div class="text-center mb-14 reveal">
           <div class="section-kicker">By the numbers</div>
-          <h2 class="display-font mt-4 text-4xl font-extrabold italic leading-[0.96] tracking-[-0.04em] lg:text-6xl" style="color:var(--text-primary);">
+          <h2
+            class="display-font mt-4 text-4xl font-extrabold italic leading-[0.96] tracking-[-0.04em] lg:text-6xl"
+            style="color: var(--text-primary)"
+          >
             Results that compound.
           </h2>
         </div>
 
         <!-- Scrolling outcomes -->
-        <div class="marquee mt-14 reveal" style="mask-image:linear-gradient(90deg,transparent,black 12%,black 88%,transparent);">
+        <div
+          class="marquee mt-14 reveal"
+          style="
+            mask-image: linear-gradient(
+              90deg,
+              transparent,
+              black 12%,
+              black 88%,
+              transparent
+            );
+          "
+        >
           <div class="metrics-track">
-            <div class="mono-font whitespace-nowrap px-8 py-3 text-sm uppercase tracking-[0.14em]" style="color:var(--text-muted);">42% faster resolution<span class="mx-6" style="color:var(--accent)">→</span></div>
-            <div class="mono-font whitespace-nowrap px-8 py-3 text-sm uppercase tracking-[0.14em]" style="color:var(--text-muted);">67% ticket reduction<span class="mx-6" style="color:var(--accent)">→</span></div>
-            <div class="mono-font whitespace-nowrap px-8 py-3 text-sm uppercase tracking-[0.14em]" style="color:var(--text-muted);">91% stakeholder approval<span class="mx-6" style="color:var(--accent)">→</span></div>
-            <div class="mono-font whitespace-nowrap px-8 py-3 text-sm uppercase tracking-[0.14em]" style="color:var(--text-muted);">+38% conversions<span class="mx-6" style="color:var(--accent)">→</span></div>
-            <div class="mono-font whitespace-nowrap px-8 py-3 text-sm uppercase tracking-[0.14em]" style="color:var(--text-muted);">4.8★ app rating<span class="mx-6" style="color:var(--accent)">→</span></div>
-            <div class="mono-font whitespace-nowrap px-8 py-3 text-sm uppercase tracking-[0.14em]" style="color:var(--text-muted);">18hrs/week saved<span class="mx-6" style="color:var(--accent)">→</span></div>
-            <div class="mono-font whitespace-nowrap px-8 py-3 text-sm uppercase tracking-[0.14em]" style="color:var(--text-muted);">2.8x inquiry rate<span class="mx-6" style="color:var(--accent)">→</span></div>
-            <div class="mono-font whitespace-nowrap px-8 py-3 text-sm uppercase tracking-[0.14em]" style="color:var(--text-muted);">3x user retention<span class="mx-6" style="color:var(--accent)">→</span></div>
+            <div
+              class="mono-font whitespace-nowrap px-8 py-3 text-sm uppercase tracking-[0.14em]"
+              style="color: var(--text-muted)"
+            >
+              42% faster resolution<span
+                class="mx-6"
+                style="color: var(--accent)"
+                >→</span
+              >
+            </div>
+            <div
+              class="mono-font whitespace-nowrap px-8 py-3 text-sm uppercase tracking-[0.14em]"
+              style="color: var(--text-muted)"
+            >
+              67% ticket reduction<span
+                class="mx-6"
+                style="color: var(--accent)"
+                >→</span
+              >
+            </div>
+            <div
+              class="mono-font whitespace-nowrap px-8 py-3 text-sm uppercase tracking-[0.14em]"
+              style="color: var(--text-muted)"
+            >
+              91% stakeholder approval<span
+                class="mx-6"
+                style="color: var(--accent)"
+                >→</span
+              >
+            </div>
+            <div
+              class="mono-font whitespace-nowrap px-8 py-3 text-sm uppercase tracking-[0.14em]"
+              style="color: var(--text-muted)"
+            >
+              +38% conversions<span class="mx-6" style="color: var(--accent)"
+                >→</span
+              >
+            </div>
+            <div
+              class="mono-font whitespace-nowrap px-8 py-3 text-sm uppercase tracking-[0.14em]"
+              style="color: var(--text-muted)"
+            >
+              4.8★ app rating<span class="mx-6" style="color: var(--accent)"
+                >→</span
+              >
+            </div>
+            <div
+              class="mono-font whitespace-nowrap px-8 py-3 text-sm uppercase tracking-[0.14em]"
+              style="color: var(--text-muted)"
+            >
+              18hrs/week saved<span class="mx-6" style="color: var(--accent)"
+                >→</span
+              >
+            </div>
+            <div
+              class="mono-font whitespace-nowrap px-8 py-3 text-sm uppercase tracking-[0.14em]"
+              style="color: var(--text-muted)"
+            >
+              2.8x inquiry rate<span class="mx-6" style="color: var(--accent)"
+                >→</span
+              >
+            </div>
+            <div
+              class="mono-font whitespace-nowrap px-8 py-3 text-sm uppercase tracking-[0.14em]"
+              style="color: var(--text-muted)"
+            >
+              3x user retention<span class="mx-6" style="color: var(--accent)"
+                >→</span
+              >
+            </div>
             <!-- repeat -->
-            <div class="mono-font whitespace-nowrap px-8 py-3 text-sm uppercase tracking-[0.14em]" style="color:var(--text-muted);">42% faster resolution<span class="mx-6" style="color:var(--accent)">→</span></div>
-            <div class="mono-font whitespace-nowrap px-8 py-3 text-sm uppercase tracking-[0.14em]" style="color:var(--text-muted);">67% ticket reduction<span class="mx-6" style="color:var(--accent)">→</span></div>
-            <div class="mono-font whitespace-nowrap px-8 py-3 text-sm uppercase tracking-[0.14em]" style="color:var(--text-muted);">91% stakeholder approval<span class="mx-6" style="color:var(--accent)">→</span></div>
-            <div class="mono-font whitespace-nowrap px-8 py-3 text-sm uppercase tracking-[0.14em]" style="color:var(--text-muted);">+38% conversions<span class="mx-6" style="color:var(--accent)">→</span></div>
-            <div class="mono-font whitespace-nowrap px-8 py-3 text-sm uppercase tracking-[0.14em]" style="color:var(--text-muted);">4.8★ app rating<span class="mx-6" style="color:var(--accent)">→</span></div>
-            <div class="mono-font whitespace-nowrap px-8 py-3 text-sm uppercase tracking-[0.14em]" style="color:var(--text-muted);">18hrs/week saved<span class="mx-6" style="color:var(--accent)">→</span></div>
-            <div class="mono-font whitespace-nowrap px-8 py-3 text-sm uppercase tracking-[0.14em]" style="color:var(--text-muted);">2.8x inquiry rate<span class="mx-6" style="color:var(--accent)">→</span></div>
-            <div class="mono-font whitespace-nowrap px-8 py-3 text-sm uppercase tracking-[0.14em]" style="color:var(--text-muted);">3x user retention<span class="mx-6" style="color:var(--accent)">→</span></div>
+            <div
+              class="mono-font whitespace-nowrap px-8 py-3 text-sm uppercase tracking-[0.14em]"
+              style="color: var(--text-muted)"
+            >
+              42% faster resolution<span
+                class="mx-6"
+                style="color: var(--accent)"
+                >→</span
+              >
+            </div>
+            <div
+              class="mono-font whitespace-nowrap px-8 py-3 text-sm uppercase tracking-[0.14em]"
+              style="color: var(--text-muted)"
+            >
+              67% ticket reduction<span
+                class="mx-6"
+                style="color: var(--accent)"
+                >→</span
+              >
+            </div>
+            <div
+              class="mono-font whitespace-nowrap px-8 py-3 text-sm uppercase tracking-[0.14em]"
+              style="color: var(--text-muted)"
+            >
+              91% stakeholder approval<span
+                class="mx-6"
+                style="color: var(--accent)"
+                >→</span
+              >
+            </div>
+            <div
+              class="mono-font whitespace-nowrap px-8 py-3 text-sm uppercase tracking-[0.14em]"
+              style="color: var(--text-muted)"
+            >
+              +38% conversions<span class="mx-6" style="color: var(--accent)"
+                >→</span
+              >
+            </div>
+            <div
+              class="mono-font whitespace-nowrap px-8 py-3 text-sm uppercase tracking-[0.14em]"
+              style="color: var(--text-muted)"
+            >
+              4.8★ app rating<span class="mx-6" style="color: var(--accent)"
+                >→</span
+              >
+            </div>
+            <div
+              class="mono-font whitespace-nowrap px-8 py-3 text-sm uppercase tracking-[0.14em]"
+              style="color: var(--text-muted)"
+            >
+              18hrs/week saved<span class="mx-6" style="color: var(--accent)"
+                >→</span
+              >
+            </div>
+            <div
+              class="mono-font whitespace-nowrap px-8 py-3 text-sm uppercase tracking-[0.14em]"
+              style="color: var(--text-muted)"
+            >
+              2.8x inquiry rate<span class="mx-6" style="color: var(--accent)"
+                >→</span
+              >
+            </div>
+            <div
+              class="mono-font whitespace-nowrap px-8 py-3 text-sm uppercase tracking-[0.14em]"
+              style="color: var(--text-muted)"
+            >
+              3x user retention<span class="mx-6" style="color: var(--accent)"
+                >→</span
+              >
+            </div>
           </div>
         </div>
       </div>
@@ -1105,49 +2673,117 @@
         <div class="grid gap-12 lg:grid-cols-[0.65fr_1.35fr] lg:items-start">
           <div class="reveal">
             <div class="section-kicker">Our Build Approach</div>
-            <h2 class="display-font mt-4 text-4xl font-extrabold italic leading-[0.95] tracking-[-0.04em] lg:text-5xl" style="color:var(--text-primary);max-width:10ch;">
+            <h2
+              class="display-font mt-4 text-4xl font-extrabold italic leading-[0.95] tracking-[-0.04em] lg:text-5xl"
+              style="color: var(--text-primary); max-width: 10ch"
+            >
               From signal to shipped product.
             </h2>
-            <p class="mt-6 text-base leading-8 lg:text-lg" style="color:var(--text-secondary);max-width:28rem;">
-              Every project in this portfolio followed a tight process designed to eliminate ambiguity and maximise launch impact.
+            <p
+              class="mt-6 text-base leading-8 lg:text-lg"
+              style="color: var(--text-secondary); max-width: 28rem"
+            >
+              Every project in this portfolio followed a tight process designed
+              to eliminate ambiguity and maximise launch impact.
             </p>
-            <a href="contact.html" class="display-font mt-8 inline-flex items-center justify-center rounded-full px-6 py-3.5 text-base font-bold transition-all hover:-translate-y-1"
-               style="background:var(--accent);color:#081008;box-shadow:0 0 36px rgba(57,255,20,0.16);">
+            <a
+              href="contact.html"
+              class="display-font mt-8 inline-flex items-center justify-center rounded-full px-6 py-3.5 text-base font-bold transition-all hover:-translate-y-1"
+              style="
+                background: var(--accent);
+                color: #081008;
+                box-shadow: 0 0 36px rgba(57, 255, 20, 0.16);
+              "
+            >
               Start a Project
             </a>
           </div>
 
           <div class="grid gap-4 sm:grid-cols-2 reveal">
             <div class="process-mini-card">
-              <div class="eyebrow" style="font-size:.64rem;">Step 01</div>
-              <div class="display-font text-2xl font-extrabold italic mt-3" style="color:var(--text-primary);">Discovery</div>
-              <p class="mt-3 text-sm leading-7" style="color:var(--text-secondary);">Deep-dive into market tension, audience pressure, and experience gaps. Scope, research, and a clear product roadmap before any pixel is drawn.</p>
+              <div class="eyebrow" style="font-size: 0.64rem">Step 01</div>
+              <div
+                class="display-font text-2xl font-extrabold italic mt-3"
+                style="color: var(--text-primary)"
+              >
+                Discovery
+              </div>
+              <p
+                class="mt-3 text-sm leading-7"
+                style="color: var(--text-secondary)"
+              >
+                Deep-dive into market tension, audience pressure, and experience
+                gaps. Scope, research, and a clear product roadmap before any
+                pixel is drawn.
+              </p>
               <div class="mt-4 flex flex-wrap gap-2">
-                <span class="tech-pill">Research</span><span class="tech-pill">Scoping</span><span class="tech-pill">Roadmap</span>
+                <span class="tech-pill">Research</span
+                ><span class="tech-pill">Scoping</span
+                ><span class="tech-pill">Roadmap</span>
               </div>
             </div>
             <div class="process-mini-card">
-              <div class="eyebrow" style="font-size:.64rem;">Step 02</div>
-              <div class="display-font text-2xl font-extrabold italic mt-3" style="color:var(--text-primary);">Design</div>
-              <p class="mt-3 text-sm leading-7" style="color:var(--text-secondary);">Narrative layouts, premium motion systems, and service architecture shaped together so design and engineering move as one.</p>
+              <div class="eyebrow" style="font-size: 0.64rem">Step 02</div>
+              <div
+                class="display-font text-2xl font-extrabold italic mt-3"
+                style="color: var(--text-primary)"
+              >
+                Design
+              </div>
+              <p
+                class="mt-3 text-sm leading-7"
+                style="color: var(--text-secondary)"
+              >
+                Narrative layouts, premium motion systems, and service
+                architecture shaped together so design and engineering move as
+                one.
+              </p>
               <div class="mt-4 flex flex-wrap gap-2">
-                <span class="tech-pill">Wireframes</span><span class="tech-pill">Motion</span><span class="tech-pill">System</span>
+                <span class="tech-pill">Wireframes</span
+                ><span class="tech-pill">Motion</span
+                ><span class="tech-pill">System</span>
               </div>
             </div>
             <div class="process-mini-card">
-              <div class="eyebrow" style="font-size:.64rem;">Step 03</div>
-              <div class="display-font text-2xl font-extrabold italic mt-3" style="color:var(--text-primary);">Build</div>
-              <p class="mt-3 text-sm leading-7" style="color:var(--text-secondary);">From 3D scenes to real product flows — built for performance, maintainability, and measurable business outcomes.</p>
+              <div class="eyebrow" style="font-size: 0.64rem">Step 03</div>
+              <div
+                class="display-font text-2xl font-extrabold italic mt-3"
+                style="color: var(--text-primary)"
+              >
+                Build
+              </div>
+              <p
+                class="mt-3 text-sm leading-7"
+                style="color: var(--text-secondary)"
+              >
+                From 3D scenes to real product flows — built for performance,
+                maintainability, and measurable business outcomes.
+              </p>
               <div class="mt-4 flex flex-wrap gap-2">
-                <span class="tech-pill">Frontend</span><span class="tech-pill">Backend</span><span class="tech-pill">QA</span>
+                <span class="tech-pill">Frontend</span
+                ><span class="tech-pill">Backend</span
+                ><span class="tech-pill">QA</span>
               </div>
             </div>
             <div class="process-mini-card">
-              <div class="eyebrow" style="font-size:.64rem;">Step 04</div>
-              <div class="display-font text-2xl font-extrabold italic mt-3" style="color:var(--text-primary);">Launch</div>
-              <p class="mt-3 text-sm leading-7" style="color:var(--text-secondary);">Analytics, QA loops, and controlled release strategies turn ambitious visuals into dependable production work.</p>
+              <div class="eyebrow" style="font-size: 0.64rem">Step 04</div>
+              <div
+                class="display-font text-2xl font-extrabold italic mt-3"
+                style="color: var(--text-primary)"
+              >
+                Launch
+              </div>
+              <p
+                class="mt-3 text-sm leading-7"
+                style="color: var(--text-secondary)"
+              >
+                Analytics, QA loops, and controlled release strategies turn
+                ambitious visuals into dependable production work.
+              </p>
               <div class="mt-4 flex flex-wrap gap-2">
-                <span class="tech-pill">Analytics</span><span class="tech-pill">Release</span><span class="tech-pill">Iteration</span>
+                <span class="tech-pill">Analytics</span
+                ><span class="tech-pill">Release</span
+                ><span class="tech-pill">Iteration</span>
               </div>
             </div>
           </div>
@@ -1158,28 +2794,67 @@
     <!-- ===================== CTA SECTION ===================== -->
     <section class="relative py-24 lg:py-32">
       <div class="site-shell">
-        <div class="glass-panel relative overflow-hidden rounded-[38px] border px-6 py-12 lg:px-12 lg:py-14" style="border-color:var(--border);">
+        <div
+          class="glass-panel relative overflow-hidden rounded-[38px] border px-6 py-12 lg:px-12 lg:py-14"
+          style="border-color: var(--border)"
+        >
           <div class="cta-image-panel"></div>
-          <div class="hero-spotlight" style="width:30rem;height:30rem;top:-12rem;right:-8rem;background:radial-gradient(circle,rgba(57,255,20,0.14),transparent 64%);"></div>
-          <div class="relative z-10 grid gap-8 lg:grid-cols-[1fr_auto] lg:items-end">
+          <div
+            class="hero-spotlight"
+            style="
+              width: 30rem;
+              height: 30rem;
+              top: -12rem;
+              right: -8rem;
+              background: radial-gradient(
+                circle,
+                rgba(57, 255, 20, 0.14),
+                transparent 64%
+              );
+            "
+          ></div>
+          <div
+            class="relative z-10 grid gap-8 lg:grid-cols-[1fr_auto] lg:items-end"
+          >
             <div class="reveal">
               <div class="section-kicker">Ready to be next?</div>
-              <h2 class="display-font mt-4 text-4xl font-extrabold italic leading-[0.94] tracking-[-0.04em] lg:text-6xl" style="color:var(--text-primary);max-width:11ch;">
+              <h2
+                class="display-font mt-4 text-4xl font-extrabold italic leading-[0.94] tracking-[-0.04em] lg:text-6xl"
+                style="color: var(--text-primary); max-width: 11ch"
+              >
                 Your project belongs in this portfolio.
               </h2>
-              <p class="mt-6 max-w-2xl text-base leading-8 lg:text-lg" style="color:var(--text-secondary);">
-                We've built 10 ambitious products. Each one solved a real problem with premium engineering and cinematic design. Let's build yours next.
+              <p
+                class="mt-6 max-w-2xl text-base leading-8 lg:text-lg"
+                style="color: var(--text-secondary)"
+              >
+                We've built 10 ambitious products. Each one solved a real
+                problem with premium engineering and cinematic design. Let's
+                build yours next.
               </p>
             </div>
             <div class="reveal flex flex-col gap-4 sm:flex-row lg:flex-col">
-              <a href="/contact.html"
-                 class="display-font inline-flex items-center justify-center rounded-full px-7 py-4 text-base font-bold transition-all hover:-translate-y-1"
-                 style="background:var(--accent);color:#081008;box-shadow:0 0 42px rgba(57,255,20,0.18),0 22px 60px rgba(57,255,20,0.12);">
+              <a
+                href="/contact.html"
+                class="display-font inline-flex items-center justify-center rounded-full px-7 py-4 text-base font-bold transition-all hover:-translate-y-1"
+                style="
+                  background: var(--accent);
+                  color: #081008;
+                  box-shadow:
+                    0 0 42px rgba(57, 255, 20, 0.18),
+                    0 22px 60px rgba(57, 255, 20, 0.12);
+                "
+              >
                 Start a Project
               </a>
-              <a href="index.html"
-                 class="display-font inline-flex items-center justify-center rounded-full border px-7 py-4 text-base font-bold transition-all hover:-translate-y-1"
-                 style="border-color:var(--border-strong);color:var(--text-primary);">
+              <a
+                href="index.html"
+                class="display-font inline-flex items-center justify-center rounded-full border px-7 py-4 text-base font-bold transition-all hover:-translate-y-1"
+                style="
+                  border-color: var(--border-strong);
+                  color: var(--text-primary);
+                "
+              >
                 Back to Home
               </a>
             </div>
@@ -1200,81 +2875,96 @@
       const footerRoot = document.getElementById("footer-root");
       if (footerRoot) ReactDOM.createRoot(footerRoot).render(<Footer />);
       const whatsappFabRoot = document.getElementById("whatsapp-fab-root");
-      if (whatsappFabRoot) ReactDOM.createRoot(whatsappFabRoot).render(<WhatsAppFAB />);
+      if (whatsappFabRoot)
+        ReactDOM.createRoot(whatsappFabRoot).render(<WhatsAppFAB />);
     </script>
-
 
     <script>
       // ===== CURSOR =====
       if (window.innerWidth >= 1024) {
-        const dot = document.getElementById('cur-dot');
-        const ring = document.getElementById('cur-ring');
-        dot.style.opacity = '1'; ring.style.opacity = '1';
-        let dx = 0, dy = 0, rx = 0, ry = 0;
-        window.addEventListener('mousemove', e => {
-          dx = e.clientX; dy = e.clientY;
+        const dot = document.getElementById("cur-dot");
+        const ring = document.getElementById("cur-ring");
+        dot.style.opacity = "1";
+        ring.style.opacity = "1";
+        let dx = 0,
+          dy = 0,
+          rx = 0,
+          ry = 0;
+        window.addEventListener("mousemove", (e) => {
+          dx = e.clientX;
+          dy = e.clientY;
         });
         const lerp = (a, b, t) => a + (b - a) * t;
         const loop = () => {
-          dot.style.left = dx + 'px'; dot.style.top = dy + 'px';
-          rx = lerp(rx, dx, 0.12); ry = lerp(ry, dy, 0.12);
-          ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+          dot.style.left = dx + "px";
+          dot.style.top = dy + "px";
+          rx = lerp(rx, dx, 0.12);
+          ry = lerp(ry, dy, 0.12);
+          ring.style.left = rx + "px";
+          ring.style.top = ry + "px";
           requestAnimationFrame(loop);
         };
         loop();
-        document.querySelectorAll('a, button, [data-hover]').forEach(el => {
-          el.addEventListener('mouseenter', () => ring.classList.add('is-hovering'));
-          el.addEventListener('mouseleave', () => ring.classList.remove('is-hovering'));
+        document.querySelectorAll("a, button, [data-hover]").forEach((el) => {
+          el.addEventListener("mouseenter", () =>
+            ring.classList.add("is-hovering"),
+          );
+          el.addEventListener("mouseleave", () =>
+            ring.classList.remove("is-hovering"),
+          );
         });
       }
 
-
       // ===== SCROLL REVEAL =====
-      const reveals = document.querySelectorAll('.reveal');
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry, i) => {
-          if (entry.isIntersecting) {
-            entry.target.style.animationDelay = (Array.from(reveals).indexOf(entry.target) % 4) * 80 + 'ms';
-            entry.target.classList.add('visible');
-            observer.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.12 });
-      reveals.forEach(el => observer.observe(el));
+      const reveals = document.querySelectorAll(".reveal");
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry, i) => {
+            if (entry.isIntersecting) {
+              entry.target.style.animationDelay =
+                (Array.from(reveals).indexOf(entry.target) % 4) * 80 + "ms";
+              entry.target.classList.add("visible");
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.12 },
+      );
+      reveals.forEach((el) => observer.observe(el));
 
       // ===== FILTER BUTTONS =====
-      const filterBtns = document.querySelectorAll('.filter-btn');
-      const projItems = document.querySelectorAll('[data-categories]');
+      const filterBtns = document.querySelectorAll(".filter-btn");
+      const projItems = document.querySelectorAll("[data-categories]");
 
-      filterBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-          filterBtns.forEach(b => b.classList.remove('active'));
-          btn.classList.add('active');
+      filterBtns.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          filterBtns.forEach((b) => b.classList.remove("active"));
+          btn.classList.add("active");
           const filter = btn.dataset.filter;
-          projItems.forEach(item => {
-            const cats = item.dataset.categories || '';
-            const show = filter === 'all' || cats.includes(filter);
-            item.style.transition = 'opacity .35s ease, transform .35s ease';
+          projItems.forEach((item) => {
+            const cats = item.dataset.categories || "";
+            const show = filter === "all" || cats.includes(filter);
+            item.style.transition = "opacity .35s ease, transform .35s ease";
             if (show) {
-              item.style.opacity = '1';
-              item.style.transform = 'translateY(0)';
-              item.style.pointerEvents = 'auto';
+              item.style.opacity = "1";
+              item.style.transform = "translateY(0)";
+              item.style.pointerEvents = "auto";
             } else {
-              item.style.opacity = '0.18';
-              item.style.transform = 'translateY(8px)';
-              item.style.pointerEvents = 'none';
+              item.style.opacity = "0.18";
+              item.style.transform = "translateY(8px)";
+              item.style.pointerEvents = "none";
             }
           });
         });
       });
 
       // ===== SMOOTH SCROLL =====
-      document.querySelectorAll('a[href^="#"]').forEach(a => {
-        a.addEventListener('click', e => {
-          const target = document.querySelector(a.getAttribute('href'));
+      document.querySelectorAll('a[href^="#"]').forEach((a) => {
+        a.addEventListener("click", (e) => {
+          const target = document.querySelector(a.getAttribute("href"));
           if (target) {
             e.preventDefault();
-            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            target.scrollIntoView({ behavior: "smooth", block: "start" });
           }
         });
       });

@@ -465,8 +465,12 @@
       }
 
       @keyframes text-shine {
-        0%   { background-position: -200% center; }
-        100% { background-position:  200% center; }
+        0% {
+          background-position: -200% center;
+        }
+        100% {
+          background-position: 200% center;
+        }
       }
 
       .shine-text {
@@ -634,30 +638,107 @@
         color: var(--text-primary);
       }
 
-      .nav-link.active { color: var(--accent); }
+      .nav-link.active {
+        color: var(--accent);
+      }
       /* Services Dropdown */
-      .nav-dropdown-wrap { position: relative; }
-      .nav-dropdown-wrap:hover .nav-dropdown { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); pointer-events: auto; }
+      .nav-dropdown-wrap {
+        position: relative;
+      }
+      .nav-dropdown-wrap:hover .nav-dropdown {
+        opacity: 1;
+        visibility: visible;
+        transform: translateX(-50%) translateY(0);
+        pointer-events: auto;
+      }
       .nav-dropdown {
-        position: absolute; top: calc(100% + 14px); left: 50%; transform: translateX(-50%) translateY(-8px);
-        min-width: 200px; background: rgba(10,13,10,0.98);
-        border: 1px solid var(--border); border-radius: 20px;
-        padding: 10px; opacity: 0; visibility: hidden;
-        transition: opacity 0.22s ease, transform 0.22s ease, visibility 0.22s;
-        backdrop-filter: blur(22px); -webkit-backdrop-filter: blur(22px);
-        box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 30px rgba(57,255,20,0.06);
+        position: absolute;
+        top: calc(100% + 14px);
+        left: 50%;
+        transform: translateX(-50%) translateY(-8px);
+        min-width: 200px;
+        background: rgba(10, 13, 10, 0.98);
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        padding: 10px;
+        opacity: 0;
+        visibility: hidden;
+        transition:
+          opacity 0.22s ease,
+          transform 0.22s ease,
+          visibility 0.22s;
+        backdrop-filter: blur(22px);
+        -webkit-backdrop-filter: blur(22px);
+        box-shadow:
+          0 20px 60px rgba(0, 0, 0, 0.5),
+          0 0 30px rgba(57, 255, 20, 0.06);
         z-index: 100;
       }
-      .nav-dropdown a { display: block; padding: 9px 14px; border-radius: 12px; color: var(--text-secondary); font-size: 0.9rem; font-weight: 500; transition: color 0.2s ease, background 0.2s ease; text-decoration: none; }
-      .nav-dropdown a:hover { color: var(--accent); background: rgba(57,255,20,0.06); }
-      .nav-dropdown-btn { display: flex; align-items: center; gap: 5px; color: var(--text-secondary); transition: color 0.24s ease; font-size: 1rem; font-weight: 500; background: none; border: none; cursor: pointer; font-family: inherit; padding: 0; }
-      .nav-dropdown-wrap:hover .nav-dropdown-btn { color: var(--text-primary); }
-      .nav-dropdown-btn svg { transition: transform 0.22s ease; flex-shrink: 0; }
-      .nav-dropdown-wrap:hover .nav-dropdown-btn svg { transform: rotate(180deg); }
-      .mob-dropdown { display: none; flex-direction: column; gap: 4px; padding: 8px 0; }
-      .mob-dropdown.open { display: flex; }
-      .mob-dropdown a { display: block; padding: 10px 18px; border-radius: 12px; color: var(--text-secondary); font-size: 1rem; font-weight: 500; transition: color 0.2s ease, background 0.2s ease; text-decoration: none; }
-      .mob-dropdown a:hover { color: var(--accent); background: rgba(57,255,20,0.06); }
+      .nav-dropdown a {
+        display: block;
+        padding: 9px 14px;
+        border-radius: 12px;
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+        font-weight: 500;
+        transition:
+          color 0.2s ease,
+          background 0.2s ease;
+        text-decoration: none;
+      }
+      .nav-dropdown a:hover {
+        color: var(--accent);
+        background: rgba(57, 255, 20, 0.06);
+      }
+      .nav-dropdown-btn {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        color: var(--text-secondary);
+        transition: color 0.24s ease;
+        font-size: 1rem;
+        font-weight: 500;
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-family: inherit;
+        padding: 0;
+      }
+      .nav-dropdown-wrap:hover .nav-dropdown-btn {
+        color: var(--text-primary);
+      }
+      .nav-dropdown-btn svg {
+        transition: transform 0.22s ease;
+        flex-shrink: 0;
+      }
+      .nav-dropdown-wrap:hover .nav-dropdown-btn svg {
+        transform: rotate(180deg);
+      }
+      .mob-dropdown {
+        display: none;
+        flex-direction: column;
+        gap: 4px;
+        padding: 8px 0;
+      }
+      .mob-dropdown.open {
+        display: flex;
+      }
+      .mob-dropdown a {
+        display: block;
+        padding: 10px 18px;
+        border-radius: 12px;
+        color: var(--text-secondary);
+        font-size: 1rem;
+        font-weight: 500;
+        transition:
+          color 0.2s ease,
+          background 0.2s ease;
+        text-decoration: none;
+      }
+      .mob-dropdown a:hover {
+        color: var(--accent);
+        background: rgba(57, 255, 20, 0.06);
+      }
 
       .footer-contact-label {
         font-size: 0.7rem;
@@ -789,20 +870,6 @@
         transform: translateY(-6px);
         border-color: var(--border-strong);
         opacity: 1;
-      }
-
-      .blog-feature-grid {
-        background:
-          linear-gradient(180deg, rgba(57, 255, 20, 0.05), transparent 34%),
-          linear-gradient(135deg, rgba(255, 255, 255, 0.03), transparent 42%);
-      }
-
-      .blog-line {
-        background: linear-gradient(
-          180deg,
-          rgba(57, 255, 20, 0.24),
-          rgba(57, 255, 20, 0)
-        );
       }
 
       .case-media {
@@ -1001,30 +1068,35 @@
 
       const serviceData = [
         {
-          title: "AI Systems",
-          tag: "Inference + copilots",
-          text: "Operational AI products with usable interfaces, retrieval layers, guardrails, and measurable workflow impact.",
+          title: "Web Development",
+          tag: "Full-stack & custom built",
+          text: "Full-stack web applications, SaaS platforms, dashboards, and e-commerce engineered for performance and built to scale.",
           span: "lg:col-span-2",
         },
         {
-          title: "Web Platforms",
-          tag: "React + Next generation",
-          text: "Premium product sites and high-performance applications designed to feel editorial, interactive, and conversion-focused.",
+          title: "App Development",
+          tag: "iOS & Android",
+          text: "Cross-platform mobile apps that feel native on every device from MVP to app store deployment.",
         },
         {
-          title: "SaaS Architecture",
-          tag: "Scalable product foundations",
-          text: "Billing, permissions, dashboards, data models, and growth-ready system design without the typical product debt.",
+          title: "AI Integration",
+          tag: "Automation & intelligence",
+          text: "Embed AI into your product chatbots, document intelligence, RAG pipelines, and workflow automation without building an ML team.",
         },
         {
-          title: "Automation",
-          tag: "Ops that move faster",
-          text: "Internal tooling and AI-assisted processes that remove manual bottlenecks across sales, support, and operations.",
+          title: "UI/UX Design",
+          tag: "Design that converts",
+          text: "Interfaces designed around user behaviour wireframes, high-fidelity UI, design systems, and prototypes that reduce friction.",
         },
         {
-          title: "Modern UI/UX",
-          tag: "Trust through interaction",
-          text: "Interfaces that reduce complexity with narrative flow, richer states, and polished motion systems across devices.",
+          title: "SEO",
+          tag: "Rank & get found",
+          text: "Technical SEO, on-page optimisation, and content strategy that drives consistent organic traffic to your product.",
+        },
+        {
+          title: "Digital Marketing",
+          tag: "Grow & acquire",
+          text: "Paid campaigns, social strategy, and conversion-focused marketing that turns visitors into customers.",
         },
       ];
 
@@ -1032,28 +1104,28 @@
         {
           step: "01",
           label: "Discovery",
-          title: "Decode the market tension",
+          title: "Discovery",
           text: "We start with positioning, audience pressure points, and experience gaps so the product story has precision before visuals do.",
           pills: ["Research", "Scoping", "Roadmap"],
         },
         {
           step: "02",
           label: "Design",
-          title: "Design the product theatre",
+          title: "Design",
           text: "Narrative layouts, premium interaction systems, and service architecture are shaped together so design and engineering move as one.",
           pills: ["Direction", "Wireframes", "Motion system"],
         },
         {
           step: "03",
-          label: "Build",
-          title: "Engineer the experience layer",
-          text: "From 3D scenes to real product flows, we build components with performance, maintainability, and business outcomes in mind.",
+          label: "Development",
+          title: "Developement",
+          text: "We build components with performance, maintainability, and business outcomes in mind.",
           pills: ["Frontend", "3D", "QA"],
         },
         {
           step: "04",
           label: "Launch",
-          title: "Launch with a measured glow",
+          title: "Launch & QA",
           text: "Analytics, QA, iteration loops, and controlled release strategies turn ambitious visuals into dependable production work.",
           pills: ["Analytics", "Release", "Iteration"],
         },
@@ -1061,31 +1133,34 @@
 
       const caseData = [
         {
-          title: "Cortex Ops",
-          label: "AI Workflow Platform",
+          title: "Funnel Plane",
+          label: "Digital Marketing Platform",
           outcome:
-            "42% faster internal resolution time after replacing fragmented manual ops with an AI-enabled command layer.",
+            "Built a full-service digital growth platform covering Google Ads, Meta Ads, SEO, AI Voice Agents, and CRM automation — all under one brand.",
           image:
-            "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80",
-          imageAlt: "Analytics dashboard visualizing AI operations",
+            "https://plus.unsplash.com/premium_photo-1683133974170-762dc561d292?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8YnVzaW5lc3N8ZW58MHx8MHx8fDA%3D",
+          imageAlt: "Funnel Plane digital marketing platform",
+          link: "https://www.funnelplane.com",
         },
         {
-          title: "Helio Commerce",
-          label: "Scalable SaaS Rebuild",
+          title: "Ember Realtors",
+          label: "Luxury Real Estate Website",
           outcome:
-            "Repositioned the product and rebuilt the frontend into a faster, cleaner customer journey with stronger enterprise trust.",
+            "Designed and built a premium real estate platform for a global luxury property firm — with property listings, agent profiles, and a high-end visual identity.",
           image:
-            "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80",
-          imageAlt: "Commerce analytics and business growth dashboard",
+            "https://plus.unsplash.com/premium_photo-1661902934269-17eaf4b04f9f?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8bHV4dXJ5JTIwaG9tZXN8ZW58MHx8MHx8fDA%3D",
+          imageAlt: "Ember Realtors luxury real estate website",
+          link: "https://www.emberrealtors.com",
         },
         {
-          title: "Nova Pulse",
-          label: "Modern Product Launch",
+          title: "Run It Remote",
+          label: "Lead Generation & Sales Platform",
           outcome:
-            "Created a launch system combining immersive storytelling, modular CMS control, and a memorable premium visual identity.",
+            "Launched a conversion-focused website for a cold calling and lead generation agency — built around services, industries, and a clear client acquisition flow.",
           image:
-            "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=80",
-          imageAlt: "Product launch website and development workspace",
+            "https://images.unsplash.com/photo-1551583899-d3f6258ec7c9?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8Y2FsbGluZyUyMGhlYWRwaG9uZSUyMG1lbnxlbnwwfHwwfHx8MA%3D%3D ",
+          imageAlt: "Run It Remote cold calling and lead generation website",
+          link: "https://runit-remote.netlify.app",
         },
       ];
 
@@ -1113,32 +1188,7 @@
         },
       ];
 
-      const blogData = [
-        {
-          title:
-            "Why premium agency websites now behave more like product demos",
-          meta: "Strategy / 06 min read",
-          blurb:
-            "Modern software brands win faster when the homepage explains capability through rhythm, depth, and interaction instead of static blocks.",
-        },
-        {
-          title:
-            "Designing AI landing pages without falling into generic SaaS patterns",
-          meta: "AI UX / 04 min read",
-          blurb:
-            "The strongest AI visuals do not rely on random blobs. They use structure, confidence, and a system-level point of view.",
-        },
-        {
-          title:
-            "Scroll direction as storytelling: making motion feel premium, not noisy",
-          meta: "Motion / 05 min read",
-          blurb:
-            "Advanced animation feels expensive when it has restraint, spatial logic, and enough pause for content to land.",
-        },
-      ];
-
       const logos = [
-        "OpenAI-ready",
         "Enterprise-grade",
         "Realtime systems",
         "Launch partners",
@@ -1170,6 +1220,13 @@
             ))}
           </span>
         );
+      }
+
+      function slugifyProjectTitle(title) {
+        return title
+          .toLowerCase()
+          .replace(/[^a-z0-9]+/g, "-")
+          .replace(/^-|-$/g, "");
       }
 
       function CursorSystem() {
@@ -1509,8 +1566,8 @@
             />
 
             <div className="site-shell relative z-10 flex min-h-[calc(100svh-5rem)] items-center py-6 lg:py-4">
-              <div className="grid w-full gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:gap-10">
-                <div className="hero-copy lg:pt-10">
+              <div className="grid w-full gap-8 lg:grid-cols-[0.88fr_1.12fr] lg:items-center lg:gap-16 xl:gap-20">
+                <div className="hero-copy lg:-translate-y-4 lg:pt-0">
                   <div
                     data-reveal
                     className="glass-panel inline-flex items-center gap-3 rounded-full px-4 py-2"
@@ -1519,18 +1576,18 @@
                     <span className="eyebrow">AI-native software agency</span>
                   </div>
 
-                  <h1 className="headline-italics mt-6 pr-[0.1em] text-[clamp(2.8rem,7vw,6.8rem)]" style={{ WebkitFontSmoothing: 'antialiased' }}>
+                  <h1
+                    className="headline-italics mt-6 pr-[0.1em] text-[clamp(2.8rem,7vw,6.8rem)]"
+                    style={{ WebkitFontSmoothing: "antialiased" }}
+                  >
                     <span className="shine-text">
-                      <SplitWords text="Building Digital" />
+                      <SplitWords text="Your Product," />
                     </span>
                     <br />
-                    <span className="shine-text">
-                      <SplitWords text="Experiences That" />
+                    <span className="shine-text-accent inline-block lg:whitespace-nowrap">
+                      <SplitWords text="Built Right." />
                     </span>
                     <br />
-                    <span className="shine-text-accent">
-                      <SplitWords text="Feel Alive" />
-                    </span>
                   </h1>
 
                   <p
@@ -1548,7 +1605,7 @@
                     className="section-reveal mt-7 flex flex-col gap-4 sm:flex-row"
                   >
                     <MotionA
-                      href="#contact"
+                      href="contact.html"
                       whileHover={{ y: -3, scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
                       className="display-font inline-flex items-center justify-center rounded-full px-7 py-4 text-base font-bold text-[#081008]"
@@ -1561,7 +1618,7 @@
                       Start a Project
                     </MotionA>
                     <MotionA
-                      href="#work"
+                      href="portfolio.html"
                       whileHover={{ y: -3 }}
                       whileTap={{ scale: 0.98 }}
                       className="display-font inline-flex items-center justify-center rounded-full border px-7 py-4 text-base font-bold"
@@ -1594,7 +1651,7 @@
                   </div>
                 </div>
 
-                <div className="relative mt-4 lg:-translate-y-14 lg:mt-0">
+                <div className="relative mt-6 lg:translate-x-4 lg:-translate-y-4 lg:mt-0 xl:translate-x-8 xl:-translate-y-6">
                   <div className="orbital-line left-[7%] top-[8%] h-[82%] w-[82%]" />
                   <div className="orbital-line left-[18%] top-[18%] h-[58%] w-[58%]" />
 
@@ -1609,16 +1666,16 @@
                       <div className="grid gap-4 lg:grid-cols-[1.2fr_0.8fr]">
                         <div className="glass-panel rounded-[20px] px-4 py-4">
                           <div className="mini-label mono-font">
-                            Agency OS / live deployment mesh
+                            Client projects / active
                           </div>
                           <div className="mt-3 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                             <div>
                               <div className="display-font text-lg font-bold italic">
-                                Realtime build intelligence
+                                Currently In Production
                               </div>
                               <p className="mt-1 text-sm text-[var(--text-secondary)]">
-                                AI, SaaS, interface systems, and automation
-                                layers moving inside one product surface.
+                                Actively building products for clients across
+                                web, mobile, and AI.
                               </p>
                             </div>
                             <div className="rounded-full border border-[var(--border)] px-3 py-2 mono-font text-xs text-[var(--accent)]">
@@ -1629,27 +1686,24 @@
 
                         <div className="glass-panel rounded-[20px] px-4 py-4">
                           <div className="mini-label mono-font">
-                            Signal quality
+                            Project health
                           </div>
-                          <div className="mt-4 grid gap-3">
-                            <div className="flex items-center justify-between text-sm text-[var(--text-secondary)]">
-                              <span>Design system cohesion</span>
-                              <span className="text-[var(--text-primary)]">
-                                94%
-                              </span>
-                            </div>
-                            <div className="h-2 rounded-full bg-[rgba(255,255,255,0.05)]">
-                              <div className="h-full w-[94%] rounded-full bg-[var(--accent)]" />
-                            </div>
-                            <div className="flex items-center justify-between text-sm text-[var(--text-secondary)]">
-                              <span>Automation adoption</span>
-                              <span className="text-[var(--text-primary)]">
-                                88%
-                              </span>
-                            </div>
-                            <div className="h-2 rounded-full bg-[rgba(255,255,255,0.05)]">
-                              <div className="h-full w-[88%] rounded-full bg-[var(--accent)]" />
-                            </div>
+                          <div className="mt-4 space-y-3">
+                            {[
+                              ["Delivery timeline", "on track"],
+                              ["QA review", "stable"],
+                              ["Client feedback", "positive"],
+                            ].map(([label, status]) => (
+                              <div
+                                key={label}
+                                className="flex items-center justify-between text-sm text-[var(--text-secondary)]"
+                              >
+                                <span>{label}</span>
+                                <span className="text-[var(--accent)]">
+                                  {status}
+                                </span>
+                              </div>
+                            ))}
                           </div>
                         </div>
                       </div>
@@ -1660,8 +1714,7 @@
                             AI powered
                           </div>
                           <div className="mt-3 display-font text-xl font-extrabold italic leading-tight sm:text-2xl">
-                            Software systems that look premium and operate like
-                            products.
+                            One team. Six services. Delivered end to end.
                           </div>
                         </div>
 
@@ -1671,10 +1724,12 @@
                           </div>
                           <div className="mt-4 space-y-3">
                             {[
-                              "AI Solutions",
                               "Web Development",
-                              "SaaS Platforms",
-                              "Automation",
+                              "App Development",
+                              "AI Integration",
+                              "UI/UX Design",
+                              "SEO",
+                              "Digital Marketing",
                             ].map((item) => (
                               <div
                                 key={item}
@@ -1682,7 +1737,7 @@
                               >
                                 <span>{item}</span>
                                 <span className="text-[var(--accent)]">
-                                  online
+                                  active
                                 </span>
                               </div>
                             ))}
@@ -1732,12 +1787,12 @@
                 <div className="section-reveal lg:pr-6" data-reveal>
                   <div className="section-kicker">What we build</div>
                   <h2 className="display-font mt-4 max-w-[8ch] text-4xl font-extrabold italic leading-[0.96] tracking-[-0.04em] text-[var(--text-primary)] lg:text-6xl">
-                    Premium systems with cinematic presence.
+                    Six Services. One Team. Full Ownership.
                   </h2>
                   <p className="mt-6 max-w-[28rem] text-base leading-8 text-[var(--text-secondary)] lg:text-lg">
-                    Every section is intentionally different, but the brand
-                    language stays sharp, dark, and intelligent. That keeps the
-                    homepage feeling authored rather than templated.
+                    We handle design, development, and delivery in-house. No
+                    outsourcing, no handoffs just one team accountable for the
+                    whole product.
                   </p>
                 </div>
 
@@ -1873,7 +1928,7 @@
                 <div data-reveal className="section-reveal">
                   <div className="section-kicker">Selected work</div>
                   <h2 className="display-font mt-4 max-w-[10ch] text-4xl font-extrabold italic leading-[0.96] tracking-[-0.04em] text-[var(--text-primary)] lg:text-6xl">
-                    Distinct launches for ambitious teams.
+                    Our Work.
                   </h2>
                 </div>
                 <p
@@ -1881,9 +1936,8 @@
                   data-delay="0.08"
                   className="section-reveal max-w-lg text-base leading-8 text-[var(--text-secondary)] lg:text-right lg:text-lg"
                 >
-                  The visual language stays consistent, but each case feels like
-                  its own universe with different hierarchy, rhythm, and product
-                  emphasis.
+                  A selection of products we've designed, built, and shipped for
+                  our clients.
                 </p>
               </div>
 
@@ -1903,33 +1957,14 @@
                           0{index + 1}
                         </div>
                       </div>
-                      <div className="mt-6 grid grid-cols-[1.35fr_0.65fr] gap-3">
-                        <div className="case-media aspect-[1.12/1]">
+                      <div className="mt-6 w-full">
+                        <div className="case-media w-full aspect-[16/10] overflow-hidden rounded-[16px]">
                           <img
                             src={item.image}
                             alt={item.imageAlt}
                             loading="lazy"
+                            className="h-full w-full object-cover"
                           />
-                        </div>
-                        <div className="space-y-3">
-                          <div className="case-media-mini aspect-[1/0.92]">
-                            <img
-                              src={item.image}
-                              alt=""
-                              loading="lazy"
-                              className="h-full w-full object-cover"
-                            />
-                          </div>
-                          <div className="case-media-mini flex aspect-[1/1.25] items-end bg-[linear-gradient(180deg,rgba(57,255,20,0.16),rgba(255,255,255,0.02))] p-4">
-                            <div>
-                              <div className="mono-font text-[0.62rem] uppercase tracking-[0.18em] text-[var(--accent)]">
-                                Visual system
-                              </div>
-                              <div className="mt-2 display-font text-lg font-bold italic text-[var(--text-primary)]">
-                                Premium launch surface
-                              </div>
-                            </div>
-                          </div>
                         </div>
                       </div>
                     </div>
@@ -1940,10 +1975,10 @@
                       {item.outcome}
                     </p>
                     <a
-                      href="#contact"
+                      href={`portfolio.html#${slugifyProjectTitle(item.title)}`}
                       className="mt-7 inline-flex text-sm font-semibold text-[var(--accent)]"
                     >
-                      View case approach
+                      View Case Study
                     </a>
                   </MotionDiv>
                 ))}
@@ -1962,23 +1997,22 @@
                   data-reveal
                   className="metric-card section-reveal glass-panel rounded-[34px] border border-[var(--border)] p-7 lg:p-10"
                 >
-                  <div className="section-kicker">Why it feels premium</div>
+                  <div className="section-kicker">Why clients choose us</div>
                   <h2 className="display-font mt-4 max-w-[10ch] text-4xl font-extrabold italic leading-[0.95] tracking-[-0.04em] text-[var(--text-primary)] lg:text-6xl">
-                    Depth, restraint, and motion with weight.
+                    Built right. Delivered reliably.
                   </h2>
                   <p className="mt-6 max-w-xl text-base leading-8 text-[var(--text-secondary)] lg:text-lg">
-                    The goal is not more animation. It is better animation:
-                    smoother pacing, stronger composition, and a visible product
-                    mindset behind every visual choice.
+                    We're not the cheapest option — we're the most reliable one.
+                    One team, full ownership, zero handoffs.
                   </p>
                 </div>
 
                 <div className="grid gap-6 sm:grid-cols-2">
                   {[
-                    "Scroll-driven 3D transformation tied to the hero stage",
-                    "Glassmorphism surfaces with ambient lighting and subtle noise",
-                    "Editorial typography with bold italic emphasis on the left column",
-                    "Section-by-section visual variation while preserving the same brand theme",
+                    "One team handles design, development, and delivery. No outsourcing, no handoffs, no excuses.",
+                    "International quality standards built and priced out of Pakistan — more value, no compromise.",
+                    "Fixed timelines and transparent communication from the first call to the final deploy.",
+                    "We don't disappear after launch. Ongoing support, iterations, and improvements are part of the deal.",
                   ].map((item, index) => (
                     <MotionDiv
                       key={item}
@@ -2150,107 +2184,6 @@
         );
       }
 
-      function BlogSection() {
-        return (
-          <section id="blog" className="section-frame relative py-24 lg:py-32">
-            <div className="site-shell">
-              <div className="grid gap-10 lg:grid-cols-[0.92fr_1.08fr] lg:items-start">
-                <div className="blog-sticky lg:sticky lg:top-28">
-                  <div data-reveal className="section-reveal">
-                    <div className="section-kicker">Journal / thinking</div>
-                    <h2 className="display-font mt-4 max-w-[9ch] text-4xl font-extrabold italic leading-[0.95] tracking-[-0.04em] text-[var(--text-primary)] lg:text-6xl">
-                      A blog section that reads like a signal board.
-                    </h2>
-                    <p className="mt-6 max-w-md text-base leading-8 text-[var(--text-secondary)] lg:text-lg">
-                      Instead of plain cards, the articles are staged as an
-                      editorial stack with a sticky feature panel and scroll-led
-                      depth shifts.
-                    </p>
-                  </div>
-
-                  <div
-                    data-reveal
-                    data-delay="0.08"
-                    className="blog-feature-grid section-reveal glass-panel mt-8 rounded-[34px] border border-[var(--border)] p-6 lg:p-8"
-                  >
-                    <div className="mono-font text-[0.72rem] uppercase tracking-[0.18em] text-[var(--accent)]">
-                      Featured note
-                    </div>
-                    <h3 className="display-font mt-5 text-3xl font-extrabold italic leading-tight text-[var(--text-primary)]">
-                      Designing software agency homepages that feel more like
-                      product cinema.
-                    </h3>
-                    <p className="mt-5 text-base leading-8 text-[var(--text-secondary)]">
-                      Great agency sites do not just decorate expertise. They
-                      sequence it, stage it, and let motion explain why the team
-                      is trusted with complex digital work.
-                    </p>
-                    <div className="mt-8 flex items-center justify-between border-t border-[var(--border)] pt-5">
-                      <span className="mono-font text-xs uppercase tracking-[0.16em] text-[var(--text-muted)]">
-                        07 min read
-                      </span>
-                      <a
-                        href="#contact"
-                        className="text-sm font-semibold text-[var(--accent)]"
-                      >
-                        Read insight
-                      </a>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="relative pl-0 lg:pl-10">
-                  <div className="blog-line absolute left-0 top-0 hidden h-full w-px lg:block" />
-                  <div className="space-y-5" id="blog-stack">
-                    {blogData.map((post, index) => (
-                      <MotionDiv
-                        key={post.title}
-                        data-reveal
-                        data-delay={index * 0.08}
-                        whileHover={{ y: -6, x: 4 }}
-                        className="blog-card-advanced section-reveal glass-panel rounded-[28px] border border-[var(--border)] p-6 lg:p-7"
-                        style={{
-                          marginLeft: index === 1 ? "7%" : "0%",
-                          marginRight: index === 2 ? "7%" : "0%",
-                        }}
-                      >
-                        <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
-                          <div>
-                            <div className="mono-font text-[0.68rem] uppercase tracking-[0.18em] text-[var(--accent)]">
-                              {post.meta}
-                            </div>
-                            <h3 className="display-font mt-4 max-w-2xl text-2xl font-bold italic leading-tight text-[var(--text-primary)] lg:text-[2rem]">
-                              {post.title}
-                            </h3>
-                          </div>
-                          <div className="display-font text-5xl font-extrabold italic text-[rgba(57,255,20,0.12)]">
-                            0{index + 1}
-                          </div>
-                        </div>
-                        <p className="mt-5 max-w-2xl text-base leading-8 text-[var(--text-secondary)]">
-                          {post.blurb}
-                        </p>
-                        <div className="mt-7 flex items-center justify-between border-t border-[var(--border)] pt-5 text-sm">
-                          <span className="text-[var(--text-muted)]">
-                            Editorial insight for premium digital products.
-                          </span>
-                          <a
-                            href="#contact"
-                            className="font-semibold text-[var(--accent)]"
-                          >
-                            Open article
-                          </a>
-                        </div>
-                      </MotionDiv>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-        );
-      }
-
       function ContactSection() {
         return (
           <section id="contact" className="relative py-24 lg:py-32">
@@ -2289,7 +2222,7 @@
                     className="section-reveal flex flex-col gap-4 sm:flex-row lg:flex-col"
                   >
                     <MotionA
-                      href="mailto:hello@auroveon.com"
+                      href="contact.html"
                       whileHover={{ y: -3, scale: 1.02 }}
                       className="display-font inline-flex items-center justify-center rounded-full px-7 py-4 text-base font-bold text-[#081008]"
                       style={{
@@ -2301,7 +2234,7 @@
                       Start a Project
                     </MotionA>
                     <MotionA
-                      href="#home"
+                      href="index.html"
                       whileHover={{ y: -3 }}
                       className="display-font inline-flex items-center justify-center rounded-full border px-7 py-4 text-base font-bold text-[var(--text-primary)]"
                       style={{ borderColor: "var(--border-strong)" }}
@@ -2364,9 +2297,7 @@
 
             gsap.utils.toArray("[data-reveal]").forEach((element) => {
               if (
-                element.matches(
-                  ".service-card, .case-card, .testimonial-mini, .blog-card-advanced",
-                )
+                element.matches(".service-card, .case-card, .testimonial-mini")
               ) {
                 return;
               }
@@ -2489,47 +2420,6 @@
                   delay: index * 0.04,
                 },
               );
-            });
-
-            gsap.utils.toArray(".blog-card-advanced").forEach((card, index) => {
-              gsap.fromTo(
-                card,
-                { y: 70, opacity: 0, rotateX: 8 },
-                {
-                  y: 0,
-                  opacity: 1,
-                  rotateX: 0,
-                  duration: 1,
-                  ease: "power3.out",
-                  scrollTrigger: {
-                    trigger: card,
-                    start: "top 88%",
-                  },
-                  delay: index * 0.06,
-                },
-              );
-
-              gsap.to(card, {
-                xPercent: index === 1 ? 3 : index === 2 ? -3 : 0,
-                ease: "none",
-                scrollTrigger: {
-                  trigger: card,
-                  start: "top bottom",
-                  end: "bottom top",
-                  scrub: 1.1,
-                },
-              });
-            });
-
-            gsap.to(".blog-sticky", {
-              yPercent: -8,
-              ease: "none",
-              scrollTrigger: {
-                trigger: "#blog",
-                start: "top bottom",
-                end: "bottom top",
-                scrub: 1.15,
-              },
             });
 
             const progress = document.getElementById("story-progress-bar");
@@ -2658,7 +2548,6 @@
               <WorkSection />
               <MetricsSection />
               <TestimonialSection />
-              <BlogSection />
               <ContactSection />
             </main>
             <Footer />
