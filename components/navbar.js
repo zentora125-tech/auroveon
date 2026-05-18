@@ -160,7 +160,7 @@ function Navbar() {
       </div>
 
       {open && (
-        <div className="site-shell pb-4 lg:hidden">
+        <div className="site-shell pb-4 lg:hidden" style={{background: 'linear-gradient(180deg, rgba(10,15,10,0.82), rgba(8,12,8,0.78))', backdropFilter: 'blur(28px)', WebkitBackdropFilter: 'blur(28px)', borderTop: '1px solid rgba(57,255,20,0.08)'}}>
           <div className="glass-panel rounded-[28px] px-6 py-6">
             <div className="flex flex-col gap-5 text-center">
               <a

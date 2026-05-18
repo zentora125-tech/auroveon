@@ -820,7 +820,7 @@
     </style>
   </head>
   <body>
-    <div class="noise"></div>
+    <div class="noise-overlay"></div>
     <div class="cd" id="cd"></div>
     <div class="cr" id="cr"></div>
 
@@ -894,12 +894,12 @@
 
         <div class="wrap relative z-10 w-full py-10 lg:py-14">
           <div
-            class="grid gap-10 lg:grid-cols-[1fr_480px] lg:items-start lg:gap-16"
+            class="grid gap-10 lg:grid-cols-[1fr_480px] lg:items-start lg:gap-16 2xl:pl-[50px]"
           >
             <!-- LEFT -->
             <div class="rv lg:pl-6 xl:pl-10">
               <div
-                class="glass mb-6 inline-flex items-center gap-3 rounded-full px-4 py-2"
+                class="glass mb-6 inline-flex items-center gap-3  rounded-full px-6 py-2"
                 style="border-color: var(--bds)"
               >
                 <span
@@ -913,7 +913,7 @@
               </div>
 
               <h1
-                class="font-extrabold italic leading-[1.0] tracking-[-0.04em]"
+                class="font-extrabold italic leading-[1.0] tracking-[-0.04em] p-4"
                 style="
                   font-size: clamp(2.8rem, 5.8vw, 5.4rem);
                   font-family: &quot;Poppins&quot;, sans-serif;
@@ -939,7 +939,7 @@
               </h1>
 
               <p
-                class="mt-6 max-w-[40ch] text-base leading-[1.9]"
+                class="mt-6 max-w-[40ch] text-base leading-[1.9] px-4"
                 style="color: var(--ts)"
               >
                 Native iOS, Android, and cross-platform apps engineered from
@@ -947,9 +947,9 @@
                 code that scales, performs, and converts users into advocates.
               </p>
 
-              <div class="mt-8 flex flex-wrap gap-3">
+              <div class="mt-8 flex flex-wrap gap-3 px-4">
                 <a
-                  href="index.html#contact"
+                  href="/contact.html#contact-form"
                   class="inline-flex items-center justify-center rounded-full px-8 py-3.5 text-sm font-bold transition-all hover:-translate-y-1"
                   style="
                     background: var(--acc);
@@ -960,7 +960,7 @@
                   >Start Your App</a
                 >
                 <a
-                  href="#platform"
+                  href="/services.html"
                   class="inline-flex items-center justify-center rounded-full border px-8 py-3.5 text-sm font-bold transition-all hover:-translate-y-1"
                   style="
                     border-color: var(--bds);
@@ -974,8 +974,8 @@
 
             <!-- RIGHT — Phone Mockup -->
             <div
-              class="hidden lg:flex flex-col items-center rv"
-              style="margin-left: -2rem; transition-delay: 0.18s"
+              class="flex flex-col items-center rv mt-10 lg:mt-0"
+              style="margin-left: -1rem; transition-delay: 0.18s"
             >
               <div class="fla relative">
                 <div class="hero-phone-frame">
@@ -986,7 +986,7 @@
                       <span
                         class="mono text-[.58rem] uppercase tracking-[.15em]"
                         style="color: var(--acc)"
-                        >Dashboard</span
+                        >Overview</span
                       >
                       <span class="mono text-[.58rem]" style="color: var(--ts)"
                         >9:41 AM</span
@@ -1000,7 +1000,7 @@
                       "
                     >
                       <div class="mono text-[.58rem]" style="color: var(--ts)">
-                        Total Revenue
+                        Project Overview
                       </div>
                       <div
                         class="font-bold italic text-lg mt-1"
@@ -1009,13 +1009,13 @@
                           font-family: &quot;Poppins&quot;, sans-serif;
                         "
                       >
-                        $84,320
+                        Growth Snapshot
                       </div>
                       <div
                         class="mono text-[.6rem] mt-1"
                         style="color: var(--acc)"
                       >
-                        ▲ 24.3% this week
+                        ▲ Improving performance
                       </div>
                     </div>
                     <!-- mini chart bars -->
@@ -1066,7 +1066,7 @@
                           class="mono text-[.55rem]"
                           style="color: var(--ts)"
                         >
-                          Users
+                            Audience
                         </div>
                         <div
                           class="font-bold text-sm"
@@ -1075,7 +1075,7 @@
                             font-family: &quot;Poppins&quot;, sans-serif;
                           "
                         >
-                          12.4K
+                          Growing
                         </div>
                       </div>
                       <div
@@ -1089,7 +1089,7 @@
                           class="mono text-[.55rem]"
                           style="color: var(--ts)"
                         >
-                          Retention
+                            Engagement
                         </div>
                         <div
                           class="font-bold text-sm"
@@ -1098,7 +1098,7 @@
                             font-family: &quot;Poppins&quot;, sans-serif;
                           "
                         >
-                          78.2%
+                          Improving
                         </div>
                       </div>
                     </div>
@@ -1115,7 +1115,7 @@
                         style="background: var(--acc)"
                       ></span>
                       <span class="mono text-[.58rem]" style="color: var(--ts)"
-                        >New order #4821 — $320</span
+                        > New activity received — view details</span
                       >
                     </div>
                     <!-- bottom nav bar -->
@@ -1153,7 +1153,7 @@
                 <!-- Floating pills around phone -->
                 <div
                   class="absolute fla"
-                  style="top: -20px; right: -100px; transition-delay: 0.3s"
+                  style="top: -20px; right: -10px; transition-delay: 0.3s"
                 >
                   <div
                     class="glass app-ui-pill"
@@ -1169,7 +1169,7 @@
                     React Native
                   </div>
                 </div>
-                <div class="absolute flb" style="bottom: 60px; left: -120px">
+                <div class="absolute flb" style="bottom: 60px; left: -10px">
                   <div class="glass app-ui-pill">
                     <span
                       class="h-1.5 w-1.5 rounded-full pd"
@@ -1180,7 +1180,7 @@
                 </div>
                 <div
                   class="absolute fla"
-                  style="bottom: 160px; right: -90px; animation-delay: 1s"
+                  style="bottom: 160px; right: -54px; animation-delay: 1s"
                 >
                   <div
                     class="glass rounded-xl px-3 py-2 text-center"
@@ -1924,7 +1924,7 @@
             <div class="big-stat">
               <div
                 class="cv font-extrabold italic"
-                data-count="40"
+                data-count="10"
                 data-suffix="+"
                 style="
                   font-size: clamp(2.8rem, 5vw, 4.5rem);
@@ -1944,7 +1944,7 @@
             <div class="big-stat">
               <div
                 class="cv font-extrabold italic"
-                data-count="4.9"
+                data-count="4.0"
                 data-suffix="★"
                 data-dec="1"
                 style="
@@ -1965,8 +1965,7 @@
             <div class="big-stat">
               <div
                 class="cv font-extrabold italic"
-                data-count="2.3"
-                data-suffix="M+"
+                data-count="95"
                 data-dec="1"
                 style="
                   font-size: clamp(2.8rem, 5vw, 4.5rem);
@@ -1980,14 +1979,14 @@
                 class="mono mt-2 text-[.68rem] uppercase tracking-[.18em]"
                 style="color: var(--ts)"
               >
-                Active downloads
+                  Client Satisfaction
               </div>
             </div>
             <div class="big-stat">
               <div
                 class="cv font-extrabold italic"
-                data-count="16"
-                data-suffix=" wks"
+                data-count="14"
+                data-suffix="days"
                 style="
                   font-size: clamp(2.8rem, 5vw, 4.5rem);
                   color: var(--tp);
@@ -2072,12 +2071,13 @@
               <div class="space-y-5">
                 <div>
                   <div class="flex justify-between text-sm mb-2">
-                    <span style="color: var(--ts)"
-                      >App Launch Time (cold start)</span
-                    ><span class="font-bold" style="color: var(--tp)"
-                      >&lt; 1.2s</span
-                    >
-                  </div>
+                 <span style="color: var(--ts)">
+                    Performance Optimization
+                  </span>
+                  <span class="font-bold" style="color: var(--tp)">
+                    Fast & Stable
+                  </span>
+                                  </div>
                   <div
                     class="h-2.5 rounded-full"
                     style="background: rgba(255, 255, 255, 0.05)"
@@ -2094,11 +2094,12 @@
                 </div>
                 <div>
                   <div class="flex justify-between text-sm mb-2">
-                    <span style="color: var(--ts)"
-                      >Frame Rate (Reanimated UI)</span
-                    ><span class="font-bold" style="color: var(--tp)"
-                      >120fps</span
-                    >
+                  <span style="color: var(--ts)">
+                    Smooth UI Experience
+                  </span>
+                  <span class="font-bold" style="color: var(--tp)">
+                    Fluid & Responsive
+                  </span>
                   </div>
                   <div
                     class="h-2.5 rounded-full"
@@ -2121,11 +2122,12 @@
                 </div>
                 <div>
                   <div class="flex justify-between text-sm mb-2">
-                    <span style="color: var(--ts)"
-                      >Crash Rate (production avg)</span
-                    ><span class="font-bold" style="color: var(--tp)"
-                      >&lt; 0.1%</span
-                    >
+                    <span style="color: var(--ts)">
+                    Stability & Reliability
+                  </span>
+                  <span class="font-bold" style="color: var(--tp)">
+                    Production Ready
+                  </span>
                   </div>
                   <div
                     class="h-2.5 rounded-full"
@@ -2144,11 +2146,12 @@
                 </div>
                 <div>
                   <div class="flex justify-between text-sm mb-2">
-                    <span style="color: var(--ts)"
-                      >App Store Review Pass Rate</span
-                    ><span class="font-bold" style="color: var(--tp)"
-                      >100%</span
-                    >
+                  <span style="color: var(--ts)">
+                    Launch Readiness
+                  </span>
+                  <span class="font-bold" style="color: var(--tp)">
+                    Fully Approved
+                  </span>
                   </div>
                   <div
                     class="h-2.5 rounded-full"
@@ -2171,9 +2174,12 @@
                 </div>
                 <div>
                   <div class="flex justify-between text-sm mb-2">
-                    <span style="color: var(--ts)"
-                      >Avg User Retention (30-day)</span
-                    ><span class="font-bold" style="color: var(--tp)">78%</span>
+                  <span style="color: var(--ts)">
+                  User Engagement
+                </span>
+                <span class="font-bold" style="color: var(--tp)">
+                  Consistent Growth
+                </span>
                   </div>
                   <div
                     class="h-2.5 rounded-full"
@@ -2182,8 +2188,8 @@
                     <div
                       class="bf h-full rounded-full"
                       style="
-                        --w: 78%;
-                        width: 78%;
+                        --w: 98%;
+                        width: 98%;
                         background: linear-gradient(90deg, var(--acc), #8bff76);
                         animation-delay: 0.6s;
                       "
@@ -2199,217 +2205,6 @@
                 </p>
               </div>
             </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ══════════════════════════════════
-         CASE STUDIES — VERTICAL EDITORIAL
-    ══════════════════════════════════ -->
-      <section id="work" class="py-24 lg:py-32">
-        <div class="wrap">
-          <div class="mb-12 rv">
-            <div class="ey mb-3">Featured launches</div>
-            <h2
-              class="font-extrabold italic leading-[.94] tracking-[-0.04em]"
-              style="
-                font-size: clamp(2.4rem, 5vw, 4rem);
-                font-family: &quot;Poppins&quot;, sans-serif;
-                color: var(--tp);
-                max-width: 10ch;
-              "
-            >
-              Apps in the wild.
-            </h2>
-          </div>
-          <!-- Horizontal editorial case rows with vertical gutter numbers -->
-          <div class="rv space-y-0">
-            <a
-              href="index.html#contact"
-              class="block py-8 transition-all hover:pl-3 group"
-              style="border-top: 1px solid rgba(57, 255, 20, 0.1)"
-            >
-              <div
-                class="grid gap-4 lg:grid-cols-[80px_140px_1fr_auto_30px] lg:items-center"
-              >
-                <div
-                  class="font-extrabold italic text-5xl leading-none"
-                  style="
-                    color: rgba(240, 245, 240, 0.1);
-                    font-family: &quot;Poppins&quot;, sans-serif;
-                  "
-                >
-                  01
-                </div>
-                <div>
-                  <span
-                    class="mono rounded-full px-3 py-1.5 text-xs uppercase tracking-[.14em]"
-                    style="
-                      color: var(--acc);
-                      border: 1px solid rgba(57, 255, 20, 0.18);
-                      background: rgba(57, 255, 20, 0.05);
-                    "
-                    >iOS · Android</span
-                  >
-                </div>
-                <div>
-                  <h3
-                    class="font-bold italic text-xl mb-2"
-                    style="
-                      color: var(--tp);
-                      font-family: &quot;Poppins&quot;, sans-serif;
-                    "
-                  >
-                    Pulse Health Coach
-                  </h3>
-                  <p
-                    class="text-sm leading-7 max-w-3xl"
-                    style="color: var(--ts)"
-                  >
-                    AI-powered fitness app with real-time motion tracking,
-                    adaptive workout plans, and social challenges. Reached 400K
-                    downloads in 3 months post-launch.
-                  </p>
-                </div>
-                <div
-                  class="mono text-xs uppercase tracking-[.16em]"
-                  style="color: var(--acc)"
-                >
-                  400K downloads
-                </div>
-                <div
-                  class="text-xl transition-transform group-hover:translate-x-2"
-                  style="color: var(--acc)"
-                >
-                  →
-                </div>
-              </div>
-            </a>
-            <a
-              href="index.html#contact"
-              class="block py-8 transition-all hover:pl-3 group"
-              style="border-top: 1px solid rgba(57, 255, 20, 0.1)"
-            >
-              <div
-                class="grid gap-4 lg:grid-cols-[80px_140px_1fr_auto_30px] lg:items-center"
-              >
-                <div
-                  class="font-extrabold italic text-5xl leading-none"
-                  style="
-                    color: rgba(240, 245, 240, 0.1);
-                    font-family: &quot;Poppins&quot;, sans-serif;
-                  "
-                >
-                  02
-                </div>
-                <div>
-                  <span
-                    class="mono rounded-full px-3 py-1.5 text-xs uppercase tracking-[.14em]"
-                    style="
-                      color: var(--acc2);
-                      border: 1px solid rgba(57, 255, 20, 0.18);
-                      background: rgba(57, 255, 20, 0.05);
-                    "
-                    >React Native</span
-                  >
-                </div>
-                <div>
-                  <h3
-                    class="font-bold italic text-xl mb-2"
-                    style="
-                      color: var(--tp);
-                      font-family: &quot;Poppins&quot;, sans-serif;
-                    "
-                  >
-                    Kargo — Last-Mile Delivery
-                  </h3>
-                  <p
-                    class="text-sm leading-7 max-w-3xl"
-                    style="color: var(--ts)"
-                  >
-                    Consumer + driver app with live GPS tracking, dynamic
-                    pricing, and an operations dashboard. Processes 20K+
-                    deliveries daily across 5 cities.
-                  </p>
-                </div>
-                <div
-                  class="mono text-xs uppercase tracking-[.16em]"
-                  style="color: var(--acc2)"
-                >
-                  20K orders/day
-                </div>
-                <div
-                  class="text-xl transition-transform group-hover:translate-x-2"
-                  style="color: var(--acc2)"
-                >
-                  →
-                </div>
-              </div>
-            </a>
-            <a
-              href="index.html#contact"
-              class="block py-8 transition-all hover:pl-3 group"
-              style="
-                border-top: 1px solid rgba(57, 255, 20, 0.1);
-                border-bottom: 1px solid rgba(57, 255, 20, 0.06);
-              "
-            >
-              <div
-                class="grid gap-4 lg:grid-cols-[80px_140px_1fr_auto_30px] lg:items-center"
-              >
-                <div
-                  class="font-extrabold italic text-5xl leading-none"
-                  style="
-                    color: rgba(240, 245, 240, 0.1);
-                    font-family: &quot;Poppins&quot;, sans-serif;
-                  "
-                >
-                  03
-                </div>
-                <div>
-                  <span
-                    class="mono rounded-full px-3 py-1.5 text-xs uppercase tracking-[.14em]"
-                    style="
-                      color: var(--acc);
-                      border: 1px solid rgba(57, 255, 20, 0.18);
-                      background: rgba(57, 255, 20, 0.05);
-                    "
-                    >Flutter</span
-                  >
-                </div>
-                <div>
-                  <h3
-                    class="font-bold italic text-xl mb-2"
-                    style="
-                      color: var(--tp);
-                      font-family: &quot;Poppins&quot;, sans-serif;
-                    "
-                  >
-                    Vault — Finance Manager
-                  </h3>
-                  <p
-                    class="text-sm leading-7 max-w-3xl"
-                    style="color: var(--ts)"
-                  >
-                    Personal finance app with bank-grade security, ML spend
-                    categorization, and goal-based savings. Rated 4.9 stars,
-                    featured by App Store editorial.
-                  </p>
-                </div>
-                <div
-                  class="mono text-xs uppercase tracking-[.16em]"
-                  style="color: var(--acc)"
-                >
-                  4.9★ featured
-                </div>
-                <div
-                  class="text-xl transition-transform group-hover:translate-x-2"
-                  style="color: var(--acc)"
-                >
-                  →
-                </div>
-              </div>
-            </a>
           </div>
         </div>
       </section>
@@ -2477,19 +2272,18 @@
                 </svg>
               </div>
               <h3
-                class="font-extrabold italic text-2xl mb-4"
-                style="
-                  color: var(--tp);
-                  font-family: &quot;DM Serif Display&quot;, serif;
-                "
-              >
-                Product-First Thinking
-              </h3>
-              <p class="text-sm leading-8" style="color: var(--ts)">
-                We don't just build what you ask for. We pressure-test features
-                against user psychology, market timing, and retention mechanics.
-                Your app ships with a strategy, not just code.
-              </p>
+              class="font-extrabold italic text-2xl mb-4"
+              style="
+                color: var(--tp);
+                font-family: 'DM Serif Display', serif;
+              "
+            >
+              Product-Focused Thinking
+            </h3>
+
+            <p class="text-sm leading-8" style="color: var(--ts)">
+              We focus on building solutions that align with user needs and business goals, ensuring clarity, usability, and long-term value in every feature.
+            </p>
               <div
                 class="mono mt-8 text-xs italic uppercase tracking-[.14em]"
                 style="color: var(--tm)"
@@ -2520,26 +2314,26 @@
                   <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
                 </svg>
               </div>
-              <h3
-                class="font-extrabold italic text-xl mb-3"
-                style="
-                  color: var(--tp);
-                  font-family: &quot;DM Serif Display&quot;, serif;
-                "
-              >
-                Security &amp; Compliance
-              </h3>
-              <p class="text-sm leading-7" style="color: var(--ts)">
-                OWASP mobile top-10. End-to-end encryption. GDPR,
-                HIPAA-conscious architecture where needed. We build apps your
-                legal team doesn't fear.
-              </p>
-              <div
-                class="mono mt-6 text-xs italic uppercase tracking-[.14em]"
-                style="color: var(--tm)"
-              >
-                Zero compromises
-              </div>
+                <h3
+            class="font-extrabold italic text-xl mb-3"
+            style="
+              color: var(--tp);
+              font-family: 'DM Serif Display', serif;
+            "
+          >
+            Security & Reliable Builds
+          </h3>
+
+          <p class="text-sm leading-7" style="color: var(--ts)">
+            We follow modern security practices and clean development standards to keep applications safe, stable, and production-ready.
+          </p>
+
+          <div
+            class="mono mt-6 text-xs italic uppercase tracking-[.14em]"
+            style="color: var(--tm)"
+          >
+            Built with care
+          </div>
             </div>
             <div
               class="glass rounded-[30px] p-7 relative overflow-hidden"
@@ -2564,26 +2358,26 @@
                   <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
                 </svg>
               </div>
-              <h3
-                class="font-extrabold italic text-xl mb-3"
-                style="
-                  color: var(--tp);
-                  font-family: &quot;DM Serif Display&quot;, serif;
-                "
-              >
-                Growth Analytics
-              </h3>
-              <p class="text-sm leading-7" style="color: var(--ts)">
-                Every app ships with Mixpanel/Firebase funnels, retention
-                cohorts, and a 90-day insight report. We track what drives
-                growth, not just downloads.
-              </p>
-              <div
-                class="mono mt-6 text-xs italic uppercase tracking-[.14em]"
-                style="color: var(--tm)"
-              >
-                Data tells the truth
-              </div>
+                <h3
+              class="font-extrabold italic text-xl mb-3"
+              style="
+                color: var(--tp);
+                font-family: 'DM Serif Display', serif;
+              "
+            >
+              Growth Insights
+            </h3>
+
+            <p class="text-sm leading-7" style="color: var(--ts)">
+              We help you understand how users interact with your product and identify opportunities to improve engagement and performance over time.
+            </p>
+
+            <div
+              class="mono mt-6 text-xs italic uppercase tracking-[.14em]"
+              style="color: var(--tm)"
+            >
+              Focus on improvement
+            </div>
             </div>
           </div>
           <!-- Second row: 2 narrow + 1 wide -->
@@ -2617,19 +2411,26 @@
                   <path d="m22 6-10 7L2 6" />
                 </svg>
               </div>
-              <h3
-                class="font-extrabold italic text-xl mb-3"
-                style="
-                  color: var(--tp);
-                  font-family: &quot;DM Serif Display&quot;, serif;
-                "
-              >
-                Direct Access
-              </h3>
-              <p class="text-sm leading-7" style="color: var(--ts)">
-                No account managers. You talk to the engineer and designer
-                building your app via shared Slack. Decisions move fast.
-              </p>
+            <h3
+            class="font-extrabold italic text-xl mb-3"
+            style="
+              color: var(--tp);
+              font-family: 'DM Serif Display', serif;
+            "
+          >
+            Direct Communication
+          </h3>
+
+          <p class="text-sm leading-7" style="color: var(--ts)">
+            You communicate directly with the people working on your project for clear feedback, faster iterations, and better results.
+          </p>
+
+          <div
+            class="mono mt-6 text-xs italic uppercase tracking-[.14em]"
+            style="color: var(--tm)"
+          >
+            Clear collaboration
+          </div>
             </div>
             <div
               class="glass rounded-[30px] p-7"
@@ -2655,19 +2456,26 @@
                   <path d="M7 11V7a5 5 0 0 1 10 0v4" />
                 </svg>
               </div>
-              <h3
-                class="font-extrabold italic text-xl mb-3"
-                style="
-                  color: var(--tp);
-                  font-family: &quot;DM Serif Display&quot;, serif;
-                "
-              >
-                IP Ownership
-              </h3>
-              <p class="text-sm leading-7" style="color: var(--ts)">
-                You own 100% of the code, designs, and assets from day one. No
-                platform lock-in. No hidden licensing. Your app, your rules.
-              </p>
+                  <h3
+                  class="font-extrabold italic text-xl mb-3"
+                  style="
+                    color: var(--tp);
+                    font-family: 'DM Serif Display', serif;
+                  "
+                >
+                  Ownership & Access
+                </h3>
+
+                <p class="text-sm leading-7" style="color: var(--ts)">
+                  You get full access to your project assets and codebase, ensuring complete transparency and control over your product.
+                </p>
+
+                <div
+                  class="mono mt-6 text-xs italic uppercase tracking-[.14em]"
+                  style="color: var(--tm)"
+                >
+                  Transparent delivery
+                </div>
             </div>
             <div
               class="glass rounded-[30px] p-8 relative overflow-hidden"
@@ -2699,26 +2507,25 @@
                   <circle cx="12" cy="12" r="10" />
                 </svg>
               </div>
-              <h3
-                class="font-extrabold italic text-2xl mb-4"
-                style="
-                  color: var(--tp);
-                  font-family: &quot;DM Serif Display&quot;, serif;
-                "
-              >
-                Post-Launch Partner
-              </h3>
-              <p class="text-sm leading-8" style="color: var(--ts)">
-                Launch is week 16 — not the finish line. Retainer-based sprints
-                keep your app competitive as the market evolves. Monthly feature
-                drops, performance monitoring, and user feedback loops.
-              </p>
-              <div
-                class="mono mt-8 text-xs italic uppercase tracking-[.14em]"
-                style="color: var(--tm)"
-              >
-                Long-term, not transactional
-              </div>
+                    <h3
+              class="font-extrabold italic text-2xl mb-4"
+              style="
+                color: var(--tp);
+                font-family: 'DM Serif Display', serif;
+              "
+            >
+              Ongoing Support
+            </h3>
+
+            <p class="text-sm leading-8" style="color: var(--ts)">
+              We continue to support your product after launch with updates, improvements, and ongoing enhancements based on user needs and feedback.
+            </p>
+
+            <div
+              class="mono mt-8 text-xs italic uppercase tracking-[.14em]"
+              style="color: var(--tm)"
+            >
+              Built for long-term growth
             </div>
           </div>
         </div>
@@ -2779,7 +2586,7 @@
 
               <div class="rv flex flex-col gap-4 sm:flex-row lg:flex-col">
                 <a
-                  href="mailto:info@auroveon.com"
+                  href="/contact.html#contact-form"
                   class="display-font inline-flex items-center justify-center rounded-full px-7 py-4 text-base font-bold"
                   style="
                     background: var(--acc);
@@ -2792,14 +2599,14 @@
                   >Start a Project</a
                 >
                 <a
-                  href="#hero"
+                  href="/services.html"
                   class="display-font inline-flex items-center justify-center rounded-full border px-7 py-4 text-base font-bold"
                   style="
                     border-color: var(--bds);
                     color: var(--tp);
                     font-family: &quot;Poppins&quot;, sans-serif;
                   "
-                  >View Hero Again</a
+                  >Our Services</a
                 >
               </div>
             </div>
