@@ -41,6 +41,8 @@
 
       html {
         scroll-behavior: auto;
+        overflow-x: hidden;
+        max-width: 100vw;
       }
 
       body {
@@ -54,7 +56,13 @@
         color: var(--text-primary);
         font-family: "Inter", sans-serif;
         overflow-x: hidden;
+        max-width: 100vw;
         -webkit-font-smoothing: antialiased;
+      }
+
+      #root {
+        max-width: 100vw;
+        overflow-x: hidden;
       }
 
       @media (min-width: 1024px) {
@@ -171,9 +179,51 @@
       }
 
       @media (max-width: 1023px) {
+        #navbar {
+          overflow-x: clip;
+        }
+
         .cursor-dot,
         .cursor-ring {
           display: none;
+        }
+
+        #navbar .site-shell {
+          width: min(calc(100% - 1rem), 1380px);
+          gap: 0.75rem;
+          overflow: hidden;
+        }
+
+        #navbar .brand-logo-link {
+          min-width: 0;
+          max-width: calc(100% - 4.5rem);
+        }
+
+        #navbar .brand-logo-nav {
+          height: 58px;
+          max-width: 210px;
+        }
+
+        #navbar .brand-logo {
+          max-width: 100%;
+        }
+
+        .section-frame,
+        .marquee,
+        .testimonial-shell,
+        .testimonial-rail,
+        .hero-stage,
+        #home,
+        #contact {
+          max-width: 100vw;
+          overflow-x: hidden;
+        }
+      }
+
+      @media (max-width: 767px) {
+        #navbar .brand-logo-nav {
+          height: 52px;
+          max-width: 190px;
         }
       }
 
@@ -994,7 +1044,7 @@
           position: relative;
           min-height: auto;
           display: block;
-          padding: 5rem 0;
+          padding: 0;
         }
       }
 
@@ -1780,7 +1830,7 @@
         return (
           <section
             id="services"
-            className="section-frame relative py-24 lg:py-32"
+            className="section-frame relative py-12 lg:py-32"
           >
             <div className="site-shell">
               <div className="grid gap-10 lg:grid-cols-[0.6fr_1.4fr] lg:items-center lg:gap-8">
@@ -1832,7 +1882,7 @@
         return (
           <section id="story" className="section-frame relative process-outer">
             <div className="process-inner">
-              <div className="site-shell relative py-20 lg:py-0">
+              <div className="site-shell relative py-12 lg:py-0">
                 <div className="absolute left-0 top-1/2 hidden -translate-y-1/2 lg:block">
                   <div
                     id="story-number"
@@ -1861,7 +1911,33 @@
                     </p>
                   </div>
 
-                  <div className="space-y-6 lg:pl-12">
+                  <div className="space-y-4 lg:hidden">
+                    {workflowData.map((item) => (
+                      <div
+                        key={item.step}
+                        className="glass-panel rounded-[26px] border border-[var(--border)] p-5"
+                      >
+                        <div className="mono-font text-[0.68rem] uppercase tracking-[0.18em] text-[var(--accent)]">
+                          {item.label} / {item.step}
+                        </div>
+                        <div className="mt-4 display-font text-xl font-bold italic text-[var(--text-primary)]">
+                          {item.title}
+                        </div>
+                        <p className="mt-3 text-sm leading-7 text-[var(--text-secondary)]">
+                          {item.text}
+                        </p>
+                        <div className="mt-5 flex flex-wrap gap-3">
+                          {item.pills.map((pill) => (
+                            <span key={pill} className="process-pill">
+                              {pill}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="hidden space-y-6 lg:block lg:pl-12">
                     <div className="glass-panel rounded-[34px] border border-[var(--border)] p-7 lg:p-10">
                       <div
                         id="story-overline"
@@ -1922,7 +1998,7 @@
 
       function WorkSection() {
         return (
-          <section id="work" className="section-frame relative py-24 lg:py-32">
+          <section id="work" className="section-frame relative py-12 lg:py-32">
             <div className="site-shell">
               <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
                 <div data-reveal className="section-reveal">
@@ -1990,7 +2066,7 @@
 
       function MetricsSection() {
         return (
-          <section className="section-frame relative py-24 lg:py-32">
+          <section className="section-frame relative py-12 lg:py-32">
             <div className="site-shell">
               <div className="grid gap-6 lg:grid-cols-[0.95fr_1.05fr]">
                 <div
@@ -2052,7 +2128,7 @@
         return (
           <section
             id="testimonials"
-            className="section-frame relative py-24 lg:py-32"
+            className="section-frame relative py-12 lg:py-32"
           >
             <div className="site-shell">
               <div className="grid gap-10 lg:grid-cols-[0.7fr_1.3fr] lg:items-start">
@@ -2186,7 +2262,7 @@
 
       function ContactSection() {
         return (
-          <section id="contact" className="relative py-24 lg:py-32">
+          <section id="contact" className="relative py-12 lg:py-32">
             <div className="site-shell">
               <div className="contact-card glass-panel relative overflow-hidden rounded-[38px] border border-[var(--border)] px-6 py-12 lg:px-12 lg:py-14">
                 <div className="cta-image-panel" />
@@ -2431,6 +2507,7 @@
             const storyCards = gsap.utils.toArray(".process-preview-card");
 
             if (
+              window.innerWidth >= 1024 &&
               progress &&
               storyNumber &&
               storyOverline &&
