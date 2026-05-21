@@ -256,34 +256,18 @@
               </div>
 
               <h1 class="display-font font-extrabold italic leading-[0.94] tracking-[-0.045em]" style="font-size:clamp(2.8rem,7vw,6.2rem);">
-                <span class="shine-word">Design That</span><br/>
-                <span class="shine-word">Feels Obvious.</span><br/>
-                <span class="shine-word-accent">Works Every Time.</span>
+                <span class="shine-word">Obvious by Design</span><br/>
+                <!-- <span class="shine-word"> Effortless by Intent.</span><br/> -->
+                <span class="shine-word-accent">Effortless by Intent.</span>
               </h1>
 
               <p class="mt-6 max-w-xl text-lg leading-8" style="color:var(--text-secondary);">
                 We don't design what looks good in Dribbble screenshots. We design what works — interfaces built on how real users think, click, and abandon.
               </p>
 
-              <div class="mt-8 flex flex-col gap-4 sm:flex-row">
-                <a href="index.html#contact" class="display-font inline-flex items-center justify-center rounded-full px-7 py-4 text-base font-bold transition-all hover:-translate-y-1" style="background:var(--accent);color:#081008;box-shadow:0 0 42px rgba(57,255,20,0.18);">Start a Project →</a>
-                <a href="index.html#work" class="display-font inline-flex items-center justify-center rounded-full border px-7 py-4 text-base font-bold transition-all hover:-translate-y-1" style="border-color:var(--border-strong);color:var(--text-primary);background:rgba(255,255,255,0.02);">See Our Work</a>
-              </div>
-
-              <!-- KEY STATS -->
-              <div class="mt-10 grid grid-cols-3 gap-4">
-                <div class="glass-panel rounded-[20px] px-4 py-5">
-                  <div class="display-font text-3xl font-extrabold italic" style="color:var(--text-primary);">4.8★</div>
-                  <p class="mt-1 text-xs leading-5" style="color:var(--text-secondary);">avg. usability test rating across shipped products</p>
-                </div>
-                <div class="glass-panel rounded-[20px] px-4 py-5">
-                  <div class="display-font text-3xl font-extrabold italic" style="color:var(--text-primary);">38%</div>
-                  <p class="mt-1 text-xs leading-5" style="color:var(--text-secondary);">avg. reduction in user drop-off after redesign</p>
-                </div>
-                <div class="glass-panel rounded-[20px] px-4 py-5">
-                  <div class="display-font text-3xl font-extrabold italic" style="color:var(--text-primary);">12+</div>
-                  <p class="mt-1 text-xs leading-5" style="color:var(--text-secondary);">design systems built from zero</p>
-                </div>
+              <div class="mt-8 flex flex-col gap-4 sm:flex-row w-[300px] lg:w-[500px]">
+                <a href="/contact.html#contact-form" class="display-font inline-flex items-center justify-center rounded-full px-7 py-4 text-base font-bold transition-all hover:-translate-y-1" style="background:var(--accent);color:#081008;box-shadow:0 0 42px rgba(57,255,20,0.18);">Start a Project →</a>
+                <a href="/portfolio.html" class="display-font inline-flex items-center justify-center rounded-full border px-7 py-4 text-base font-bold transition-all hover:-translate-y-1" style="border-color:var(--border-strong);color:var(--text-primary);background:rgba(255,255,255,0.02);">See Our Work</a>
               </div>
             </div>
 
@@ -449,200 +433,364 @@
       </section>
 
       <!-- ═══════════════ HOW WE DESIGN ═══════════════ -->
-      <section class="section-frame py-24 lg:py-32">
-        <div class="site-shell">
-          <div class="text-center mb-14 reveal">
-            <div class="section-kicker">How we design</div>
-            <h2 class="display-font mt-4 text-4xl font-extrabold italic leading-[0.95] tracking-[-0.04em] lg:text-6xl mx-auto" style="color:var(--text-primary);max-width:14ch;">A process built around better decisions.</h2>
+     <section class="section-frame py-24 lg:py-32">
+  <div class="site-shell">
+    <div class="text-center mb-14 reveal">
+      <div class="section-kicker">How we design</div>
+      <h2 class="display-font mt-4 text-4xl font-extrabold italic leading-[0.95] tracking-[-0.04em] lg:text-6xl mx-auto" style="color:var(--text-primary);max-width:14ch;">A process built around better decisions.</h2>
+    </div>
+  </div>
+ 
+  <div id="design-process-wrapper" class="desktop-only-process" style="position:relative;height:400vh;">
+    <div style="position:sticky;top:0;height:100vh;overflow:hidden;display:flex;background:var(--bg-base);">
+ 
+      <!-- LEFT: sticky text panel -->
+      <div style="width:50%;position:relative;">
+        <div style="position:relative;height:100vh;">
+ 
+          <div data-step="0" style="position:absolute;inset:0;display:flex;align-items:center;padding-left:10%;padding-right:5%;opacity:1;transform:none;transition:opacity 0.5s ease,transform 0.5s ease;">
+            <div>
+              <div class="eyebrow">STEP 01</div>
+              <h3 class="display-font font-extrabold italic mt-4" style="font-size:clamp(1.8rem,3vw,2.6rem);color:var(--text-primary);line-height:1.08;max-width:14ch;">Understand First.</h3>
+              <p style="font-size:1rem;color:var(--text-secondary);max-width:400px;line-height:1.8;margin-top:16px;">We start with research, not assumptions. User interviews, competitor teardowns, heatmap data — we map the full problem space before we open Figma.</p>
+              <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:20px;">
+                <span class="eyebrow" style="background:rgba(57,255,20,0.04);border:1px solid var(--border);padding:0.35rem 0.75rem;border-radius:9999px;font-size:0.72rem;">User Interviews</span>
+                <span class="eyebrow" style="background:rgba(57,255,20,0.04);border:1px solid var(--border);padding:0.35rem 0.75rem;border-radius:9999px;font-size:0.72rem;">Competitor Analysis</span>
+                <span class="eyebrow" style="background:rgba(57,255,20,0.04);border:1px solid var(--border);padding:0.35rem 0.75rem;border-radius:9999px;font-size:0.72rem;">Empathy Mapping</span>
+              </div>
+            </div>
           </div>
+ 
+          <div data-step="1" style="position:absolute;inset:0;display:flex;align-items:center;padding-left:10%;padding-right:5%;opacity:0;transform:translateY(20px);transition:opacity 0.5s ease,transform 0.5s ease;">
+            <div>
+              <div class="eyebrow">STEP 02</div>
+              <h3 class="display-font font-extrabold italic mt-4" style="font-size:clamp(1.8rem,3vw,2.6rem);color:var(--text-primary);line-height:1.08;max-width:14ch;">Structure Before Style.</h3>
+              <p style="font-size:1rem;color:var(--text-secondary);max-width:400px;line-height:1.8;margin-top:16px;">Wireframes come before visuals. We test information architecture and navigation logic before any design polish is applied — so revisions cost hours, not weeks.</p>
+              <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:20px;">
+                <span class="eyebrow" style="background:rgba(57,255,20,0.04);border:1px solid var(--border);padding:0.35rem 0.75rem;border-radius:9999px;font-size:0.72rem;">User Flows</span>
+                <span class="eyebrow" style="background:rgba(57,255,20,0.04);border:1px solid var(--border);padding:0.35rem 0.75rem;border-radius:9999px;font-size:0.72rem;">Wireframes</span>
+                <span class="eyebrow" style="background:rgba(57,255,20,0.04);border:1px solid var(--border);padding:0.35rem 0.75rem;border-radius:9999px;font-size:0.72rem;">Stakeholder Sign-off</span>
+              </div>
+            </div>
+          </div>
+ 
+          <div data-step="2" style="position:absolute;inset:0;display:flex;align-items:center;padding-left:10%;padding-right:5%;opacity:0;transform:translateY(20px);transition:opacity 0.5s ease,transform 0.5s ease;">
+            <div>
+              <div class="eyebrow">STEP 03</div>
+              <h3 class="display-font font-extrabold italic mt-4" style="font-size:clamp(1.8rem,3vw,2.6rem);color:var(--text-primary);line-height:1.08;max-width:14ch;">Precision at Every Pixel.</h3>
+              <p style="font-size:1rem;color:var(--text-secondary);max-width:400px;line-height:1.8;margin-top:16px;">High-fidelity screens with every component, every state, every breakpoint fully defined. Nothing is left open to interpretation in the developer handoff.</p>
+              <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:20px;">
+                <span class="eyebrow" style="background:rgba(57,255,20,0.04);border:1px solid var(--border);padding:0.35rem 0.75rem;border-radius:9999px;font-size:0.72rem;">Figma Designs</span>
+                <span class="eyebrow" style="background:rgba(57,255,20,0.04);border:1px solid var(--border);padding:0.35rem 0.75rem;border-radius:9999px;font-size:0.72rem;">Design System</span>
+                <span class="eyebrow" style="background:rgba(57,255,20,0.04);border:1px solid var(--border);padding:0.35rem 0.75rem;border-radius:9999px;font-size:0.72rem;">All Breakpoints</span>
+              </div>
+            </div>
+          </div>
+ 
+          <div data-step="3" style="position:absolute;inset:0;display:flex;align-items:center;padding-left:10%;padding-right:5%;opacity:0;transform:translateY(20px);transition:opacity 0.5s ease,transform 0.5s ease;">
+            <div>
+              <div class="eyebrow">STEP 04</div>
+              <h3 class="display-font font-extrabold italic mt-4" style="font-size:clamp(1.8rem,3vw,2.6rem);color:var(--text-primary);line-height:1.08;max-width:14ch;">Test Before You Ship.</h3>
+              <p style="font-size:1rem;color:var(--text-secondary);max-width:400px;line-height:1.8;margin-top:16px;">Clickable prototypes go through Maze usability testing with real users before handoff. Real friction, caught early, fixed before engineering touches a line of code.</p>
+              <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:20px;">
+                <span class="eyebrow" style="background:rgba(57,255,20,0.04);border:1px solid var(--border);padding:0.35rem 0.75rem;border-radius:9999px;font-size:0.72rem;">Prototype Testing</span>
+                <span class="eyebrow" style="background:rgba(57,255,20,0.04);border:1px solid var(--border);padding:0.35rem 0.75rem;border-radius:9999px;font-size:0.72rem;">Maze Sessions</span>
+                <span class="eyebrow" style="background:rgba(57,255,20,0.04);border:1px solid var(--border);padding:0.35rem 0.75rem;border-radius:9999px;font-size:0.72rem;">Annotated Handoff</span>
+              </div>
+            </div>
+          </div>
+ 
         </div>
-
-        <div id="design-process-wrapper" class="desktop-only-process" style="position:relative;height:400vh;">
-          <div style="position:sticky;top:0;height:100vh;overflow:hidden;display:flex;background:var(--bg-base);">
-            <div style="width:50%;position:relative;">
-              <div style="height:100%;">
-                <div style="height:100vh;display:flex;align-items:center;padding-left:10%;padding-right:5%;">
-                  <div class="reveal" style="opacity:1;transform:none;">
-                    <div class="eyebrow">STEP 01</div>
-                    <h3 class="display-font font-extrabold italic mt-4" style="font-size:clamp(1.8rem,3vw,2.6rem);color:var(--text-primary);line-height:1.08;max-width:14ch;">Understand First.</h3>
-                    <p style="font-size:1rem;color:var(--text-secondary);max-width:400px;line-height:1.8;margin-top:16px;">We start with research, not assumptions. User interviews, competitor teardowns, heatmap data — we map the full problem space before we open Figma.</p>
-                    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:20px;">
-                      <span class="eyebrow" style="background:rgba(57,255,20,0.04);border:1px solid var(--border);padding:0.35rem 0.75rem;border-radius:9999px;font-size:0.72rem;">User Interviews</span>
-                      <span class="eyebrow" style="background:rgba(57,255,20,0.04);border:1px solid var(--border);padding:0.35rem 0.75rem;border-radius:9999px;font-size:0.72rem;">Competitor Analysis</span>
-                      <span class="eyebrow" style="background:rgba(57,255,20,0.04);border:1px solid var(--border);padding:0.35rem 0.75rem;border-radius:9999px;font-size:0.72rem;">Empathy Mapping</span>
-                    </div>
+      </div>
+ 
+      <!-- RIGHT: mobile mockup -->
+      <div style="width:50%;position:relative;display:flex;align-items:center;justify-content:center;">
+        <div style="width:260px;height:520px;margin:auto;background:#0C0F0C;border-radius:36px;border:2px solid rgba(57,255,20,0.2);box-shadow:0 0 60px rgba(57,255,20,0.05),0 24px 80px rgba(0,0,0,0.5);position:relative;">
+          <span style="width:60px;height:10px;background:#080A08;border-radius:99px;margin:12px auto 0;display:block;"></span>
+          <div style="width:236px;height:440px;margin:8px auto;background:#080A08;border-radius:24px;overflow:hidden;position:relative;">
+ 
+            <!-- Screen 1: Research -->
+            <div class="process-screen active" style="background:#080f09; padding:16px; display:flex; flex-direction:column; gap:10px;">
+              <div class="mono-font" style="font-size:8px;color:#4ade80;letter-spacing:0.14em;margin-bottom:10px;">USER RESEARCH</div>
+              <div style="display:flex;flex-direction:column;gap:8px;">
+                <div style="display:flex;align-items:center;gap:10px;background:#0d1f10;border-radius:6px;padding:8px;">
+                  <span style="width:24px;height:24px;background:#1a3a20;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;">
+                    <span style="width:8px;height:8px;background:#4ade80;border-radius:50%;display:block;"></span>
+                  </span>
+                  <span style="display:flex;flex-direction:column;gap:3px;flex:1;">
+                    <span class="mono-font" style="font-size:7px;color:#4ade80;">Aisha R. · 12 min</span>
+                    <span style="width:85%;height:3px;background:#1a2e1e;border-radius:3px;display:block;"></span>
+                    <span style="width:60%;height:3px;background:#1a2e1e;border-radius:3px;display:block;"></span>
+                  </span>
+                </div>
+                <div style="display:flex;align-items:center;gap:10px;background:#0d1f10;border-radius:6px;padding:8px;">
+                  <span style="width:24px;height:24px;background:#1a3a20;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;">
+                    <span style="width:8px;height:8px;background:#4ade80;border-radius:50%;display:block;"></span>
+                  </span>
+                  <span style="display:flex;flex-direction:column;gap:3px;flex:1;">
+                    <span class="mono-font" style="font-size:7px;color:#4ade80;">Bilal K. · 9 min</span>
+                    <span style="width:75%;height:3px;background:#1a2e1e;border-radius:3px;display:block;"></span>
+                    <span style="width:50%;height:3px;background:#1a2e1e;border-radius:3px;display:block;"></span>
+                  </span>
+                </div>
+                <div style="display:flex;align-items:center;gap:10px;background:#0d1f10;border-radius:6px;padding:8px;opacity:0.5;">
+                  <span style="width:24px;height:24px;background:#1a3a20;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;">
+                    <span style="width:8px;height:8px;background:#3d5c45;border-radius:50%;display:block;"></span>
+                  </span>
+                  <span style="display:flex;flex-direction:column;gap:3px;flex:1;">
+                    <span class="mono-font" style="font-size:7px;color:#3d5c45;">Sara M. · Scheduled</span>
+                    <span style="width:65%;height:3px;background:#1a2e1e;border-radius:3px;display:block;"></span>
+                  </span>
+                </div>
+              </div>
+              <div style="margin-top:12px;">
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:5px;">
+                  <span class="mono-font" style="font-size:7px;color:#3d5c45;">Interview progress</span>
+                  <span class="mono-font" style="font-size:7px;color:#4ade80;">4 / 6</span>
+                </div>
+                <div style="width:100%;height:4px;background:#1a3a20;border-radius:2px;overflow:hidden;">
+                  <div style="width:66%;height:100%;background:var(--accent);border-radius:2px;"></div>
+                </div>
+              </div>
+            </div>
+ 
+            <!-- Screen 2: Wireframe -->
+            <div class="process-screen active" style="background:#080f09; padding:16px; display:flex; flex-direction:column; gap:10px;">
+              <div class="mono-font" style="font-size:8px;color:#4ade80;letter-spacing:0.14em;margin-bottom:10px;">WIREFRAME v1.2</div>
+              <div style="display:flex;flex-direction:column;gap:5px;">
+                <div style="width:100%;height:20px;background:#111411;border-radius:4px;display:flex;align-items:center;padding:0 8px;gap:6px;">
+                  <span style="width:6px;height:6px;background:#1a3a20;border-radius:50%;display:block;"></span>
+                  <span style="width:50%;height:3px;background:#1a2e1e;border-radius:2px;display:block;"></span>
+                </div>
+                <div style="display:flex;gap:5px;">
+                  <div style="width:48%;height:55px;background:#0d1a0f;border-radius:4px;border:1px dashed #1a3a20;display:flex;align-items:center;justify-content:center;">
+                    <span class="mono-font" style="font-size:6px;color:#3d5c45;">Hero</span>
+                  </div>
+                  <div style="width:48%;height:55px;background:#0d1a0f;border-radius:4px;border:1px dashed #1a3a20;display:flex;align-items:center;justify-content:center;">
+                    <span class="mono-font" style="font-size:6px;color:#3d5c45;">CTA</span>
                   </div>
                 </div>
-                <div style="height:100vh;display:flex;align-items:center;padding-left:10%;padding-right:5%;">
-                  <div class="reveal" style="opacity:1;transform:none;">
-                    <div class="eyebrow">STEP 02</div>
-                    <h3 class="display-font font-extrabold italic mt-4" style="font-size:clamp(1.8rem,3vw,2.6rem);color:var(--text-primary);line-height:1.08;max-width:14ch;">Structure Before Style.</h3>
-                    <p style="font-size:1rem;color:var(--text-secondary);max-width:400px;line-height:1.8;margin-top:16px;">Wireframes come before visuals. We test information architecture and navigation logic before any design polish is applied — so revisions cost hours, not weeks.</p>
-                    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:20px;">
-                      <span class="eyebrow" style="background:rgba(57,255,20,0.04);border:1px solid var(--border);padding:0.35rem 0.75rem;border-radius:9999px;font-size:0.72rem;">User Flows</span>
-                      <span class="eyebrow" style="background:rgba(57,255,20,0.04);border:1px solid var(--border);padding:0.35rem 0.75rem;border-radius:9999px;font-size:0.72rem;">Wireframes</span>
-                      <span class="eyebrow" style="background:rgba(57,255,20,0.04);border:1px solid var(--border);padding:0.35rem 0.75rem;border-radius:9999px;font-size:0.72rem;">Stakeholder Sign-off</span>
-                    </div>
-                  </div>
+                <div style="width:100%;height:18px;background:#111411;border-radius:4px;"></div>
+                <div style="display:flex;gap:5px;">
+                  <div style="width:31%;height:30px;background:#0d1a0f;border-radius:4px;border:1px dashed #1a3a20;"></div>
+                  <div style="width:31%;height:30px;background:#0d1a0f;border-radius:4px;border:1px dashed #1a3a20;"></div>
+                  <div style="width:31%;height:30px;background:#0d1a0f;border-radius:4px;border:1px dashed #1a3a20;"></div>
                 </div>
-                <div style="height:100vh;display:flex;align-items:center;padding-left:10%;padding-right:5%;">
-                  <div class="reveal" style="opacity:1;transform:none;">
-                    <div class="eyebrow">STEP 03</div>
-                    <h3 class="display-font font-extrabold italic mt-4" style="font-size:clamp(1.8rem,3vw,2.6rem);color:var(--text-primary);line-height:1.08;max-width:14ch;">Precision at Every Pixel.</h3>
-                    <p style="font-size:1rem;color:var(--text-secondary);max-width:400px;line-height:1.8;margin-top:16px;">High-fidelity screens with every component, every state, every breakpoint fully defined. Nothing is left open to interpretation in the developer handoff.</p>
-                    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:20px;">
-                      <span class="eyebrow" style="background:rgba(57,255,20,0.04);border:1px solid var(--border);padding:0.35rem 0.75rem;border-radius:9999px;font-size:0.72rem;">Figma Designs</span>
-                      <span class="eyebrow" style="background:rgba(57,255,20,0.04);border:1px solid var(--border);padding:0.35rem 0.75rem;border-radius:9999px;font-size:0.72rem;">Design System</span>
-                      <span class="eyebrow" style="background:rgba(57,255,20,0.04);border:1px solid var(--border);padding:0.35rem 0.75rem;border-radius:9999px;font-size:0.72rem;">All Breakpoints</span>
-                    </div>
-                  </div>
+              </div>
+              <div style="margin-top:10px;">
+                <div class="mono-font" style="font-size:7px;color:#3d5c45;margin-bottom:5px;">Navigation flow mapped</div>
+                <div style="width:100%;height:3px;background:#1a3a20;border-radius:2px;overflow:hidden;">
+                  <div style="width:45%;height:100%;background:var(--accent);border-radius:2px;"></div>
                 </div>
-                <div style="height:100vh;display:flex;align-items:center;padding-left:10%;padding-right:5%;">
-                  <div class="reveal" style="opacity:1;transform:none;">
-                    <div class="eyebrow">STEP 04</div>
-                    <h3 class="display-font font-extrabold italic mt-4" style="font-size:clamp(1.8rem,3vw,2.6rem);color:var(--text-primary);line-height:1.08;max-width:14ch;">Test Before You Ship.</h3>
-                    <p style="font-size:1rem;color:var(--text-secondary);max-width:400px;line-height:1.8;margin-top:16px;">Clickable prototypes go through Maze usability testing with real users before handoff. Real friction, caught early, fixed before engineering touches a line of code.</p>
-                    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:20px;">
-                      <span class="eyebrow" style="background:rgba(57,255,20,0.04);border:1px solid var(--border);padding:0.35rem 0.75rem;border-radius:9999px;font-size:0.72rem;">Prototype Testing</span>
-                      <span class="eyebrow" style="background:rgba(57,255,20,0.04);border:1px solid var(--border);padding:0.35rem 0.75rem;border-radius:9999px;font-size:0.72rem;">Maze Sessions</span>
-                      <span class="eyebrow" style="background:rgba(57,255,20,0.04);border:1px solid var(--border);padding:0.35rem 0.75rem;border-radius:9999px;font-size:0.72rem;">Annotated Handoff</span>
-                    </div>
+              </div>
+            </div>
+ 
+            <!-- Screen 3: UI Design -->
+            <div class="process-screen active" style="background:#080f09; padding:16px; display:flex; flex-direction:column; gap:10px;">
+              <div class="mono-font" style="font-size:8px;color:#4ade80;letter-spacing:0.14em;margin-bottom:10px;">UI DESIGN · FINAL</div>
+              <div style="background:#080f09;border-radius:8px;padding:10px;border:1px solid rgba(57,255,20,0.15);">
+                <div style="width:100%;height:3px;background:var(--accent);border-radius:2px;"></div>
+                <div style="margin-top:10px;width:100%;height:5px;background:#1a2e1e;border-radius:3px;"></div>
+                <div style="margin-top:6px;width:70%;height:4px;background:#1a2e1e;border-radius:3px;"></div>
+                <div style="margin-top:10px;display:flex;gap:6px;">
+                  <div style="width:40px;height:14px;background:rgba(57,255,20,0.15);border-radius:99px;border:1px solid rgba(57,255,20,0.3);"></div>
+                  <div style="width:28px;height:14px;background:#111411;border-radius:99px;"></div>
+                </div>
+              </div>
+              <div style="margin-top:8px;display:flex;gap:4px;flex-wrap:wrap;">
+                <span style="font-size:6px;padding:2px 6px;background:rgba(57,255,20,0.08);border:1px solid rgba(57,255,20,0.2);border-radius:99px;color:#4ade80;" class="mono-font">Mobile</span>
+                <span style="font-size:6px;padding:2px 6px;background:rgba(57,255,20,0.08);border:1px solid rgba(57,255,20,0.2);border-radius:99px;color:#4ade80;" class="mono-font">Tablet</span>
+                <span style="font-size:6px;padding:2px 6px;background:rgba(57,255,20,0.08);border:1px solid rgba(57,255,20,0.2);border-radius:99px;color:#4ade80;" class="mono-font">Desktop</span>
+              </div>
+              <div style="position:absolute;left:16px;right:16px;bottom:20px;">
+                <div class="mono-font" style="font-size:7px;color:#4ade80;margin-bottom:4px;">All breakpoints defined</div>
+                <div style="width:100%;height:3px;background:#1a3a20;border-radius:2px;overflow:hidden;">
+                  <div style="width:90%;height:100%;background:var(--accent);border-radius:2px;"></div>
+                </div>
+              </div>
+            </div>
+ 
+            <!-- Screen 4: Handoff -->
+            <div class="process-screen active" style="background:#080f09; padding:16px; display:flex; flex-direction:column; gap:10px;">
+              <div class="mono-font" style="font-size:8px;color:#4ade80;letter-spacing:0.14em;margin-bottom:10px;">FIGMA HANDOFF</div>
+              <div style="display:flex;flex-direction:column;gap:8px;">
+                <div style="display:flex;align-items:center;gap:8px;background:#0d1f10;border-radius:6px;padding:7px 8px;">
+                  <span style="width:14px;height:14px;background:rgba(57,255,20,0.15);border:1px solid rgba(57,255,20,0.4);border-radius:50%;display:inline-flex;align-items:center;justify-content:center;color:var(--accent);font-size:8px;flex-shrink:0;">✓</span>
+                  <span class="mono-font" style="font-size:7px;color:#4ade80;">Design system exported</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:8px;background:#0d1f10;border-radius:6px;padding:7px 8px;">
+                  <span style="width:14px;height:14px;background:rgba(57,255,20,0.15);border:1px solid rgba(57,255,20,0.4);border-radius:50%;display:inline-flex;align-items:center;justify-content:center;color:var(--accent);font-size:8px;flex-shrink:0;">✓</span>
+                  <span class="mono-font" style="font-size:7px;color:#4ade80;">All screens annotated</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:8px;background:#0d1f10;border-radius:6px;padding:7px 8px;">
+                  <span style="width:14px;height:14px;background:rgba(57,255,20,0.15);border:1px solid rgba(57,255,20,0.4);border-radius:50%;display:inline-flex;align-items:center;justify-content:center;color:var(--accent);font-size:8px;flex-shrink:0;">✓</span>
+                  <span class="mono-font" style="font-size:7px;color:#4ade80;">Dev specs attached</span>
+                </div>
+              </div>
+              <div style="margin-top:12px;">
+                <div style="padding:8px;background:rgba(57,255,20,0.06);border:1px solid rgba(57,255,20,0.15);border-radius:6px;">
+                  <div class="mono-font" style="font-size:7px;color:#4ade80;">Ready for dev handoff</div>
+                  <div style="display:flex;align-items:center;gap:4px;margin-top:4px;">
+                    <span style="width:5px;height:5px;background:var(--accent);border-radius:50%;display:inline-block;"></span>
+                    <span class="mono-font" style="font-size:6px;color:#3d5c45;">30 days support included</span>
                   </div>
                 </div>
               </div>
             </div>
-            <div style="width:50%;position:relative;display:flex;align-items:center;justify-content:center;">
-              <div style="width:260px;height:520px;margin:auto;background:#0C0F0C;border-radius:36px;border:2px solid rgba(57,255,20,0.2);box-shadow:0 0 60px rgba(57,255,20,0.05), 0 24px 80px rgba(0,0,0,0.5);position:relative;">
-                <span style="width:60px;height:10px;background:#080A08;border-radius:99px;margin:12px auto 0;display:block;"></span>
-                <div style="width:236px;height:440px;margin:8px auto;background:#080A08;border-radius:24px;overflow:hidden;position:relative;">
-                  <div class="process-screen active" style="background:#080f09;">
-                    <div class="mono-font" style="font-size:8px;color:#4ade80;letter-spacing:0.14em;margin-bottom:10px;">USER RESEARCH</div>
-                    <div style="display:flex;flex-direction:column;gap:10px;">
-                      <div style="display:flex;align-items:center;gap:10px;">
-                        <span style="width:20px;height:20px;background:#1a3a20;border-radius:50%;display:inline-block;"></span>
-                        <span style="display:flex;flex-direction:column;gap:2px;">
-                          <span style="width:40px;height:4px;background:#1a2e1e;border-radius:3px;display:block;"></span>
-                          <span style="width:28px;height:4px;background:#1a2e1e;border-radius:3px;display:block;"></span>
-                        </span>
-                      </div>
-                      <div style="display:flex;align-items:center;gap:10px;">
-                        <span style="width:20px;height:20px;background:#1a3a20;border-radius:50%;display:inline-block;"></span>
-                        <span style="display:flex;flex-direction:column;gap:2px;">
-                          <span style="width:40px;height:4px;background:#1a2e1e;border-radius:3px;display:block;"></span>
-                          <span style="width:28px;height:4px;background:#1a2e1e;border-radius:3px;display:block;"></span>
-                        </span>
-                      </div>
-                      <div style="display:flex;align-items:center;gap:10px;">
-                        <span style="width:20px;height:20px;background:#1a3a20;border-radius:50%;display:inline-block;"></span>
-                        <span style="display:flex;flex-direction:column;gap:2px;">
-                          <span style="width:40px;height:4px;background:#1a2e1e;border-radius:3px;display:block;"></span>
-                          <span style="width:28px;height:4px;background:#1a2e1e;border-radius:3px;display:block;"></span>
-                        </span>
-                      </div>
-                    </div>
-                    <div style="position:absolute;left:16px;right:16px;bottom:24px;">
-                      <div style="width:100%;height:4px;background:#1a3a20;border-radius:2px;overflow:hidden;">
-                        <div style="width:60%;height:100%;background:var(--accent);border-radius:2px;"></div>
-                      </div>
-                      <div class="mono-font" style="font-size:7px;color:#3d5c45;margin-top:6px;">4 of 6 interviews done</div>
-                    </div>
-                  </div>
-                  <div class="process-screen" style="background:#080f09;">
-                    <div class="mono-font" style="font-size:8px;color:#4ade80;letter-spacing:0.14em;margin-bottom:10px;">WIREFRAME v1.2</div>
-                    <div style="display:flex;flex-direction:column;gap:6px;">
-                      <div style="width:100%;height:28px;background:#111411;border-radius:4px;"></div>
-                      <div style="display:flex;gap:6px;">
-                        <div style="width:48%;height:60px;background:#0d1a0f;border-radius:4px;"></div>
-                        <div style="width:48%;height:60px;background:#0d1a0f;border-radius:4px;"></div>
-                      </div>
-                      <div style="width:100%;height:18px;background:#111411;border-radius:4px;"></div>
-                    </div>
-                  </div>
-                  <div class="process-screen" style="background:#0C0F0C;">
-                    <div class="mono-font" style="font-size:8px;color:#4ade80;letter-spacing:0.14em;margin-bottom:10px;">UI DESIGN · FINAL</div>
-                    <div style="background:#080f09;border-radius:8px;padding:10px;border:1px solid rgba(57,255,20,0.15);">
-                      <div style="width:100%;height:3px;background:var(--accent);border-radius:2px;"></div>
-                      <div style="margin-top:12px;width:100%;height:6px;background:#1a2e1e;border-radius:3px;"></div>
-                      <div style="margin-top:8px;width:70%;height:4px;background:#1a2e1e;border-radius:3px;"></div>
-                      <div style="margin-top:14px;width:40px;height:14px;background:rgba(57,255,20,0.15);border-radius:99px;border:1px solid rgba(57,255,20,0.3);"></div>
-                    </div>
-                    <div class="mono-font" style="font-size:7px;color:#4ade80;margin-top:8px;">Component ready</div>
-                  </div>
-                  <div class="process-screen" style="background:#080f09;">
-                    <div class="mono-font" style="font-size:8px;color:#4ade80;letter-spacing:0.14em;margin-bottom:10px;">FIGMA HANDOFF</div>
-                    <div style="display:flex;flex-direction:column;gap:10px;">
-                      <div style="display:flex;align-items:center;gap:8px;">
-                        <span style="width:12px;height:12px;background:rgba(57,255,20,0.15);border:1px solid rgba(57,255,20,0.4);border-radius:50%;display:inline-flex;align-items:center;justify-content:center;color:var(--accent);font-size:8px;">✓</span>
-                        <span style="width:80px;height:4px;background:#1a2e1e;border-radius:3px;display:block;"></span>
-                      </div>
-                      <div style="display:flex;align-items:center;gap:8px;">
-                        <span style="width:12px;height:12px;background:rgba(57,255,20,0.15);border:1px solid rgba(57,255,20,0.4);border-radius:50%;display:inline-flex;align-items:center;justify-content:center;color:var(--accent);font-size:8px;">✓</span>
-                        <span style="width:80px;height:4px;background:#1a2e1e;border-radius:3px;display:block;"></span>
-                      </div>
-                      <div style="display:flex;align-items:center;gap:8px;">
-                        <span style="width:12px;height:12px;background:rgba(57,255,20,0.15);border:1px solid rgba(57,255,20,0.4);border-radius:50%;display:inline-flex;align-items:center;justify-content:center;color:var(--accent);font-size:8px;">✓</span>
-                        <span style="width:80px;height:4px;background:#1a2e1e;border-radius:3px;display:block;"></span>
-                      </div>
-                    </div>
-                    <div class="mono-font" style="font-size:7px;color:#4ade80;margin-top:10px;">Handed off to dev</div>
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="position:absolute;right:16px;bottom:16px;">
-                      <path d="M12 3v12"></path>
-                      <path d="m17 8-5-5-5 5"></path>
-                      <path d="M21 21H3v-6"></path>
-                    </svg>
-                  </div>
-                </div>
-              </div>
-              <div style="position:absolute;right:0;top:0;width:2px;height:100%;background:#0C0F0C;">
-                <div id="process-progress-fill" style="width:100%;height:0%;background:var(--accent);border-radius:2px;transition:height 0.1s linear;"></div>
-              </div>
-            </div>
+ 
           </div>
         </div>
-
-        <div class="mobile-only-process site-shell">
-          <div class="reveal" style="padding:0 0 1.5rem;border-bottom:1px solid var(--border);">
-            <div class="eyebrow">STEP 01</div>
-            <h3 class="display-font font-extrabold italic mt-4" style="font-size:clamp(1.8rem,3vw,2.6rem);color:var(--text-primary);line-height:1.08;max-width:14ch;">Understand First.</h3>
-            <p style="font-size:1rem;color:var(--text-secondary);max-width:400px;line-height:1.8;margin-top:16px;">We start with research, not assumptions. User interviews, competitor teardowns, heatmap data — we map the full problem space before we open Figma.</p>
-            <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:20px;">
-              <span class="eyebrow" style="background:rgba(57,255,20,0.04);border:1px solid var(--border);padding:0.35rem 0.75rem;border-radius:9999px;font-size:0.72rem;">User Interviews</span>
-              <span class="eyebrow" style="background:rgba(57,255,20,0.04);border:1px solid var(--border);padding:0.35rem 0.75rem;border-radius:9999px;font-size:0.72rem;">Competitor Analysis</span>
-              <span class="eyebrow" style="background:rgba(57,255,20,0.04);border:1px solid var(--border);padding:0.35rem 0.75rem;border-radius:9999px;font-size:0.72rem;">Empathy Mapping</span>
-            </div>
+        <div style="position:absolute;right:0;top:0;width:2px;height:100%;background:#0C0F0C;">
+          <div id="process-progress-fill" style="width:100%;height:0%;background:var(--accent);border-radius:2px;transition:height 0.1s linear;"></div>
+        </div>
+      </div>
+ 
+    </div>
+  </div>
+ 
+  <!-- MOBILE VERSION -->
+  <div class="mobile-only-process site-shell">
+    <div class="reveal" style="padding:0 0 1.5rem;border-bottom:1px solid var(--border);">
+      <div class="eyebrow">STEP 01</div>
+      <h3 class="display-font font-extrabold italic mt-4" style="font-size:clamp(1.8rem,3vw,2.6rem);color:var(--text-primary);line-height:1.08;max-width:14ch;">Understand First.</h3>
+      <p style="font-size:1rem;color:var(--text-secondary);max-width:400px;line-height:1.8;margin-top:16px;">We start with research, not assumptions. User interviews, competitor teardowns, heatmap data — we map the full problem space before we open Figma.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;">
+        <span class="eyebrow" style="background:rgba(57,255,20,0.04);border:1px solid var(--border);padding:0.35rem 0.75rem;border-radius:9999px;font-size:0.72rem;">User Interviews</span>
+        <span class="eyebrow" style="background:rgba(57,255,20,0.04);border:1px solid var(--border);padding:0.35rem 0.75rem;border-radius:9999px;font-size:0.72rem;">Competitor Analysis</span>
+        <span class="eyebrow" style="background:rgba(57,255,20,0.04);border:1px solid var(--border);padding:0.35rem 0.75rem;border-radius:9999px;font-size:0.72rem;">Empathy Mapping</span>
+      </div>
+      <!-- Mini mockup for mobile step 1 -->
+      <div style="margin-top:20px;background:#0a1a0e;border:1px solid #1a3a20;border-radius:12px;padding:16px;">
+        <div class="mono-font" style="font-size:8px;color:#4ade80;letter-spacing:0.14em;margin-bottom:10px;">USER RESEARCH</div>
+        <div style="display:flex;flex-direction:column;gap:6px;">
+          <div style="display:flex;align-items:center;gap:8px;background:#0d1f10;border-radius:6px;padding:7px 8px;">
+            <span style="width:18px;height:18px;background:#1a3a20;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;"><span style="width:6px;height:6px;background:#4ade80;border-radius:50%;display:block;"></span></span>
+            <span class="mono-font" style="font-size:8px;color:#4ade80;">Aisha R. · 12 min interview</span>
           </div>
-          <div class="reveal" style="padding:1.5rem 0;border-bottom:1px solid var(--border);">
-            <div class="eyebrow">STEP 02</div>
-            <h3 class="display-font font-extrabold italic mt-4" style="font-size:clamp(1.8rem,3vw,2.6rem);color:var(--text-primary);line-height:1.08;max-width:14ch;">Structure Before Style.</h3>
-            <p style="font-size:1rem;color:var(--text-secondary);max-width:400px;line-height:1.8;margin-top:16px;">Wireframes come before visuals. We test information architecture and navigation logic before any design polish is applied — so revisions cost hours, not weeks.</p>
-            <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:20px;">
-              <span class="eyebrow" style="background:rgba(57,255,20,0.04);border:1px solid var(--border);padding:0.35rem 0.75rem;border-radius:9999px;font-size:0.72rem;">User Flows</span>
-              <span class="eyebrow" style="background:rgba(57,255,20,0.04);border:1px solid var(--border);padding:0.35rem 0.75rem;border-radius:9999px;font-size:0.72rem;">Wireframes</span>
-              <span class="eyebrow" style="background:rgba(57,255,20,0.04);border:1px solid var(--border);padding:0.35rem 0.75rem;border-radius:9999px;font-size:0.72rem;">Stakeholder Sign-off</span>
-            </div>
+          <div style="display:flex;align-items:center;gap:8px;background:#0d1f10;border-radius:6px;padding:7px 8px;">
+            <span style="width:18px;height:18px;background:#1a3a20;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;"><span style="width:6px;height:6px;background:#4ade80;border-radius:50%;display:block;"></span></span>
+            <span class="mono-font" style="font-size:8px;color:#4ade80;">Bilal K. · 9 min interview</span>
           </div>
-          <div class="reveal" style="padding:1.5rem 0;border-bottom:1px solid var(--border);">
-            <div class="eyebrow">STEP 03</div>
-            <h3 class="display-font font-extrabold italic mt-4" style="font-size:clamp(1.8rem,3vw,2.6rem);color:var(--text-primary);line-height:1.08;max-width:14ch;">Precision at Every Pixel.</h3>
-            <p style="font-size:1rem;color:var(--text-secondary);max-width:400px;line-height:1.8;margin-top:16px;">High-fidelity screens with every component, every state, every breakpoint fully defined. Nothing is left open to interpretation in the developer handoff.</p>
-            <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:20px;">
-              <span class="eyebrow" style="background:rgba(57,255,20,0.04);border:1px solid var(--border);padding:0.35rem 0.75rem;border-radius:9999px;font-size:0.72rem;">Figma Designs</span>
-              <span class="eyebrow" style="background:rgba(57,255,20,0.04);border:1px solid var(--border);padding:0.35rem 0.75rem;border-radius:9999px;font-size:0.72rem;">Design System</span>
-              <span class="eyebrow" style="background:rgba(57,255,20,0.04);border:1px solid var(--border);padding:0.35rem 0.75rem;border-radius:9999px;font-size:0.72rem;">All Breakpoints</span>
-            </div>
-          </div>
-          <div class="reveal" style="padding:1.5rem 0 0;">
-            <div class="eyebrow">STEP 04</div>
-            <h3 class="display-font font-extrabold italic mt-4" style="font-size:clamp(1.8rem,3vw,2.6rem);color:var(--text-primary);line-height:1.08;max-width:14ch;">Test Before You Ship.</h3>
-            <p style="font-size:1rem;color:var(--text-secondary);max-width:400px;line-height:1.8;margin-top:16px;">Clickable prototypes go through Maze usability testing with real users before handoff. Real friction, caught early, fixed before engineering touches a line of code.</p>
-            <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:20px;">
-              <span class="eyebrow" style="background:rgba(57,255,20,0.04);border:1px solid var(--border);padding:0.35rem 0.75rem;border-radius:9999px;font-size:0.72rem;">Prototype Testing</span>
-              <span class="eyebrow" style="background:rgba(57,255,20,0.04);border:1px solid var(--border);padding:0.35rem 0.75rem;border-radius:9999px;font-size:0.72rem;">Maze Sessions</span>
-              <span class="eyebrow" style="background:rgba(57,255,20,0.04);border:1px solid var(--border);padding:0.35rem 0.75rem;border-radius:9999px;font-size:0.72rem;">Annotated Handoff</span>
-            </div>
+          <div style="display:flex;align-items:center;gap:8px;background:#0d1f10;border-radius:6px;padding:7px 8px;opacity:0.5;">
+            <span style="width:18px;height:18px;background:#1a3a20;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;"><span style="width:6px;height:6px;background:#3d5c45;border-radius:50%;display:block;"></span></span>
+            <span class="mono-font" style="font-size:8px;color:#3d5c45;">Sara M. · Scheduled</span>
           </div>
         </div>
-      </section>
+        <div style="margin-top:12px;">
+          <div style="display:flex;justify-content:space-between;margin-bottom:4px;">
+            <span class="mono-font" style="font-size:7px;color:#3d5c45;">Interview progress</span>
+            <span class="mono-font" style="font-size:7px;color:#4ade80;">4 / 6</span>
+          </div>
+          <div style="width:100%;height:4px;background:#1a3a20;border-radius:2px;overflow:hidden;">
+            <div style="width:66%;height:100%;background:var(--accent);border-radius:2px;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+ 
+    <div class="reveal" style="padding:1.5rem 0;border-bottom:1px solid var(--border);">
+      <div class="eyebrow">STEP 02</div>
+      <h3 class="display-font font-extrabold italic mt-4" style="font-size:clamp(1.8rem,3vw,2.6rem);color:var(--text-primary);line-height:1.08;max-width:14ch;">Structure Before Style.</h3>
+      <p style="font-size:1rem;color:var(--text-secondary);max-width:400px;line-height:1.8;margin-top:16px;">Wireframes come before visuals. We test information architecture and navigation logic before any design polish is applied — so revisions cost hours, not weeks.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;">
+        <span class="eyebrow" style="background:rgba(57,255,20,0.04);border:1px solid var(--border);padding:0.35rem 0.75rem;border-radius:9999px;font-size:0.72rem;">User Flows</span>
+        <span class="eyebrow" style="background:rgba(57,255,20,0.04);border:1px solid var(--border);padding:0.35rem 0.75rem;border-radius:9999px;font-size:0.72rem;">Wireframes</span>
+        <span class="eyebrow" style="background:rgba(57,255,20,0.04);border:1px solid var(--border);padding:0.35rem 0.75rem;border-radius:9999px;font-size:0.72rem;">Stakeholder Sign-off</span>
+      </div>
+      <!-- Mini mockup for mobile step 2 -->
+      <div style="margin-top:20px;background:#0a1a0e;border:1px solid #1a3a20;border-radius:12px;padding:16px;">
+        <div class="mono-font" style="font-size:8px;color:#4ade80;letter-spacing:0.14em;margin-bottom:10px;">WIREFRAME v1.2</div>
+        <div style="display:flex;flex-direction:column;gap:5px;">
+          <div style="width:100%;height:20px;background:#111411;border-radius:4px;display:flex;align-items:center;padding:0 8px;gap:6px;">
+            <span style="width:6px;height:6px;background:#1a3a20;border-radius:50%;display:block;"></span>
+            <span style="width:50%;height:3px;background:#1a2e1e;border-radius:2px;display:block;"></span>
+          </div>
+          <div style="display:flex;gap:5px;">
+            <div style="width:48%;height:45px;background:#0d1a0f;border-radius:4px;border:1px dashed #1a3a20;display:flex;align-items:center;justify-content:center;">
+              <span class="mono-font" style="font-size:7px;color:#3d5c45;">Hero</span>
+            </div>
+            <div style="width:48%;height:45px;background:#0d1a0f;border-radius:4px;border:1px dashed #1a3a20;display:flex;align-items:center;justify-content:center;">
+              <span class="mono-font" style="font-size:7px;color:#3d5c45;">CTA</span>
+            </div>
+          </div>
+          <div style="width:100%;height:14px;background:#111411;border-radius:4px;"></div>
+        </div>
+        <div style="margin-top:10px;">
+          <div class="mono-font" style="font-size:7px;color:#3d5c45;margin-bottom:4px;">Navigation flow mapped</div>
+          <div style="width:100%;height:3px;background:#1a3a20;border-radius:2px;overflow:hidden;">
+            <div style="width:45%;height:100%;background:var(--accent);border-radius:2px;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+ 
+    <div class="reveal" style="padding:1.5rem 0;border-bottom:1px solid var(--border);">
+      <div class="eyebrow">STEP 03</div>
+      <h3 class="display-font font-extrabold italic mt-4" style="font-size:clamp(1.8rem,3vw,2.6rem);color:var(--text-primary);line-height:1.08;max-width:14ch;">Precision at Every Pixel.</h3>
+      <p style="font-size:1rem;color:var(--text-secondary);max-width:400px;line-height:1.8;margin-top:16px;">High-fidelity screens with every component, every state, every breakpoint fully defined. Nothing is left open to interpretation in the developer handoff.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;">
+        <span class="eyebrow" style="background:rgba(57,255,20,0.04);border:1px solid var(--border);padding:0.35rem 0.75rem;border-radius:9999px;font-size:0.72rem;">Figma Designs</span>
+        <span class="eyebrow" style="background:rgba(57,255,20,0.04);border:1px solid var(--border);padding:0.35rem 0.75rem;border-radius:9999px;font-size:0.72rem;">Design System</span>
+        <span class="eyebrow" style="background:rgba(57,255,20,0.04);border:1px solid var(--border);padding:0.35rem 0.75rem;border-radius:9999px;font-size:0.72rem;">All Breakpoints</span>
+      </div>
+      <!-- Mini mockup for mobile step 3 -->
+      <div style="margin-top:20px;background:#0a1a0e;border:1px solid #1a3a20;border-radius:12px;padding:16px;">
+        <div class="mono-font" style="font-size:8px;color:#4ade80;letter-spacing:0.14em;margin-bottom:10px;">UI DESIGN · FINAL</div>
+        <div style="background:#080f09;border-radius:8px;padding:10px;border:1px solid rgba(57,255,20,0.15);">
+          <div style="width:100%;height:3px;background:var(--accent);border-radius:2px;"></div>
+          <div style="margin-top:10px;width:100%;height:5px;background:#1a2e1e;border-radius:3px;"></div>
+          <div style="margin-top:6px;width:70%;height:4px;background:#1a2e1e;border-radius:3px;"></div>
+          <div style="margin-top:10px;display:flex;gap:6px;">
+            <div style="width:50px;height:16px;background:rgba(57,255,20,0.15);border-radius:99px;border:1px solid rgba(57,255,20,0.3);"></div>
+            <div style="width:36px;height:16px;background:#111411;border-radius:99px;"></div>
+          </div>
+        </div>
+        <div style="display:flex;gap:6px;margin-top:10px;flex-wrap:wrap;">
+          <span style="font-size:8px;padding:3px 8px;background:rgba(57,255,20,0.08);border:1px solid rgba(57,255,20,0.2);border-radius:99px;color:#4ade80;" class="mono-font">Mobile</span>
+          <span style="font-size:8px;padding:3px 8px;background:rgba(57,255,20,0.08);border:1px solid rgba(57,255,20,0.2);border-radius:99px;color:#4ade80;" class="mono-font">Tablet</span>
+          <span style="font-size:8px;padding:3px 8px;background:rgba(57,255,20,0.08);border:1px solid rgba(57,255,20,0.2);border-radius:99px;color:#4ade80;" class="mono-font">Desktop</span>
+        </div>
+      </div>
+    </div>
+ 
+    <div class="reveal" style="padding:1.5rem 0 0;">
+      <div class="eyebrow">STEP 04</div>
+      <h3 class="display-font font-extrabold italic mt-4" style="font-size:clamp(1.8rem,3vw,2.6rem);color:var(--text-primary);line-height:1.08;max-width:14ch;">Test Before You Ship.</h3>
+      <p style="font-size:1rem;color:var(--text-secondary);max-width:400px;line-height:1.8;margin-top:16px;">Clickable prototypes go through Maze usability testing with real users before handoff. Real friction, caught early, fixed before engineering touches a line of code.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;">
+        <span class="eyebrow" style="background:rgba(57,255,20,0.04);border:1px solid var(--border);padding:0.35rem 0.75rem;border-radius:9999px;font-size:0.72rem;">Prototype Testing</span>
+        <span class="eyebrow" style="background:rgba(57,255,20,0.04);border:1px solid var(--border);padding:0.35rem 0.75rem;border-radius:9999px;font-size:0.72rem;">Maze Sessions</span>
+        <span class="eyebrow" style="background:rgba(57,255,20,0.04);border:1px solid var(--border);padding:0.35rem 0.75rem;border-radius:9999px;font-size:0.72rem;">Annotated Handoff</span>
+      </div>
+      <!-- Mini mockup for mobile step 4 -->
+      <div style="margin-top:20px;background:#0a1a0e;border:1px solid #1a3a20;border-radius:12px;padding:16px;">
+        <div class="mono-font" style="font-size:8px;color:#4ade80;letter-spacing:0.14em;margin-bottom:10px;">FIGMA HANDOFF</div>
+        <div style="display:flex;flex-direction:column;gap:7px;">
+          <div style="display:flex;align-items:center;gap:8px;background:#0d1f10;border-radius:6px;padding:7px 8px;">
+            <span style="width:14px;height:14px;background:rgba(57,255,20,0.15);border:1px solid rgba(57,255,20,0.4);border-radius:50%;display:inline-flex;align-items:center;justify-content:center;color:var(--accent);font-size:8px;flex-shrink:0;">✓</span>
+            <span class="mono-font" style="font-size:8px;color:#4ade80;">Design system exported</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;background:#0d1f10;border-radius:6px;padding:7px 8px;">
+            <span style="width:14px;height:14px;background:rgba(57,255,20,0.15);border:1px solid rgba(57,255,20,0.4);border-radius:50%;display:inline-flex;align-items:center;justify-content:center;color:var(--accent);font-size:8px;flex-shrink:0;">✓</span>
+            <span class="mono-font" style="font-size:8px;color:#4ade80;">All screens annotated</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;background:#0d1f10;border-radius:6px;padding:7px 8px;">
+            <span style="width:14px;height:14px;background:rgba(57,255,20,0.15);border:1px solid rgba(57,255,20,0.4);border-radius:50%;display:inline-flex;align-items:center;justify-content:center;color:var(--accent);font-size:8px;flex-shrink:0;">✓</span>
+            <span class="mono-font" style="font-size:8px;color:#4ade80;">Dev specs attached</span>
+          </div>
+        </div>
+        <div style="margin-top:12px;padding:8px;background:rgba(57,255,20,0.06);border:1px solid rgba(57,255,20,0.15);border-radius:6px;">
+          <div class="mono-font" style="font-size:8px;color:#4ade80;">Ready for dev handoff</div>
+          <div style="display:flex;align-items:center;gap:4px;margin-top:4px;">
+            <span style="width:5px;height:5px;background:var(--accent);border-radius:50%;display:inline-block;"></span>
+            <span class="mono-font" style="font-size:7px;color:#3d5c45;">30 days support included</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+ 
+</section>
 
       <!-- ═══════════════ RESULTS / PROOF ═══════════════ -->
       <section class="section-frame py-24 lg:py-32">
@@ -683,8 +831,8 @@
             <div class="grid gap-10 lg:grid-cols-2 lg:items-center">
               <div>
                 <div class="section-kicker">Before vs after audit</div>
-                <h3 class="display-font mt-4 text-3xl font-extrabold italic leading-tight" style="color:var(--text-primary);">What we found. What we fixed.</h3>
-                <p class="mt-4 text-sm leading-7" style="color:var(--text-secondary);">Scores from a real usability audit before and after our redesign engagement.</p>
+                <h3 class="display-font mt-4 text-3xl font-extrabold italic leading-tight" style="color:var(--text-primary);">Real Numbers, Real Projects.</h3>
+                <p class="mt-4 text-sm leading-7" style="color:var(--text-secondary);"> What broke. What we fixed. Scores from an actual usability audit.</p>
               </div>
               <div class="space-y-5">
                 <div>
@@ -698,21 +846,18 @@
                   <div class="flex justify-between text-sm mb-2"><span style="color:var(--text-secondary);">Onboarding completion</span><span style="color:var(--accent);font-weight:700;">Pos. 88</span></div>
                   <div class="relative h-4 rounded-full" style="background:rgba(255,255,255,0.05);">
                     <div class="h-full rounded-full bar-animated" style="--w:88%;width:88%;background:linear-gradient(90deg,var(--accent),#2bc410);animation-delay:.1s;"></div>
-                    <div class="absolute right-2 top-1/2 -translate-y-1/2 mono-font text-[0.6rem]" style="color:#081008;">was 32%</div>
                   </div>
                 </div>
                 <div>
                   <div class="flex justify-between text-sm mb-2"><span style="color:var(--text-secondary);">Mobile task success</span><span style="color:var(--accent);font-weight:700;">Pos. 91</span></div>
                   <div class="relative h-4 rounded-full" style="background:rgba(255,255,255,0.05);">
                     <div class="h-full rounded-full bar-animated" style="--w:91%;width:91%;background:linear-gradient(90deg,var(--accent),#2bc410);animation-delay:.2s;"></div>
-                    <div class="absolute right-2 top-1/2 -translate-y-1/2 mono-font text-[0.6rem]" style="color:#081008;">was 28%</div>
                   </div>
                 </div>
                 <div>
                   <div class="flex justify-between text-sm mb-2"><span style="color:var(--text-secondary);">Form completion rate</span><span style="color:var(--accent);font-weight:700;">Pos. 85</span></div>
                   <div class="relative h-4 rounded-full" style="background:rgba(255,255,255,0.05);">
                     <div class="h-full rounded-full bar-animated" style="--w:85%;width:85%;background:linear-gradient(90deg,var(--accent),#2bc410);animation-delay:.3s;"></div>
-                    <div class="absolute right-2 top-1/2 -translate-y-1/2 mono-font text-[0.6rem]" style="color:#081008;">was 39%</div>
                   </div>
                 </div>
               </div>
@@ -848,8 +993,8 @@
                 <p class="mt-6 text-base leading-8 lg:text-lg" style="color:var(--text-secondary);max-width:38rem;">We'll review your current interface, identify the biggest friction points, and show you exactly what a redesign would change. No charge.</p>
               </div>
               <div class="flex flex-col gap-4">
-                <a href="index.html#contact" class="display-font inline-flex items-center justify-center rounded-full px-8 py-4 text-base font-bold transition-all hover:-translate-y-1" style="background:var(--accent);color:#081008;box-shadow:0 0 42px rgba(57,255,20,0.18);">Get Free Design Audit</a>
-                <a href="web-development.html" class="display-font inline-flex items-center justify-center rounded-full border px-8 py-4 text-base font-bold transition-all hover:-translate-y-1" style="border-color:var(--border-strong);color:var(--text-primary);">Explore Web Dev →</a>
+                <a href="/contact.html#contact-form" class="display-font inline-flex items-center justify-center rounded-full px-8 py-4 text-base font-bold transition-all hover:-translate-y-1" style="background:var(--accent);color:#081008;box-shadow:0 0 42px rgba(57,255,20,0.18);">Get Free Design Audit</a>
+                <a href="/services/web-dev.html" class="display-font inline-flex items-center justify-center rounded-full border px-8 py-4 text-base font-bold transition-all hover:-translate-y-1" style="border-color:var(--border-strong);color:var(--text-primary);">Explore Web Dev →</a>
               </div>
             </div>
           </div>
@@ -928,28 +1073,39 @@
         });
       });
 
-      (function() {
-        const wrapper = document.getElementById('design-process-wrapper');
-        if (!wrapper) return;
-        const screens = document.querySelectorAll('.process-screen');
-        const fill = document.getElementById('process-progress-fill');
-        
-        function updateStep() {
-          const rect = wrapper.getBoundingClientRect();
-          const wh = window.innerHeight;
-          const total = wrapper.offsetHeight - wh;
-          const scrolled = Math.max(0, -rect.top);
-          const progress = Math.min(1, scrolled / total);
-          
-          if (fill) fill.style.height = (progress * 100) + '%';
-          
-          const step = Math.min(3, Math.floor(progress * 4));
-          screens.forEach((s, i) => s.classList.toggle('active', i === step));
-        }
-        
-        window.addEventListener('scroll', updateStep, { passive: true });
-        updateStep();
-      })();
+ (function() {
+  const wrapper = document.getElementById('design-process-wrapper');
+  if (!wrapper) return;
+  const screens = document.querySelectorAll('.process-screen');
+  const leftSteps = wrapper.querySelectorAll('[data-step]');
+  const fill = document.getElementById('process-progress-fill');
+ 
+  function updateStep() {
+    const rect = wrapper.getBoundingClientRect();
+    const wh = window.innerHeight;
+    const total = wrapper.offsetHeight - wh;
+    const scrolled = Math.max(0, -rect.top);
+    const progress = Math.min(1, scrolled / total);
+ 
+    if (fill) fill.style.height = (progress * 100) + '%';
+ 
+    const step = Math.min(3, Math.floor(progress * 4));
+ 
+    // Right: mobile screens
+    screens.forEach((s, i) => s.classList.toggle('active', i === step));
+ 
+    // Left: text steps
+    leftSteps.forEach((s, i) => {
+      const active = i === step;
+      s.style.opacity = active ? '1' : '0';
+      s.style.transform = active ? 'none' : 'translateY(20px)';
+      s.style.pointerEvents = active ? 'auto' : 'none';
+    });
+  }
+ 
+  window.addEventListener('scroll', updateStep, { passive: true });
+  updateStep();
+})();
     </script>
   </body>
 </html>
