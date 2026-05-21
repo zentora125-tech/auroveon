@@ -191,6 +191,9 @@
       }
       .shine-word {
         display: inline-block;
+        overflow: visible;
+        padding-right: 0.08em;
+        padding-bottom: 0.15em;
         background: linear-gradient(
           90deg,
           #fff 0%,
@@ -604,7 +607,7 @@
         position: relative;
         z-index: 10;
         min-height: 620px;
-        margin-top: 80px;
+        margin-top: 12rem;
       }
       .persona-line {
         position: absolute;
@@ -664,12 +667,17 @@
         pointer-events: none;
       }
       .persona-card-number {
+        position: absolute;
+        top: 1.2rem;
+        left: 1.5rem;
         font-family: "Poppins", sans-serif;
         font-weight: 800;
         font-size: 4.2rem;
         line-height: 1;
-        color: rgba(57, 255, 20, 0.16);
+        color: rgba(57, 255, 20, 0.1);
         letter-spacing: -0.06em;
+        pointer-events: none;
+        z-index: 0;
       }
       .persona-card[data-card="1"] {
         transform: translate(-50%, -50%) translateX(0) rotate(0deg);
@@ -699,10 +707,9 @@
         transform: translate(-50%, -50%) translateX(306px) rotate(5deg);
       }
       .persona-card-body {
-        position: absolute;
-        left: 1.8rem;
-        right: 1.8rem;
-        bottom: 1.8rem;
+        position: relative;
+        z-index: 1;
+        padding-top: 3.5rem;
       }
       @media (max-width: 1023px) {
         .persona-fan-section {
@@ -857,10 +864,6 @@
         min-width: 60px;
         text-align: center;
       }
-      .process-step-heading {
-      }
-      .process-step-desc {
-      }
       @media (max-width: 767px) {
         .process-stack-card {
           grid-template-columns: auto 1fr;
@@ -918,10 +921,21 @@
 
       @media (max-width: 767px) {
         .hero-canvas-shell {
-          display: none;
+          display: block;
+          min-height: auto;
+          max-width: 220px;
+          margin: 1.5rem auto 0;
+        }
+        .hero-canvas-shell .avatar-container {
+          width: 200px;
+          height: 200px;
+          margin: 0 auto;
         }
         .hero-static-glow {
-          display: block;
+          display: none;
+        }
+        .hero-avatar-label {
+          display: none;
         }
       }
 
@@ -1152,6 +1166,42 @@
       .whatsapp-fab:hover {
         transform: scale(1.1);
       }
+
+      /* Mobile persona card overrides */
+      @media (max-width: 1023px) {
+        .persona-stage {
+          overflow: visible;
+        }
+
+        .persona-line {
+          display: none;
+        }
+
+        .persona-fan {
+          display: flex;
+          flex-direction: column;
+          align-items: stretch;
+          gap: 1rem;
+          transform: none !important;
+          position: static !important;
+          height: auto !important;
+        }
+
+        .persona-card {
+          position: static !important;
+          left: auto !important;
+          transform: none !important;
+          rotate: none !important;
+          width: 100% !important;
+          max-width: 100% !important;
+          opacity: 1 !important;
+          transition: none !important;
+        }
+
+        .persona-card-body {
+          width: 100%;
+        }
+      }
     </style>
   </head>
   <body>
@@ -1163,7 +1213,7 @@
     <main>
       <section
         id="hero"
-        class="section-frame relative min-h-screen overflow-hidden pt-24 flex items-center"
+        class="section-frame relative min-h-screen overflow-hidden pt-16 flex items-center"
       >
         <div class="hero-grid"></div>
         <div
@@ -1195,9 +1245,9 @@
           "
         ></div>
 
-        <div class="site-shell relative z-10 w-full py-10 lg:py-16">
-          <div class="grid gap-12 lg:grid-cols-[1fr_1fr] lg:items-center">
-            <div class="reveal" style="padding-left: clamp(0px, 9%, 80px)">
+        <div class="site-shell relative z-10 w-full py-6 lg:py-10">
+          <div class="grid gap-8 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
+            <div class="reveal" style="padding-left: clamp(2rem, 6vw, 8rem);">
               <div
                 class="glass-panel inline-flex items-center gap-3 rounded-full px-4 py-2 mb-6"
               >
@@ -1212,26 +1262,25 @@
               </div>
 
               <h1
-                class="display-font font-extrabold italic leading-[0.94] tracking-[-0.045em]"
-                style="font-size: clamp(2.8rem, 7vw, 6.2rem)"
+                class="display-font font-extrabold italic tracking-[-0.045em]"
+                style="font-size: clamp(3.5rem, 8vw, 7.5rem); line-height: 1.15;"
               >
-                <span class="shine-word">Automate Everything.</span><br />
-                <span class="shine-word">Scale Without Limits.</span><br />
-                <span class="shine-word-accent">Think in Systems.</span>
+                <span class="shine-word">Automate</span><br />
+                <span class="shine-word">Everything.</span>
               </h1>
 
               <p
                 class="mt-6 max-w-xl text-lg leading-8"
                 style="color: var(--text-secondary)"
               >
-                We automate repetitive workflows, deploy intelligent agents, and
-                connect every tool in your stack so your team can move faster
-                with fewer handoffs, fewer errors, and far more leverage.
+                We automate repetitive workflows, connect your tools, and deploy
+                AI agents so your team spends time on work that actually
+                matters.
               </p>
 
               <div class="mt-8 flex flex-col gap-4 sm:flex-row">
                 <a
-                  href="index.html#contact"
+                  href="../contact.html"
                   class="display-font inline-flex items-center justify-center rounded-full px-7 py-4 text-base font-bold transition-all hover:-translate-y-1"
                   style="
                     background: var(--accent);
@@ -1252,47 +1301,47 @@
                 >
               </div>
 
-              <div class="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-3">
-                <div class="glass-panel stat-pill rounded-[20px] px-4 py-5">
+              <div class="mt-10 grid grid-cols-1 gap-3 sm:grid-cols-3 sm:gap-4">
+                <div class="glass-panel stat-pill rounded-[20px] px-3 py-3 sm:px-4 sm:py-5">
                   <div
-                    class="display-font text-3xl font-extrabold italic"
+                    class="display-font text-xl font-extrabold italic"
                     style="color: var(--text-primary)"
                   >
-                    10x
+                    Fast turnaround
                   </div>
                   <p
                     class="mt-1 text-xs leading-5"
                     style="color: var(--text-secondary)"
                   >
-                    faster workflows
+                    from audit to live automation in weeks
                   </p>
                 </div>
-                <div class="glass-panel stat-pill rounded-[20px] px-4 py-5">
+                <div class="glass-panel stat-pill rounded-[20px] px-3 py-3 sm:px-4 sm:py-5">
                   <div
-                    class="display-font text-3xl font-extrabold italic"
+                    class="display-font text-xl font-extrabold italic"
                     style="color: var(--text-primary)"
                   >
-                    85%
+                    Full ownership
                   </div>
                   <p
                     class="mt-1 text-xs leading-5"
                     style="color: var(--text-secondary)"
                   >
-                    cost reduction on ops
+                    we build, integrate, and monitor for you
                   </p>
                 </div>
-                <div class="glass-panel stat-pill rounded-[20px] px-4 py-5">
+                <div class="glass-panel stat-pill rounded-[20px] px-3 py-3 sm:px-4 sm:py-5">
                   <div
-                    class="display-font text-3xl font-extrabold italic"
+                    class="display-font text-xl font-extrabold italic"
                     style="color: var(--text-primary)"
                   >
-                    300+
+                    Zero handoffs
                   </div>
                   <p
                     class="mt-1 text-xs leading-5"
                     style="color: var(--text-secondary)"
                   >
-                    automations deployed
+                    one team handles everything end to end
                   </p>
                 </div>
               </div>
@@ -1571,7 +1620,7 @@
               <span
                 class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]"
                 style="color: var(--text-secondary)"
-                >Zapier/Make Integration<span
+                >CRM Automation<span
                   class="mx-6"
                   style="color: var(--accent)"
                   >.</span
@@ -1580,28 +1629,14 @@
               <span
                 class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]"
                 style="color: var(--text-secondary)"
-                >LLM Pipelines<span class="mx-6" style="color: var(--accent)"
+                >API Integration<span class="mx-6" style="color: var(--accent)"
                   >.</span
                 ></span
               >
               <span
                 class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]"
                 style="color: var(--text-secondary)"
-                >Process Mining<span class="mx-6" style="color: var(--accent)"
-                  >.</span
-                ></span
-              >
-              <span
-                class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]"
-                style="color: var(--text-secondary)"
-                >RPA Bots<span class="mx-6" style="color: var(--accent)"
-                  >.</span
-                ></span
-              >
-              <span
-                class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]"
-                style="color: var(--text-secondary)"
-                >API Orchestration<span
+                >Document Automation<span
                   class="mx-6"
                   style="color: var(--accent)"
                   >.</span
@@ -1610,24 +1645,11 @@
               <span
                 class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]"
                 style="color: var(--text-secondary)"
-                >Auto-Reporting<span class="mx-6" style="color: var(--accent)"
+                >Data Pipelines<span class="mx-6" style="color: var(--accent)"
                   >.</span
                 ></span
               >
-              <span
-                class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]"
-                style="color: var(--text-secondary)"
-                >Smart Triggers<span class="mx-6" style="color: var(--accent)"
-                  >.</span
-                ></span
-              >
-              <span
-                class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]"
-                style="color: var(--text-secondary)"
-                >n8n Workflows<span class="mx-6" style="color: var(--accent)"
-                  >.</span
-                ></span
-              >
+              <!-- duplicate set for seamless loop -->
               <span
                 class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]"
                 style="color: var(--text-secondary)"
@@ -1647,7 +1669,7 @@
               <span
                 class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]"
                 style="color: var(--text-secondary)"
-                >Zapier/Make Integration<span
+                >CRM Automation<span
                   class="mx-6"
                   style="color: var(--accent)"
                   >.</span
@@ -1656,28 +1678,14 @@
               <span
                 class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]"
                 style="color: var(--text-secondary)"
-                >LLM Pipelines<span class="mx-6" style="color: var(--accent)"
+                >API Integration<span class="mx-6" style="color: var(--accent)"
                   >.</span
                 ></span
               >
               <span
                 class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]"
                 style="color: var(--text-secondary)"
-                >Process Mining<span class="mx-6" style="color: var(--accent)"
-                  >.</span
-                ></span
-              >
-              <span
-                class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]"
-                style="color: var(--text-secondary)"
-                >RPA Bots<span class="mx-6" style="color: var(--accent)"
-                  >.</span
-                ></span
-              >
-              <span
-                class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]"
-                style="color: var(--text-secondary)"
-                >API Orchestration<span
+                >Document Automation<span
                   class="mx-6"
                   style="color: var(--accent)"
                   >.</span
@@ -1686,30 +1694,15 @@
               <span
                 class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]"
                 style="color: var(--text-secondary)"
-                >Auto-Reporting<span class="mx-6" style="color: var(--accent)"
-                  >.</span
-                ></span
-              >
-              <span
-                class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]"
-                style="color: var(--text-secondary)"
-                >Smart Triggers<span class="mx-6" style="color: var(--accent)"
-                  >.</span
-                ></span
-              >
-              <span
-                class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]"
-                style="color: var(--text-secondary)"
-                >n8n Workflows<span class="mx-6" style="color: var(--accent)"
+                >Data Pipelines<span class="mx-6" style="color: var(--accent)"
                   >.</span
                 ></span
               >
             </div>
           </div>
         </div>
-      </section>
 
-      <section id="automations" class="section-frame py-24 lg:py-32">
+      <section id="automations" class="section-frame py-12 lg:py-32">
         <div class="site-shell">
           <div class="grid gap-10 lg:grid-cols-[0.55fr_1.45fr] lg:items-start">
             <div class="reveal lg:sticky lg:top-28">
@@ -1718,7 +1711,7 @@
                 class="display-font mt-4 text-4xl font-extrabold italic leading-[0.96] tracking-[-0.04em] lg:text-6xl"
                 style="color: var(--text-primary); max-width: 9ch"
               >
-                From manual chaos to machine precision.
+                From <span class="hidden sm:inline">manual chaos to </span>machine precision.
               </h2>
               <p
                 class="mt-6 text-base leading-8 lg:text-lg"
@@ -1885,7 +1878,7 @@
       </section>
 
       <section
-        class="persona-fan-section section-frame py-24 lg:py-32"
+        class="persona-fan-section section-frame py-12 lg:py-32"
         id="personas"
       >
         <div class="site-shell">
@@ -1910,7 +1903,7 @@
                 d="M130 296C248 226 330 196 450 254C560 308 628 348 732 280C840 210 950 208 1080 286"
               ></path>
             </svg>
-            <div class="persona-fan">
+            <div class="persona-fan mt-4">
               <article class="persona-card" data-card="1" style="left: 50%">
                 <div class="persona-card-number">1</div>
                 <div class="persona-card-body">
@@ -1992,7 +1985,7 @@
         </div>
       </section>
 
-      <section class="stack-section section-frame py-24 lg:py-32" id="stack">
+      <section class="stack-section section-frame py-12 lg:py-32" id="stack">
         <div class="site-shell">
           <div class="text-center mb-14 reveal">
             <div class="section-kicker">Automation stack</div>
@@ -2098,7 +2091,7 @@
       </section>
 
       <section
-        class="process-stack-section section-frame py-24 lg:py-32"
+        class="process-stack-section section-frame py-12 lg:py-32"
         id="process"
       >
         <div class="site-shell">
@@ -2108,7 +2101,7 @@
               class="display-font mt-4 text-4xl font-extrabold italic leading-[0.95] tracking-[-0.04em] lg:text-6xl mx-auto"
               style="color: var(--text-primary); max-width: 11ch"
             >
-              A practical build process for complex automation.
+              A practical build process<span class="hidden sm:inline"> for complex automation</span>.
             </h2>
           </div>
 
@@ -2216,118 +2209,8 @@
         </div>
       </section>
 
-      <section class="section-frame py-24 lg:py-32" id="results">
+      <section class="section-frame py-12 lg:py-32" id="results">
         <div class="site-shell">
-          <div class="text-center mb-14 reveal">
-            <div class="section-kicker">Proof of results</div>
-            <h2
-              class="display-font mt-4 text-4xl font-extrabold italic leading-[0.95] tracking-[-0.04em] lg:text-6xl mx-auto"
-              style="color: var(--text-primary); max-width: 13ch"
-            >
-              Automation outcomes you can actually feel.
-            </h2>
-          </div>
-
-          <div class="grid gap-6 lg:grid-cols-3 mb-10">
-            <div
-              class="hov-card glass-panel rounded-[30px] p-7 reveal"
-              style="transition-delay: 0.04s"
-            >
-              <div class="mini-label mono-font mb-4">Fintech client</div>
-              <div
-                class="display-font text-5xl font-extrabold italic"
-                style="color: var(--accent)"
-              >
-                12hrs → 18min
-              </div>
-              <div
-                class="text-base font-semibold mt-2"
-                style="color: var(--text-primary)"
-              >
-                Report generation pipeline
-              </div>
-              <p
-                class="mt-3 text-sm leading-7"
-                style="color: var(--text-secondary)"
-              >
-                Automated collection, summarisation, approval, and delivery of
-                recurring operational reports across multiple data sources.
-              </p>
-              <div class="mt-6 h-px soft-divider"></div>
-              <div
-                class="mt-4 mono-font text-xs uppercase tracking-widest"
-                style="color: var(--accent)"
-              >
-                Data sync + AI summary + delivery
-              </div>
-            </div>
-            <div
-              class="hov-card glass-panel rounded-[30px] p-7 reveal"
-              style="transition-delay: 0.1s"
-            >
-              <div class="mini-label mono-font mb-4">E-commerce brand</div>
-              <div
-                class="display-font text-5xl font-extrabold italic"
-                style="color: var(--accent)"
-              >
-                400% ROI
-              </div>
-              <div
-                class="text-base font-semibold mt-2"
-                style="color: var(--text-primary)"
-              >
-                CRM automation engine
-              </div>
-              <p
-                class="mt-3 text-sm leading-7"
-                style="color: var(--text-secondary)"
-              >
-                Lead nurturing, segmentation, abandoned-cart handling, and
-                post-purchase messaging turned follow-up into a system instead
-                of a task list.
-              </p>
-              <div class="mt-6 h-px soft-divider"></div>
-              <div
-                class="mt-4 mono-font text-xs uppercase tracking-widest"
-                style="color: var(--accent)"
-              >
-                Scoring + sequences + attribution
-              </div>
-            </div>
-            <div
-              class="hov-card glass-panel rounded-[30px] p-7 reveal"
-              style="transition-delay: 0.16s"
-            >
-              <div class="mini-label mono-font mb-4">Law firm</div>
-              <div
-                class="display-font text-5xl font-extrabold italic"
-                style="color: var(--accent)"
-              >
-                Zero manual errors
-              </div>
-              <div
-                class="text-base font-semibold mt-2"
-                style="color: var(--text-primary)"
-              >
-                Document processing workflow
-              </div>
-              <p
-                class="mt-3 text-sm leading-7"
-                style="color: var(--text-secondary)"
-              >
-                Files were classified, data extracted, reviewed, and routed
-                automatically with exception handling built into every branch.
-              </p>
-              <div class="mt-6 h-px soft-divider"></div>
-              <div
-                class="mt-4 mono-font text-xs uppercase tracking-widest"
-                style="color: var(--accent)"
-              >
-                OCR + validation + routing
-              </div>
-            </div>
-          </div>
-
           <div
             class="workflow-shell glass-panel rounded-[34px] p-8 lg:p-12 reveal"
           >
@@ -2349,273 +2232,181 @@
                   reliable machine.
                 </p>
               </div>
-              <div>
-                <svg
-                  viewBox="0 0 760 260"
-                  width="100%"
-                  height="auto"
-                  aria-hidden="true"
-                >
+              <div class="wf-diagram hidden lg:block" style="position: relative; min-height: 340px;">
+                <style>
+                  @keyframes wf-glow-pulse {
+                    0%, 100% { opacity: 0.1; }
+                    50% { opacity: 0.4; }
+                  }
+                  @keyframes wf-flow {
+                    0% { stroke-dashoffset: 12; }
+                    100% { stroke-dashoffset: 0; }
+                  }
+                  @keyframes wf-fade-up {
+                    0% { opacity: 0; transform: translateY(12px); }
+                    100% { opacity: 1; transform: translateY(0); }
+                  }
+                  .wf-node {
+                    position: relative;
+                    background: rgba(8, 16, 8, 0.85);
+                    backdrop-filter: blur(14px);
+                    -webkit-backdrop-filter: blur(14px);
+                    border: 1px solid rgba(57, 255, 20, 0.35);
+                    border-radius: 14px;
+                    padding: 1.1rem 1.3rem;
+                    box-shadow: 0 0 0 6px rgba(57, 255, 20, 0.08);
+                    opacity: 0;
+                    transform: translateY(12px);
+                  }
+                  .wf-node::before {
+                    content: "";
+                    position: absolute;
+                    inset: -8px;
+                    border-radius: 20px;
+                    background: radial-gradient(circle, rgba(57, 255, 20, 0.15), transparent 70%);
+                    pointer-events: none;
+                    z-index: -1;
+                    animation: wf-glow-pulse 3s ease-in-out infinite;
+                  }
+                  .wf-node:nth-child(1)::before { animation-delay: 0s; }
+                  .wf-node:nth-child(2)::before { animation-delay: 0.75s; }
+                  .wf-node:nth-child(3)::before { animation-delay: 1.5s; }
+                  .wf-node--output::before { animation-delay: 2.25s; }
+                  .wf-diagram.is-visible .wf-node {
+                    animation: wf-fade-up 0.6s ease forwards;
+                  }
+                  .wf-diagram.is-visible .wf-node:nth-child(1) { animation-delay: 0s; }
+                  .wf-diagram.is-visible .wf-node:nth-child(2) { animation-delay: 0.15s; }
+                  .wf-diagram.is-visible .wf-node:nth-child(3) { animation-delay: 0.3s; }
+                  .wf-diagram.is-visible .wf-node--output { animation-delay: 0.45s; }
+                  .wf-connector-line {
+                    stroke: rgba(57, 255, 20, 0.5);
+                    stroke-width: 1.5;
+                    fill: none;
+                    stroke-dasharray: 6 6;
+                    animation: wf-flow 1.4s linear infinite;
+                  }
+                  .wf-node-label {
+                    font-size: 0.62rem;
+                    letter-spacing: 0.18em;
+                    text-transform: uppercase;
+                    color: #39ff14;
+                    margin-bottom: 0.5rem;
+                  }
+                  .wf-node-title {
+                    font-size: 1.1rem;
+                    font-weight: 700;
+                    font-style: italic;
+                    color: #fff;
+                    line-height: 1.2;
+                  }
+                  .wf-node-sub {
+                    font-size: 0.7rem;
+                    color: rgba(255, 255, 255, 0.45);
+                    margin-top: 0.3rem;
+                    line-height: 1.5;
+                  }
+                </style>
+
+                <!-- Row 1: Trigger → AI Process → Decision -->
+                <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.4rem; margin-bottom: 1.4rem; position: relative; z-index: 2;">
+                  <div class="wf-node">
+                    <div class="mono-font wf-node-label">NODE 01</div>
+                    <div class="display-font wf-node-title">Trigger</div>
+                    <div class="wf-node-sub">Webhook or scheduled event</div>
+                  </div>
+                  <div class="wf-node">
+                    <div class="mono-font wf-node-label">NODE 02</div>
+                    <div class="display-font wf-node-title">AI Process</div>
+                    <div class="wf-node-sub">Classify, extract, generate</div>
+                  </div>
+                  <div class="wf-node">
+                    <div class="mono-font wf-node-label">NODE 03</div>
+                    <div class="display-font wf-node-title">Decision</div>
+                    <div class="wf-node-sub">Rules and confidence checks</div>
+                  </div>
+                </div>
+
+                <!-- Row 2: Output (below Decision) -->
+                <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.4rem; position: relative; z-index: 2;">
+                  <div></div>
+                  <div></div>
+                  <div class="wf-node wf-node--output">
+                    <div class="mono-font wf-node-label">NODE 04</div>
+                    <div class="display-font wf-node-title">Output</div>
+                    <div class="wf-node-sub">Update, notify, or deliver</div>
+                  </div>
+                </div>
+
+                <!-- SVG connector lines + animated dots -->
+                <svg style="position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1;" preserveAspectRatio="none" viewBox="0 0 600 260" aria-hidden="true">
                   <defs>
-                    <filter
-                      id="nodeGlow"
-                      x="-30%"
-                      y="-30%"
-                      width="160%"
-                      height="160%"
-                    >
-                      <feGaussianBlur
-                        stdDeviation="8"
-                        result="blur"
-                      ></feGaussianBlur>
-                      <feMerge>
-                        <feMergeNode in="blur"></feMergeNode>
-                        <feMergeNode in="SourceGraphic"></feMergeNode>
-                      </feMerge>
+                    <filter id="wfDotGlow2" x="-100%" y="-100%" width="300%" height="300%">
+                      <feDropShadow dx="0" dy="0" stdDeviation="3" flood-color="#39ff14" flood-opacity="0.7"></feDropShadow>
                     </filter>
                   </defs>
 
-                  <path
-                    class="flow-line"
-                    d="M150 72H264"
-                    stroke="rgba(57,255,20,0.58)"
-                    stroke-width="3"
-                    fill="none"
-                  ></path>
-                  <path
-                    class="flow-line"
-                    d="M380 72H492"
-                    stroke="rgba(57,255,20,0.58)"
-                    stroke-width="3"
-                    fill="none"
-                  ></path>
-                  <path
-                    class="flow-line"
-                    d="M608 72H660V184H608"
-                    stroke="rgba(57,255,20,0.58)"
-                    stroke-width="3"
-                    fill="none"
-                  ></path>
-                  <path
-                    class="flow-line"
-                    d="M492 184H380"
-                    stroke="rgba(57,255,20,0.58)"
-                    stroke-width="3"
-                    fill="none"
-                  ></path>
-
-                  <circle r="6" fill="#39ff14" filter="url(#nodeGlow)">
-                    <animateMotion
-                      dur="4.6s"
-                      repeatCount="indefinite"
-                      path="M150 72H264"
-                    ></animateMotion>
-                  </circle>
-                  <circle r="6" fill="#39ff14" filter="url(#nodeGlow)">
-                    <animateMotion
-                      dur="4.6s"
-                      begin="1s"
-                      repeatCount="indefinite"
-                      path="M380 72H492"
-                    ></animateMotion>
-                  </circle>
-                  <circle r="6" fill="#39ff14" filter="url(#nodeGlow)">
-                    <animateMotion
-                      dur="5.2s"
-                      begin=".7s"
-                      repeatCount="indefinite"
-                      path="M608 72H660V184H608"
-                    ></animateMotion>
-                  </circle>
-                  <circle r="6" fill="#39ff14" filter="url(#nodeGlow)">
-                    <animateMotion
-                      dur="3.8s"
-                      begin="1.3s"
-                      repeatCount="indefinite"
-                      path="M492 184H380"
-                    ></animateMotion>
+                  <!-- Trigger → AI Process -->
+                  <path class="wf-connector-line" d="M140 55 H240"></path>
+                  <circle r="4" fill="#39ff14" filter="url(#wfDotGlow2)">
+                    <animateMotion dur="2s" repeatCount="indefinite" path="M140 55 H240"></animateMotion>
                   </circle>
 
-                  <rect
-                    x="24"
-                    y="28"
-                    width="126"
-                    height="88"
-                    rx="24"
-                    fill="rgba(13,18,13,0.88)"
-                    stroke="rgba(57,255,20,0.32)"
-                  ></rect>
-                  <rect
-                    x="264"
-                    y="28"
-                    width="116"
-                    height="88"
-                    rx="24"
-                    fill="rgba(13,18,13,0.88)"
-                    stroke="rgba(57,255,20,0.32)"
-                  ></rect>
-                  <rect
-                    x="492"
-                    y="28"
-                    width="116"
-                    height="88"
-                    rx="24"
-                    fill="rgba(13,18,13,0.88)"
-                    stroke="rgba(57,255,20,0.32)"
-                  ></rect>
-                  <rect
-                    x="492"
-                    y="140"
-                    width="116"
-                    height="88"
-                    rx="24"
-                    fill="rgba(13,18,13,0.88)"
-                    stroke="rgba(57,255,20,0.32)"
-                  ></rect>
+                  <!-- AI Process → Decision -->
+                  <path class="wf-connector-line" d="M360 55 H455" style="animation-delay: 0.4s;"></path>
+                  <circle r="4" fill="#39ff14" filter="url(#wfDotGlow2)">
+                    <animateMotion dur="2s" begin="0.7s" repeatCount="indefinite" path="M360 55 H455"></animateMotion>
+                  </circle>
 
-                  <text
-                    x="87"
-                    y="58"
-                    text-anchor="middle"
-                    fill="#7a8a7a"
-                    font-size="11"
-                    font-family="JetBrains Mono, monospace"
-                    letter-spacing="2"
-                  >
-                    NODE 01
-                  </text>
-                  <text
-                    x="87"
-                    y="86"
-                    text-anchor="middle"
-                    fill="#f0f5f0"
-                    font-size="22"
-                    font-family="Poppins, sans-serif"
-                    font-style="italic"
-                    font-weight="700"
-                  >
-                    Trigger
-                  </text>
-                  <text
-                    x="87"
-                    y="103"
-                    text-anchor="middle"
-                    fill="#7a8a7a"
-                    font-size="11"
-                    font-family="Inter, sans-serif"
-                  >
-                    Webhook or scheduled event
-                  </text>
-
-                  <text
-                    x="322"
-                    y="58"
-                    text-anchor="middle"
-                    fill="#7a8a7a"
-                    font-size="11"
-                    font-family="JetBrains Mono, monospace"
-                    letter-spacing="2"
-                  >
-                    NODE 02
-                  </text>
-                  <text
-                    x="322"
-                    y="86"
-                    text-anchor="middle"
-                    fill="#f0f5f0"
-                    font-size="22"
-                    font-family="Poppins, sans-serif"
-                    font-style="italic"
-                    font-weight="700"
-                  >
-                    AI Process
-                  </text>
-                  <text
-                    x="322"
-                    y="103"
-                    text-anchor="middle"
-                    fill="#7a8a7a"
-                    font-size="11"
-                    font-family="Inter, sans-serif"
-                  >
-                    Classify, extract, generate
-                  </text>
-
-                  <text
-                    x="550"
-                    y="58"
-                    text-anchor="middle"
-                    fill="#7a8a7a"
-                    font-size="11"
-                    font-family="JetBrains Mono, monospace"
-                    letter-spacing="2"
-                  >
-                    NODE 03
-                  </text>
-                  <text
-                    x="550"
-                    y="86"
-                    text-anchor="middle"
-                    fill="#f0f5f0"
-                    font-size="22"
-                    font-family="Poppins, sans-serif"
-                    font-style="italic"
-                    font-weight="700"
-                  >
-                    Decision
-                  </text>
-                  <text
-                    x="550"
-                    y="103"
-                    text-anchor="middle"
-                    fill="#7a8a7a"
-                    font-size="11"
-                    font-family="Inter, sans-serif"
-                  >
-                    Rules and confidence checks
-                  </text>
-
-                  <text
-                    x="550"
-                    y="170"
-                    text-anchor="middle"
-                    fill="#7a8a7a"
-                    font-size="11"
-                    font-family="JetBrains Mono, monospace"
-                    letter-spacing="2"
-                  >
-                    NODE 04
-                  </text>
-                  <text
-                    x="550"
-                    y="198"
-                    text-anchor="middle"
-                    fill="#f0f5f0"
-                    font-size="22"
-                    font-family="Poppins, sans-serif"
-                    font-style="italic"
-                    font-weight="700"
-                  >
-                    Output
-                  </text>
-                  <text
-                    x="550"
-                    y="215"
-                    text-anchor="middle"
-                    fill="#7a8a7a"
-                    font-size="11"
-                    font-family="Inter, sans-serif"
-                  >
-                    Update, notify, or deliver
-                  </text>
+                  <!-- Decision → Output (downward) -->
+                  <path class="wf-connector-line" d="M530 90 V160" style="animation-delay: 0.8s;"></path>
+                  <circle r="4" fill="#39ff14" filter="url(#wfDotGlow2)">
+                    <animateMotion dur="1.6s" begin="1.2s" repeatCount="indefinite" path="M530 90 V160"></animateMotion>
+                  </circle>
                 </svg>
+
+                <script>
+                  (function(){
+                    var d = document.querySelector('.wf-diagram');
+                    if (!d) return;
+                    var io = new IntersectionObserver(function(entries){
+                      entries.forEach(function(e){
+                        if (e.isIntersecting) { d.classList.add('is-visible'); io.unobserve(d); }
+                      });
+                    }, { threshold: 0.2 });
+                    io.observe(d);
+                  })();
+                </script>
+              </div>
+              <!-- Mobile workflow fallback -->
+              <div class="lg:hidden flex flex-col gap-3 mt-8">
+                <div class="glass-panel rounded-[14px] px-4 py-4">
+                  <div class="mono-font text-[0.62rem] tracking-[0.18em] uppercase" style="color: #39ff14; margin-bottom: 0.4rem;">NODE 01</div>
+                  <div class="display-font text-base font-bold italic" style="color: var(--text-primary);">Trigger</div>
+                  <div class="text-xs mt-1" style="color: rgba(255,255,255,0.45);">Webhook or scheduled event</div>
+                </div>
+                <div class="glass-panel rounded-[14px] px-4 py-4">
+                  <div class="mono-font text-[0.62rem] tracking-[0.18em] uppercase" style="color: #39ff14; margin-bottom: 0.4rem;">NODE 02</div>
+                  <div class="display-font text-base font-bold italic" style="color: var(--text-primary);">AI Process</div>
+                  <div class="text-xs mt-1" style="color: rgba(255,255,255,0.45);">Classify, extract, generate</div>
+                </div>
+                <div class="glass-panel rounded-[14px] px-4 py-4">
+                  <div class="mono-font text-[0.62rem] tracking-[0.18em] uppercase" style="color: #39ff14; margin-bottom: 0.4rem;">NODE 03</div>
+                  <div class="display-font text-base font-bold italic" style="color: var(--text-primary);">Decision</div>
+                  <div class="text-xs mt-1" style="color: rgba(255,255,255,0.45);">Rules and confidence checks</div>
+                </div>
+                <div class="glass-panel rounded-[14px] px-4 py-4">
+                  <div class="mono-font text-[0.62rem] tracking-[0.18em] uppercase" style="color: #39ff14; margin-bottom: 0.4rem;">NODE 04</div>
+                  <div class="display-font text-base font-bold italic" style="color: var(--text-primary);">Output</div>
+                  <div class="text-xs mt-1" style="color: rgba(255,255,255,0.45);">Update, notify, or deliver</div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section class="section-frame py-24 lg:py-32">
+      <section class="section-frame py-12 lg:py-32">
         <div class="site-shell">
           <div class="grid gap-12 lg:grid-cols-[0.7fr_1.3fr] lg:items-start">
             <div class="reveal">
@@ -2821,7 +2612,7 @@
         </div>
       </section>
 
-      <section class="relative py-24 lg:py-32">
+      <section class="relative py-12 lg:py-32">
         <div class="site-shell">
           <div
             class="glass-panel relative overflow-hidden rounded-[38px] px-6 py-14 lg:px-14 lg:py-16 reveal"
@@ -2863,7 +2654,7 @@
               </div>
               <div class="flex flex-col gap-4">
                 <a
-                  href="index.html#contact"
+                  href="../contact.html"
                   class="display-font inline-flex items-center justify-center rounded-full px-8 py-4 text-base font-bold transition-all hover:-translate-y-1"
                   style="
                     background: var(--accent);
@@ -2873,13 +2664,13 @@
                   >Book Free Audit</a
                 >
                 <a
-                  href="seo.html"
+                  href="../services.html"
                   class="display-font inline-flex items-center justify-center rounded-full border px-8 py-4 text-base font-bold transition-all hover:-translate-y-1"
                   style="
                     border-color: var(--border-strong);
                     color: var(--text-primary);
                   "
-                  >Explore SEO Services →</a
+                  >View All Services →</a
                 >
               </div>
             </div>

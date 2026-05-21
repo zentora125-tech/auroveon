@@ -11,8 +11,9 @@ function Footer() {
               <img src={logoSrc} alt="Auroveon" className="brand-logo brand-logo-footer" />
             </div>
             <p className="mt-4 max-w-sm text-sm leading-7 text-[var(--text-secondary)]">
-              Software agency for AI solutions, modern web platforms, SaaS systems, and cinematic digital
-              experiences built for ambitious brands.
+              <span className="sm:hidden">Design, development, and automation. Delivered end to end.</span>
+              <span className="hidden sm:inline">Software agency for AI solutions, modern web platforms, SaaS systems, and cinematic digital
+              experiences built for ambitious brands.</span>
             </p>
             <div className="mt-6 footer-social-row">
               <a
@@ -138,7 +139,7 @@ function Footer() {
           <div className="flex flex-wrap items-center gap-3">
             <span>&copy; 2026</span>
             <img src={logoSrc} alt="Auroveon" className="brand-logo brand-logo-inline" />
-            <span>Auroveon. Crafted for premium digital products.</span>
+            <span>Auroveon. Design, development, and automation. Delivered end to end.</span>
           </div>
           <div className="flex flex-wrap items-center gap-4">
             <a className="footer-legal-link" href={`${BASE}privacy-policy.html`}>

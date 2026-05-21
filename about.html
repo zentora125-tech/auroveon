@@ -109,7 +109,7 @@
       }
 
       .soft-divider {
-        background: linear-gradient(90deg, transparent, rgba(57, 255, 20, 0.28), transparent);
+        background: linear-gradient(90deg, transparent, rgba(57, 255, 20, 0.45), transparent);
       }
 
       .eyebrow {
@@ -713,7 +713,7 @@
           <div class="grid gap-8 lg:grid-cols-2 lg:items-stretch">
 
             <!-- Mission -->
-            <div class="value-card glass-panel rounded-[34px] border border-[var(--border)] p-8 lg:p-10">
+            <div class="value-card glass-panel rounded-[34px] border border-[var(--border)] p-8 lg:p-10 flex flex-col h-full">
               <div class="mono-font text-[0.72rem] uppercase tracking-[0.18em] text-[var(--accent)] mb-5">Our Mission</div>
               <div class="w-14 h-14 rounded-2xl border border-[var(--border-strong)] flex items-center justify-center mb-7"
                 style="background:rgba(57,255,20,0.06);">
@@ -727,7 +727,7 @@
               <p class="mt-5 text-sm leading-7 text-[var(--text-secondary)]">
                 We believe great software should feel like it was made with care. Every product we build is designed to look sharp, work fast, and leave an impression.
               </p>
-              <div class="mt-8 h-px w-full soft-divider"></div>
+              <div class="mt-auto pt-8 h-px w-full soft-divider"></div>
               <div class="mt-5 flex items-center gap-3">
                 <span class="h-2 w-2 rounded-full bg-[var(--accent)] pulse-dot"></span>
                 <span class="mono-font text-xs uppercase tracking-[0.18em] text-[var(--text-muted)]">Active & shipping</span>
@@ -735,7 +735,7 @@
             </div>
 
             <!-- Vision -->
-            <div class="value-card glass-panel rounded-[34px] border border-[var(--border)] p-8 lg:p-10">
+            <div class="value-card glass-panel rounded-[34px] border border-[var(--border)] p-8 lg:p-10 flex flex-col h-full">
               <div class="mono-font text-[0.72rem] uppercase tracking-[0.18em] text-[var(--accent)] mb-5">Our Vision</div>
               <div class="w-14 h-14 rounded-2xl border border-[var(--border-strong)] flex items-center justify-center mb-7"
                 style="background:rgba(57,255,20,0.06);">
@@ -749,7 +749,7 @@
               <p class="mt-5 text-sm leading-7 text-[var(--text-secondary)]">
                 We want ambitious brands from Karachi to the Gulf to have access to world-class AI tools and premium digital products without compromise. That's the future we're building toward.
               </p>
-              <div class="mt-8 h-px w-full soft-divider"></div>
+              <div class="mt-auto pt-8 h-px w-full soft-divider"></div>
               <div class="mt-5 flex items-center gap-3">
                 <span class="h-2 w-2 rounded-full bg-[var(--accent)] pulse-dot"></span>
                 <span class="mono-font text-xs uppercase tracking-[0.18em] text-[var(--text-muted)]">Long-term vision</span>
@@ -959,7 +959,7 @@
           <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
 
             <!-- Co-Founder 1 -->
-            <div class="team-card glass-panel rounded-[32px] border border-[var(--border)] p-7 lg:p-8">
+            <div class="team-card glass-panel rounded-[32px] border border-[var(--border)] p-7 lg:p-8 flex flex-col h-full">
               <div class="flex items-start gap-5 mb-7">
                 <div class="avatar-ring flex-shrink-0"><img src="./assets/member3.png" alt="Member image"></img></div>
                 <div>
@@ -978,19 +978,21 @@
   <span class="skill-tag">Project Direction</span>
   <span class="skill-tag">AI & Automation</span>
 </div>
-              <div class="mt-7 h-px w-full soft-divider"></div>
-              <div class="mt-5 flex items-center justify-between">
-                <div class="flex gap-3">
-                  <a href="https://www.linkedin.com/in/muhammad-qasim-44a9132b4/" target="_blank" class="w-9 h-9 rounded-full border border-[var(--border)] flex items-center justify-center hover:border-[var(--accent)] transition-colors">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="var(--text-secondary)"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.05-1.86-3.05-1.86 0-2.15 1.45-2.15 2.95v5.67H9.32V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.61 0 4.28 2.37 4.28 5.46v6.28ZM5.31 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14ZM7.09 20.45H3.52V9h3.57v11.45Z"/></svg>
-                  </a>
+              <div class="mt-auto pt-7">
+                <div class="h-px w-full soft-divider"></div>
+                <div class="mt-5 flex items-center justify-between">
+                  <div class="flex gap-3">
+                    <a href="https://www.linkedin.com/in/muhammad-qasim-44a9132b4/" target="_blank" class="w-9 h-9 rounded-full border border-[var(--border)] flex items-center justify-center hover:border-[var(--accent)] transition-colors">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="var(--text-secondary)"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.05-1.86-3.05-1.86 0-2.15 1.45-2.15 2.95v5.67H9.32V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.61 0 4.28 2.37 4.28 5.46v6.28ZM5.31 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14ZM7.09 20.45H3.52V9h3.57v11.45Z"/></svg>
+                    </a>
+                  </div>
+                  <span class="glass-panel rounded-full px-4 py-1.5 mono-font text-xs text-[var(--accent)] border border-[var(--border)]">Pakistan</span>
                 </div>
-                <span class="glass-panel rounded-full px-4 py-1.5 mono-font text-xs text-[var(--accent)] border border-[var(--border)]">Pakistan</span>
               </div>
             </div>
 
             <!-- Co-Founder 2 -->
-            <div class="team-card glass-panel rounded-[32px] border border-[var(--border)] p-7 lg:p-8">
+            <div class="team-card glass-panel rounded-[32px] border border-[var(--border)] p-7 lg:p-8 flex flex-col h-full">
               <div class="flex items-start gap-5 mb-7">
                 <div class="avatar-ring flex-shrink-0"><img src="./assets/member1.jpeg" alt="Member image"></img></div>
                 <div>
@@ -1008,19 +1010,21 @@
   <span class="skill-tag">AI Integration</span>
   <span class="skill-tag">Full-Stack Dev</span>
 </div>
-              <div class="mt-7 h-px w-full soft-divider"></div>
-              <div class="mt-5 flex items-center justify-between">
-                <div class="flex gap-3">
-                  <a href="https://www.linkedin.com/in/zaid-ali-khan-22ba70299/" target="_blank" class="w-9 h-9 rounded-full border border-[var(--border)] flex items-center justify-center hover:border-[var(--accent)] transition-colors">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="var(--text-secondary)"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.05-1.86-3.05-1.86 0-2.15 1.45-2.15 2.95v5.67H9.32V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.61 0 4.28 2.37 4.28 5.46v6.28ZM5.31 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14ZM7.09 20.45H3.52V9h3.57v11.45Z"/></svg>
-                  </a>
+              <div class="mt-auto pt-7">
+                <div class="h-px w-full soft-divider"></div>
+                <div class="mt-5 flex items-center justify-between">
+                  <div class="flex gap-3">
+                    <a href="https://www.linkedin.com/in/zaid-ali-khan-22ba70299/" target="_blank" class="w-9 h-9 rounded-full border border-[var(--border)] flex items-center justify-center hover:border-[var(--accent)] transition-colors">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="var(--text-secondary)"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.05-1.86-3.05-1.86 0-2.15 1.45-2.15 2.95v5.67H9.32V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.61 0 4.28 2.37 4.28 5.46v6.28ZM5.31 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14ZM7.09 20.45H3.52V9h3.57v11.45Z"/></svg>
+                    </a>
+                  </div>
+                  <span class="glass-panel rounded-full px-4 py-1.5 mono-font text-xs text-[var(--accent)] border border-[var(--border)]">Pakistan</span>
                 </div>
-                <span class="glass-panel rounded-full px-4 py-1.5 mono-font text-xs text-[var(--accent)] border border-[var(--border)]">Pakistan</span>
               </div>
             </div>
 
             <!-- Co-Founder 3 -->
-            <div class="team-card glass-panel rounded-[32px] border border-[var(--border)] p-7 lg:p-8">
+            <div class="team-card glass-panel rounded-[32px] border border-[var(--border)] p-7 lg:p-8 flex flex-col h-full">
               <div class="flex items-start gap-5 mb-7">
                 <div class="avatar-ring flex-shrink-0"><img src="./assets/member2.jpeg" alt="Member image"></img></div>
                 <div>
@@ -1038,14 +1042,16 @@
   <span class="skill-tag">Brand Identity</span>
   <span class="skill-tag">Motion & 3D</span>
 </div>
-              <div class="mt-7 h-px w-full soft-divider"></div>
-              <div class="mt-5 flex items-center justify-between">
-                <div class="flex gap-3">
-                  <a href="https://www.linkedin.com/in/hafiz-hamza-009642289?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" class="w-9 h-9 rounded-full border border-[var(--border)] flex items-center justify-center hover:border-[var(--accent)] transition-colors">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="var(--text-secondary)"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.05-1.86-3.05-1.86 0-2.15 1.45-2.15 2.95v5.67H9.32V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.61 0 4.28 2.37 4.28 5.46v6.28ZM5.31 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14ZM7.09 20.45H3.52V9h3.57v11.45Z"/></svg>
-                  </a>
+              <div class="mt-auto pt-7">
+                <div class="h-px w-full soft-divider"></div>
+                <div class="mt-5 flex items-center justify-between">
+                  <div class="flex gap-3">
+                    <a href="https://www.linkedin.com/in/hafiz-hamza-009642289?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" class="w-9 h-9 rounded-full border border-[var(--border)] flex items-center justify-center hover:border-[var(--accent)] transition-colors">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="var(--text-secondary)"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.05-1.86-3.05-1.86 0-2.15 1.45-2.15 2.95v5.67H9.32V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.61 0 4.28 2.37 4.28 5.46v6.28ZM5.31 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14ZM7.09 20.45H3.52V9h3.57v11.45Z"/></svg>
+                    </a>
+                  </div>
+                  <span class="glass-panel rounded-full px-4 py-1.5 mono-font text-xs text-[var(--accent)] border border-[var(--border)]">Pakistan</span>
                 </div>
-                <span class="glass-panel rounded-full px-4 py-1.5 mono-font text-xs text-[var(--accent)] border border-[var(--border)]">Pakistan</span>
               </div>
             </div>
           </div>
