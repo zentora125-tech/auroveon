@@ -18,6 +18,40 @@
   <script type="text/babel" src="../components/whatsapp-fab.js"></script>
   <style>
     :root{--bg-base:#080a08;--accent:#39ff14;--accent-dim:#2bc410;--accent-glow:rgba(57,255,20,0.16);--text-primary:#f0f5f0;--text-secondary:#7a8a7a;--text-muted:#4a574a;--border:rgba(57,255,20,0.1);--border-strong:rgba(57,255,20,0.24);}
+          /* Text Selection */
+::selection {
+  background: var(--accent);
+  color: var(--bg-base);
+}
+
+::-moz-selection {
+  background: var(--accent);
+  color: var(--bg-base);
+}
+
+/* Webkit Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0d110d;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    180deg,
+    var(--accent),
+    var(--accent-dim)
+  );
+  border-radius: 999px;
+  border: 2px solid #0d110d;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
+  box-shadow: 0 0 12px var(--accent-glow);
+}
     *{margin:0;padding:0;box-sizing:border-box;}
     html{scroll-behavior:smooth;}
     body{background:radial-gradient(circle at top,rgba(57,255,20,0.08),transparent 26%),linear-gradient(180deg,#080a08 0%,#090c09 50%,#070907 100%);color:var(--text-primary);font-family:"Inter",sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased;}
