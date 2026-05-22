@@ -132,6 +132,9 @@
 
       .reveal{opacity:0;transform:translateY(50px);transition:opacity .9s cubic-bezier(.22,1,.36,1),transform .9s cubic-bezier(.22,1,.36,1);}
       .reveal.visible{opacity:1;transform:none;}
+      @media screen and (min-width: 1500px) {
+        .service-hero-copy{margin-left:12rem;}
+      }
 
       .cta-bg{background:linear-gradient(135deg,rgba(8,10,8,0.92) 0%,rgba(8,10,8,0.78) 50%,rgba(8,10,8,0.92) 100%),url('https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1800&q=80') center/cover no-repeat;filter:saturate(.55) brightness(.58);}
 
@@ -441,7 +444,7 @@
         <div class="spotlight" style="width:26rem;height:26rem;bottom:4rem;left:-6rem;background:radial-gradient(circle,rgba(57,255,20,0.09),transparent 66%);"></div>
         <div class="site-shell relative z-10 w-full py-10 lg:py-14">
           <div class="grid gap-12 lg:grid-cols-[1fr_1fr] lg:items-start lg:gap-16">
-            <div class="reveal lg:pl-6 xl:pl-10">
+            <div class="reveal service-hero-copy lg:pl-6 xl:pl-10">
               <div class="glass-panel mb-8 inline-flex items-center gap-3 m-6 rounded-full px-5 py-2.5" style="border-color:var(--border-strong);">
                 <span class="h-2 w-2 rounded-full" style="background:var(--accent);box-shadow:0 0 14px rgba(57,255,20,0.7);"></span>
                 <span class="eyebrow">Digital Marketing Services</span>

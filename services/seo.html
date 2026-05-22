@@ -111,6 +111,9 @@
 
         .reveal{opacity:0;transform:translateY(50px);transition:opacity .9s cubic-bezier(.22,1,.36,1),transform .9s cubic-bezier(.22,1,.36,1);}
         .reveal.visible{opacity:1;transform:none;}
+        @media screen and (min-width: 1500px) {
+          .service-hero-copy{margin-left:12rem;}
+        }
         .cta-bg{position:absolute;inset:0;background:linear-gradient(100deg,rgba(8,10,8,0.88) 14%,rgba(8,10,8,0.7) 54%,rgba(8,10,8,0.88) 100%),url('https://images.unsplash.com/photo-1555421689-d68471e189f2?auto=format&fit=crop&w=1800&q=80') center/cover no-repeat;filter:saturate(.5) brightness(.58);}
         .whatsapp-fab{position:fixed;bottom:28px;right:8px;z-index:9999;display:flex;align-items:center;justify-content:center;width:56px;height:56px;border:none;border-radius:50%;background:#25d366;box-shadow:0 4px 20px rgba(37,211,102,0.45);transition:transform .25s;text-decoration:none;}
         .whatsapp-fab:hover{transform:scale(1.1);}
@@ -445,7 +448,7 @@
             <div class="grid gap-12 lg:grid-cols-[1fr_1fr] lg:items-center">
 
               <!-- LEFT COPY -->
-              <div class="reveal" style="padding-left:clamp(0px,9%,80px);">
+              <div class="reveal service-hero-copy" style="padding-left:clamp(0px,9%,80px);">
                 <div class="glass-panel inline-flex items-center gap-3 rounded-full px-4 py-2 mb-6">
                   <span class="h-2 w-2 rounded-full" style="background:var(--accent);box-shadow:0 0 14px rgba(57,255,20,0.7);"></span>
                   <span class="eyebrow">SEO Services - Search Growth System</span>

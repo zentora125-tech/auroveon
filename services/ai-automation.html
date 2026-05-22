@@ -350,6 +350,11 @@
         opacity: 1;
         transform: none;
       }
+      @media screen and (min-width: 1500px) {
+        .service-hero-copy {
+          margin-left: 8rem;
+        }
+      }
       .cta-bg {
         position: absolute;
         inset: 0;
@@ -1282,7 +1287,7 @@
 
         <div class="site-shell relative z-10 w-full py-6 lg:py-10">
           <div class="grid gap-8 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
-            <div class="reveal" style="padding-left: clamp(2rem, 6vw, 8rem);">
+            <div class="reveal service-hero-copy" style="padding-left: clamp(2rem, 6vw, 8rem);">
               <div
                 class="glass-panel inline-flex items-center gap-3 rounded-full px-4 py-2 mb-6"
               >
@@ -1298,7 +1303,7 @@
 
               <h1
                 class="display-font font-extrabold italic tracking-[-0.045em]"
-                style="font-size: clamp(3.5rem, 8vw, 7.5rem); line-height: 1.15;"
+                style="font-size: clamp(3.5rem, 8vw, 7.5rem); line-height: 0.8;"
               >
                 <span class="shine-word">Automate</span><br />
                 <span class="shine-word">Everything.</span>
