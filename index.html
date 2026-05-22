@@ -1116,6 +1116,7 @@
     <script type="text/babel" src="components/navbar.js"></script>
     <script type="text/babel" src="components/footer.js"></script>
     <script type="text/babel" src="components/whatsapp-fab.js"></script>
+    <script type="text/babel" src="components/loading.js"></script>
 
     <script type="text/babel">
       const { useEffect, useMemo, useRef, useState } = React;
@@ -2649,6 +2650,7 @@
 
         return (
           <div ref={appRef}>
+            <LoadingScreen />
             <div className="noise-overlay" />
             <CursorSystem />
             <Navbar />
