@@ -110,7 +110,7 @@ function Navbar() {
                 />
               </svg>
             </a>
-            <div className="nav-dropdown">
+            <div className="nav-dropdown -mt-3">
               {NAVBAR_SERVICE_ITEMS.map((item) => (
                 <a key={item.href} href={`${BASE}${item.href}`}>
                   {item.label}
