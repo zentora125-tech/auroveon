@@ -696,13 +696,15 @@
       .sticky-progress > span {
         display: block;
         width: 100%;
-        height: 0%;
+        height: 100%;
         background: linear-gradient(
           180deg,
           rgba(57, 255, 20, 0.18),
           var(--accent)
         );
         border-radius: inherit;
+        transform: scaleY(0);
+        transform-origin: top center;
       }
 
       .footer-link,
@@ -1013,13 +1015,11 @@
       }
 
       .process-outer {
-        min-height: 340vh;
         position: relative;
       }
 
       .process-inner {
-        position: sticky;
-        top: 0;
+        position: relative;
         min-height: 100vh;
         display: flex;
         align-items: center;
@@ -1042,11 +1042,11 @@
           transform 0.28s ease,
           border-color 0.28s ease,
           opacity 0.28s ease;
+        will-change: transform, opacity;
       }
 
       .process-preview-card.is-active {
         border-color: var(--border-strong);
-        transform: translateY(-8px);
         opacity: 1;
       }
 
@@ -2397,6 +2397,7 @@
             anchor.addEventListener("click", onAnchorClick),
           );
 
+          const cleanupFns = [];
           const ctx = gsap.context(() => {
             gsap.from(".split-inner", {
               yPercent: 110,
@@ -2534,6 +2535,9 @@
               );
             });
 
+            const storySection = document.getElementById("story");
+            const storyInner = storySection?.querySelector(".process-inner");
+            const storyStack = document.getElementById("story-stack");
             const progress = document.getElementById("story-progress-bar");
             const storyNumber = document.getElementById("story-number");
             const storyOverline = document.getElementById("story-overline");
@@ -2544,6 +2548,9 @@
 
             if (
               window.innerWidth >= 1024 &&
+              storySection &&
+              storyInner &&
+              storyStack &&
               progress &&
               storyNumber &&
               storyOverline &&
@@ -2552,96 +2559,183 @@
               storyPills &&
               storyCards.length
             ) {
-              let activeStoryIndex = 0;
+              let activeStoryIndex = -1;
+              let storyRefreshFrame = null;
+              const storyTargets = [
+                storyNumber,
+                storyOverline,
+                storyHeadline,
+                storyDesc,
+                storyPills,
+              ];
 
-              const setStoryStep = (index) => {
-                if (index === activeStoryIndex) return;
+              const getStoryScrollDistance = () => {
+                const viewportHeight = window.innerHeight || 0;
+                const tallestCard = storyCards.reduce(
+                  (maxHeight, card) =>
+                    Math.max(maxHeight, card.offsetHeight || 0),
+                  0,
+                );
+                const stackHeight = storyStack.offsetHeight || 0;
+                const perStepDistance = Math.max(
+                  viewportHeight * 0.42,
+                  tallestCard * 0.85,
+                  stackHeight * 0.22,
+                  220,
+                );
+
+                return Math.round(
+                  Math.max(
+                    perStepDistance * (workflowData.length - 1),
+                    viewportHeight * 1.35,
+                  ),
+                );
+              };
+
+              const syncStoryProgress = (progressValue) => {
+                const clampedProgress = gsap.utils.clamp(0, 1, progressValue);
+                gsap.set(progress, { scaleY: clampedProgress });
+                const nextIndex = Math.min(
+                  workflowData.length - 1,
+                  Math.round(clampedProgress * (workflowData.length - 1)),
+                );
+                setStoryStep(nextIndex);
+              };
+
+              const setStoryStep = (index, options = {}) => {
+                const { immediate = false } = options;
+                if (index === activeStoryIndex && !immediate) return;
+
                 activeStoryIndex = index;
                 const item = workflowData[index];
 
                 storyCards.forEach((card, cardIndex) => {
-                  card.classList.toggle("is-active", cardIndex === index);
-                  card.style.opacity = cardIndex === index ? "1" : "0.72";
+                  const isActiveCard = cardIndex === index;
+                  card.classList.toggle("is-active", isActiveCard);
+                  gsap.to(card, {
+                    y: isActiveCard ? -8 : 0,
+                    opacity: isActiveCard ? 1 : 0.56,
+                    duration: immediate ? 0 : 0.28,
+                    ease: "power3.out",
+                    overwrite: true,
+                  });
                 });
 
-                gsap.to(
-                  [
-                    storyNumber,
-                    storyOverline,
-                    storyHeadline,
-                    storyDesc,
-                    storyPills,
-                  ],
-                  {
-                    opacity: 0,
-                    y: 18,
-                    duration: 0.16,
-                    stagger: 0.025,
-                    onComplete: () => {
-                      storyNumber.textContent = item.step;
-                      storyOverline.textContent = item.label;
-                      storyHeadline.textContent = item.title;
-                      storyDesc.textContent = item.text;
-                      storyPills.innerHTML = item.pills
-                        .map(
-                          (pill) => `<span class="process-pill">${pill}</span>`,
-                        )
-                        .join("");
-                      gsap.fromTo(
-                        [
-                          storyNumber,
-                          storyOverline,
-                          storyHeadline,
-                          storyDesc,
-                          storyPills,
-                        ],
-                        { opacity: 0, y: 18 },
-                        {
-                          opacity: 1,
-                          y: 0,
-                          duration: 0.34,
-                          stagger: 0.04,
-                          ease: "power3.out",
-                        },
-                      );
-                    },
+                if (immediate) {
+                  storyNumber.textContent = item.step;
+                  storyOverline.textContent = item.label;
+                  storyHeadline.textContent = item.title;
+                  storyDesc.textContent = item.text;
+                  storyPills.innerHTML = item.pills
+                    .map((pill) => `<span class="process-pill">${pill}</span>`)
+                    .join("");
+                  gsap.set(storyTargets, { opacity: 1, y: 0 });
+                  return;
+                }
+
+                gsap.killTweensOf(storyTargets);
+                gsap.to(storyTargets, {
+                  opacity: 0,
+                  y: 18,
+                  duration: 0.16,
+                  stagger: 0.025,
+                  onComplete: () => {
+                    storyNumber.textContent = item.step;
+                    storyOverline.textContent = item.label;
+                    storyHeadline.textContent = item.title;
+                    storyDesc.textContent = item.text;
+                    storyPills.innerHTML = item.pills
+                      .map((pill) => `<span class="process-pill">${pill}</span>`)
+                      .join("");
+                    gsap.fromTo(
+                      storyTargets,
+                      { opacity: 0, y: 18 },
+                      {
+                        opacity: 1,
+                        y: 0,
+                        duration: 0.34,
+                        stagger: 0.04,
+                        ease: "power3.out",
+                      },
+                    );
                   },
-                );
+                });
               };
 
+              const queueStoryRefresh = () => {
+                if (storyRefreshFrame) cancelAnimationFrame(storyRefreshFrame);
+                storyRefreshFrame = requestAnimationFrame(() => {
+                  storyRefreshFrame = null;
+                  ScrollTrigger.refresh();
+                });
+              };
+
+              gsap.set(progress, {
+                scaleY: 0,
+                transformOrigin: "top center",
+              });
+              setStoryStep(0, { immediate: true });
+
               storyCards.forEach((card, index) => {
-                card.style.opacity = index === 0 ? "1" : "0.72";
-                card.addEventListener("mouseenter", () => setStoryStep(index));
+                const activateCard = () => setStoryStep(index);
+                card.addEventListener("mouseenter", activateCard);
+                card.addEventListener("focusin", activateCard);
+                cleanupFns.push(() => {
+                  card.removeEventListener("mouseenter", activateCard);
+                  card.removeEventListener("focusin", activateCard);
+                });
               });
 
-              gsap.to(progress, {
-                height: "100%",
-                ease: "none",
-                scrollTrigger: {
-                  trigger: "#story",
-                  start: "top top",
-                  end: "bottom bottom",
-                  scrub: 1,
-                  onUpdate: (self) => {
-                    const nextIndex = Math.min(
-                      workflowData.length - 1,
-                      Math.floor(self.progress * workflowData.length),
-                    );
-                    setStoryStep(nextIndex);
-                  },
+              ScrollTrigger.create({
+                trigger: storySection,
+                start: "top top",
+                end: () => `+=${getStoryScrollDistance()}`,
+                pin: storyInner,
+                pinSpacing: true,
+                scrub: 1,
+                anticipatePin: 1,
+                invalidateOnRefresh: true,
+                onUpdate: (self) => {
+                  syncStoryProgress(self.progress);
                 },
               });
+
+              const onWindowLoad = () => queueStoryRefresh();
+              const onWindowResize = () => queueStoryRefresh();
+
+              window.addEventListener("load", onWindowLoad);
+              window.addEventListener("resize", onWindowResize);
+              cleanupFns.push(() => {
+                window.removeEventListener("load", onWindowLoad);
+                window.removeEventListener("resize", onWindowResize);
+                if (storyRefreshFrame) cancelAnimationFrame(storyRefreshFrame);
+              });
+
+              if (document.fonts?.ready) {
+                document.fonts.ready.then(queueStoryRefresh).catch(() => {});
+              }
+
+              queueStoryRefresh();
             }
           }, appRef.current);
 
           const onLenisScroll = () => ScrollTrigger.update();
           lenis.on("scroll", onLenisScroll);
 
+          const onScrollTriggerRefresh = () => {
+            if (typeof lenis.resize === "function") lenis.resize();
+          };
+          ScrollTrigger.addEventListener("refresh", onScrollTriggerRefresh);
+          cleanupFns.push(() =>
+            ScrollTrigger.removeEventListener("refresh", onScrollTriggerRefresh),
+          );
+
           return () => {
             lenis.off("scroll", onLenisScroll);
             anchors.forEach((anchor) =>
               anchor.removeEventListener("click", onAnchorClick),
             );
+            cleanupFns.forEach((cleanup) => cleanup());
             ctx.revert();
             if (rafId) cancelAnimationFrame(rafId);
             lenis.destroy();
