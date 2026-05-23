@@ -86,39 +86,40 @@
         --bd: rgba(57, 255, 20, 0.1);
         --bds: rgba(57, 255, 20, 0.26);
       }
-            /* Text Selection */
-::selection {
-  background: var(--accent);
-  color: var(--bg-base);
+      
+      /* Text Selection */
+      ::selection {
+        background: #39ff14;
+        color: #080a08;
+      }
+
+      ::-moz-selection {
+        background: #39ff14;
+        color: #080a08;
+      }
+/* Force scrollbar override Tailwind ke baad */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: #39ff14 #0d110d;
 }
 
-::-moz-selection {
-  background: var(--accent);
-  color: var(--bg-base);
-}
-
-/* Webkit Scrollbar */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 10px !important;
 }
 
 ::-webkit-scrollbar-track {
-  background: #0d110d;
+  background: #0d110d !important;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(
-    180deg,
-    var(--accent),
-    var(--accent-dim)
-  );
-  border-radius: 999px;
-  border: 2px solid #0d110d;
+  background: linear-gradient(180deg, #39ff14, #2bc410) !important;
+  border-radius: 999px !important;
+  border: 2px solid #0d110d !important;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--accent);
-  box-shadow: 0 0 12px var(--accent-glow);
+  background: #39ff14 !important;
+  box-shadow: 0 0 12px rgba(57, 255, 20, 0.16) !important;
 }
       * {
         margin: 0;
