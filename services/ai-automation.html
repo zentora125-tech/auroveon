@@ -284,22 +284,17 @@
       .hero-grid {
         position: absolute;
         inset: 0;
-        background-image:
-          linear-gradient(rgba(57, 255, 20, 0.04) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(57, 255, 20, 0.04) 1px, transparent 1px);
-        background-size: 74px 74px;
-        mask-image: radial-gradient(
-          circle at 60% 40%,
-          black 0%,
-          black 40%,
-          transparent 85%
-        );
-        -webkit-mask-image: radial-gradient(
-          circle at 60% 40%,
-          black 0%,
-          black 40%,
-          transparent 85%
-        );
+            background-image:
+          url("https://images.unsplash.com/photo-1761122912306-13d8f83892c1?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fHVpJTIwdXglMjBkYXJrfGVufDB8fDB8fHww"),
+          url("data:image/svg+xml,%3Csvg width='360' height='312' viewBox='0 0 360 312' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cg opacity='0.24' stroke='%2339ff14' stroke-width='1'%3E%3Cpath d='M90 26H180L225 104L180 182H90L45 104L90 26Z'/%3E%3Cpath d='M225 104H315L360 182L315 260H225L180 182L225 104Z'/%3E%3Cpath d='M0 104H90L135 182L90 260H0'/%3E%3Cpath d='M180 26V0'/%3E%3Cpath d='M180 182V234H225'/%3E%3Cpath d='M90 260V312'/%3E%3Cpath d='M315 260V312'/%3E%3Cpath d='M45 104H0'/%3E%3Cpath d='M360 182H320'/%3E%3Ccircle cx='180' cy='26' r='3' fill='%2339ff14'/%3E%3Ccircle cx='225' cy='104' r='3' fill='%2339ff14'/%3E%3Ccircle cx='90' cy='260' r='3' fill='%2339ff14'/%3E%3Ccircle cx='315' cy='260' r='3' fill='%2339ff14'/%3E%3C/g%3E%3C/svg%3E");
+        background-size:
+          cover,
+          cover,
+          360px 312px;
+        background-position: center, center, center;
+        background-repeat: no-repeat, no-repeat, no-repeat;
+        opacity: 0.09;
+      
       }
       .spotlight {
         position: absolute;
