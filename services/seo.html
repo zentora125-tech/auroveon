@@ -1,249 +1,951 @@
-  <!doctype html>
-  <html lang="en">
-    <head>
-      <meta charset="UTF-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/png" href="../assets/favicon_32x32.png">
-      <title>SEO Services | Auroveon - Technical SEO, Content Strategy & Organic Growth</title>
-      <meta name="description" content="Auroveon delivers technical SEO audits, keyword strategy, content clusters, local SEO, schema, analytics, and authority building for sustainable organic growth." />
-      <meta name="theme-color" content="#080A08" />
-      <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="../assets/favicon_32x32.png" />
+    <title>
+      SEO Services | Auroveon - Technical SEO, Content Strategy & Organic Growth
+    </title>
+    <meta
+      name="description"
+      content="Auroveon delivers technical SEO audits, keyword strategy, content clusters, local SEO, schema, analytics, and authority building for sustainable organic growth."
+    />
+    <meta name="theme-color" content="#080A08" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
 
-      <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
 
     <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-      <script type="text/babel" src="../components/navbar.js"></script>
+    <script type="text/babel" src="../components/navbar.js"></script>
     <script type="text/babel" src="../components/footer.js"></script>
     <script type="text/babel" src="../components/whatsapp-fab.js"></script>
     <style>
-        :root {
-          --bg-base: #080a08;
-          --accent: #39ff14;
-          --accent-dim: #2bc410;
-          --text-primary: #f0f5f0;
-          --text-secondary: #7a8a7a;
-          --text-muted: #4a574a;
-          --border: rgba(57, 255, 20, 0.1);
-          --border-strong: rgba(57, 255, 20, 0.24);
-        }
-              /* Text Selection */
-::selection {
-  background: var(--accent);
-  color: var(--bg-base);
-}
+      :root {
+        --bg-base: #080a08;
+        --accent: #39ff14;
+        --accent-dim: #2bc410;
+        --text-primary: #f0f5f0;
+        --text-secondary: #7a8a7a;
+        --text-muted: #4a574a;
+        --border: rgba(57, 255, 20, 0.1);
+        --border-strong: rgba(57, 255, 20, 0.24);
+      }
+      /* Text Selection */
+      ::selection {
+        background: var(--accent);
+        color: var(--bg-base);
+      }
 
-::-moz-selection {
-  background: var(--accent);
-  color: var(--bg-base);
-}
+      ::-moz-selection {
+        background: var(--accent);
+        color: var(--bg-base);
+      }
 
-/* Webkit Scrollbar */
-::-webkit-scrollbar {
-  width: 10px;
-}
+      /* Webkit Scrollbar */
+      ::-webkit-scrollbar {
+        width: 10px;
+      }
 
-::-webkit-scrollbar-track {
-  background: #0d110d;
-}
+      ::-webkit-scrollbar-track {
+        background: #0d110d;
+      }
 
-::-webkit-scrollbar-thumb {
-  background: linear-gradient(
-    180deg,
-    var(--accent),
-    var(--accent-dim)
-  );
-  border-radius: 999px;
-  border: 2px solid #0d110d;
-}
+      ::-webkit-scrollbar-thumb {
+        background: linear-gradient(180deg, var(--accent), var(--accent-dim));
+        border-radius: 999px;
+        border: 2px solid #0d110d;
+      }
 
-::-webkit-scrollbar-thumb:hover {
-  background: var(--accent);
-  box-shadow: 0 0 12px var(--accent-glow);
-}
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
+      ::-webkit-scrollbar-thumb:hover {
+        background: var(--accent);
+        box-shadow: 0 0 12px var(--accent-glow);
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        background:
+          radial-gradient(
+            circle at top,
+            rgba(57, 255, 20, 0.07),
+            transparent 26%
+          ),
+          linear-gradient(180deg, #080a08 0%, #090c09 50%, #070907 100%);
+        color: var(--text-primary);
+        font-family: "Inter", sans-serif;
+        overflow-x: hidden;
+        -webkit-font-smoothing: antialiased;
+      }
+      @media (min-width: 1024px) {
         body {
-          background: radial-gradient(circle at top, rgba(57,255,20,0.07), transparent 26%), linear-gradient(180deg,#080a08 0%,#090c09 50%,#070907 100%);
-          color: var(--text-primary);
-          font-family: "Inter", sans-serif;
-          overflow-x: hidden;
-          -webkit-font-smoothing: antialiased;
+          cursor: none;
         }
-        @media(min-width:1024px){body{cursor:none;}}
-        .display-font { font-family: "Poppins", sans-serif; }
-        .mono-font { font-family: "JetBrains Mono", monospace; }
-        .site-shell { width: min(1380px, calc(100% - 1.5rem)); margin: 0 auto; }
-        @media(min-width:1024px){.site-shell{width:min(1380px,calc(100% - 4rem));}}
-
-        .cursor-dot,.cursor-ring{position:fixed;top:0;left:0;transform:translate(-50%,-50%);pointer-events:none;z-index:90;opacity:0;}
-        .cursor-dot{width:10px;height:10px;border-radius:9999px;background:var(--accent);box-shadow:0 0 22px rgba(57,255,20,0.65);mix-blend-mode:screen;}
-        .cursor-ring{width:54px;height:54px;border-radius:9999px;border:1px solid rgba(57,255,20,0.22);transition:width .25s,height .25s,border-color .25s;}
-        .cursor-ring.is-hovering{width:76px;height:76px;border-color:rgba(57,255,20,0.48);}
-        @media(max-width:1023px){.cursor-dot,.cursor-ring{display:none;}}
-
-        .noise-overlay{position:fixed;inset:0;pointer-events:none;z-index:5;opacity:0.034;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:240px 240px;}
-        .glass-panel{background:linear-gradient(180deg,rgba(18,23,18,0.8),rgba(10,12,10,0.58));border:1px solid var(--border);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);box-shadow:0 18px 60px rgba(0,0,0,0.35),inset 0 1px 0 rgba(255,255,255,0.04);}
-        .nav-scrolled{background:rgba(8,10,8,0.86);border-bottom:1px solid var(--border);backdrop-filter:blur(22px);}
-        .nav-link{color:var(--text-secondary);transition:color .24s;}
-        .nav-link:hover,.nav-link.active-link{color:var(--text-primary);}
-        .eyebrow{font-family:"JetBrains Mono",monospace;color:var(--accent);font-size:0.72rem;letter-spacing:0.18em;text-transform:uppercase;}
-        .section-kicker{font-family:"Poppins",sans-serif;font-size:0.74rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--text-secondary);}
-        .mini-label{color:var(--text-muted);font-size:0.76rem;text-transform:uppercase;letter-spacing:0.16em;}
-        .soft-divider{background:linear-gradient(90deg,transparent,rgba(57,255,20,0.28),transparent);}
-
-        @keyframes text-shine{0%{background-position:-200% center;}100%{background-position:200% center;}}
-        .shine-word{display:inline-block;background:linear-gradient(90deg,#fff 0%,#fff 35%,#b9ffb0 44%,#eaffea 50%,#b9ffb0 56%,#fff 65%,#fff 100%);background-size:200% auto;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:text-shine 4s linear infinite;}
-        .shine-word-accent{display:inline-block;background:linear-gradient(90deg,#39ff14 0%,#39ff14 35%,#ccffcc 44%,#efffef 50%,#ccffcc 56%,#39ff14 65%,#39ff14 100%);background-size:200% auto;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:text-shine 4s linear infinite;}
-
-        .section-frame{position:relative;}
-        .section-frame::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:1px;background:linear-gradient(90deg,transparent,rgba(57,255,20,0.08),transparent);}
-        .hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(57,255,20,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(57,255,20,0.04) 1px,transparent 1px);background-size:74px 74px;mask-image:radial-gradient(circle at 60% 40%,black 0%,black 40%,transparent 85%);-webkit-mask-image:radial-gradient(circle at 60% 40%,black 0%,black 40%,transparent 85%);}
-        .spotlight{position:absolute;border-radius:9999px;filter:blur(120px);pointer-events:none;}
-
-        .hov-card{transition:border-color .28s,box-shadow .28s,transform .28s;}
-        .hov-card:hover{border-color:var(--border-strong);box-shadow:0 24px 70px rgba(0,0,0,0.38),0 0 45px rgba(57,255,20,0.1);transform:translateY(-8px);}
-
-        .marquee{overflow:hidden;}
-        .marquee-track{display:flex;width:max-content;animation:marquee-left 28s linear infinite;}
-        @keyframes marquee-left{0%{transform:translateX(0%);}100%{transform:translateX(-50%);}}
-
-        .reveal{opacity:0;transform:translateY(50px);transition:opacity .9s cubic-bezier(.22,1,.36,1),transform .9s cubic-bezier(.22,1,.36,1);}
-        .reveal.visible{opacity:1;transform:none;}
-        @media screen and (min-width: 1500px) {
-          .service-hero-copy{margin-left:12rem;}
+      }
+      .display-font {
+        font-family: "Poppins", sans-serif;
+      }
+      .mono-font {
+        font-family: "JetBrains Mono", monospace;
+      }
+      .site-shell {
+        width: min(1380px, calc(100% - 1.5rem));
+        margin: 0 auto;
+      }
+      @media (min-width: 1024px) {
+        .site-shell {
+          width: min(1380px, calc(100% - 4rem));
         }
-        .cta-bg{position:absolute;inset:0;background:linear-gradient(100deg,rgba(8,10,8,0.88) 14%,rgba(8,10,8,0.7) 54%,rgba(8,10,8,0.88) 100%),url('https://images.unsplash.com/photo-1555421689-d68471e189f2?auto=format&fit=crop&w=1800&q=80') center/cover no-repeat;filter:saturate(.5) brightness(.58);}
-        .whatsapp-fab{position:fixed;bottom:28px;right:8px;z-index:9999;display:flex;align-items:center;justify-content:center;width:56px;height:56px;border:none;border-radius:50%;background:#25d366;box-shadow:0 4px 20px rgba(37,211,102,0.45);transition:transform .25s;text-decoration:none;}
-        .whatsapp-fab:hover{transform:scale(1.1);}
-        .footer-link{color:var(--text-secondary);transition:color .24s;}
-        .footer-link:hover{color:var(--text-primary);}
-        .footer-contact-label{font-size:0.7rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--text-secondary);}
-        .footer-contact-value{margin-top:4px;color:#fff;font-size:0.95rem;}
-        .footer-contact-link{color:#fff;text-decoration:none;transition:color .2s;}
-        .footer-contact-link:hover{color:var(--accent);}
-        .footer-legal-link{color:var(--text-secondary);transition:color .24s;}
-        .footer-legal-link:hover{color:var(--accent);}
-        .footer-social-link{display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border:1px solid #1a3a1a;border-radius:9999px;background:#111;transition:border-color .2s,transform .2s;}
-        .footer-social-link svg{width:18px;height:18px;fill:#aaa;transition:fill .2s;}
-        .footer-social-link:hover{border-color:#00ff88;transform:translateY(-1px);}
-        .footer-social-link:hover svg{fill:#00ff88;}
-        .feature-glow::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at top right,rgba(57,255,20,0.1),transparent 30%);pointer-events:none;}
+      }
 
-        /* SERP RESULT MOCKUP */
-        .serp-card{background:rgba(255,255,255,0.96);border-radius:16px;padding:18px 22px;margin-bottom:12px;}
-        .serp-card .serp-url{color:#1a73e8;font-size:0.78rem;margin-bottom:3px;font-family:Arial,sans-serif;}
-        .serp-card .serp-title{color:#1a0dab;font-size:1.05rem;font-weight:600;line-height:1.3;font-family:Arial,sans-serif;margin-bottom:5px;}
-        .serp-card .serp-desc{color:#4d5156;font-size:0.82rem;line-height:1.5;font-family:Arial,sans-serif;}
-        .serp-featured{border-left:4px solid var(--accent);background:rgba(57,255,20,0.06) !important;}
-        .serp-badge{display:inline-block;padding:2px 8px;border-radius:4px;font-size:0.65rem;font-family:"JetBrains Mono",monospace;letter-spacing:.1em;text-transform:uppercase;background:rgba(57,255,20,0.15);color:var(--accent);margin-bottom:8px;}
-
-        @keyframes float-up{0%,100%{transform:translateY(0);}50%{transform:translateY(-12px);}}
-        @keyframes float-side{0%,100%{transform:translateY(0) rotate(-2deg);}50%{transform:translateY(-8px) rotate(0deg);}}
-        .float-up{animation:float-up 5s ease-in-out infinite;}
-        .float-side{animation:float-side 6s ease-in-out infinite;}
-
-        /* RANK COUNTER ANIM */
-        @keyframes slide-up{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);}}
-        .slide-up{animation:slide-up .7s ease-out both;}
-
-        /* ACCORDION */
-        .accordion-body{max-height:0;overflow:hidden;transition:max-height .4s ease;}
-        .accordion-body.open{max-height:500px;}
-        .accordion-toggle{cursor:pointer;padding:20px 24px;}
-        .accordion-body.open{padding-left:24px;border-left:2px solid rgba(0,255,136,0.25);margin-left:24px;margin-right:24px;margin-bottom:8px;padding-bottom:12px;}
-        .accordion-body p{margin-top:8px;}
-        .faq-icon{display:inline-block;transition:transform 0.2s ease;}
-        .faq-item.open .faq-icon{transform:rotate(45deg);}
-        .faq-item.open .accordion-toggle .faq-question{color:#00ff88;}
-        .faq-item{border-bottom:1px solid #1a2e1e;}
-        .faq-item:last-child{border-bottom:none;}
-
-        /* TABS FOR SERVICES */
-        .seo-tab-content{display:none;}
-        .seo-tab-content.active{display:block;}
-        .seo-tab-btn{padding:10px 20px;border-radius:9999px;font-family:"JetBrains Mono",monospace;font-size:0.72rem;letter-spacing:.12em;text-transform:uppercase;border:1px solid var(--border);color:var(--text-secondary);background:transparent;cursor:pointer;transition:all .25s;}
-        .seo-tab-btn.active{border-color:var(--accent);color:var(--accent);background:rgba(57,255,20,0.04);}
-
-        /* BAR ANIM */
-        @keyframes bar-fill{from{width:0%;}to{width:var(--w);}}
-
-        /* DASHBOARD CARD ANIMATIONS */
-        @keyframes draw-line{from{stroke-dashoffset:600;}to{stroke-dashoffset:0;}}
-        @keyframes fade-in-dot{from{opacity:0;}to{opacity:1;}}
-        @keyframes dashboard-glow{from{box-shadow:0 0 30px rgba(0,255,136,0.08);}to{box-shadow:0 0 50px rgba(0,255,136,0.15);}}
-
-        /* TIMELINE CARD HOVER */
-        .timeline-card:hover{border-color:rgba(0,255,136,0.25)!important;transform:translateY(-4px);}
-
-        /* PREFERS REDUCED MOTION */
-        @media(prefers-reduced-motion:reduce){
-          .bar-animated,.float-up,.float-side,.marquee-track,.reveal{animation:none!important;transition:none!important;}
-          #site-line{stroke-dashoffset:0!important;animation:none!important;}
-          #seo-dashboard{animation:none!important;}
-          .faq-icon{transition:none!important;}
+      .cursor-dot,
+      .cursor-ring {
+        position: fixed;
+        top: 0;
+        left: 0;
+        transform: translate(-50%, -50%);
+        pointer-events: none;
+        z-index: 90;
+        opacity: 0;
+      }
+      .cursor-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 9999px;
+        background: var(--accent);
+        box-shadow: 0 0 22px rgba(57, 255, 20, 0.65);
+        mix-blend-mode: screen;
+      }
+      .cursor-ring {
+        width: 54px;
+        height: 54px;
+        border-radius: 9999px;
+        border: 1px solid rgba(57, 255, 20, 0.22);
+        transition:
+          width 0.25s,
+          height 0.25s,
+          border-color 0.25s;
+      }
+      .cursor-ring.is-hovering {
+        width: 76px;
+        height: 76px;
+        border-color: rgba(57, 255, 20, 0.48);
+      }
+      @media (max-width: 1023px) {
+        .cursor-dot,
+        .cursor-ring {
+          display: none;
         }
-        .bar-animated{animation:bar-fill 1.4s cubic-bezier(.22,1,.36,1) both;}
-      
+      }
+
+      .noise-overlay {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: 5;
+        opacity: 0.034;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+        background-size: 240px 240px;
+      }
+      .glass-panel {
+        background: linear-gradient(
+          180deg,
+          rgba(18, 23, 18, 0.8),
+          rgba(10, 12, 10, 0.58)
+        );
+        border: 1px solid var(--border);
+        backdrop-filter: blur(22px);
+        -webkit-backdrop-filter: blur(22px);
+        box-shadow:
+          0 18px 60px rgba(0, 0, 0, 0.35),
+          inset 0 1px 0 rgba(255, 255, 255, 0.04);
+      }
+      .nav-scrolled {
+        background: rgba(8, 10, 8, 0.86);
+        border-bottom: 1px solid var(--border);
+        backdrop-filter: blur(22px);
+      }
+      .nav-link {
+        color: var(--text-secondary);
+        transition: color 0.24s;
+      }
+      .nav-link:hover,
+      .nav-link.active-link {
+        color: var(--text-primary);
+      }
+      .eyebrow {
+        font-family: "JetBrains Mono", monospace;
+        color: var(--accent);
+        font-size: 0.72rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+      }
+      .section-kicker {
+        font-family: "Poppins", sans-serif;
+        font-size: 0.74rem;
+        font-weight: 700;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--text-secondary);
+      }
+      .mini-label {
+        color: var(--text-muted);
+        font-size: 0.76rem;
+        text-transform: uppercase;
+        letter-spacing: 0.16em;
+      }
+      .soft-divider {
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(57, 255, 20, 0.28),
+          transparent
+        );
+      }
+
+      @keyframes text-shine {
+        0% {
+          background-position: -200% center;
+        }
+        100% {
+          background-position: 200% center;
+        }
+      }
+      .shine-word {
+        display: inline-block;
+        background: linear-gradient(
+          90deg,
+          #fff 0%,
+          #fff 35%,
+          #b9ffb0 44%,
+          #eaffea 50%,
+          #b9ffb0 56%,
+          #fff 65%,
+          #fff 100%
+        );
+        background-size: 200% auto;
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: text-shine 4s linear infinite;
+      }
+      .shine-word-accent {
+        display: inline-block;
+        background: linear-gradient(
+          90deg,
+          #39ff14 0%,
+          #39ff14 35%,
+          #ccffcc 44%,
+          #efffef 50%,
+          #ccffcc 56%,
+          #39ff14 65%,
+          #39ff14 100%
+        );
+        background-size: 200% auto;
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: text-shine 4s linear infinite;
+      }
+
+      .section-frame {
+        position: relative;
+      }
+      .section-frame::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: -1px;
+        height: 1px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(57, 255, 20, 0.08),
+          transparent
+        );
+      }
+      .hero-grid {
+        position: absolute;
+        inset: 0;
+        background-image:
+          linear-gradient(rgba(57, 255, 20, 0.04) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(57, 255, 20, 0.04) 1px, transparent 1px);
+        background-size: 74px 74px;
+        mask-image: radial-gradient(
+          circle at 60% 40%,
+          black 0%,
+          black 40%,
+          transparent 85%
+        );
+        -webkit-mask-image: radial-gradient(
+          circle at 60% 40%,
+          black 0%,
+          black 40%,
+          transparent 85%
+        );
+      }
+      .spotlight {
+        position: absolute;
+        border-radius: 9999px;
+        filter: blur(120px);
+        pointer-events: none;
+      }
+
+      .hov-card {
+        transition:
+          border-color 0.28s,
+          box-shadow 0.28s,
+          transform 0.28s;
+      }
+      .hov-card:hover {
+        border-color: var(--border-strong);
+        box-shadow:
+          0 24px 70px rgba(0, 0, 0, 0.38),
+          0 0 45px rgba(57, 255, 20, 0.1);
+        transform: translateY(-8px);
+      }
+
+      .marquee {
+        overflow: hidden;
+      }
+      .marquee-track {
+        display: flex;
+        width: max-content;
+        animation: marquee-left 28s linear infinite;
+      }
+      @keyframes marquee-left {
+        0% {
+          transform: translateX(0%);
+        }
+        100% {
+          transform: translateX(-50%);
+        }
+      }
+
+      .reveal {
+        opacity: 0;
+        transform: translateY(50px);
+        transition:
+          opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+          transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+      .reveal.visible {
+        opacity: 1;
+        transform: none;
+      }
+      @media screen and (min-width: 1700px) {
+        .service-hero-copy {
+          margin-left: 12rem;
+        }
+      }
+      .cta-bg {
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(
+            100deg,
+            rgba(8, 10, 8, 0.88) 14%,
+            rgba(8, 10, 8, 0.7) 54%,
+            rgba(8, 10, 8, 0.88) 100%
+          ),
+          url("https://images.unsplash.com/photo-1555421689-d68471e189f2?auto=format&fit=crop&w=1800&q=80")
+            center/cover no-repeat;
+        filter: saturate(0.5) brightness(0.58);
+      }
+      .whatsapp-fab {
+        position: fixed;
+        bottom: 28px;
+        right: 8px;
+        z-index: 9999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 56px;
+        height: 56px;
+        border: none;
+        border-radius: 50%;
+        background: #25d366;
+        box-shadow: 0 4px 20px rgba(37, 211, 102, 0.45);
+        transition: transform 0.25s;
+        text-decoration: none;
+      }
+      .whatsapp-fab:hover {
+        transform: scale(1.1);
+      }
+      .footer-link {
+        color: var(--text-secondary);
+        transition: color 0.24s;
+      }
+      .footer-link:hover {
+        color: var(--text-primary);
+      }
+      .footer-contact-label {
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: var(--text-secondary);
+      }
+      .footer-contact-value {
+        margin-top: 4px;
+        color: #fff;
+        font-size: 0.95rem;
+      }
+      .footer-contact-link {
+        color: #fff;
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+      .footer-contact-link:hover {
+        color: var(--accent);
+      }
+      .footer-legal-link {
+        color: var(--text-secondary);
+        transition: color 0.24s;
+      }
+      .footer-legal-link:hover {
+        color: var(--accent);
+      }
+      .footer-social-link {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 42px;
+        height: 42px;
+        border: 1px solid #1a3a1a;
+        border-radius: 9999px;
+        background: #111;
+        transition:
+          border-color 0.2s,
+          transform 0.2s;
+      }
+      .footer-social-link svg {
+        width: 18px;
+        height: 18px;
+        fill: #aaa;
+        transition: fill 0.2s;
+      }
+      .footer-social-link:hover {
+        border-color: #00ff88;
+        transform: translateY(-1px);
+      }
+      .footer-social-link:hover svg {
+        fill: #00ff88;
+      }
+      .feature-glow::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+          circle at top right,
+          rgba(57, 255, 20, 0.1),
+          transparent 30%
+        );
+        pointer-events: none;
+      }
+
+      /* SERP RESULT MOCKUP */
+      .serp-card {
+        background: rgba(255, 255, 255, 0.96);
+        border-radius: 16px;
+        padding: 18px 22px;
+        margin-bottom: 12px;
+      }
+      .serp-card .serp-url {
+        color: #1a73e8;
+        font-size: 0.78rem;
+        margin-bottom: 3px;
+        font-family: Arial, sans-serif;
+      }
+      .serp-card .serp-title {
+        color: #1a0dab;
+        font-size: 1.05rem;
+        font-weight: 600;
+        line-height: 1.3;
+        font-family: Arial, sans-serif;
+        margin-bottom: 5px;
+      }
+      .serp-card .serp-desc {
+        color: #4d5156;
+        font-size: 0.82rem;
+        line-height: 1.5;
+        font-family: Arial, sans-serif;
+      }
+      .serp-featured {
+        border-left: 4px solid var(--accent);
+        background: rgba(57, 255, 20, 0.06) !important;
+      }
+      .serp-badge {
+        display: inline-block;
+        padding: 2px 8px;
+        border-radius: 4px;
+        font-size: 0.65rem;
+        font-family: "JetBrains Mono", monospace;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        background: rgba(57, 255, 20, 0.15);
+        color: var(--accent);
+        margin-bottom: 8px;
+      }
+
+      @keyframes float-up {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-12px);
+        }
+      }
+      @keyframes float-side {
+        0%,
+        100% {
+          transform: translateY(0) rotate(-2deg);
+        }
+        50% {
+          transform: translateY(-8px) rotate(0deg);
+        }
+      }
+      .float-up {
+        animation: float-up 5s ease-in-out infinite;
+      }
+      .float-side {
+        animation: float-side 6s ease-in-out infinite;
+      }
+
+      /* RANK COUNTER ANIM */
+      @keyframes slide-up {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .slide-up {
+        animation: slide-up 0.7s ease-out both;
+      }
+
+      /* ACCORDION */
+      .accordion-body {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s ease;
+      }
+      .accordion-body.open {
+        max-height: 500px;
+      }
+      .accordion-toggle {
+        cursor: pointer;
+        padding: 20px 24px;
+      }
+      .accordion-body.open {
+        padding-left: 24px;
+        border-left: 2px solid rgba(0, 255, 136, 0.25);
+        margin-left: 24px;
+        margin-right: 24px;
+        margin-bottom: 8px;
+        padding-bottom: 12px;
+      }
+      .accordion-body p {
+        margin-top: 8px;
+      }
+      .faq-icon {
+        display: inline-block;
+        transition: transform 0.2s ease;
+      }
+      .faq-item.open .faq-icon {
+        transform: rotate(45deg);
+      }
+      .faq-item.open .accordion-toggle .faq-question {
+        color: #00ff88;
+      }
+      .faq-item {
+        border-bottom: 1px solid #1a2e1e;
+      }
+      .faq-item:last-child {
+        border-bottom: none;
+      }
+
+      /* TABS FOR SERVICES */
+      .seo-tab-content {
+        display: none;
+      }
+      .seo-tab-content.active {
+        display: block;
+      }
+      .seo-tab-btn {
+        padding: 10px 20px;
+        border-radius: 9999px;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.72rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        border: 1px solid var(--border);
+        color: var(--text-secondary);
+        background: transparent;
+        cursor: pointer;
+        transition: all 0.25s;
+      }
+      .seo-tab-btn.active {
+        border-color: var(--accent);
+        color: var(--accent);
+        background: rgba(57, 255, 20, 0.04);
+      }
+
+      /* BAR ANIM */
+      @keyframes bar-fill {
+        from {
+          width: 0%;
+        }
+        to {
+          width: var(--w);
+        }
+      }
+
+      /* DASHBOARD CARD ANIMATIONS */
+      @keyframes draw-line {
+        from {
+          stroke-dashoffset: 600;
+        }
+        to {
+          stroke-dashoffset: 0;
+        }
+      }
+      @keyframes fade-in-dot {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+      @keyframes dashboard-glow {
+        from {
+          box-shadow: 0 0 30px rgba(0, 255, 136, 0.08);
+        }
+        to {
+          box-shadow: 0 0 50px rgba(0, 255, 136, 0.15);
+        }
+      }
+
+      /* TIMELINE CARD HOVER */
+      .timeline-card:hover {
+        border-color: rgba(0, 255, 136, 0.25) !important;
+        transform: translateY(-4px);
+      }
+
+      /* PREFERS REDUCED MOTION */
+      @media (prefers-reduced-motion: reduce) {
+        .bar-animated,
+        .float-up,
+        .float-side,
+        .marquee-track,
+        .reveal {
+          animation: none !important;
+          transition: none !important;
+        }
+        #site-line {
+          stroke-dashoffset: 0 !important;
+          animation: none !important;
+        }
+        #seo-dashboard {
+          animation: none !important;
+        }
+        .faq-icon {
+          transition: none !important;
+        }
+      }
+      .bar-animated {
+        animation: bar-fill 1.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+      }
+
       /* Shared layout components */
-      .site-shell { width: min(1380px, calc(100% - 1.5rem)); margin: 0 auto; }
-      @media (min-width: 1024px) { .site-shell { width: min(1380px, calc(100% - 4rem)); } }
-      .display-font { font-family: "Poppins", sans-serif; }
-      .mono-font { font-family: "JetBrains Mono", monospace; }
-      .brand-logo { display: block; width: auto; height: 100%; object-fit: contain; }
-      .brand-logo-link { display: inline-flex; align-items: center; flex-shrink: 0; }
-      .brand-logo-nav { height: 68px; }
-      .brand-logo-footer { height: 72px; max-width: min(100%, 240px); }
-      .brand-logo-inline { height: 26px; }
-      .footer-social-row { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; }
-      .nav-scrolled { background: rgba(8,10,8,0.86); border-bottom: 1px solid var(--border); backdrop-filter: blur(22px); }
-      .nav-link { color: var(--text-secondary); transition: color 0.24s ease; }
-      .nav-link:hover { color: var(--text-primary); }
-      .nav-dropdown-wrap { position: relative; }
-      .nav-dropdown-wrap:hover .nav-dropdown { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); pointer-events: auto; }
-      .nav-dropdown { position: absolute; top: calc(100% + 14px); left: 50%; transform: translateX(-50%) translateY(-8px); min-width: 220px; background: rgba(10,13,10,0.98); border: 1px solid var(--border); border-radius: 20px; padding: 10px; opacity: 0; visibility: hidden; transition: opacity 0.22s ease, transform 0.22s ease, visibility 0.22s; backdrop-filter: blur(22px); box-shadow: 0 20px 60px rgba(0,0,0,0.5); z-index: 100; }
-      .nav-dropdown a { display: block; padding: 9px 14px; border-radius: 12px; color: var(--text-secondary); font-size: 0.9rem; font-weight: 500; transition: color 0.2s ease, background 0.2s ease; text-decoration: none; }
-      .nav-dropdown a:hover { color: var(--accent); background: rgba(57,255,20,0.06); }
-      .nav-dropdown-btn { display: flex; align-items: center; gap: 5px; color: var(--text-secondary); transition: color 0.24s ease; font-size: 1rem; font-weight: 500; background: none; border: none; cursor: pointer; font-family: inherit; padding: 0; }
-      .nav-dropdown-wrap:hover .nav-dropdown-btn { color: var(--text-primary); }
-      .nav-dropdown-btn svg { transition: transform 0.22s ease; }
-      .nav-dropdown-wrap:hover .nav-dropdown-btn svg { transform: rotate(180deg); }
-      .mob-dropdown { display: none; flex-direction: column; gap: 4px; padding: 8px 0; }
-      .mob-dropdown.open { display: flex; }
-      .mob-dropdown a { display: block; padding: 10px 18px; border-radius: 12px; color: var(--text-secondary); font-size: 1rem; font-weight: 500; transition: color 0.2s ease, background 0.2s ease; text-decoration: none; }
-      .mob-dropdown a:hover { color: var(--accent); background: rgba(57,255,20,0.06); }
-      .footer-link { color: var(--text-secondary); transition: color 0.24s ease; }
-      .footer-link:hover { color: var(--text-primary); }
-      .footer-contact-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--text-secondary); }
-      .footer-contact-value { margin-top: 4px; color: #fff; font-size: 0.95rem; }
-      .footer-contact-link { color: #fff; text-decoration: none; transition: color 0.2s ease; }
-      .footer-contact-link:hover { color: var(--accent); }
-      .footer-social-link { display: inline-flex; align-items: center; justify-content: center; width: 42px; height: 42px; border: 1px solid #1a3a1a; border-radius: 9999px; background: #111; transition: border-color 0.2s ease, transform 0.2s ease; }
-      .footer-social-link svg { width: 18px; height: 18px; fill: #aaa; transition: fill 0.2s ease; }
-      .footer-social-link:hover { border-color: #00ff88; transform: translateY(-1px); }
-      .footer-social-link:hover svg { fill: #00ff88; }
-      .footer-legal-link { color: var(--text-secondary); transition: color 0.24s ease; }
-      .footer-legal-link:hover { color: var(--accent); }
-      .whatsapp-fab { position: fixed; bottom: 28px; right: 8px; z-index: 9999; display: flex; align-items: center; justify-content: center; width: 56px; height: 56px; border: none; border-radius: 50%; background: #25d366; box-shadow: 0 4px 20px rgba(37,211,102,0.45); transition: all 0.25s ease; text-decoration: none; }
-      .whatsapp-fab:hover { transform: scale(1.1); }
+      .site-shell {
+        width: min(1380px, calc(100% - 1.5rem));
+        margin: 0 auto;
+      }
+      @media (min-width: 1024px) {
+        .site-shell {
+          width: min(1380px, calc(100% - 4rem));
+        }
+      }
+      .display-font {
+        font-family: "Poppins", sans-serif;
+      }
+      .mono-font {
+        font-family: "JetBrains Mono", monospace;
+      }
+      .brand-logo {
+        display: block;
+        width: auto;
+        height: 100%;
+        object-fit: contain;
+      }
+      .brand-logo-link {
+        display: inline-flex;
+        align-items: center;
+        flex-shrink: 0;
+      }
+      .brand-logo-nav {
+        height: 68px;
+      }
+      .brand-logo-footer {
+        height: 72px;
+        max-width: min(100%, 240px);
+      }
+      .brand-logo-inline {
+        height: 26px;
+      }
+      .footer-social-row {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 16px;
+      }
+      .nav-scrolled {
+        background: rgba(8, 10, 8, 0.86);
+        border-bottom: 1px solid var(--border);
+        backdrop-filter: blur(22px);
+      }
+      .nav-link {
+        color: var(--text-secondary);
+        transition: color 0.24s ease;
+      }
+      .nav-link:hover {
+        color: var(--text-primary);
+      }
+      .nav-dropdown-wrap {
+        position: relative;
+      }
+      .nav-dropdown-wrap:hover .nav-dropdown {
+        opacity: 1;
+        visibility: visible;
+        transform: translateX(-50%) translateY(0);
+        pointer-events: auto;
+      }
+      .nav-dropdown {
+        position: absolute;
+        top: calc(100% + 14px);
+        left: 50%;
+        transform: translateX(-50%) translateY(-8px);
+        min-width: 220px;
+        background: rgba(10, 13, 10, 0.98);
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        padding: 10px;
+        opacity: 0;
+        visibility: hidden;
+        transition:
+          opacity 0.22s ease,
+          transform 0.22s ease,
+          visibility 0.22s;
+        backdrop-filter: blur(22px);
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        z-index: 100;
+      }
+      .nav-dropdown a {
+        display: block;
+        padding: 9px 14px;
+        border-radius: 12px;
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+        font-weight: 500;
+        transition:
+          color 0.2s ease,
+          background 0.2s ease;
+        text-decoration: none;
+      }
+      .nav-dropdown a:hover {
+        color: var(--accent);
+        background: rgba(57, 255, 20, 0.06);
+      }
+      .nav-dropdown-btn {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        color: var(--text-secondary);
+        transition: color 0.24s ease;
+        font-size: 1rem;
+        font-weight: 500;
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-family: inherit;
+        padding: 0;
+      }
+      .nav-dropdown-wrap:hover .nav-dropdown-btn {
+        color: var(--text-primary);
+      }
+      .nav-dropdown-btn svg {
+        transition: transform 0.22s ease;
+      }
+      .nav-dropdown-wrap:hover .nav-dropdown-btn svg {
+        transform: rotate(180deg);
+      }
+      .mob-dropdown {
+        display: none;
+        flex-direction: column;
+        gap: 4px;
+        padding: 8px 0;
+      }
+      .mob-dropdown.open {
+        display: flex;
+      }
+      .mob-dropdown a {
+        display: block;
+        padding: 10px 18px;
+        border-radius: 12px;
+        color: var(--text-secondary);
+        font-size: 1rem;
+        font-weight: 500;
+        transition:
+          color 0.2s ease,
+          background 0.2s ease;
+        text-decoration: none;
+      }
+      .mob-dropdown a:hover {
+        color: var(--accent);
+        background: rgba(57, 255, 20, 0.06);
+      }
+      .footer-link {
+        color: var(--text-secondary);
+        transition: color 0.24s ease;
+      }
+      .footer-link:hover {
+        color: var(--text-primary);
+      }
+      .footer-contact-label {
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: var(--text-secondary);
+      }
+      .footer-contact-value {
+        margin-top: 4px;
+        color: #fff;
+        font-size: 0.95rem;
+      }
+      .footer-contact-link {
+        color: #fff;
+        text-decoration: none;
+        transition: color 0.2s ease;
+      }
+      .footer-contact-link:hover {
+        color: var(--accent);
+      }
+      .footer-social-link {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 42px;
+        height: 42px;
+        border: 1px solid #1a3a1a;
+        border-radius: 9999px;
+        background: #111;
+        transition:
+          border-color 0.2s ease,
+          transform 0.2s ease;
+      }
+      .footer-social-link svg {
+        width: 18px;
+        height: 18px;
+        fill: #aaa;
+        transition: fill 0.2s ease;
+      }
+      .footer-social-link:hover {
+        border-color: #00ff88;
+        transform: translateY(-1px);
+      }
+      .footer-social-link:hover svg {
+        fill: #00ff88;
+      }
+      .footer-legal-link {
+        color: var(--text-secondary);
+        transition: color 0.24s ease;
+      }
+      .footer-legal-link:hover {
+        color: var(--accent);
+      }
+      .whatsapp-fab {
+        position: fixed;
+        bottom: 28px;
+        right: 8px;
+        z-index: 9999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 56px;
+        height: 56px;
+        border: none;
+        border-radius: 50%;
+        background: #25d366;
+        box-shadow: 0 4px 20px rgba(37, 211, 102, 0.45);
+        transition: all 0.25s ease;
+        text-decoration: none;
+      }
+      .whatsapp-fab:hover {
+        transform: scale(1.1);
+      }
 
       @media (max-width: 1023px) {
-        .brand-logo-nav { height: 58px; }
-        #hero { min-height: auto; padding-top: 7rem; padding-bottom: 4rem; }
-        #seo-dashboard { max-width: 680px !important; }
-        .lg\:sticky { position: static !important; }
+        .brand-logo-nav {
+          height: 58px;
+        }
+        #hero {
+          min-height: auto;
+          padding-top: 7rem;
+          padding-bottom: 4rem;
+        }
+        #seo-dashboard {
+          max-width: 680px !important;
+        }
+        .lg\:sticky {
+          position: static !important;
+        }
       }
 
       @media (max-width: 767px) {
-        .site-shell { width: min(100% - 1rem, 1380px); }
-        section { scroll-margin-top: 5rem; }
-        main section { padding-top: 4.5rem !important; padding-bottom: 4.5rem !important; }
-        #hero { padding-top: 6.25rem !important; }
-        #hero .site-shell { padding-top: 0 !important; padding-bottom: 0 !important; }
-        #hero .reveal[style*="padding-left"] { padding-left: 0 !important; }
-        #hero h1 { font-size: clamp(2.45rem, 14vw, 4rem) !important; letter-spacing: -0.025em !important; }
-        #hero p { font-size: 0.98rem; line-height: 1.75; }
+        .site-shell {
+          width: min(100% - 1rem, 1380px);
+        }
+        section {
+          scroll-margin-top: 5rem;
+        }
+        main section {
+          padding-top: 4.5rem !important;
+          padding-bottom: 4.5rem !important;
+        }
+        #hero {
+          padding-top: 6.25rem !important;
+        }
+        #hero .site-shell {
+          padding-top: 0 !important;
+          padding-bottom: 0 !important;
+        }
+        #hero .reveal[style*="padding-left"] {
+          padding-left: 0 !important;
+        }
+        #hero h1 {
+          font-size: clamp(2.45rem, 14vw, 4rem) !important;
+          letter-spacing: -0.025em !important;
+        }
+        #hero p {
+          font-size: 0.98rem;
+          line-height: 1.75;
+        }
         #hero .mt-8 a,
         main section:last-of-type a {
           width: 100%;
@@ -253,7 +955,10 @@
           padding-left: 1.15rem !important;
           padding-right: 1.15rem !important;
         }
-        #hero .mt-10.grid { grid-template-columns: 1fr; gap: 0.75rem; }
+        #hero .mt-10.grid {
+          grid-template-columns: 1fr;
+          gap: 0.75rem;
+        }
         #hero .mt-10.grid > div {
           display: flex;
           align-items: center;
@@ -262,54 +967,140 @@
           text-align: left;
           padding: 1rem 1.1rem;
         }
-        #seo-dashboard { padding: 18px !important; border-radius: 16px !important; }
-        #seo-dashboard svg { min-width: 420px; }
-        #seo-dashboard { overflow-x: auto; -webkit-overflow-scrolling: touch; }
-        #seo-dashboard > div:last-child span { font-size: 9px !important; }
-        .marquee-track { animation-duration: 34s; }
-        .marquee-track span { padding-left: 1.1rem !important; padding-right: 1.1rem !important; font-size: 0.68rem !important; }
-        .hov-card { border-radius: 22px !important; }
-        .glass-panel.rounded-\[34px\] { border-radius: 24px !important; padding: 1.25rem !important; }
+        #seo-dashboard {
+          padding: 18px !important;
+          border-radius: 16px !important;
+        }
+        #seo-dashboard svg {
+          min-width: 420px;
+        }
+        #seo-dashboard {
+          overflow-x: auto;
+          -webkit-overflow-scrolling: touch;
+        }
+        #seo-dashboard > div:last-child span {
+          font-size: 9px !important;
+        }
+        .marquee-track {
+          animation-duration: 34s;
+        }
+        .marquee-track span {
+          padding-left: 1.1rem !important;
+          padding-right: 1.1rem !important;
+          font-size: 0.68rem !important;
+        }
+        .hov-card {
+          border-radius: 22px !important;
+        }
+        .glass-panel.rounded-\[34px\] {
+          border-radius: 24px !important;
+          padding: 1.25rem !important;
+        }
         .display-font.text-4xl,
         .display-font.lg\:text-6xl,
-        .display-font.lg\:text-5xl { letter-spacing: -0.025em !important; }
-        .mini-label, .section-kicker, .eyebrow { letter-spacing: 0.13em; }
-        .accordion-toggle { align-items: flex-start !important; gap: 1rem; padding: 18px 18px; }
-        .accordion-body.open { margin-left: 18px; margin-right: 18px; padding-left: 16px; }
-        .faq-question { font-size: 1rem !important; line-height: 1.4; }
-        .footer-social-row { gap: 12px; }
-        .footer-social-link { width: 40px; height: 40px; }
-        .brand-logo-footer { height: 58px; max-width: 190px; }
-        .whatsapp-fab { width: 52px; height: 52px; right: 10px; bottom: 18px; }
+        .display-font.lg\:text-5xl {
+          letter-spacing: -0.025em !important;
+        }
+        .mini-label,
+        .section-kicker,
+        .eyebrow {
+          letter-spacing: 0.13em;
+        }
+        .accordion-toggle {
+          align-items: flex-start !important;
+          gap: 1rem;
+          padding: 18px 18px;
+        }
+        .accordion-body.open {
+          margin-left: 18px;
+          margin-right: 18px;
+          padding-left: 16px;
+        }
+        .faq-question {
+          font-size: 1rem !important;
+          line-height: 1.4;
+        }
+        .footer-social-row {
+          gap: 12px;
+        }
+        .footer-social-link {
+          width: 40px;
+          height: 40px;
+        }
+        .brand-logo-footer {
+          height: 58px;
+          max-width: 190px;
+        }
+        .whatsapp-fab {
+          width: 52px;
+          height: 52px;
+          right: 10px;
+          bottom: 18px;
+        }
       }
 
       @media (max-width: 520px) {
-        .spotlight { filter: blur(90px); opacity: 0.8; }
+        .spotlight {
+          filter: blur(90px);
+          opacity: 0.8;
+        }
         .glass-panel.rounded-\[28px\],
         .glass-panel.rounded-\[30px\],
-        .glass-panel.rounded-\[38px\] { border-radius: 22px !important; }
+        .glass-panel.rounded-\[38px\] {
+          border-radius: 22px !important;
+        }
         .glass-panel.p-7,
         .glass-panel.lg\:p-7,
-        .glass-panel.lg\:p-12 { padding: 1.25rem !important; }
-        .text-5xl { font-size: 2.55rem !important; }
-        .text-4xl { font-size: 2.15rem !important; }
-        .text-3xl { font-size: 1.75rem !important; }
-        .leading-8 { line-height: 1.75 !important; }
+        .glass-panel.lg\:p-12 {
+          padding: 1.25rem !important;
+        }
+        .text-5xl {
+          font-size: 2.55rem !important;
+        }
+        .text-4xl {
+          font-size: 2.15rem !important;
+        }
+        .text-3xl {
+          font-size: 1.75rem !important;
+        }
+        .leading-8 {
+          line-height: 1.75 !important;
+        }
         .grid.gap-10,
-        .grid.gap-12 { gap: 2rem !important; }
-        .flex.justify-between.text-sm { align-items: flex-start; gap: 0.75rem; flex-direction: column; }
-        .bar-animated + .absolute { position: static !important; transform: none !important; margin-top: 0.35rem; display: inline-block; color: var(--accent) !important; }
-        main section:last-of-type .glass-panel { padding: 2rem 1.25rem !important; }
+        .grid.gap-12 {
+          gap: 2rem !important;
+        }
+        .flex.justify-between.text-sm {
+          align-items: flex-start;
+          gap: 0.75rem;
+          flex-direction: column;
+        }
+        .bar-animated + .absolute {
+          position: static !important;
+          transform: none !important;
+          margin-top: 0.35rem;
+          display: inline-block;
+          color: var(--accent) !important;
+        }
+        main section:last-of-type .glass-panel {
+          padding: 2rem 1.25rem !important;
+        }
       }
 
       @media (max-width: 380px) {
-        .site-shell { width: min(100% - 0.85rem, 1380px); }
-        .brand-logo-nav { height: 46px; }
+        .site-shell {
+          width: min(100% - 0.85rem, 1380px);
+        }
+        .brand-logo-nav {
+          height: 46px;
+        }
         #hero {
           padding-top: 5.85rem !important;
           padding-bottom: 3.25rem !important;
         }
-        #hero .grid { gap: 1.7rem !important; }
+        #hero .grid {
+          gap: 1.7rem !important;
+        }
         #hero .glass-panel.inline-flex {
           max-width: 100%;
           gap: 0.5rem;
@@ -330,8 +1121,12 @@
           font-size: 0.92rem !important;
           line-height: 1.7 !important;
         }
-        #hero .mt-8 { margin-top: 1.45rem !important; }
-        #hero .mt-10 { margin-top: 1.7rem !important; }
+        #hero .mt-8 {
+          margin-top: 1.45rem !important;
+        }
+        #hero .mt-10 {
+          margin-top: 1.7rem !important;
+        }
         #hero .mt-10.grid > div {
           align-items: flex-start;
           flex-direction: column;
@@ -367,14 +1162,19 @@
           padding: 6px 8px !important;
         }
 
-        .marquee.rounded-full { border-radius: 16px !important; }
+        .marquee.rounded-full {
+          border-radius: 16px !important;
+        }
         .marquee-track span {
           padding-left: 0.85rem !important;
           padding-right: 0.85rem !important;
           letter-spacing: 0.12em !important;
         }
 
-        main section { padding-top: 3.75rem !important; padding-bottom: 3.75rem !important; }
+        main section {
+          padding-top: 3.75rem !important;
+          padding-bottom: 3.75rem !important;
+        }
         .section-kicker,
         .mini-label {
           font-size: 0.62rem !important;
@@ -386,7 +1186,9 @@
           font-size: 1.95rem !important;
           line-height: 1.02 !important;
         }
-        .display-font.text-3xl { font-size: 1.55rem !important; }
+        .display-font.text-3xl {
+          font-size: 1.55rem !important;
+        }
         .display-font.text-2xl,
         .display-font.lg\:text-3xl,
         .display-font.lg\:text-2xl,
@@ -425,480 +1227,1816 @@
           right: 8px;
         }
       }
-
     </style>
-    </head>
-    <body>
-      <div class="noise-overlay"></div>
-      <div class="cursor-dot" id="cursorDot"></div>
-      <div class="cursor-ring" id="cursorRing"></div>
+  </head>
+  <body>
+    <div class="noise-overlay"></div>
+    <div class="cursor-dot" id="cursorDot"></div>
+    <div class="cursor-ring" id="cursorRing"></div>
 
-      <!-- NAVBAR -->
+    <!-- NAVBAR -->
     <div id="navbar-root"></div>
 
-      <main>
+    <main>
+      <!-- ═══════════════ HERO ═══════════════ -->
+      <section
+        id="hero"
+        class="section-frame relative min-h-screen overflow-hidden pt-24 flex items-center"
+      >
+        <div class="hero-grid"></div>
+        <div
+          class="spotlight"
+          style="
+            width: 44rem;
+            height: 44rem;
+            top: -12rem;
+            right: -10rem;
+            background: radial-gradient(
+              circle,
+              rgba(57, 255, 20, 0.14),
+              transparent 60%
+            );
+          "
+        ></div>
+        <div
+          class="spotlight"
+          style="
+            width: 22rem;
+            height: 22rem;
+            bottom: 6rem;
+            left: -4rem;
+            background: radial-gradient(
+              circle,
+              rgba(57, 255, 20, 0.08),
+              transparent 68%
+            );
+          "
+        ></div>
 
-        <!-- ═══════════════ HERO ═══════════════ -->
-        <section id="hero" class="section-frame relative min-h-screen overflow-hidden pt-24 flex items-center">
-          <div class="hero-grid"></div>
-          <div class="spotlight" style="width:44rem;height:44rem;top:-12rem;right:-10rem;background:radial-gradient(circle,rgba(57,255,20,0.14),transparent 60%);"></div>
-          <div class="spotlight" style="width:22rem;height:22rem;bottom:6rem;left:-4rem;background:radial-gradient(circle,rgba(57,255,20,0.08),transparent 68%);"></div>
+        <div class="site-shell relative z-10 w-full py-10 lg:py-16">
+          <div class="grid gap-12 lg:grid-cols-[1fr_1fr] lg:items-center">
+            <!-- LEFT COPY -->
+            <div
+              class="reveal service-hero-copy"
+              style="padding-left: clamp(0px, 9%, 80px)"
+            >
+              <div
+                class="glass-panel inline-flex items-center gap-3 rounded-full px-4 py-2 mb-6"
+              >
+                <span
+                  class="h-2 w-2 rounded-full"
+                  style="
+                    background: var(--accent);
+                    box-shadow: 0 0 14px rgba(57, 255, 20, 0.7);
+                  "
+                ></span>
+                <span class="eyebrow">SEO Services - Search Growth System</span>
+              </div>
 
-          <div class="site-shell relative z-10 w-full py-10 lg:py-16">
-            <div class="grid gap-12 lg:grid-cols-[1fr_1fr] lg:items-center">
+              <h1
+                class="display-font font-extrabold italic leading-[0.94] tracking-[-0.045em]"
+                style="font-size: clamp(2.8rem, 7vw, 6.2rem)"
+              >
+                <span class="shine-word">Get Found.</span><br />
+                <span class="shine-word">Earn Trust.</span><br />
+                <span class="shine-word-accent">Grow Organically.</span>
+              </h1>
 
-              <!-- LEFT COPY -->
-              <div class="reveal service-hero-copy" style="padding-left:clamp(0px,9%,80px);">
-                <div class="glass-panel inline-flex items-center gap-3 rounded-full px-4 py-2 mb-6">
-                  <span class="h-2 w-2 rounded-full" style="background:var(--accent);box-shadow:0 0 14px rgba(57,255,20,0.7);"></span>
-                  <span class="eyebrow">SEO Services - Search Growth System</span>
+              <p
+                class="mt-6 max-w-xl text-lg leading-8"
+                style="color: var(--text-secondary)"
+              >
+                We build SEO systems that make your website easier to crawl,
+                easier to understand, and easier to trust. Technical fixes,
+                keyword strategy, content clusters, schema, local SEO, and
+                reporting all work together to turn search traffic into
+                qualified leads.
+              </p>
+
+              <div class="mt-8 flex flex-col gap-4 sm:flex-row">
+                <a
+                  href="../contact.html"
+                  class="display-font inline-flex items-center justify-center rounded-full px-7 py-4 text-base font-bold transition-all hover:-translate-y-1"
+                  style="
+                    background: var(--accent);
+                    color: #081008;
+                    box-shadow: 0 0 42px rgba(57, 255, 20, 0.18);
+                  "
+                  >Request SEO Audit</a
+                >
+                <a
+                  href="#strategy"
+                  class="display-font inline-flex items-center justify-center rounded-full border px-7 py-4 text-base font-bold transition-all hover:-translate-y-1"
+                  style="
+                    border-color: var(--border-strong);
+                    color: var(--text-primary);
+                    background: rgba(255, 255, 255, 0.02);
+                  "
+                  >View SEO Plan</a
+                >
+              </div>
+
+              <!-- KEY STATS -->
+              <div class="mt-10 grid grid-cols-3 gap-4">
+                <div class="glass-panel rounded-[20px] px-4 py-5">
+                  <div
+                    class="display-font text-3xl font-extrabold italic"
+                    style="color: var(--text-primary)"
+                  >
+                    Audit
+                  </div>
+                  <p
+                    class="mt-1 text-xs leading-5"
+                    style="color: var(--text-secondary)"
+                  >
+                    technical issues, crawl gaps, and indexation blockers
+                  </p>
                 </div>
+                <div class="glass-panel rounded-[20px] px-4 py-5">
+                  <div
+                    class="display-font text-3xl font-extrabold italic"
+                    style="color: var(--text-primary)"
+                  >
+                    Map
+                  </div>
+                  <p
+                    class="mt-1 text-xs leading-5"
+                    style="color: var(--text-secondary)"
+                  >
+                    keywords, competitors, intent, and content clusters
+                  </p>
+                </div>
+                <div class="glass-panel rounded-[20px] px-4 py-5">
+                  <div
+                    class="display-font text-3xl font-extrabold italic"
+                    style="color: var(--text-primary)"
+                  >
+                    Grow
+                  </div>
+                  <p
+                    class="mt-1 text-xs leading-5"
+                    style="color: var(--text-secondary)"
+                  >
+                    organic leads with monthly execution and reporting
+                  </p>
+                </div>
+              </div>
+            </div>
 
-                <h1 class="display-font font-extrabold italic leading-[0.94] tracking-[-0.045em]" style="font-size:clamp(2.8rem,7vw,6.2rem);">
-                  <span class="shine-word">Get Found.</span><br/>
-                  <span class="shine-word">Earn Trust.</span><br/>
-                  <span class="shine-word-accent">Grow Organically.</span>
-                </h1>
+            <!-- RIGHT: Animated SEO Dashboard -->
+            <div class="relative reveal" style="transition-delay: 0.15s">
+              <div
+                class="spotlight"
+                style="
+                  width: 20rem;
+                  height: 20rem;
+                  top: 10%;
+                  right: -5%;
+                  background: radial-gradient(
+                    circle,
+                    rgba(57, 255, 20, 0.1),
+                    transparent 64%
+                  );
+                "
+              ></div>
+              <div
+                id="seo-dashboard"
+                style="
+                  background: #0a1a0e;
+                  border: 1px solid #1a3a20;
+                  border-radius: 12px;
+                  padding: 28px;
+                  width: 100%;
+                  max-width: 520px;
+                  margin: 0 auto;
+                  animation: dashboard-glow 3s ease-in-out infinite alternate;
+                "
+              >
+                <div
+                  style="
+                    font-family: &quot;JetBrains Mono&quot;, monospace;
+                    font-size: 11px;
+                    letter-spacing: 0.12em;
+                    text-transform: uppercase;
+                    color: #4ade80;
+                    margin-bottom: 18px;
+                  "
+                >
+                  SEO Growth Dashboard
+                </div>
+                <svg
+                  viewBox="0 0 460 200"
+                  width="100%"
+                  height="auto"
+                  xmlns="http://www.w3.org/2000/svg"
+                  style="display: block; overflow: visible"
+                >
+                  <defs>
+                    <filter
+                      id="green-glow"
+                      x="-20%"
+                      y="-20%"
+                      width="140%"
+                      height="140%"
+                    >
+                      <feGaussianBlur
+                        in="SourceGraphic"
+                        stdDeviation="3"
+                        result="blur"
+                      />
+                      <feComposite
+                        in="SourceGraphic"
+                        in2="blur"
+                        operator="over"
+                      />
+                    </filter>
+                    <filter id="glow-soft">
+                      <feGaussianBlur stdDeviation="4" result="blur" />
+                      <feMerge>
+                        <feMergeNode in="blur" />
+                        <feMergeNode in="SourceGraphic" />
+                      </feMerge>
+                    </filter>
+                  </defs>
+                  <!-- Grid lines -->
+                  <line
+                    x1="40"
+                    y1="10"
+                    x2="40"
+                    y2="170"
+                    stroke="#1a3a20"
+                    stroke-width="1"
+                  />
+                  <line
+                    x1="40"
+                    y1="10"
+                    x2="450"
+                    y2="10"
+                    stroke="#1a3a20"
+                    stroke-width="0.5"
+                  />
+                  <line
+                    x1="40"
+                    y1="52"
+                    x2="450"
+                    y2="52"
+                    stroke="#1a3a20"
+                    stroke-width="0.5"
+                  />
+                  <line
+                    x1="40"
+                    y1="94"
+                    x2="450"
+                    y2="94"
+                    stroke="#1a3a20"
+                    stroke-width="0.5"
+                  />
+                  <line
+                    x1="40"
+                    y1="136"
+                    x2="450"
+                    y2="136"
+                    stroke="#1a3a20"
+                    stroke-width="0.5"
+                  />
+                  <line
+                    x1="40"
+                    y1="170"
+                    x2="450"
+                    y2="170"
+                    stroke="#1a3a20"
+                    stroke-width="1"
+                  />
+                  <!-- Y labels -->
+                  <text
+                    x="30"
+                    y="13"
+                    fill="#3d5c45"
+                    font-size="9"
+                    text-anchor="end"
+                    font-family="JetBrains Mono,monospace"
+                  >
+                    100
+                  </text>
+                  <text
+                    x="30"
+                    y="55"
+                    fill="#3d5c45"
+                    font-size="9"
+                    text-anchor="end"
+                    font-family="JetBrains Mono,monospace"
+                  >
+                    75
+                  </text>
+                  <text
+                    x="30"
+                    y="97"
+                    fill="#3d5c45"
+                    font-size="9"
+                    text-anchor="end"
+                    font-family="JetBrains Mono,monospace"
+                  >
+                    50
+                  </text>
+                  <text
+                    x="30"
+                    y="139"
+                    fill="#3d5c45"
+                    font-size="9"
+                    text-anchor="end"
+                    font-family="JetBrains Mono,monospace"
+                  >
+                    25
+                  </text>
+                  <text
+                    x="30"
+                    y="173"
+                    fill="#3d5c45"
+                    font-size="9"
+                    text-anchor="end"
+                    font-family="JetBrains Mono,monospace"
+                  >
+                    0
+                  </text>
+                  <!-- X labels -->
+                  <text
+                    x="57"
+                    y="185"
+                    fill="#3d5c45"
+                    font-size="9"
+                    text-anchor="middle"
+                    font-family="JetBrains Mono,monospace"
+                  >
+                    Jan
+                  </text>
+                  <text
+                    x="139"
+                    y="185"
+                    fill="#3d5c45"
+                    font-size="9"
+                    text-anchor="middle"
+                    font-family="JetBrains Mono,monospace"
+                  >
+                    Mar
+                  </text>
+                  <text
+                    x="221"
+                    y="185"
+                    fill="#3d5c45"
+                    font-size="9"
+                    text-anchor="middle"
+                    font-family="JetBrains Mono,monospace"
+                  >
+                    May
+                  </text>
+                  <text
+                    x="303"
+                    y="185"
+                    fill="#3d5c45"
+                    font-size="9"
+                    text-anchor="middle"
+                    font-family="JetBrains Mono,monospace"
+                  >
+                    Jul
+                  </text>
+                  <text
+                    x="385"
+                    y="185"
+                    fill="#3d5c45"
+                    font-size="9"
+                    text-anchor="middle"
+                    font-family="JetBrains Mono,monospace"
+                  >
+                    Sep
+                  </text>
+                  <text
+                    x="447"
+                    y="185"
+                    fill="#3d5c45"
+                    font-size="9"
+                    text-anchor="middle"
+                    font-family="JetBrains Mono,monospace"
+                  >
+                    Nov
+                  </text>
+                  <!-- Industry Avg line (dashed) -->
+                  <polyline
+                    points="57,158 139,145 221,138 303,128 385,118 447,110"
+                    fill="none"
+                    stroke="#2d4a35"
+                    stroke-width="1.5"
+                    stroke-dasharray="5,4"
+                  />
+                  <!-- Your Site line (animated draw) -->
+                  <polyline
+                    id="site-line"
+                    points="57,165 139,148 221,120 303,80 385,38 447,15"
+                    fill="none"
+                    stroke="#00ff88"
+                    stroke-width="2.5"
+                    filter="url(#glow-soft)"
+                    stroke-dasharray="600"
+                    stroke-dashoffset="600"
+                    style="animation: draw-line 2.5s ease-out forwards"
+                  />
+                  <!-- Dot at end -->
+                  <circle
+                    cx="447"
+                    cy="15"
+                    r="4"
+                    fill="#00ff88"
+                    opacity="0"
+                    style="animation: fade-in-dot 0.3s ease-out 2.4s forwards"
+                  />
+                </svg>
+                <!-- Legend -->
+                <div
+                  style="
+                    display: flex;
+                    gap: 16px;
+                    margin-top: 6px;
+                    margin-bottom: 16px;
+                  "
+                >
+                  <div
+                    style="
+                      display: flex;
+                      align-items: center;
+                      gap: 6px;
+                      font-family: &quot;JetBrains Mono&quot;, monospace;
+                      font-size: 9px;
+                      color: #4ade80;
+                    "
+                  >
+                    <span
+                      style="
+                        display: inline-block;
+                        width: 16px;
+                        height: 2px;
+                        background: #00ff88;
+                        border-radius: 2px;
+                      "
+                    ></span
+                    >Your Site
+                  </div>
+                  <div
+                    style="
+                      display: flex;
+                      align-items: center;
+                      gap: 6px;
+                      font-family: &quot;JetBrains Mono&quot;, monospace;
+                      font-size: 9px;
+                      color: #3d5c45;
+                    "
+                  >
+                    <span
+                      style="
+                        display: inline-block;
+                        width: 16px;
+                        height: 0;
+                        border-top: 1.5px dashed #2d4a35;
+                      "
+                    ></span
+                    >Industry Avg
+                  </div>
+                </div>
+                <!-- Stat pills -->
+                <div style="display: flex; flex-wrap: wrap; gap: 8px">
+                  <span
+                    style="
+                      background: #0d2a15;
+                      color: #00ff88;
+                      font-family: &quot;JetBrains Mono&quot;, monospace;
+                      font-size: 10px;
+                      padding: 5px 12px;
+                      border-radius: 99px;
+                      letter-spacing: 0.06em;
+                    "
+                    >Crawl Health</span
+                  >
+                  <span
+                    style="
+                      background: #0d2a15;
+                      color: #00ff88;
+                      font-family: &quot;JetBrains Mono&quot;, monospace;
+                      font-size: 10px;
+                      padding: 5px 12px;
+                      border-radius: 99px;
+                      letter-spacing: 0.06em;
+                    "
+                    >Keyword Movement</span
+                  >
+                  <span
+                    style="
+                      background: #0d2a15;
+                      color: #00ff88;
+                      font-family: &quot;JetBrains Mono&quot;, monospace;
+                      font-size: 10px;
+                      padding: 5px 12px;
+                      border-radius: 99px;
+                      letter-spacing: 0.06em;
+                    "
+                    >Lead Attribution</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-                <p class="mt-6 max-w-xl text-lg leading-8" style="color:var(--text-secondary);">
-                  We build SEO systems that make your website easier to crawl, easier to understand, and easier to trust. Technical fixes, keyword strategy, content clusters, schema, local SEO, and reporting all work together to turn search traffic into qualified leads.
+      <!-- KEYWORDS MARQUEE -->
+      <section class="section-frame py-10 overflow-hidden">
+        <div class="site-shell">
+          <div class="glass-panel marquee rounded-full px-2 py-2">
+            <div class="marquee-track">
+              <span
+                class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]"
+                style="color: var(--text-secondary)"
+                >Technical SEO<span class="mx-6" style="color: var(--accent)"
+                  >.</span
+                ></span
+              >
+              <span
+                class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]"
+                style="color: var(--text-secondary)"
+                >Core Web Vitals<span class="mx-6" style="color: var(--accent)"
+                  >.</span
+                ></span
+              >
+              <span
+                class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]"
+                style="color: var(--text-secondary)"
+                >E-E-A-T Authority<span
+                  class="mx-6"
+                  style="color: var(--accent)"
+                  >.</span
+                ></span
+              >
+              <span
+                class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]"
+                style="color: var(--text-secondary)"
+                >Keyword Research<span class="mx-6" style="color: var(--accent)"
+                  >.</span
+                ></span
+              >
+              <span
+                class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]"
+                style="color: var(--text-secondary)"
+                >Link Building<span class="mx-6" style="color: var(--accent)"
+                  >.</span
+                ></span
+              >
+              <span
+                class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]"
+                style="color: var(--text-secondary)"
+                >Schema Markup<span class="mx-6" style="color: var(--accent)"
+                  >.</span
+                ></span
+              >
+              <span
+                class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]"
+                style="color: var(--text-secondary)"
+                >Content Clusters<span class="mx-6" style="color: var(--accent)"
+                  >.</span
+                ></span
+              >
+              <span
+                class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]"
+                style="color: var(--text-secondary)"
+                >Local SEO<span class="mx-6" style="color: var(--accent)"
+                  >.</span
+                ></span
+              >
+              <span
+                class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]"
+                style="color: var(--text-secondary)"
+                >AI Search Optimisation<span
+                  class="mx-6"
+                  style="color: var(--accent)"
+                  >.</span
+                ></span
+              >
+              <!-- clone -->
+              <span
+                class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]"
+                style="color: var(--text-secondary)"
+                >Technical SEO<span class="mx-6" style="color: var(--accent)"
+                  >.</span
+                ></span
+              >
+              <span
+                class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]"
+                style="color: var(--text-secondary)"
+                >Core Web Vitals<span class="mx-6" style="color: var(--accent)"
+                  >.</span
+                ></span
+              >
+              <span
+                class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]"
+                style="color: var(--text-secondary)"
+                >E-E-A-T Authority<span
+                  class="mx-6"
+                  style="color: var(--accent)"
+                  >.</span
+                ></span
+              >
+              <span
+                class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]"
+                style="color: var(--text-secondary)"
+                >Keyword Research<span class="mx-6" style="color: var(--accent)"
+                  >.</span
+                ></span
+              >
+              <span
+                class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]"
+                style="color: var(--text-secondary)"
+                >Link Building<span class="mx-6" style="color: var(--accent)"
+                  >.</span
+                ></span
+              >
+              <span
+                class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]"
+                style="color: var(--text-secondary)"
+                >Schema Markup<span class="mx-6" style="color: var(--accent)"
+                  >.</span
+                ></span
+              >
+              <span
+                class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]"
+                style="color: var(--text-secondary)"
+                >Content Clusters<span class="mx-6" style="color: var(--accent)"
+                  >.</span
+                ></span
+              >
+              <span
+                class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]"
+                style="color: var(--text-secondary)"
+                >Local SEO<span class="mx-6" style="color: var(--accent)"
+                  >.</span
+                ></span
+              >
+              <span
+                class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]"
+                style="color: var(--text-secondary)"
+                >AI Search Optimisation<span
+                  class="mx-6"
+                  style="color: var(--accent)"
+                  >.</span
+                ></span
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══════════════ SEO PILLARS ═══════════════ -->
+      <section id="strategy" class="section-frame py-24 lg:py-32">
+        <div class="site-shell">
+          <div class="grid gap-10 lg:grid-cols-[0.55fr_1.45fr] lg:items-start">
+            <div class="reveal lg:sticky lg:top-28">
+              <div class="section-kicker">What SEO includes</div>
+              <h2
+                class="display-font mt-4 text-4xl font-extrabold italic leading-[0.96] tracking-[-0.04em] lg:text-6xl"
+                style="color: var(--text-primary); max-width: 10ch"
+              >
+                Everything search engines need to trust you.
+              </h2>
+              <p
+                class="mt-6 text-base leading-8 lg:text-lg"
+                style="color: var(--text-secondary); max-width: 28rem"
+              >
+                Good SEO is not one plugin or a few blog posts. It is technical
+                health, useful content, internal linking, authority, local
+                visibility, and clear measurement working as one system.
+              </p>
+              <a
+                href="../contact.html"
+                class="mt-8 inline-flex items-center gap-2 text-sm font-semibold"
+                style="color: var(--accent)"
+                >Request SEO audit -></a
+              >
+            </div>
+
+            <div class="grid gap-5 md:grid-cols-2">
+              <div
+                class="hov-card feature-glow relative glass-panel rounded-[28px] p-6 lg:p-7 md:col-span-2 reveal"
+              >
+                <div class="mini-label mono-font">01 / Foundation</div>
+                <h3
+                  class="display-font mt-5 text-2xl font-bold italic lg:text-3xl"
+                  style="color: var(--text-primary)"
+                >
+                  Technical SEO & Site Health
+                </h3>
+                <p
+                  class="mt-4 leading-7 text-base"
+                  style="color: var(--text-secondary)"
+                >
+                  We audit crawlability, indexation, redirects, broken pages,
+                  Core Web Vitals, sitemap structure, canonical tags, schema,
+                  duplicate content, and internal linking so search engines can
+                  read your website without friction.
                 </p>
-
-                <div class="mt-8 flex flex-col gap-4 sm:flex-row">
-                  <a href="../contact.html" class="display-font inline-flex items-center justify-center rounded-full px-7 py-4 text-base font-bold transition-all hover:-translate-y-1" style="background:var(--accent);color:#081008;box-shadow:0 0 42px rgba(57,255,20,0.18);">Request SEO Audit</a>
-                  <a href="#strategy" class="display-font inline-flex items-center justify-center rounded-full border px-7 py-4 text-base font-bold transition-all hover:-translate-y-1" style="border-color:var(--border-strong);color:var(--text-primary);background:rgba(255,255,255,0.02);">View SEO Plan</a>
+                <div class="mt-6 h-px w-full soft-divider"></div>
+                <div
+                  class="mt-4 flex items-center justify-between text-sm"
+                  style="color: var(--text-muted)"
+                >
+                  <span>Clean foundations before content scaling</span
+                  ><span style="color: var(--accent)"
+                    >GSC · Screaming Frog · PageSpeed</span
+                  >
                 </div>
+              </div>
+              <div
+                class="hov-card feature-glow relative glass-panel rounded-[28px] p-6 lg:p-7 reveal"
+                style="transition-delay: 0.06s"
+              >
+                <div class="mini-label mono-font">02 / Content</div>
+                <h3
+                  class="display-font mt-5 text-xl font-bold italic lg:text-2xl"
+                  style="color: var(--text-primary)"
+                >
+                  Keyword Strategy & Search Intent
+                </h3>
+                <p
+                  class="mt-4 text-sm leading-7"
+                  style="color: var(--text-secondary)"
+                >
+                  We group keywords by buyer intent, difficulty, traffic
+                  quality, and funnel stage so every page has a purpose:
+                  attract, educate, compare, or convert.
+                </p>
+                <div class="mt-5 text-sm" style="color: var(--text-muted)">
+                  Intent mapping · Competitor gaps · SERP analysis
+                </div>
+              </div>
+              <div
+                class="hov-card feature-glow relative glass-panel rounded-[28px] p-6 lg:p-7 reveal"
+                style="transition-delay: 0.1s"
+              >
+                <div class="mini-label mono-font">03 / Authority</div>
+                <h3
+                  class="display-font mt-5 text-xl font-bold italic lg:text-2xl"
+                  style="color: var(--text-primary)"
+                >
+                  Content Clusters & On-Page SEO
+                </h3>
+                <p
+                  class="mt-4 text-sm leading-7"
+                  style="color: var(--text-secondary)"
+                >
+                  Service pages, location pages, pillar articles, supporting
+                  blogs, meta titles, headings, FAQs, and internal links are
+                  structured to build topical depth and conversion paths.
+                </p>
+                <div class="mt-5 text-sm" style="color: var(--text-muted)">
+                  Content briefs · Metadata · Internal linking
+                </div>
+              </div>
+              <div
+                class="hov-card feature-glow relative glass-panel rounded-[28px] p-6 lg:p-7 reveal"
+                style="transition-delay: 0.14s"
+              >
+                <div class="mini-label mono-font">04 / Local</div>
+                <h3
+                  class="display-font mt-5 text-xl font-bold italic lg:text-2xl"
+                  style="color: var(--text-primary)"
+                >
+                  Local SEO & Google Business Profile
+                </h3>
+                <p
+                  class="mt-4 text-sm leading-7"
+                  style="color: var(--text-secondary)"
+                >
+                  For service businesses, we optimise your Google Business
+                  Profile, categories, citations, reviews, service areas, and
+                  location pages so nearby customers can find and trust you.
+                </p>
+                <div class="mt-5 text-sm" style="color: var(--text-muted)">
+                  GBP · Reviews · Citations · NAP consistency
+                </div>
+              </div>
+              <div
+                class="hov-card feature-glow relative glass-panel rounded-[28px] p-6 lg:p-7 reveal"
+                style="transition-delay: 0.18s"
+              >
+                <div class="mini-label mono-font">05 / Analytics</div>
+                <h3
+                  class="display-font mt-5 text-xl font-bold italic lg:text-2xl"
+                  style="color: var(--text-primary)"
+                >
+                  Authority & Digital PR
+                </h3>
+                <p
+                  class="mt-4 text-sm leading-7"
+                  style="color: var(--text-secondary)"
+                >
+                  We build credibility through link opportunities, brand
+                  mentions, citations, shareable assets, and trust signals that
+                  support both rankings and human confidence.
+                </p>
+                <div class="mt-5 text-sm" style="color: var(--text-muted)">
+                  Backlink quality · Mentions · E-E-A-T signals
+                </div>
+              </div>
+              <div
+                class="hov-card feature-glow relative glass-panel rounded-[28px] p-6 lg:p-7 reveal"
+                style="transition-delay: 0.22s"
+              >
+                <div class="mini-label mono-font">06 / AI Search</div>
+                <h3
+                  class="display-font mt-5 text-xl font-bold italic lg:text-2xl"
+                  style="color: var(--text-primary)"
+                >
+                  Analytics, Reporting & CRO
+                </h3>
+                <p
+                  class="mt-4 text-sm leading-7"
+                  style="color: var(--text-secondary)"
+                >
+                  Rankings are only useful when they create business. We track
+                  impressions, clicks, conversions, calls, forms, assisted
+                  leads, and page-level opportunities for improvement.
+                </p>
+                <div class="mt-5 text-sm" style="color: var(--text-muted)">
+                  GA4 · GSC · Looker Studio · Conversion tracking
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-                <!-- KEY STATS -->
-                <div class="mt-10 grid grid-cols-3 gap-4">
-                  <div class="glass-panel rounded-[20px] px-4 py-5">
-                    <div class="display-font text-3xl font-extrabold italic" style="color:var(--text-primary);">Audit</div>
-                    <p class="mt-1 text-xs leading-5" style="color:var(--text-secondary);">technical issues, crawl gaps, and indexation blockers</p>
+      <!-- ═══════════════ RESULTS / PROOF ═══════════════ -->
+      <section class="section-frame py-24 lg:py-32">
+        <div class="site-shell">
+          <div class="text-center mb-14 reveal">
+            <div class="section-kicker">What we improve</div>
+            <h2
+              class="display-font mt-4 text-4xl font-extrabold italic leading-[0.95] tracking-[-0.04em] lg:text-6xl mx-auto"
+              style="color: var(--text-primary); max-width: 13ch"
+            >
+              SEO work your client can actually feel.
+            </h2>
+          </div>
+
+          <div class="grid gap-6 lg:grid-cols-3 mb-10">
+            <!-- Result card 1 -->
+            <div
+              class="hov-card glass-panel rounded-[30px] p-7 reveal"
+              style="transition-delay: 0.04s"
+            >
+              <div class="mini-label mono-font mb-4">Technical Foundation</div>
+              <div
+                class="display-font text-5xl font-extrabold italic"
+                style="color: var(--accent)"
+              >
+                Health
+              </div>
+              <div
+                class="text-base font-semibold mt-2"
+                style="color: var(--text-primary)"
+              >
+                Cleaner crawl paths and stronger indexation
+              </div>
+              <p
+                class="mt-3 text-sm leading-7"
+                style="color: var(--text-secondary)"
+              >
+                We remove broken links, redirect chains, duplicate metadata,
+                thin pages, canonical conflicts, and performance issues that
+                hold good content back.
+              </p>
+              <div class="mt-6 h-px soft-divider"></div>
+              <div
+                class="mt-4 mono-font text-xs uppercase tracking-widest"
+                style="color: var(--accent)"
+              >
+                Audits · Fixes · Schema · Speed
+              </div>
+            </div>
+            <!-- Result card 2 -->
+            <div
+              class="hov-card glass-panel rounded-[30px] p-7 reveal"
+              style="transition-delay: 0.1s"
+            >
+              <div class="mini-label mono-font mb-4">Content Engine</div>
+              <div
+                class="display-font text-5xl font-extrabold italic"
+                style="color: var(--accent)"
+              >
+                Intent
+              </div>
+              <div
+                class="text-base font-semibold mt-2"
+                style="color: var(--text-primary)"
+              >
+                Pages built around what buyers search
+              </div>
+              <p
+                class="mt-3 text-sm leading-7"
+                style="color: var(--text-secondary)"
+              >
+                We turn services, locations, questions, comparisons, and
+                problem-aware searches into pages that educate visitors and move
+                them toward inquiry.
+              </p>
+              <div class="mt-6 h-px soft-divider"></div>
+              <div
+                class="mt-4 mono-font text-xs uppercase tracking-widest"
+                style="color: var(--accent)"
+              >
+                Service pages · Blogs · FAQs · Internal links
+              </div>
+            </div>
+            <!-- Result card 3 -->
+            <div
+              class="hov-card glass-panel rounded-[30px] p-7 reveal"
+              style="transition-delay: 0.16s"
+            >
+              <div class="mini-label mono-font mb-4">Conversion Tracking</div>
+              <div
+                class="display-font text-5xl font-extrabold italic"
+                style="color: var(--accent)"
+              >
+                Leads
+              </div>
+              <div
+                class="text-base font-semibold mt-2"
+                style="color: var(--text-primary)"
+              >
+                Reporting tied to calls, forms, and revenue
+              </div>
+              <p
+                class="mt-3 text-sm leading-7"
+                style="color: var(--text-secondary)"
+              >
+                You see which pages create visibility, which keywords create
+                leads, and which fixes matter next. No vanity dashboards, just
+                useful decisions.
+              </p>
+              <div class="mt-6 h-px soft-divider"></div>
+              <div
+                class="mt-4 mono-font text-xs uppercase tracking-widest"
+                style="color: var(--accent)"
+              >
+                GA4 · GSC · Lead tracking · Roadmaps
+              </div>
+            </div>
+          </div>
+
+          <!-- RANKING VISUALISER -->
+          <div class="glass-panel rounded-[34px] p-8 lg:p-12 reveal">
+            <div class="grid gap-10 lg:grid-cols-2 lg:items-center">
+              <div>
+                <div class="section-kicker">Monthly SEO dashboard</div>
+                <h3
+                  class="display-font mt-4 text-3xl font-extrabold italic leading-tight"
+                  style="color: var(--text-primary)"
+                >
+                  The metrics we track every month.
+                </h3>
+                <p
+                  class="mt-4 text-sm leading-7"
+                  style="color: var(--text-secondary)"
+                >
+                  Your report should explain what changed, why it changed, and
+                  what we are doing next. These are the core signals we monitor
+                  across every SEO engagement.
+                </p>
+              </div>
+              <div class="space-y-5">
+                <div>
+                  <div class="flex justify-between text-sm mb-2">
+                    <span style="color: var(--text-secondary)"
+                      >Crawl health and index coverage</span
+                    ><span style="color: var(--accent); font-weight: 700"
+                      >High priority</span
+                    >
                   </div>
-                  <div class="glass-panel rounded-[20px] px-4 py-5">
-                    <div class="display-font text-3xl font-extrabold italic" style="color:var(--text-primary);">Map</div>
-                    <p class="mt-1 text-xs leading-5" style="color:var(--text-secondary);">keywords, competitors, intent, and content clusters</p>
+                  <div
+                    class="relative h-4 rounded-full"
+                    style="background: rgba(255, 255, 255, 0.05)"
+                  >
+                    <div
+                      class="h-full rounded-full bar-animated"
+                      style="
+                        --w: 100%;
+                        width: 100%;
+                        background: linear-gradient(
+                          90deg,
+                          var(--accent),
+                          #2bc410
+                        );
+                      "
+                    ></div>
+                    <div
+                      class="absolute right-2 top-1/2 -translate-y-1/2 mono-font text-[0.6rem]"
+                      style="color: #081008"
+                    >
+                      fixed first
+                    </div>
                   </div>
-                  <div class="glass-panel rounded-[20px] px-4 py-5">
-                    <div class="display-font text-3xl font-extrabold italic" style="color:var(--text-primary);">Grow</div>
-                    <p class="mt-1 text-xs leading-5" style="color:var(--text-secondary);">organic leads with monthly execution and reporting</p>
+                </div>
+                <div>
+                  <div class="flex justify-between text-sm mb-2">
+                    <span style="color: var(--text-secondary)"
+                      >Commercial keyword movement</span
+                    ><span style="color: var(--accent); font-weight: 700"
+                      >Tracked weekly</span
+                    >
+                  </div>
+                  <div
+                    class="relative h-4 rounded-full"
+                    style="background: rgba(255, 255, 255, 0.05)"
+                  >
+                    <div
+                      class="h-full rounded-full bar-animated"
+                      style="
+                        --w: 95%;
+                        width: 95%;
+                        background: linear-gradient(
+                          90deg,
+                          var(--accent),
+                          #2bc410
+                        );
+                        animation-delay: 0.1s;
+                      "
+                    ></div>
+                    <div
+                      class="absolute right-2 top-1/2 -translate-y-1/2 mono-font text-[0.6rem]"
+                      style="color: #081008"
+                    >
+                      intent-led
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <div class="flex justify-between text-sm mb-2">
+                    <span style="color: var(--text-secondary)"
+                      >Organic leads and assisted conversions</span
+                    ><span style="color: var(--accent); font-weight: 700"
+                      >Business KPI</span
+                    >
+                  </div>
+                  <div
+                    class="relative h-4 rounded-full"
+                    style="background: rgba(255, 255, 255, 0.05)"
+                  >
+                    <div
+                      class="h-full rounded-full bar-animated"
+                      style="
+                        --w: 97%;
+                        width: 97%;
+                        background: linear-gradient(
+                          90deg,
+                          var(--accent),
+                          #2bc410
+                        );
+                        animation-delay: 0.2s;
+                      "
+                    ></div>
+                    <div
+                      class="absolute right-2 top-1/2 -translate-y-1/2 mono-font text-[0.6rem]"
+                      style="color: #081008"
+                    >
+                      revenue view
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <div class="flex justify-between text-sm mb-2">
+                    <span style="color: var(--text-secondary)"
+                      >Content gaps and next-page roadmap</span
+                    ><span style="color: var(--accent); font-weight: 700"
+                      >Next sprint</span
+                    >
+                  </div>
+                  <div
+                    class="relative h-4 rounded-full"
+                    style="background: rgba(255, 255, 255, 0.05)"
+                  >
+                    <div
+                      class="h-full rounded-full bar-animated"
+                      style="
+                        --w: 90%;
+                        width: 90%;
+                        background: linear-gradient(
+                          90deg,
+                          var(--accent),
+                          #2bc410
+                        );
+                        animation-delay: 0.3s;
+                      "
+                    ></div>
+                    <div
+                      class="absolute right-2 top-1/2 -translate-y-1/2 mono-font text-[0.6rem]"
+                      style="color: #081008"
+                    >
+                      planned
+                    </div>
                   </div>
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-              <!-- RIGHT: Animated SEO Dashboard -->
-              <div class="relative reveal" style="transition-delay:.15s;">
-                <div class="spotlight" style="width:20rem;height:20rem;top:10%;right:-5%;background:radial-gradient(circle,rgba(57,255,20,0.1),transparent 64%);"></div>
-                <div id="seo-dashboard" style="background:#0a1a0e;border:1px solid #1a3a20;border-radius:12px;padding:28px;width:100%;max-width:520px;margin:0 auto;animation:dashboard-glow 3s ease-in-out infinite alternate;">
-                  <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:#4ade80;margin-bottom:18px;">SEO Growth Dashboard</div>
-                  <svg viewBox="0 0 460 200" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg" style="display:block;overflow:visible;">
-                    <defs>
-                      <filter id="green-glow" x="-20%" y="-20%" width="140%" height="140%">
-                        <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur"/>
-                        <feComposite in="SourceGraphic" in2="blur" operator="over"/>
-                      </filter>
-                      <filter id="glow-soft">
-                        <feGaussianBlur stdDeviation="4" result="blur"/>
-                        <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-                      </filter>
-                    </defs>
-                    <!-- Grid lines -->
-                    <line x1="40" y1="10" x2="40" y2="170" stroke="#1a3a20" stroke-width="1"/>
-                    <line x1="40" y1="10" x2="450" y2="10" stroke="#1a3a20" stroke-width="0.5"/>
-                    <line x1="40" y1="52" x2="450" y2="52" stroke="#1a3a20" stroke-width="0.5"/>
-                    <line x1="40" y1="94" x2="450" y2="94" stroke="#1a3a20" stroke-width="0.5"/>
-                    <line x1="40" y1="136" x2="450" y2="136" stroke="#1a3a20" stroke-width="0.5"/>
-                    <line x1="40" y1="170" x2="450" y2="170" stroke="#1a3a20" stroke-width="1"/>
-                    <!-- Y labels -->
-                    <text x="30" y="13" fill="#3d5c45" font-size="9" text-anchor="end" font-family="JetBrains Mono,monospace">100</text>
-                    <text x="30" y="55" fill="#3d5c45" font-size="9" text-anchor="end" font-family="JetBrains Mono,monospace">75</text>
-                    <text x="30" y="97" fill="#3d5c45" font-size="9" text-anchor="end" font-family="JetBrains Mono,monospace">50</text>
-                    <text x="30" y="139" fill="#3d5c45" font-size="9" text-anchor="end" font-family="JetBrains Mono,monospace">25</text>
-                    <text x="30" y="173" fill="#3d5c45" font-size="9" text-anchor="end" font-family="JetBrains Mono,monospace">0</text>
-                    <!-- X labels -->
-                    <text x="57" y="185" fill="#3d5c45" font-size="9" text-anchor="middle" font-family="JetBrains Mono,monospace">Jan</text>
-                    <text x="139" y="185" fill="#3d5c45" font-size="9" text-anchor="middle" font-family="JetBrains Mono,monospace">Mar</text>
-                    <text x="221" y="185" fill="#3d5c45" font-size="9" text-anchor="middle" font-family="JetBrains Mono,monospace">May</text>
-                    <text x="303" y="185" fill="#3d5c45" font-size="9" text-anchor="middle" font-family="JetBrains Mono,monospace">Jul</text>
-                    <text x="385" y="185" fill="#3d5c45" font-size="9" text-anchor="middle" font-family="JetBrains Mono,monospace">Sep</text>
-                    <text x="447" y="185" fill="#3d5c45" font-size="9" text-anchor="middle" font-family="JetBrains Mono,monospace">Nov</text>
-                    <!-- Industry Avg line (dashed) -->
-                    <polyline points="57,158 139,145 221,138 303,128 385,118 447,110" fill="none" stroke="#2d4a35" stroke-width="1.5" stroke-dasharray="5,4"/>
-                    <!-- Your Site line (animated draw) -->
-                    <polyline id="site-line" points="57,165 139,148 221,120 303,80 385,38 447,15" fill="none" stroke="#00ff88" stroke-width="2.5" filter="url(#glow-soft)" stroke-dasharray="600" stroke-dashoffset="600" style="animation:draw-line 2.5s ease-out forwards;"/>
-                    <!-- Dot at end -->
-                    <circle cx="447" cy="15" r="4" fill="#00ff88" opacity="0" style="animation:fade-in-dot 0.3s ease-out 2.4s forwards;"/>
+      <!-- ═══════════════ PROCESS ═══════════════ -->
+      <section id="process" class="section-frame py-24 lg:py-32">
+        <div class="site-shell">
+          <div class="text-center mb-14 reveal">
+            <div class="section-kicker">Our SEO process</div>
+            <h2
+              class="display-font mt-4 text-4xl font-extrabold italic leading-[0.95] tracking-[-0.04em] lg:text-6xl mx-auto"
+              style="color: var(--text-primary); max-width: 13ch"
+            >
+              Audit. Fix. Publish. Improve.
+            </h2>
+          </div>
+
+          <div class="grid gap-5 lg:grid-cols-4">
+            <div
+              class="hov-card glass-panel rounded-[28px] p-6 reveal"
+              style="transition-delay: 0.04s"
+            >
+              <div
+                class="w-10 h-10 rounded-full flex items-center justify-center mb-5"
+                style="
+                  background: rgba(57, 255, 20, 0.1);
+                  border: 1px solid rgba(57, 255, 20, 0.3);
+                "
+              >
+                <span class="mono-font text-xs" style="color: var(--accent)"
+                  >01</span
+                >
+              </div>
+              <div
+                class="mono-font text-xs uppercase tracking-widest mb-3"
+                style="color: var(--accent)"
+              >
+                Month 1
+              </div>
+              <h3
+                class="display-font text-xl font-bold italic mb-3"
+                style="color: var(--text-primary)"
+              >
+                SEO Audit & Baseline
+              </h3>
+              <p class="text-sm leading-7" style="color: var(--text-secondary)">
+                We review Google Search Console, Analytics, site crawl data,
+                page speed, index coverage, competitors, current rankings, and
+                conversion tracking before making recommendations.
+              </p>
+            </div>
+            <div
+              class="hov-card glass-panel rounded-[28px] p-6 reveal"
+              style="transition-delay: 0.1s"
+            >
+              <div
+                class="w-10 h-10 rounded-full flex items-center justify-center mb-5"
+                style="
+                  background: rgba(57, 255, 20, 0.1);
+                  border: 1px solid rgba(57, 255, 20, 0.3);
+                "
+              >
+                <span class="mono-font text-xs" style="color: var(--accent)"
+                  >02</span
+                >
+              </div>
+              <div
+                class="mono-font text-xs uppercase tracking-widest mb-3"
+                style="color: var(--accent)"
+              >
+                Month 2–3
+              </div>
+              <h3
+                class="display-font text-xl font-bold italic mb-3"
+                style="color: var(--text-primary)"
+              >
+                Technical Cleanup
+              </h3>
+              <p class="text-sm leading-7" style="color: var(--text-secondary)">
+                We fix crawl blockers, redirects, metadata, schema, sitemap
+                issues, page speed problems, thin pages, and internal link gaps
+                that stop search engines from trusting the site.
+              </p>
+            </div>
+            <div
+              class="hov-card glass-panel rounded-[28px] p-6 reveal"
+              style="transition-delay: 0.15s"
+            >
+              <div
+                class="w-10 h-10 rounded-full flex items-center justify-center mb-5"
+                style="
+                  background: rgba(57, 255, 20, 0.1);
+                  border: 1px solid rgba(57, 255, 20, 0.3);
+                "
+              >
+                <span class="mono-font text-xs" style="color: var(--accent)"
+                  >03</span
+                >
+              </div>
+              <div
+                class="mono-font text-xs uppercase tracking-widest mb-3"
+                style="color: var(--accent)"
+              >
+                Month 3–5
+              </div>
+              <h3
+                class="display-font text-xl font-bold italic mb-3"
+                style="color: var(--text-primary)"
+              >
+                Content & On-Page SEO
+              </h3>
+              <p class="text-sm leading-7" style="color: var(--text-secondary)">
+                We create or optimise service pages, blogs, FAQs, location
+                pages, headings, titles, descriptions, schema, and internal
+                links around real search intent.
+              </p>
+            </div>
+            <div
+              class="hov-card glass-panel rounded-[28px] p-6 reveal"
+              style="transition-delay: 0.2s"
+            >
+              <div
+                class="w-10 h-10 rounded-full flex items-center justify-center mb-5"
+                style="
+                  background: rgba(57, 255, 20, 0.1);
+                  border: 1px solid rgba(57, 255, 20, 0.3);
+                "
+              >
+                <span class="mono-font text-xs" style="color: var(--accent)"
+                  >04</span
+                >
+              </div>
+              <div
+                class="mono-font text-xs uppercase tracking-widest mb-3"
+                style="color: var(--accent)"
+              >
+                Month 6+
+              </div>
+              <h3
+                class="display-font text-xl font-bold italic mb-3"
+                style="color: var(--text-primary)"
+              >
+                Measure & Iterate
+              </h3>
+              <p class="text-sm leading-7" style="color: var(--text-secondary)">
+                Every month we review rankings, impressions, clicks, leads,
+                calls, content gaps, and technical alerts so the SEO plan keeps
+                improving instead of going stale.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══════════════ RESULTS TIMELINE ═══════════════ -->
+      <section id="packages" class="section-frame py-24 lg:py-32">
+        <div class="site-shell">
+          <div class="text-center mb-14 reveal">
+            <div
+              class="mono-font text-xs uppercase tracking-[0.18em] mb-4"
+              style="color: #4ade80"
+            >
+              First 90 days
+            </div>
+            <h2
+              class="display-font mt-2 text-4xl font-extrabold italic leading-[0.95] tracking-[-0.04em] lg:text-6xl mx-auto"
+              style="color: var(--text-primary); max-width: 14ch"
+            >
+              A clear plan from day one.
+            </h2>
+            <p
+              class="mt-6 text-base leading-8 mx-auto"
+              style="color: var(--text-secondary); max-width: 36rem"
+            >
+              SEO takes time, but the work should never feel vague. Here is what
+              clients can expect in the first three months.
+            </p>
+          </div>
+          <div class="relative">
+            <!-- Connector line -->
+            <div
+              class="hidden lg:block absolute"
+              style="
+                top: 52px;
+                left: calc(12.5% + 16px);
+                right: calc(12.5% + 16px);
+                height: 1px;
+                border-top: 1px dashed #1a4a25;
+                z-index: 0;
+              "
+            ></div>
+            <div class="grid gap-6 lg:grid-cols-4 relative z-10">
+              <!-- Milestone 1 -->
+              <div
+                class="reveal timeline-card"
+                style="
+                  transition-delay: 0.04s;
+                  background: #080f09;
+                  border: 1px solid #1a2e1e;
+                  border-radius: 10px;
+                  padding: 24px;
+                  transition:
+                    border-color 0.25s ease,
+                    transform 0.25s ease;
+                "
+              >
+                <div
+                  style="
+                    width: 32px;
+                    height: 32px;
+                    background: #0d2010;
+                    border-radius: 6px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    margin-bottom: 16px;
+                  "
+                >
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="#00ff88"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <circle cx="11" cy="11" r="8" />
+                    <line x1="21" y1="21" x2="16.65" y2="16.65" />
                   </svg>
-                  <!-- Legend -->
-                  <div style="display:flex;gap:16px;margin-top:6px;margin-bottom:16px;">
-                    <div style="display:flex;align-items:center;gap:6px;font-family:'JetBrains Mono',monospace;font-size:9px;color:#4ade80;"><span style="display:inline-block;width:16px;height:2px;background:#00ff88;border-radius:2px;"></span>Your Site</div>
-                    <div style="display:flex;align-items:center;gap:6px;font-family:'JetBrains Mono',monospace;font-size:9px;color:#3d5c45;"><span style="display:inline-block;width:16px;height:0;border-top:1.5px dashed #2d4a35;"></span>Industry Avg</div>
-                  </div>
-                  <!-- Stat pills -->
-                  <div style="display:flex;flex-wrap:wrap;gap:8px;">
-                    <span style="background:#0d2a15;color:#00ff88;font-family:'JetBrains Mono',monospace;font-size:10px;padding:5px 12px;border-radius:99px;letter-spacing:0.06em;">Crawl Health</span>
-                    <span style="background:#0d2a15;color:#00ff88;font-family:'JetBrains Mono',monospace;font-size:10px;padding:5px 12px;border-radius:99px;letter-spacing:0.06em;">Keyword Movement</span>
-                    <span style="background:#0d2a15;color:#00ff88;font-family:'JetBrains Mono',monospace;font-size:10px;padding:5px 12px;border-radius:99px;letter-spacing:0.06em;">Lead Attribution</span>
-                  </div>
                 </div>
+                <div
+                  class="mono-font text-xs uppercase tracking-widest mb-2"
+                  style="color: #4ade80"
+                >
+                  Week 1–2
+                </div>
+                <h3
+                  class="display-font text-lg font-bold italic mb-3"
+                  style="color: var(--text-primary)"
+                >
+                  Audit & Tracking Setup
+                </h3>
+                <p
+                  class="text-sm leading-7"
+                  style="color: var(--text-secondary)"
+                >
+                  We connect data sources, crawl the website, review
+                  competitors, check page speed, inspect index coverage, and
+                  make sure leads are measurable.
+                </p>
               </div>
-
-
-            </div>
-          </div>
-        </section>
-
-        <!-- KEYWORDS MARQUEE -->
-        <section class="section-frame py-10 overflow-hidden">
-          <div class="site-shell">
-            <div class="glass-panel marquee rounded-full px-2 py-2">
-              <div class="marquee-track">
-                <span class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">Technical SEO<span class="mx-6" style="color:var(--accent);">.</span></span>
-                <span class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">Core Web Vitals<span class="mx-6" style="color:var(--accent);">.</span></span>
-                <span class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">E-E-A-T Authority<span class="mx-6" style="color:var(--accent);">.</span></span>
-                <span class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">Keyword Research<span class="mx-6" style="color:var(--accent);">.</span></span>
-                <span class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">Link Building<span class="mx-6" style="color:var(--accent);">.</span></span>
-                <span class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">Schema Markup<span class="mx-6" style="color:var(--accent);">.</span></span>
-                <span class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">Content Clusters<span class="mx-6" style="color:var(--accent);">.</span></span>
-                <span class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">Local SEO<span class="mx-6" style="color:var(--accent);">.</span></span>
-                <span class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">AI Search Optimisation<span class="mx-6" style="color:var(--accent);">.</span></span>
-                <!-- clone -->
-                <span class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">Technical SEO<span class="mx-6" style="color:var(--accent);">.</span></span>
-                <span class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">Core Web Vitals<span class="mx-6" style="color:var(--accent);">.</span></span>
-                <span class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">E-E-A-T Authority<span class="mx-6" style="color:var(--accent);">.</span></span>
-                <span class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">Keyword Research<span class="mx-6" style="color:var(--accent);">.</span></span>
-                <span class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">Link Building<span class="mx-6" style="color:var(--accent);">.</span></span>
-                <span class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">Schema Markup<span class="mx-6" style="color:var(--accent);">.</span></span>
-                <span class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">Content Clusters<span class="mx-6" style="color:var(--accent);">.</span></span>
-                <span class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">Local SEO<span class="mx-6" style="color:var(--accent);">.</span></span>
-                <span class="mono-font flex items-center whitespace-nowrap px-6 py-3 text-[0.78rem] uppercase tracking-[0.18em]" style="color:var(--text-secondary);">AI Search Optimisation<span class="mx-6" style="color:var(--accent);">.</span></span>
+              <!-- Milestone 2 -->
+              <div
+                class="reveal timeline-card"
+                style="
+                  transition-delay: 0.1s;
+                  background: #080f09;
+                  border: 1px solid #1a2e1e;
+                  border-radius: 10px;
+                  padding: 24px;
+                  transition:
+                    border-color 0.25s ease,
+                    transform 0.25s ease;
+                "
+              >
+                <div
+                  style="
+                    width: 32px;
+                    height: 32px;
+                    background: #0d2010;
+                    border-radius: 6px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    margin-bottom: 16px;
+                  "
+                >
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="#00ff88"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path
+                      d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"
+                    />
+                  </svg>
+                </div>
+                <div
+                  class="mono-font text-xs uppercase tracking-widest mb-2"
+                  style="color: #4ade80"
+                >
+                  Week 3–4
+                </div>
+                <h3
+                  class="display-font text-lg font-bold italic mb-3"
+                  style="color: var(--text-primary)"
+                >
+                  Priority Fixes
+                </h3>
+                <p
+                  class="text-sm leading-7"
+                  style="color: var(--text-secondary)"
+                >
+                  The highest-impact technical and on-page issues are fixed
+                  first: titles, descriptions, internal links, schema,
+                  redirects, and crawl blockers.
+                </p>
               </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- ═══════════════ SEO PILLARS ═══════════════ -->
-        <section id="strategy" class="section-frame py-24 lg:py-32">
-          <div class="site-shell">
-            <div class="grid gap-10 lg:grid-cols-[0.55fr_1.45fr] lg:items-start">
-              <div class="reveal lg:sticky lg:top-28">
-                <div class="section-kicker">What SEO includes</div>
-                <h2 class="display-font mt-4 text-4xl font-extrabold italic leading-[0.96] tracking-[-0.04em] lg:text-6xl" style="color:var(--text-primary);max-width:10ch;">Everything search engines need to trust you.</h2>
-                <p class="mt-6 text-base leading-8 lg:text-lg" style="color:var(--text-secondary);max-width:28rem;">Good SEO is not one plugin or a few blog posts. It is technical health, useful content, internal linking, authority, local visibility, and clear measurement working as one system.</p>
-                <a href="../contact.html" class="mt-8 inline-flex items-center gap-2 text-sm font-semibold" style="color:var(--accent);">Request SEO audit -></a>
+              <!-- Milestone 3 -->
+              <div
+                class="reveal timeline-card"
+                style="
+                  transition-delay: 0.16s;
+                  background: #080f09;
+                  border: 1px solid #1a2e1e;
+                  border-radius: 10px;
+                  padding: 24px;
+                  transition:
+                    border-color 0.25s ease,
+                    transform 0.25s ease;
+                "
+              >
+                <div
+                  style="
+                    width: 32px;
+                    height: 32px;
+                    background: #0d2010;
+                    border-radius: 6px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    margin-bottom: 16px;
+                  "
+                >
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="#00ff88"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path
+                      d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
+                    />
+                    <polyline points="14 2 14 8 20 8" />
+                    <line x1="16" y1="13" x2="8" y2="13" />
+                    <line x1="16" y1="17" x2="8" y2="17" />
+                    <polyline points="10 9 9 9 8 9" />
+                  </svg>
+                </div>
+                <div
+                  class="mono-font text-xs uppercase tracking-widest mb-2"
+                  style="color: #4ade80"
+                >
+                  Month 2
+                </div>
+                <h3
+                  class="display-font text-lg font-bold italic mb-3"
+                  style="color: var(--text-primary)"
+                >
+                  Content Rollout
+                </h3>
+                <p
+                  class="text-sm leading-7"
+                  style="color: var(--text-secondary)"
+                >
+                  We publish or improve commercial pages and supporting content
+                  around mapped search intent, then strengthen navigation and
+                  internal links.
+                </p>
               </div>
-
-              <div class="grid gap-5 md:grid-cols-2">
-                <div class="hov-card feature-glow relative glass-panel rounded-[28px] p-6 lg:p-7 md:col-span-2 reveal">
-                  <div class="mini-label mono-font">01 / Foundation</div>
-                  <h3 class="display-font mt-5 text-2xl font-bold italic lg:text-3xl" style="color:var(--text-primary);">Technical SEO & Site Health</h3>
-                  <p class="mt-4 leading-7 text-base" style="color:var(--text-secondary);">We audit crawlability, indexation, redirects, broken pages, Core Web Vitals, sitemap structure, canonical tags, schema, duplicate content, and internal linking so search engines can read your website without friction.</p>
-                  <div class="mt-6 h-px w-full soft-divider"></div>
-                  <div class="mt-4 flex items-center justify-between text-sm" style="color:var(--text-muted);">
-                    <span>Clean foundations before content scaling</span><span style="color:var(--accent);">GSC · Screaming Frog · PageSpeed</span>
-                  </div>
+              <!-- Milestone 4 -->
+              <div
+                class="reveal timeline-card"
+                style="
+                  transition-delay: 0.22s;
+                  background: #080f09;
+                  border: 1px solid #1a2e1e;
+                  border-radius: 10px;
+                  padding: 24px;
+                  transition:
+                    border-color 0.25s ease,
+                    transform 0.25s ease;
+                "
+              >
+                <div
+                  style="
+                    width: 32px;
+                    height: 32px;
+                    background: #0d2010;
+                    border-radius: 6px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    margin-bottom: 16px;
+                  "
+                >
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="#00ff88"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <polyline points="23 6 13.5 15.5 8.5 10.5 1 18" />
+                    <polyline points="17 6 23 6 23 12" />
+                  </svg>
                 </div>
-                <div class="hov-card feature-glow relative glass-panel rounded-[28px] p-6 lg:p-7 reveal" style="transition-delay:.06s;">
-                  <div class="mini-label mono-font">02 / Content</div>
-                  <h3 class="display-font mt-5 text-xl font-bold italic lg:text-2xl" style="color:var(--text-primary);">Keyword Strategy & Search Intent</h3>
-                  <p class="mt-4 text-sm leading-7" style="color:var(--text-secondary);">We group keywords by buyer intent, difficulty, traffic quality, and funnel stage so every page has a purpose: attract, educate, compare, or convert.</p>
-                  <div class="mt-5 text-sm" style="color:var(--text-muted);">Intent mapping · Competitor gaps · SERP analysis</div>
+                <div
+                  class="mono-font text-xs uppercase tracking-widest mb-2"
+                  style="color: #4ade80"
+                >
+                  Month 3+
                 </div>
-                <div class="hov-card feature-glow relative glass-panel rounded-[28px] p-6 lg:p-7 reveal" style="transition-delay:.1s;">
-                  <div class="mini-label mono-font">03 / Authority</div>
-                  <h3 class="display-font mt-5 text-xl font-bold italic lg:text-2xl" style="color:var(--text-primary);">Content Clusters & On-Page SEO</h3>
-                  <p class="mt-4 text-sm leading-7" style="color:var(--text-secondary);">Service pages, location pages, pillar articles, supporting blogs, meta titles, headings, FAQs, and internal links are structured to build topical depth and conversion paths.</p>
-                  <div class="mt-5 text-sm" style="color:var(--text-muted);">Content briefs · Metadata · Internal linking</div>
-                </div>
-                <div class="hov-card feature-glow relative glass-panel rounded-[28px] p-6 lg:p-7 reveal" style="transition-delay:.14s;">
-                  <div class="mini-label mono-font">04 / Local</div>
-                  <h3 class="display-font mt-5 text-xl font-bold italic lg:text-2xl" style="color:var(--text-primary);">Local SEO & Google Business Profile</h3>
-                  <p class="mt-4 text-sm leading-7" style="color:var(--text-secondary);">For service businesses, we optimise your Google Business Profile, categories, citations, reviews, service areas, and location pages so nearby customers can find and trust you.</p>
-                  <div class="mt-5 text-sm" style="color:var(--text-muted);">GBP · Reviews · Citations · NAP consistency</div>
-                </div>
-                <div class="hov-card feature-glow relative glass-panel rounded-[28px] p-6 lg:p-7 reveal" style="transition-delay:.18s;">
-                  <div class="mini-label mono-font">05 / Analytics</div>
-                  <h3 class="display-font mt-5 text-xl font-bold italic lg:text-2xl" style="color:var(--text-primary);">Authority & Digital PR</h3>
-                  <p class="mt-4 text-sm leading-7" style="color:var(--text-secondary);">We build credibility through link opportunities, brand mentions, citations, shareable assets, and trust signals that support both rankings and human confidence.</p>
-                  <div class="mt-5 text-sm" style="color:var(--text-muted);">Backlink quality · Mentions · E-E-A-T signals</div>
-                </div>
-                <div class="hov-card feature-glow relative glass-panel rounded-[28px] p-6 lg:p-7 reveal" style="transition-delay:.22s;">
-                  <div class="mini-label mono-font">06 / AI Search</div>
-                  <h3 class="display-font mt-5 text-xl font-bold italic lg:text-2xl" style="color:var(--text-primary);">Analytics, Reporting & CRO</h3>
-                  <p class="mt-4 text-sm leading-7" style="color:var(--text-secondary);">Rankings are only useful when they create business. We track impressions, clicks, conversions, calls, forms, assisted leads, and page-level opportunities for improvement.</p>
-                  <div class="mt-5 text-sm" style="color:var(--text-muted);">GA4 · GSC · Looker Studio · Conversion tracking</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- ═══════════════ RESULTS / PROOF ═══════════════ -->
-        <section class="section-frame py-24 lg:py-32">
-          <div class="site-shell">
-            <div class="text-center mb-14 reveal">
-              <div class="section-kicker">What we improve</div>
-              <h2 class="display-font mt-4 text-4xl font-extrabold italic leading-[0.95] tracking-[-0.04em] lg:text-6xl mx-auto" style="color:var(--text-primary);max-width:13ch;">SEO work your client can actually feel.</h2>
-            </div>
-
-            <div class="grid gap-6 lg:grid-cols-3 mb-10">
-              <!-- Result card 1 -->
-              <div class="hov-card glass-panel rounded-[30px] p-7 reveal" style="transition-delay:.04s;">
-                <div class="mini-label mono-font mb-4">Technical Foundation</div>
-                <div class="display-font text-5xl font-extrabold italic" style="color:var(--accent);">Health</div>
-                <div class="text-base font-semibold mt-2" style="color:var(--text-primary);">Cleaner crawl paths and stronger indexation</div>
-                <p class="mt-3 text-sm leading-7" style="color:var(--text-secondary);">We remove broken links, redirect chains, duplicate metadata, thin pages, canonical conflicts, and performance issues that hold good content back.</p>
-                <div class="mt-6 h-px soft-divider"></div>
-                <div class="mt-4 mono-font text-xs uppercase tracking-widest" style="color:var(--accent);">Audits · Fixes · Schema · Speed</div>
-              </div>
-              <!-- Result card 2 -->
-              <div class="hov-card glass-panel rounded-[30px] p-7 reveal" style="transition-delay:.1s;">
-                <div class="mini-label mono-font mb-4">Content Engine</div>
-                <div class="display-font text-5xl font-extrabold italic" style="color:var(--accent);">Intent</div>
-                <div class="text-base font-semibold mt-2" style="color:var(--text-primary);">Pages built around what buyers search</div>
-                <p class="mt-3 text-sm leading-7" style="color:var(--text-secondary);">We turn services, locations, questions, comparisons, and problem-aware searches into pages that educate visitors and move them toward inquiry.</p>
-                <div class="mt-6 h-px soft-divider"></div>
-                <div class="mt-4 mono-font text-xs uppercase tracking-widest" style="color:var(--accent);">Service pages · Blogs · FAQs · Internal links</div>
-              </div>
-              <!-- Result card 3 -->
-              <div class="hov-card glass-panel rounded-[30px] p-7 reveal" style="transition-delay:.16s;">
-                <div class="mini-label mono-font mb-4">Conversion Tracking</div>
-                <div class="display-font text-5xl font-extrabold italic" style="color:var(--accent);">Leads</div>
-                <div class="text-base font-semibold mt-2" style="color:var(--text-primary);">Reporting tied to calls, forms, and revenue</div>
-                <p class="mt-3 text-sm leading-7" style="color:var(--text-secondary);">You see which pages create visibility, which keywords create leads, and which fixes matter next. No vanity dashboards, just useful decisions.</p>
-                <div class="mt-6 h-px soft-divider"></div>
-                <div class="mt-4 mono-font text-xs uppercase tracking-widest" style="color:var(--accent);">GA4 · GSC · Lead tracking · Roadmaps</div>
-              </div>
-            </div>
-
-            <!-- RANKING VISUALISER -->
-            <div class="glass-panel rounded-[34px] p-8 lg:p-12 reveal">
-              <div class="grid gap-10 lg:grid-cols-2 lg:items-center">
-                <div>
-                  <div class="section-kicker">Monthly SEO dashboard</div>
-                  <h3 class="display-font mt-4 text-3xl font-extrabold italic leading-tight" style="color:var(--text-primary);">The metrics we track every month.</h3>
-                  <p class="mt-4 text-sm leading-7" style="color:var(--text-secondary);">Your report should explain what changed, why it changed, and what we are doing next. These are the core signals we monitor across every SEO engagement.</p>
-                </div>
-                <div class="space-y-5">
-                  <div>
-                    <div class="flex justify-between text-sm mb-2"><span style="color:var(--text-secondary);">Crawl health and index coverage</span><span style="color:var(--accent);font-weight:700;">High priority</span></div>
-                    <div class="relative h-4 rounded-full" style="background:rgba(255,255,255,0.05);">
-                      <div class="h-full rounded-full bar-animated" style="--w:100%;width:100%;background:linear-gradient(90deg,var(--accent),#2bc410);"></div>
-                      <div class="absolute right-2 top-1/2 -translate-y-1/2 mono-font text-[0.6rem]" style="color:#081008;">fixed first</div>
-                    </div>
-                  </div>
-                  <div>
-                    <div class="flex justify-between text-sm mb-2"><span style="color:var(--text-secondary);">Commercial keyword movement</span><span style="color:var(--accent);font-weight:700;">Tracked weekly</span></div>
-                    <div class="relative h-4 rounded-full" style="background:rgba(255,255,255,0.05);">
-                      <div class="h-full rounded-full bar-animated" style="--w:95%;width:95%;background:linear-gradient(90deg,var(--accent),#2bc410);animation-delay:.1s;"></div>
-                      <div class="absolute right-2 top-1/2 -translate-y-1/2 mono-font text-[0.6rem]" style="color:#081008;">intent-led</div>
-                    </div>
-                  </div>
-                  <div>
-                    <div class="flex justify-between text-sm mb-2"><span style="color:var(--text-secondary);">Organic leads and assisted conversions</span><span style="color:var(--accent);font-weight:700;">Business KPI</span></div>
-                    <div class="relative h-4 rounded-full" style="background:rgba(255,255,255,0.05);">
-                      <div class="h-full rounded-full bar-animated" style="--w:97%;width:97%;background:linear-gradient(90deg,var(--accent),#2bc410);animation-delay:.2s;"></div>
-                      <div class="absolute right-2 top-1/2 -translate-y-1/2 mono-font text-[0.6rem]" style="color:#081008;">revenue view</div>
-                    </div>
-                  </div>
-                  <div>
-                    <div class="flex justify-between text-sm mb-2"><span style="color:var(--text-secondary);">Content gaps and next-page roadmap</span><span style="color:var(--accent);font-weight:700;">Next sprint</span></div>
-                    <div class="relative h-4 rounded-full" style="background:rgba(255,255,255,0.05);">
-                      <div class="h-full rounded-full bar-animated" style="--w:90%;width:90%;background:linear-gradient(90deg,var(--accent),#2bc410);animation-delay:.3s;"></div>
-                      <div class="absolute right-2 top-1/2 -translate-y-1/2 mono-font text-[0.6rem]" style="color:#081008;">planned</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- ═══════════════ PROCESS ═══════════════ -->
-        <section id="process" class="section-frame py-24 lg:py-32">
-          <div class="site-shell">
-            <div class="text-center mb-14 reveal">
-              <div class="section-kicker">Our SEO process</div>
-              <h2 class="display-font mt-4 text-4xl font-extrabold italic leading-[0.95] tracking-[-0.04em] lg:text-6xl mx-auto" style="color:var(--text-primary);max-width:13ch;">Audit. Fix. Publish. Improve.</h2>
-            </div>
-
-            <div class="grid gap-5 lg:grid-cols-4">
-              <div class="hov-card glass-panel rounded-[28px] p-6 reveal" style="transition-delay:.04s;">
-                <div class="w-10 h-10 rounded-full flex items-center justify-center mb-5" style="background:rgba(57,255,20,0.1);border:1px solid rgba(57,255,20,0.3);">
-                  <span class="mono-font text-xs" style="color:var(--accent);">01</span>
-                </div>
-                <div class="mono-font text-xs uppercase tracking-widest mb-3" style="color:var(--accent);">Month 1</div>
-                <h3 class="display-font text-xl font-bold italic mb-3" style="color:var(--text-primary);">SEO Audit & Baseline</h3>
-                <p class="text-sm leading-7" style="color:var(--text-secondary);">We review Google Search Console, Analytics, site crawl data, page speed, index coverage, competitors, current rankings, and conversion tracking before making recommendations.</p>
-              </div>
-              <div class="hov-card glass-panel rounded-[28px] p-6 reveal" style="transition-delay:.1s;">
-                <div class="w-10 h-10 rounded-full flex items-center justify-center mb-5" style="background:rgba(57,255,20,0.1);border:1px solid rgba(57,255,20,0.3);">
-                  <span class="mono-font text-xs" style="color:var(--accent);">02</span>
-                </div>
-                <div class="mono-font text-xs uppercase tracking-widest mb-3" style="color:var(--accent);">Month 2–3</div>
-                <h3 class="display-font text-xl font-bold italic mb-3" style="color:var(--text-primary);">Technical Cleanup</h3>
-                <p class="text-sm leading-7" style="color:var(--text-secondary);">We fix crawl blockers, redirects, metadata, schema, sitemap issues, page speed problems, thin pages, and internal link gaps that stop search engines from trusting the site.</p>
-              </div>
-              <div class="hov-card glass-panel rounded-[28px] p-6 reveal" style="transition-delay:.15s;">
-                <div class="w-10 h-10 rounded-full flex items-center justify-center mb-5" style="background:rgba(57,255,20,0.1);border:1px solid rgba(57,255,20,0.3);">
-                  <span class="mono-font text-xs" style="color:var(--accent);">03</span>
-                </div>
-                <div class="mono-font text-xs uppercase tracking-widest mb-3" style="color:var(--accent);">Month 3–5</div>
-                <h3 class="display-font text-xl font-bold italic mb-3" style="color:var(--text-primary);">Content & On-Page SEO</h3>
-                <p class="text-sm leading-7" style="color:var(--text-secondary);">We create or optimise service pages, blogs, FAQs, location pages, headings, titles, descriptions, schema, and internal links around real search intent.</p>
-              </div>
-              <div class="hov-card glass-panel rounded-[28px] p-6 reveal" style="transition-delay:.2s;">
-                <div class="w-10 h-10 rounded-full flex items-center justify-center mb-5" style="background:rgba(57,255,20,0.1);border:1px solid rgba(57,255,20,0.3);">
-                  <span class="mono-font text-xs" style="color:var(--accent);">04</span>
-                </div>
-                <div class="mono-font text-xs uppercase tracking-widest mb-3" style="color:var(--accent);">Month 6+</div>
-                <h3 class="display-font text-xl font-bold italic mb-3" style="color:var(--text-primary);">Measure & Iterate</h3>
-                <p class="text-sm leading-7" style="color:var(--text-secondary);">Every month we review rankings, impressions, clicks, leads, calls, content gaps, and technical alerts so the SEO plan keeps improving instead of going stale.</p>
+                <h3
+                  class="display-font text-lg font-bold italic mb-3"
+                  style="color: var(--text-primary)"
+                >
+                  Review & Scale
+                </h3>
+                <p
+                  class="text-sm leading-7"
+                  style="color: var(--text-secondary)"
+                >
+                  We review early movement, double down on pages gaining
+                  traction, identify new content gaps, and plan the next sprint
+                  with clear priorities.
+                </p>
               </div>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        <!-- ═══════════════ RESULTS TIMELINE ═══════════════ -->
-        <section id="packages" class="section-frame py-24 lg:py-32">
-          <div class="site-shell">
-            <div class="text-center mb-14 reveal">
-              <div class="mono-font text-xs uppercase tracking-[0.18em] mb-4" style="color:#4ade80;">First 90 days</div>
-              <h2 class="display-font mt-2 text-4xl font-extrabold italic leading-[0.95] tracking-[-0.04em] lg:text-6xl mx-auto" style="color:var(--text-primary);max-width:14ch;">A clear plan from day one.</h2>
-              <p class="mt-6 text-base leading-8 mx-auto" style="color:var(--text-secondary);max-width:36rem;">SEO takes time, but the work should never feel vague. Here is what clients can expect in the first three months.</p>
+      <!-- ═══════════════ FAQ ═══════════════ -->
+      <section class="section-frame py-24 lg:py-32">
+        <div class="site-shell">
+          <div class="grid gap-12 lg:grid-cols-[0.7fr_1.3fr] lg:items-start">
+            <div class="reveal">
+              <div class="section-kicker">Common questions</div>
+              <h2
+                class="display-font mt-4 text-4xl font-extrabold italic leading-[0.96] tracking-[-0.04em] lg:text-5xl"
+                style="color: var(--text-primary); max-width: 10ch"
+              >
+                Clear answers before we start.
+              </h2>
+              <p
+                class="mt-6 text-base leading-8"
+                style="color: var(--text-secondary)"
+              >
+                SEO gets messy when agencies hide behind jargon. Here is how we
+                explain the work, the timelines, and the limits honestly.
+              </p>
             </div>
-            <div class="relative">
-              <!-- Connector line -->
-              <div class="hidden lg:block absolute" style="top:52px;left:calc(12.5% + 16px);right:calc(12.5% + 16px);height:1px;border-top:1px dashed #1a4a25;z-index:0;"></div>
-              <div class="grid gap-6 lg:grid-cols-4 relative z-10">
-                <!-- Milestone 1 -->
-                <div class="reveal timeline-card" style="transition-delay:.04s;background:#080f09;border:1px solid #1a2e1e;border-radius:10px;padding:24px;transition:border-color 0.25s ease,transform 0.25s ease;">
-                  <div style="width:32px;height:32px;background:#0d2010;border-radius:6px;display:flex;align-items:center;justify-content:center;margin-bottom:16px;">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00ff88" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-                  </div>
-                  <div class="mono-font text-xs uppercase tracking-widest mb-2" style="color:#4ade80;">Week 1–2</div>
-                  <h3 class="display-font text-lg font-bold italic mb-3" style="color:var(--text-primary);">Audit & Tracking Setup</h3>
-                  <p class="text-sm leading-7" style="color:var(--text-secondary);">We connect data sources, crawl the website, review competitors, check page speed, inspect index coverage, and make sure leads are measurable.</p>
+            <div class="space-y-0 reveal" style="transition-delay: 0.08s">
+              <!-- FAQ items -->
+              <div
+                class="faq-item hov-card glass-panel rounded-[22px] overflow-hidden mb-4"
+              >
+                <div
+                  class="accordion-toggle flex items-center justify-between"
+                  onclick="toggleFAQ(this)"
+                >
+                  <span
+                    class="faq-question display-font text-lg font-bold italic"
+                    style="color: var(--text-primary)"
+                    >How long does SEO take to show results?</span
+                  >
+                  <span
+                    class="faq-icon mono-font text-xl"
+                    style="color: var(--accent)"
+                    >+</span
+                  >
                 </div>
-                <!-- Milestone 2 -->
-                <div class="reveal timeline-card" style="transition-delay:.1s;background:#080f09;border:1px solid #1a2e1e;border-radius:10px;padding:24px;transition:border-color 0.25s ease,transform 0.25s ease;">
-                  <div style="width:32px;height:32px;background:#0d2010;border-radius:6px;display:flex;align-items:center;justify-content:center;margin-bottom:16px;">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00ff88" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
-                  </div>
-                  <div class="mono-font text-xs uppercase tracking-widest mb-2" style="color:#4ade80;">Week 3–4</div>
-                  <h3 class="display-font text-lg font-bold italic mb-3" style="color:var(--text-primary);">Priority Fixes</h3>
-                  <p class="text-sm leading-7" style="color:var(--text-secondary);">The highest-impact technical and on-page issues are fixed first: titles, descriptions, internal links, schema, redirects, and crawl blockers.</p>
+                <div class="accordion-body">
+                  <p
+                    class="text-sm leading-7"
+                    style="color: var(--text-secondary)"
+                  >
+                    Technical fixes can show early improvements within weeks,
+                    but meaningful organic growth usually takes 3 to 6 months
+                    depending on competition, site history, content quality, and
+                    authority. We set expectations after the audit, not before
+                    seeing the data.
+                  </p>
                 </div>
-                <!-- Milestone 3 -->
-                <div class="reveal timeline-card" style="transition-delay:.16s;background:#080f09;border:1px solid #1a2e1e;border-radius:10px;padding:24px;transition:border-color 0.25s ease,transform 0.25s ease;">
-                  <div style="width:32px;height:32px;background:#0d2010;border-radius:6px;display:flex;align-items:center;justify-content:center;margin-bottom:16px;">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00ff88" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-                  </div>
-                  <div class="mono-font text-xs uppercase tracking-widest mb-2" style="color:#4ade80;">Month 2</div>
-                  <h3 class="display-font text-lg font-bold italic mb-3" style="color:var(--text-primary);">Content Rollout</h3>
-                  <p class="text-sm leading-7" style="color:var(--text-secondary);">We publish or improve commercial pages and supporting content around mapped search intent, then strengthen navigation and internal links.</p>
+              </div>
+              <div
+                class="faq-item hov-card glass-panel rounded-[22px] overflow-hidden mb-4"
+              >
+                <div
+                  class="accordion-toggle flex items-center justify-between"
+                  onclick="toggleFAQ(this)"
+                >
+                  <span
+                    class="faq-question display-font text-lg font-bold italic"
+                    style="color: var(--text-primary)"
+                    >Do you guarantee page-one rankings?</span
+                  >
+                  <span
+                    class="faq-icon mono-font text-xl"
+                    style="color: var(--accent)"
+                    >+</span
+                  >
                 </div>
-                <!-- Milestone 4 -->
-                <div class="reveal timeline-card" style="transition-delay:.22s;background:#080f09;border:1px solid #1a2e1e;border-radius:10px;padding:24px;transition:border-color 0.25s ease,transform 0.25s ease;">
-                  <div style="width:32px;height:32px;background:#0d2010;border-radius:6px;display:flex;align-items:center;justify-content:center;margin-bottom:16px;">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00ff88" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
-                  </div>
-                  <div class="mono-font text-xs uppercase tracking-widest mb-2" style="color:#4ade80;">Month 3+</div>
-                  <h3 class="display-font text-lg font-bold italic mb-3" style="color:var(--text-primary);">Review & Scale</h3>
-                  <p class="text-sm leading-7" style="color:var(--text-secondary);">We review early movement, double down on pages gaining traction, identify new content gaps, and plan the next sprint with clear priorities.</p>
+                <div class="accordion-body">
+                  <p
+                    class="text-sm leading-7"
+                    style="color: var(--text-secondary)"
+                  >
+                    No. Google controls rankings, and any agency promising
+                    guaranteed positions is selling fantasy. What we commit to
+                    is transparent work: audits, fixes, content plans,
+                    implementation, reporting, and a clear roadmap tied to
+                    business goals.
+                  </p>
+                </div>
+              </div>
+              <div
+                class="faq-item hov-card glass-panel rounded-[22px] overflow-hidden mb-4"
+              >
+                <div
+                  class="accordion-toggle flex items-center justify-between"
+                  onclick="toggleFAQ(this)"
+                >
+                  <span
+                    class="faq-question display-font text-lg font-bold italic"
+                    style="color: var(--text-primary)"
+                    >What's the difference between SEO and paid ads?</span
+                  >
+                  <span
+                    class="faq-icon mono-font text-xl"
+                    style="color: var(--accent)"
+                    >+</span
+                  >
+                </div>
+                <div class="accordion-body">
+                  <p
+                    class="text-sm leading-7"
+                    style="color: var(--text-secondary)"
+                  >
+                    Paid ads buy immediate visibility. SEO builds owned
+                    visibility over time. Ads are useful for quick testing and
+                    demand capture; SEO is better for compounding trust,
+                    reducing long-term acquisition cost, and capturing people
+                    who search before they are ready to buy.
+                  </p>
+                </div>
+              </div>
+              <div
+                class="faq-item hov-card glass-panel rounded-[22px] overflow-hidden mb-4"
+              >
+                <div
+                  class="accordion-toggle flex items-center justify-between"
+                  onclick="toggleFAQ(this)"
+                >
+                  <span
+                    class="faq-question display-font text-lg font-bold italic"
+                    style="color: var(--text-primary)"
+                    >Do I need a new website for SEO to work?</span
+                  >
+                  <span
+                    class="faq-icon mono-font text-xl"
+                    style="color: var(--accent)"
+                    >+</span
+                  >
+                </div>
+                <div class="accordion-body">
+                  <p
+                    class="text-sm leading-7"
+                    style="color: var(--text-secondary)"
+                  >
+                    Not always. Many websites only need technical cleanup,
+                    better pages, and stronger content. If the site is slow,
+                    poorly structured, or hard to edit, we will tell you where a
+                    rebuild or development support would create better ROI.
+                  </p>
+                </div>
+              </div>
+              <div
+                class="faq-item hov-card glass-panel rounded-[22px] overflow-hidden mb-4"
+              >
+                <div
+                  class="accordion-toggle flex items-center justify-between"
+                  onclick="toggleFAQ(this)"
+                >
+                  <span
+                    class="faq-question display-font text-lg font-bold italic"
+                    style="color: var(--text-primary)"
+                    >Do you also optimise for AI search?</span
+                  >
+                  <span
+                    class="faq-icon mono-font text-xl"
+                    style="color: var(--accent)"
+                    >+</span
+                  >
+                </div>
+                <div class="accordion-body">
+                  <p
+                    class="text-sm leading-7"
+                    style="color: var(--text-secondary)"
+                  >
+                    Yes. AI search still depends on clear entities, trustworthy
+                    content, citations, structured data, topical depth, and
+                    brand authority. We write and structure pages so both search
+                    engines and AI answer engines can understand your business.
+                  </p>
                 </div>
               </div>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-
-
-        <!-- ═══════════════ FAQ ═══════════════ -->
-        <section class="section-frame py-24 lg:py-32">
-          <div class="site-shell">
-            <div class="grid gap-12 lg:grid-cols-[0.7fr_1.3fr] lg:items-start">
-              <div class="reveal">
-                <div class="section-kicker">Common questions</div>
-                <h2 class="display-font mt-4 text-4xl font-extrabold italic leading-[0.96] tracking-[-0.04em] lg:text-5xl" style="color:var(--text-primary);max-width:10ch;">Clear answers before we start.</h2>
-                <p class="mt-6 text-base leading-8" style="color:var(--text-secondary);">SEO gets messy when agencies hide behind jargon. Here is how we explain the work, the timelines, and the limits honestly.</p>
+      <!-- CTA -->
+      <section class="relative py-24 lg:py-32">
+        <div class="site-shell">
+          <div
+            class="glass-panel relative overflow-hidden rounded-[38px] px-6 py-14 lg:px-14 lg:py-16 reveal"
+          >
+            <div class="cta-bg rounded-[38px]"></div>
+            <div
+              class="spotlight"
+              style="
+                width: 28rem;
+                height: 28rem;
+                top: -10rem;
+                right: -6rem;
+                background: radial-gradient(
+                  circle,
+                  rgba(57, 255, 20, 0.14),
+                  transparent 64%
+                );
+              "
+            ></div>
+            <div
+              class="relative z-10 grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center"
+            >
+              <div>
+                <div class="section-kicker">Start with clarity</div>
+                <h2
+                  class="display-font mt-4 text-4xl font-extrabold italic leading-[0.94] tracking-[-0.04em] lg:text-6xl"
+                  style="color: var(--text-primary); max-width: 12ch"
+                >
+                  Know what is holding your rankings back.
+                </h2>
+                <p
+                  class="mt-6 text-base leading-8 lg:text-lg"
+                  style="color: var(--text-secondary); max-width: 38rem"
+                >
+                  We will review your technical SEO, content gaps, local
+                  visibility, competitor pressure, and tracking setup, then show
+                  you the practical roadmap to improve organic leads.
+                </p>
               </div>
-              <div class="space-y-0 reveal" style="transition-delay:.08s;">
-                <!-- FAQ items -->
-                <div class="faq-item hov-card glass-panel rounded-[22px] overflow-hidden mb-4">
-                  <div class="accordion-toggle flex items-center justify-between" onclick="toggleFAQ(this)">
-                    <span class="faq-question display-font text-lg font-bold italic" style="color:var(--text-primary);">How long does SEO take to show results?</span>
-                    <span class="faq-icon mono-font text-xl" style="color:var(--accent);">+</span>
-                  </div>
-                  <div class="accordion-body">
-                    <p class="text-sm leading-7" style="color:var(--text-secondary);">Technical fixes can show early improvements within weeks, but meaningful organic growth usually takes 3 to 6 months depending on competition, site history, content quality, and authority. We set expectations after the audit, not before seeing the data.</p>
-                  </div>
-                </div>
-                <div class="faq-item hov-card glass-panel rounded-[22px] overflow-hidden mb-4">
-                  <div class="accordion-toggle flex items-center justify-between" onclick="toggleFAQ(this)">
-                    <span class="faq-question display-font text-lg font-bold italic" style="color:var(--text-primary);">Do you guarantee page-one rankings?</span>
-                    <span class="faq-icon mono-font text-xl" style="color:var(--accent);">+</span>
-                  </div>
-                  <div class="accordion-body">
-                    <p class="text-sm leading-7" style="color:var(--text-secondary);">No. Google controls rankings, and any agency promising guaranteed positions is selling fantasy. What we commit to is transparent work: audits, fixes, content plans, implementation, reporting, and a clear roadmap tied to business goals.</p>
-                  </div>
-                </div>
-                <div class="faq-item hov-card glass-panel rounded-[22px] overflow-hidden mb-4">
-                  <div class="accordion-toggle flex items-center justify-between" onclick="toggleFAQ(this)">
-                    <span class="faq-question display-font text-lg font-bold italic" style="color:var(--text-primary);">What's the difference between SEO and paid ads?</span>
-                    <span class="faq-icon mono-font text-xl" style="color:var(--accent);">+</span>
-                  </div>
-                  <div class="accordion-body">
-                    <p class="text-sm leading-7" style="color:var(--text-secondary);">Paid ads buy immediate visibility. SEO builds owned visibility over time. Ads are useful for quick testing and demand capture; SEO is better for compounding trust, reducing long-term acquisition cost, and capturing people who search before they are ready to buy.</p>
-                  </div>
-                </div>
-                <div class="faq-item hov-card glass-panel rounded-[22px] overflow-hidden mb-4">
-                  <div class="accordion-toggle flex items-center justify-between" onclick="toggleFAQ(this)">
-                    <span class="faq-question display-font text-lg font-bold italic" style="color:var(--text-primary);">Do I need a new website for SEO to work?</span>
-                    <span class="faq-icon mono-font text-xl" style="color:var(--accent);">+</span>
-                  </div>
-                  <div class="accordion-body">
-                    <p class="text-sm leading-7" style="color:var(--text-secondary);">Not always. Many websites only need technical cleanup, better pages, and stronger content. If the site is slow, poorly structured, or hard to edit, we will tell you where a rebuild or development support would create better ROI.</p>
-                  </div>
-                </div>
-                <div class="faq-item hov-card glass-panel rounded-[22px] overflow-hidden mb-4">
-                  <div class="accordion-toggle flex items-center justify-between" onclick="toggleFAQ(this)">
-                    <span class="faq-question display-font text-lg font-bold italic" style="color:var(--text-primary);">Do you also optimise for AI search?</span>
-                    <span class="faq-icon mono-font text-xl" style="color:var(--accent);">+</span>
-                  </div>
-                  <div class="accordion-body">
-                    <p class="text-sm leading-7" style="color:var(--text-secondary);">Yes. AI search still depends on clear entities, trustworthy content, citations, structured data, topical depth, and brand authority. We write and structure pages so both search engines and AI answer engines can understand your business.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- CTA -->
-        <section class="relative py-24 lg:py-32">
-          <div class="site-shell">
-            <div class="glass-panel relative overflow-hidden rounded-[38px] px-6 py-14 lg:px-14 lg:py-16 reveal">
-              <div class="cta-bg rounded-[38px]"></div>
-              <div class="spotlight" style="width:28rem;height:28rem;top:-10rem;right:-6rem;background:radial-gradient(circle,rgba(57,255,20,0.14),transparent 64%);"></div>
-              <div class="relative z-10 grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
-                <div>
-                  <div class="section-kicker">Start with clarity</div>
-                  <h2 class="display-font mt-4 text-4xl font-extrabold italic leading-[0.94] tracking-[-0.04em] lg:text-6xl" style="color:var(--text-primary);max-width:12ch;">Know what is holding your rankings back.</h2>
-                  <p class="mt-6 text-base leading-8 lg:text-lg" style="color:var(--text-secondary);max-width:38rem;">We will review your technical SEO, content gaps, local visibility, competitor pressure, and tracking setup, then show you the practical roadmap to improve organic leads.</p>
-                </div>
-                <div class="flex flex-col gap-4">
-                  <a href="../contact.html" class="display-font inline-flex items-center justify-center rounded-full px-8 py-4 text-base font-bold transition-all hover:-translate-y-1" style="background:var(--accent);color:#081008;box-shadow:0 0 42px rgba(57,255,20,0.18);">Book SEO Audit</a>
-                  <a href="web-dev.html" class="display-font inline-flex items-center justify-center rounded-full border px-8 py-4 text-base font-bold transition-all hover:-translate-y-1" style="border-color:var(--border-strong);color:var(--text-primary);">Explore Web Dev -></a>
-                </div>
+              <div class="flex flex-col gap-4">
+                <a
+                  href="../contact.html"
+                  class="display-font inline-flex items-center justify-center rounded-full px-8 py-4 text-base font-bold transition-all hover:-translate-y-1"
+                  style="
+                    background: var(--accent);
+                    color: #081008;
+                    box-shadow: 0 0 42px rgba(57, 255, 20, 0.18);
+                  "
+                  >Book SEO Audit</a
+                >
+                <a
+                  href="web-dev.html"
+                  class="display-font inline-flex items-center justify-center rounded-full border px-8 py-4 text-base font-bold transition-all hover:-translate-y-1"
+                  style="
+                    border-color: var(--border-strong);
+                    color: var(--text-primary);
+                  "
+                  >Explore Web Dev -></a
+                >
               </div>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
+    </main>
 
-      </main>
-
-      <!-- FOOTER -->
+    <!-- FOOTER -->
     <div id="footer-root"></div>
     <div id="whatsapp-fab-root"></div>
 
@@ -908,65 +3046,97 @@
       const footerRoot = document.getElementById("footer-root");
       if (footerRoot) ReactDOM.createRoot(footerRoot).render(<Footer />);
       const whatsappFabRoot = document.getElementById("whatsapp-fab-root");
-      if (whatsappFabRoot) ReactDOM.createRoot(whatsappFabRoot).render(<WhatsAppFAB />);
+      if (whatsappFabRoot)
+        ReactDOM.createRoot(whatsappFabRoot).render(<WhatsAppFAB />);
     </script>
 
+    <script>
+      // NAVBAR
 
-      <script>
-        // NAVBAR
-
-
-
-        // CURSOR
-        const dot = document.getElementById('cursorDot');
-        const ring = document.getElementById('cursorRing');
-        if (window.innerWidth >= 1024) {
-          dot.style.opacity = '1'; ring.style.opacity = '1';
-          let dotX=0,dotY=0,ringX=0,ringY=0,mx=0,my=0;
-          window.addEventListener('mousemove', e => { mx=e.clientX; my=e.clientY; });
-          const tick = () => {
-            dotX += (mx-dotX)*.18; dotY += (my-dotY)*.18;
-            ringX += (mx-ringX)*.1; ringY += (my-ringY)*.1;
-            dot.style.left=dotX+'px'; dot.style.top=dotY+'px';
-            ring.style.left=ringX+'px'; ring.style.top=ringY+'px';
-            requestAnimationFrame(tick);
-          };
-          tick();
-          document.querySelectorAll('a,button').forEach(el => {
-            el.addEventListener('mouseenter', () => ring.classList.add('is-hovering'));
-            el.addEventListener('mouseleave', () => ring.classList.remove('is-hovering'));
-          });
-        }
-
-        // REVEAL
-        const obs = new IntersectionObserver(entries => {
-          entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
-        }, { threshold: 0.1 });
-        document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
-
-        // FAQ ACCORDION
-        function toggleFAQ(el) {
-          const body = el.nextElementSibling;
-          const faqItem = el.closest('.faq-item');
-          const isOpen = body.classList.contains('open');
-          // close all
-          document.querySelectorAll('.accordion-body').forEach(b => b.classList.remove('open'));
-          document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
-          document.querySelectorAll('.faq-question').forEach(q => q.style.color = '');
-          if (!isOpen) {
-            body.classList.add('open');
-            faqItem.classList.add('open');
-            el.querySelector('.faq-question').style.color = '#00ff88';
-          }
-        }
-
-        // SMOOTH ANCHORS
-        document.querySelectorAll('a[href^="#"]').forEach(a => {
-          a.addEventListener('click', e => {
-            const t = document.querySelector(a.getAttribute('href'));
-            if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth' }); }
-          });
+      // CURSOR
+      const dot = document.getElementById("cursorDot");
+      const ring = document.getElementById("cursorRing");
+      if (window.innerWidth >= 1024) {
+        dot.style.opacity = "1";
+        ring.style.opacity = "1";
+        let dotX = 0,
+          dotY = 0,
+          ringX = 0,
+          ringY = 0,
+          mx = 0,
+          my = 0;
+        window.addEventListener("mousemove", (e) => {
+          mx = e.clientX;
+          my = e.clientY;
         });
-      </script>
-    </body>
-  </html>
+        const tick = () => {
+          dotX += (mx - dotX) * 0.18;
+          dotY += (my - dotY) * 0.18;
+          ringX += (mx - ringX) * 0.1;
+          ringY += (my - ringY) * 0.1;
+          dot.style.left = dotX + "px";
+          dot.style.top = dotY + "px";
+          ring.style.left = ringX + "px";
+          ring.style.top = ringY + "px";
+          requestAnimationFrame(tick);
+        };
+        tick();
+        document.querySelectorAll("a,button").forEach((el) => {
+          el.addEventListener("mouseenter", () =>
+            ring.classList.add("is-hovering"),
+          );
+          el.addEventListener("mouseleave", () =>
+            ring.classList.remove("is-hovering"),
+          );
+        });
+      }
+
+      // REVEAL
+      const obs = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              e.target.classList.add("visible");
+              obs.unobserve(e.target);
+            }
+          });
+        },
+        { threshold: 0.1 },
+      );
+      document.querySelectorAll(".reveal").forEach((el) => obs.observe(el));
+
+      // FAQ ACCORDION
+      function toggleFAQ(el) {
+        const body = el.nextElementSibling;
+        const faqItem = el.closest(".faq-item");
+        const isOpen = body.classList.contains("open");
+        // close all
+        document
+          .querySelectorAll(".accordion-body")
+          .forEach((b) => b.classList.remove("open"));
+        document
+          .querySelectorAll(".faq-item")
+          .forEach((i) => i.classList.remove("open"));
+        document
+          .querySelectorAll(".faq-question")
+          .forEach((q) => (q.style.color = ""));
+        if (!isOpen) {
+          body.classList.add("open");
+          faqItem.classList.add("open");
+          el.querySelector(".faq-question").style.color = "#00ff88";
+        }
+      }
+
+      // SMOOTH ANCHORS
+      document.querySelectorAll('a[href^="#"]').forEach((a) => {
+        a.addEventListener("click", (e) => {
+          const t = document.querySelector(a.getAttribute("href"));
+          if (t) {
+            e.preventDefault();
+            t.scrollIntoView({ behavior: "smooth" });
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
