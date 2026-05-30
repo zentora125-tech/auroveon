@@ -1,6 +1,8 @@
 # Auroveon - robots.txt
 
-# User-agent: *
-# Allow: /
+# Allow all search engines
+User-agent: *
+Allow: /
 
-# Sitemap: https://www.auroveon.com/sitemap.xml
+# Sitemap location
+Sitemap: https://www.auroveon.com/sitemap.xml
